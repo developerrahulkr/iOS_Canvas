@@ -1,0 +1,243 @@
+
+/* Class = "UILabel"; text = "Upload Back Image"; ObjectID = "0bf-Ge-Agv"; */
+"0bf-Ge-Agv.text" = "Upload Back Image";
+
+/* Class = "UIButton"; normalTitle = "  Select your question?"; ObjectID = "1LL-yr-q8D"; */
+"1LL-yr-q8D.normalTitle" = "  Select your question?";
+
+/* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "1zC-nH-mmf"; */
+"1zC-nH-mmf.normalTitle" = "Cancel";
+
+/* Class = "UILabel"; text = "2"; ObjectID = "2Zf-mH-qdL"; */
+"2Zf-mH-qdL.text" = "2";
+
+/* Class = "UILabel"; text = "Remittance"; ObjectID = "3kc-NN-o2c"; */
+"3kc-NN-o2c.text" = "Remittance";
+
+/* Class = "UIButton"; normalTitle = "Send Money"; ObjectID = "4Xe-2W-yr2"; */
+"4Xe-2W-yr2.normalTitle" = "Send Money";
+
+/* Class = "UILabel"; text = "Email ID:"; ObjectID = "5BI-pX-RLN"; */
+"5BI-pX-RLN.text" = "Email ID:";
+
+/* Class = "UILabel"; text = "1"; ObjectID = "5PO-SJ-V1X"; */
+"5PO-SJ-V1X.text" = "1";
+
+/* Class = "UIButton"; normalTitle = "Submit"; ObjectID = "5R0-TQ-dB0"; */
+"5R0-TQ-dB0.normalTitle" = "Submit";
+
+/* Class = "UILabel"; text = "Personal Details"; ObjectID = "6av-ZR-HQt"; */
+"6av-ZR-HQt.text" = "Personal Details";
+
+/* Class = "UILabel"; text = "Address Details"; ObjectID = "7PH-Ri-X9V"; */
+"7PH-Ri-X9V.text" = "Address Details";
+
+/* Class = "UILabel"; text = "Identity Details"; ObjectID = "8QG-JJ-Qlp"; */
+"8QG-JJ-Qlp.text" = "Identity Details";
+
+/* Class = "UILabel"; text = "Your Profile is under review"; ObjectID = "8Rc-HR-H79"; */
+"8Rc-HR-H79.text" = "Your Profile is under review";
+
+/* Class = "UILabel"; text = "1"; ObjectID = "ASb-rG-22O"; */
+"ASb-rG-22O.text" = "1";
+
+/* Class = "UILabel"; text = "Telephone Number:"; ObjectID = "AiC-xW-PCU"; */
+"AiC-xW-PCU.text" = "Telephone Number:";
+
+/* Class = "UILabel"; text = "Identity Details"; ObjectID = "BIm-5V-M6F"; */
+"BIm-5V-M6F.text" = "Identity Details";
+
+/* Class = "UIButton"; normalTitle = "FAQ"; ObjectID = "Bjo-01-bob"; */
+"Bjo-01-bob.normalTitle" = "FAQ";
+
+/* Class = "UILabel"; text = "Branches"; ObjectID = "CUA-az-Wab"; */
+"CUA-az-Wab.text" = "Branches";
+
+/* Class = "UILabel"; text = "dsouza@gmail.com"; ObjectID = "E8Z-JK-MvV"; */
+"E8Z-JK-MvV.text" = "dsouza@gmail.com";
+
+/* Class = "UILabel"; text = "Personal"; ObjectID = "EDI-q4-q7f"; */
+"EDI-q4-q7f.text" = "Personal";
+
+/* Class = "UILabel"; text = "Employment"; ObjectID = "FmP-EY-YBY"; */
+"FmP-EY-YBY.text" = "Employment";
+
+/* Class = "UILabel"; text = "Identity Details"; ObjectID = "FxE-1R-7KD"; */
+"FxE-1R-7KD.text" = "Identity Details";
+
+/* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "Hda-Bj-1Nx"; */
+"Hda-Bj-1Nx.normalTitle" = "Cancel";
+
+/* Class = "UILabel"; text = "Bank Details"; ObjectID = "J1U-7E-yAU"; */
+"J1U-7E-yAU.text" = "Bank Details";
+
+/* Class = "UILabel"; text = "3"; ObjectID = "J9j-1b-fG6"; */
+"J9j-1b-fG6.text" = "3";
+
+/* Class = "UILabel"; text = "Personal"; ObjectID = "J9y-T9-5w0"; */
+"J9y-T9-5w0.text" = "Personal";
+
+/* Class = "UILabel"; text = "1"; ObjectID = "Ji3-PQ-KPI"; */
+"Ji3-PQ-KPI.text" = "1";
+
+/* Class = "UILabel"; text = "Employment"; ObjectID = "KgU-oC-0sP"; */
+"KgU-oC-0sP.text" = "Employment";
+
+/* Class = "UILabel"; text = "Employment"; ObjectID = "KlF-EJ-aVN"; */
+"KlF-EJ-aVN.text" = "Employment";
+
+/* Class = "UILabel"; text = "30"; ObjectID = "KpE-Kf-dJZ"; */
+"KpE-Kf-dJZ.text" = "30";
+
+/* Class = "UILabel"; text = "Welcome Home"; ObjectID = "LNC-SV-teb"; */
+"LNC-SV-teb.text" = "Welcome Home";
+
+/* Class = "UIButton"; normalTitle = "Submit"; ObjectID = "LgI-XH-rPw"; */
+"LgI-XH-rPw.normalTitle" = "Submit";
+
+/* Class = "UILabel"; text = "+91 1234567890"; ObjectID = "LkM-IB-6w1"; */
+"LkM-IB-6w1.text" = "+91 1234567890";
+
+/* Class = "UIButton"; normalTitle = "Submit"; ObjectID = "LwR-Qh-kfI"; */
+"LwR-Qh-kfI.normalTitle" = "Submit";
+
+/* Class = "UIButton"; normalTitle = "Update"; ObjectID = "MXI-Zo-Cln"; */
+"MXI-Zo-Cln.normalTitle" = "Update";
+
+/* Class = "UILabel"; text = "Identity"; ObjectID = "OAI-rI-pHL"; */
+"OAI-rI-pHL.text" = "Identity";
+
+/* Class = "UILabel"; text = "Source Income:"; ObjectID = "PAD-zW-pxB"; */
+"PAD-zW-pxB.text" = "Source Income:";
+
+/* Class = "UILabel"; text = "Upload Front Image"; ObjectID = "PEw-2C-TXq"; */
+"PEw-2C-TXq.text" = "Upload Front Image";
+
+/* Class = "UILabel"; text = "Personal"; ObjectID = "QMv-gG-NaA"; */
+"QMv-gG-NaA.text" = "Personal";
+
+/* Class = "UILabel"; text = "Verify the security image displayed and proceed"; ObjectID = "Ucy-3O-UUs"; */
+"Ucy-3O-UUs.text" = "Verify the security image displayed and proceed";
+
+/* Class = "UILabel"; text = "Your Profile is been submitted & reviewed by our team. You will be notified if any extra information is required."; ObjectID = "Uk7-au-gl5"; */
+"Uk7-au-gl5.text" = "Your Profile is been submitted & reviewed by our team. You will be notified if any extra information is required.";
+
+/* Class = "UILabel"; text = "Employment"; ObjectID = "V5b-Xz-cOw"; */
+"V5b-Xz-cOw.text" = "Employment";
+
+/* Class = "UILabel"; text = "Profile Details"; ObjectID = "Vie-Oc-mgJ"; */
+"Vie-Oc-mgJ.text" = "Profile Details";
+
+/* Class = "UILabel"; text = "Salary"; ObjectID = "WKZ-Yi-va0"; */
+"WKZ-Yi-va0.text" = "Salary";
+
+/* Class = "UILabel"; text = "Remittance"; ObjectID = "Y86-hb-LQB"; */
+"Y86-hb-LQB.text" = "Remittance";
+
+/* Class = "UILabel"; text = "2"; ObjectID = "Yhg-q9-GHV"; */
+"Yhg-q9-GHV.text" = "2";
+
+/* Class = "UILabel"; text = "Remittance"; ObjectID = "YwF-0M-sWs"; */
+"YwF-0M-sWs.text" = "Remittance";
+
+/* Class = "UILabel"; text = "Bank Details"; ObjectID = "ahC-ZJ-ca2"; */
+"ahC-ZJ-ca2.text" = "Bank Details";
+
+/* Class = "UIButton"; normalTitle = "Delete Profile"; ObjectID = "alY-xD-L1r"; */
+"alY-xD-L1r.normalTitle" = "Delete Profile";
+
+/* Class = "UILabel"; text = "Bank Details"; ObjectID = "bjW-kU-cUe"; */
+"bjW-kU-cUe.text" = "Bank Details";
+
+/* Class = "UILabel"; text = "Source Income:"; ObjectID = "cAp-uH-Tjq"; */
+"cAp-uH-Tjq.text" = "Source Income:";
+
+/* Class = "UILabel"; text = "Frequently asked Questions"; ObjectID = "cgj-sz-pRS"; */
+"cgj-sz-pRS.text" = "Frequently asked Questions";
+
+/* Class = "UILabel"; text = "Record Video"; ObjectID = "dJS-dC-OM4"; */
+"dJS-dC-OM4.text" = "Record Video";
+
+/* Class = "UILabel"; text = "Beneficiary details"; ObjectID = "dUL-Sg-ZZ4"; */
+"dUL-Sg-ZZ4.text" = "Beneficiary details";
+
+/* Class = "UILabel"; text = "Identity Details"; ObjectID = "dnL-G0-oM8"; */
+"dnL-G0-oM8.text" = "Identity Details";
+
+/* Class = "UILabel"; text = "Identity"; ObjectID = "erB-Jz-V0y"; */
+"erB-Jz-V0y.text" = "Identity";
+
+/* Class = "UIButton"; normalTitle = "+"; ObjectID = "fPm-12-YzI"; */
+"fPm-12-YzI.normalTitle" = "+";
+
+/* Class = "UIButton"; normalTitle = "KWD"; ObjectID = "h0u-pj-hIO"; */
+"h0u-pj-hIO.normalTitle" = "KWD";
+
+/* Class = "UILabel"; text = "1"; ObjectID = "hLh-w8-PKr"; */
+"hLh-w8-PKr.text" = "1";
+
+/* Class = "UILabel"; text = "Remittance"; ObjectID = "hmi-cv-azY"; */
+"hmi-cv-azY.text" = "Remittance";
+
+/* Class = "UIButton"; normalTitle = "Show More"; ObjectID = "ivI-NL-jV5"; */
+"ivI-NL-jV5.normalTitle" = "Show More";
+
+/* Class = "UILabel"; text = "Personal"; ObjectID = "jAR-vJ-Btf"; */
+"jAR-vJ-Btf.text" = "Personal";
+
+/* Class = "UILabel"; text = "Identity"; ObjectID = "jMz-BR-4iA"; */
+"jMz-BR-4iA.text" = "Identity";
+
+/* Class = "UILabel"; text = "1"; ObjectID = "jz9-Q3-uow"; */
+"jz9-Q3-uow.text" = "1";
+
+/* Class = "UILabel"; text = "Identity Details"; ObjectID = "k6U-Ui-ukd"; */
+"k6U-Ui-ukd.text" = "Identity Details";
+
+/* Class = "UILabel"; text = "4"; ObjectID = "kiQ-qP-3Fg"; */
+"kiQ-qP-3Fg.text" = "4";
+
+/* Class = "UIButton"; normalTitle = "See the uploaded video preview"; ObjectID = "klx-s8-TSl"; */
+"klx-s8-TSl.normalTitle" = "See the uploaded video preview";
+
+/* Class = "UILabel"; text = "Bank Transfer"; ObjectID = "leL-1Y-d8q"; */
+"leL-1Y-d8q.text" = "Bank Transfer";
+
+/* Class = "UIButton"; normalTitle = "T & C"; ObjectID = "m8w-G8-idL"; */
+"m8w-G8-idL.normalTitle" = "T & C";
+
+/* Class = "UILabel"; text = "Select Video"; ObjectID = "obp-zc-B9g"; */
+"obp-zc-B9g.text" = "Select Video";
+
+/* Class = "UIButton"; normalTitle = "  Select your question?"; ObjectID = "ohn-iw-WAb"; */
+"ohn-iw-WAb.normalTitle" = "  Select your question?";
+
+/* Class = "UIButton"; normalTitle = "Update"; ObjectID = "pGn-ty-gN9"; */
+"pGn-ty-gN9.normalTitle" = "Update";
+
+/* Class = "UILabel"; text = "Identity"; ObjectID = "pNb-oN-bBt"; */
+"pNb-oN-bBt.text" = "Identity";
+
+/* Class = "UILabel"; text = "Salary"; ObjectID = "tU4-Ev-qKg"; */
+"tU4-Ev-qKg.text" = "Salary";
+
+/* Class = "UILabel"; text = "Identity Details"; ObjectID = "vJL-Rg-SIk"; */
+"vJL-Rg-SIk.text" = "Identity Details";
+
+/* Class = "UIButton"; normalTitle = "Try another question"; ObjectID = "vPI-gQ-pOa"; */
+"vPI-gQ-pOa.normalTitle" = "Try another question";
+
+/* Class = "UILabel"; text = "Terms & Conditions"; ObjectID = "viR-ww-A9h"; */
+"viR-ww-A9h.text" = "Terms & Conditions";
+
+/* Class = "UIButton"; normalTitle = "Update"; ObjectID = "wyO-SD-T8O"; */
+"wyO-SD-T8O.normalTitle" = "Update";
+
+/* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "x4h-IU-Hde"; */
+"x4h-IU-Hde.normalTitle" = "Cancel";
+
+/* Class = "UIButton"; normalTitle = "Show Less"; ObjectID = "xvq-gK-zAb"; */
+"xvq-gK-zAb.normalTitle" = "Show Less";
+
+/* Class = "UIButton"; normalTitle = "Change Password"; ObjectID = "yyY-7j-HIh"; */
+"yyY-7j-HIh.normalTitle" = "Change Password";

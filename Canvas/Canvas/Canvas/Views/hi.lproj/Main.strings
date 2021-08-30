@@ -1,0 +1,984 @@
+
+/* Class = "UIButton"; normalTitle = "Set Alert"; ObjectID = "04U-d2-8Rw"; */
+"04U-d2-8Rw.normalTitle" = "Set Alert";
+
+/* Class = "UILabel"; text = "Identity"; ObjectID = "0Hy-2U-nhi"; */
+"0Hy-2U-nhi.text" = "Identity";
+
+/* Class = "UILabel"; text = "Threshold"; ObjectID = "0Rj-lc-MPV"; */
+"0Rj-lc-MPV.text" = "Threshold";
+
+/* Class = "UILabel"; text = "Terms and condition"; ObjectID = "0Wc-4p-FMO"; */
+"0Wc-4p-FMO.text" = "Terms and condition";
+
+/* Class = "UILabel"; text = "Conversion Details"; ObjectID = "1Am-bM-EsE"; */
+"1Am-bM-EsE.text" = "Conversion Details";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "1CL-yc-ojf"; */
+"1CL-yc-ojf.text" = "Label";
+
+/* Class = "UILabel"; text = "Status"; ObjectID = "1RE-j7-DLu"; */
+"1RE-j7-DLu.text" = "Status";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "1Wj-OD-Lt4"; */
+"1Wj-OD-Lt4.text" = "Label";
+
+/* Class = "UILabel"; text = "FC Amount"; ObjectID = "24z-0R-Jn7"; */
+"24z-0R-Jn7.text" = "FC Amount";
+
+/* Class = "UILabel"; text = "Beneficiary details"; ObjectID = "28d-mP-pBM"; */
+"28d-mP-pBM.text" = "Beneficiary details";
+
+/* Class = "UILabel"; text = "Indian Rupees"; ObjectID = "2BQ-5f-OJt"; */
+"2BQ-5f-OJt.text" = "Indian Rupees";
+
+/* Class = "UILabel"; text = "Bank Details"; ObjectID = "2Fg-6v-BIS"; */
+"2Fg-6v-BIS.text" = "Bank Details";
+
+/* Class = "UILabel"; text = "Transfer Money"; ObjectID = "2XN-66-Wgn"; */
+"2XN-66-Wgn.text" = "Transfer Money";
+
+/* Class = "UILabel"; text = "2"; ObjectID = "2Zf-mH-qdL"; */
+"2Zf-mH-qdL.text" = "2";
+
+/* Class = "UILabel"; text = "*Indicative rates only"; ObjectID = "2ag-aY-iHf"; */
+"2ag-aY-iHf.text" = "*Indicative rates only";
+
+/* Class = "UILabel"; text = "ggf"; ObjectID = "2gc-uS-0a4"; */
+"2gc-uS-0a4.text" = "ggf";
+
+/* Class = "UILabel"; text = "Conversion Details"; ObjectID = "31V-ae-3cC"; */
+"31V-ae-3cC.text" = "Conversion Details";
+
+/* Class = "UIButton"; normalTitle = ":"; ObjectID = "3GK-8A-woX"; */
+"3GK-8A-woX.normalTitle" = ":";
+
+/* Class = "UILabel"; text = "Source total amount"; ObjectID = "3Wk-u1-poD"; */
+"3Wk-u1-poD.text" = "Source total amount";
+
+/* Class = "UILabel"; text = "FC Amount"; ObjectID = "3aq-vg-2Yf"; */
+"3aq-vg-2Yf.text" = "FC Amount";
+
+/* Class = "UILabel"; text = "Remittance"; ObjectID = "3kc-NN-o2c"; */
+"3kc-NN-o2c.text" = "Remittance";
+
+/* Class = "UITextField"; text = "KD"; ObjectID = "3z9-5l-spf"; */
+"3z9-5l-spf.text" = "KD";
+
+/* Class = "UILabel"; text = "Identity"; ObjectID = "438-5S-gmU"; */
+"438-5S-gmU.text" = "Identity";
+
+/* Class = "UILabel"; text = "Disbursal mode"; ObjectID = "471-qL-EEq"; */
+"471-qL-EEq.text" = "Disbursal mode";
+
+/* Class = "UILabel"; text = "Rate Pattern"; ObjectID = "47h-x4-52A"; */
+"47h-x4-52A.text" = "Rate Pattern";
+
+/* Class = "UILabel"; text = "weak"; ObjectID = "48g-FF-qC5"; */
+"48g-FF-qC5.text" = "weak";
+
+/* Class = "UILabel"; text = "Confirm your username to reset password"; ObjectID = "4I0-TD-aDd"; */
+"4I0-TD-aDd.text" = "Confirm your username to reset password";
+
+/* Class = "UILabel"; text = "Contact Us"; ObjectID = "4JY-Pr-AeG"; */
+"4JY-Pr-AeG.text" = "Contact Us";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "4NU-VX-zpd"; */
+"4NU-VX-zpd.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "1 Month"; ObjectID = "4SC-eb-Fe9"; */
+"4SC-eb-Fe9.normalTitle" = "1 Month";
+
+/* Class = "UIButton"; normalTitle = "Send Money"; ObjectID = "4Xe-2W-yr2"; */
+"4Xe-2W-yr2.normalTitle" = "Send Money";
+
+/* Class = "UILabel"; text = "Country"; ObjectID = "4f0-po-VRY"; */
+"4f0-po-VRY.text" = "Country";
+
+/* Class = "UILabel"; text = "Forgot Username"; ObjectID = "4rz-Ed-1mP"; */
+"4rz-Ed-1mP.text" = "Forgot Username";
+
+/* Class = "UILabel"; text = "KWD"; ObjectID = "4uR-Y4-iwA"; */
+"4uR-Y4-iwA.text" = "KWD";
+
+/* Class = "UILabel"; text = "Currency"; ObjectID = "50O-2B-aMo"; */
+"50O-2B-aMo.text" = "Currency";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "58f-cT-atM"; */
+"58f-cT-atM.text" = "Label";
+
+/* Class = "UILabel"; text = "Email ID:"; ObjectID = "5BI-pX-RLN"; */
+"5BI-pX-RLN.text" = "Email ID:";
+
+/* Class = "UILabel"; text = "1"; ObjectID = "5PO-SJ-V1X"; */
+"5PO-SJ-V1X.text" = "1";
+
+/* Class = "UILabel"; text = "Kuwait Dinar"; ObjectID = "5vs-TN-zL0"; */
+"5vs-TN-zL0.text" = "Kuwait Dinar";
+
+/* Class = "UILabel"; text = "Terms and condition"; ObjectID = "64E-wf-YZo"; */
+"64E-wf-YZo.text" = "Terms and condition";
+
+/* Class = "UILabel"; text = "KWD"; ObjectID = "6HC-Xg-sej"; */
+"6HC-Xg-sej.text" = "KWD";
+
+/* Class = "UILabel"; text = "2"; ObjectID = "6Ud-Ny-EJR"; */
+"6Ud-Ny-EJR.text" = "2";
+
+/* Class = "UILabel"; text = "  Personal Details"; ObjectID = "6av-ZR-HQt"; */
+"6av-ZR-HQt.text" = "  Personal Details";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "6ec-c4-HWx"; */
+"6ec-c4-HWx.text" = "Label";
+
+/* Class = "UITextField"; text = "+965"; ObjectID = "6vA-Mi-eJn"; */
+"6vA-Mi-eJn.text" = "+965";
+
+/* Class = "UILabel"; text = "Profile Details"; ObjectID = "6zW-ZF-5RJ"; */
+"6zW-ZF-5RJ.text" = "Profile Details";
+
+/* Class = "UILabel"; text = "INR"; ObjectID = "73y-QX-EQN"; */
+"73y-QX-EQN.text" = "INR";
+
+/* Class = "UILabel"; text = "  Address Details"; ObjectID = "7PH-Ri-X9V"; */
+"7PH-Ri-X9V.text" = "  Address Details";
+
+/* Class = "UILabel"; text = "weak"; ObjectID = "7RY-w4-x4T"; */
+"7RY-w4-x4T.text" = "weak";
+
+/* Class = "UILabel"; text = "2"; ObjectID = "7rj-fD-q5C"; */
+"7rj-fD-q5C.text" = "2";
+
+/* Class = "UILabel"; text = "Created date"; ObjectID = "84k-fH-4mD"; */
+"84k-fH-4mD.text" = "Created date";
+
+/* Class = "UILabel"; text = "Recent Transactions"; ObjectID = "8Gh-Kw-LSR"; */
+"8Gh-Kw-LSR.text" = "Recent Transactions";
+
+/* Class = "UILabel"; text = "Profile Details"; ObjectID = "8QG-JJ-Qlp"; */
+"8QG-JJ-Qlp.text" = "Profile Details";
+
+/* Class = "UILabel"; text = "Your Profile is under review"; ObjectID = "8Rc-HR-H79"; */
+"8Rc-HR-H79.text" = "Your Profile is under review";
+
+/* Class = "UIButton"; normalTitle = "View on google map"; ObjectID = "8Sm-0K-UoG"; */
+"8Sm-0K-UoG.normalTitle" = "View on google map";
+
+/* Class = "UILabel"; text = "1KWD = 244.90 INR"; ObjectID = "8UO-eX-2cc"; */
+"8UO-eX-2cc.text" = "1KWD = 244.90 INR";
+
+/* Class = "UILabel"; text = "Kuwait Dinar"; ObjectID = "95x-2e-IvJ"; */
+"95x-2e-IvJ.text" = "Kuwait Dinar";
+
+/* Class = "UILabel"; text = "Disbursal mode"; ObjectID = "9L5-UX-saQ"; */
+"9L5-UX-saQ.text" = "Disbursal mode";
+
+/* Class = "UILabel"; text = "Ben ID"; ObjectID = "9MO-Xu-jGs"; */
+"9MO-Xu-jGs.text" = "Ben ID";
+
+/* Class = "UILabel"; text = "Kuwait Dinar"; ObjectID = "A3o-My-F6r"; */
+"A3o-My-F6r.text" = "Kuwait Dinar";
+
+/* Class = "UILabel"; text = "KWD"; ObjectID = "A73-D8-q96"; */
+"A73-D8-q96.text" = "KWD";
+
+/* Class = "UILabel"; text = "1"; ObjectID = "ARp-Kt-aiE"; */
+"ARp-Kt-aiE.text" = "1";
+
+/* Class = "UILabel"; text = "1"; ObjectID = "ASb-rG-22O"; */
+"ASb-rG-22O.text" = "1";
+
+/* Class = "UILabel"; text = "Telephone Number:"; ObjectID = "AiC-xW-PCU"; */
+"AiC-xW-PCU.text" = "Telephone Number:";
+
+/* Class = "UILabel"; text = "Personal"; ObjectID = "BhI-jP-DXU"; */
+"BhI-jP-DXU.text" = "Personal";
+
+/* Class = "UILabel"; text = "Remittance"; ObjectID = "Bm0-eY-5zz"; */
+"Bm0-eY-5zz.text" = "Remittance";
+
+/* Class = "UILabel"; text = "Identity"; ObjectID = "CMt-BS-ldZ"; */
+"CMt-BS-ldZ.text" = "Identity";
+
+/* Class = "UILabel"; text = "Personal"; ObjectID = "CRT-1z-3aI"; */
+"CRT-1z-3aI.text" = "Personal";
+
+/* Class = "UILabel"; text = "KWD"; ObjectID = "CUP-4u-rmk"; */
+"CUP-4u-rmk.text" = "KWD";
+
+/* Class = "UILabel"; text = "Ben Name"; ObjectID = "CYJ-VD-lw7"; */
+"CYJ-VD-lw7.text" = "Ben Name";
+
+/* Class = "UILabel"; text = "They Receive"; ObjectID = "CbH-tz-o1l"; */
+"CbH-tz-o1l.text" = "They Receive";
+
+/* Class = "UILabel"; text = "They Receive"; ObjectID = "CcI-u6-mHf"; */
+"CcI-u6-mHf.text" = "They Receive";
+
+/* Class = "UILabel"; text = "1KWD = 244.90 INR"; ObjectID = "D4R-6i-lbr"; */
+"D4R-6i-lbr.text" = "1KWD = 244.90 INR";
+
+/* Class = "UILabel"; text = "Contact Us"; ObjectID = "Deb-N0-yeE"; */
+"Deb-N0-yeE.text" = "Contact Us";
+
+/* Class = "UILabel"; text = "Indian Rupees"; ObjectID = "Dyd-Bb-7Qh"; */
+"Dyd-Bb-7Qh.text" = "Indian Rupees";
+
+/* Class = "UILabel"; text = "dsouza@gmail.com"; ObjectID = "E8Z-JK-MvV"; */
+"E8Z-JK-MvV.text" = "dsouza@gmail.com";
+
+/* Class = "UILabel"; text = "Personal"; ObjectID = "EDI-q4-q7f"; */
+"EDI-q4-q7f.text" = "Personal";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "EKd-Eu-8wq"; */
+"EKd-Eu-8wq.text" = "Label";
+
+/* Class = "UILabel"; text = "1"; ObjectID = "ENH-gN-lXO"; */
+"ENH-gN-lXO.text" = "1";
+
+/* Class = "UILabel"; text = "Remittance"; ObjectID = "EON-MW-G1D"; */
+"EON-MW-G1D.text" = "Remittance";
+
+/* Class = "UILabel"; text = "Indian Rupees"; ObjectID = "EOt-br-svz"; */
+"EOt-br-svz.text" = "Indian Rupees";
+
+/* Class = "UILabel"; text = "Rate"; ObjectID = "Efd-qL-9Ji"; */
+"Efd-qL-9Ji.text" = "Rate";
+
+/* Class = "UILabel"; text = "Transfer Money"; ObjectID = "EqH-DU-ya2"; */
+"EqH-DU-ya2.text" = "Transfer Money";
+
+/* Class = "UILabel"; text = "  Transaction Related Details"; ObjectID = "EtY-hH-ffK"; */
+"EtY-hH-ffK.text" = "  Transaction Related Details";
+
+/* Class = "UILabel"; text = "Branch"; ObjectID = "FR5-PJ-DaD"; */
+"FR5-PJ-DaD.text" = "Branch";
+
+/* Class = "UILabel"; text = "Our Branches"; ObjectID = "FbE-fs-OJ8"; */
+"FbE-fs-OJ8.text" = "Our Branches";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Fc1-DZ-Dxz"; */
+"Fc1-DZ-Dxz.text" = "Label";
+
+/* Class = "UILabel"; text = "Bank"; ObjectID = "FdX-jP-CLQ"; */
+"FdX-jP-CLQ.text" = "Bank";
+
+/* Class = "UILabel"; text = "Employment"; ObjectID = "FmP-EY-YBY"; */
+"FmP-EY-YBY.text" = "Employment";
+
+/* Class = "UILabel"; text = "KWD"; ObjectID = "G4o-w2-toL"; */
+"G4o-w2-toL.text" = "KWD";
+
+/* Class = "UILabel"; text = "Kuwait Dinar"; ObjectID = "GT9-RC-cJV"; */
+"GT9-RC-cJV.text" = "Kuwait Dinar";
+
+/* Class = "UITextField"; text = "+965"; ObjectID = "GVc-V3-6Sp"; */
+"GVc-V3-6Sp.text" = "+965";
+
+/* Class = "UIButton"; normalTitle = "REPEAT"; ObjectID = "GaZ-3G-H9q"; */
+"GaZ-3G-H9q.normalTitle" = "REPEAT";
+
+/* Class = "UILabel"; text = "Employment"; ObjectID = "Gc9-Zc-cqd"; */
+"Gc9-Zc-cqd.text" = "Employment";
+
+/* Class = "UILabel"; text = "Account"; ObjectID = "H1g-1h-5VE"; */
+"H1g-1h-5VE.text" = "Account";
+
+/* Class = "UILabel"; text = "Transfer Money"; ObjectID = "H8b-Az-4ky"; */
+"H8b-Az-4ky.text" = "Transfer Money";
+
+/* Class = "UILabel"; text = "Bank Details"; ObjectID = "HHW-tD-SHc"; */
+"HHW-tD-SHc.text" = "Bank Details";
+
+/* Class = "UILabel"; text = "Quick Send"; ObjectID = "Hhj-bo-GVj"; */
+"Hhj-bo-GVj.text" = "Quick Send";
+
+/* Class = "UILabel"; text = "Account"; ObjectID = "Hnm-UI-c8L"; */
+"Hnm-UI-c8L.text" = "Account";
+
+/* Class = "UILabel"; text = "Contact Us"; ObjectID = "Ikg-wT-QEg"; */
+"Ikg-wT-QEg.text" = "Contact Us";
+
+/* Class = "UILabel"; text = "Personal"; ObjectID = "J9y-T9-5w0"; */
+"J9y-T9-5w0.text" = "Personal";
+
+/* Class = "UIButton"; normalTitle = "Direct Transfer"; ObjectID = "JK6-wz-4DE"; */
+"JK6-wz-4DE.normalTitle" = "Direct Transfer";
+
+/* Class = "UILabel"; text = "Employment"; ObjectID = "JhO-V2-Z7f"; */
+"JhO-V2-Z7f.text" = "Employment";
+
+/* Class = "UILabel"; text = "1"; ObjectID = "Ji3-PQ-KPI"; */
+"Ji3-PQ-KPI.text" = "1";
+
+/* Class = "UIButton"; normalTitle = "Edit"; ObjectID = "KIK-iU-5ec"; */
+"KIK-iU-5ec.normalTitle" = "Edit";
+
+/* Class = "UILabel"; text = "They Receive"; ObjectID = "KPe-CC-8fG"; */
+"KPe-CC-8fG.text" = "They Receive";
+
+/* Class = "UILabel"; text = "Indian Rupees"; ObjectID = "KRb-8Y-c5t"; */
+"KRb-8Y-c5t.text" = "Indian Rupees";
+
+/* Class = "UILabel"; text = "Employment"; ObjectID = "KgU-oC-0sP"; */
+"KgU-oC-0sP.text" = "Employment";
+
+/* Class = "UILabel"; text = "  Transaction Related Details"; ObjectID = "KlA-Cw-9Cc"; */
+"KlA-Cw-9Cc.text" = "  Transaction Related Details";
+
+/* Class = "UILabel"; text = "Employment"; ObjectID = "KlF-EJ-aVN"; */
+"KlF-EJ-aVN.text" = "Employment";
+
+/* Class = "UILabel"; text = "Employment"; ObjectID = "KnU-N8-K3I"; */
+"KnU-N8-K3I.text" = "Employment";
+
+/* Class = "UILabel"; text = "30"; ObjectID = "KpE-Kf-dJZ"; */
+"KpE-Kf-dJZ.text" = "30";
+
+/* Class = "UILabel"; text = "Profile Details"; ObjectID = "KvT-kL-Uja"; */
+"KvT-kL-Uja.text" = "Profile Details";
+
+/* Class = "UILabel"; text = "Personal"; ObjectID = "KyZ-bf-ucz"; */
+"KyZ-bf-ucz.text" = "Personal";
+
+/* Class = "UILabel"; text = "LC Amount"; ObjectID = "Kzz-A4-Bx6"; */
+"Kzz-A4-Bx6.text" = "LC Amount";
+
+/* Class = "UILabel"; text = "  Remittance Details"; ObjectID = "LDk-s3-1Hs"; */
+"LDk-s3-1Hs.text" = "  Remittance Details";
+
+/* Class = "UILabel"; text = "*Indicative rates only"; ObjectID = "LPX-JT-pkG"; */
+"LPX-JT-pkG.text" = "*Indicative rates only";
+
+/* Class = "UILabel"; text = "Kuwait Dinar"; ObjectID = "LVK-P6-22A"; */
+"LVK-P6-22A.text" = "Kuwait Dinar";
+
+/* Class = "UILabel"; text = "+91 1234567890"; ObjectID = "LkM-IB-6w1"; */
+"LkM-IB-6w1.text" = "+91 1234567890";
+
+/* Class = "UILabel"; text = "1"; ObjectID = "Lzp-xX-B5w"; */
+"Lzp-xX-B5w.text" = "1";
+
+/* Class = "UIButton"; normalTitle = "3 Months"; ObjectID = "M5B-XR-HFc"; */
+"M5B-XR-HFc.normalTitle" = "3 Months";
+
+/* Class = "UILabel"; text = "Our Branches"; ObjectID = "M6o-Gi-V3f"; */
+"M6o-Gi-V3f.text" = "Our Branches";
+
+/* Class = "UILabel"; text = "Personal"; ObjectID = "M80-EC-5dT"; */
+"M80-EC-5dT.text" = "Personal";
+
+/* Class = "UILabel"; text = "Rate Calculator"; ObjectID = "MOX-Ji-SOH"; */
+"MOX-Ji-SOH.text" = "Rate Calculator";
+
+/* Class = "UILabel"; text = "Identity"; ObjectID = "MbB-cQ-s5D"; */
+"MbB-cQ-s5D.text" = "Identity";
+
+/* Class = "UILabel"; text = "Profile Details"; ObjectID = "MeQ-LQ-8Ug"; */
+"MeQ-LQ-8Ug.text" = "Profile Details";
+
+/* Class = "UIButton"; normalTitle = "6 Months"; ObjectID = "Mi7-Ba-KQu"; */
+"Mi7-Ba-KQu.normalTitle" = "6 Months";
+
+/* Class = "UILabel"; text = "Terms and condition"; ObjectID = "Mrt-xh-JmV"; */
+"Mrt-xh-JmV.text" = "Terms and condition";
+
+/* Class = "UILabel"; text = "Indian Rupees"; ObjectID = "NCa-x8-Ax6"; */
+"NCa-x8-Ax6.text" = "Indian Rupees";
+
+/* Class = "UILabel"; text = "512333"; ObjectID = "ND1-Dr-eMW"; */
+"ND1-Dr-eMW.text" = "512333";
+
+/* Class = "UILabel"; text = "KWD"; ObjectID = "Nlw-L0-Lvi"; */
+"Nlw-L0-Lvi.text" = "KWD";
+
+/* Class = "UILabel"; text = "You Send"; ObjectID = "Nm4-Tu-Xza"; */
+"Nm4-Tu-Xza.text" = "You Send";
+
+/* Class = "UILabel"; text = "  Address Details"; ObjectID = "O1L-h1-p0w"; */
+"O1L-h1-p0w.text" = "  Address Details";
+
+/* Class = "UILabel"; text = "Source currency"; ObjectID = "O7C-dn-mYV"; */
+"O7C-dn-mYV.text" = "Source currency";
+
+/* Class = "UILabel"; text = "  Remittance Details"; ObjectID = "O8F-bo-6cr"; */
+"O8F-bo-6cr.text" = "  Remittance Details";
+
+/* Class = "UILabel"; text = "Currency"; ObjectID = "O9S-vo-Zwk"; */
+"O9S-vo-Zwk.text" = "Currency";
+
+/* Class = "UILabel"; text = "Identity"; ObjectID = "OAI-rI-pHL"; */
+"OAI-rI-pHL.text" = "Identity";
+
+/* Class = "UILabel"; text = "Personal"; ObjectID = "OWM-nj-kH2"; */
+"OWM-nj-kH2.text" = "Personal";
+
+/* Class = "UILabel"; text = "Source total amount"; ObjectID = "Oms-wI-znb"; */
+"Oms-wI-znb.text" = "Source total amount";
+
+/* Class = "UILabel"; text = "You pay only"; ObjectID = "OzI-Rz-8Ym"; */
+"OzI-Rz-8Ym.text" = "You pay only";
+
+/* Class = "UIButton"; normalTitle = "  Send Now"; ObjectID = "Ozb-S7-LTv"; */
+"Ozb-S7-LTv.normalTitle" = "  Send Now";
+
+/* Class = "UILabel"; text = "Source Income:"; ObjectID = "PAD-zW-pxB"; */
+"PAD-zW-pxB.text" = "Source Income:";
+
+/* Class = "UILabel"; text = "Personal"; ObjectID = "PG0-xH-eJU"; */
+"PG0-xH-eJU.text" = "Personal";
+
+/* Class = "UILabel"; text = "KWD"; ObjectID = "PcF-sL-eKh"; */
+"PcF-sL-eKh.text" = "KWD";
+
+/* Class = "UILabel"; text = "You Send"; ObjectID = "Pdc-Gl-kQl"; */
+"Pdc-Gl-kQl.text" = "You Send";
+
+/* Class = "UILabel"; text = "Hi"; ObjectID = "QGX-FY-qnP"; */
+"QGX-FY-qnP.text" = "Hi";
+
+/* Class = "UILabel"; text = "Personal"; ObjectID = "QMv-gG-NaA"; */
+"QMv-gG-NaA.text" = "Personal";
+
+/* Class = "UILabel"; text = "Target currency"; ObjectID = "QX4-8M-hA3"; */
+"QX4-8M-hA3.text" = "Target currency";
+
+/* Class = "UIButton"; normalTitle = "REPEAT"; ObjectID = "QYy-hL-V0J"; */
+"QYy-hL-V0J.normalTitle" = "REPEAT";
+
+/* Class = "UILabel"; text = "Confirm your civil Id"; ObjectID = "R3u-MN-TSl"; */
+"R3u-MN-TSl.text" = "Confirm your civil Id";
+
+/* Class = "UILabel"; text = "LC Amount"; ObjectID = "RMn-yL-jHr"; */
+"RMn-yL-jHr.text" = "LC Amount";
+
+/* Class = "UILabel"; text = "Our Branches"; ObjectID = "RY8-Cy-98a"; */
+"RY8-Cy-98a.text" = "Our Branches";
+
+/* Class = "UILabel"; text = "Kuwait Dinar"; ObjectID = "Rd6-ff-CeU"; */
+"Rd6-ff-CeU.text" = "Kuwait Dinar";
+
+/* Class = "UILabel"; text = "Employment"; ObjectID = "Rgh-WJ-bvr"; */
+"Rgh-WJ-bvr.text" = "Employment";
+
+/* Class = "UILabel"; text = "Status"; ObjectID = "Rqk-GL-kjO"; */
+"Rqk-GL-kjO.text" = "Status";
+
+/* Class = "UILabel"; text = "1KWD = 244.90 INR"; ObjectID = "San-Bm-rB7"; */
+"San-Bm-rB7.text" = "1KWD = 244.90 INR";
+
+/* Class = "UILabel"; text = "Transactions"; ObjectID = "Slq-Qf-b4N"; */
+"Slq-Qf-b4N.text" = "Transactions";
+
+/* Class = "UILabel"; text = "Ben ID"; ObjectID = "Sou-Rt-K0h"; */
+"Sou-Rt-K0h.text" = "Ben ID";
+
+/* Class = "UILabel"; text = "Branch"; ObjectID = "Suj-5Y-fle"; */
+"Suj-5Y-fle.text" = "Branch";
+
+/* Class = "UILabel"; text = "1"; ObjectID = "Tgk-EI-dsR"; */
+"Tgk-EI-dsR.text" = "1";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "ThO-c6-qZW"; */
+"ThO-c6-qZW.text" = "Label";
+
+/* Class = "UILabel"; text = "1"; ObjectID = "Tij-cm-6Ea"; */
+"Tij-cm-6Ea.text" = "1";
+
+/* Class = "UITextField"; text = "+965"; ObjectID = "TqE-gO-Pmh"; */
+"TqE-gO-Pmh.text" = "+965";
+
+/* Class = "UILabel"; text = "Employment"; ObjectID = "UP1-WA-juf"; */
+"UP1-WA-juf.text" = "Employment";
+
+/* Class = "UILabel"; text = "INR"; ObjectID = "UQh-gC-jU4"; */
+"UQh-gC-jU4.text" = "INR";
+
+/* Class = "UILabel"; text = "From Date"; ObjectID = "Ua3-CU-I22"; */
+"Ua3-CU-I22.text" = "From Date";
+
+/* Class = "UILabel"; text = "Your Profile is been submitted & reviewed by our team. You will be notified if any extra information is required."; ObjectID = "Uk7-au-gl5"; */
+"Uk7-au-gl5.text" = "Your Profile is been submitted & reviewed by our team. You will be notified if any extra information is required.";
+
+/* Class = "UIButton"; normalTitle = "Edit profile"; ObjectID = "Upj-cf-2jI"; */
+"Upj-cf-2jI.normalTitle" = "Edit profile";
+
+/* Class = "UILabel"; text = "Employment"; ObjectID = "V5b-Xz-cOw"; */
+"V5b-Xz-cOw.text" = "Employment";
+
+/* Class = "UILabel"; text = "Profile"; ObjectID = "V6i-sh-N0K"; */
+"V6i-sh-N0K.text" = "Profile";
+
+/* Class = "UILabel"; text = "KWD"; ObjectID = "VDE-eo-3Eb"; */
+"VDE-eo-3Eb.text" = "KWD";
+
+/* Class = "UILabel"; text = "You Send"; ObjectID = "VEI-MI-emz"; */
+"VEI-MI-emz.text" = "You Send";
+
+/* Class = "UITextField"; text = "KD"; ObjectID = "VSg-Ap-bpd"; */
+"VSg-Ap-bpd.text" = "KD";
+
+/* Class = "UILabel"; text = "Profile Details"; ObjectID = "Vie-Oc-mgJ"; */
+"Vie-Oc-mgJ.text" = "Profile Details";
+
+/* Class = "UILabel"; text = "Remittance"; ObjectID = "VjA-gK-mv3"; */
+"VjA-gK-mv3.text" = "Remittance";
+
+/* Class = "UILabel"; text = "They Receive"; ObjectID = "VtH-sK-aPp"; */
+"VtH-sK-aPp.text" = "They Receive";
+
+/* Class = "UILabel"; text = "Indian Rupees"; ObjectID = "Vwd-Uc-UBD"; */
+"Vwd-Uc-UBD.text" = "Indian Rupees";
+
+/* Class = "UILabel"; text = "Favourite Beneficiaries"; ObjectID = "W7T-uL-dnG"; */
+"W7T-uL-dnG.text" = "Favourite Beneficiaries";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "W7e-rP-VJX"; */
+"W7e-rP-VJX.text" = "Label";
+
+/* Class = "UILabel"; text = "Salary"; ObjectID = "WKZ-Yi-va0"; */
+"WKZ-Yi-va0.text" = "Salary";
+
+/* Class = "UILabel"; text = "name"; ObjectID = "WZE-kW-wm7"; */
+"WZE-kW-wm7.text" = "name";
+
+/* Class = "UITextField"; text = "KWD"; ObjectID = "Weg-FP-epY"; */
+"Weg-FP-epY.text" = "KWD";
+
+/* Class = "UILabel"; text = "Branch"; ObjectID = "Wip-bE-fQU"; */
+"Wip-bE-fQU.text" = "Branch";
+
+/* Class = "UILabel"; text = "Source of income"; ObjectID = "Wwq-gP-Zc5"; */
+"Wwq-gP-Zc5.text" = "Source of income";
+
+/* Class = "UILabel"; text = "Employment"; ObjectID = "XVL-WL-LNw"; */
+"XVL-WL-LNw.text" = "Employment";
+
+/* Class = "UITextField"; text = "+965"; ObjectID = "Y44-pl-U0q"; */
+"Y44-pl-U0q.text" = "+965";
+
+/* Class = "UILabel"; text = "Remittance"; ObjectID = "Y86-hb-LQB"; */
+"Y86-hb-LQB.text" = "Remittance";
+
+/* Class = "UILabel"; text = "Created date"; ObjectID = "YFe-YQ-jDz"; */
+"YFe-YQ-jDz.text" = "Created date";
+
+/* Class = "UILabel"; text = "Profile Details"; ObjectID = "YLL-Nb-ECB"; */
+"YLL-Nb-ECB.text" = "Profile Details";
+
+/* Class = "UILabel"; text = "You Send"; ObjectID = "Ydb-Pe-Mu7"; */
+"Ydb-Pe-Mu7.text" = "You Send";
+
+/* Class = "UILabel"; text = "512333"; ObjectID = "Ydx-gp-u5c"; */
+"Ydx-gp-u5c.text" = "512333";
+
+/* Class = "UILabel"; text = "2"; ObjectID = "Yhg-q9-GHV"; */
+"Yhg-q9-GHV.text" = "2";
+
+/* Class = "UILabel"; text = "weak"; ObjectID = "Yvu-0E-xqn"; */
+"Yvu-0E-xqn.text" = "weak";
+
+/* Class = "UILabel"; text = "Remittance"; ObjectID = "YwF-0M-sWs"; */
+"YwF-0M-sWs.text" = "Remittance";
+
+/* Class = "UILabel"; text = "Profile Details"; ObjectID = "YxV-lt-ZWD"; */
+"YxV-lt-ZWD.text" = "Profile Details";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "ZGd-tG-hDf"; */
+"ZGd-tG-hDf.text" = "Label";
+
+/* Class = "UILabel"; text = "Bank Details"; ObjectID = "ahC-ZJ-ca2"; */
+"ahC-ZJ-ca2.text" = "Bank Details";
+
+/* Class = "UILabel"; text = "Our Branches"; ObjectID = "b5M-rm-zwU"; */
+"b5M-rm-zwU.text" = "Our Branches";
+
+/* Class = "UILabel"; text = "Transfer Money"; ObjectID = "bEW-Nu-XmI"; */
+"bEW-Nu-XmI.text" = "Transfer Money";
+
+/* Class = "UILabel"; text = "Bank Details"; ObjectID = "bjW-kU-cUe"; */
+"bjW-kU-cUe.text" = "Bank Details";
+
+/* Class = "UITextField"; text = "KD"; ObjectID = "bkD-vv-Qiq"; */
+"bkD-vv-Qiq.text" = "KD";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "btn-js-TNb"; */
+"btn-js-TNb.text" = "Label";
+
+/* Class = "UILabel"; text = "Faq's"; ObjectID = "buo-qj-AFu"; */
+"buo-qj-AFu.text" = "Faq's";
+
+/* Class = "UILabel"; text = "Source Income:"; ObjectID = "cAp-uH-Tjq"; */
+"cAp-uH-Tjq.text" = "Source Income:";
+
+/* Class = "UILabel"; text = "Personal Details"; ObjectID = "cNI-SP-jYu"; */
+"cNI-SP-jYu.text" = "Personal Details";
+
+/* Class = "UILabel"; text = "Rate Calculator"; ObjectID = "cfg-X1-Rvi"; */
+"cfg-X1-Rvi.text" = "Rate Calculator";
+
+/* Class = "UILabel"; text = "INR"; ObjectID = "cmS-a9-X35"; */
+"cmS-a9-X35.text" = "INR";
+
+/* Class = "UILabel"; text = "You Send"; ObjectID = "cnM-3V-hZD"; */
+"cnM-3V-hZD.text" = "You Send";
+
+/* Class = "UILabel"; text = "1KWD = 244.90 INR"; ObjectID = "dNd-zM-74W"; */
+"dNd-zM-74W.text" = "1KWD = 244.90 INR";
+
+/* Class = "UILabel"; text = "KWD"; ObjectID = "dQo-5u-5wF"; */
+"dQo-5u-5wF.text" = "KWD";
+
+/* Class = "UILabel"; text = "Beneficiary details"; ObjectID = "dUL-Sg-ZZ4"; */
+"dUL-Sg-ZZ4.text" = "Beneficiary details";
+
+/* Class = "UITextField"; text = "KWD"; ObjectID = "dUU-SD-U2B"; */
+"dUU-SD-U2B.text" = "KWD";
+
+/* Class = "UITextField"; text = "+965"; ObjectID = "dl3-SV-Ua9"; */
+"dl3-SV-Ua9.text" = "+965";
+
+/* Class = "UILabel"; text = "ggf"; ObjectID = "dxc-kE-1mE"; */
+"dxc-kE-1mE.text" = "ggf";
+
+/* Class = "UILabel"; text = "FAQ's"; ObjectID = "dyx-qE-MK1"; */
+"dyx-qE-MK1.text" = "FAQ's";
+
+/* Class = "UILabel"; text = "Welcome"; ObjectID = "eT3-90-ibP"; */
+"eT3-90-ibP.text" = "Welcome";
+
+/* Class = "UILabel"; text = "KWD"; ObjectID = "eU4-wk-JUo"; */
+"eU4-wk-JUo.text" = "KWD";
+
+/* Class = "UILabel"; text = "Identity"; ObjectID = "ecp-Rt-pwb"; */
+"ecp-Rt-pwb.text" = "Identity";
+
+/* Class = "UILabel"; text = "Identity"; ObjectID = "erB-Jz-V0y"; */
+"erB-Jz-V0y.text" = "Identity";
+
+/* Class = "UILabel"; text = "INR"; ObjectID = "f1r-uE-HhC"; */
+"f1r-uE-HhC.text" = "INR";
+
+/* Class = "UILabel"; text = "Source currency"; ObjectID = "f4I-lt-Tyg"; */
+"f4I-lt-Tyg.text" = "Source currency";
+
+/* Class = "UILabel"; text = "Forgot Password"; ObjectID = "f4W-TU-mTS"; */
+"f4W-TU-mTS.text" = "Forgot Password";
+
+/* Class = "UILabel"; text = "Reference ID"; ObjectID = "fEE-O2-OfF"; */
+"fEE-O2-OfF.text" = "Reference ID";
+
+/* Class = "UILabel"; text = "Bank"; ObjectID = "fEu-JC-rB8"; */
+"fEu-JC-rB8.text" = "Bank";
+
+/* Class = "UILabel"; text = "You Send"; ObjectID = "fSq-Uk-C8A"; */
+"fSq-Uk-C8A.text" = "You Send";
+
+/* Class = "UILabel"; text = "Transactions Insights"; ObjectID = "faf-Nx-4Zo"; */
+"faf-Nx-4Zo.text" = "Transactions Insights";
+
+/* Class = "UILabel"; text = "Recent Transactions"; ObjectID = "feQ-Us-kMo"; */
+"feQ-Us-kMo.text" = "Recent Transactions";
+
+/* Class = "UILabel"; text = "Bank"; ObjectID = "foq-Yn-ibH"; */
+"foq-Yn-ibH.text" = "Bank";
+
+/* Class = "UILabel"; text = "  Personal Details"; ObjectID = "frF-ol-2kT"; */
+"frF-ol-2kT.text" = "  Personal Details";
+
+/* Class = "UIButton"; normalTitle = "Delete"; ObjectID = "fug-uJ-7dD"; */
+"fug-uJ-7dD.normalTitle" = "Delete";
+
+/* Class = "UILabel"; text = "LC Amount"; ObjectID = "g3c-Jh-dN6"; */
+"g3c-Jh-dN6.text" = "LC Amount";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "g8U-ee-djj"; */
+"g8U-ee-djj.text" = "Label";
+
+/* Class = "UILabel"; text = "1KWD = 244.90 INR"; ObjectID = "gIk-tX-j2R"; */
+"gIk-tX-j2R.text" = "1KWD = 244.90 INR";
+
+/* Class = "UILabel"; text = "Target total amount"; ObjectID = "gff-Ee-xHe"; */
+"gff-Ee-xHe.text" = "Target total amount";
+
+/* Class = "UILabel"; text = "Transfer Money"; ObjectID = "ghu-JU-gfD"; */
+"ghu-JU-gfD.text" = "Transfer Money";
+
+/* Class = "UILabel"; text = "Rate Calculator"; ObjectID = "ghv-43-dRw"; */
+"ghv-43-dRw.text" = "Rate Calculator";
+
+/* Class = "UIButton"; normalTitle = "KWD"; ObjectID = "h0u-pj-hIO"; */
+"h0u-pj-hIO.normalTitle" = "KWD";
+
+/* Class = "UILabel"; text = "Identity"; ObjectID = "hCl-US-P5Y"; */
+"hCl-US-P5Y.text" = "Identity";
+
+/* Class = "UILabel"; text = "Bank Details"; ObjectID = "hHb-xe-am5"; */
+"hHb-xe-am5.text" = "Bank Details";
+
+/* Class = "UILabel"; text = "Employment"; ObjectID = "hLQ-ht-MGf"; */
+"hLQ-ht-MGf.text" = "Employment";
+
+/* Class = "UILabel"; text = "1"; ObjectID = "hLh-w8-PKr"; */
+"hLh-w8-PKr.text" = "1";
+
+/* Class = "UILabel"; text = "Remittance"; ObjectID = "hmi-cv-azY"; */
+"hmi-cv-azY.text" = "Remittance";
+
+/* Class = "UILabel"; text = "Indian Rupees"; ObjectID = "hw4-9K-MJ6"; */
+"hw4-9K-MJ6.text" = "Indian Rupees";
+
+/* Class = "UILabel"; text = "FC Amount"; ObjectID = "i3p-YW-Sul"; */
+"i3p-YW-Sul.text" = "FC Amount";
+
+/* Class = "UILabel"; text = "Kuwait Dinar"; ObjectID = "iKa-5y-Dx0"; */
+"iKa-5y-Dx0.text" = "Kuwait Dinar";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "iNU-no-J5R"; */
+"iNU-no-J5R.text" = "Label";
+
+/* Class = "UILabel"; text = "Kuwait Dinar"; ObjectID = "iZl-wc-11O"; */
+"iZl-wc-11O.text" = "Kuwait Dinar";
+
+/* Class = "UIButton"; normalTitle = "Show More"; ObjectID = "ivI-NL-jV5"; */
+"ivI-NL-jV5.normalTitle" = "Show More";
+
+/* Class = "UIButton"; normalTitle = "1 Year"; ObjectID = "j6E-26-XkJ"; */
+"j6E-26-XkJ.normalTitle" = "1 Year";
+
+/* Class = "UILabel"; text = "Personal"; ObjectID = "jAR-vJ-Btf"; */
+"jAR-vJ-Btf.text" = "Personal";
+
+/* Class = "UILabel"; text = "Favourite Beneficiaries"; ObjectID = "jKN-F8-ySC"; */
+"jKN-F8-ySC.text" = "Favourite Beneficiaries";
+
+/* Class = "UILabel"; text = "Identity"; ObjectID = "jMz-BR-4iA"; */
+"jMz-BR-4iA.text" = "Identity";
+
+/* Class = "UILabel"; text = "Terms and conditions"; ObjectID = "jPB-03-hCT"; */
+"jPB-03-hCT.text" = "Terms and conditions";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "jg6-3d-KAj"; */
+"jg6-3d-KAj.text" = "Label";
+
+/* Class = "UILabel"; text = "2"; ObjectID = "jqA-dy-Vb8"; */
+"jqA-dy-Vb8.text" = "2";
+
+/* Class = "UILabel"; text = "1KWD = 244.90 INR"; ObjectID = "jxm-Cy-4GB"; */
+"jxm-Cy-4GB.text" = "1KWD = 244.90 INR";
+
+/* Class = "UILabel"; text = "1"; ObjectID = "jz9-Q3-uow"; */
+"jz9-Q3-uow.text" = "1";
+
+/* Class = "UILabel"; text = "4"; ObjectID = "kiQ-qP-3Fg"; */
+"kiQ-qP-3Fg.text" = "4";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "l69-g0-SIF"; */
+"l69-g0-SIF.text" = "Label";
+
+/* Class = "UILabel"; text = "Contact Us"; ObjectID = "lQH-tG-i4G"; */
+"lQH-tG-i4G.text" = "Contact Us";
+
+/* Class = "UILabel"; text = "Indian Rupees"; ObjectID = "lRA-IA-flb"; */
+"lRA-IA-flb.text" = "Indian Rupees";
+
+/* Class = "UILabel"; text = "You pay only"; ObjectID = "lU6-oH-9AV"; */
+"lU6-oH-9AV.text" = "You pay only";
+
+/* Class = "UILabel"; text = "*Indicative rates only"; ObjectID = "leI-rb-G0k"; */
+"leI-rb-G0k.text" = "*Indicative rates only";
+
+/* Class = "UILabel"; text = "Bank Transfer"; ObjectID = "leL-1Y-d8q"; */
+"leL-1Y-d8q.text" = "Bank Transfer";
+
+/* Class = "UILabel"; text = "Remittance"; ObjectID = "ljC-s1-37R"; */
+"ljC-s1-37R.text" = "Remittance";
+
+/* Class = "UILabel"; text = "2"; ObjectID = "mYX-bK-Pf1"; */
+"mYX-bK-Pf1.text" = "2";
+
+/* Class = "UILabel"; text = "Rate"; ObjectID = "maS-oT-oQ9"; */
+"maS-oT-oQ9.text" = "Rate";
+
+/* Class = "UIViewController"; title = "TransctionsByPeriodVc"; ObjectID = "mkK-GU-r4m"; */
+"mkK-GU-r4m.title" = "TransctionsByPeriodVc";
+
+/* Class = "UILabel"; text = "Reference ID"; ObjectID = "mqn-Ri-fyc"; */
+"mqn-Ri-fyc.text" = "Reference ID";
+
+/* Class = "UILabel"; text = "Remittance"; ObjectID = "n4Z-HD-gOS"; */
+"n4Z-HD-gOS.text" = "Remittance";
+
+/* Class = "UILabel"; text = "1KWD = 244.90 INR"; ObjectID = "nGc-gR-qJa"; */
+"nGc-gR-qJa.text" = "1KWD = 244.90 INR";
+
+/* Class = "UIButton"; normalTitle = "Done"; ObjectID = "nWe-N1-4nx"; */
+"nWe-N1-4nx.normalTitle" = "Done";
+
+/* Class = "UILabel"; text = "  Transaction Related Details"; ObjectID = "naB-WN-4jk"; */
+"naB-WN-4jk.text" = "  Transaction Related Details";
+
+/* Class = "UILabel"; text = "Source of income"; ObjectID = "ncJ-Z6-X96"; */
+"ncJ-Z6-X96.text" = "Source of income";
+
+/* Class = "UILabel"; text = "  Remittance Details"; ObjectID = "neI-xW-Id4"; */
+"neI-xW-Id4.text" = "  Remittance Details";
+
+/* Class = "UILabel"; text = "1KWD = 244.90 INR"; ObjectID = "no5-ZZ-XBh"; */
+"no5-ZZ-XBh.text" = "1KWD = 244.90 INR";
+
+/* Class = "UILabel"; text = "Target currency"; ObjectID = "oAD-az-oRR"; */
+"oAD-az-oRR.text" = "Target currency";
+
+/* Class = "UILabel"; text = "*Indicative rates only"; ObjectID = "oeA-Ci-e8L"; */
+"oeA-Ci-e8L.text" = "*Indicative rates only";
+
+/* Class = "UILabel"; text = "You Send"; ObjectID = "oeU-No-EXW"; */
+"oeU-No-EXW.text" = "You Send";
+
+/* Class = "UILabel"; text = "Bar Chart"; ObjectID = "okg-uC-c3J"; */
+"okg-uC-c3J.text" = "Bar Chart";
+
+/* Class = "UILabel"; text = "Account"; ObjectID = "ozz-hr-ANF"; */
+"ozz-hr-ANF.text" = "Account";
+
+/* Class = "UILabel"; text = "Country"; ObjectID = "pKo-iF-fEq"; */
+"pKo-iF-fEq.text" = "Country";
+
+/* Class = "UILabel"; text = "Identity"; ObjectID = "pNb-oN-bBt"; */
+"pNb-oN-bBt.text" = "Identity";
+
+/* Class = "UILabel"; text = "You pay only"; ObjectID = "pOC-cW-Mg1"; */
+"pOC-cW-Mg1.text" = "You pay only";
+
+/* Class = "UILabel"; text = "Line Chart"; ObjectID = "pOs-vC-KIL"; */
+"pOs-vC-KIL.text" = "Line Chart";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "pRg-cX-bpM"; */
+"pRg-cX-bpM.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "pVy-6t-iHl"; */
+"pVy-6t-iHl.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Edit profile"; ObjectID = "pow-re-l8d"; */
+"pow-re-l8d.normalTitle" = "Edit profile";
+
+/* Class = "UILabel"; text = "Identity"; ObjectID = "pyU-EA-fIx"; */
+"pyU-EA-fIx.text" = "Identity";
+
+/* Class = "UILabel"; text = "To Date"; ObjectID = "q2s-Hj-yFg"; */
+"q2s-Hj-yFg.text" = "To Date";
+
+/* Class = "UILabel"; text = "Ben Name"; ObjectID = "q51-XH-hoM"; */
+"q51-XH-hoM.text" = "Ben Name";
+
+/* Class = "UILabel"; text = "Remittance"; ObjectID = "q9n-QD-jaH"; */
+"q9n-QD-jaH.text" = "Remittance";
+
+/* Class = "UILabel"; text = "Rate Calculator"; ObjectID = "qDS-2Y-Ybw"; */
+"qDS-2Y-Ybw.text" = "Rate Calculator";
+
+/* Class = "UILabel"; text = "Beneficiary details"; ObjectID = "qN4-Rb-Egw"; */
+"qN4-Rb-Egw.text" = "Beneficiary details";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "qP2-kU-RqB"; */
+"qP2-kU-RqB.text" = "Label";
+
+/* Class = "UILabel"; text = "Employment"; ObjectID = "rIw-de-ttO"; */
+"rIw-de-ttO.text" = "Employment";
+
+/* Class = "UIButton"; normalTitle = "  Send Now"; ObjectID = "rtT-k1-Gg0"; */
+"rtT-k1-Gg0.normalTitle" = "  Send Now";
+
+/* Class = "UILabel"; text = "They Receive"; ObjectID = "sAO-nu-E3b"; */
+"sAO-nu-E3b.text" = "They Receive";
+
+/* Class = "UILabel"; text = "Transfer Money"; ObjectID = "sGY-IH-0in"; */
+"sGY-IH-0in.text" = "Transfer Money";
+
+/* Class = "UIButton"; normalTitle = "  Send Now"; ObjectID = "tOJ-KG-JGH"; */
+"tOJ-KG-JGH.normalTitle" = "  Send Now";
+
+/* Class = "UILabel"; text = "They Receive"; ObjectID = "tTG-st-iSd"; */
+"tTG-st-iSd.text" = "They Receive";
+
+/* Class = "UILabel"; text = "Salary"; ObjectID = "tU4-Ev-qKg"; */
+"tU4-Ev-qKg.text" = "Salary";
+
+/* Class = "UILabel"; text = "FAQ's"; ObjectID = "tYH-2P-ksw"; */
+"tYH-2P-ksw.text" = "FAQ's";
+
+/* Class = "UILabel"; text = "They Receive"; ObjectID = "tch-GW-cP8"; */
+"tch-GW-cP8.text" = "They Receive";
+
+/* Class = "UILabel"; text = "Remittance"; ObjectID = "thn-uM-0cv"; */
+"thn-uM-0cv.text" = "Remittance";
+
+/* Class = "UILabel"; text = "Identity"; ObjectID = "tte-tC-g9a"; */
+"tte-tC-g9a.text" = "Identity";
+
+/* Class = "UITextField"; text = "KD"; ObjectID = "uUn-AC-CSQ"; */
+"uUn-AC-CSQ.text" = "KD";
+
+/* Class = "UILabel"; text = "Rate Calculator"; ObjectID = "uch-cs-IK1"; */
+"uch-cs-IK1.text" = "Rate Calculator";
+
+/* Class = "UILabel"; text = "3"; ObjectID = "vPy-Vl-csO"; */
+"vPy-Vl-csO.text" = "3";
+
+/* Class = "UILabel"; text = "Personal"; ObjectID = "vQp-1J-UKM"; */
+"vQp-1J-UKM.text" = "Personal";
+
+/* Class = "UILabel"; text = "You Send"; ObjectID = "w4A-WA-8FY"; */
+"w4A-WA-8FY.text" = "You Send";
+
+/* Class = "UILabel"; text = "They Receive"; ObjectID = "wS6-BQ-AQy"; */
+"wS6-BQ-AQy.text" = "They Receive";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "wZR-NB-TC3"; */
+"wZR-NB-TC3.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "See the sample video"; ObjectID = "wxy-6c-eqy"; */
+"wxy-6c-eqy.normalTitle" = "See the sample video";
+
+/* Class = "UILabel"; text = "Rate"; ObjectID = "x9B-sa-94O"; */
+"x9B-sa-94O.text" = "Rate";
+
+/* Class = "UILabel"; text = "Personal"; ObjectID = "xKn-Xx-Ien"; */
+"xKn-Xx-Ien.text" = "Personal";
+
+/* Class = "UILabel"; text = "Rate Alert"; ObjectID = "xXi-GO-qYi"; */
+"xXi-GO-qYi.text" = "Rate Alert";
+
+/* Class = "UILabel"; text = "Transaction Id:"; ObjectID = "xoA-It-T2h"; */
+"xoA-It-T2h.text" = "Transaction Id:";
+
+/* Class = "UIButton"; normalTitle = "Show Less"; ObjectID = "xvq-gK-zAb"; */
+"xvq-gK-zAb.normalTitle" = "Show Less";
+
+/* Class = "UILabel"; text = "Version 1.0"; ObjectID = "yAQ-dw-KgB"; */
+"yAQ-dw-KgB.text" = "Version 1.0";
+
+/* Class = "UILabel"; text = "INR"; ObjectID = "ygb-y7-hCv"; */
+"ygb-y7-hCv.text" = "INR";
+
+/* Class = "UILabel"; text = "FAQ's"; ObjectID = "ygi-na-ohc"; */
+"ygi-na-ohc.text" = "FAQ's";
+
+/* Class = "UILabel"; text = "Target total amount"; ObjectID = "yhC-OA-SRw"; */
+"yhC-OA-SRw.text" = "Target total amount";
+
+/* Class = "UILabel"; text = "  Address Details"; ObjectID = "yqZ-oo-O5m"; */
+"yqZ-oo-O5m.text" = "  Address Details";
+
+/* Class = "UILabel"; text = "Beneficiaries"; ObjectID = "zBO-PN-okc"; */
+"zBO-PN-okc.text" = "Beneficiaries";
+
+/* Class = "UILabel"; text = "The new beneficiary added by you will  be activated in a few minutes. Once you receive confirmation  please proceed to make the payment."; ObjectID = "zYi-b2-b8B"; */
+"zYi-b2-b8B.text" = "The new beneficiary added by you will  be activated in a few minutes. Once you receive confirmation  please proceed to make the payment.";
+
+/* Class = "UILabel"; text = "Identity Details"; ObjectID = "zry-mA-6GM"; */
+"zry-mA-6GM.text" = "Identity Details";
+
+/* Class = "UILabel"; text = "Remittance"; ObjectID = "zvA-KW-6c8"; */
+"zvA-KW-6c8.text" = "Remittance";

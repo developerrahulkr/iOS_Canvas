@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>BGTaskSchedulerPermittedIdentifiers</key>
+	<array>
+		<string>com.3i.canvas</string>
+	</array>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>AL MUZAINI</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
+	<key>CFBundleShortVersionString</key>
+	<string>$(MARKETING_VERSION)</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.1027140941910-ocdenetqks90t6gjthasgnulgtcpjs2d</string>
+			</array>
+		</dict>
+	</array>
+	<key>CFBundleVersion</key>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>AL MUZAINI wants to access your camera to update profile image/beneficiary image/civil id images</string>
+	<key>NSContactsUsageDescription</key>
+	<string>AL MUZAINI wants to access your contacts for adding beneficiaries.</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>AL MUZAINI wants to access your face id for authentication</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>AL MUZAINI wants to access your location for showing directions to branches on map</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>AL MUZAINI wants to access your microphone while recording a video</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>AL MUZAINI wants to acces your photolibrary to update profile image/beneficiary image/civil id images</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>AL MUZAINI wants to access your photolibrary to update profile image/beneficiary image/civil id images </string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>roboto_black.ttf</string>
+		<string>roboto_blackitalic.ttf</string>
+		<string>roboto_bold_italic.ttf</string>
+		<string>roboto_bold.ttf</string>
+		<string>roboto_italic.ttf</string>
+		<string>roboto_light_italic.ttf</string>
+		<string>roboto_light.ttf</string>
+		<string>roboto_medium_italic.ttf</string>
+		<string>roboto_medium.ttf</string>
+		<string>roboto_regular.ttf</string>
+		<string>roboto_thin.ttf</string>
+		<string>roboto_thinitalic.ttf</string>
+	</array>
+	<key>UIApplicationSceneManifest</key>
+	<dict>
+		<key>UIApplicationSupportsMultipleScenes</key>
+		<false/>
+		<key>UISceneConfigurations</key>
+		<dict>
+			<key>UIWindowSceneSessionRoleApplication</key>
+			<array>
+				<dict>
+					<key>UISceneConfigurationName</key>
+					<string>Default Configuration</string>
+					<key>UISceneDelegateClassName</key>
+					<string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>
+					<key>UISceneStoryboardFile</key>
+					<string>Main</string>
+				</dict>
+			</array>
+		</dict>
+	</dict>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>processing</string>
+		<string>remote-notification</string>
+	</array>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>UIMainStoryboardFile</key>
+	<string>Main</string>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>armv7</string>
+	</array>
+	<key>UIRequiresFullScreen</key>
+	<true/>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+	</array>
+	<key>UIUserInterfaceStyle</key>
+	<string>Light</string>
+</dict>
+</plist>

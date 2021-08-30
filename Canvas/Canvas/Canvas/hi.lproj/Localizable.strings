@@ -1,0 +1,20 @@
+/* 
+  Localizable.strings
+  Canvas
+
+  Created by urmila reddy on 05/08/20.
+  Copyright © 2020 urmila reddy. All rights reserved.
+*/
+
+//Login Page Strings
+
+"loginToAcnt" = Global.shared.loginText;
+"username" = "Username*";
+"password" = "";
+"login_text" = "Login";
+"or_text" = "Or";
+"signup_text" = "Signup";
+"forgot_username" = "Forgot username?";
+"forgot_password" = "Forgot password?";
+
+

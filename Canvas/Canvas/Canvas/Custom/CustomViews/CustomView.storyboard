@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Montserrat-Medium.ttf">
+            <string>Montserrat-Medium</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Popup View Controller-->
+        <scene sceneID="TlR-EU-Ocp">
+            <objects>
+                <viewController storyboardIdentifier="PopupViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ihQ-hS-wVt" customClass="PopupViewController" customModule="Canvas" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="k4a-7o-oEs">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fsk-CG-fat">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
+                                <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="18"/>
+                                <state key="normal" title="Okay">
+                                    <color key="titleColor" name="primaryBackground"/>
+                                </state>
+                                <connections>
+                                    <action selector="okayButtonPressed:" destination="ihQ-hS-wVt" eventType="touchUpInside" id="VOB-u3-fXZ"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oup-GP-W8e">
+                                <rect key="frame" x="24" y="234" width="366" height="428"/>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" contentInsetAdjustmentBehavior="never" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5IO-s0-NuH">
+                                        <rect key="frame" x="0.0" y="5" width="366" height="418"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="418" id="5A8-Sj-dPh"/>
+                                        </constraints>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="popupCell" textLabel="8Ki-ks-Cir" style="IBUITableViewCellStyleDefault" id="Qgy-x2-ZDG">
+                                                <rect key="frame" x="0.0" y="28" width="366" height="43.5"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Qgy-x2-ZDG" id="tl8-f4-zch">
+                                                    <rect key="frame" x="0.0" y="0.0" width="366" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8Ki-ks-Cir">
+                                                            <rect key="frame" x="20" y="0.0" width="326" height="43.5"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </tableViewCellContentView>
+                                            </tableViewCell>
+                                        </prototypes>
+                                    </tableView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="5IO-s0-NuH" secondAttribute="bottom" constant="5" id="371-q7-OpF"/>
+                                    <constraint firstItem="5IO-s0-NuH" firstAttribute="leading" secondItem="Oup-GP-W8e" secondAttribute="leading" id="H9Y-Sf-ISf"/>
+                                    <constraint firstItem="5IO-s0-NuH" firstAttribute="top" secondItem="Oup-GP-W8e" secondAttribute="top" constant="5" id="Iaz-wH-nxD"/>
+                                    <constraint firstAttribute="trailing" secondItem="5IO-s0-NuH" secondAttribute="trailing" id="Knx-wH-Ezz"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TJt-GR-xsf">
+                                <rect key="frame" x="350" y="224" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="TJt-GR-xsf" secondAttribute="height" multiplier="1:1" id="Z8Z-i6-GTM"/>
+                                    <constraint firstAttribute="width" constant="50" id="kPJ-fn-Sna"/>
+                                </constraints>
+                                <color key="tintColor" red="0.7510813475" green="0.21450233460000001" blue="0.14178964499999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" image="close"/>
+                                <connections>
+                                    <action selector="cancelButtonPressed:" destination="ihQ-hS-wVt" eventType="touchUpInside" id="n5p-Qc-gGp"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="TJt-GR-xsf" firstAttribute="top" secondItem="Oup-GP-W8e" secondAttribute="top" constant="-10" id="Dic-i0-PTF"/>
+                            <constraint firstItem="ouw-91-Dx0" firstAttribute="bottom" secondItem="Fsk-CG-fat" secondAttribute="bottom" id="Pjw-DY-u7J"/>
+                            <constraint firstItem="ouw-91-Dx0" firstAttribute="trailing" secondItem="Fsk-CG-fat" secondAttribute="trailing" id="U3S-em-4SJ"/>
+                            <constraint firstItem="Oup-GP-W8e" firstAttribute="centerY" secondItem="k4a-7o-oEs" secondAttribute="centerY" id="etS-tw-n9E"/>
+                            <constraint firstItem="TJt-GR-xsf" firstAttribute="trailing" secondItem="Oup-GP-W8e" secondAttribute="trailing" constant="10" id="fD5-Yj-sND"/>
+                            <constraint firstItem="Fsk-CG-fat" firstAttribute="top" secondItem="k4a-7o-oEs" secondAttribute="top" id="nbS-yg-s2M"/>
+                            <constraint firstItem="Fsk-CG-fat" firstAttribute="leading" secondItem="ouw-91-Dx0" secondAttribute="leading" id="oVs-LG-rhF"/>
+                            <constraint firstItem="ouw-91-Dx0" firstAttribute="trailing" secondItem="Oup-GP-W8e" secondAttribute="trailing" constant="24" id="oiW-jC-pBI"/>
+                            <constraint firstItem="Oup-GP-W8e" firstAttribute="leading" secondItem="ouw-91-Dx0" secondAttribute="leading" constant="24" id="ug0-7j-UzU"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ouw-91-Dx0"/>
+                    </view>
+                    <connections>
+                        <outlet property="cancelButton" destination="TJt-GR-xsf" id="Cxp-qS-aOg"/>
+                        <outlet property="dialogBoxView" destination="Oup-GP-W8e" id="Vxz-xm-QH4"/>
+                        <outlet property="okayButton" destination="Fsk-CG-fat" id="W8j-sp-zDB"/>
+                        <outlet property="popupTableView" destination="5IO-s0-NuH" id="Hey-Cu-ZmR"/>
+                        <outlet property="tableViewHeightConstraint" destination="5A8-Sj-dPh" id="Gwj-Fr-JHm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="43C-a7-2P3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-100.00000000000001" y="65.625"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="close" width="24" height="24"/>
+        <namedColor name="primaryBackground">
+            <color red="0.070588235294117646" green="0.070588235294117646" blue="0.070588235294117646" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
