@@ -92,6 +92,8 @@ class BeneficiaryDetails {
     
     var contactFirstName = ""
     var contactMobileNumber = ""
+    var contactLastName = ""
+    var contactMiddleName = ""
     
     
     var bank_FirstName_is_required:Bool!
