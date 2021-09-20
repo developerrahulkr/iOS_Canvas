@@ -55,7 +55,7 @@ class BenefPaymentWebViewVc: UIViewController, WKNavigationDelegate {
        if urlString == "https://online1.muzaini.com/paygate/PaymentSuccess"  || urlString == "https://online1.muzaini.com/paygate/PaymentError" {
         
         //deployment
-    //     if urlString == "http://online-uat.muzaini.com:83/paygate/PaymentSuccess"  || urlString == "http://online-uat.muzaini.com:83/paygate/PaymentError" {
+       //  if urlString == "http://online-uat.muzaini.com:83/paygate/PaymentSuccess"  || urlString == "http://online-uat.muzaini.com:83/paygate/PaymentError" {
                  
         //presnet development
             
@@ -63,8 +63,8 @@ class BenefPaymentWebViewVc: UIViewController, WKNavigationDelegate {
             self.hidesBottomBarWhenPushed = false
              self.pushViewController(controller: TransactionSuccesVc.initiateController())
        }
- else if urlString == "https://online1.muzaini.com/paygate/PaymentError" {
- //        else if urlString == "http://online-uat.muzaini.com:83/paygate/PaymentError" {
+        else if urlString == "https://online1.muzaini.com/paygate/PaymentError" {
+       //  else if urlString == "http://online-uat.muzaini.com:83/paygate/PaymentError" {
           // else if urlString == "http://15.207.206.161/home/PaymentError" {
             self.hidesBottomBarWhenPushed = false
             self.pushViewController(controller: TransactionSuccesVc.initiateController())

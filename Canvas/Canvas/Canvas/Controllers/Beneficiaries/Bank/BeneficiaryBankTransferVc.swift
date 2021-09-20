@@ -1146,36 +1146,39 @@ class BeneficiaryBankTransferVc: UIViewController, UITextFieldDelegate, UIPopove
         observeTimeout()
     }
     
-    func valuesChanged(firstName:String, mobileNumber:String) {
+    func valuesChanged(firstName:String,middleName:String,lastName:String, mobileNumber:String) {
         //     self.firstField.text = BeneficiaryDetails.shared.contactFirstName
         //     self.mobileField.text = BeneficiaryDetails.shared.contactMobileNumber
         self.firstField.text = ""
         self.lastField.text = ""
         self.middleField.text = ""
         self.mobileField.text = ""
-        if firstName.contains(" "){
-                print("Has space")
-            let result = firstName.split(separator: " ")
-            if result.count == 2
-            {
-            self.firstField.text = String(result[0])
-            self.lastField.text = String(result[1])
-            }
-            else if result.count == 3
-            {
-                self.firstField.text = String(result[0])
-                self.lastField.text = String(result[2])
-                self.middleField.text = String(result[1])
-            }
-            else{
-                self.firstName.text = String(result[0])
-            }
-            
-            }else{
-                self.firstField.text = firstName
-            }
-        
+//        if firstName.contains(" "){
+//                print("Has space")
+//            let result = firstName.split(separator: " ")
+//            if result.count == 2
+//            {
+//            self.firstField.text = String(result[0])
+//            self.lastField.text = String(result[1])
+//            }
+//            else if result.count == 3
+//            {
+//                self.firstField.text = String(result[0])
+//                self.lastField.text = String(result[2])
+//                self.middleField.text = String(result[1])
+//            }
+//            else{
+//                self.firstName.text = String(result[0])
+//            }
+//
+//            }else{
+//                self.firstField.text = firstName
+//            }
+//
         self.mobileField.text = mobileNumber
+        self.firstField.text = firstName
+        self.lastField.text = lastName
+        self.middleField.text = middleName
     }
     
     

@@ -11,7 +11,8 @@ import Contacts
 import ContactsUI
 
 protocol UIPopoverControllerDelegateM{
-    func valuesChanged(firstName:String, mobileNumber:String)
+    //func valuesChanged(firstName:String, mobileNumber:String)
+    func valuesChanged(firstName:String,middleName:String,lastName:String, mobileNumber:String)
 }
 class ContactVc: UIViewController, UITableViewDelegate, UITableViewDataSource  {
     
@@ -125,7 +126,7 @@ class ContactVc: UIViewController, UITableViewDelegate, UITableViewDataSource  {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         BeneficiaryDetails.shared.contactFirstName = self.contactNames[indexPath.row] as! String
         BeneficiaryDetails.shared.contactMobileNumber = self.contactPhnNumbers[indexPath.row] as! String
-        self.delegate.valuesChanged(firstName: BeneficiaryDetails.shared.contactFirstName, mobileNumber: BeneficiaryDetails.shared.contactMobileNumber)
+       // self.delegate.valuesChanged(firstName: BeneficiaryDetails.shared.contactFirstName, mobileNumber: BeneficiaryDetails.shared.contactMobileNumber)
         removeAnimate()
         
         
@@ -173,9 +174,11 @@ extension ContactVc: CNContactPickerDelegate {
         let phoneNumber = (numbers?.value)?.stringValue ?? ""
          print((numbers?.value)?.stringValue ?? "")
         
-        BeneficiaryDetails.shared.contactFirstName = name
+        BeneficiaryDetails.shared.contactFirstName = contact.givenName
+        BeneficiaryDetails.shared.contactLastName = contact.familyName
+        BeneficiaryDetails.shared.contactMiddleName = contact.middleName
         BeneficiaryDetails.shared.contactMobileNumber = phoneNumber
-        self.delegate.valuesChanged(firstName: BeneficiaryDetails.shared.contactFirstName, mobileNumber: BeneficiaryDetails.shared.contactMobileNumber)
+        self.delegate.valuesChanged(firstName: BeneficiaryDetails.shared.contactFirstName,middleName:BeneficiaryDetails.shared.contactMiddleName,lastName:BeneficiaryDetails.shared.contactLastName, mobileNumber: BeneficiaryDetails.shared.contactMobileNumber)
         removeAnimate()
          
         // self.lblNumber.text = " Contact No. \((numbers?.value)?.stringValue ?? "")"
