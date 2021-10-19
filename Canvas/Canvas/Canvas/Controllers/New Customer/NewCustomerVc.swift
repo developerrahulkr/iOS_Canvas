@@ -1135,6 +1135,7 @@ class NewCustomerVc: UIViewController,UIImagePickerControllerDelegate,UINavigati
                                     self.pdfSize = imagePdfsizemb
                                 }
                             }
+                            
                         }
                         print(self.videoSize)
                         print(self.imagSize)

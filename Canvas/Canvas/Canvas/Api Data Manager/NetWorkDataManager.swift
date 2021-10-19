@@ -302,8 +302,6 @@ class NetWorkDataManager {
     {
         
         let apiUlr = CanvasUrls.baseUrl +  CanvasUrls.versionNumber + CanvasUrls.accountConfig
-        print(apiUlr)
-        print(postParameters)
         
         AF.request(apiUlr, method: .post, parameters: postParameters, encoding:
             JSONEncoding.default, headers: headers).responseJSON
@@ -768,6 +766,55 @@ func appVersionControl(headersTobePassed : HTTPHeaders,postParameters :[String:A
                 completionHandler(completion.0, completion.1)
         }
     }
+    func getOfferList(headersTobePassed : HTTPHeaders,postParameters :[String:Any],completionHandler: @escaping (NSDictionary?, String?) -> ())
+        {
+            
+            let apiUlr = CanvasUrls.baseUrl + CanvasUrls.versionNumber + CanvasUrls.getOffersList
+      //  let apiUlr = "http://online-uat.muzaini.com:89/api/1.0/amec/ipapkversion"
+            print(apiUlr)
+            print(postParameters)
+            
+            AF.request(apiUlr, method: .post, parameters: postParameters, encoding:
+                JSONEncoding.default, headers: headers).responseJSON
+                { response in
+                    
+                    let completion = self.dealWithDictResponse(response: response)
+                    completionHandler(completion.0, completion.1)
+            }
+        }
+    func preLoginOffer(headersTobePassed : HTTPHeaders,postParameters :[String:Any],completionHandler: @escaping (NSDictionary?, String?) -> ())
+        {
+            
+            let apiUlr = CanvasUrls.baseUrl + CanvasUrls.versionNumber + CanvasUrls.preLoginOffers
+      //  let apiUlr = "http://online-uat.muzaini.com:89/api/1.0/amec/ipapkversion"
+            print(apiUlr)
+            print(postParameters)
+            
+            AF.request(apiUlr, method: .post, parameters: postParameters, encoding:
+                JSONEncoding.default, headers: headers).responseJSON
+                { response in
+                    
+                    let completion = self.dealWithDictResponse(response: response)
+                    completionHandler(completion.0, completion.1)
+            }
+        }
+    func postLoginOffer(headersTobePassed : HTTPHeaders,postParameters :[String:Any],completionHandler: @escaping (NSDictionary?, String?) -> ())
+        {
+            
+            let apiUlr = CanvasUrls.baseUrl + CanvasUrls.versionNumber + CanvasUrls.postLoginOffers
+      //  let apiUlr = "http://online-uat.muzaini.com:89/api/1.0/amec/ipapkversion"
+            print(apiUlr)
+            print(postParameters)
+            
+            AF.request(apiUlr, method: .post, parameters: postParameters, encoding:
+                JSONEncoding.default, headers: headers).responseJSON
+                { response in
+                    
+                    let completion = self.dealWithDictResponse(response: response)
+                    completionHandler(completion.0, completion.1)
+            }
+        }
+    
     //States
     func stateListImplimentation(headersTobePassed : HTTPHeaders,postParameters :[String:Any],completionHandler: @escaping (NSDictionary?, String?) -> ())
     {

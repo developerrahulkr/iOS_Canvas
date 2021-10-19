@@ -12,9 +12,12 @@ import GoogleMaps
 import GooglePlaces
 import LocalAuthentication
 
-class LoginVc: UIViewController, UITextFieldDelegate {
+let reuseIdentifier = "offerCell";
+class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource, UICollectionViewDelegate{
+
     
-    
+    @IBOutlet weak var collectionViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var versionLbl: UILabel!
     
     @IBOutlet weak var firstView: UIView!
@@ -80,20 +83,50 @@ class LoginVc: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var termsAndConditionsLbl: UILabel!
     
     var iconClick = true
+    var image = UIImage()
     
     var languageNames = [String]()
     var languageCodes = [String]()
     var pickerResponseLanguge = [[String: String]]()
+    var offerList = [[String: Any]]()
+    var imgOfferList = [[String:Any]]()
     
     
     @IBOutlet weak var faceIdTopConstrt: NSLayoutConstraint!
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        DispatchQueue.main.async {
+            var contentRect = CGRect.zero
+
+            for _ in self.scrolVieww.subviews {
+                contentRect = contentRect.union(self.mainView.frame)
+            }
+
+            self.scrolVieww.contentSize = contentRect.size
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+      
+        startTimer()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+       // self.collectionView!.register(PreLoginOfferCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         let devicee = UIDevice.current.name
         self.faceIdTopConstrt.constant =  CGFloat(getHeightOfScreen(text: devicee))
         
+        collectionViewHeight.constant = 0
+        mainView.layoutIfNeeded()
+       
+        
+//        let contentRect: CGRect = scrolVieww.subviews.reduce(into: .zero) { rect, view in
+//            rect = rect.union(view.frame)
+//        }
+//        scrolVieww.contentSize = contentRect.size
        
         
         /* let button = UIButton(type: .roundedRect)
@@ -180,6 +213,9 @@ class LoginVc: UIViewController, UITextFieldDelegate {
         
         if Connectivity.isConnectedToInternet {
             self.showSpinner(onView: self.view)
+            DispatchQueue.main.async {
+                self.getOfferList()
+            }
             //  checkkHashing()
             checkVersionControl()
             dwldLanguageChange()
@@ -214,6 +250,82 @@ class LoginVc: UIViewController, UITextFieldDelegate {
     /*   @IBAction func crashButtonTapped(_ sender: AnyObject) {
      fatalError()
      }*/
+    
+
+    func getOfferList() {
+       // self.showSpinner(onView: self.view)
+        let paramaterPasing: [String:Any] = ["offerType":1,"DeviceType":3,"language":LocalizationSystem.sharedInstance.getLanguage(),"RegistrationId":""]
+        
+        
+        let headers: HTTPHeaders = [
+            "Content-Type": "application/json"
+        ]
+        NetWorkDataManager.sharedInstance.preLoginOffer(headersTobePassed: headers, postParameters: paramaterPasing) { resonseTal , errorString in
+            
+            if errorString == nil
+            {
+                
+             //  print(resonseTal)
+                if let offers = resonseTal?.value(forKey: "preLoginListOffersResponseModels") as? NSArray
+                {
+                    self.offerList = offers as! [[String : Any]]
+                  //  print(self.offerList)
+                    if self.offerList.count == 0 {
+                        UIView.animate(withDuration: 0.2,
+                        delay: 0.2,
+                        options: UIView.AnimationOptions.curveEaseIn,
+                        animations: {
+                            self.collectionViewHeight.constant = 0
+                            self.mainView.layoutIfNeeded()
+                        },completion: nil)
+//                        self.view.layoutIfNeeded() // force any pending operations to finish
+//
+//                        UIView.animate(withDuration: 0.8, animations: { () -> Void in
+//                            self.collectionViewHeight.constant = 0
+//                            self.mainView.layoutIfNeeded()
+//                       })
+                       
+                    }
+                    else
+                    {
+                        self.view.layoutIfNeeded() // force any pending operations to finish
+
+                        UIView.animate(withDuration: 0.9,
+                        delay: 0.2,
+                        options: UIView.AnimationOptions.transitionCurlDown,
+                        animations: {
+                            self.collectionViewHeight.constant = 150
+                            self.mainView.layoutIfNeeded()
+                        },completion: nil)
+                      //  self.collectionViewHeight.constant = 150
+                       // self.mainView.layoutIfNeeded()
+                    }
+                    
+                    self.collectionView.reloadData()
+                    
+                }
+              
+            }
+            else
+            {
+                print(errorString!)
+                self.removeSpinner()
+                let finalError = errorString?.components(separatedBy: ":")
+                if finalError?.count == 2
+                {
+                   let alert = ViewControllerManager.displayAlert(message: finalError?[1] ?? "", title:APPLICATIONNAME)
+                    self.present(alert, animated: true, completion: nil)
+                }
+                else
+                {
+                    let alert = ViewControllerManager.displayAlert(message: errorString ?? "", title:APPLICATIONNAME)
+                    self.present(alert, animated: true, completion: nil)
+                }
+                
+            }
+        }
+        
+    }
     
     
    func checkVersionControl()
@@ -346,6 +458,7 @@ class LoginVc: UIViewController, UITextFieldDelegate {
             heightValue = 32
             break
         }
+        heightValue =  150
         return heightValue
         
     }
@@ -693,6 +806,7 @@ class LoginVc: UIViewController, UITextFieldDelegate {
                             Global.shared.statusVoucher = voucher["account_number"] as? String ?? ""
                         }
                         if let menuLabels = dataDict.value(forKey: "menu_labels") as? NSDictionary {
+                            print(menuLabels)
                             
                             Global.shared.menuRateThisAppString = menuLabels["lbl_rate_this_app"] as? String ?? ""
                             
@@ -705,6 +819,7 @@ class LoginVc: UIViewController, UITextFieldDelegate {
                             Global.shared.menuProfile = menuLabels["lbl_profile"] as? String ?? ""
                             Global.shared.menuTransactions = menuLabels["lbl_transactions"] as? String ?? ""
                             Global.shared.menuRateAlert = menuLabels["lbl_rate_alert"] as? String ?? ""
+                            Global.shared.menuOffer = menuLabels["lbl_offers"] as? String ?? ""
                         }
                         
                         if let footerContent = dataDict.value(forKey: "footer_content") as? NSDictionary {
@@ -715,7 +830,7 @@ class LoginVc: UIViewController, UITextFieldDelegate {
                         
                         if let common = dataDict.value(forKey: "common") as? NSDictionary {
                             
-                            print(common)
+                           // print(common)
                             
                             Global.shared.onlyThresholdTxt = common["threshold"] as? String ?? ""
                             //  Global.shared.deleteTxt = common["delete"] as? String ?? ""
@@ -2422,5 +2537,162 @@ class LoginVc: UIViewController, UITextFieldDelegate {
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
+    //UICollectionViewDatasource methods
+        func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+            
+            return 1
+        }
+        
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+       // print(offerList.count)
+        return self.offerList.count
+        }
+   
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PreLoginOfferCell
+       
+        
+        let offers = offerList[indexPath.row]
+        let imageStr = offers["image"] as? String ?? ""
+   
+        let image1 = imageStr.base64ToImage()
+      //  print(image1!)
+       // let newImg =  image1!.resize(800)
+//        let newImg = resizeImage(image: image1!, targetSize: CGSize(width: self.view.frame.width, height: self.view.frame.width-100))
+//        let data = image1?.pngData()
+//        let image2 = UIImage(data: data!)
+//        print("data is", data)
+//        print(newImg)
+      
+        cell.img_offer.contentMode = .scaleToFill
+        if image1 != nil
+        {
+            imgOfferList.append(offers)
+            cell.img_offer.image = image1
+        }
+     //   img.image = image1
+        return cell
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let offers = imgOfferList[indexPath.row]
+        let imageUrl = offers["externalUrl"] as? String ?? ""
+        if imageUrl != "null" && imageUrl != ""
+        {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "OfferWebController") as! OfferWebController
+        vc.str_url = imageUrl
+        self.navigationController?.pushViewController(vc, animated: true)
+        }
+        print(imageUrl)
+       
+    }
+ 
+    func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage? {
+        let size = image.size
+        
+        let widthRatio  = targetSize.width  / size.width
+        let heightRatio = targetSize.height / size.height
+        
+        // Figure out what our orientation is, and use that to form the rectangle
+        var newSize: CGSize
+        if(widthRatio > heightRatio) {
+            newSize = CGSize(width: size.width * heightRatio, height: size.height * heightRatio)
+        } else {
+            newSize = CGSize(width: size.width * widthRatio, height: size.height * widthRatio)
+        }
+        
+        // This is the rect that we've calculated out and this is what is actually used below
+        let rect = CGRect(origin: .zero, size: newSize)
+        
+        // Actually do the resizing to the rect using the ImageContext stuff
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
+        image.draw(in: rect)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage
+    }
+    var carousalTimer: Timer?
+    var newOffsetX: CGFloat = 0.0
+      func startTimer() {
+
+//        carousalTimer = Timer(fire: Date(), interval: 0.015, repeats: true) { (timer) in
+//
+//            let initailPoint = CGPoint(x: self.newOffsetX,y :0)
+//
+//            if __CGPointEqualToPoint(initailPoint, self.collectionView.contentOffset) {
+//
+//                if self.newOffsetX < self.collectionView.contentSize.width {
+//                    self.newOffsetX += 0.75
+//                }
+//                if self.newOffsetX > self.collectionView.contentSize.width - self.collectionView.frame.size.width {
+//                    self.newOffsetX = 0
+//                }
+//
+//                self.collectionView.contentOffset = CGPoint(x: self.newOffsetX,y :0)
+//
+//            } else {
+//                self.newOffsetX = self.collectionView.contentOffset.x
+//            }
+//        }
+//
+//        RunLoop.current.add(carousalTimer!, forMode: .common)
+        
+
+        self.removeSpinner()
+        Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(self.scrollAutomatically), userInfo: nil, repeats: true)
+      }
+         var x = 1
+          @objc func scrollAutomatically(_ timer1: Timer) {
+           
+    
+             if self.x < self.offerList.count {
+                let indexPath = IndexPath(item: x, section: 0)
+                self.collectionView.scrollToItem(at: indexPath, at: .left, animated: true)
+                self.x = self.x + 1
+              }else{
+                self.x = 0
+                self.collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .left, animated: true)
+              }
+          }
+
+
+  
+ 
 }
+extension UIImage {
+    func resize(_ max_size: CGFloat) -> UIImage {
+        // adjust for device pixel density
+        let max_size_pixels = max_size / UIScreen.main.scale
+        // work out aspect ratio
+        let aspectRatio =  size.width/size.height
+        // variables for storing calculated data
+        var width: CGFloat
+        var height: CGFloat
+        var newImage: UIImage
+        if aspectRatio > 1 {
+            // landscape
+            width = max_size_pixels
+            height = max_size_pixels / aspectRatio
+        } else {
+            // portrait
+            height = max_size_pixels
+            width = max_size_pixels * aspectRatio
+        }
+        // create an image renderer of the correct size
+        let renderer = UIGraphicsImageRenderer(size: CGSize(width: width, height: height), format: UIGraphicsImageRendererFormat.default())
+        // render the image
+        newImage = renderer.image {
+            (context) in
+            self.draw(in: CGRect(x: 0, y: 0, width: width, height: height))
+        }
+        // return the image
+        return newImage
+    }
+}
+extension LoginVc: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 150, height: 150)
+    }
+}
+
 

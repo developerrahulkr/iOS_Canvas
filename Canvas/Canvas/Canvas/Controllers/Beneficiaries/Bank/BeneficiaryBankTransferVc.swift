@@ -1170,11 +1170,11 @@ class BeneficiaryBankTransferVc: UIViewController, UITextFieldDelegate, UIPopove
 //            else{
 //                self.firstName.text = String(result[0])
 //            }
-//
+//            
 //            }else{
 //                self.firstField.text = firstName
 //            }
-//
+//        
         self.mobileField.text = mobileNumber
         self.firstField.text = firstName
         self.lastField.text = lastName

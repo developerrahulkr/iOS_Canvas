@@ -11,7 +11,6 @@ import Contacts
 import ContactsUI
 
 protocol UIPopoverControllerDelegateM{
-    //func valuesChanged(firstName:String, mobileNumber:String)
     func valuesChanged(firstName:String,middleName:String,lastName:String, mobileNumber:String)
 }
 class ContactVc: UIViewController, UITableViewDelegate, UITableViewDataSource  {

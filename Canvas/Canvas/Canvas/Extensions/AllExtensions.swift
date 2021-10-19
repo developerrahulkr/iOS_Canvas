@@ -53,11 +53,8 @@ extension UIViewController {
         }
         else if screen == Global.shared.loginChat{
 
-         //   let vc = self.storyboard?.instantiateViewController(withIdentifier: "ChatController") as! ChatController
-          //  self.navigationController?.pushViewController(vc, animated: true)
-            let alert = ViewControllerManager.displayAlert(message: Global.shared.featureAddedSoonTxt , title:APPLICATIONNAME)
-            //  let alert = ViewControllerManager.displayAlert(message:"Please enter valid email", title:APPLICATIONNAME)
-            self.present(alert, animated: true, completion: nil)
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "ChatController") as! ChatController
+            self.navigationController?.pushViewController(vc, animated: true)
             
         }
         else if screen == Global.shared.ourBranches {
@@ -106,6 +103,11 @@ extension UIViewController {
         else if screen ==  Global.shared.menuChangePaswd{
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "ChangePaswdVc") as! ChangePaswdVc
             
+            self.navigationController?.pushViewController(vc, animated: true)
+            
+        }
+        else if screen ==  Global.shared.menuOffer{
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "OfferViewController") as! OfferViewController
             self.navigationController?.pushViewController(vc, animated: true)
             
         }
@@ -306,7 +308,46 @@ extension String {
             return image
         }
         return nil
+        
+        
+   
     }
+    
+        func matches(for regex: String) -> [String] {
+            do {
+                let regex = try NSRegularExpression(pattern: regex)
+                let results = regex.matches(in: self, range:  NSRange(self.startIndex..., in: self))
+                return results.map {
+                    //self.substring(with: Range($0.range, in: self)!)
+                    String(self[Range($0.range, in: self)!])
+                }
+            } catch let error {
+                print("invalid regex: \(error.localizedDescription)")
+                return []
+            }
+        }
+    
+}
+extension UIImage {
+
+    public var base64: String {
+        return self.jpegData(compressionQuality: 1.0)!.base64EncodedString()
+    }
+
+    convenience init?(base64: String, withPrefix: Bool) {
+        var finalData: Data?
+
+        if withPrefix {
+            guard let url = URL(string: base64) else { return nil }
+            finalData = try? Data(contentsOf: url)
+        } else {
+            finalData = Data(base64Encoded: base64)
+        }
+
+        guard let data = finalData else { return nil }
+        self.init(data: data)
+    }
+
 }
 
 extension Double {
