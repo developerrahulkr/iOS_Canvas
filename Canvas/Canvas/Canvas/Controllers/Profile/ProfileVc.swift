@@ -821,11 +821,11 @@ func addGuideViews() {
 //  guard let editButton = self.view.viewWithTag(10) else {return}
   switchBtnOtlt.tintColor = ColorCodes.newAppRed
   // let targetnilViews = [switchBtnOtlt, hightlighLabel, editButton]
-    let targetnilViews = [switchBtnOtlt, getSegmentedView() ?? seg]
+    let targetnilViews = [switchBtnOtlt, getSegmentedView() ?? seg] as [Any]
   let targetViews = targetnilViews.compactMap { $0 }
   //  for (index, view) in [guideView_1,guideView_2, guideView_3].enumerated() {
   for (index, view) in [guideView_1,guideView_2].enumerated() {
-    setGuideView(with: titles[index], subTitle: subTitles[index], guideView: view, targetView: targetViews[index])
+      setGuideView(with: titles[index], subTitle: subTitles[index], guideView: view, targetView: targetViews[index] as! UIView)
   }
     
  /*   let oneTimeKey = UUID().uuidString
