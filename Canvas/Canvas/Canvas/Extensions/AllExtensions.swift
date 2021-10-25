@@ -53,11 +53,11 @@ extension UIViewController {
         }
         else if screen == Global.shared.loginChat{
 
-         //   let vc = self.storyboard?.instantiateViewController(withIdentifier: "ChatController") as! ChatController
-          //  self.navigationController?.pushViewController(vc, animated: true)
-            let alert = ViewControllerManager.displayAlert(message: Global.shared.featureAddedSoonTxt , title:APPLICATIONNAME)
-            //  let alert = ViewControllerManager.displayAlert(message:"Please enter valid email", title:APPLICATIONNAME)
-            self.present(alert, animated: true, completion: nil)
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "ChatController") as! ChatController
+            self.navigationController?.pushViewController(vc, animated: true)
+//            let alert = ViewControllerManager.displayAlert(message: Global.shared.featureAddedSoonTxt , title:APPLICATIONNAME)
+//            //  let alert = ViewControllerManager.displayAlert(message:"Please enter valid email", title:APPLICATIONNAME)
+//            self.present(alert, animated: true, completion: nil)
             
         }
         else if screen == Global.shared.ourBranches {

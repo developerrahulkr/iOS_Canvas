@@ -250,6 +250,23 @@ class NetWorkDataManager {
                 completionHandler(completion.0, completion.1)
         }
     }
+    
+    //Verify EmailId
+    func verifyEmailIdImplimentation(headersTobePassed : HTTPHeaders,postParameters :[String:Any],completionHandler: @escaping (NSDictionary?, String?) -> ())
+    {
+        
+        let apiUlr = CanvasUrls.baseUrl +  CanvasUrls.versionNumber + CanvasUrls.verifyEmailId
+        print(apiUlr)
+        print(postParameters)
+        
+        AF.request(apiUlr, method: .post, parameters: postParameters, encoding:
+            JSONEncoding.default, headers: headers).responseJSON
+            { response in
+                
+                let completion = self.dealWithDictResponse(response: response)
+                completionHandler(completion.0, completion.1)
+        }
+    }
     //Verify Username
        func verifyUsernameImplimentation(headersTobePassed : HTTPHeaders,postParameters :[String:Any],completionHandler: @escaping (NSDictionary?, String?) -> ())
        {

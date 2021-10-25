@@ -20,8 +20,23 @@ class ChatController: BaseViewController,WKNavigationDelegate {
         webView.navigationDelegate = self
         
         lbl_chatHeader.text = Global.shared.loginChat
-        let gatewayUrl = NSURL(string: "https://csapi-uat.muzaini.com/amec-webchat/muzaini.html?channelsrc=IOS")
-        let urlRequest = URLRequest(url: gatewayUrl! as URL)
+       // let gatewayUrl = NSURL(string: "https://csapi-uat.muzaini.com/amec-webchat/muzaini.html?channelsrc=IOS")
+        var gatewayUrl = NSURL()
+      let currentLang =  LocalizationSystem.sharedInstance.getLanguage()
+        if currentLang == "ar"
+        {
+        
+            gatewayUrl = NSURL(string: "https://chat.muzaini.com/amec-webchat/mobile.html?channelsrc=IOS&ChatPluginState=max&lang=ar")!
+        }
+        else
+        {
+            gatewayUrl = NSURL(string: "https://chat.muzaini.com/amec-webchat/mobile.html?channelsrc=IOS&ChatPluginState=max&lang=en")!
+        }
+            
+    
+        
+        
+        let urlRequest = URLRequest(url: gatewayUrl as URL)
         webView?.load(urlRequest)
     }
 

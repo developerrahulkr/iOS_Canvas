@@ -37,6 +37,7 @@ struct CanvasUrls {
     static let verifyMobile = "/user/verifymobile"
     static let verifyEmail = "/user/verifyemail"
     static let verifyCivildId = "/user/verifycivilid"
+    static let verifyEmailId = "/user/verifyemailid"
     
     static let generateOtp = "/user/generateotp"
     static let verifyOtp = "/user/verifyotp"

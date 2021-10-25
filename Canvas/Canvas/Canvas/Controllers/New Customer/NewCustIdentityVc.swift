@@ -421,7 +421,13 @@ class NewCustIdentityVc: UIViewController, UITextFieldDelegate {
                   
         else   if Global.shared.new_emailId_is_required == true && emailIdField.text == "" {
             emailIdField.becomeFirstResponder()
+            emailReqLbl.text = Global.shared.persnalEmailIdTxt + " " + Global.shared.errorTxtRequired.lowercased()
             emailReqLbl.isHidden = false
+        }
+        else  if Global.shared.new_emailId_is_required == true && emailIdField.text == "" || emailReqLbl.isHidden == false{
+            emailIdField.becomeFirstResponder()
+            emailReqLbl.isHidden = false
+            
         }
         else   if AlertsValidations.SharedInstanceOfSingleTon.validateEmail(emailid: emailIdField.text!) == false
         {
@@ -561,6 +567,7 @@ class NewCustIdentityVc: UIViewController, UITextFieldDelegate {
                    if Global.shared.new_telephone_is_required == true {
                        if telephoneField.text!.count ==  0 {
                            telephnReqLbl.isHidden = false
+                           
                        }
                        else {
                            telephnReqLbl.isHidden = true
@@ -571,9 +578,17 @@ class NewCustIdentityVc: UIViewController, UITextFieldDelegate {
                    if Global.shared.new_emailId_is_required == true {
                        if emailIdField.text!.count ==  0 {
                            emailReqLbl.isHidden = false
+                           emailReqLbl.text = Global.shared.persnalEmailIdTxt + " " + Global.shared.errorTxtRequired.lowercased()
                        }
                        else {
-                           emailReqLbl.isHidden = true
+                           if emailIdField.text == "test@test.com"
+                           {
+                               emailReqLbl.isHidden = true
+                           }
+                           else{
+                                verifyEmailId()
+                           }
+                         //  emailReqLbl.isHidden = true
                        }
                    }
                }
@@ -728,6 +743,55 @@ class NewCustIdentityVc: UIViewController, UITextFieldDelegate {
         }
         
     }
+    
+    func verifyEmailId() {
+        
+        let paramaterPasing: [String:Any] = [
+            //"civilID": idNumberField.text ?? ""
+            "emailID": emailIdField.text ?? ""
+        ]
+        
+        print(paramaterPasing)
+        let headers: HTTPHeaders = [
+            "Content-Type": "application/json"
+        ]
+        
+        NetWorkDataManager.sharedInstance.verifyEmailIdImplimentation(headersTobePassed: headers, postParameters: paramaterPasing) { resonseTal , errorString in
+            
+            if errorString == nil
+            {
+                
+                print(resonseTal!)
+                if let statusCode = resonseTal?.value(forKey: "statusCodes") as? Int {
+                    
+                    print(statusCode)
+                    if(statusCode == 200) {
+                        
+                        self.emailReqLbl.isHidden = true
+                      //  self.emailReqLbl.text = Global.shared.newCidentityNumberTxt + " " + Global.shared.errorTxtRequired.lowercased()
+                        
+                    }
+                        
+                    else {
+                        self.emailReqLbl.text = resonseTal?["statusMessage"] as? String ?? "Invalid"
+                        self.emailReqLbl.isHidden = false
+                    }
+                    
+                }
+            }
+            else
+            {
+                print(errorString!)
+                self.removeSpinner()
+                let finalError = errorString?.components(separatedBy: ":")
+                let alert = ViewControllerManager.displayAlert(message: finalError?[1] ?? "", title:APPLICATIONNAME)
+                self.present(alert, animated: true, completion: nil)
+                
+            }
+        }
+        
+    }
+
     
     
     @IBAction func languageChangeActn(_ sender: Any) {

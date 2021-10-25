@@ -79,6 +79,7 @@ class LoginVc: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var termsAndConditionsLbl: UILabel!
     
+    @IBOutlet weak var chatLbl: UILabel!
     var iconClick = true
     
     var languageNames = [String]()
@@ -1392,6 +1393,7 @@ class LoginVc: UIViewController, UITextFieldDelegate {
         self.ourBranchesLbl.text = Global.shared.ourBranches
         self.rateCalculatorLbl.text = Global.shared.rateCalculatorHeader
         self.downContactUsLbl.text = Global.shared.menuContact
+        self.chatLbl.text =  Global.shared.loginChat
         
         self.removeSpinner()
         
@@ -1494,6 +1496,12 @@ class LoginVc: UIViewController, UITextFieldDelegate {
     }
     
     
+    @IBAction func chatBtnActn(_ sender: Any) {
+        
+        
+           let vc = self.storyboard?.instantiateViewController(withIdentifier: "ChatController") as! ChatController
+           self.navigationController?.pushViewController(vc, animated: true)
+    }
     
     @IBAction func termsCondtnBtnActn(_ sender: Any) {
         //TermsAndConditionsVc
