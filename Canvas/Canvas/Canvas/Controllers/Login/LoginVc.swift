@@ -16,6 +16,7 @@ let reuseIdentifier = "offerCell";
 class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource, UICollectionViewDelegate{
 
     
+    @IBOutlet weak var stackViewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var collectionViewHeight: NSLayoutConstraint!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var versionLbl: UILabel!
@@ -117,9 +118,11 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
         super.viewDidLoad()
        // self.collectionView!.register(PreLoginOfferCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         let devicee = UIDevice.current.name
-        self.faceIdTopConstrt.constant =  CGFloat(getHeightOfScreen(text: devicee))
+     //   self.faceIdTopConstrt.constant =  CGFloat(getHeightOfScreen(text: devicee))
+        
         
         collectionViewHeight.constant = 0
+        self.stackViewTopConstraint.constant = 50
         mainView.layoutIfNeeded()
        
         
@@ -276,6 +279,7 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
                         options: UIView.AnimationOptions.curveEaseIn,
                         animations: {
                             self.collectionViewHeight.constant = 0
+                            self.stackViewTopConstraint.constant = 50
                             self.mainView.layoutIfNeeded()
                         },completion: nil)
 //                        self.view.layoutIfNeeded() // force any pending operations to finish
@@ -294,13 +298,14 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
                         delay: 0.2,
                         options: UIView.AnimationOptions.transitionCurlDown,
                         animations: {
-                            self.collectionViewHeight.constant = 150
+                            self.collectionViewHeight.constant = 180
+                            self.stackViewTopConstraint.constant = 5
                             self.mainView.layoutIfNeeded()
                         },completion: nil)
                       //  self.collectionViewHeight.constant = 150
                        // self.mainView.layoutIfNeeded()
                     }
-                    
+                    self.startTimer()
                     self.collectionView.reloadData()
                     
                 }
@@ -2568,6 +2573,13 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
         if image1 != nil
         {
             imgOfferList.append(offers)
+//            let widthInPixels = cell.img_offer.frame.width * UIScreen.main.scale
+//            let heightInPixels = cell.img_offer.frame.height * UIScreen.main.scale
+//
+          //  let widthInPixels = image1!.size.width * image1!.scale
+          //  let heightInPixels = image1!.size.height * image1!.scale
+          //  print("height",heightInPixels)
+           // print("width",widthInPixels)
             cell.img_offer.image = image1
         }
      //   img.image = image1
@@ -2639,7 +2651,10 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
         
 
         self.removeSpinner()
-        Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(self.scrollAutomatically), userInfo: nil, repeats: true)
+          if offerList.count != 0
+          {
+             Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(self.scrollAutomatically), userInfo: nil, repeats: true)
+          }
       }
          var x = 1
           @objc func scrollAutomatically(_ timer1: Timer) {
@@ -2691,7 +2706,7 @@ extension UIImage {
 }
 extension LoginVc: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 150, height: 150)
+        return CGSize(width: 175, height: 175)
     }
 }
 
