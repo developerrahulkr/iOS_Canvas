@@ -17,6 +17,7 @@ import FirebaseMessaging
 
 //@UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    var offerList = [[String: Any]]()
 
 var window: UIWindow?
     let gcmMessageIDKey = "gcm.Message_ID"

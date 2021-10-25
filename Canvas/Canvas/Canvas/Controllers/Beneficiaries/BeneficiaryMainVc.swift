@@ -84,7 +84,7 @@ class BeneficiaryMainVc: BaseViewController, XMSegmentedControlDelegate, navigat
             if UserDefaults.standard.string(forKey: "enableListView")! == "list" {
                 Global.shared.fromListGrid = "list"
                 listBtnOtlt.setImage(UIImage(named: "listviewImg"), for: .normal)
-                               gridBtnOtlt.setImage(UIImage(named: "gridGrey"), for: .normal)
+                gridBtnOtlt.setImage(UIImage(named: "gridGrey"), for: .normal)
             }
             else {
                 Global.shared.fromListGrid = "grid"

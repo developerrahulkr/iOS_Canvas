@@ -10,7 +10,7 @@ import UIKit
 import Charts
 import Alamofire
 import MaterialShowcase
-class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollectionViewDelegate, UITextFieldDelegate, navigateToDiffrentScreenDelegate, UIDropDownCurrencyDelegateM, XMSegmentedControlDelegate    {
+class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollectionViewDelegate, UITextFieldDelegate, navigateToDiffrentScreenDelegate, UIDropDownCurrencyDelegateM, XMSegmentedControlDelegate   {
     
     var sequence = MaterialShowcaseSequence()
     lazy var guideView_1 =  MaterialShowcase()
@@ -21,6 +21,7 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
     
     @IBOutlet weak var seg: XMSegmentedControl!
     
+    @IBOutlet weak var offerView: UIView!
     
     @IBOutlet weak var ratePaternImg: UIImageView!
     
@@ -160,9 +161,15 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "OfferPopUpController") as! OfferPopUpController
+        self.present(vc, animated: true, completion: nil)
        
         noRecrdsFndTxtRecentTnsctns.isHidden = true
         noRecrdsFavBenefTxt.isHidden = true
+        
+      //  offerView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+       
         
         setAlertBtnOtlt.setTitle(Global.shared.setAlertDashboard, for: .normal)
         setAlertBtnOtlt.makeButtonFitToContent(buttonTitle: setAlertBtnOtlt)
@@ -290,6 +297,8 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
         
         
         self.navigationController?.navigationBar.isHidden = true
+        ShowOfferPopUp()
+        
         if Connectivity.isConnectedToInternet {
             //   self.showSpinner(onView: self.view)
             print("Connected")
@@ -321,8 +330,16 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
         }
         
     }
+    
+    func ShowOfferPopUp() {
+//        let vc = OfferPopUpController()
+//        vc.modalPresentationStyle = .overCurrentContext
+//        vc.modalTransitionStyle = .crossDissolve
+//        present(vc, animated: true, completion: nil)
+    }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
         Global.shared.timeoUtOrNot = "yes"
         observeTimeout()
         addGuideViews()

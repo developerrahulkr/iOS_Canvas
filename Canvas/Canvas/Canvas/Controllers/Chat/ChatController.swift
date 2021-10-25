@@ -38,6 +38,8 @@ class ChatController: BaseViewController,WKNavigationDelegate {
         
         let urlRequest = URLRequest(url: gatewayUrl as URL)
         webView?.load(urlRequest)
+       // https://csapi-uat.muzaini.com/amec-webchat/muzaini.html?channelsrc=IOS
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -60,15 +62,16 @@ class ChatController: BaseViewController,WKNavigationDelegate {
         logout()
     }
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-        self.showSpinner(onView: self.view)
+        //self.showSpinner(onView: self.view)
     }
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        self.removeSpinner()
-       // let urlString = webView.url?.absoluteString
+      //  self.removeSpinner()
+        let urlString = webView.url?.absoluteString
+        print(urlString)
             
       
     }
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-        self.removeSpinner()
+      //  self.removeSpinner()
     }
 }

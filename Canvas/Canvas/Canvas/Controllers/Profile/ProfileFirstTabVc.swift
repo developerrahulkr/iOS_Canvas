@@ -607,12 +607,12 @@ class ProfileFirstTabVc: BaseViewController {
        
         let indexIdA = Global.shared.languageValues.firstIndex(of:  ProfileDetails.shared.preferredLang)
         if indexIdA != nil {
-        self.prefrdLangField.text = Global.shared.languageNames[indexIdA ?? 0]
+            self.prefrdLangField.text = Global.shared.languageNames[indexIdA ?? 0]
         }
-            else {
-                self.prefrdLangField.text = Global.shared.languageNames[indexIdA ?? 0]
-                ProfileDetails.shared.preferredLang = Global.shared.languageValues[0]
-            }
+        else {
+            self.prefrdLangField.text = Global.shared.languageNames[0]
+            ProfileDetails.shared.preferredLang = Global.shared.languageValues[0]
+        }
         
         let indexOne = Global.shared.salutationValues.firstIndex(of:  ProfileDetails.shared.salutation)
         if indexOne != nil {

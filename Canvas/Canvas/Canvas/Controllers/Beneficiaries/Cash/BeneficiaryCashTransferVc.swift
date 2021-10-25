@@ -711,7 +711,7 @@ class BeneficiaryCashTransferVc: UIViewController, UITextFieldDelegate,UIImagePi
         self.firstField.text = firstName
         self.lastField.text = lastName
         self.middleField.text = middleName
-    }
+    } 
     @IBAction func submitBtnActn(_ sender: Any) {
         
         self.expandTwoView.isHidden = false

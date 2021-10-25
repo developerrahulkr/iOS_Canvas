@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1924D54426E51E9800533445 /* PhotoSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1924D54226E51E9700533445 /* PhotoSliderView.swift */; };
+		1924D54526E51E9800533445 /* PhotoSliderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1924D54326E51E9700533445 /* PhotoSliderView.xib */; };
+		197B589126E345D600D27D18 /* BannerImgCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197B589026E345D600D27D18 /* BannerImgCell.swift */; };
+		197B589326E3461200D27D18 /* ShowOffersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197B589226E3461200D27D18 /* ShowOffersCell.swift */; };
+		197C47AB2702AF5600CCF84E /* OfferListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197C47AA2702AF5600CCF84E /* OfferListController.swift */; };
+		197C47AD2702AF7C00CCF84E /* OfferGridViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197C47AC2702AF7C00CCF84E /* OfferGridViewController.swift */; };
+		197C47AF2702B16C00CCF84E /* BannerGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197C47AE2702B16C00CCF84E /* BannerGridCell.swift */; };
+		19C96EF526D6462500B1321E /* PreLoginOfferCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C96EF426D6462500B1321E /* PreLoginOfferCell.swift */; };
+		19C96EF826D8D6D400B1321E /* OfferWebController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C96EF726D8D6D400B1321E /* OfferWebController.swift */; };
+		19C96EFA26D931AF00B1321E /* OfferPopUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C96EF926D931AF00B1321E /* OfferPopUpController.swift */; };
+		19C96EFC26DE4B8100B1321E /* OfferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C96EFB26DE4B8100B1321E /* OfferViewController.swift */; };
+		19C96EFF26DF853C00B1321E /* BannerOfferCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C96EFE26DF853C00B1321E /* BannerOfferCell.swift */; };
 		19D34FC026959C2500BAB4EF /* ChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D34FBF26959C2500BAB4EF /* ChatController.swift */; };
 		34099234B5E6493942E9EC30 /* Pods_Canvas_CanvasUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD704D91A4B43A9E39954368 /* Pods_Canvas_CanvasUITests.framework */; };
 		8D6029339719EFDD5D04F9FA /* Pods_CanvasTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F37A7BBF70B057FF25FA15CE /* Pods_CanvasTests.framework */; };
@@ -214,6 +226,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1924D54226E51E9700533445 /* PhotoSliderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoSliderView.swift; sourceTree = "<group>"; };
+		1924D54326E51E9700533445 /* PhotoSliderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PhotoSliderView.xib; path = "../../../../../../../../Downloads/PhotoSlider-master 2/PhotoSlider/PhotoSliderView.xib"; sourceTree = "<group>"; };
+		197B589026E345D600D27D18 /* BannerImgCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerImgCell.swift; sourceTree = "<group>"; };
+		197B589226E3461200D27D18 /* ShowOffersCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowOffersCell.swift; sourceTree = "<group>"; };
+		197C47AA2702AF5600CCF84E /* OfferListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferListController.swift; sourceTree = "<group>"; };
+		197C47AC2702AF7C00CCF84E /* OfferGridViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferGridViewController.swift; sourceTree = "<group>"; };
+		197C47AE2702B16C00CCF84E /* BannerGridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerGridCell.swift; sourceTree = "<group>"; };
+		19C96EF426D6462500B1321E /* PreLoginOfferCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreLoginOfferCell.swift; sourceTree = "<group>"; };
+		19C96EF726D8D6D400B1321E /* OfferWebController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferWebController.swift; sourceTree = "<group>"; };
+		19C96EF926D931AF00B1321E /* OfferPopUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferPopUpController.swift; sourceTree = "<group>"; };
+		19C96EFB26DE4B8100B1321E /* OfferViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferViewController.swift; sourceTree = "<group>"; };
+		19C96EFE26DF853C00B1321E /* BannerOfferCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerOfferCell.swift; sourceTree = "<group>"; };
 		19D34FBF26959C2500BAB4EF /* ChatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatController.swift; sourceTree = "<group>"; };
 		20A93CDE269AE5C8AE9577AA /* Pods-CanvasTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CanvasTests.debug.xcconfig"; path = "Target Support Files/Pods-CanvasTests/Pods-CanvasTests.debug.xcconfig"; sourceTree = "<group>"; };
 		4F040C388C7C8A1C5B2E6641 /* Pods_Canvas.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Canvas.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -472,6 +496,40 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		19C96EF326D645DD00B1321E /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				19C96EFD26DF850300B1321E /* BannerOfferCell */,
+				19C96EF426D6462500B1321E /* PreLoginOfferCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		19C96EF626D8D69C00B1321E /* Offers */ = {
+			isa = PBXGroup;
+			children = (
+				19C96EF726D8D6D400B1321E /* OfferWebController.swift */,
+				19C96EF926D931AF00B1321E /* OfferPopUpController.swift */,
+				19C96EFB26DE4B8100B1321E /* OfferViewController.swift */,
+				197C47AA2702AF5600CCF84E /* OfferListController.swift */,
+				197C47AC2702AF7C00CCF84E /* OfferGridViewController.swift */,
+			);
+			path = Offers;
+			sourceTree = "<group>";
+		};
+		19C96EFD26DF850300B1321E /* BannerOfferCell */ = {
+			isa = PBXGroup;
+			children = (
+				1924D54226E51E9700533445 /* PhotoSliderView.swift */,
+				1924D54326E51E9700533445 /* PhotoSliderView.xib */,
+				19C96EFE26DF853C00B1321E /* BannerOfferCell.swift */,
+				197B589026E345D600D27D18 /* BannerImgCell.swift */,
+				197B589226E3461200D27D18 /* ShowOffersCell.swift */,
+				197C47AE2702B16C00CCF84E /* BannerGridCell.swift */,
+			);
+			path = BannerOfferCell;
+			sourceTree = "<group>";
+		};
 		19D34FBE26959BEE00BAB4EF /* Chat */ = {
 			isa = PBXGroup;
 			children = (
@@ -648,6 +706,7 @@
 		D55A083624F63CE800AFAF12 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				19C96EF326D645DD00B1321E /* Cell */,
 				8ECB218D257F70F200617DF3 /* CustomViews */,
 				D51E88CE24E2C9800010C57B /* XMSegmentedControl.swift */,
 				D56B913224EBB35B0095E326 /* DatePickerDialog.swift */,
@@ -957,6 +1016,7 @@
 		D562FD3025FF22FF004E81DE /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				19C96EF626D8D69C00B1321E /* Offers */,
 				19D34FBE26959BEE00BAB4EF /* Chat */,
 				8E865DD2256FC54C000526B5 /* SplashScreen */,
 				D55A083524F63C8500AFAF12 /* Login */,
@@ -1129,6 +1189,7 @@
 				8E519AEB2574DB3D00241D17 /* SecuityQuestionCell.xib in Resources */,
 				D55E874E25D25FF20059D8E3 /* roboto_thinitalic.ttf in Resources */,
 				D55E875225D25FF20059D8E3 /* roboto_thin.ttf in Resources */,
+				1924D54526E51E9800533445 /* PhotoSliderView.xib in Resources */,
 				D55E875625D25FF20059D8E3 /* roboto_bold_italic.ttf in Resources */,
 				D55E875525D25FF20059D8E3 /* roboto_italic.ttf in Resources */,
 				D5531BFB24DA852600BF17C3 /* Localizable.strings in Resources */,
@@ -1325,6 +1386,7 @@
 				D571386224F7AB2A0088A5BA /* CashTransfer.swift in Sources */,
 				D569E74B253994EC004A4BD1 /* DrpDwnSearchCell.swift in Sources */,
 				D5D9F9422505F6C10053E962 /* ProfileVc.swift in Sources */,
+				19C96EFC26DE4B8100B1321E /* OfferViewController.swift in Sources */,
 				D55E2201257B55DA00199A3D /* ExistingRemitanceVc.swift in Sources */,
 				D5531BF824DA84F700BF17C3 /* LocalizationSystem.swift in Sources */,
 				D5147ED924DEBD6D00B41715 /* NetWorkDataManager.swift in Sources */,
@@ -1350,13 +1412,17 @@
 				D5DAD8C12577731E00908738 /* HomeWuRateCalcVc.swift in Sources */,
 				D50EF0BF251DDAA300790C4F /* ContactVc.swift in Sources */,
 				D55A084724F688F100AFAF12 /* BeneficiarySecndTabVc.swift in Sources */,
+				19C96EF526D6462500B1321E /* PreLoginOfferCell.swift in Sources */,
+				197B589326E3461200D27D18 /* ShowOffersCell.swift in Sources */,
 				D5646B7B256B365100D08B0F /* BenefAddedPopUpVc.swift in Sources */,
 				D56B913324EBB35B0095E326 /* DatePickerDialog.swift in Sources */,
 				D5CB69622533DED9003076CA /* RateAlertVc.swift in Sources */,
+				1924D54426E51E9800533445 /* PhotoSliderView.swift in Sources */,
 				D59EBBF524DBCE920056FF03 /* ExistingCustomerVc.swift in Sources */,
 				D5AC88B024D939B7007E4A74 /* ColorCodes.swift in Sources */,
 				8E3BA92325722DA10078A025 /* Country.swift in Sources */,
 				D55A085124F6996A00AFAF12 /* BeneficiaryFirstTabCell.swift in Sources */,
+				197C47AD2702AF7C00CCF84E /* OfferGridViewController.swift in Sources */,
 				D5328DF82521ABBA0079E314 /* FeedbackVc.swift in Sources */,
 				D569AE30256E5652006DBD78 /* UIKitExtensions.swift in Sources */,
 				D5CB69662533DF26003076CA /* RateAlertsCell.swift in Sources */,
@@ -1365,15 +1431,18 @@
 				D55A084524F688D200AFAF12 /* BeneficiaryFirstTabVc.swift in Sources */,
 				D55CF465255701DC00E77B07 /* ProfileSecndTabVc.swift in Sources */,
 				D567868E256FCB930094C16E /* WuFirstTermsConditions.swift in Sources */,
+				19C96EFA26D931AF00B1321E /* OfferPopUpController.swift in Sources */,
 				D5147ED724DEBD4100B41715 /* Constants.swift in Sources */,
 				D5B55D83252DEDBF00B6D4C8 /* ProfileIdentityVc.swift in Sources */,
 				D59EBC4824DC5BAA0056FF03 /* VerifyAcountFourthVc.swift in Sources */,
+				197C47AB2702AF5600CCF84E /* OfferListController.swift in Sources */,
 				D55CF463255701BF00E77B07 /* ProfileFirstTabVc.swift in Sources */,
 				D5DAD8BB25775C9300908738 /* OccupationSearch.swift in Sources */,
 				D56DF0F4250F722A00DBEF82 /* TransactionSuccesVc.swift in Sources */,
 				8E8508942575607900AFC0EF /* SecuirtyRule.swift in Sources */,
 				8E865DDC256FC84A000526B5 /* AppRootNavgationCotroller.swift in Sources */,
 				D54828222580F53800FAFCC5 /* BenefWuNewDirectTrnferVc.swift in Sources */,
+				197B589126E345D600D27D18 /* BannerImgCell.swift in Sources */,
 				D5A35DFC24EA4C0E00E6D4C2 /* hmac.swift in Sources */,
 				D59EBC4424DC5B6C0056FF03 /* VerifyAccountSecndVc.swift in Sources */,
 				D5EB6B55256905450089038F /* RateCalculatorBankVc.swift in Sources */,
@@ -1394,6 +1463,7 @@
 				D586927E25471985004B983E /* CustomTabBarVc.swift in Sources */,
 				D571386024F7AB170088A5BA /* BankTransfer.swift in Sources */,
 				8E865DD4256FC564000526B5 /* LogoAnimationView.swift in Sources */,
+				19C96EF826D8D6D400B1321E /* OfferWebController.swift in Sources */,
 				D5AC88B224D939B7007E4A74 /* Shadow.swift in Sources */,
 				D518044324EDADA7005FAD41 /* ForgotPaswdPopUp.swift in Sources */,
 				D55E21FF257B55BD00199A3D /* ExistingEmploymentVc.swift in Sources */,
@@ -1411,6 +1481,7 @@
 				D571386424F7AB3D0088A5BA /* WesternUnion.swift in Sources */,
 				D55ECD2A254054D100C12BBE /* HomeBenefFavCell.swift in Sources */,
 				D561DC5125249943001AF424 /* BenefEmailPopUpVc.swift in Sources */,
+				197C47AF2702B16C00CCF84E /* BannerGridCell.swift in Sources */,
 				8E1D3CF82574EE4900BEF295 /* SecurityQuestion.swift in Sources */,
 				D55CF45B255697CE00E77B07 /* BranchLocatorFirstVc.swift in Sources */,
 				D5B55D87252DEE1100B6D4C8 /* ProfileEmploymentVc.swift in Sources */,
@@ -1449,6 +1520,7 @@
 				D534E18D25011A1F00DDAFBE /* CustomTextField.swift in Sources */,
 				D59EBC4624DC5B8D0056FF03 /* VerifyAcntThirdVc.swift in Sources */,
 				D55A083F24F668B500AFAF12 /* MenuViewController.swift in Sources */,
+				19C96EFF26DF853C00B1321E /* BannerOfferCell.swift in Sources */,
 				D50FF9962551B3FF009DA3F1 /* HomeRecentTransactionsCell.swift in Sources */,
 				D55A083124F6365200AFAF12 /* RateCalculatorVc.swift in Sources */,
 				D51E88CD24E2C4540010C57B /* NewCustBankVc.swift in Sources */,

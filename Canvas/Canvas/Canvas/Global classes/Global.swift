@@ -900,6 +900,7 @@ class Global {
     var menuProfile:String!
     var menuTransactions:String!
     var menuRateAlert:String!
+    var menuOffer:String!
     
     var faceIdLockTxt: String!
     
@@ -980,13 +981,15 @@ class Global {
     var fontTopLbl:UIFont = UIFont(name: "Avenir-Book", size: 14.0)!
     var fontBottomLbl:UIFont = UIFont(name: "Avenir-Medium", size: 17.0)!
     
+    var fontHeader:UIFont = UIFont(name: "Avenir-Medium", size: 16.0)!
+    var fontDescription:UIFont = UIFont(name: "Avenir-Medium", size: 14.0)!
     
-    var viewProfileTxt:String!
     
-    var AllQuetnAry:[[String:Any]]!
     
-    var isInvalidTxt:String!
-    var uscedfulMailAlert:String!
+     var viewProfileTxt:String!
+     var AllQuetnAry:[[String:Any]]!
+     var isInvalidTxt:String!
+     var uscedfulMailAlert:String!
      var selectVideoFileAlert:String!
      var selectFrontBackFilesAlert:String!
      var selectIdProfDocAlert:String!
@@ -994,21 +997,19 @@ class Global {
      var sizeLimitOnlyTxtAlert:String!
      var isueExpireSameAlert:String!
      var duplicateSecrtQuestnsAlert:String!
-    var answer3QuestnsAlert:String!
+     var answer3QuestnsAlert:String!
      var invalidMobileNumberTxtAlert:String!
      var invalidEmailTxtAlert:String!
+     var sendLimit = 10
+     var receiveLimit = 15
     
+     var digitsAfterDecimal = 3
     
-    var sendLimit = 10
-    var receiveLimit = 15
+     var proceedTermsCondtnAlertTxt:String!
+     var okTxt: String!
     
-    var digitsAfterDecimal = 3
-    
-    var proceedTermsCondtnAlertTxt:String!
-    var okTxt: String!
-    
-    var pendingTrnsctnTxt:String!
-    var failedTrnsctnTxt: String!
+     var pendingTrnsctnTxt:String!
+     var failedTrnsctnTxt: String!
     
     
     var persnalDetlsLbl:String!
