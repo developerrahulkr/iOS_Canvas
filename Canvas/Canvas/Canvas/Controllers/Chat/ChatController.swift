@@ -62,16 +62,16 @@ class ChatController: BaseViewController,WKNavigationDelegate {
         logout()
     }
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-        //self.showSpinner(onView: self.view)
+        self.showSpinner(onView: self.view)
     }
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-      //  self.removeSpinner()
+        self.removeSpinner()
         let urlString = webView.url?.absoluteString
         print(urlString)
             
       
     }
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-      //  self.removeSpinner()
+        self.removeSpinner()
     }
 }

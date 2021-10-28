@@ -20,15 +20,11 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
     @IBOutlet weak var collectionViewHeight: NSLayoutConstraint!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var versionLbl: UILabel!
-    
     @IBOutlet weak var firstView: UIView!
     @IBOutlet weak var secndView: UIView!
-    
     @IBOutlet weak var langugeChangeBtnOtlt: UIButton!
-    
     //   @IBOutlet weak var loginToAccntLbl: UILabel!
     @IBOutlet weak var userNameLbl: UILabel!
-    
     
     @IBOutlet weak var userTxtField: CustomTextField!
     
@@ -38,7 +34,6 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
     
     @IBOutlet weak var loginBtnOtlt: UIButton!
     
-    
     @IBOutlet weak var signupBtnOtlt: UIButton!
     
     @IBOutlet weak var forgotUsernameOtlt: UIButton!
@@ -47,31 +42,23 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
     
     @IBOutlet weak var eyeBtnOtlt: UIButton!
     
-    
     @IBOutlet weak var userErrorText: UILabel!
     
     @IBOutlet weak var paswdErrorText: UILabel!
     
     @IBOutlet weak var aLmuzinLbl: UILabel!
     
-    
     @IBOutlet weak var languageLbl: UILabel!
-    
     
     @IBOutlet weak var branchLoctorBtnOtlt: UIButton!
     
-    
     @IBOutlet weak var faceIdLockBtnOtlt: UIButton!
-    
     
     @IBOutlet weak var mainView: UIView!
     
     @IBOutlet weak var scrolVieww: UIScrollView!
     
-    
-    
     @IBOutlet weak var loginWithFaceIdLbl: UILabel!
-    
     
     @IBOutlet weak var downContactUsLbl: UILabel!
     
@@ -86,14 +73,11 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
     @IBOutlet weak var chatLbl: UILabel!
     var iconClick = true
     var image = UIImage()
-    
     var languageNames = [String]()
     var languageCodes = [String]()
     var pickerResponseLanguge = [[String: String]]()
     var offerList = [[String: Any]]()
     var imgOfferList = [[String:Any]]()
-    
-    
     @IBOutlet weak var faceIdTopConstrt: NSLayoutConstraint!
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -111,28 +95,21 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-      
-        startTimer()
+      //  startTimer()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
        // self.collectionView!.register(PreLoginOfferCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         let devicee = UIDevice.current.name
-     //   self.faceIdTopConstrt.constant =  CGFloat(getHeightOfScreen(text: devicee))
-        
-        
+       // self.faceIdTopConstrt.constant =  CGFloat(getHeightOfScreen(text: devicee)
         collectionViewHeight.constant = 0
         self.stackViewTopConstraint.constant = 50
         mainView.layoutIfNeeded()
-       
-        
 //        let contentRect: CGRect = scrolVieww.subviews.reduce(into: .zero) { rect, view in
 //            rect = rect.union(view.frame)
 //        }
 //        scrolVieww.contentSize = contentRect.size
-       
-        
         /* let button = UIButton(type: .roundedRect)
          button.frame = CGRect(x: 20, y: 50, width: 100, height: 30)
          button.setTitle("Crash", for: [])
@@ -147,8 +124,6 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
         Global.shared.pickerResponseCountryData.removeAll()
         Global.shared.pickerResponseOnlyCurrencyData.removeAll()
         Global.shared.pickerResponseFullCurrencyNameData.removeAll()
-        
-        
         Global.shared.pickerResponseOnlyCurrencyData.removeAll()
         Global.shared.afterLoginSecurityQuestnsList.removeAll()
         Global.shared.afterLoginSecurityIdList.removeAll()
@@ -160,28 +135,24 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
         Global.shared.languageValues.removeAll()
         Global.shared.pickerResponseLanguge.removeAll()
         Global.shared.residentNames.removeAll()
-        
         Global.shared.residentValues.removeAll()
         Global.shared.pickerResponseResident.removeAll()
         Global.shared.salutationNames.removeAll()
         Global.shared.salutationValues.removeAll()
         Global.shared.pickerResponseSalutation.removeAll()
         Global.shared.occupationNames.removeAll()
-        
         Global.shared.occupationValues.removeAll()
         Global.shared.pickerResponseOccupation.removeAll()
         Global.shared.typeServiceNames.removeAll()
         Global.shared.typeServiceValues.removeAll()
         Global.shared.pickerResponseTypeService.removeAll()
         Global.shared.purposeTransferNames.removeAll()
-        
         Global.shared.purposeTransferValues.removeAll()
         Global.shared.pickerResponsePurposeTransfer.removeAll()
         Global.shared.sourceIncomeNames.removeAll()
         Global.shared.sourceIncomeValues.removeAll()
         Global.shared.pickerResponseSourceIncome.removeAll()
         Global.shared.expectedTxnTypesNames.removeAll()
-        
         Global.shared.expectedTxnTypesValues.removeAll()
         Global.shared.pickerResponseexpectedTxnTypes.removeAll()
         Global.shared.expectedTxnTypesNames.removeAll()
@@ -190,25 +161,17 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
         
         userTxtField.delegate = self
         pswdTxtField.delegate = self
-      //  loginBtnOtlt.isEnabled = false
-        
-        
-        
-        //undo below to add validation back
-        //    pswdTxtField.valueType = .password_Validation
-        
+        //  loginBtnOtlt.isEnabled = false
+        //  undo below to add validation back
+        //  pswdTxtField.valueType = .password_Validation
         //  authenticationWithTouchID()
-        
-        // Do any additional setup after loading the view.
-        //password_textfield.rightView = btnColor
+        //  Do any additional setup after loading the view.
+        //  password_textfield.rightView = btnColor
         
         eyeBtnOtlt.setImage(Images.eyeOpen, for: .normal)
-        
-        
-        
-        //    self.scrolVieww.backgroundColor = UIColor(patternImage: UIImage(named: "AppBckgroundImg")!)
+        //  self.scrolVieww.backgroundColor = UIColor(patternImage: UIImage(named: "AppBckgroundImg")!)
         //  self.scrollView.addSubview()
-        //self.mainView.backgroundColor = UIColor(patternImage: UIImage(named: "AppBckgroundImg")!)
+        //  self.mainView.backgroundColor = UIColor(patternImage: UIImage(named: "AppBckgroundImg")!)
         
         firstView.layer.cornerRadius = 5
         secndView.layer.cornerRadius = 5
@@ -220,12 +183,11 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
             DispatchQueue.main.async {
                 self.getOfferList()
             }
-            //  checkkHashing()
+            // checkkHashing()
             checkVersionControl()
             dwldLanguageChange()
             downloadAccountConfig()
             downloadAccountConfigCountries()
-            
             assignNewLanguages()
             print("Connected")
         } else {
@@ -284,7 +246,6 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
                             self.mainView.layoutIfNeeded()
                         },completion: nil)
 //                        self.view.layoutIfNeeded() // force any pending operations to finish
-//
 //                        UIView.animate(withDuration: 0.8, animations: { () -> Void in
 //                            self.collectionViewHeight.constant = 0
 //                            self.mainView.layoutIfNeeded()
@@ -299,7 +260,7 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
                         delay: 0.2,
                         options: UIView.AnimationOptions.transitionCurlDown,
                         animations: {
-                            self.collectionViewHeight.constant = 180
+                            self.collectionViewHeight.constant = 200
                             self.stackViewTopConstraint.constant = 5
                             self.mainView.layoutIfNeeded()
                         },completion: nil)
@@ -552,8 +513,6 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
         
         
         if textField == userTxtField {
-            
-            
             if userTxtField.text!.count <= -1 {
                 userErrorText.isHidden = false
             }
@@ -576,10 +535,6 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
         return true
         
     }
-    
-    
-    
-    
     @IBAction func eyeBtnActn(_ sender: Any) {
         
         if(iconClick == true) {
@@ -596,7 +551,6 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
         
         iconClick = !iconClick
     }
-    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -730,9 +684,6 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
     @IBAction func forgotPswdActn(_ sender: Any) {
         self.pushViewController(controller: ForgotPaswdPopUp.initiateController())
     }
-    
-    
-    
     
     // MARK: To get the language variables used through out the app
     func dwldLanguageChange() {
@@ -1000,15 +951,12 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
                             Global.shared.answer3QuestnsAlert = alerts["am108"] as? String ?? ""
                             Global.shared.invalidMobileNumberTxtAlert = alerts["am109"] as? String ?? ""
                             Global.shared.invalidEmailTxtAlert = alerts["am110"] as? String ?? ""
-                            
                             Global.shared.pendingTrnsctnTxt = alerts["am120"] as? String ?? ""
                             Global.shared.failedTrnsctnTxt = alerts["am119"] as? String ?? ""
-                            
                             Global.shared.newPswdConfrmSameTxt = alerts["am121"] as? String ?? ""
                             Global.shared.pswdConfrmSameTxt = alerts["am122"] as? String ?? ""
                             Global.shared.featureAddedSoonTxt = alerts["am123"] as? String ?? ""
                             Global.shared.sessionTimedOutTxt = alerts["am124"] as? String ?? ""
-                            
                             Global.shared.sameFileUploadTxt = alerts["am116"] as? String ?? ""
                             
                         }
@@ -1021,8 +969,6 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
                             Global.shared.hasCapitalCase = validations["hasCapitalCase"] as? String ?? ""
                             Global.shared.hasSmallCase = validations["hasSmallCase"] as? String ?? ""
                             Global.shared.hasSpecialCharacters = validations["hasSpecialCharacters"] as? String ?? ""
-                            
-                            
                             Global.shared.errorTxtRequired = validations["required"] as? String ?? ""
                             Global.shared.minLengthTxtt = validations["minLength"] as? String ?? ""
                             Global.shared.invalidTxt = validations["invalid"] as? String ?? ""
@@ -1064,15 +1010,10 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
                                 Global.shared.accounttypeTxt = adBeneficiary["accounttype"] as? String ?? ""
                                 Global.shared.branchAddress1Txtt = adBeneficiary["branchaddress1"] as? String ?? ""
                                 Global.shared.branchAddress2Txtt = adBeneficiary["branchaddress2"] as? String ?? ""
-                                
-                                
                                 Global.shared.bankTabTxt = adBeneficiary["bank_name"] as? String ?? ""
                                 Global.shared.wuTabTxt = adBeneficiary["wu_name"] as? String ?? ""
-                                
-                                
                                 Global.shared.benSucesSubtitleTxt = adBeneficiary["ben_success"] as? String ?? ""
                                 Global.shared.benAdded = adBeneficiary["ben_added"] as? String ?? ""
-                                
                                 Global.shared.firstNameb = adBeneficiary["firstname"] as? String ?? ""
                                 Global.shared.lastNameb = adBeneficiary["lastname"] as? String ?? ""
                                 Global.shared.middleNameb = adBeneficiary["middlename"] as? String ?? ""
@@ -1299,9 +1240,6 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
                                 Global.shared.addresDetlsLbl = newaccntsetup["lbl_header8"] as? String ?? ""
                                 Global.shared.remitanceDetlsLbl = newaccntsetup["lbl_header10"] as? String ?? ""
                                 Global.shared.trnsctnReltdDetlsLbl = newaccntsetup["lbl_header11"] as? String ?? ""
-                                
-                                
-                                
                                 Global.shared.enableBiometricTxt = newaccntsetup["enable_biometric"] as? String ?? ""
                                 
                                 Global.shared.newSelectVideoTxt = newaccntsetup["text7"] as? String ?? ""
@@ -1483,7 +1421,7 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
         }
         
         
-        //     loginToAccntLbl.text = Global.shared.loginHeaderTxt
+        // loginToAccntLbl.text = Global.shared.loginHeaderTxt
         userNameLbl.text = Global.shared.userNameTxt + "*"
         paswdNameLbl.text =  Global.shared.paswdText + "*"
         loginBtnOtlt.setTitle(Global.shared.loginBtnTxt, for: .normal)
@@ -1514,16 +1452,9 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
         self.rateCalculatorLbl.text = Global.shared.rateCalculatorHeader
         self.downContactUsLbl.text = Global.shared.menuContact
         self.chatLbl.text =  Global.shared.loginChat
-        
         self.removeSpinner()
         
     }
-    
-    
-    
-    
-    
-    
     
     func jsonToString(json: AnyObject){
         do {
@@ -1627,8 +1558,8 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
         //TermsAndConditionsVc
         self.pushViewController(controller: TermsAndConditionsVc.initiateController())
         //  authenticationWithTouchID()
-        // openGoogleMaps()
-        //   ChartsVc
+        //  openGoogleMaps()
+        //  ChartsVc
     }
     
     @IBAction func faqBtnActn(_ sender: Any) {
@@ -1639,8 +1570,6 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
     func downloadAccountConfig() {
         
         let paramaterPasing: [String:Any] = ["languageCode":LocalizationSystem.sharedInstance.getLanguage()]
-        
-        
         let headers: HTTPHeaders = [
             "Content-Type": "application/json"
         ]
@@ -2212,10 +2141,6 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
                                 Global.shared.imageFileToolTip = ImageFile["tooltip"] as? String ?? "any"
                             }
                         }
-                        
-                        
-                        
-                        
                     }
                 }
                 self.assigningTextfieldsProperties()
@@ -2240,16 +2165,14 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
 //                self.present(alert, animated: true, completion: nil)
                 
             }
-            
         }
-        
     }
     
     func assigningTextfieldsProperties() {
         userTxtField.maxLength = 50
         pswdTxtField.maxLength = 50
-        // userTxtField.minLegth = Global.shared.username_min_length
-        // userTxtField.valueType = Global.shared.getFieldType(text: Global.shared.username_field_accept)
+       // userTxtField.minLegth = Global.shared.username_min_length
+       // userTxtField.valueType = Global.shared.getFieldType(text: Global.shared.username_field_accept)
     }
     
     //branch
@@ -2264,7 +2187,6 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
         
         biometricStatus()
     }
-    
     
     // MARK: To know biometric status, when we hit on face id button in login screen
     func biometricStatus() {
@@ -2295,11 +2217,7 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
                         let alert = ViewControllerManager.displayAlert(message:Global.shared.messageCodeType(text: mesageCode), title:APPLICATIONNAME)
                         self.present(alert, animated: true, completion: nil)
                     }
-                    
-                    
-                    
                 }
-                
             }
             
             else
@@ -2324,8 +2242,6 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
         }
         
     }
-    
-    
     
     // MARK: Face id, biometric, pattern authentication
     func authenticationWithTouchID() {
@@ -2540,9 +2456,7 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
         self.navigationController?.pushViewController(vc, animated: true)
         
     }
-    
-    
-    
+
     @IBAction func rateCalculatorActn(_ sender: Any) {
         
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "RateTabsCalculatorVc") as! RateTabsCalculatorVc
@@ -2581,13 +2495,13 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
         if image1 != nil
         {
             imgOfferList.append(offers)
-//            let widthInPixels = cell.img_offer.frame.width * UIScreen.main.scale
-//            let heightInPixels = cell.img_offer.frame.height * UIScreen.main.scale
-//
-          //  let widthInPixels = image1!.size.width * image1!.scale
-          //  let heightInPixels = image1!.size.height * image1!.scale
-          //  print("height",heightInPixels)
-           // print("width",widthInPixels)
+        // let widthInPixels = cell.img_offer.frame.width * UIScreen.main.scale
+        // let heightInPixels = cell.img_offer.frame.height * UIScreen.main.scale
+
+        //  let widthInPixels = image1!.size.width * image1!.scale
+        //  let heightInPixels = image1!.size.height * image1!.scale
+        //  print("height",heightInPixels)
+        // print("width",widthInPixels)
             cell.img_offer.image = image1
         }
      //   img.image = image1
@@ -2714,7 +2628,7 @@ extension UIImage {
 }
 extension LoginVc: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 175, height: 175)
+        return CGSize(width: 200, height: 200)
     }
 }
 
