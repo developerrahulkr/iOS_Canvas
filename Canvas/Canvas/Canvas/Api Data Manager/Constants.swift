@@ -17,10 +17,12 @@ struct CanvasUrls {
     
     //deployment //
 
- // http://168.187.217.88:81
-  static let baseUrl = "http://online-uat.muzaini.com:81/api/"
- // static let baseUrl1 = "http://online-uat.muzaini.com:81/api/"
- //   static let baseUrl =  "https://online1.muzaini.com/api/"
+  // http://168.187.217.88:81
+  // static let baseUrl = "http://online-uat.muzaini.com:81/api/"
+    
+  // static let baseUrl =  "http://online-uat.muzaini.com:8075/api/"
+  // static let baseUrl1 = "http://online-uat.muzaini.com:81/api/"
+   static let baseUrl =  "https://online1.muzaini.com/api/"
 
 
  // static let baseUrl1 = "https://online1.muzaini.com/api/"
@@ -39,10 +41,7 @@ struct CanvasUrls {
     static let verifyMobile = "/user/verifymobile"
     static let verifyEmail = "/user/verifyemail"
     static let verifyCivildId = "/user/verifycivilid"
-
     static let verifyEmailId = "/user/verifyemailid"
-    
-
     static let generateOtp = "/user/generateotp"
     static let verifyOtp = "/user/verifyotp"
     static let verifyAcnt = "/user/verifyaccount"

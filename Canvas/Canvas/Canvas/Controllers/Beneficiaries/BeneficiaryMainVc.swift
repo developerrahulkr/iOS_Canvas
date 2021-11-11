@@ -134,8 +134,9 @@ class BeneficiaryMainVc: BaseViewController, XMSegmentedControlDelegate, navigat
                 BeneficiaryDetails.shared.beneficaryCashFilteredResponse.removeAll()
                 BeneficiaryDetails.shared.beneficaryWuFilteredResponse.removeAll()
                 
-                self.beneficiaryResponse.removeAll()
+               self.beneficiaryResponse.removeAll()
                self.removeLoader()
+                self.removeSpinner()
                 print(resonseTal!)
                 if let faqList = resonseTal?.value(forKey: "beneficiariesResponseList") as? NSArray {
                    // print(faqList)
