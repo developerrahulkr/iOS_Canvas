@@ -505,8 +505,21 @@ class BeneficiaryMainVc: BaseViewController, XMSegmentedControlDelegate, navigat
                 self.present(alert, animated: true, completion: nil)
             }
         } else {
-            let alert = ViewControllerManager.displayAlert(message: "Remitter cannot Add Beneficiary due to CivilID Expired", title:APPLICATIONNAME)
-            self.present(alert, animated: true, completion: nil)
+            let refreshAlert = UIAlertController(title: "", message: "Your CIVIL ID is expired. Click 'Here' (or) Please visit nearest Al Muzaini branch to update your CIVIL ID.", preferredStyle: UIAlertController.Style.alert)
+
+            refreshAlert.addAction(UIAlertAction(title: "Here", style: .default, handler: { (action: UIAlertAction!) in
+                 // print("Handle Ok logic here")
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "UpdateCivilIDController") as! UpdateCivilIDController
+                self.navigationController?.pushViewController(vc, animated: true)
+            }))
+
+            refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+                  print("Handle Cancel Logic here")
+            }))
+
+            self.present(refreshAlert, animated: true, completion: nil)
+//            let alert = ViewControllerManager.displayAlert(message: "Remitter cannot Add Beneficiary due to CivilID Expired", title:APPLICATIONNAME)
+//            self.present(alert, animated: true, completion: nil)
         }
         
        

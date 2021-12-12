@@ -860,6 +860,35 @@ func appVersionControl(headersTobePassed : HTTPHeaders,postParameters :[String:A
                 completionHandler(completion.0, completion.1)
         }
     }
+    // Get Civil Id
+    func civilIdDetailsImplimentation(headersTobePassed : HTTPHeaders,postParameters :[String:Any],completionHandler: @escaping (NSDictionary?, String?) -> ())
+    {
+        
+        let apiUlr = CanvasUrls.baseUrl + CanvasUrls.versionNumber + CanvasUrls.getCivilDetail
+        
+        AF.request(apiUlr, method: .post, parameters: postParameters, encoding:
+            JSONEncoding.default, headers: headersWithAuthorization).responseJSON
+            { response in
+                
+                let completion = self.dealWithDictResponse(response: response)
+                completionHandler(completion.0, completion.1)
+        }
+    }
+    
+    // Update Civil Id
+    func civilIdUpdateImplimentation(headersTobePassed : HTTPHeaders,postParameters :[String:Any],completionHandler: @escaping (NSDictionary?, String?) -> ())
+    {
+        
+        let apiUlr = CanvasUrls.baseUrl +  CanvasUrls.versionNumber + CanvasUrls.updateCivilId
+        
+        AF.request(apiUlr, method: .post, parameters: postParameters, encoding:
+            JSONEncoding.default, headers: headersWithAuthorization).responseJSON
+            { response in
+                
+                let completion = self.dealWithDictResponse(response: response)
+                completionHandler(completion.0, completion.1)
+        }
+    }
     
     //delete beneficiary
     func deleteBeneficiaryImplimentation(headersTobePassed : HTTPHeaders,postParameters :[String:Any],completionHandler: @escaping (NSDictionary?, String?) -> ())

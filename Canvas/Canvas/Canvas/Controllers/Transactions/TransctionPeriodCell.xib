@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -22,17 +22,17 @@
                         <rect key="frame" x="10" y="0.0" width="339" height="109"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bij-kh-Abz">
-                                <rect key="frame" x="8" y="4" width="130" height="30"/>
+                                <rect key="frame" x="8" y="4" width="110" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="FZD-7D-cqO"/>
-                                    <constraint firstAttribute="width" constant="130" id="aan-sp-HN0"/>
+                                    <constraint firstAttribute="width" constant="110" id="aan-sp-HN0"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="12"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C1B-EP-XOh">
-                                <rect key="frame" x="8" y="34" width="130" height="67"/>
+                                <rect key="frame" x="8" y="34" width="110" height="67"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="9te-jX-jgn"/>
                                 </constraints>
@@ -41,7 +41,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="55r-Rp-vT5">
-                                <rect key="frame" x="142" y="71" width="97" height="30"/>
+                                <rect key="frame" x="122" y="71" width="104" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="1iR-DP-yuy"/>
                                 </constraints>
@@ -49,18 +49,18 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PBW-Pp-ZGm">
-                                <rect key="frame" x="239" y="39.5" width="50" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PBW-Pp-ZGm">
+                                <rect key="frame" x="226" y="39.5" width="70" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="apU-Qu-c6b"/>
-                                    <constraint firstAttribute="width" constant="50" id="pJ2-vA-1nk"/>
+                                    <constraint firstAttribute="width" constant="70" id="pJ2-vA-1nk"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NWV-Ib-7QM">
-                                <rect key="frame" x="142" y="4" width="97" height="67"/>
+                                <rect key="frame" x="122" y="4" width="104" height="67"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="c07-ft-kAC"/>
                                 </constraints>
@@ -100,7 +100,7 @@
                             <constraint firstAttribute="trailing" secondItem="t2L-Iq-1Zw" secondAttribute="trailing" constant="8" id="eBt-Nh-dsf"/>
                             <constraint firstAttribute="trailing" secondItem="BV5-wt-k6i" secondAttribute="trailing" constant="8" id="gsf-rC-Dk1"/>
                             <constraint firstItem="NWV-Ib-7QM" firstAttribute="top" secondItem="bij-kh-Abz" secondAttribute="top" id="hNF-kO-vxf"/>
-                            <constraint firstAttribute="trailing" secondItem="PBW-Pp-ZGm" secondAttribute="trailing" constant="50" id="hRk-lh-VnZ"/>
+                            <constraint firstItem="BV5-wt-k6i" firstAttribute="leading" secondItem="PBW-Pp-ZGm" secondAttribute="trailing" constant="10" id="hRk-lh-VnZ"/>
                             <constraint firstItem="55r-Rp-vT5" firstAttribute="leading" secondItem="NWV-Ib-7QM" secondAttribute="leading" id="haA-t1-Ncu"/>
                             <constraint firstItem="55r-Rp-vT5" firstAttribute="top" secondItem="NWV-Ib-7QM" secondAttribute="bottom" id="qcS-KY-Dn8"/>
                             <constraint firstItem="PBW-Pp-ZGm" firstAttribute="centerY" secondItem="6WP-Oe-iyP" secondAttribute="centerY" id="x4u-fn-0qm"/>

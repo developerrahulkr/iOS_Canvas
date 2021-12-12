@@ -11,7 +11,11 @@ import UIKit
 class ProfileUnderReviewPopUp: UIViewController {
     
      @IBOutlet weak var titleLbl: UILabel!
-    @IBOutlet weak var subTitleLbl: UILabel!
+     @IBOutlet weak var subTitleLbl: UILabel!
+     var screen = ""
+     var messageCode : String?
+    
+    
     
     
     @IBOutlet weak var popUpView: UIView!
@@ -31,9 +35,24 @@ class ProfileUnderReviewPopUp: UIViewController {
         self.showAnimate()
     }
     func assignLabels() {
-        continueBtnOtlt.setTitle(Global.shared.continueBtnTxt, for: .normal)
-        titleLbl.text = Global.shared.profileReviewTitleLbl
-        subTitleLbl.text = Global.shared.profileReviewSubTitleLbl
+       
+        if messageCode == "I220033"
+        {
+            continueBtnOtlt.setTitle(Global.shared.okTxt, for: .normal)
+            titleLbl.text = Global.shared.civilIDReviewTitleLbl
+            subTitleLbl.text = Global.shared.civilIDReviewSubTitle1
+        }
+        else if messageCode == "I220034"
+        {
+            continueBtnOtlt.setTitle(Global.shared.okTxt, for: .normal)
+            titleLbl.text = Global.shared.civilIDReviewTitleLbl
+            subTitleLbl.text = Global.shared.civilIDReviewSubTitle2
+        }
+        else{
+         continueBtnOtlt.setTitle(Global.shared.continueBtnTxt, for: .normal)
+          titleLbl.text = Global.shared.profileReviewTitleLbl
+          subTitleLbl.text = Global.shared.profileReviewSubTitleLbl
+        }
         
     }
     func showAnimate()
@@ -65,7 +84,15 @@ class ProfileUnderReviewPopUp: UIViewController {
     /*     let vc = self.storyboard?.instantiateViewController(identifier: "VerifyOnlineAcntVc") as! VerifyOnlineAcntVc
      self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
      self.navigationController?.pushViewController(vc, animated: false)*/
-    self.pushViewController(controller: LoginVc.initiateController(), isGestureEnable: false, animated: false)
+      if messageCode == "I220033" || messageCode == "I220034"
+      {
+          self.navigationController?.popViewController(animated: true)
+      }
+      else{
+          self.pushViewController(controller: LoginVc.initiateController(), isGestureEnable: false, animated: false)
+      }
+     
+    
   }
   
     @IBAction func cancelBtnActn(_ sender: Any) {

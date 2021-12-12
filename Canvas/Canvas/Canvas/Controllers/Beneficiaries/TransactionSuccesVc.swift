@@ -164,8 +164,8 @@ class TransactionSuccesVc: UIViewController {
                 if let transctnHistory = resonseTal?.value(forKey: "transactionHistory") as? NSArray {
                     print(transctnHistory)
                     
-                    let transctnHistry = transctnHistory[0] as! NSDictionary
-                    
+                    if let transctnHistry = transctnHistory[0] as? NSDictionary
+                    {
                     BeneficiaryDetails.shared.txnRef = transctnHistry["txnRefNo"] as? String ?? ""
                     BeneficiaryDetails.shared.beneficiaryId = transctnHistry["beneficiaryId"] as? Int ?? 00
                     BeneficiaryDetails.shared.branchName =  transctnHistry["branchName"] as? String ?? ""
@@ -309,6 +309,7 @@ class TransactionSuccesVc: UIViewController {
                     let pdfname2 = "-" + newDateWithoutTime + ".pdf"
                     
                     self.pdfNamee = pdfname1 + pdfname2
+                    }
                 }
             }
                 

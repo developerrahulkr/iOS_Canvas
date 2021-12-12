@@ -15,6 +15,9 @@ class Global {
     static let shared = Global()
     
     //login screen
+    
+    var otpStr = ""
+    
     var timeoUtOrNot:String!
     var countris: [Country] = []
    
@@ -857,7 +860,14 @@ class Global {
         if text != ""
         {
             messageType =  messageCodeAry[text] as? String ?? ""
-            return messageType
+            if messageType == ""
+            {
+               return ""
+            }
+            else
+            {
+               return messageType
+            }
         }
         return ""
         
@@ -901,7 +911,7 @@ class Global {
     var menuTransactions:String!
     var menuRateAlert:String!
     var menuOffer:String!
-    
+    var CivilIDUpdate:String!
     var faceIdLockTxt: String!
     
     //hi
@@ -919,8 +929,8 @@ class Global {
     var recentTransctnsLbl: String!
     
     var transactnInsight: String!
-       var ratePaternDashboard: String!
-       var setAlertDashboard: String!
+    var ratePaternDashboard: String!
+    var setAlertDashboard: String!
     var favBenfDashboard: String!
     
     var fromListGrid = ""
@@ -1038,6 +1048,11 @@ class Global {
     
     var profileReviewTitleLbl:String!
     var profileReviewSubTitleLbl:String!
+    
+    var civilIDReviewTitleLbl:String!
+    var civilIDReviewSubTitle1:String!
+    var civilIDReviewSubTitle2:String!
+    
     
     var benSucesSubtitleTxt:String!
     var confirmCivildIdTxt:String!
@@ -1242,6 +1257,12 @@ class Global {
     var repetFailedPendingTxt: String!
     var repeatTxt: String!
     
+    
+    // update civildID Validation
+    
+    var dateShouldGreater:String!
+    var IDExpiryValidation:String!
+    var IDUnderReview:String!
     
     var identityDetlsTxt: String!
     var employmntDetlsTxt: String!

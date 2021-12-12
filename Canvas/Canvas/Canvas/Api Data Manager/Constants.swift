@@ -18,16 +18,14 @@ struct CanvasUrls {
     //deployment //
 
   // http://168.187.217.88:81
-  // static let baseUrl = "http://online-uat.muzaini.com:81/api/"
+//   static let baseUrl = "http://online-uat.muzaini.com:81/api/"
     
   // static let baseUrl =  "http://online-uat.muzaini.com:8075/api/"
   // static let baseUrl1 = "http://online-uat.muzaini.com:81/api/"
    static let baseUrl =  "https://online1.muzaini.com/api/"
-
-
- // static let baseUrl1 = "https://online1.muzaini.com/api/"
- // http://ameccustomerchannelwindows.ap-south-1.elasticbeanstalk.com/api/1.0/
- // static let baseUrl = "http://ameccustomerchannelwindows.ap-south-1.elasticbeanstalk.com/api/"
+  // static let baseUrl1 = "https://online1.muzaini.com/api/"
+  // http://ameccustomerchannelwindows.ap-south-1.elasticbeanstalk.com/api/1.0/
+  // static let baseUrl = "http://ameccustomerchannelwindows.ap-south-1.elasticbeanstalk.com/api/"
     static let versionNumber = "1.0"
   //testing
   //static let loginLanguage =  "http://amecwebchannel.ap-south-1.elasticbeanstalk.com/api/amec/language"
@@ -52,6 +50,7 @@ struct CanvasUrls {
     static let forgotPaswd = "/user/forgotpassword"
     static let forgotPaswd2 = "/user/forgotpassword2"
     static let resetPaswd = "/user/resetpassword"
+    static let otpResetPaswd = "/user/otpresetpassword"
     static let newUserFinalApi = "/user/createnewuser"
     static let civilIdDobApi = "/user/verifydobcivilid"
     static let faq = "/amec/faq"
@@ -86,6 +85,8 @@ struct CanvasUrls {
     static let updateProfileDetails = "/profile/profileupdate"
     static let profileFeedback = "/profile/feedback"
     static let profileConfigs = "/profile/profileconfigs"
+    static let getCivilDetail = "/usercivilidupdate/civilidprofiledetails"
+    static let updateCivilId = "/usercivilidupdate/civilidupdate"
     //Biometric Related
     static let enableBiometricProfile = "/profile/updatebiometric"
     static let checkBiometricEnabled = "/user/getbiometricstatus"

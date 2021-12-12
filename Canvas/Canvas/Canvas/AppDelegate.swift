@@ -15,6 +15,14 @@ import Firebase
 import FirebaseCrashlytics
 import FirebaseMessaging
 
+
+
+func print(_ items: Any...) {
+    #if DEBUG
+        Swift.print(items[0])
+    #endif
+}
+
 //@UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var offerList = [[String: Any]]()

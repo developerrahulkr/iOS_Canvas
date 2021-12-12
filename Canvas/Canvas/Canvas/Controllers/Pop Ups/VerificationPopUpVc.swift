@@ -754,12 +754,13 @@ class VerificationPopUpVc: UIViewController, UITextFieldDelegate {
             self.confirmBtnOtlt.isEnabled = true
             if errorString == nil
             {
-                  print(resonseTal)
-                let mesageCode = resonseTal?.value(forKey: "messageCode") as? String
+                //  print(resonseTal)
+              //  let mesageCode = resonseTal?.value(forKey: "messageCode") as? String
                 if let statusCode = resonseTal?.value(forKey: "statusCodes") as? Int {
                     
                     print(statusCode)
                     if(statusCode == 200) {
+                        Global.shared.otpStr = otpStr
                       self.pushViewController(controller: ResetPswdVc.initiateController())
                       
                     }

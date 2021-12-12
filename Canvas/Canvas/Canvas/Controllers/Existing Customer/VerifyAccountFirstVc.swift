@@ -103,8 +103,10 @@ class VerifyAccountFirstVc: UIViewController, UITextFieldDelegate {
         
         self.tabLblFour.layer.cornerRadius = self.tabLblFour.frame.size.width / 2;
         self.tabLblFour.clipsToBounds = true
+      //  DispatchQueue.main.async {
+            self.assignLabelsAndFieldsLength()
+      //  }
         
-        assignLabelsAndFieldsLength()
     }
     
     

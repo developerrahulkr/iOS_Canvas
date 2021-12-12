@@ -41,8 +41,8 @@ class MenuViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     //  let menuNames=[Global.shared.menuDashboard,Global.shared.menuProfile,Global.shared.menuTransactions,Global.shared.menuBeneficiary,Global.shared.menuMessages, Global.shared.menuContact, Global.shared.menuRateAlert, Global.shared.menuFeedback, Global.shared.menuChangePaswd]
  //   let menuImages=["india","india","india","india","india","india","india","india","india"]
     
-    let menuNames=[Global.shared.menuDashboard, Global.shared.menuBeneficiary,Global.shared.menuTransactions, Global.shared.menuContact, Global.shared.loginChat, Global.shared.rateCalculatorHeader, Global.shared.ourBranches, Global.shared.faqTxt,Global.shared.menuOffer, Global.shared.menuRateThisAppString]
-    let menuImages=["dashboardTab","beneficiariesTab","transactionsMenu","ContactUsMenu","chatMenu","rate-calculatorMenu","ourBranchesMenu","faqsMenu","Offer", "rateTheApp"]
+    let menuNames=[Global.shared.menuDashboard, Global.shared.menuBeneficiary,Global.shared.menuTransactions, Global.shared.menuContact, Global.shared.loginChat, Global.shared.rateCalculatorHeader, Global.shared.ourBranches, Global.shared.faqTxt,Global.shared.CivilIDUpdate,Global.shared.menuOffer, Global.shared.menuRateThisAppString]
+    let menuImages=["dashboardTab","beneficiariesTab","transactionsMenu","ContactUsMenu","chatMenu","rate-calculatorMenu","ourBranchesMenu","faqsMenu","updateId","Offer", "rateTheApp"]
 
     @IBOutlet weak var menuTableView: UITableView!
     
@@ -51,11 +51,13 @@ class MenuViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     var delegateObj : navigateToDiffrentScreenDelegate?
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("hello")
+      //  print("hello")
         
-        let version = Bundle.main.infoDictionary!["CFBundleShortVersionString"]!
+       if let version = Bundle.main.infoDictionary!["CFBundleShortVersionString"]
+        {
         let versionNumber = version as? String ?? ""
         self.versionLbl.text = Global.shared.versionLbl + ":" + versionNumber
+       }
         self.transparentView.backgroundColor = UIColor.black.withAlphaComponent(0.8)
         let gr = UITapGestureRecognizer(target: self, action: #selector(self.tagGestureRemovePOPUP))
         gr.delegate = self

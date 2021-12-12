@@ -707,12 +707,16 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
                 if let languageContent = resonseTal?.value(forKey: "languageContent") as? String {
                     
                     let dataObj = Global.shared.convertToDictionary(text: languageContent)
+                    print(dataObj)
                     
                     if let dataDict = dataObj as NSDictionary? {
                         
                         if let apiMessageCodes = dataDict.value(forKey: "api_message_codes") as? NSDictionary {
+                            print(apiMessageCodes)
                             Global.shared.messageCodeAry = apiMessageCodes
                         }
+                        
+                       
                         
                         if let commonNew = dataDict.value(forKey: "common_new") as? NSDictionary {
                             Global.shared.cancelleddTxt = commonNew["lbl_common_65"] as? String ?? ""
@@ -777,6 +781,7 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
                             Global.shared.menuTransactions = menuLabels["lbl_transactions"] as? String ?? ""
                             Global.shared.menuRateAlert = menuLabels["lbl_rate_alert"] as? String ?? ""
                             Global.shared.menuOffer = menuLabels["lbl_offers"] as? String ?? ""
+                            Global.shared.CivilIDUpdate = menuLabels["lbl_updateid"] as? String ?? ""
                         }
                         
                         if let footerContent = dataDict.value(forKey: "footer_content") as? NSDictionary {
@@ -958,6 +963,9 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
                             Global.shared.featureAddedSoonTxt = alerts["am123"] as? String ?? ""
                             Global.shared.sessionTimedOutTxt = alerts["am124"] as? String ?? ""
                             Global.shared.sameFileUploadTxt = alerts["am116"] as? String ?? ""
+                            Global.shared.dateShouldGreater = alerts["am128"] as? String ?? ""
+                            Global.shared.IDExpiryValidation = alerts["am129"] as? String ?? ""
+                            Global.shared.IDUnderReview = alerts["am130"] as? String ?? ""
                             
                         }
                         if let validations = dataDict.value(forKey: "form_validations") as? NSDictionary {
@@ -979,6 +987,12 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
                         
                         if let userManagment = dataDict.value(forKey: "user_management") as? NSDictionary {
                             
+                            if let civilIDModel =  userManagment.value(forKey: "civilidupdate_review_modal") as? NSDictionary {
+                                
+                                Global.shared.civilIDReviewTitleLbl = civilIDModel["lbl_header1"] as? String ?? ""
+                                Global.shared.civilIDReviewSubTitle1 = civilIDModel["lbl_desc1"] as? String ?? ""
+                                Global.shared.civilIDReviewSubTitle2 = civilIDModel["lbl_desc2"] as? String ?? ""
+                            }
                             
                             if let feedBackScreen = userManagment.value(forKey: "feed_back_screen") as? NSDictionary {
                                 
@@ -1096,6 +1110,7 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
                             
                             //Rate Calculator
                             if let profileReviewModal = userManagment.value(forKey: "profile_review_modal") as? NSDictionary {
+                                print(profileReviewModal)
                                 Global.shared.profileReviewTitleLbl = profileReviewModal["lbl_header1"] as? String ?? ""
                                 Global.shared.profileReviewSubTitleLbl = profileReviewModal["lbl_desc1"] as? String ?? ""
                             }
@@ -1506,7 +1521,10 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
                         
                         Global.shared.afterLoginUserName = self.userTxtField.text
                         Global.shared.afterLoginPaswd = self.pswdTxtField.text
-                        self.pushViewController(controller: AfterLoginVerificationVc.initiateController())
+                       // self.pushViewController(controller: AfterLoginVerificationVc.initiateController())
+                        let vc = self.storyboard?.instantiateViewController(withIdentifier: "AfterLoginVerificationVc") as! AfterLoginVerificationVc
+                        
+                        self.navigationController?.pushViewController(vc, animated: true)
                     }
                     
                     else {
@@ -2319,7 +2337,10 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
                         
                         Global.shared.afterLoginUserName = self.userTxtField.text
                         Global.shared.afterLoginPaswd = self.pswdTxtField.text
-                        self.pushViewController(controller: AfterLoginVerificationVc.initiateController())
+                        //self.pushViewController(controller: AfterLoginVerificationVc.initiateController())
+                        let vc = self.storyboard?.instantiateViewController(withIdentifier: "AfterLoginVerificationVc") as! AfterLoginVerificationVc
+                        
+                        self.navigationController?.pushViewController(vc, animated: true)
                     }
                     
                     else {

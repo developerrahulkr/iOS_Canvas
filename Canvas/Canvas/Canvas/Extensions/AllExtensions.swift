@@ -116,6 +116,11 @@ extension UIViewController {
             self.navigationController?.pushViewController(vc, animated: true)
             
         }
+        else if screen == Global.shared.CivilIDUpdate
+        {
+               let vc = self.storyboard?.instantiateViewController(withIdentifier: "UpdateCivilIDController") as! UpdateCivilIDController
+               self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
 }
 var vSpinner : UIView?

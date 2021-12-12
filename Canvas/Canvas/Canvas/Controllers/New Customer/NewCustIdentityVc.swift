@@ -197,8 +197,10 @@ class NewCustIdentityVc: UIViewController, UITextFieldDelegate {
         self.placeOfAnswerField.text = "Kuwait"
         NewUser.shared.identityCountryIsuue = "AF"
         
+        DispatchQueue.main.async {
+            self.assignLabels()
+        }
         
-        assignLabels()
         
     }
     func assignLabels() {
