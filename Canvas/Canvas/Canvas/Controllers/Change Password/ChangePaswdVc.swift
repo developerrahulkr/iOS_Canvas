@@ -320,7 +320,7 @@ class ChangePaswdVc: UIViewController, UITextFieldDelegate, EasyTipViewDelegate 
                 self.removeSpinner()
                 let statusMsg = resonseTal?.value(forKey: "statusMessage") as? String
                 //   print(resonseTal)
-               // let mesageCode = resonseTal?.value(forKey: "messageCode") as? String
+                let mesageCode = resonseTal?.value(forKey: "messageCode") as? String
                 if let statusCode = resonseTal?.value(forKey: "statusCodes") as? Int {
                    
                     print(statusCode)
@@ -341,7 +341,21 @@ class ChangePaswdVc: UIViewController, UITextFieldDelegate, EasyTipViewDelegate 
                         
                         
                     }
-                        
+                    else if statusCode == 400
+                    {
+                        if mesageCode == "E110042"
+                        {
+                            self.showAlert(withTitle: "", withMessage: resonseTal?["statusMessage"] as? String ?? "")
+//                            Global.shared.timeoUtOrNot = "no"
+//                            self.showAlertForTimer(titulo: "", mensagem: Global.shared.sessionTimedOutTxt, vc: self)
+                        }
+                        else{
+                            
+                        let alert = ViewControllerManager.displayAlert(message: statusMsg ?? "", title:APPLICATIONNAME)
+                        self.present(alert, animated: true, completion: nil)
+                        }
+                    }
+
                     else {
                         let alert = ViewControllerManager.displayAlert(message: statusMsg ?? "Invalid input", title:APPLICATIONNAME)
                         self.present(alert, animated: true, completion: nil)

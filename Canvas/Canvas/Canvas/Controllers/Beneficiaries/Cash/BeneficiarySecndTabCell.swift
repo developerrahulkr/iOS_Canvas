@@ -130,6 +130,7 @@ class BeneficiarySecndTabCell: UITableViewCell {
             if errorString == nil
             {
                // print(resonseTal)
+               
                 
             }
             else
@@ -144,7 +145,7 @@ class BeneficiarySecndTabCell: UITableViewCell {
     
     @IBAction func editBtnActn(_ sender: Any) {
         
-       BeneficiaryDetails.shared.abaRouteCode = self.abaRouteCode
+        BeneficiaryDetails.shared.abaRouteCode = self.abaRouteCode
         BeneficiaryDetails.shared.accountNumber = self.accountNumber
         BeneficiaryDetails.shared.address1 = self.address1
         BeneficiaryDetails.shared.address2 = self.address2

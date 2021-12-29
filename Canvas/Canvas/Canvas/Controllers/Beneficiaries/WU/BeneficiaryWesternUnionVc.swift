@@ -607,6 +607,22 @@ class BeneficiaryWesternUnionVc: UIViewController, UITextFieldDelegate,UIImagePi
                 self.view.addSubview(popOverVC.view)
                 popOverVC.didMove(toParent: self)
                 
+                let statusMsg = resonseTal?.value(forKey: "statusMessage") as? String
+                let statusCode = resonseTal?.value(forKey: "statusCodes") as? Int
+                let mesageCode = resonseTal?.value(forKey: "messageCode") as? String ?? statusMsg
+
+                if statusCode ==  400 {
+                    if mesageCode == "E110042"
+                    {
+                        self.showAlert(withTitle: "", withMessage: resonseTal?["statusMessage"] as? String ?? "")
+
+                    }
+                    else{
+                    let alert = ViewControllerManager.displayAlert(message: statusMsg ?? "", title:APPLICATIONNAME)
+                    self.present(alert, animated: true, completion: nil)
+                    }
+                }
+                
             }
             else
             {

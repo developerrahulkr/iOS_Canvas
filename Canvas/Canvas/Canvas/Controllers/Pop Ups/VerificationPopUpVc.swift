@@ -372,7 +372,23 @@ class VerificationPopUpVc: UIViewController, UITextFieldDelegate {
             
             if errorString == nil
             {
-                print(resonseTal!)
+               // print(resonseTal!)
+                let statusMsg = resonseTal?.value(forKey: "statusMessage") as? String
+                let statusCode = resonseTal?.value(forKey: "statusCodes") as? Int
+                let mesageCode = resonseTal?.value(forKey: "messageCode") as? String ?? statusMsg
+
+                if statusCode ==  400 {
+                    if mesageCode == "E110042"
+                    {
+                        self.showAlert(withTitle: "", withMessage: resonseTal?["statusMessage"] as? String ?? "")
+
+                    }
+                    else{
+                    let alert = ViewControllerManager.displayAlert(message: statusMsg ?? "", title:APPLICATIONNAME)
+                    self.present(alert, animated: true, completion: nil)
+                    }
+                }
+                
                 
             }
             else
@@ -421,7 +437,22 @@ class VerificationPopUpVc: UIViewController, UITextFieldDelegate {
             
             if errorString == nil
             {
-                 print(resonseTal)
+                // print(resonseTal)
+                let statusMsg = resonseTal?.value(forKey: "statusMessage") as? String
+                let statusCode = resonseTal?.value(forKey: "statusCodes") as? Int
+                let mesageCode = resonseTal?.value(forKey: "messageCode") as? String ?? statusMsg
+
+                if statusCode ==  400 {
+                    if mesageCode == "E110042"
+                    {
+                        self.showAlert(withTitle: "", withMessage: resonseTal?["statusMessage"] as? String ?? "")
+
+                    }
+                    else{
+                    let alert = ViewControllerManager.displayAlert(message: statusMsg ?? "", title:APPLICATIONNAME)
+                    self.present(alert, animated: true, completion: nil)
+                    }
+                }
                 
             }
             else
@@ -469,8 +500,22 @@ class VerificationPopUpVc: UIViewController, UITextFieldDelegate {
             
             if errorString == nil
             {
-                   print(resonseTal)
-                
+                 //  print(resonseTal)
+                let statusMsg = resonseTal?.value(forKey: "statusMessage") as? String
+                let statusCode = resonseTal?.value(forKey: "statusCodes") as? Int
+                let mesageCode = resonseTal?.value(forKey: "messageCode") as? String ?? statusMsg
+
+                if statusCode ==  400 {
+                    if mesageCode == "E110042"
+                    {
+                        self.showAlert(withTitle: "", withMessage: resonseTal?["statusMessage"] as? String ?? "")
+
+                    }
+                    else{
+                    let alert = ViewControllerManager.displayAlert(message: statusMsg ?? "", title:APPLICATIONNAME)
+                    self.present(alert, animated: true, completion: nil)
+                    }
+                }
             }
             else
             {
@@ -849,7 +894,7 @@ class VerificationPopUpVc: UIViewController, UITextFieldDelegate {
             self.confirmBtnOtlt.isEnabled = true
             if errorString == nil
             {
-                  print(resonseTal)
+                 // print(resonseTal)
                 let statusMsgg = resonseTal?.value(forKey: "statusMessage") as? String ?? ""
                 if let statusCode = resonseTal?.value(forKey: "statusCodes") as? Int {
                  
@@ -873,6 +918,18 @@ class VerificationPopUpVc: UIViewController, UITextFieldDelegate {
                         self.pushViewController(controller: BenefWuNewDirectTrnferVc.initiateController())
                        }
                  }
+                    let mesageCode = resonseTal?.value(forKey: "messageCode") as? String ?? statusMsgg
+                    if statusCode ==  400 {
+                        if mesageCode == "E110042"
+                        {
+                            self.showAlert(withTitle: "", withMessage: resonseTal?["statusMessage"] as? String ?? "")
+
+                        }
+                        else{
+                            let alert = ViewControllerManager.displayAlert(message: statusMsgg , title:APPLICATIONNAME)
+                        self.present(alert, animated: true, completion: nil)
+                        }
+                    }
                  
                  else {
                     self.removeSpinner()
@@ -1009,10 +1066,23 @@ class VerificationPopUpVc: UIViewController, UITextFieldDelegate {
                     
                 }
                     }
-                    else {
-                        let alert = ViewControllerManager.displayAlert(message: statusMsg ?? "Invalid input", title:APPLICATIONNAME)
+                    
+                    
+                    
+                    let mesageCode = resonseTal?.value(forKey: "messageCode") as? String ?? statusMsg
+
+                    if statusCode ==  400 {
+                        if mesageCode == "E110042"
+                        {
+                            self.showAlert(withTitle: "", withMessage: resonseTal?["statusMessage"] as? String ?? "")
+
+                        }
+                        else{
+                        let alert = ViewControllerManager.displayAlert(message: statusMsg ?? "", title:APPLICATIONNAME)
                         self.present(alert, animated: true, completion: nil)
+                        }
                     }
+                    
                 }
                 
                 
@@ -1175,10 +1245,19 @@ class VerificationPopUpVc: UIViewController, UITextFieldDelegate {
                    
                 }
                     }
-                    else {
-                        let alert = ViewControllerManager.displayAlert(message: statusMsg ?? "Invalid input", title:APPLICATIONNAME)
+                    let mesageCode = resonseTal?.value(forKey: "messageCode") as? String ?? statusMsg
+                    if statusCode ==  400 {
+                        if mesageCode == "E110042"
+                        {
+                            self.showAlert(withTitle: "", withMessage: resonseTal?["statusMessage"] as? String ?? "")
+
+                        }
+                        else{
+                        let alert = ViewControllerManager.displayAlert(message: statusMsg ?? "", title:APPLICATIONNAME)
                         self.present(alert, animated: true, completion: nil)
+                        }
                     }
+                   
                 }
             }
                 
@@ -1297,9 +1376,18 @@ class VerificationPopUpVc: UIViewController, UITextFieldDelegate {
                    
                 }
                     }
-                    else {
+                    
+                    let mesageCode = resonseTal?.value(forKey: "messageCode") as? String ?? statusMsg
+                    if statusCode ==  400 {
+                        if mesageCode == "E110042"
+                        {
+                            self.showAlert(withTitle: "", withMessage: resonseTal?["statusMessage"] as? String ?? "")
+
+                        }
+                        else{
                         let alert = ViewControllerManager.displayAlert(message: statusMsg ?? "Invalid input", title:APPLICATIONNAME)
                         self.present(alert, animated: true, completion: nil)
+                        }
                     }
                 }
             }

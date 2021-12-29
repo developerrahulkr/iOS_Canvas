@@ -381,6 +381,22 @@ class BenefBankCashNewTransferVc: BaseViewController, UITextFieldDelegate {
                 
                 
                 }
+                let statusMsg = resonseTal?.value(forKey: "statusMessage") as? String
+                let statusCode = resonseTal?.value(forKey: "statusCodes") as? Int
+                let mesageCode = resonseTal?.value(forKey: "messageCode") as? String ?? statusMsg
+
+                if statusCode ==  400 {
+                    if mesageCode == "E110042"
+                    {
+                        self.showAlert(withTitle: "", withMessage: resonseTal?["statusMessage"] as? String ?? "")
+
+                    }
+                    else{
+                    
+                    let alert = ViewControllerManager.displayAlert(message: statusMsg ?? "", title:APPLICATIONNAME)
+                    self.present(alert, animated: true, completion: nil)
+                    }
+                }
             }
                 
             else
@@ -873,6 +889,23 @@ class BenefBankCashNewTransferVc: BaseViewController, UITextFieldDelegate {
 
                                  }
                 }
+                
+                let statusMsg = resonseTal?.value(forKey: "statusMessage") as? String
+                let statusCode = resonseTal?.value(forKey: "statusCodes") as? Int
+                let mesageCode = resonseTal?.value(forKey: "messageCode") as? String ?? statusMsg
+
+                if statusCode ==  400 {
+                    if mesageCode == "E110042"
+                    {
+                        self.showAlert(withTitle: "", withMessage: resonseTal?["statusMessage"] as? String ?? "")
+
+                    }
+                    else{
+                    
+                    let alert = ViewControllerManager.displayAlert(message: statusMsg ?? "", title:APPLICATIONNAME)
+                    self.present(alert, animated: true, completion: nil)
+                    }
+                }
              
                 
 //                for i in 0..<self.purposeNameData.count {
@@ -972,6 +1005,7 @@ class BenefBankCashNewTransferVc: BaseViewController, UITextFieldDelegate {
               
                // let mesageCode = resonseTal?.value(forKey: "messageCode") as? String
                 let statusMsg = resonseTal?.value(forKey: "statusMessage") as? String
+                let mesageCode = resonseTal?.value(forKey: "messageCode") as? String ?? statusMsg
                 if let statusCode = resonseTal?.value(forKey: "statusCodes") as? Int {
                  
                     if(statusCode == 200) {
@@ -984,6 +1018,19 @@ class BenefBankCashNewTransferVc: BaseViewController, UITextFieldDelegate {
                       
                         
                     }
+                    
+                   else if statusCode ==  400 {
+                        if mesageCode == "E110042"
+                        {
+                            self.showAlert(withTitle: "", withMessage: resonseTal?["statusMessage"] as? String ?? "")
+
+                        }
+                        else{
+                        let alert = ViewControllerManager.displayAlert(message: statusMsg ?? "", title:APPLICATIONNAME)
+                        self.present(alert, animated: true, completion: nil)
+                        }
+                    }
+
                     else {
                         
                         let alert = ViewControllerManager.displayAlert(message: statusMsg ?? "", title:APPLICATIONNAME)

@@ -806,7 +806,7 @@ class BenefWuNewDirectTrnferVc: UIViewController, UITextFieldDelegate {
                 
                 self.removeSpinner()
                 let statusMsg = resonseTal?.value(forKey: "statusMessage") as? String
-              //  let mesageCode = resonseTal?.value(forKey: "messageCode") as? String
+                let mesageCode = resonseTal?.value(forKey: "messageCode") as? String
                 if let statusCode = resonseTal?.value(forKey: "statusCodes") as? Int {
                     
                     print(statusCode)
@@ -817,6 +817,17 @@ class BenefWuNewDirectTrnferVc: UIViewController, UITextFieldDelegate {
                         BeneficiaryDetails.shared.txnRefNo = resonseTal?.value(forKey: "newTnxRef") as? String
                       self.pushViewController(controller: BenefPaymentWebViewVc.initiateController())
                     
+                    }
+                    else if statusCode ==  400 {
+                        if mesageCode == "E110042"
+                        {
+                            self.showAlert(withTitle: "", withMessage: resonseTal?["statusMessage"] as? String ?? "")
+
+                        }
+                        else{
+                        let alert = ViewControllerManager.displayAlert(message: statusMsg ?? "", title:APPLICATIONNAME)
+                        self.present(alert, animated: true, completion: nil)
+                        }
                     }
                     else {
                         let alert = ViewControllerManager.displayAlert(message: statusMsg ?? "", title:APPLICATIONNAME)

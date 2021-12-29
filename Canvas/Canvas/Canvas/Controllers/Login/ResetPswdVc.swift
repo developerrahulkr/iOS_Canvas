@@ -391,12 +391,17 @@ class ResetPswdVc: UIViewController, UITextFieldDelegate, EasyTipViewDelegate {
         
         let paramaterPasing: [String:Any] = ["username": userNameField.text ?? "",
                                              "password": pswdField.text ?? "",
-                                             "confirmPassword": confirmPswdField.text ?? "","registrationId": Global.shared.forgotPswdRegstrtnId ?? ""]
+                                             "confirmPassword": confirmPswdField.text ?? "","registrationId": Global.shared.forgotPswdRegstrtnId ?? "",
+                                             "mobile": Global.shared.forgotPswdMobileNumber ?? "",
+                                             "otp": Global.shared.otpStr,
+                                             "otpType": Global.shared.otpType ?? 0]
         
         
         let headers: HTTPHeaders = [
             "Content-Type": "application/json"
         ]
+        
+     //   print(paramaterPasing)
         
         NetWorkDataManager.sharedInstance.resetPaswdImplimentation(headersTobePassed: headers, postParameters: paramaterPasing) { resonseTal , errorString in
             
@@ -410,6 +415,7 @@ class ResetPswdVc: UIViewController, UITextFieldDelegate, EasyTipViewDelegate {
                     
                     print(statusCode)
                     if(statusCode == 200) {
+                        Global.shared.otpStr = ""
                         
                         let alert6 = UIAlertController(
                             title: "",
@@ -417,7 +423,8 @@ class ResetPswdVc: UIViewController, UITextFieldDelegate, EasyTipViewDelegate {
                             preferredStyle: UIAlertController.Style.alert)
                         
                         let OKAction = UIAlertAction(title: "OK", style: .default) { (action) in
-                          self.pushViewController(controller: LoginVc.initiateController(), animated: false)
+                            self.navigationController?.popToRootViewController(animated: false)
+                        //  self.pushViewController(controller: LoginVc.initiateController(), animated: false)
 
                         }
                         alert6.addAction(OKAction)

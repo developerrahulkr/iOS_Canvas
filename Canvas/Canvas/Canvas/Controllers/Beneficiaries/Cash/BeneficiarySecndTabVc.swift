@@ -172,6 +172,23 @@ class BeneficiarySecndTabVc: BaseViewController, UITableViewDataSource, UITableV
                 self.beneficiaryTbleView.reloadData()
                 self.benefCollectnView.reloadData()
                 
+                let statusMsg = resonseTal?.value(forKey: "statusMessage") as? String
+                let statusCode = resonseTal?.value(forKey: "statusCodes") as? Int
+                let mesageCode = resonseTal?.value(forKey: "messageCode") as? String ?? statusMsg
+
+                if statusCode ==  400 {
+                    if mesageCode == "E110042"
+                    {
+                        self.showAlert(withTitle: "", withMessage: resonseTal?["statusMessage"] as? String ?? "")
+
+                    }
+                    else{
+                    
+                    let alert = ViewControllerManager.displayAlert(message: statusMsg ?? "", title:APPLICATIONNAME)
+                    self.present(alert, animated: true, completion: nil)
+                    }
+                }
+                
             }
             
             else
@@ -579,7 +596,25 @@ class BeneficiarySecndTabVc: BaseViewController, UITableViewDataSource, UITableV
                         //   self.showSpinner(onView: self.beneficiaryTbleView)
                         //    self.viewDidLoad()
                         
-                        self.downloadBeneficiary()
+                        let statusMsg = resonseTal?.value(forKey: "statusMessage") as? String
+                        let statusCode = resonseTal?.value(forKey: "statusCodes") as? Int
+                        let mesageCode = resonseTal?.value(forKey: "messageCode") as? String ?? statusMsg
+
+                        if statusCode ==  400 {
+                            if mesageCode == "E110042"
+                            {
+                                self.showAlert(withTitle: "", withMessage: resonseTal?["statusMessage"] as? String ?? "")
+
+                            }
+                            else{
+                            let alert = ViewControllerManager.displayAlert(message: statusMsg ?? "", title:APPLICATIONNAME)
+                            self.present(alert, animated: true, completion: nil)
+                            }
+                        }
+                        else{
+                        
+                         self.downloadBeneficiary()
+                        }
                         
                     }
                     else
@@ -643,7 +678,25 @@ class BeneficiarySecndTabVc: BaseViewController, UITableViewDataSource, UITableV
                         //   self.showSpinner(onView: self.beneficiaryTbleView)
                         //   self.viewDidLoad()
                         
-                        self.downloadBeneficiary()
+                        let statusMsg = resonseTal?.value(forKey: "statusMessage") as? String
+                        let statusCode = resonseTal?.value(forKey: "statusCodes") as? Int
+                        let mesageCode = resonseTal?.value(forKey: "messageCode") as? String ?? statusMsg
+
+                        if statusCode ==  400 {
+                            if mesageCode == "E110042"
+                            {
+                                self.showAlert(withTitle: "", withMessage: resonseTal?["statusMessage"] as? String ?? "")
+
+                            }
+                            else{
+                            let alert = ViewControllerManager.displayAlert(message: statusMsg ?? "", title:APPLICATIONNAME)
+                            self.present(alert, animated: true, completion: nil)
+                            }
+                        }
+                        else{
+                        
+                          self.downloadBeneficiary()
+                        }
                         
                     }
                     else
@@ -713,7 +766,22 @@ class BeneficiarySecndTabVc: BaseViewController, UITableViewDataSource, UITableV
                     if(statusCode == 200) {
                         self.viewWillAppear(true)
                     }
+                    let statusMsg = resonseTal?.value(forKey: "statusMessage") as? String
+                    let mesageCode = resonseTal?.value(forKey: "messageCode") as? String ?? statusMsg
+
+                    if statusCode ==  400 {
+                        if mesageCode == "E110042"
+                        {
+                            self.showAlert(withTitle: "", withMessage: resonseTal?["statusMessage"] as? String ?? "")
+
+                        }
+                        else{
+                        let alert = ViewControllerManager.displayAlert(message: statusMsg ?? "", title:APPLICATIONNAME)
+                        self.present(alert, animated: true, completion: nil)
+                        }
+                    }
                 }
+                
                 
             }
             
@@ -974,7 +1042,26 @@ class BeneficiarySecndTabVc: BaseViewController, UITableViewDataSource, UITableV
                     {
                         // print(resonseTal)
                         self.removeLoader()
-                        self.downloadBeneficiary()
+                        let statusMsg = resonseTal?.value(forKey: "statusMessage") as? String
+                        let statusCode = resonseTal?.value(forKey: "statusCodes") as? Int
+                        let mesageCode = resonseTal?.value(forKey: "messageCode") as? String ?? statusMsg
+
+                        if statusCode ==  400 {
+                            if mesageCode == "E110042"
+                            {
+                                self.showAlert(withTitle: "", withMessage: resonseTal?["statusMessage"] as? String ?? "")
+
+                            }
+                            else{
+                            let alert = ViewControllerManager.displayAlert(message: statusMsg ?? "", title:APPLICATIONNAME)
+                            self.present(alert, animated: true, completion: nil)
+                            }
+                        }
+                        else{
+                           self.downloadBeneficiary()
+                        }
+                        
+                        
                         
                     }
                     else
@@ -1035,7 +1122,24 @@ class BeneficiarySecndTabVc: BaseViewController, UITableViewDataSource, UITableV
                     {
                         self.removeLoader()
                         // print(resonseTal)
-                        self.downloadBeneficiary()
+                        let statusMsg = resonseTal?.value(forKey: "statusMessage") as? String
+                        let statusCode = resonseTal?.value(forKey: "statusCodes") as? Int
+                        let mesageCode = resonseTal?.value(forKey: "messageCode") as? String ?? statusMsg
+
+                        if statusCode ==  400 {
+                            if mesageCode == "E110042"
+                            {
+                                self.showAlert(withTitle: "", withMessage: resonseTal?["statusMessage"] as? String ?? "")
+
+                            }
+                            else{
+                            let alert = ViewControllerManager.displayAlert(message: statusMsg ?? "", title:APPLICATIONNAME)
+                            self.present(alert, animated: true, completion: nil)
+                            }
+                        }
+                        else{
+                           self.downloadBeneficiary()
+                        }
                         
                     }
                     else
@@ -1167,7 +1271,26 @@ class BeneficiarySecndTabVc: BaseViewController, UITableViewDataSource, UITableV
                     {
                         // print(resonseTal)
                         self.removeLoader()
-                        self.downloadBeneficiary()
+                        let statusMsg = resonseTal?.value(forKey: "statusMessage") as? String
+                        let statusCode = resonseTal?.value(forKey: "statusCodes") as? Int
+                        let mesageCode = resonseTal?.value(forKey: "messageCode") as? String ?? statusMsg
+
+                        if statusCode ==  400 {
+                            if mesageCode == "E110042"
+                            {
+                                self.showAlert(withTitle: "", withMessage: resonseTal?["statusMessage"] as? String ?? "")
+
+                            }
+                            else{
+                            
+                            let alert = ViewControllerManager.displayAlert(message: statusMsg ?? "", title:APPLICATIONNAME)
+                            self.present(alert, animated: true, completion: nil)
+                            }
+                        }
+                        else{
+
+                            self.downloadBeneficiary()
+                        }
                         
                     }
                     else
@@ -1205,7 +1328,26 @@ class BeneficiarySecndTabVc: BaseViewController, UITableViewDataSource, UITableV
                     {
                         // print(resonseTal)
                         self.removeLoader()
-                        self.downloadBeneficiary()
+                        let statusMsg = resonseTal?.value(forKey: "statusMessage") as? String
+                        let statusCode = resonseTal?.value(forKey: "statusCodes") as? Int
+                        let mesageCode = resonseTal?.value(forKey: "messageCode") as? String ?? statusMsg
+
+                        if statusCode ==  400 {
+                            if mesageCode == "E110042"
+                            {
+                                self.showAlert(withTitle: "", withMessage: resonseTal?["statusMessage"] as? String ?? "")
+
+                            }
+                            else{
+                            
+                            let alert = ViewControllerManager.displayAlert(message: statusMsg ?? "", title:APPLICATIONNAME)
+                            self.present(alert, animated: true, completion: nil)
+                            }
+                        }
+                        else{
+
+                            self.downloadBeneficiary()
+                        }
                         
                     }
                     else

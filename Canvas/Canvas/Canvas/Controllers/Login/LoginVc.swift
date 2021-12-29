@@ -862,13 +862,9 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
                             Global.shared.backTxt = common["back"] as? String ?? ""
                             Global.shared.frontTxt = common["front"] as? String ?? ""
                             Global.shared.recordTxt = common["record"] as? String ?? ""
-                            
-                            
                             Global.shared.uploadCivildIdTxt = common["uplaod_civilid"] as? String ?? ""
                             
                             Global.shared.uploadSelfieVideTxt = common["upload_selfie_video"] as? String ?? ""
-                            
-                            
                             Global.shared.showMoreTxt = common["show_more"] as? String ?? ""
                             Global.shared.createUserNamePaswd = common["createuserpass_header"] as? String ?? ""
                             

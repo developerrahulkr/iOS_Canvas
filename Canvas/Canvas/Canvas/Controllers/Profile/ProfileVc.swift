@@ -370,6 +370,21 @@ class ProfileVc: BaseViewController,UIImagePickerControllerDelegate,UINavigation
                         self.present(alert6, animated: true, completion: nil)
                         
                     }
+                    else if statusCode == 400
+                    {
+                        if mesageCode == "E110042"
+                        {
+                            self.showAlert(withTitle: "", withMessage: resonseTal?["statusMessage"] as? String ?? "")
+//                            Global.shared.timeoUtOrNot = "no"
+//                            self.showAlertForTimer(titulo: "", mensagem: Global.shared.sessionTimedOutTxt, vc: self)
+                        }
+                        else{
+                            
+                        let alert = ViewControllerManager.displayAlert(message: resonseTal?["statusMessage"] as? String ?? "", title:APPLICATIONNAME)
+                        self.present(alert, animated: true, completion: nil)
+                        }
+                    }
+
                         
                     else {
                         let alert = ViewControllerManager.displayAlert(message:Global.shared.messageCodeType(text: mesageCode), title:APPLICATIONNAME)
@@ -433,6 +448,8 @@ class ProfileVc: BaseViewController,UIImagePickerControllerDelegate,UINavigation
                 if let statusCode = resonseTal?.value(forKey: "statusCodes") as? Int {
                     
                     print(statusCode)
+                    let statusMsg = resonseTal?.value(forKey: "statusMessage") as? String ?? ""
+                    let mesageCode = resonseTal?.value(forKey: "messageCode") as? String ?? statusMsg
                     if(statusCode == 200) {
                         self.removeLoader()
                         
@@ -536,8 +553,16 @@ class ProfileVc: BaseViewController,UIImagePickerControllerDelegate,UINavigation
                     }
                     if statusCode == 400
                     {
+                        if mesageCode == "E110042"
+                        {
+                            self.showAlert(withTitle: "", withMessage: resonseTal?["statusMessage"] as? String ?? "")
+//                            Global.shared.timeoUtOrNot = "no"
+//                            self.showAlertForTimer(titulo: "", mensagem: statusMsg, vc: self)
+                        }
+                        else{
                         let alert = ViewControllerManager.displayAlert(message: resonseTal?["statusMessage"] as? String ?? "", title:APPLICATIONNAME)
                         self.present(alert, animated: true, completion: nil)
+                        }
                     }
                     
                  //   self.menuItemsData()
@@ -618,8 +643,28 @@ class ProfileVc: BaseViewController,UIImagePickerControllerDelegate,UINavigation
             {
                 
                // print(resonseTal)
+                if let statusCode = resonseTal?.value(forKey: "statusCodes") as? Int {
+                    
+                    print(statusCode)
+                    let statusMsg = resonseTal?.value(forKey: "statusMessage") as? String ?? ""
+                    let mesageCode = resonseTal?.value(forKey: "messageCode") as? String ?? statusMsg
+                if statusCode == 400
+                {
+                    if mesageCode == "E110042"
+                    {
+                        self.showAlert(withTitle: "", withMessage: resonseTal?["statusMessage"] as? String ?? "")
+//                        Global.shared.timeoUtOrNot = "no"
+//                        self.showAlertForTimer(titulo: "", mensagem: statusMsg, vc: self)
+                    }
+                    else{
+                    let alert = ViewControllerManager.displayAlert(message: resonseTal?["statusMessage"] as? String ?? "", title:APPLICATIONNAME)
+                    self.present(alert, animated: true, completion: nil)
+                    }
+                }
+             }
                 
             }
+            
                 
             else
             {
@@ -655,7 +700,27 @@ class ProfileVc: BaseViewController,UIImagePickerControllerDelegate,UINavigation
             if errorString == nil
             {
                 
+                
               //  print(resonseTal)
+                if let statusCode = resonseTal?.value(forKey: "statusCodes") as? Int {
+                    
+                    print(statusCode)
+                    let statusMsg = resonseTal?.value(forKey: "statusMessage") as? String ?? ""
+                    let mesageCode = resonseTal?.value(forKey: "messageCode") as? String ?? statusMsg
+                if statusCode == 400
+                {
+                    if mesageCode == "E110042"
+                    {
+                        self.showAlert(withTitle: "", withMessage: resonseTal?["statusMessage"] as? String ?? "")
+//                        Global.shared.timeoUtOrNot = "no"
+//                        self.showAlertForTimer(titulo: "", mensagem: statusMsg, vc: self)
+                    }
+                    else{
+                    let alert = ViewControllerManager.displayAlert(message: resonseTal?["statusMessage"] as? String ?? "", title:APPLICATIONNAME)
+                    self.present(alert, animated: true, completion: nil)
+                    }
+                }
+             }
                 
             }
                 

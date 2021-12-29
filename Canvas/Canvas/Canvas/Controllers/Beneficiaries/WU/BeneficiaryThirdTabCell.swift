@@ -127,6 +127,7 @@ class BeneficiaryThirdTabCell: UITableViewCell {
             if errorString == nil
             {
               //  print(resonseTal)
+               
         
             }
             else

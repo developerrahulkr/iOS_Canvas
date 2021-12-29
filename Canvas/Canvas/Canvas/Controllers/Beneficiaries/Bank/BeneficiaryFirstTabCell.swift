@@ -134,6 +134,7 @@ class BeneficiaryFirstTabCell: UITableViewCell {
             if errorString == nil
             {
                 // print(resonseTal)
+               
                 
             }
             else

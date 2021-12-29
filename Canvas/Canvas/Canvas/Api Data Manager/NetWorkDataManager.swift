@@ -410,7 +410,7 @@ class NetWorkDataManager {
     func resetPaswdImplimentation(headersTobePassed : HTTPHeaders,postParameters :[String:Any],completionHandler: @escaping (NSDictionary?, String?) -> ())
     {
         
-        let apiUlr = CanvasUrls.baseUrl +  CanvasUrls.versionNumber + CanvasUrls.resetPaswd
+        let apiUlr = CanvasUrls.baseUrl +  CanvasUrls.versionNumber + CanvasUrls.otpResetPaswd
         
         AF.request(apiUlr, method: .post, parameters: postParameters, encoding:
             JSONEncoding.default, headers: headers).responseJSON
@@ -860,6 +860,23 @@ func appVersionControl(headersTobePassed : HTTPHeaders,postParameters :[String:A
                 completionHandler(completion.0, completion.1)
         }
     }
+    
+    // Get Site Under Maintenance Id
+    func SiteUnderMantImplimentation(headersTobePassed : HTTPHeaders,postParameters :[String:Any],completionHandler: @escaping (NSDictionary?, String?) -> ())
+    {
+        
+     //   let apiUlr = CanvasUrls.baseUrl + CanvasUrls.siteUnderManti
+     let apiUlr = "http://online-uat.muzaini.com:82/api/SiteUnderMaintenance/getSiteUnderMain"
+        
+        AF.request(apiUlr, method: .post, parameters: postParameters, encoding:
+            JSONEncoding.default, headers: headersWithAuthorization).responseJSON
+            { response in
+                
+                let completion = self.dealWithDictResponse(response: response)
+                completionHandler(completion.0, completion.1)
+        }
+    }
+    
     // Get Civil Id
     func civilIdDetailsImplimentation(headersTobePassed : HTTPHeaders,postParameters :[String:Any],completionHandler: @escaping (NSDictionary?, String?) -> ())
     {

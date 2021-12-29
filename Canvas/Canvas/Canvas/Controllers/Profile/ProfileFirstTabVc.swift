@@ -364,6 +364,9 @@ class ProfileFirstTabVc: BaseViewController {
            let paramaterPasing: [String:Any] = [
                "registrationId": UserDefaults.standard.string(forKey: "registrationId")!
            ]
+//        let paramaterPasing: [String:Any] = [
+//            "registrationId": "6f016d46-2cfd-44f5-86bc-f259df57203f"
+//        ]
            
            let headers: HTTPHeaders = [.authorization(bearerToken: UserDefaults.standard.string(forKey: "token")!)]
            
@@ -380,6 +383,8 @@ class ProfileFirstTabVc: BaseViewController {
                 
                 
                    if let statusCode = resonseTal?.value(forKey: "statusCodes") as? Int {
+                       let statusMsg = resonseTal?.value(forKey: "statusMessage") as? String ?? ""
+                       let mesageCode = resonseTal?.value(forKey: "messageCode") as? String ?? statusMsg
                        
                        print(statusCode)
                        if(statusCode == 200) {
@@ -452,8 +457,17 @@ class ProfileFirstTabVc: BaseViewController {
                        }
                     if statusCode == 400
                     {
+                        if mesageCode == "E110042"
+                        {
+                            self.showAlert(withTitle: "", withMessage: resonseTal?["statusMessage"] as? String ?? "")
+//                            Global.shared.timeoUtOrNot = "no"
+//                            self.showAlertForTimer(titulo: "", mensagem: Global.shared.sessionTimedOutTxt, vc: self)
+                        }
+                        else{
+                            
                         let alert = ViewControllerManager.displayAlert(message: resonseTal?["statusMessage"] as? String ?? "", title:APPLICATIONNAME)
                         self.present(alert, animated: true, completion: nil)
+                        }
                     }
                        
                     
@@ -919,4 +933,21 @@ class ProfileFirstTabVc: BaseViewController {
     }
  
     
+}
+extension  UIViewController {
+
+    func showAlert(withTitle title: String, withMessage message:String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let ok = UIAlertAction(title: Global.shared.okTxt, style: .default, handler: { action in
+            Global.shared.logoutValue = 1
+            self.dismiss(animated: true, completion: {
+            })
+           // self.logout()
+        })
+       
+        alert.addAction(ok)
+        DispatchQueue.main.async(execute: {
+            self.present(alert, animated: true)
+        })
+    }
 }

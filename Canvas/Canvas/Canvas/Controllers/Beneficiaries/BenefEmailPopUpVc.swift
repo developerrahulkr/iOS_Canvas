@@ -120,7 +120,7 @@ class BenefEmailPopUpVc: UIViewController, UITextFieldDelegate {
                 print(resonseTal!)
                 
                 let statusMsg = resonseTal?.value(forKey: "statusMessage") as? String ?? ""
-            let mesageCode = resonseTal?.value(forKey: "messageCode") as? String ?? statusMsg
+                let mesageCode = resonseTal?.value(forKey: "messageCode") as? String ?? statusMsg
                 if let statusCode = resonseTal?.value(forKey: "statusCodes") as? Int {
                     
                     print(statusCode)
@@ -131,6 +131,18 @@ class BenefEmailPopUpVc: UIViewController, UITextFieldDelegate {
                         self.present(alert, animated: true, completion: nil)
                         self.removeAnimate()
                         
+                    }
+                    else if statusCode ==  400 {
+                        if mesageCode == "E110042"
+                        {
+                            self.showAlert(withTitle: "", withMessage: resonseTal?["statusMessage"] as? String ?? "")
+
+                        }
+                        else{
+                           let alert = ViewControllerManager.displayAlert(message: statusMsg ?? "", title:APPLICATIONNAME)
+                          self.present(alert, animated: true, completion: nil)
+                        }
+                        self.removeAnimate()
                     }
                     else {
                         let alert = ViewControllerManager.displayAlert(message: statusMsg, title:APPLICATIONNAME)

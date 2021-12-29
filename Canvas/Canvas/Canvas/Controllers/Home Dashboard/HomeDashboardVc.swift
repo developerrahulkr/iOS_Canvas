@@ -527,6 +527,22 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
                 //    self.removeSpinner()
                 
                 //   self.loadPlaces()
+                
+                let statusMsg = resonseTal?.value(forKey: "statusMessage") as? String
+                let statusCode = resonseTal?.value(forKey: "statusCodes") as? Int
+                let mesageCode = resonseTal?.value(forKey: "messageCode") as? String ?? statusMsg
+
+                if statusCode ==  400 {
+                    if mesageCode == "E110042"
+                    {
+                        self.showAlert(withTitle: "", withMessage: resonseTal?["statusMessage"] as? String ?? "")
+
+                    }
+                    else{
+                    let alert = ViewControllerManager.displayAlert(message: statusMsg ?? "", title:APPLICATIONNAME)
+                    self.present(alert, animated: true, completion: nil)
+                    }
+                }
             }
             
             else
@@ -958,10 +974,18 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
                 
                 let statusMsg = resonseTal?.value(forKey: "statusMessage") as? String
                 let statusCode = resonseTal?.value(forKey: "statusCodes") as? Int
+                let mesageCode = resonseTal?.value(forKey: "messageCode") as? String ?? statusMsg
 
                 if statusCode ==  400 {
+                    if mesageCode == "E110042"
+                    {
+                        self.showAlert(withTitle: "", withMessage: resonseTal?["statusMessage"] as? String ?? "")
+
+                    }
+                    else{
                     let alert = ViewControllerManager.displayAlert(message: statusMsg ?? "", title:APPLICATIONNAME)
                     self.present(alert, animated: true, completion: nil)
+                    }
                 }
                 
                 self.favBenefCollectnView.reloadData()
@@ -1475,7 +1499,25 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
                 if errorString == nil
                 {
                     // print(resonseTal)
-                    self.downloadBeneficiary()
+                    
+                    let statusMsg = resonseTal?.value(forKey: "statusMessage") as? String
+                    let statusCode = resonseTal?.value(forKey: "statusCodes") as? Int
+                    let mesageCode = resonseTal?.value(forKey: "messageCode") as? String ?? statusMsg
+
+                    if statusCode ==  400 {
+                        if mesageCode == "E110042"
+                        {
+                            self.showAlert(withTitle: "", withMessage: resonseTal?["statusMessage"] as? String ?? "")
+
+                        }
+                        else{
+                        let alert = ViewControllerManager.displayAlert(message: statusMsg ?? "", title:APPLICATIONNAME)
+                        self.present(alert, animated: true, completion: nil)
+                        }
+                    }
+                    else{
+                       self.downloadBeneficiary()
+                    }
                     
                 }
                 else
@@ -1601,7 +1643,25 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
                     if errorString == nil
                     {
                         // print(resonseTal)
-                        self.downloadBeneficiary()
+                        let statusMsg = resonseTal?.value(forKey: "statusMessage") as? String
+                        let statusCode = resonseTal?.value(forKey: "statusCodes") as? Int
+                        let mesageCode = resonseTal?.value(forKey: "messageCode") as? String ?? statusMsg
+
+                        if statusCode ==  400 {
+                            if mesageCode == "E110042"
+                            {
+                                self.showAlert(withTitle: "", withMessage: resonseTal?["statusMessage"] as? String ?? "")
+
+                            }
+                            else{
+                            
+                            let alert = ViewControllerManager.displayAlert(message: statusMsg ?? "", title:APPLICATIONNAME)
+                            self.present(alert, animated: true, completion: nil)
+                            }
+                        }
+                        else{
+                            self.downloadBeneficiary()
+                        }
                         
                     }
                     else
@@ -1638,7 +1698,26 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
                     if errorString == nil
                     {
                         // print(resonseTal)
-                        self.downloadBeneficiary()
+                        let statusMsg = resonseTal?.value(forKey: "statusMessage") as? String
+                        let statusCode = resonseTal?.value(forKey: "statusCodes") as? Int
+                        let mesageCode = resonseTal?.value(forKey: "messageCode") as? String ?? statusMsg
+
+                        if statusCode ==  400 {
+                            if mesageCode == "E110042"
+                            {
+                                self.showAlert(withTitle: "", withMessage: resonseTal?["statusMessage"] as? String ?? "")
+
+                            }
+                            else{
+                            
+                            let alert = ViewControllerManager.displayAlert(message: statusMsg ?? "", title:APPLICATIONNAME)
+                            self.present(alert, animated: true, completion: nil)
+                            }
+                        }
+                        else{
+
+                           self.downloadBeneficiary()
+                        }
                         
                     }
                     else

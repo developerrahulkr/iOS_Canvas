@@ -600,8 +600,6 @@ class AfterLoginVerificationVc: UIViewController, UITextFieldDelegate {
         let remitterStatusMess = resonseTal?.value(forKey: "remitterStatusMessage") as? String ?? ""
         UserDefaults.standard.set(remitterStatusMess, forKey: "remitterStatusMessage")
         
-        
-        
         print("token is :",UserDefaults.standard.string(forKey: "token")!)
         
         self.loginTrack()

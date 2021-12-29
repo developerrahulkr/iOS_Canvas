@@ -439,6 +439,23 @@ class BenefWuNewTrnsferVc: UIViewController, UITextFieldDelegate {
                                 
                 }
                 
+                let statusMsg = resonseTal?.value(forKey: "statusMessage") as? String
+                let statusCode = resonseTal?.value(forKey: "statusCodes") as? Int
+                let mesageCode = resonseTal?.value(forKey: "messageCode") as? String ?? statusMsg
+
+                if statusCode ==  400 {
+                    if mesageCode == "E110042"
+                    {
+                        self.showAlert(withTitle: "", withMessage: resonseTal?["statusMessage"] as? String ?? "")
+
+                    }
+                    else{
+                    
+                    let alert = ViewControllerManager.displayAlert(message: statusMsg ?? "", title:APPLICATIONNAME)
+                    self.present(alert, animated: true, completion: nil)
+                    }
+                }
+                
             }
                 
             else
@@ -933,7 +950,22 @@ class BenefWuNewTrnsferVc: UIViewController, UITextFieldDelegate {
 //                }
                 
                 //   self.removeSpinner()
-                
+                let statusMsg = resonseTal?.value(forKey: "statusMessage") as? String
+                let statusCode = resonseTal?.value(forKey: "statusCodes") as? Int
+                let mesageCode = resonseTal?.value(forKey: "messageCode") as? String ?? statusMsg
+
+                if statusCode ==  400 {
+                    if mesageCode == "E110042"
+                    {
+                        self.showAlert(withTitle: "", withMessage: resonseTal?["statusMessage"] as? String ?? "")
+
+                    }
+                    else{
+                    
+                    let alert = ViewControllerManager.displayAlert(message: statusMsg ?? "", title:APPLICATIONNAME)
+                    self.present(alert, animated: true, completion: nil)
+                    }
+                }
             }
                 
             else
@@ -1033,6 +1065,7 @@ class BenefWuNewTrnsferVc: UIViewController, UITextFieldDelegate {
                 self.removeSpinner()
               //  let mesageCode = resonseTal?.value(forKey: "messageCode") as? String
                 let statusMsg = resonseTal?.value(forKey: "statusMessage") as? String
+                let mesageCode = resonseTal?.value(forKey: "messageCode") as? String ?? statusMsg
                 if let statusCode = resonseTal?.value(forKey: "statusCodes") as? Int {
                     
                     print(statusCode)
@@ -1045,6 +1078,18 @@ class BenefWuNewTrnsferVc: UIViewController, UITextFieldDelegate {
                       self.pushViewController(controller: BenefPaymentWebViewVc.initiateController())
 
                         
+                    }
+                    
+                    else if statusCode ==  400 {
+                        if mesageCode == "E110042"
+                        {
+                            self.showAlert(withTitle: "", withMessage: resonseTal?["statusMessage"] as? String ?? "")
+
+                        }
+                        else{
+                        let alert = ViewControllerManager.displayAlert(message: statusMsg ?? "", title:APPLICATIONNAME)
+                        self.present(alert, animated: true, completion: nil)
+                        }
                     }
                     else {
                         let alert = ViewControllerManager.displayAlert(message: statusMsg ?? "", title:APPLICATIONNAME)
