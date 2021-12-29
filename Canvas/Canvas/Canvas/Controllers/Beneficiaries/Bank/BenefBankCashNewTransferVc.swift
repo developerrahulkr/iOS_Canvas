@@ -306,7 +306,7 @@ class BenefBankCashNewTransferVc: BaseViewController, UITextFieldDelegate {
                     let indexG = Global.shared.countryNameData.firstIndex(of: BeneficiaryDetails.shared.countryName)
 
                    let countryCodeD = Global.shared.countryCodesData[indexG ?? 0]
-                             //  self.placeOfBirthImg.image = UIImage(named: dropDisplay)
+                   //  self.placeOfBirthImg.image = UIImage(named: dropDisplay)
                     self.targetImg.image = UIImage(named:  countryCodeD.lowercased())
                     
                     BeneficiaryDetails.shared.currency  = (benList[0] as AnyObject).value(forKey: "currency") as? String ?? ""

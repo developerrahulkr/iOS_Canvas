@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		05767814EC83D8A019F5215D /* Pods_CanvasTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B505513EEF744E9A15AC10A7 /* Pods_CanvasTests.framework */; };
 		1924D54426E51E9800533445 /* PhotoSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1924D54226E51E9700533445 /* PhotoSliderView.swift */; };
 		197B589126E345D600D27D18 /* BannerImgCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197B589026E345D600D27D18 /* BannerImgCell.swift */; };
 		197B589326E3461200D27D18 /* ShowOffersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197B589226E3461200D27D18 /* ShowOffersCell.swift */; };
@@ -23,7 +22,7 @@
 		2CA2D99B272E739B00CC9058 /* PhotoSliderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CA2D99A272E739B00CC9058 /* PhotoSliderView.xib */; };
 		2CA2D9A4273D285E00CC9058 /* UpdateCivilIDController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA2D9A2273D285E00CC9058 /* UpdateCivilIDController.swift */; };
 		2CA2D9A5273D285E00CC9058 /* ShowImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA2D9A3273D285E00CC9058 /* ShowImageController.swift */; };
-		2CBE4C2F27660B3D00BE810C /* SiteUnderMaintnanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBE4C2E27660B3D00BE810C /* SiteUnderMaintnanceController.swift */; };
+		5CE04BF9A33F2AD7E093967D /* Pods_CanvasTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C29164A829770EB50CC363BF /* Pods_CanvasTests.framework */; };
 		8E07CEA82583DAC600891289 /* TransctionPeriodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E07CEA62583DAC600891289 /* TransctionPeriodCell.swift */; };
 		8E07CEA92583DAC600891289 /* TransctionPeriodCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E07CEA72583DAC600891289 /* TransctionPeriodCell.xib */; };
 		8E1D3CF82574EE4900BEF295 /* SecurityQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1D3CF72574EE4900BEF295 /* SecurityQuestion.swift */; };
@@ -47,8 +46,8 @@
 		8ECB2194257F70F300617DF3 /* CustomView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8ECB2190257F70F200617DF3 /* CustomView.storyboard */; };
 		8ECB2197257F75AF00617DF3 /* BeneficiaryPurposeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECB2196257F75AF00617DF3 /* BeneficiaryPurposeData.swift */; };
 		8EFD2F6B25700F9B00052539 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFD2F6A25700F9A00052539 /* Extensions.swift */; };
-		AA1867C0856A265D40C89C93 /* Pods_Canvas.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27E38920113FBE1C0CEAAA45 /* Pods_Canvas.framework */; };
-		CD3B1913B53FA63D23950A2A /* Pods_Canvas_CanvasUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07BBFA5C0213005C0EDD0FF0 /* Pods_Canvas_CanvasUITests.framework */; };
+		9DB4845D6687274A7C8A2860 /* Pods_Canvas_CanvasUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22757D9FE91CED582ED46EC3 /* Pods_Canvas_CanvasUITests.framework */; };
+		B59AC323448B468AC9BF9E59 /* Pods_Canvas.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32B1E509F553AE98B7391041 /* Pods_Canvas.framework */; };
 		D5030F1824EFB7290001D686 /* ExistingUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5030F1724EFB7290001D686 /* ExistingUser.swift */; };
 		D5030F1A24EFC9160001D686 /* AlertsValidations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5030F1924EFC9150001D686 /* AlertsValidations.swift */; };
 		D5030F1C24EFCA260001D686 /* ViewControllerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5030F1B24EFCA260001D686 /* ViewControllerManager.swift */; };
@@ -229,7 +228,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		07BBFA5C0213005C0EDD0FF0 /* Pods_Canvas_CanvasUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Canvas_CanvasUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0323240D53D98FEE82499744 /* Pods-Canvas-CanvasUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Canvas-CanvasUITests.debug.xcconfig"; path = "Target Support Files/Pods-Canvas-CanvasUITests/Pods-Canvas-CanvasUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		1924D54226E51E9700533445 /* PhotoSliderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoSliderView.swift; sourceTree = "<group>"; };
 		197B589026E345D600D27D18 /* BannerImgCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerImgCell.swift; sourceTree = "<group>"; };
 		197B589226E3461200D27D18 /* ShowOffersCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowOffersCell.swift; sourceTree = "<group>"; };
@@ -242,15 +241,12 @@
 		19C96EFB26DE4B8100B1321E /* OfferViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferViewController.swift; sourceTree = "<group>"; };
 		19C96EFE26DF853C00B1321E /* BannerOfferCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerOfferCell.swift; sourceTree = "<group>"; };
 		19D34FBF26959C2500BAB4EF /* ChatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatController.swift; sourceTree = "<group>"; };
-		27E38920113FBE1C0CEAAA45 /* Pods_Canvas.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Canvas.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		22757D9FE91CED582ED46EC3 /* Pods_Canvas_CanvasUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Canvas_CanvasUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CA2D99A272E739B00CC9058 /* PhotoSliderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PhotoSliderView.xib; path = ../../../../../../../../Desktop/PhotoSliderView.xib; sourceTree = "<group>"; };
 		2CA2D9A2273D285E00CC9058 /* UpdateCivilIDController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateCivilIDController.swift; sourceTree = "<group>"; };
 		2CA2D9A3273D285E00CC9058 /* ShowImageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowImageController.swift; sourceTree = "<group>"; };
-		2CBE4C2E27660B3D00BE810C /* SiteUnderMaintnanceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiteUnderMaintnanceController.swift; sourceTree = "<group>"; };
-		3E220594738CDFCC43226EB9 /* Pods-Canvas-CanvasUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Canvas-CanvasUITests.debug.xcconfig"; path = "Target Support Files/Pods-Canvas-CanvasUITests/Pods-Canvas-CanvasUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		4E4D73AF5B39440C507A1AF1 /* Pods-Canvas.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Canvas.release.xcconfig"; path = "Target Support Files/Pods-Canvas/Pods-Canvas.release.xcconfig"; sourceTree = "<group>"; };
-		63926361DC6F1BA80B395DA5 /* Pods-CanvasTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CanvasTests.debug.xcconfig"; path = "Target Support Files/Pods-CanvasTests/Pods-CanvasTests.debug.xcconfig"; sourceTree = "<group>"; };
-		7BE73279AE39467101611955 /* Pods-Canvas-CanvasUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Canvas-CanvasUITests.release.xcconfig"; path = "Target Support Files/Pods-Canvas-CanvasUITests/Pods-Canvas-CanvasUITests.release.xcconfig"; sourceTree = "<group>"; };
+		32B1E509F553AE98B7391041 /* Pods_Canvas.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Canvas.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		336B0D4B68D63535B8442609 /* Pods-CanvasTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CanvasTests.release.xcconfig"; path = "Target Support Files/Pods-CanvasTests/Pods-CanvasTests.release.xcconfig"; sourceTree = "<group>"; };
 		8E07CEA62583DAC600891289 /* TransctionPeriodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransctionPeriodCell.swift; sourceTree = "<group>"; };
 		8E07CEA72583DAC600891289 /* TransctionPeriodCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransctionPeriodCell.xib; sourceTree = "<group>"; };
 		8E1D3CF72574EE4900BEF295 /* SecurityQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityQuestion.swift; sourceTree = "<group>"; };
@@ -274,8 +270,9 @@
 		8ECB2190257F70F200617DF3 /* CustomView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CustomView.storyboard; sourceTree = "<group>"; };
 		8ECB2196257F75AF00617DF3 /* BeneficiaryPurposeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeneficiaryPurposeData.swift; sourceTree = "<group>"; };
 		8EFD2F6A25700F9A00052539 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		AD5FA211BAD8BC1C999CD2FA /* Pods-CanvasTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CanvasTests.release.xcconfig"; path = "Target Support Files/Pods-CanvasTests/Pods-CanvasTests.release.xcconfig"; sourceTree = "<group>"; };
-		B505513EEF744E9A15AC10A7 /* Pods_CanvasTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CanvasTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		915D01FC7ADE3B36AC8D5F5A /* Pods-Canvas-CanvasUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Canvas-CanvasUITests.release.xcconfig"; path = "Target Support Files/Pods-Canvas-CanvasUITests/Pods-Canvas-CanvasUITests.release.xcconfig"; sourceTree = "<group>"; };
+		C29164A829770EB50CC363BF /* Pods_CanvasTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CanvasTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C444644720DEE1F1EE1CFE67 /* Pods-Canvas.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Canvas.debug.xcconfig"; path = "Target Support Files/Pods-Canvas/Pods-Canvas.debug.xcconfig"; sourceTree = "<group>"; };
 		D5030F1724EFB7290001D686 /* ExistingUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExistingUser.swift; sourceTree = "<group>"; };
 		D5030F1924EFC9150001D686 /* AlertsValidations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertsValidations.swift; sourceTree = "<group>"; };
 		D5030F1B24EFCA260001D686 /* ViewControllerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerManager.swift; sourceTree = "<group>"; };
@@ -455,7 +452,8 @@
 		D5EB6B54256905450089038F /* RateCalculatorBankVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateCalculatorBankVc.swift; sourceTree = "<group>"; };
 		D5EB6B562569055F0089038F /* RateCalculatorWuVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateCalculatorWuVc.swift; sourceTree = "<group>"; };
 		D5EB6B58256960220089038F /* HomeBenFavCollctnCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBenFavCollctnCell.swift; sourceTree = "<group>"; };
-		E32979B369118A39B539950E /* Pods-Canvas.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Canvas.debug.xcconfig"; path = "Target Support Files/Pods-Canvas/Pods-Canvas.debug.xcconfig"; sourceTree = "<group>"; };
+		E66BB6C85B0927B9F4A1F299 /* Pods-CanvasTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CanvasTests.debug.xcconfig"; path = "Target Support Files/Pods-CanvasTests/Pods-CanvasTests.debug.xcconfig"; sourceTree = "<group>"; };
+		ECB738975707FE7E75EE0507 /* Pods-Canvas.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Canvas.release.xcconfig"; path = "Target Support Files/Pods-Canvas/Pods-Canvas.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -466,7 +464,7 @@
 				D545D1F82508A36A0098DC4D /* LocalAuthentication.framework in Frameworks */,
 				D55D3FC2253F216A004B521C /* WebKit.framework in Frameworks */,
 				D53393DD24E427100031D4A5 /* CloudKit.framework in Frameworks */,
-				AA1867C0856A265D40C89C93 /* Pods_Canvas.framework in Frameworks */,
+				B59AC323448B468AC9BF9E59 /* Pods_Canvas.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -474,7 +472,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05767814EC83D8A019F5215D /* Pods_CanvasTests.framework in Frameworks */,
+				5CE04BF9A33F2AD7E093967D /* Pods_CanvasTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -482,7 +480,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD3B1913B53FA63D23950A2A /* Pods_Canvas_CanvasUITests.framework in Frameworks */,
+				9DB4845D6687274A7C8A2860 /* Pods_Canvas_CanvasUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -495,9 +493,9 @@
 				D55D3FC1253F2169004B521C /* WebKit.framework */,
 				D545D1F72508A36A0098DC4D /* LocalAuthentication.framework */,
 				D53393DC24E4270F0031D4A5 /* CloudKit.framework */,
-				27E38920113FBE1C0CEAAA45 /* Pods_Canvas.framework */,
-				07BBFA5C0213005C0EDD0FF0 /* Pods_Canvas_CanvasUITests.framework */,
-				B505513EEF744E9A15AC10A7 /* Pods_CanvasTests.framework */,
+				32B1E509F553AE98B7391041 /* Pods_Canvas.framework */,
+				22757D9FE91CED582ED46EC3 /* Pods_Canvas_CanvasUITests.framework */,
+				C29164A829770EB50CC363BF /* Pods_CanvasTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -551,14 +549,6 @@
 				2CA2D9A3273D285E00CC9058 /* ShowImageController.swift */,
 			);
 			path = UpdateCivilID;
-			sourceTree = "<group>";
-		};
-		2CBE4C2D27660AA600BE810C /* SiteUnderMaintanence */ = {
-			isa = PBXGroup;
-			children = (
-				2CBE4C2E27660B3D00BE810C /* SiteUnderMaintnanceController.swift */,
-			);
-			path = SiteUnderMaintanence;
 			sourceTree = "<group>";
 		};
 		8E29736D258CF01300601984 /* Extensions */ = {
@@ -647,12 +637,12 @@
 		963577FBEB56678884284A41 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				E32979B369118A39B539950E /* Pods-Canvas.debug.xcconfig */,
-				4E4D73AF5B39440C507A1AF1 /* Pods-Canvas.release.xcconfig */,
-				3E220594738CDFCC43226EB9 /* Pods-Canvas-CanvasUITests.debug.xcconfig */,
-				7BE73279AE39467101611955 /* Pods-Canvas-CanvasUITests.release.xcconfig */,
-				63926361DC6F1BA80B395DA5 /* Pods-CanvasTests.debug.xcconfig */,
-				AD5FA211BAD8BC1C999CD2FA /* Pods-CanvasTests.release.xcconfig */,
+				C444644720DEE1F1EE1CFE67 /* Pods-Canvas.debug.xcconfig */,
+				ECB738975707FE7E75EE0507 /* Pods-Canvas.release.xcconfig */,
+				0323240D53D98FEE82499744 /* Pods-Canvas-CanvasUITests.debug.xcconfig */,
+				915D01FC7ADE3B36AC8D5F5A /* Pods-Canvas-CanvasUITests.release.xcconfig */,
+				E66BB6C85B0927B9F4A1F299 /* Pods-CanvasTests.debug.xcconfig */,
+				336B0D4B68D63535B8442609 /* Pods-CanvasTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -1039,7 +1029,6 @@
 		D562FD3025FF22FF004E81DE /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				2CBE4C2D27660AA600BE810C /* SiteUnderMaintanence */,
 				2CA2D9A1273D285E00CC9058 /* UpdateCivilID */,
 				19C96EF626D8D69C00B1321E /* Offers */,
 				19D34FBE26959BEE00BAB4EF /* Chat */,
@@ -1093,13 +1082,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D55C937324D8462C003F7F5F /* Build configuration list for PBXNativeTarget "Canvas" */;
 			buildPhases = (
-				2E986C674C7847B993F7D23F /* [CP] Check Pods Manifest.lock */,
+				C2C17B0A640DF77A39D427EE /* [CP] Check Pods Manifest.lock */,
 				D55C934224D8461F003F7F5F /* Sources */,
 				D55C934324D8461F003F7F5F /* Frameworks */,
 				D55C934424D8461F003F7F5F /* Resources */,
 				D5601F172576AB0300435A56 /* ShellScript */,
-				5DF8F839D3375E111C76D834 /* [CP] Embed Pods Frameworks */,
-				384C9A9031BDD8E50EDA326A /* [CP] Copy Pods Resources */,
+				449FEFC1A5799CC09828E789 /* [CP] Embed Pods Frameworks */,
+				EAB113A2EB7AC3BF57D67A9F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1114,7 +1103,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D55C937624D8462C003F7F5F /* Build configuration list for PBXNativeTarget "CanvasTests" */;
 			buildPhases = (
-				1AB2DD6A28D00665D38E83CF /* [CP] Check Pods Manifest.lock */,
+				7F9F4B2ABC8B9AAF6EA9AC9E /* [CP] Check Pods Manifest.lock */,
 				D55C935B24D8462C003F7F5F /* Sources */,
 				D55C935C24D8462C003F7F5F /* Frameworks */,
 				D55C935D24D8462C003F7F5F /* Resources */,
@@ -1133,12 +1122,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D55C937924D8462C003F7F5F /* Build configuration list for PBXNativeTarget "CanvasUITests" */;
 			buildPhases = (
-				6ABCB792FE3A948603E07461 /* [CP] Check Pods Manifest.lock */,
+				B57FEC40251523769335F78C /* [CP] Check Pods Manifest.lock */,
 				D55C936624D8462C003F7F5F /* Sources */,
 				D55C936724D8462C003F7F5F /* Frameworks */,
 				D55C936824D8462C003F7F5F /* Resources */,
-				2B0B48AE9E76F51F3DEE0C3F /* [CP] Embed Pods Frameworks */,
-				97CD057FB09EEB7CED44FEF5 /* [CP] Copy Pods Resources */,
+				3C0EF1EFE36F0D66F7532655 /* [CP] Embed Pods Frameworks */,
+				4C9409BB762742461C28B1C2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1246,7 +1235,58 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1AB2DD6A28D00665D38E83CF /* [CP] Check Pods Manifest.lock */ = {
+		3C0EF1EFE36F0D66F7532655 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Canvas-CanvasUITests/Pods-Canvas-CanvasUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Canvas-CanvasUITests/Pods-Canvas-CanvasUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Canvas-CanvasUITests/Pods-Canvas-CanvasUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		449FEFC1A5799CC09828E789 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Canvas/Pods-Canvas-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Canvas/Pods-Canvas-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Canvas/Pods-Canvas-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4C9409BB762742461C28B1C2 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Canvas-CanvasUITests/Pods-Canvas-CanvasUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Canvas-CanvasUITests/Pods-Canvas-CanvasUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Canvas-CanvasUITests/Pods-Canvas-CanvasUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7F9F4B2ABC8B9AAF6EA9AC9E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1268,80 +1308,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		2B0B48AE9E76F51F3DEE0C3F /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Canvas-CanvasUITests/Pods-Canvas-CanvasUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Canvas-CanvasUITests/Pods-Canvas-CanvasUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Canvas-CanvasUITests/Pods-Canvas-CanvasUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		2E986C674C7847B993F7D23F /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Canvas-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		384C9A9031BDD8E50EDA326A /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Canvas/Pods-Canvas-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Canvas/Pods-Canvas-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Canvas/Pods-Canvas-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5DF8F839D3375E111C76D834 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Canvas/Pods-Canvas-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Canvas/Pods-Canvas-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Canvas/Pods-Canvas-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6ABCB792FE3A948603E07461 /* [CP] Check Pods Manifest.lock */ = {
+		B57FEC40251523769335F78C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1363,21 +1330,26 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		97CD057FB09EEB7CED44FEF5 /* [CP] Copy Pods Resources */ = {
+		C2C17B0A640DF77A39D427EE /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Canvas-CanvasUITests/Pods-Canvas-CanvasUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Copy Pods Resources";
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Canvas-CanvasUITests/Pods-Canvas-CanvasUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Canvas-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Canvas-CanvasUITests/Pods-Canvas-CanvasUITests-resources.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D5601F172576AB0300435A56 /* ShellScript */ = {
@@ -1398,6 +1370,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n${PODS_ROOT}/FirebaseCrashlytics/run\n\"${PODS_ROOT}/FirebaseCrashlytics/upload-symbols\" -gsp \"${PROJECT_DIR}/Canvas/Resources/GoogleService-Info.plist\" -p ios \"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}\"\n\n";
+		};
+		EAB113A2EB7AC3BF57D67A9F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Canvas/Pods-Canvas-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Canvas/Pods-Canvas-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Canvas/Pods-Canvas-resources.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1487,7 +1476,6 @@
 				8E3BA91B25721C8A0078A025 /* PasswordStrengthManager.swift in Sources */,
 				D586927E25471985004B983E /* CustomTabBarVc.swift in Sources */,
 				D571386024F7AB170088A5BA /* BankTransfer.swift in Sources */,
-				2CBE4C2F27660B3D00BE810C /* SiteUnderMaintnanceController.swift in Sources */,
 				8E865DD4256FC564000526B5 /* LogoAnimationView.swift in Sources */,
 				19C96EF826D8D6D400B1321E /* OfferWebController.swift in Sources */,
 				2CA2D9A4273D285E00CC9058 /* UpdateCivilIDController.swift in Sources */,
@@ -1775,7 +1763,7 @@
 		};
 		D55C937424D8462C003F7F5F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E32979B369118A39B539950E /* Pods-Canvas.debug.xcconfig */;
+			baseConfigurationReference = C444644720DEE1F1EE1CFE67 /* Pods-Canvas.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Canvas/Canvas.entitlements;
@@ -1794,7 +1782,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.7;
+				MARKETING_VERSION = 5.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.almuzaini.almuzaini;
 				"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]" = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1808,7 +1796,7 @@
 		};
 		D55C937524D8462C003F7F5F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4E4D73AF5B39440C507A1AF1 /* Pods-Canvas.release.xcconfig */;
+			baseConfigurationReference = ECB738975707FE7E75EE0507 /* Pods-Canvas.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Canvas/Canvas.entitlements;
@@ -1824,12 +1812,12 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.7;
+				MARKETING_VERSION = 5.6;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.almuzaini.almuzaini;
 				"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]" = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "MUZAINI Adhoc Profile";
+				PROVISIONING_PROFILE_SPECIFIER = "MUZAINI Appstore Profile";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
@@ -1839,7 +1827,7 @@
 		};
 		D55C937724D8462C003F7F5F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 63926361DC6F1BA80B395DA5 /* Pods-CanvasTests.debug.xcconfig */;
+			baseConfigurationReference = E66BB6C85B0927B9F4A1F299 /* Pods-CanvasTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1862,7 +1850,7 @@
 		};
 		D55C937824D8462C003F7F5F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AD5FA211BAD8BC1C999CD2FA /* Pods-CanvasTests.release.xcconfig */;
+			baseConfigurationReference = 336B0D4B68D63535B8442609 /* Pods-CanvasTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1885,7 +1873,7 @@
 		};
 		D55C937A24D8462C003F7F5F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3E220594738CDFCC43226EB9 /* Pods-Canvas-CanvasUITests.debug.xcconfig */;
+			baseConfigurationReference = 0323240D53D98FEE82499744 /* Pods-Canvas-CanvasUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1906,7 +1894,7 @@
 		};
 		D55C937B24D8462C003F7F5F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7BE73279AE39467101611955 /* Pods-Canvas-CanvasUITests.release.xcconfig */;
+			baseConfigurationReference = 915D01FC7ADE3B36AC8D5F5A /* Pods-Canvas-CanvasUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

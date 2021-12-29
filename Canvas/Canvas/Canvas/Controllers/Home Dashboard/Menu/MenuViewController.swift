@@ -42,7 +42,7 @@ class MenuViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
  //   let menuImages=["india","india","india","india","india","india","india","india","india"]
     
     let menuNames=[Global.shared.menuDashboard, Global.shared.menuBeneficiary,Global.shared.menuTransactions, Global.shared.menuContact, Global.shared.loginChat, Global.shared.rateCalculatorHeader, Global.shared.ourBranches, Global.shared.faqTxt,Global.shared.CivilIDUpdate,Global.shared.menuOffer, Global.shared.menuRateThisAppString]
-    let menuImages=["dashboardTab","beneficiariesTab","transactionsMenu","ContactUsMenu","chatMenu","rate-calculatorMenu","ourBranchesMenu","faqsMenu","updateId","Offer", "rateTheApp"]
+    let menuImages=["dashboardTab","beneficiariesTab","transactionsMenu","ContactUsMenu","ChatBot","rate-calculatorMenu","ourBranchesMenu","faqsMenu","updateId","Offer", "rateTheApp"]
 
     @IBOutlet weak var menuTableView: UITableView!
     
@@ -197,6 +197,7 @@ class MenuViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
            
         }
         
+       // cell.menuImg.contentMode = .scaleAspectFill
         cell.menuImg?.image = UIImage(named: menuImages[indexPath.row])
         
         return cell

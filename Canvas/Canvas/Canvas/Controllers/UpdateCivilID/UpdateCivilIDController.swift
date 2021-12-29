@@ -73,8 +73,8 @@ class UpdateCivilIDController: BaseViewController,UINavigationControllerDelegate
     
     var identityIsuue = ""
     var identityExpire = ""
-    var pdf1Base64String:String = ""
-    var pdf2Base64String:String = ""
+    var pdf1Base64String = ""
+    var pdf2Base64String = ""
     var frontOrBck = ""
     var selectedImage: UIImage?
     var pdfImg: UIImage?
@@ -90,6 +90,8 @@ class UpdateCivilIDController: BaseViewController,UINavigationControllerDelegate
         super.viewDidLoad()
        pdfImg = nil
         // Do any additional setup after loading the view.
+        pdf2Base64String = ""
+        pdf1Base64String = ""
         frontSideExtn = ".png"
         backSideExtn = ".png"
         self.scrollView.backgroundColor = UIColor(patternImage: UIImage(named: "AppBckgroundImg")!)
@@ -126,28 +128,20 @@ class UpdateCivilIDController: BaseViewController,UINavigationControllerDelegate
         getProfileDetails()
     }
     @objc func touchFrontImg(_ sender: UITapGestureRecognizer) {
-        print("Hello Dear you are here")
+      //  print("Hello Dear you are here")
         
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "ShowImageController") as! ShowImageController
         vc.image = img_showFront.image
         self.present(vc, animated: false, completion: nil)
-        
-//        let vc = ShowImageController()
-//        vc.modalPresentationStyle = .overCurrentContext
-//        vc.modalTransitionStyle = .crossDissolve
-//        present(vc, animated: true, completion: nil)
+
     }
     @objc func touchBackImg(_ sender: UITapGestureRecognizer) {
-        print("Hello Dear you are here")
+       // print("Hello Dear you are here")
         
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "ShowImageController") as! ShowImageController
         vc.image = img_showBack.image
         self.present(vc, animated: false, completion: nil)
-        
-//        let vc = ShowImageController()
-//        vc.modalPresentationStyle = .overCurrentContext
-//        vc.modalTransitionStyle = .crossDissolve
-//        present(vc, animated: true, completion: nil)
+
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -513,6 +507,7 @@ class UpdateCivilIDController: BaseViewController,UINavigationControllerDelegate
         else
         {
             self.civilIDViewHeight.constant = 150
+            selectedImage = img_showBack.image
         }
         pdf1Base64String = ""
         lbl_showFrontImgValue.text = ""
@@ -553,6 +548,7 @@ class UpdateCivilIDController: BaseViewController,UINavigationControllerDelegate
         }
         else{
             self.civilIDViewHeight.constant = 150
+            selectedImage = img_showFront.image
         }
         pdf2Base64String = ""
         img_showBack.isHidden = true
@@ -572,6 +568,7 @@ class UpdateCivilIDController: BaseViewController,UINavigationControllerDelegate
             selectedImage = nil
             pdfImg = nil
         }
+        
         
         
     }
