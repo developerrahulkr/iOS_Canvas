@@ -439,7 +439,7 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
             print("nothing")
         }
         else {
-            let alert = ViewControllerManager.displayAlert(message: UserDefaults.standard.string(forKey: "remitterStatusMessage")!, title:APPLICATIONNAME)
+            let alert = ViewControllerManager.displayAlert(message:  Global.shared.remiterInactiveDashboard, title:APPLICATIONNAME)
             self.present(alert, animated: true, completion: nil)
         }
 //        Global.shared.timeoUtOrNot = "yes"

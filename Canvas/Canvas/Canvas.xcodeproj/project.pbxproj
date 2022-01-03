@@ -22,6 +22,7 @@
 		2CA2D99B272E739B00CC9058 /* PhotoSliderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CA2D99A272E739B00CC9058 /* PhotoSliderView.xib */; };
 		2CA2D9A4273D285E00CC9058 /* UpdateCivilIDController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA2D9A2273D285E00CC9058 /* UpdateCivilIDController.swift */; };
 		2CA2D9A5273D285E00CC9058 /* ShowImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA2D9A3273D285E00CC9058 /* ShowImageController.swift */; };
+		2CEE5FF3277C4517005BC4B9 /* SiteUnderMaintnanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEE5FF2277C4517005BC4B9 /* SiteUnderMaintnanceController.swift */; };
 		5CE04BF9A33F2AD7E093967D /* Pods_CanvasTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C29164A829770EB50CC363BF /* Pods_CanvasTests.framework */; };
 		8E07CEA82583DAC600891289 /* TransctionPeriodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E07CEA62583DAC600891289 /* TransctionPeriodCell.swift */; };
 		8E07CEA92583DAC600891289 /* TransctionPeriodCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E07CEA72583DAC600891289 /* TransctionPeriodCell.xib */; };
@@ -245,6 +246,7 @@
 		2CA2D99A272E739B00CC9058 /* PhotoSliderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PhotoSliderView.xib; path = ../../../../../../../../Desktop/PhotoSliderView.xib; sourceTree = "<group>"; };
 		2CA2D9A2273D285E00CC9058 /* UpdateCivilIDController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateCivilIDController.swift; sourceTree = "<group>"; };
 		2CA2D9A3273D285E00CC9058 /* ShowImageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowImageController.swift; sourceTree = "<group>"; };
+		2CEE5FF2277C4517005BC4B9 /* SiteUnderMaintnanceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SiteUnderMaintnanceController.swift; sourceTree = "<group>"; };
 		32B1E509F553AE98B7391041 /* Pods_Canvas.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Canvas.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		336B0D4B68D63535B8442609 /* Pods-CanvasTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CanvasTests.release.xcconfig"; path = "Target Support Files/Pods-CanvasTests/Pods-CanvasTests.release.xcconfig"; sourceTree = "<group>"; };
 		8E07CEA62583DAC600891289 /* TransctionPeriodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransctionPeriodCell.swift; sourceTree = "<group>"; };
@@ -549,6 +551,15 @@
 				2CA2D9A3273D285E00CC9058 /* ShowImageController.swift */,
 			);
 			path = UpdateCivilID;
+			sourceTree = "<group>";
+		};
+		2CEE5FED277C4499005BC4B9 /* SiteUnderMaintanence */ = {
+			isa = PBXGroup;
+			children = (
+				2CEE5FF2277C4517005BC4B9 /* SiteUnderMaintnanceController.swift */,
+			);
+			name = SiteUnderMaintanence;
+			path = ../../../../../../Desktop/SiteUnderMaintanence;
 			sourceTree = "<group>";
 		};
 		8E29736D258CF01300601984 /* Extensions */ = {
@@ -1029,6 +1040,7 @@
 		D562FD3025FF22FF004E81DE /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				2CEE5FED277C4499005BC4B9 /* SiteUnderMaintanence */,
 				2CA2D9A1273D285E00CC9058 /* UpdateCivilID */,
 				19C96EF626D8D69C00B1321E /* Offers */,
 				19D34FBE26959BEE00BAB4EF /* Chat */,
@@ -1476,6 +1488,7 @@
 				8E3BA91B25721C8A0078A025 /* PasswordStrengthManager.swift in Sources */,
 				D586927E25471985004B983E /* CustomTabBarVc.swift in Sources */,
 				D571386024F7AB170088A5BA /* BankTransfer.swift in Sources */,
+				2CEE5FF3277C4517005BC4B9 /* SiteUnderMaintnanceController.swift in Sources */,
 				8E865DD4256FC564000526B5 /* LogoAnimationView.swift in Sources */,
 				19C96EF826D8D6D400B1321E /* OfferWebController.swift in Sources */,
 				2CA2D9A4273D285E00CC9058 /* UpdateCivilIDController.swift in Sources */,
@@ -1782,7 +1795,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.6;
+				MARKETING_VERSION = 5.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.almuzaini.almuzaini;
 				"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]" = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1812,12 +1825,12 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.6;
+				MARKETING_VERSION = 5.7;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.almuzaini.almuzaini;
 				"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]" = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "MUZAINI Appstore Profile";
+				PROVISIONING_PROFILE_SPECIFIER = "MUZAINI Adhoc Profile";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;

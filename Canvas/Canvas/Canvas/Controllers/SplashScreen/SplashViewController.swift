@@ -98,8 +98,8 @@ class SplashViewController: BaseViewController {
                                   }
                            else
                            {
-                             //  self.navigateAppSiteUnderMaintananceController()
-                               self.navigateAppRootNavigationController()
+                               self.navigateAppSiteUnderMaintananceController()
+                              // self.navigateAppRootNavigationController()
                            }
                            
                         

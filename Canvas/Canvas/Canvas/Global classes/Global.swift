@@ -96,6 +96,7 @@ class Global {
     var editTxt: String!
     var removeTxt: String!
     var goTxt: String!
+    var civilIDBack: String!
     
     
     

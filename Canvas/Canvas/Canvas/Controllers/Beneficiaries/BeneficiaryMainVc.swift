@@ -509,7 +509,7 @@ class BeneficiaryMainVc: BaseViewController, XMSegmentedControlDelegate, navigat
                 
             }
             else {
-                let alert = ViewControllerManager.displayAlert(message: UserDefaults.standard.string(forKey: "remitterStatusMessage")!, title:APPLICATIONNAME)
+                let alert = ViewControllerManager.displayAlert(message:  Global.shared.remiterInactiveBeneficiary, title:APPLICATIONNAME)
                 self.present(alert, animated: true, completion: nil)
             }
         } else {

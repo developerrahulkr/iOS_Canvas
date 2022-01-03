@@ -219,12 +219,22 @@ class UpdateCivilIDController: BaseViewController,UINavigationControllerDelegate
         lbl_front.font = Global.shared.fontBottomLbl
         lbl_front.textColor = ColorCodes.bottomTitleColor
         lbl_front.text = Global.shared.frontTxt
-       // lbl_front.textAlignment = .center
         
         lbl_backImg.font = Global.shared.fontBottomLbl
         lbl_backImg.textColor = ColorCodes.bottomTitleColor
-        lbl_backImg.text = Global.shared.backTxt
-       // lbl_backImg.textAlignment = .center
+      //  lbl_backImg.text = Global.shared.backTxt
+        lbl_backImg.text = Global.shared.civilIDBack
+        let currentLang =  LocalizationSystem.sharedInstance.getLanguage()
+          if currentLang == "ar"
+          {
+               lbl_backImg.textAlignment = .right
+               lbl_front.textAlignment = .right
+          }
+          else
+         {
+             lbl_backImg.textAlignment = .left
+             lbl_front.textAlignment = .left
+         }
         
         if Global.shared.new_identityType_is_required == true {
             lbl_identityHeader.text = Global.shared.newCidentityTypeTxt + "*"

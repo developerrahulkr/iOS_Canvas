@@ -903,6 +903,8 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
                             Global.shared.editTxt = common["edit"] as? String ?? ""
                             Global.shared.removeTxt = common["remove"] as? String ?? ""
                             Global.shared.goTxt = common["go"] as? String ?? ""
+                            Global.shared.civilIDBack = common["civilid_back"] as? String ?? ""
+                            
                             
                         }
                         
