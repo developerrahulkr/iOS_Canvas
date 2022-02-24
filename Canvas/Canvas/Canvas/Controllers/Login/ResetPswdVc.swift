@@ -389,6 +389,7 @@ class ResetPswdVc: UIViewController, UITextFieldDelegate, EasyTipViewDelegate {
     // MARK: To Reset password
     func resetPassword() {
         
+        // For VAPT
         let paramaterPasing: [String:Any] = ["username": userNameField.text ?? "",
                                              "password": pswdField.text ?? "",
                                              "confirmPassword": confirmPswdField.text ?? "","registrationId": Global.shared.forgotPswdRegstrtnId ?? "",
@@ -396,6 +397,12 @@ class ResetPswdVc: UIViewController, UITextFieldDelegate, EasyTipViewDelegate {
                                              "otp": Global.shared.otpStr,
                                              "otpType": Global.shared.otpType ?? 0]
         
+        // For Normal
+//        let paramaterPasing: [String:Any] = ["username": userNameField.text ?? "",
+//                                             "password": pswdField.text ?? "",
+//                                             "confirmPassword": confirmPswdField.text ?? "","registrationId": Global.shared.forgotPswdRegstrtnId ?? ""]
+//        
+//        
         
         let headers: HTTPHeaders = [
             "Content-Type": "application/json"

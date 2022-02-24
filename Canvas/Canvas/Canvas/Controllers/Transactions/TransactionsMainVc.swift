@@ -8,6 +8,7 @@
 
 import UIKit
 import MaterialShowcase
+import Alamofire
 class TransactionsMainVc: UIViewController, XMSegmentedControlDelegate, navigateToDiffrentScreenDelegate   {
   var sequence = MaterialShowcaseSequence()
    lazy var guideView_1 =  MaterialShowcase()
@@ -21,7 +22,8 @@ class TransactionsMainVc: UIViewController, XMSegmentedControlDelegate, navigate
   @IBOutlet weak var transctionGuideLbl: UILabel!
  
   
-  
+    @IBOutlet weak var btn_tips: UIButton!
+    
   @IBOutlet weak var seg: XMSegmentedControl!
   
   @IBOutlet weak var firstView: UIView!
@@ -30,7 +32,7 @@ class TransactionsMainVc: UIViewController, XMSegmentedControlDelegate, navigate
   
   public var menuPopUp: MenuViewController!
     
-    
+    var helpVideoList = [[String: Any]]()
   
   
   override func viewDidLoad() {
@@ -46,6 +48,8 @@ class TransactionsMainVc: UIViewController, XMSegmentedControlDelegate, navigate
     
     menuItemsData()
     assigningLabels()
+    btn_tips.isHidden = true
+   // getHelpList()
   }
     
     func assigningLabels() {
@@ -133,7 +137,96 @@ class TransactionsMainVc: UIViewController, XMSegmentedControlDelegate, navigate
     super.viewWillDisappear(animated)
     navigationController?.setNavigationBarHidden(false, animated: animated)
   }
-  
+    func getHelpList() {
+        let paramaterPasing: [String:Any] = [
+              "helpTypes": 3,
+              "language": LocalizationSystem.sharedInstance.getLanguage(),
+              "screen": 3,
+              "registrationId": Global.shared.afterLoginRegistrtnId!
+            
+          ]
+        let headers: HTTPHeaders = [
+            "Content-Type": "application/json"
+        ]
+       // self.showSpinner(onView: self.view)
+        NetWorkDataManager.sharedInstance.getHelpAndTips(headersTobePassed: headers, postParameters: paramaterPasing) { resonseTal , errorString in
+            
+            if errorString == nil
+            {
+               print(resonseTal)
+                self.removeSpinner()
+                if let helpVideoList = resonseTal?.value(forKey: "helpAndTipsResponseList") as? NSArray
+                {
+                    self.helpVideoList = helpVideoList as! [[String : Any]]
+                    
+                    if self.helpVideoList.count != 0
+                    {
+                        self.btn_tips.isHidden = false
+                    }
+                    else
+                    {
+                        self.btn_tips.isHidden = true
+                    }
+                    
+                    print("helpAction1",self.helpVideoList)
+
+                        self.removeSpinner()
+                    
+                }
+              
+            }
+            else
+            {
+                print(errorString!)
+                self.removeSpinner()
+                let finalError = errorString?.components(separatedBy: ":")
+                if finalError?.count == 2
+                {
+                   let alert = ViewControllerManager.displayAlert(message: finalError?[1] ?? "", title:APPLICATIONNAME)
+                    self.present(alert, animated: true, completion: nil)
+                }
+                else
+                {
+                    let alert = ViewControllerManager.displayAlert(message: errorString ?? "", title:APPLICATIONNAME)
+                    self.present(alert, animated: true, completion: nil)
+                }
+                
+            }
+        }
+        
+    }
+    @IBAction func onClickTipBtn(_ sender: Any) {
+        if let viewController = self.storyboard?.instantiateViewController(withIdentifier: "ToolTipListController") as? ToolTipListController {
+            viewController.helpVideoList = helpVideoList
+            var index = 0
+            var height = 0
+            while index < helpVideoList.count {
+               print( "Value of index is \(index)")
+                if index == 0
+                {
+                    height = height + 40
+                }
+                else {
+                    height = height + 60
+                }
+              
+               index = index + 1
+            }
+            viewController.preferredContentSize = CGSize(width: 300, height: height)
+                let navController = UINavigationController(rootViewController: viewController)
+                navController.modalPresentationStyle = .popover
+
+                if let pctrl = navController.popoverPresentationController {
+                    pctrl.delegate = self
+
+                    pctrl.sourceView = (sender as! UIView)
+                    pctrl.sourceRect = (sender as! UIView).bounds
+
+                    self.present(navController, animated: true, completion: nil)
+                }
+            }
+    }
+    
   @IBAction func menuActn(_ sender: Any) {
     menuPopUp = self.storyboard?.instantiateViewController(withIdentifier: "MenuViewController") as? MenuViewController
     

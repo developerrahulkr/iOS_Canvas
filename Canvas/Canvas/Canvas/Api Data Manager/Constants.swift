@@ -21,9 +21,9 @@ struct CanvasUrls {
    static let baseUrl = "http://online-uat.muzaini.com:81/api/"
     
   // static let baseUrl =  "http://online-uat.muzaini.com:8075/api/"
-  // static let baseUrl1 = "http://online-uat.muzaini.com:81/api/"
+ 
  //  static let baseUrl =  "https://online1.muzaini.com/api/"
-  // static let baseUrl1 = "https://online1.muzaini.com/api/"
+ 
   // http://ameccustomerchannelwindows.ap-south-1.elasticbeanstalk.com/api/1.0/
   // static let baseUrl = "http://ameccustomerchannelwindows.ap-south-1.elasticbeanstalk.com/api/"
     static let versionNumber = "1.0"
@@ -114,6 +114,8 @@ struct CanvasUrls {
     static let getOffersList = "/offers/offersList"
     
     static let siteUnderManti = "/SiteUnderMaintenance/getSiteUnderMain"
+    static let gethelpAndTips = "/user/GetHelpAndTipsList"
+    static let preLoginHelpTips = "/user/PreLoginGetHelpVideos"
     
     
 }

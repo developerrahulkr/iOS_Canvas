@@ -428,22 +428,21 @@ class AfterLoginVerificationVc: UIViewController, UITextFieldDelegate {
     
     if(statusCode == 200) {
  
-    
        let remitterStatus = resonseTal?.value(forKey: "remitterStatus") as? Int
        let remiterStr = String(remitterStatus ?? 1)
        UserDefaults.standard.set(remiterStr, forKey: "remitterStatus")
         
-        let civilIDExpiryDate = resonseTal?.value(forKey: "civilIDExpiryDate") as? String
-        UserDefaults.standard.set(civilIDExpiryDate, forKey: "civilIDExpiryDate")
+       let civilIDExpiryDate = resonseTal?.value(forKey: "civilIDExpiryDate") as? String
+       UserDefaults.standard.set(civilIDExpiryDate, forKey: "civilIDExpiryDate")
     
-    let token = resonseTal?.value(forKey: "token") as? String
-    UserDefaults.standard.set(token, forKey: "token")
+       let token = resonseTal?.value(forKey: "token") as? String
+       UserDefaults.standard.set(token, forKey: "token")
     
-    let registrationId = resonseTal?.value(forKey: "registrationId") as? String
-    UserDefaults.standard.set(registrationId, forKey: "registrationId")
+       let registrationId = resonseTal?.value(forKey: "registrationId") as? String
+       UserDefaults.standard.set(registrationId, forKey: "registrationId")
     
-    let username = resonseTal?.value(forKey: "username") as? String
-    UserDefaults.standard.set(username, forKey: "username")
+       let username = resonseTal?.value(forKey: "username") as? String
+       UserDefaults.standard.set(username, forKey: "username")
        
        let imageName = resonseTal?.value(forKey: "imageName") as? String
        UserDefaults.standard.set(imageName, forKey: "imageName")
@@ -451,14 +450,23 @@ class AfterLoginVerificationVc: UIViewController, UITextFieldDelegate {
        let randomColour = resonseTal?.value(forKey: "randomColour") as? String
        UserDefaults.standard.set(randomColour, forKey: "randomColour")
     
-    let displayName = resonseTal?.value(forKey: "displayName") as? String
-    UserDefaults.standard.set(displayName, forKey: "displayName")
+       let displayName = resonseTal?.value(forKey: "displayName") as? String
+       UserDefaults.standard.set(displayName, forKey: "displayName")
     
        let email = resonseTal?.value(forKey: "email") as? String
        UserDefaults.standard.set(email, forKey: "displayEmail")
        
        let mobile = resonseTal?.value(forKey: "mobile") as? String
        UserDefaults.standard.set(mobile, forKey: "displayMobile")
+        
+        let salute = resonseTal?.value(forKey: "salutation") as? String
+        UserDefaults.standard.set(salute, forKey: "salutation")
+        
+        let fName = resonseTal?.value(forKey: "firstName") as? String
+        UserDefaults.standard.set(fName, forKey: "firstName")
+        
+        let lName = resonseTal?.value(forKey: "lastName") as? String
+        UserDefaults.standard.set(lName, forKey: "lastName")
        
        let lastLogin = resonseTal?.value(forKey: "lastLogin") as? String
        UserDefaults.standard.set(lastLogin, forKey: "lastLogin")
@@ -468,6 +476,8 @@ class AfterLoginVerificationVc: UIViewController, UITextFieldDelegate {
         
         let remitterStatusMess = resonseTal?.value(forKey: "remitterStatusMessage") as? String ?? ""
         UserDefaults.standard.set(remitterStatusMess, forKey: "remitterStatusMessage")
+        
+        NetWorkDataManager.sharedInstance.setTokenValue()
        
        self.loginTrack()
      
@@ -566,12 +576,17 @@ class AfterLoginVerificationVc: UIViewController, UITextFieldDelegate {
      
      let token = resonseTal?.value(forKey: "token") as? String
      UserDefaults.standard.set(token, forKey: "token")
+         
+         let token1 = UserDefaults.standard.object(forKey: "token") as! String
+         
+         print("token is :\(token1)  xyz")
+
      
-     let registrationId = resonseTal?.value(forKey: "registrationId") as? String
-     UserDefaults.standard.set(registrationId, forKey: "registrationId")
+        let registrationId = resonseTal?.value(forKey: "registrationId") as? String
+        UserDefaults.standard.set(registrationId, forKey: "registrationId")
      
-     let username = resonseTal?.value(forKey: "username") as? String
-     UserDefaults.standard.set(username, forKey: "username")
+        let username = resonseTal?.value(forKey: "username") as? String
+        UserDefaults.standard.set(username, forKey: "username")
         
         let imageName = resonseTal?.value(forKey: "imageName") as? String
         UserDefaults.standard.set(imageName, forKey: "imageName")
@@ -579,14 +594,23 @@ class AfterLoginVerificationVc: UIViewController, UITextFieldDelegate {
         let randomColour = resonseTal?.value(forKey: "randomColour") as? String
         UserDefaults.standard.set(randomColour, forKey: "randomColour")
      
-     let displayName = resonseTal?.value(forKey: "displayName") as? String
-     UserDefaults.standard.set(displayName, forKey: "displayName")
+        let displayName = resonseTal?.value(forKey: "displayName") as? String
+        UserDefaults.standard.set(displayName, forKey: "displayName")
      
         let email = resonseTal?.value(forKey: "email") as? String
         UserDefaults.standard.set(email, forKey: "displayEmail")
         
         let mobile = resonseTal?.value(forKey: "mobile") as? String
         UserDefaults.standard.set(mobile, forKey: "displayMobile")
+         
+         let salute = resonseTal?.value(forKey: "salutation") as? String
+         UserDefaults.standard.set(salute, forKey: "salutation")
+         
+         let fName = resonseTal?.value(forKey: "firstName") as? String
+         UserDefaults.standard.set(fName, forKey: "firstName")
+         
+         let lName = resonseTal?.value(forKey: "lastName") as? String
+         UserDefaults.standard.set(lName, forKey: "lastName")
         
         let lastLogin = resonseTal?.value(forKey: "lastLogin") as? String
         UserDefaults.standard.set(lastLogin, forKey: "lastLogin")
@@ -600,8 +624,8 @@ class AfterLoginVerificationVc: UIViewController, UITextFieldDelegate {
         let remitterStatusMess = resonseTal?.value(forKey: "remitterStatusMessage") as? String ?? ""
         UserDefaults.standard.set(remitterStatusMess, forKey: "remitterStatusMessage")
         
-        print("token is :",UserDefaults.standard.string(forKey: "token")!)
-        
+         NetWorkDataManager.sharedInstance.setTokenValue()
+                
         self.loginTrack()
         self.removeSpinner()
         

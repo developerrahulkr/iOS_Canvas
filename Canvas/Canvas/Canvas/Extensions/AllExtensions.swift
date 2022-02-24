@@ -54,6 +54,7 @@ extension UIViewController {
         else if screen == Global.shared.loginChat{
 
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "ChatController") as! ChatController
+            vc.checkPath = "1"
             self.navigationController?.pushViewController(vc, animated: true)
 
 //            let alert = ViewControllerManager.displayAlert(message: Global.shared.featureAddedSoonTxt , title:APPLICATIONNAME)
@@ -247,6 +248,8 @@ extension UIViewController {
         let refreshAlert = UIAlertController(title: Global.shared.logoutHeaderTxt, message: Global.shared.logoutTxt, preferredStyle: UIAlertController.Style.alert)
         refreshAlert.view.tintColor = ColorCodes.newAppRed
         refreshAlert.addAction(UIAlertAction(title: Global.shared.yesTxt, style: .default, handler: { (action: UIAlertAction!) in
+            //let defaults = UserDefaults.standard
+            UserDefaults.standard.removeObject(forKey: "token")
             Global.shared.logoutValue = 1
             self.dismiss(animated: true, completion: {
             })
@@ -269,8 +272,8 @@ func showAlertForTimer(titulo: String, mensagem: String, vc: UIViewController) {
 
         Global.shared.logoutValue = 1
         print("default",vc)
-       // let defaults = UserDefaults.standard
-      //  UserDefaults.standard.removeObject(forKey: "token")
+        let defaults = UserDefaults.standard
+        UserDefaults.standard.removeObject(forKey: "token")
         Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) { (timer) in
             exit(0)
         }

@@ -22,3 +22,28 @@ struct FaqSearch {
     return faqList
   }
 }
+struct HelpSearch {
+  let title: String?
+  let content: String?
+  let thumbNailURL: String?
+  let videoURL: String?
+   
+//    let fileName : String?
+//    let helpTypes : Int?
+//    let id : Int?
+//    let language: String?
+   
+    
+    
+ 
+  static func getHelps(_ json: [[String:Any]]) -> [HelpSearch] {
+    var helpList: [HelpSearch] = []
+    helpList =  json.map{ faqJson in
+  
+      return HelpSearch(title: faqJson["title"] as? String,
+                       content: faqJson["content"] as? String,thumbNailURL: faqJson["thumbNailURL"] as? String,
+                        videoURL:faqJson["videoURL"] as? String)
+    }
+    return helpList
+  }
+}

@@ -10,11 +10,14 @@ import UIKit
 import Alamofire
 import MaterialShowcase
 class ProfileVc: BaseViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIPopoverControllerDelegate, XMSegmentedControlDelegate, navigateToDiffrentScreenDelegate  {
-    
+    @IBOutlet weak var btn_tips: UIButton!
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
   var sequence = MaterialShowcaseSequence()
   lazy var guideView_1 =  MaterialShowcase()
   lazy var guideView_2 =  MaterialShowcase()
   lazy var guideView_3 =  MaterialShowcase()
+    
+    var helpVideoList = [[String: Any]]()
     
       @IBOutlet weak var navHeaderLbl: UILabel!
 
@@ -87,7 +90,8 @@ class ProfileVc: BaseViewController,UIImagePickerControllerDelegate,UINavigation
         imageGestureTwo()
         
         getProfileDetails()*/
-        
+        btn_tips.isHidden = true
+      //  getHelpList()
         toLoadImage()
     }
     
@@ -318,6 +322,37 @@ class ProfileVc: BaseViewController,UIImagePickerControllerDelegate,UINavigation
        
     }
    
+    @IBAction func onClicktipBtn(_ sender: Any) {
+        if let viewController = self.storyboard?.instantiateViewController(withIdentifier: "ToolTipListController") as? ToolTipListController {
+            viewController.helpVideoList = helpVideoList
+            var index = 0
+            var height = 0
+            while index < helpVideoList.count {
+               print( "Value of index is \(index)")
+                if index == 0
+                {
+                    height = height + 40
+                }
+                else {
+                    height = height + 60
+                }
+              
+               index = index + 1
+            }
+            viewController.preferredContentSize = CGSize(width: 300, height: height)
+                let navController = UINavigationController(rootViewController: viewController)
+                navController.modalPresentationStyle = .popover
+
+                if let pctrl = navController.popoverPresentationController {
+                    pctrl.delegate = self
+
+                    pctrl.sourceView = (sender as! UIView)
+                    pctrl.sourceRect = (sender as! UIView).bounds
+
+                    self.present(navController, animated: true, completion: nil)
+                }
+            }
+    }
     
     func updateProfileImage() {
         let paramaterPasing: [String:Any] = [
@@ -377,6 +412,12 @@ class ProfileVc: BaseViewController,UIImagePickerControllerDelegate,UINavigation
                             self.showAlert(withTitle: "", withMessage: resonseTal?["statusMessage"] as? String ?? "")
 //                            Global.shared.timeoUtOrNot = "no"
 //                            self.showAlertForTimer(titulo: "", mensagem: Global.shared.sessionTimedOutTxt, vc: self)
+                        }
+                        
+                        if mesageCode == "E110043"
+                        {
+                            let alert = ViewControllerManager.displayAlert(message:Global.shared.messageCodeType(text: "am132"), title:APPLICATIONNAME)
+                            self.present(alert, animated: true, completion: nil)
                         }
                         else{
                             
@@ -789,9 +830,20 @@ class ProfileVc: BaseViewController,UIImagePickerControllerDelegate,UINavigation
                 self.seg.tint = UIColor.gray
                 self.seg.highlightTint = UIColor.red
                 self.seg.font = UIFont.boldSystemFont(ofSize: 14)
-                
-                firstView.isHidden = false
-                secndView.isHidden = true
+               if appDelegate.helpScreen == 1
+               {
+                   seg.selectedSegment = 1
+                   firstView.isHidden = true
+                   secndView.isHidden = false
+                   appDelegate.helpScreen = 0
+               }
+              else
+              {
+                  seg.selectedSegment = 0
+                  firstView.isHidden = false
+                  secndView.isHidden = true
+                  appDelegate.helpScreen = 0
+              }
                
               self.removeSpinner()
             }
@@ -824,6 +876,63 @@ class ProfileVc: BaseViewController,UIImagePickerControllerDelegate,UINavigation
     
     @IBAction func editBtnActn(_ sender: Any) {
       self.pushViewController(controller: ProfileIdentityVc.initiateController(), animated: true)
+    }
+    func getHelpList() {
+        let paramaterPasing: [String:Any] = [
+              "helpTypes": 3,
+              "language": LocalizationSystem.sharedInstance.getLanguage(),
+              "screen": 4,
+              "registrationId": Global.shared.afterLoginRegistrtnId!
+            
+          ]
+        let headers: HTTPHeaders = [
+            "Content-Type": "application/json"
+        ]
+       // self.showSpinner(onView: self.view)
+        NetWorkDataManager.sharedInstance.getHelpAndTips(headersTobePassed: headers, postParameters: paramaterPasing) { resonseTal , errorString in
+            
+            if errorString == nil
+            {
+               print(resonseTal)
+                self.removeSpinner()
+                if let helpVideoList = resonseTal?.value(forKey: "helpAndTipsResponseList") as? NSArray
+                {
+                    self.helpVideoList = helpVideoList as! [[String : Any]]
+                    
+                    print("helpAction1",self.helpVideoList)
+                    if self.helpVideoList.count != 0
+                    {
+                        self.btn_tips.isHidden = false
+                    }
+                    else
+                    {
+                        self.btn_tips.isHidden = true
+                    }
+
+                        self.removeSpinner()
+                    
+                }
+              
+            }
+            else
+            {
+                print(errorString!)
+                self.removeSpinner()
+                let finalError = errorString?.components(separatedBy: ":")
+                if finalError?.count == 2
+                {
+                   let alert = ViewControllerManager.displayAlert(message: finalError?[1] ?? "", title:APPLICATIONNAME)
+                    self.present(alert, animated: true, completion: nil)
+                }
+                else
+                {
+                    let alert = ViewControllerManager.displayAlert(message: errorString ?? "", title:APPLICATIONNAME)
+                    self.present(alert, animated: true, completion: nil)
+                }
+                
+            }
+        }
+        
     }
     
     

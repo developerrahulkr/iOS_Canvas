@@ -11,8 +11,7 @@ import Alamofire
 
 class ProfileEmploymentVc: UIViewController, UITextFieldDelegate, UIDropDownrDelegateM, EasyTipViewDelegate {
     
-    
-    
+
     @IBOutlet weak var lblOne: UILabel!
     
     @IBOutlet weak var lblTwo: UILabel!

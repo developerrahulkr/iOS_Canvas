@@ -11,6 +11,7 @@ import WebKit
 
 class ChatController: BaseViewController,WKNavigationDelegate {
 
+    var checkPath:String!
     @IBOutlet weak var lbl_chatHeader: UILabel!
     @IBOutlet weak var webView: WKWebView!
     override func viewDidLoad() {
@@ -19,21 +20,42 @@ class ChatController: BaseViewController,WKNavigationDelegate {
         Global.shared.refreshOrNot = "yes"
         webView.navigationDelegate = self
         
+        
+        let currentLang =  LocalizationSystem.sharedInstance.getLanguage()
+        
+        
+        
+  
+        
+ //   https://chat.muzaini.com/amec-webchat/mobile.html?channelsrc=IOS&ChatPluginState=max&lang=ar
+        
         lbl_chatHeader.text = Global.shared.loginChat
        // let gatewayUrl = NSURL(string: "https://csapi-uat.muzaini.com/amec-webchat/muzaini.html?channelsrc=IOS")
         var gatewayUrl = NSURL()
-      let currentLang =  LocalizationSystem.sharedInstance.getLanguage()
-        if currentLang == "ar"
+      
+        if checkPath == "0"
         {
         
-            gatewayUrl = NSURL(string: "https://chat.muzaini.com/amec-webchat/mobile.html?channelsrc=IOS&ChatPluginState=max&lang=ar")!
+          
+            gatewayUrl = NSURL(string: "https://chat.muzaini.com/amec-webchat/mobile.html?channelsrc=IOS&ChatPluginState=max&lang=\(currentLang)")!
+            
+          //  gatewayUrl = NSURL(string: htmlStr)!
+
         }
         else
         {
-            gatewayUrl = NSURL(string: "https://chat.muzaini.com/amec-webchat/mobile.html?channelsrc=IOS&ChatPluginState=max&lang=en")!
-        }
+            let lastName = UserDefaults.standard.string(forKey: "lastName")!
+            let firstName = UserDefaults.standard.string(forKey: "firstName")!
+            let salute = UserDefaults.standard.string(forKey: "salutation")!
+            let email = UserDefaults.standard.string(forKey: "displayEmail")!
+            let mobile = UserDefaults.standard.string(forKey: "displayMobile")!
+        //    let htmlStr =  "https://chat.muzaini.com/amec-webchat/mobile.html?channelsrc=IOS&ChatPluginState=max&lang=\(currentLang)&salute=\(salute)%20&FName=\(firstName)&LName=\(lastName)&email=\(email)&mNumber=\(mobile)"
             
-    
+            
+            let htmlStr =   "https://chat.muzaini.com/amec-webchat/mobile.html?channelsrc=IOS&ChatPluginState=max&lang=\(currentLang)&FName=\(firstName)&LName=\(lastName)&email=\(email)&mNumber=\(mobile)&salute=\(salute)%20"
+            gatewayUrl = NSURL(string: htmlStr)!
+           // gatewayUrl = NSURL(string: "https://chat.muzaini.com/amec-webchat/mobile.html?channelsrc=IOS&ChatPluginState=max&lang=en")!
+        }
         
         
         let urlRequest = URLRequest(url: gatewayUrl as URL)

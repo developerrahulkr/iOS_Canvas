@@ -391,6 +391,11 @@ class BenefBankCashNewTransferVc: BaseViewController, UITextFieldDelegate {
                         self.showAlert(withTitle: "", withMessage: resonseTal?["statusMessage"] as? String ?? "")
 
                     }
+                    else if mesageCode == "R111"
+                     {
+                        let alert = ViewControllerManager.displayAlert(message: Global.shared.messageCodeType(text: "R115"), title:APPLICATIONNAME)
+                        self.present(alert, animated: true, completion: nil)
+                     }
                     else{
                     
                     let alert = ViewControllerManager.displayAlert(message: statusMsg ?? "", title:APPLICATIONNAME)

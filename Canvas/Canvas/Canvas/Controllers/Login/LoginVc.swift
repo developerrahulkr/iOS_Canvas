@@ -556,6 +556,15 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
         super.viewWillAppear(animated)
         Global.shared.timeoUtOrNot = "no"
         Global.shared.logoutValue = 0
+        Global.shared.afterLoginRegistrtnId = ""
+    
+        UserDefaults.standard.set("", forKey: "token")
+        print("registration id is",Global.shared.afterLoginRegistrtnId)
+        let token1 = UserDefaults.standard.string(forKey: "token")!
+        print("token is :\(token1)")
+        UserDefaults.standard.removeObject(forKey: "token")
+        
+        
         navigationController?.setNavigationBarHidden(true, animated: animated)
          self.userTxtField.text = ""
          self.pswdTxtField.text = ""
@@ -1497,24 +1506,26 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
             {
                 self.loginBtnOtlt.isEnabled = true
                 
-                Global.shared.biometricNormalLogin = "Login"
-                Global.shared.afterLoginSecurityImg = resonseTal?["securityImage"] as? String ?? ""
-                Global.shared.afterLoginRegistrtnId = resonseTal?["registrationId"] as? String ?? ""
-                
-                if let securityQuestionsData = resonseTal?.value(forKey: "securityQuestionsList") as? NSArray {
-                    if let securityQuestion = securityQuestionsData.value(forKey: "securityQuestion") as? [String] {
-                        Global.shared.afterLoginSecurityQuestnsList = securityQuestion
-                    }
-                    if let securityQuestionId = securityQuestionsData.value(forKey: "securityQuestionId") as? [Int] {
-                        Global.shared.afterLoginSecurityIdList = securityQuestionId
-                        Global.shared.afterLoginSecurityIdListString = Global.shared.afterLoginSecurityIdList.map(String.init)
-                    }
-                    
-                }
+               
                 
                 if let statusCode = resonseTal?.value(forKey: "statusCodes") as? Int {
                     
                     if(statusCode == 200) {
+                        
+                        Global.shared.biometricNormalLogin = "Login"
+                        Global.shared.afterLoginSecurityImg = resonseTal?["securityImage"] as? String ?? ""
+                        Global.shared.afterLoginRegistrtnId = resonseTal?["registrationId"] as? String ?? ""
+                        
+                        if let securityQuestionsData = resonseTal?.value(forKey: "securityQuestionsList") as? NSArray {
+                            if let securityQuestion = securityQuestionsData.value(forKey: "securityQuestion") as? [String] {
+                                Global.shared.afterLoginSecurityQuestnsList = securityQuestion
+                            }
+                            if let securityQuestionId = securityQuestionsData.value(forKey: "securityQuestionId") as? [Int] {
+                                Global.shared.afterLoginSecurityIdList = securityQuestionId
+                                Global.shared.afterLoginSecurityIdListString = Global.shared.afterLoginSecurityIdList.map(String.init)
+                            }
+                            
+                        }
                         
                         
                         Global.shared.afterLoginUserName = self.userTxtField.text
@@ -1567,6 +1578,7 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
         
         
            let vc = self.storyboard?.instantiateViewController(withIdentifier: "ChatController") as! ChatController
+            vc.checkPath = "0"
            self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -1594,6 +1606,15 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
             
             if errorString == nil
             {
+                
+               // print(resonseTal!)
+                
+                if let biometric = resonseTal?.value(forKey: "biometricPopup") as? String  {
+                    let newObj = Global.shared.convertToDictionary(text: biometric)
+                  //  print(newObj)
+                    Global.shared.biometricPoup = newObj?["biometricPoup"] as? String ?? "false"
+                    print(Global.shared.biometricPoup)
+                }
                 
                 if let allLanguages = resonseTal?.value(forKey: "allLanguages") as? String {
                     let newObj = Global.shared.convertToAryDictionary(text: allLanguages)
@@ -2267,9 +2288,9 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
         var authorizationError: NSError?
         let reason = "Authentication required to access the secure data"
         
-        if localAuthenticationContext.canEvaluatePolicy(.deviceOwnerAuthentication, error: &authorizationError) {
+        if localAuthenticationContext.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &authorizationError) {
             
-            localAuthenticationContext.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: reason) { success, evaluateError in
+            localAuthenticationContext.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { success, evaluateError in
                 
                 if success {
                     
@@ -2309,29 +2330,28 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
             
             if errorString == nil
             {
-                
-                Global.shared.biometricNormalLogin = "Biometric"
-                Global.shared.afterLoginSecurityImg = resonseTal?["securityImage"] as? String ?? ""
-                Global.shared.afterLoginRegistrtnId = resonseTal?["registrationId"] as? String ?? ""
-                
-                if let securityQuestionsData = resonseTal?.value(forKey: "securityQuestionsList") as? NSArray {
-                    
-                    if let securityQuestion = securityQuestionsData.value(forKey: "securityQuestion") as? [String] {
-                        Global.shared.afterLoginSecurityQuestnsList = securityQuestion
-                    }
-                    if let securityQuestionId = securityQuestionsData.value(forKey: "securityQuestionId") as? [Int] {
-                        Global.shared.afterLoginSecurityIdList = securityQuestionId
-                        Global.shared.afterLoginSecurityIdListString = Global.shared.afterLoginSecurityIdList.map(String.init)
-                    }
-                    
-                }
-                
                 let statusMsg = resonseTal?.value(forKey: "statusMessage") as? String ?? ""
                 let mesageCode = resonseTal?.value(forKey: "messageCode") as? String ?? statusMsg
                 
                 if let statusCode = resonseTal?.value(forKey: "statusCodes") as? Int {
                     
                     if(statusCode == 200) {
+                        
+                        Global.shared.biometricNormalLogin = "Biometric"
+                        Global.shared.afterLoginSecurityImg = resonseTal?["securityImage"] as? String ?? ""
+                        Global.shared.afterLoginRegistrtnId = resonseTal?["registrationId"] as? String ?? ""
+                        
+                        if let securityQuestionsData = resonseTal?.value(forKey: "securityQuestionsList") as? NSArray {
+                            
+                            if let securityQuestion = securityQuestionsData.value(forKey: "securityQuestion") as? [String] {
+                                Global.shared.afterLoginSecurityQuestnsList = securityQuestion
+                            }
+                            if let securityQuestionId = securityQuestionsData.value(forKey: "securityQuestionId") as? [Int] {
+                                Global.shared.afterLoginSecurityIdList = securityQuestionId
+                                Global.shared.afterLoginSecurityIdListString = Global.shared.afterLoginSecurityIdList.map(String.init)
+                            }
+                            
+                        }
                         
                         Global.shared.afterLoginUserName = self.userTxtField.text
                         Global.shared.afterLoginPaswd = self.pswdTxtField.text

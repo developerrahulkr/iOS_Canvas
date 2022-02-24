@@ -12,11 +12,12 @@ import Alamofire
 import MaterialShowcase
 class BeneficiaryMainVc: BaseViewController, XMSegmentedControlDelegate, navigateToDiffrentScreenDelegate  {
     
-    
+    var helpVideoList = [[String: Any]]()
     @IBOutlet weak var navHeaderLbl: UILabel!
     
     
-  @IBOutlet weak var menuIcon: UIButton!
+    @IBOutlet weak var btn_tip: UIButton!
+    @IBOutlet weak var menuIcon: UIButton!
   //  @IBOutlet weak var beneficiriesLblHeader: UILabel!
     
     @IBOutlet weak var seg: XMSegmentedControl!
@@ -44,8 +45,8 @@ class BeneficiaryMainVc: BaseViewController, XMSegmentedControlDelegate, navigat
     public var menuPopUp: MenuViewController!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-       
+        btn_tip.isHidden = true
+       // getHelpList()
         
         if LocalizationSystem.sharedInstance.getLanguage() == "ar" {
             let titles = [Global.shared.addWesternUnion! ,Global.shared.addCash!,Global.shared.addBank!]
@@ -109,15 +110,17 @@ class BeneficiaryMainVc: BaseViewController, XMSegmentedControlDelegate, navigat
     
     func downloadBeneficiary() {
         
-        
+        BeneficiaryDetails.shared.beneficaryBankFilteredResponse.removeAll()
+        BeneficiaryDetails.shared.beneficaryCashFilteredResponse.removeAll()
+        BeneficiaryDetails.shared.beneficaryWuFilteredResponse.removeAll()
         
         Global.shared.refreshOrNot = "no"
         let paramaterPasing: [String:Any] = ["registrationId": Global.shared.afterLoginRegistrtnId ?? "",
                                              "status": 0, "disbursalMode": ""]
         
-      self.showLoader()
+         self.showLoader()
 
-        self.showSpinner(onView: self.view)
+        //self.showSpinner(onView: self.view)
         /*   let headers: HTTPHeaders = [
          "Content-Type": "application/json"
          ]*/
@@ -185,6 +188,11 @@ class BeneficiaryMainVc: BaseViewController, XMSegmentedControlDelegate, navigat
                         self.showAlert(withTitle: "", withMessage: resonseTal?["statusMessage"] as? String ?? "")
 
                     }
+                    else if mesageCode == "R111"
+                     {
+                        let alert = ViewControllerManager.displayAlert(message: Global.shared.messageCodeType(text: "R115"), title:APPLICATIONNAME)
+                        self.present(alert, animated: true, completion: nil)
+                     }
                     else{
                     let alert = ViewControllerManager.displayAlert(message: statusMsg ?? "", title:APPLICATIONNAME)
                     self.present(alert, animated: true, completion: nil)
@@ -443,7 +451,96 @@ class BeneficiaryMainVc: BaseViewController, XMSegmentedControlDelegate, navigat
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
+    func getHelpList() {
+        let paramaterPasing: [String:Any] = [
+              "helpTypes": 3,
+              "language": LocalizationSystem.sharedInstance.getLanguage(),
+              "screen": 2,
+              "registrationId": Global.shared.afterLoginRegistrtnId!
+            
+          ]
+        let headers: HTTPHeaders = [
+            "Content-Type": "application/json"
+        ]
+       // self.showSpinner(onView: self.view)
+        NetWorkDataManager.sharedInstance.getHelpAndTips(headersTobePassed: headers, postParameters: paramaterPasing) { resonseTal , errorString in
+            
+            if errorString == nil
+            {
+               print(resonseTal)
+                self.removeSpinner()
+                if let helpVideoList = resonseTal?.value(forKey: "helpAndTipsResponseList") as? NSArray
+                {
+                    self.helpVideoList = helpVideoList as! [[String : Any]]
+                    if self.helpVideoList.count != 0
+                    {
+                        self.btn_tip.isHidden = false
+                    }
+                    else
+                    {
+                        self.btn_tip.isHidden = true
+                    }
+                    print("helpAction1",self.helpVideoList)
+
+                        self.removeSpinner()
+                    
+                }
+              
+            }
+            else
+            {
+                print(errorString!)
+                self.removeSpinner()
+                let finalError = errorString?.components(separatedBy: ":")
+                if finalError?.count == 2
+                {
+                   let alert = ViewControllerManager.displayAlert(message: finalError?[1] ?? "", title:APPLICATIONNAME)
+                    self.present(alert, animated: true, completion: nil)
+                }
+                else
+                {
+                    let alert = ViewControllerManager.displayAlert(message: errorString ?? "", title:APPLICATIONNAME)
+                    self.present(alert, animated: true, completion: nil)
+                }
+                
+            }
+        }
+        
+    }
     
+    @IBAction func OnClickOpenTips(_ sender: Any) {
+        
+        if let viewController = self.storyboard?.instantiateViewController(withIdentifier: "ToolTipListController") as? ToolTipListController {
+            viewController.helpVideoList = helpVideoList
+            var index = 0
+            var height = 0
+            while index < helpVideoList.count {
+               print( "Value of index is \(index)")
+                if index == 0
+                {
+                    height = height + 40
+                }
+                else {
+                    height = height + 60
+                }
+              
+               index = index + 1
+            }
+            viewController.preferredContentSize = CGSize(width: 300, height: height)
+                let navController = UINavigationController(rootViewController: viewController)
+                navController.modalPresentationStyle = .popover
+
+                if let pctrl = navController.popoverPresentationController {
+                    pctrl.delegate = self
+
+                    pctrl.sourceView = (sender as! UIView)
+                    pctrl.sourceRect = (sender as! UIView).bounds
+
+                    self.present(navController, animated: true, completion: nil)
+                }
+            }
+        
+    }
     
     @IBAction func addBtnActn(_ sender: Any) {
         //  self.hidesBottomBarWhenPushed = true
@@ -801,5 +898,10 @@ extension BeneficiaryMainVc: MaterialShowcaseDelegate {
     
    
     
+}
+extension UIViewController: UIPopoverPresentationControllerDelegate {
+    public func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .none
+    }
 }
 

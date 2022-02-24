@@ -19,9 +19,25 @@ class NetWorkDataManager {
     let headersHmac: HTTPHeaders = ["x-publickey" : Global.shared.publicKeyStr, "x-client": hmacResult2, "x-hash" : ""]*/
     
   //  let headers: HTTPHeaders = [.authorization(bearerToken: UserDefaults.standard.string(forKey: "token")!)]
-   
+ //   var headersWithAuthorization: HTTPHeaders
     lazy var headersWithAuthorization: HTTPHeaders = {
-        
+
+        let hmacResult2: String = Global.shared.publicKeyStr.hmac(algorithm: HMACAlgorithm.SHA512, key: Global.shared.privateKeyStr)
+        var headers = HTTPHeaders()
+        if let authToken = UserDefaults.standard.string(forKey: "token") {
+            headers  = [.authorization(bearerToken: authToken)]
+
+                headers["x-publickey"] = Global.shared.publicKeyStr
+                headers["x-client"] = hmacResult2
+                headers["x-hash"] = ""
+
+            }
+
+            return headers
+        }()
+    
+    func setTokenValue()
+    {
         let hmacResult2: String = Global.shared.publicKeyStr.hmac(algorithm: HMACAlgorithm.SHA512, key: Global.shared.privateKeyStr)
         var headers = HTTPHeaders()
         if let authToken = UserDefaults.standard.string(forKey: "token") {
@@ -33,8 +49,8 @@ class NetWorkDataManager {
                 
             }
 
-            return headers
-        }()
+           headersWithAuthorization = headers
+    }
     
     
     
@@ -496,6 +512,18 @@ class NetWorkDataManager {
     //Beneficiary list
     func benefGetListImplimentation(headersTobePassed : HTTPHeaders,postParameters :[String:Any],completionHandler: @escaping (NSDictionary?, String?) -> ())
     {
+        print(headersWithAuthorization)
+        
+//        let hmacResult2: String = Global.shared.publicKeyStr.hmac(algorithm: HMACAlgorithm.SHA512, key: Global.shared.privateKeyStr)
+//        var headers = HTTPHeaders()
+//        if let authToken = UserDefaults.standard.string(forKey: "token") {
+//            headers  = [.authorization(bearerToken: authToken)]
+//
+//                headers["x-publickey"] = Global.shared.publicKeyStr
+//                headers["x-client"] = hmacResult2
+//                headers["x-hash"] = ""
+//
+//            }
         
         let apiUlr = CanvasUrls.baseUrl +  CanvasUrls.versionNumber + CanvasUrls.getBeneficiaries
         
@@ -507,6 +535,42 @@ class NetWorkDataManager {
                 completionHandler(completion.0, completion.1)
         }
     }
+    
+    // prelogin Help Video
+    func preLogingetHelpAndTips(headersTobePassed : HTTPHeaders,postParameters :[String:Any],completionHandler: @escaping (NSDictionary?, String?) -> ())
+        {
+            
+            let apiUlr = CanvasUrls.baseUrl + CanvasUrls.versionNumber + CanvasUrls.preLoginHelpTips
+      //  let apiUlr = "http://online-uat.muzaini.com:89/api/1.0/amec/ipapkversion"
+            print(apiUlr)
+            print(postParameters)
+            
+            AF.request(apiUlr, method: .post, parameters: postParameters, encoding:
+                JSONEncoding.default, headers: headers).responseJSON
+                { response in
+                    
+                    let completion = self.dealWithDictResponse(response: response)
+                    completionHandler(completion.0, completion.1)
+            }
+        }
+    
+    // Get Help Video
+    func getHelpAndTips(headersTobePassed : HTTPHeaders,postParameters :[String:Any],completionHandler: @escaping (NSDictionary?, String?) -> ())
+        {
+            
+            let apiUlr = CanvasUrls.baseUrl + CanvasUrls.versionNumber + CanvasUrls.gethelpAndTips
+      //  let apiUlr = "http://online-uat.muzaini.com:89/api/1.0/amec/ipapkversion"
+            print(apiUlr)
+            print(postParameters)
+            
+            AF.request(apiUlr, method: .post, parameters: postParameters, encoding:
+                JSONEncoding.default, headers: headersWithAuthorization).responseJSON
+                { response in
+                    
+                    let completion = self.dealWithDictResponse(response: response)
+                    completionHandler(completion.0, completion.1)
+            }
+        }
     
     //Favourite Beneficiary
     func benefFavouriteImplimentation(headersTobePassed : HTTPHeaders,postParameters :[String:Any],completionHandler: @escaping (NSDictionary?, String?) -> ())
@@ -865,8 +929,8 @@ func appVersionControl(headersTobePassed : HTTPHeaders,postParameters :[String:A
     func SiteUnderMantImplimentation(headersTobePassed : HTTPHeaders,postParameters :[String:Any],completionHandler: @escaping (NSDictionary?, String?) -> ())
     {
         
-     //   let apiUlr = CanvasUrls.baseUrl + CanvasUrls.siteUnderManti
-     let apiUlr = "http://online-uat.muzaini.com:82/api/SiteUnderMaintenance/getSiteUnderMain"
+        let apiUlr = CanvasUrls.baseUrl + CanvasUrls.versionNumber + CanvasUrls.siteUnderManti
+   //  let apiUlr = "http://online-uat.muzaini.com:82/api/SiteUnderMaintenance/getSiteUnderMain"
         
         AF.request(apiUlr, method: .post, parameters: postParameters, encoding:
             JSONEncoding.default, headers: headersWithAuthorization).responseJSON

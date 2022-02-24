@@ -8,8 +8,10 @@
 
 import Foundation
 import UIKit
+import IOSSecuritySuite
 
 UIApplicationMain(
+  
     CommandLine.argc,
     UnsafeMutableRawPointer(CommandLine.unsafeArgv)
         .bindMemory(
@@ -17,4 +19,6 @@ UIApplicationMain(
             capacity: Int(CommandLine.argc)),
     NSStringFromClass(TimerApplication.self),
     NSStringFromClass(AppDelegate.self)
+    
+   
 )

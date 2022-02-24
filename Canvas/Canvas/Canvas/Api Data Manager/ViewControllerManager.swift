@@ -25,9 +25,5 @@ class ViewControllerManager: NSObject
             alert.addAction(UIAlertAction(title: Global.shared.okTxt, style: .default,handler:nil))
             return alert
         }
-        
-        
     }
-    
-   
 }

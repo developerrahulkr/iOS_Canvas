@@ -11,13 +11,21 @@ import Charts
 import Alamofire
 import MaterialShowcase
 class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollectionViewDelegate, UITextFieldDelegate, navigateToDiffrentScreenDelegate, UIDropDownCurrencyDelegateM, XMSegmentedControlDelegate   {
-    
+    @IBOutlet weak var HelpCollectionHeight: NSLayoutConstraint!
+    @IBOutlet weak var helpCollectionView: UICollectionView!
     var sequence = MaterialShowcaseSequence()
     lazy var guideView_1 =  MaterialShowcase()
     lazy var guideView_2 =  MaterialShowcase()
     lazy var guideView_3 =  MaterialShowcase()
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    var helpVideoList = [[String: Any]]()
+    
+    
+    
+    var tipsVideoList = [[String: Any]]()
     
     @IBOutlet weak var setAlertBtnOtlt: UIButton!
+    @IBOutlet weak var btn_tip: UIButton!
     
     @IBOutlet weak var seg: XMSegmentedControl!
     
@@ -162,9 +170,36 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.HelpCollectionHeight.constant = 0
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "OfferPopUpController") as! OfferPopUpController
         self.present(vc, animated: true, completion: nil)
+
+//        if Global.shared.biometricPoup == "true"
+//        {
+//            if UserDefaults.exists(key: "biometricEnabled") {
+//                if UserDefaults.standard.string(forKey: "biometricEnabled")! == "true" {
+//
+//
+//                }
+//
+//                else {
+//                    DispatchQueue.main.asyncAfter(deadline: .now() + 10.0) {
+//                        self.showBiomatricPopUp()
+//                       }
+//
+//
+//                }
+//            }
+//            else{
+//                DispatchQueue.main.asyncAfter(deadline: .now() + 10.0) {
+//                    self.showBiomatricPopUp()
+//                   }
+//            }
+//
+//        }
        
+        helpCollectionView.delegate = self
+        helpCollectionView.dataSource = self
         noRecrdsFndTxtRecentTnsctns.isHidden = true
         noRecrdsFavBenefTxt.isHidden = true
         
@@ -298,11 +333,12 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
         
         self.navigationController?.navigationBar.isHidden = true
         ShowOfferPopUp()
-        
+        btn_tip.isHidden = true
         if Connectivity.isConnectedToInternet {
             //   self.showSpinner(onView: self.view)
             print("Connected")
             
+           //  getTipsList()
           //  downloadAccountConfigCountriesRatePattern()
             downloadAccountConfigCountriesWu()
             downloadAccountConfigCountriesBank()
@@ -340,9 +376,17 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+       
+        
         Global.shared.timeoUtOrNot = "yes"
         observeTimeout()
         addGuideViews()
+    }
+    
+    func showBiomatricPopUp()
+    {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "BiometricController") as! BiometricController
+        self.present(vc, animated: false, completion: nil)
     }
     
     func menuItemsData()  {
@@ -433,6 +477,7 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
     override func viewWillAppear(_ animated: Bool) {
         
         super.viewWillAppear(animated)
+        helpCollectionView.isHidden = true
         
         let remiterStatus = UserDefaults.standard.string(forKey: "remitterStatus")!
         if remiterStatus == "1" {
@@ -448,26 +493,269 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
         // downloadTransactnFilterDetails()
         self.showLoader()
         DispatchQueue.main.async {
+           // self.getHelpList()
             self.downloadTransactnFilterDetails()
-            
             self.downloadAccountConfigCountriesRatePattern()
             self.downloadBeneficiary()
         }
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+//        if Global.shared.checkBiometric == 1
+//        {
+//            self.getHelpList()
+//        }
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
+        stopTimer()
     }
     
     @IBAction func setAlertActn(_ sender: Any) {
         
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "RateAlertVc") as! RateAlertVc
-        
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
+    func getTipsList() {
+        let paramaterPasing: [String:Any] = [
+              "helpTypes": 3,
+              "language": LocalizationSystem.sharedInstance.getLanguage(),
+              "screen": 1,
+              "registrationId": Global.shared.afterLoginRegistrtnId!
+            
+          ]
+        let headers: HTTPHeaders = [
+            "Content-Type": "application/json"
+        ]
+       // self.showSpinner(onView: self.view)
+        NetWorkDataManager.sharedInstance.getHelpAndTips(headersTobePassed: headers, postParameters: paramaterPasing) { resonseTal , errorString in
+            
+            if errorString == nil
+            {
+               print(resonseTal)
+                self.removeSpinner()
+                if let helpVideoList = resonseTal?.value(forKey: "helpAndTipsResponseList") as? NSArray
+                {
+                    self.tipsVideoList = helpVideoList as! [[String : Any]]
+                    if self.tipsVideoList.count != 0
+                    {
+                        self.btn_tip.isHidden = false
+                    }
+                    else
+                    {
+                        self.btn_tip.isHidden = true
+                    }
+                    
+                    print("helpActionTips",self.helpVideoList)
+                        self.removeSpinner()
+                    
+                }
+              
+            }
+            else
+            {
+                print(errorString!)
+                self.removeSpinner()
+                let finalError = errorString?.components(separatedBy: ":")
+                if finalError?.count == 2
+                {
+                   let alert = ViewControllerManager.displayAlert(message: finalError?[1] ?? "", title:APPLICATIONNAME)
+                    self.present(alert, animated: true, completion: nil)
+                }
+                else
+                {
+                    let alert = ViewControllerManager.displayAlert(message: errorString ?? "", title:APPLICATIONNAME)
+                    self.present(alert, animated: true, completion: nil)
+                }
+                
+            }
+        }
+        
+    }
+    
+    func getHelpList() {
+        Global.shared.checkBiometric = 0
+        self.helpVideoList.removeAll()
+        let paramaterPasing: [String:Any] = [
+              "helpTypes": 2,
+              "language": LocalizationSystem.sharedInstance.getLanguage(),
+              "screen": 0,
+              "registrationId": Global.shared.afterLoginRegistrtnId!
+            
+          ]
+
+        print("token ye hai \(UserDefaults.standard.string(forKey: "token")!)")
+        
+        let headers: HTTPHeaders = [.authorization(bearerToken: UserDefaults.standard.string(forKey: "token")!)]
+       // self.showSpinner(onView: self.view)
+        NetWorkDataManager.sharedInstance.getHelpAndTips(headersTobePassed: headers, postParameters: paramaterPasing) { resonseTal , errorString in
+            
+            if errorString == nil
+            {
+               print(resonseTal)
+                self.removeSpinner()
+                if let helpVideoList = resonseTal?.value(forKey: "helpAndTipsResponseList") as? [[String : Any]]
+                {
+                
+                    var list = helpVideoList
+                 //   self.helpVideoList = helpVideoList as! [[String : Any]]
+                    var index = 0
+                    while index < list.count {
+                       print( "Value of index is \(index)")
+                        let helpdata = list[index]
+                        
+                        let screenToNavigate = helpdata["screenToNavigate"] as! Int
+                        if screenToNavigate == 7
+                        {
+                            if UserDefaults.exists(key: "biometricEnabled") {
+                                if UserDefaults.standard.string(forKey: "biometricEnabled")! == "true" {
+                                    
+                                }
+                                
+                                else {
+                                    self.helpVideoList.append(helpdata)
+                                    
+                                }
+                            }
+                        }
+                        else{
+                            self.helpVideoList.append(helpdata)
+                        }
+                        
+                      index = index + 1
+                       
+                    }
+                    if helpVideoList.count == 0
+                    {
+                        self.HelpCollectionHeight.constant = 0
+                    }
+                    else{
+                        self.HelpCollectionHeight.constant = 50
+                    }
+                    print("helpAction",self.helpVideoList)
+                    self.helpCollectionView.isHidden = false
+                    self.startTimer()
+                    self.helpCollectionView.reloadData()
+                    self.removeSpinner()
+                }
+                
+              
+            }
+            else
+            {
+                print(errorString!)
+                self.removeSpinner()
+                let finalError = errorString?.components(separatedBy: ":")
+                if finalError?.count == 2
+                {
+                   let alert = ViewControllerManager.displayAlert(message: finalError?[1] ?? "", title:APPLICATIONNAME)
+                    self.present(alert, animated: true, completion: nil)
+                }
+                else
+                {
+                    let alert = ViewControllerManager.displayAlert(message: errorString ?? "", title:APPLICATIONNAME)
+                    self.present(alert, animated: true, completion: nil)
+                }
+                
+            }
+        }
+        
+    }
+    var carousalTimer: Timer?
+    var newOffsetX: CGFloat = 0.0
+      func startTimer() {
+        guard carousalTimer == nil else { return }
+          
+          if carousalTimer == nil {
+              carousalTimer = Timer(fire: Date(), interval: 0.015, repeats: true) { (timer) in
+
+                  let initailPoint = CGPoint(x: self.newOffsetX,y :0)
+
+                  if __CGPointEqualToPoint(initailPoint, self.helpCollectionView.contentOffset) {
+
+                      if self.newOffsetX < self.helpCollectionView.contentSize.width {
+                          self.newOffsetX += 0.75
+                      }
+                      if self.newOffsetX > self.helpCollectionView.contentSize.width - self.helpCollectionView.frame.size.width {
+                          self.newOffsetX = 0
+                      }
+
+                      self.helpCollectionView.contentOffset = CGPoint(x: self.newOffsetX,y :0)
+
+                  } else {
+                      self.newOffsetX = self.helpCollectionView.contentOffset.x
+                  }
+              }
+
+              RunLoop.current.add(carousalTimer!, forMode: .common)
+            }
+       
+        
+
+//        self.removeSpinner()
+//          if helpVideoList.count != 0
+//          {
+//             Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(self.scrollAutomatically), userInfo: nil, repeats: true)
+//          }
+      }
+         var x = 1
+          @objc func scrollAutomatically(_ timer1: Timer) {
+           
+    
+             if self.x < self.helpVideoList.count {
+                let indexPath = IndexPath(item: x, section: 0)
+                self.helpCollectionView.scrollToItem(at: indexPath, at: .left, animated: true)
+                self.x = self.x + 1
+              }else{
+                self.x = 0
+                self.helpCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .left, animated: true)
+              }
+          }
+    func stopTimer()
+    {
+        if carousalTimer != nil {
+            carousalTimer!.invalidate()
+            carousalTimer = nil
+        }
+    }
+    
+    @IBAction func obClickTipsBtn(_ sender: Any) {
+        if let viewController = self.storyboard?.instantiateViewController(withIdentifier: "ToolTipListController") as? ToolTipListController {
+            viewController.helpVideoList = tipsVideoList
+            var index = 0
+            var height = 0
+            while index < tipsVideoList.count {
+               print( "Value of index is \(index)")
+                if index == 0
+                {
+                    height = height + 40
+                }
+                else {
+                    height = height + 60
+                }
+              
+               index = index + 1
+            }
+            viewController.preferredContentSize = CGSize(width: 300, height: height)
+                let navController = UINavigationController(rootViewController: viewController)
+                navController.modalPresentationStyle = .popover
+
+                if let pctrl = navController.popoverPresentationController {
+                    pctrl.delegate = self
+
+                    pctrl.sourceView = (sender as! UIView)
+                    pctrl.sourceRect = (sender as! UIView).bounds
+
+                    self.present(navController, animated: true, completion: nil)
+                }
+            }
+    }
     // Mark: For getting recent 10 transactions
     func downloadTransactnFilterDetails() {
         
@@ -483,7 +771,7 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
          "Content-Type": "application/json"
          ]*/
         
-        print(UserDefaults.standard.string(forKey: "token")!)
+        print("token ye hai \(UserDefaults.standard.string(forKey: "token")!)")
         
         let headers: HTTPHeaders = [.authorization(bearerToken: UserDefaults.standard.string(forKey: "token")!)]
         
@@ -968,8 +1256,6 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
                         }
                         
                     }
-                    
-                  
                 }
                 
                 let statusMsg = resonseTal?.value(forKey: "statusMessage") as? String
@@ -981,6 +1267,11 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
                     {
                         self.showAlert(withTitle: "", withMessage: resonseTal?["statusMessage"] as? String ?? "")
 
+                    }
+                    else if mesageCode == "R111"
+                    {
+                        let alert = ViewControllerManager.displayAlert(message: Global.shared.messageCodeType(text: "R115"), title:APPLICATIONNAME)
+                        self.present(alert, animated: true, completion: nil)
                     }
                     else{
                     let alert = ViewControllerManager.displayAlert(message: statusMsg ?? "", title:APPLICATIONNAME)
@@ -1035,6 +1326,9 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
         }
         if collectionView == self.favBenefCollectnView {
             return self.beneficaryFilteredResponse.count
+        }
+        if collectionView == self.helpCollectionView {
+            return self.helpVideoList.count
         }
         return count!
     }
@@ -1364,14 +1658,69 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
            
             return cell
         }
+        if collectionView == self.helpCollectionView {
+        
+            let cell = helpCollectionView.dequeueReusableCell(withReuseIdentifier: "DashboardHelpCell", for: indexPath) as! DashboardHelpCell
+            let help = helpVideoList[indexPath.row]
+          //  cell.lbl_title.text = help["content"] as? String ?? ""
+            
+            let description = help["content"] as? String ?? ""
+            cell.lbl_title.attributedText = description.htmlToAttributedString
+            
+            cell.lbl_title.font = Global.shared.fontTopLbl
+              return cell
+        }
         
         return cell!
         
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        if  collectionView == self.recentTransctnsCollectnView {
+        if  collectionView == self.helpCollectionView {
+            
+            let help = helpVideoList[indexPath.row]
+            print(help)
+            let screenToNavigate = help["screenToNavigate"] as! Int
+            if screenToNavigate == 1
+            {
+                appDelegate.helpScreen = 0
+                self.tabBarController?.selectedIndex = 3
+            }
+            else if screenToNavigate == 2
+            {
+                appDelegate.helpScreen = 1
+                self.tabBarController?.selectedIndex = 3
+            }
+            else if screenToNavigate == 3
+            {
+                self.tabBarController?.selectedIndex = 1
+               
+            }
+            else if screenToNavigate == 4
+            {
+                self.tabBarController?.selectedIndex = 2
+            }
+            else if screenToNavigate == 5
+            {
+                
+            }
+            else if screenToNavigate == 6
+            {
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "UpdateCivilIDController") as! UpdateCivilIDController
+                self.navigationController?.pushViewController(vc, animated: true)
+                
+            }
+            else if screenToNavigate == 7
+            {
+                self.showBiomatricPopUp()
+                
+            }
+            else{
+              
+            }
+                
+        }
+        else if  collectionView == self.recentTransctnsCollectnView {
         }
         else {
             //    Global.shared.benefCasBankWu = "Bank"

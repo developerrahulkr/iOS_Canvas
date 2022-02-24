@@ -14,6 +14,7 @@ import GooglePlaces
 import Firebase
 import FirebaseCrashlytics
 import FirebaseMessaging
+import IOSSecuritySuite
 
 
 
@@ -26,9 +27,21 @@ func print(_ items: Any...) {
 //@UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var offerList = [[String: Any]]()
+    var helpScreen = 0
+    
 
 var window: UIWindow?
     let gcmMessageIDKey = "gcm.Message_ID"
+    
+//    func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+//        if IOSSecuritySuite.amIJailbroken() {
+//            print("This device is jailbroken")
+//            exit(0);
+//        } else {
+//            print("This device is not jailbroken")
+//            return true
+//        }
+//    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
@@ -37,16 +50,17 @@ var window: UIWindow?
                                    name: .appTimeout,
                                    object: nil
             )
+        UserDefaults.standard.removeObject(forKey: "token")
         // Override point for customization after application launch.
         IQKeyboardManager.shared.enable = true
-      //  UIApplication.shared.windows.first?.safeAreaInsets.bottom ?? 0.0
+      // UIApplication.shared.windows.first?.safeAreaInsets.bottom ?? 0.0
         GMSServices.provideAPIKey("AIzaSyB_fzD3GaumTbXLIcXuxa4-9xj-JQxMXpw")
         GMSPlacesClient.provideAPIKey("AIzaSyB_fzD3GaumTbXLIcXuxa4-9xj-JQxMXpw")
         UIApplication.shared.setStatusBarColor()
         UINavigationController.configureNavigationBar()
         
         if #available(iOS 13.0, *) {
-       UINavigationBar.appearance().tintColor = ColorCodes.newAppRed
+            UINavigationBar.appearance().tintColor = ColorCodes.newAppRed
         }
   
         FirebaseApp.configure()
@@ -65,11 +79,8 @@ var window: UIWindow?
         }
 
         application.registerForRemoteNotifications()
-        
         Messaging.messaging().delegate = self
-        
-        
-         Analytics.setAnalyticsCollectionEnabled(true)
+        Analytics.setAnalyticsCollectionEnabled(true)
         
         return true
     }

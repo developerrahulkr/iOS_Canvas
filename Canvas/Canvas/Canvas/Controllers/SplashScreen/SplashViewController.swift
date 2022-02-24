@@ -76,39 +76,41 @@ class SplashViewController: BaseViewController {
                        
                        print(statusCode)
                        if(statusCode == 200) {
-                         //  self.dict = resonseTal as! [String : String]
-                           self.dict["titleAr"] =  resonseTal?.value(forKey: "titleAr") as? String
-                           self.dict["descriptionEn"] =  resonseTal?.value(forKey: "descriptionEn") as? String
-                           self.dict["descriptionAr"] =  resonseTal?.value(forKey: "descriptionAr") as? String
-                           self.dict["titleEn"] =  resonseTal?.value(forKey: "titleEn") as? String
-                           
+                         
                            let startDate = resonseTal?.value(forKey: "startDate") as? String
                            let endDate = resonseTal?.value(forKey: "endDate") as? String
-                           // "2021-12-16T14:30:00"
-                           let today = Date()
-                           
+                           let today = resonseTal?.value(forKey: "currentDateTime") as? String
+                           let dateStr = today!.components(separatedBy: ".")
+                           let currentDateStr    = dateStr[0]
                            let dateFormatter = DateFormatter()
-                                  dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-                                  
-                          //  let currentDate = dateFormatter.date(from: currentDateString)!
+                           dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+                           
+                           let currentDate = dateFormatter.date(from: currentDateStr)
                            let start = dateFormatter.date(from: startDate ?? "")!
                            let end = dateFormatter.date(from: endDate ?? "")!
-                           if start.compare(today) == .orderedAscending && end.compare(today) == .orderedDescending {
+                           if start.compare(currentDate!) == .orderedAscending && end.compare(currentDate!) == .orderedDescending {
+                               self.dict["titleAr"] =  resonseTal?.value(forKey: "titleAr") as? String
+                               self.dict["descriptionEn"] =  resonseTal?.value(forKey: "descriptionEn") as? String
+                               self.dict["descriptionAr"] =  resonseTal?.value(forKey: "descriptionAr") as? String
+                               self.dict["titleEn"] =  resonseTal?.value(forKey: "titleEn") as? String
                                self.navigateAppSiteUnderMaintananceController()
                                   }
                            else
                            {
-                               self.navigateAppSiteUnderMaintananceController()
-                              // self.navigateAppRootNavigationController()
+                              // self.navigateAppSiteUnderMaintananceController()
+                               self.navigateAppRootNavigationController()
                            }
                            
                         
                        }
-                    if statusCode == 400
+                   else if statusCode == 400
                     {
-                      //  let alert = ViewControllerManager.displayAlert(message: resonseTal?["statusMessage"] as? String ?? "", title:APPLICATIONNAME)
-                      //  self.present(alert, animated: true, completion: nil)
-                          self.navigateAppRootNavigationController()
+                        self.navigateAppSiteUnderMaintananceController()
+                      //    self.navigateAppRootNavigationController()
+                    }
+                    else
+                    {
+                        self.navigateAppSiteUnderMaintananceController()
                     }
                        
                     
@@ -126,7 +128,8 @@ class SplashViewController: BaseViewController {
                            //    self.removeSpinner()
                            
                                if errorString == "Response could not be serialized, input data was nil or zero length." {
-                                   self.navigateAppRootNavigationController()
+                                  // self.navigateAppRootNavigationController()
+                                   self.navigateAppSiteUnderMaintananceController()
                                // Global.shared.timeoUtOrNot = "no"
                                // self.showAlertForTimer(titulo: "", mensagem: Global.shared.sessionTimedOutTxt, vc: self)
 
@@ -135,7 +138,8 @@ class SplashViewController: BaseViewController {
                                else {
 //                                   let alert = ViewControllerManager.displayAlert(message: errorString ?? "", title:APPLICATIONNAME)
 //                                   self.present(alert, animated: true, completion: nil)
-                                   self.navigateAppRootNavigationController()
+                                  // self.navigateAppRootNavigationController()
+                                   self.navigateAppSiteUnderMaintananceController()
                                }
                               
                                
@@ -152,7 +156,7 @@ extension SplashViewController: SwiftyGifDelegate {
     func gifDidStop(sender: UIImageView) {
       //
         callSiteUnderMencAPI()
-        
+       // self.navigateAppRootNavigationController()
         
     }
     

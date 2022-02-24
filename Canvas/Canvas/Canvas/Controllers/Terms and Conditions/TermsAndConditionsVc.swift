@@ -129,6 +129,14 @@ extension String {
             return nil
         }
     }
+    var htmlToMutableAttributedString: NSMutableAttributedString? {
+           do {
+               return try .init(data: Data(utf8), options: [.documentType:  NSAttributedString.DocumentType.html, .characterEncoding: String.Encoding.utf8.rawValue], documentAttributes: nil)
+           } catch {
+               print(error)
+               return nil
+           }
+       }
     var htmlToString: String {
         return htmlToAttributedString?.string ?? ""
     }

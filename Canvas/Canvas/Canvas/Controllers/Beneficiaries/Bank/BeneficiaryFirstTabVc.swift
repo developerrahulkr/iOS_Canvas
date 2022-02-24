@@ -193,6 +193,11 @@ class BeneficiaryFirstTabVc: BaseViewController, UITableViewDataSource, UITableV
                         self.showAlert(withTitle: "", withMessage: resonseTal?["statusMessage"] as? String ?? "")
 
                     }
+                   else if mesageCode == "R111"
+                    {
+                       let alert = ViewControllerManager.displayAlert(message: "R115", title:APPLICATIONNAME)
+                       self.present(alert, animated: true, completion: nil)
+                    }
                     else{
                     
                     let alert = ViewControllerManager.displayAlert(message: statusMsg ?? "", title:APPLICATIONNAME)

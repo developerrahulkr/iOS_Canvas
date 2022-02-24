@@ -362,10 +362,10 @@ class NewCustomerVc: UIViewController,UIImagePickerControllerDelegate,UINavigati
                 }
                 else {
                     videoSelected = "selected"
-                  //  videoRecordedUrl = selectedVideo as NSURL
-                    self.videoConvert(videoURL: selectedVideo as URL)
+                    videoRecordedUrl = selectedVideo as NSURL
+                  //  self.videoConvert(videoURL: selectedVideo as URL)
                     videoPathLbl.text = filename
-                    
+                    self.encodeVideo(selectedVideo)
                  //   NewUser.shared.videoUrl = videoRecordedUrl
                 }
                 
@@ -392,10 +392,11 @@ class NewCustomerVc: UIViewController,UIImagePickerControllerDelegate,UINavigati
             
             //  videoSelected = "selected"
             
-            let videoURL = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerMediaURL")] as? NSURL
+           // let videoURL = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerMediaURL")] as? NSURL
+            guard let videoURL = (info[UIImagePickerController.InfoKey.mediaURL] as? URL) else { return }
           
             //  print(videoURL)
-            let asset = AVURLAsset(url: videoURL! as URL)
+            let asset = AVURLAsset(url: videoURL)
             let durationInSeconds = asset.duration.seconds
             print(durationInSeconds)
             let exportSession = AVAssetExportSession(asset: asset, presetName: AVAssetExportPresetPassthrough)
@@ -405,8 +406,8 @@ class NewCustomerVc: UIViewController,UIImagePickerControllerDelegate,UINavigati
             exportSession!.shouldOptimizeForNetworkUse = true
             
             
-            let filename =  videoURL?.deletingPathExtension?.lastPathComponent
-            let fileData = NSData(contentsOf: videoURL! as URL)!
+            let filename =  videoURL.deletingPathExtension().lastPathComponent
+            let fileData = NSData(contentsOf: videoURL as URL)!
             print(fileData)
             
             let  mbsize = Double(fileData.count) / 1024 / 1024
@@ -423,10 +424,10 @@ class NewCustomerVc: UIViewController,UIImagePickerControllerDelegate,UINavigati
             }
             else {
                 videoSelected = "selected"
-                
-                self.videoConvert(videoURL: videoURL! as URL)
+                self.encodeVideo(videoURL)
+               // self.videoConvert(videoURL: videoURL! as URL)
                // NewUser.shared.videoUrl = videoRecordedUrl
-                //print("url is",NewUser.shared.videoUrl!)
+               // print("url is",NewUser.shared.videoUrl!)
                 videoPathLbl.text = filename
             }
         
@@ -531,7 +532,46 @@ class NewCustomerVc: UIViewController,UIImagePickerControllerDelegate,UINavigati
         }
         
     }
-    
+    var exportSession: AVAssetExportSession!
+    func encodeVideo(_ videoURL: URL)  {
+            let avAsset = AVURLAsset(url: videoURL, options: nil)
+
+            //Create Export session
+            exportSession = AVAssetExportSession(asset: avAsset, presetName: AVAssetExportPresetPassthrough)
+
+            let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0] as URL
+            let filePath = documentsDirectory.appendingPathComponent("rendered-Video.mp4")
+        deleteFile(filePath: filePath as NSURL)
+
+            exportSession!.outputURL = filePath
+            exportSession!.outputFileType = AVFileType.mp4
+            exportSession!.shouldOptimizeForNetworkUse = true
+            let start = CMTimeMakeWithSeconds(0.0, preferredTimescale: 0)
+            let range = CMTimeRangeMake(start: start, duration: avAsset.duration)
+            exportSession.timeRange = range
+
+            exportSession!.exportAsynchronously(completionHandler: {() -> Void in
+                DispatchQueue.main.async {
+                   
+
+                    switch self.exportSession!.status {
+                    case .failed:
+                       // self.view.makeToast(self.exportSession?.error?.localizedDescription ?? "")
+                        print("abc")
+                    case .cancelled:
+                       // self.view.makeToast("Export canceled")
+                        print("abc")
+                    case .completed:
+                        if let url = self.exportSession.outputURL {
+                            //Rendered Video URL
+                            NewUser.shared.videoUrl = url as NSURL
+                        }
+                    default:
+                        break
+                    }
+                }
+            })
+        }
     func videoConvert(videoURL: URL) {
         let avAsset = AVURLAsset(url: videoURL as URL, options: nil)
         let startDate = NSDate()
@@ -549,8 +589,6 @@ class NewCustomerVc: UIViewController,UIImagePickerControllerDelegate,UINavigati
         let filePath = documentsDirectory2.appendingPathComponent("Video.mp4")
         deleteFile(filePath: filePath! as NSURL)
         
-      
-
         //Check if the file already exists then remove the previous file
         if FileManager.default.fileExists(atPath: myDocumentPath!) {
             do {

@@ -16,6 +16,9 @@ class Global {
     
     //login screen
     
+    var checkBiometric = 0
+    var biometricPoup = "false"
+    
     var otpStr = ""
     
     var timeoUtOrNot:String!
@@ -873,8 +876,6 @@ class Global {
         return ""
         
     }
-    
-   
     
     func convertToAryDictionary(text: String) -> [[String: Any]]? {
         if let data = text.data(using: .utf8) {
