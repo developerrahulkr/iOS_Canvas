@@ -18,6 +18,11 @@ class BiometricController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        btn_enable.setTitle(Global.shared.bioEnable, for: .normal)
+        btn_disable.setTitle(Global.shared.bioDoItlater, for: .normal)
+        lbl_biometricTxt.text = Global.shared.biometricHeader
+        lbl_biometricTxt.font = Global.shared.fontTopLbl
+        
     }
     
     @IBAction func onClickEnableBiomatric(_ sender: UIButton) {

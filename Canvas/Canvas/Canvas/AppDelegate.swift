@@ -33,15 +33,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 var window: UIWindow?
     let gcmMessageIDKey = "gcm.Message_ID"
     
-//    func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-//        if IOSSecuritySuite.amIJailbroken() {
-//            print("This device is jailbroken")
-//            exit(0);
-//        } else {
-//            print("This device is not jailbroken")
-//            return true
-//        }
-//    }
+    func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        if IOSSecuritySuite.amIJailbroken() {
+            print("This device is jailbroken")
+            exit(0);
+        } else {
+            print("This device is not jailbroken")
+            return true
+        }
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         

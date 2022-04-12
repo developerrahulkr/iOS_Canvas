@@ -32,6 +32,9 @@ class OfferPopUpController: UIViewController {
         
        
     }
+    override func viewWillDisappear(_ animated: Bool) {
+        Global.shared.checkOfferPopUp = 1
+    }
     override func viewDidLayoutSubviews() {
         //btn_close.layer.cornerRadius = btn_close.frame.size./2
        // self.btn_close.layer.masksToBounds = true
@@ -60,6 +63,7 @@ class OfferPopUpController: UIViewController {
     @IBAction func onClickCloseOffer(_ sender: Any) {
         self.view.isHidden = true
       //  self.view.removeAllSubviews()
+        
         self.dismiss(animated: true, completion: nil)
         
         

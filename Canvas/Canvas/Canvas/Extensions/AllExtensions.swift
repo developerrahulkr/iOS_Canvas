@@ -67,7 +67,7 @@ extension UIViewController {
             let branchLocatorFirstVC: BranchLocatorFirstVc  = .initiateController()
             self.pushViewController(controller: branchLocatorFirstVC)
         }
-        else if screen == Global.shared.faqTxt {
+        else if screen == Global.shared.helpTxt {
             
             let faqVc: FaqVc  = .initiateController()
             self.pushViewController(controller: faqVc)

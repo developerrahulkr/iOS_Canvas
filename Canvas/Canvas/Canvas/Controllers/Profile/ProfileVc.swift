@@ -91,7 +91,7 @@ class ProfileVc: BaseViewController,UIImagePickerControllerDelegate,UINavigation
         
         getProfileDetails()*/
         btn_tips.isHidden = true
-      //  getHelpList()
+        getHelpList()
         toLoadImage()
     }
     

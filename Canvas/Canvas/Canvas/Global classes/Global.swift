@@ -15,9 +15,11 @@ class Global {
     static let shared = Global()
     
     //login screen
-    
+    var checkOfferPopUp = 0
     var checkBiometric = 0
     var biometricPoup = "false"
+    var methodName = ""
+    var exceptionMsg = ""
     
     var otpStr = ""
     
@@ -113,6 +115,12 @@ class Global {
     var verifyOnlineHeaderTxt:String!
     var verifyUsernameTxt:String!
     var verifyPaswdTxt: String!
+    
+    // biometric model
+    var bioEnable : String!
+    var bioDoItlater : String!
+    var biometricHeader : String!
+    
     
     //new customer
     var newSelectVideoTxt:String!
@@ -376,6 +384,7 @@ class Global {
     
     //login
     var faqTxt: String!
+    var helpTxt: String!
     var termsConditionsShortTxt: String!
     var branchLoctrtLoginTxt: String!
     

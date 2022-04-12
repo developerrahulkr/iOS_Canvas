@@ -174,29 +174,7 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "OfferPopUpController") as! OfferPopUpController
         self.present(vc, animated: true, completion: nil)
 
-//        if Global.shared.biometricPoup == "true"
-//        {
-//            if UserDefaults.exists(key: "biometricEnabled") {
-//                if UserDefaults.standard.string(forKey: "biometricEnabled")! == "true" {
-//
-//
-//                }
-//
-//                else {
-//                    DispatchQueue.main.asyncAfter(deadline: .now() + 10.0) {
-//                        self.showBiomatricPopUp()
-//                       }
-//
-//
-//                }
-//            }
-//            else{
-//                DispatchQueue.main.asyncAfter(deadline: .now() + 10.0) {
-//                    self.showBiomatricPopUp()
-//                   }
-//            }
-//
-//        }
+       
        
         helpCollectionView.delegate = self
         helpCollectionView.dataSource = self
@@ -204,8 +182,7 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
         noRecrdsFavBenefTxt.isHidden = true
         
       //  offerView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-       
-        
+
         setAlertBtnOtlt.setTitle(Global.shared.setAlertDashboard, for: .normal)
         setAlertBtnOtlt.makeButtonFitToContent(buttonTitle: setAlertBtnOtlt)
         noRecrdsFndTxtRecentTnsctns.text =  Global.shared.noRecordsFoundTxt
@@ -222,10 +199,6 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
       /*  ratePaternCurncyCode = "AUD"
         self.ratePaternDrpLbl.text = "AUD"*/
         
-       
-        
-      
-        
         menuItemsData()
         youSendField.maxLength = Global.shared.sendLimit
         theyReceiveField.maxLength = Global.shared.receiveLimit
@@ -235,7 +208,6 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
         rateCalctrView.addDropShadowToView(targetView: rateCalctrView)
         ratePatternView.addDropShadowToView(targetView: ratePatternView)
         downBanerImgView.addDropShadowToView(targetView: downBanerImgView)
-        
         
         youSendField.delegate = self
         theyReceiveField.delegate = self
@@ -272,8 +244,6 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
             
             self.imgNameLbl.backgroundColor = UIColor.colorFrom(hexString: secndColr)
             
-            
-            
             self.imgNameLbl.isHidden = false
             self.profileImg.isHidden = true
         }
@@ -300,9 +270,6 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
             }
             
         }
-        
-       
-        
         let todaysDate = Date().string(format: "yyyy-MM-dd")
         
         //  let prevMonth = Calendar.current.date(byAdding: .month, value: -6, to: Date())
@@ -314,8 +281,6 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
         let fromDateMonth = prevMonth?.string(format: "yyyy-MM-dd")
         let fromDates = prevWeek?.string(format: "yyyy-MM-dd")
     
-        
-        
         self.fromDateOneValue = fromDateMonth
         self.toDateOneValue = todaysDate
         
@@ -338,7 +303,7 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
             //   self.showSpinner(onView: self.view)
             print("Connected")
             
-           //  getTipsList()
+             getTipsList()
           //  downloadAccountConfigCountriesRatePattern()
             downloadAccountConfigCountriesWu()
             downloadAccountConfigCountriesBank()
@@ -493,7 +458,7 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
         // downloadTransactnFilterDetails()
         self.showLoader()
         DispatchQueue.main.async {
-           // self.getHelpList()
+            self.getHelpList()
             self.downloadTransactnFilterDetails()
             self.downloadAccountConfigCountriesRatePattern()
             self.downloadBeneficiary()
@@ -504,10 +469,38 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-//        if Global.shared.checkBiometric == 1
-//        {
-//            self.getHelpList()
-//        }
+        if Global.shared.checkOfferPopUp == 1
+        {
+            if Global.shared.biometricPoup == "true"
+            {
+                if UserDefaults.exists(key: "biometricEnabled") {
+                    if UserDefaults.standard.string(forKey: "biometricEnabled")! == "true" {
+
+
+                    }
+
+                    else {
+                        DispatchQueue.main.asyncAfter(deadline: .now()) {
+                            self.showBiomatricPopUp()
+                           }
+                       
+
+                    }
+                }
+                else{
+                    DispatchQueue.main.asyncAfter(deadline: .now()) {
+                        self.showBiomatricPopUp()
+                       }
+                }
+
+            }
+            Global.shared.checkOfferPopUp = 0
+        }
+        
+        if Global.shared.checkBiometric == 1
+        {
+            self.getHelpList()
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -623,6 +616,10 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
                                     
                                 }
                             }
+                            else
+                            {
+                                self.helpVideoList.append(helpdata)
+                            }
                         }
                         else{
                             self.helpVideoList.append(helpdata)
@@ -734,7 +731,7 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
                print( "Value of index is \(index)")
                 if index == 0
                 {
-                    height = height + 40
+                    height = height + 60
                 }
                 else {
                     height = height + 60
@@ -841,6 +838,8 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
                 /*  let finalError = errorString?.components(separatedBy: ":")
                  let alert = ViewControllerManager.displayAlert(message: finalError?[1] ?? "", title:APPLICATIONNAME)
                  self.present(alert, animated: true, completion: nil)*/
+                Global.shared.methodName = CanvasUrls.benefTransctnFilter
+                NetWorkDataManager.sharedInstance.callChannelException()
                 if errorString == "Response could not be serialized, input data was nil or zero length." {
                     Global.shared.timeoUtOrNot = "no"
                     self.showAlertForTimer(titulo: "", mensagem: Global.shared.sessionTimedOutTxt, vc: self)
@@ -857,6 +856,7 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
                     let alert = ViewControllerManager.displayAlert(message: errorString ?? "", title:APPLICATIONNAME)
                     self.present(alert, animated: true, completion: nil)
                 }
+                
                 
                 
             }
@@ -943,6 +943,7 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
             {
                 print(errorString!)
                 self.removeSpinner()
+                NetWorkDataManager.sharedInstance.callChannelException()
                 let finalError = errorString?.components(separatedBy: ":")
                 if finalError?.count == 2
                 {
@@ -1044,6 +1045,8 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
             {
                 print(errorString!)
                 self.removeSpinner()
+                Global.shared.methodName = CanvasUrls.lineChartData
+                NetWorkDataManager.sharedInstance.callChannelException()
                 let finalError = errorString?.components(separatedBy: ":")
                 if finalError?.count == 2
                 {
@@ -1308,6 +1311,8 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
                     let alert = ViewControllerManager.displayAlert(message: errorString ?? "", title:APPLICATIONNAME)
                     self.present(alert, animated: true, completion: nil)
                 }
+                Global.shared.methodName = CanvasUrls.getBeneficiaries
+                NetWorkDataManager.sharedInstance.callChannelException()
                 
                 
             }
@@ -2225,6 +2230,8 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
             {
                 print(errorString!)
                 self.removeSpinner()
+                Global.shared.methodName = CanvasUrls.ttRateCalculator
+                NetWorkDataManager.sharedInstance.callChannelException()
                 let finalError = errorString?.components(separatedBy: ":")
                 if finalError?.count == 2
                 {
@@ -2240,6 +2247,7 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
 //                self.present(alert, animated: true, completion: nil)
                 
             }
+            
         }
         
     }
@@ -2300,6 +2308,8 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
             {
                 print(errorString!)
                 self.removeSpinner()
+                Global.shared.methodName = CanvasUrls.ttRateCalculator
+                NetWorkDataManager.sharedInstance.callChannelException()
                 let finalError = errorString?.components(separatedBy: ":")
                 let alert = ViewControllerManager.displayAlert(message: finalError?[1] ?? "", title:APPLICATIONNAME)
                 self.present(alert, animated: true, completion: nil)
@@ -2670,6 +2680,8 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
                 
             else {
                             print(errorString!)
+                Global.shared.methodName = CanvasUrls.getBeneficiaries
+                NetWorkDataManager.sharedInstance.callChannelException()
                        
                             self.removeSpinner()
                          
@@ -2748,9 +2760,12 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
             {
                 print(errorString!)
                 self.removeSpinner()
+                Global.shared.methodName = CanvasUrls.countrysList
+                NetWorkDataManager.sharedInstance.callChannelException()
                 let finalError = errorString?.components(separatedBy: ":")
                 let alert = ViewControllerManager.displayAlert(message: finalError?[1] ?? "", title:APPLICATIONNAME)
                 self.present(alert, animated: true, completion: nil)
+                
                 
             }
         }
@@ -2854,6 +2869,8 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
             {
                 print(errorString!)
                 self.removeSpinner()
+                Global.shared.methodName = CanvasUrls.countrysList
+                NetWorkDataManager.sharedInstance.callChannelException()
                 let finalError = errorString?.components(separatedBy: ":")
                 let alert = ViewControllerManager.displayAlert(message: finalError?[1] ?? "", title:APPLICATIONNAME)
                 self.present(alert, animated: true, completion: nil)
@@ -2934,6 +2951,7 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
             {
                 print(errorString!)
                 self.removeSpinner()
+                NetWorkDataManager.sharedInstance.callChannelException()
                 let finalError = errorString?.components(separatedBy: ":")
                 let alert = ViewControllerManager.displayAlert(message: finalError?[1] ?? "", title:APPLICATIONNAME)
                 self.present(alert, animated: true, completion: nil)
@@ -3014,6 +3032,8 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
             {
                 print(errorString!)
                 self.removeSpinner()
+                Global.shared.methodName = CanvasUrls.countrysList
+                NetWorkDataManager.sharedInstance.callChannelException()
                 let finalError = errorString?.components(separatedBy: ":")
                 let alert = ViewControllerManager.displayAlert(message: finalError?[1] ?? "", title:APPLICATIONNAME)
                 self.present(alert, animated: true, completion: nil)

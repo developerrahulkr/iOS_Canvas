@@ -10,6 +10,8 @@ import Foundation
 import UIKit
 import Alamofire
 
+
+
 class NetWorkDataManager {
     
     static let sharedInstance = NetWorkDataManager()
@@ -115,6 +117,8 @@ class NetWorkDataManager {
     {
         
         let apiUlr = CanvasUrls.baseUrl +  CanvasUrls.versionNumber + CanvasUrls.login
+       
+     
         
         AF.request(apiUlr, method: .post, parameters: postParameters, encoding:
             JSONEncoding.default, headers: headers).responseJSON
@@ -131,6 +135,7 @@ class NetWorkDataManager {
         
         
         let apiUlr = CanvasUrls.baseUrl +  CanvasUrls.versionNumber + CanvasUrls.loginVerification
+      
         
         print(apiUlr)
         print(postParameters)
@@ -514,16 +519,6 @@ class NetWorkDataManager {
     {
         print(headersWithAuthorization)
         
-//        let hmacResult2: String = Global.shared.publicKeyStr.hmac(algorithm: HMACAlgorithm.SHA512, key: Global.shared.privateKeyStr)
-//        var headers = HTTPHeaders()
-//        if let authToken = UserDefaults.standard.string(forKey: "token") {
-//            headers  = [.authorization(bearerToken: authToken)]
-//
-//                headers["x-publickey"] = Global.shared.publicKeyStr
-//                headers["x-client"] = hmacResult2
-//                headers["x-hash"] = ""
-//
-//            }
         
         let apiUlr = CanvasUrls.baseUrl +  CanvasUrls.versionNumber + CanvasUrls.getBeneficiaries
         
@@ -577,6 +572,7 @@ class NetWorkDataManager {
     {
         
         let apiUlr = CanvasUrls.baseUrl +  CanvasUrls.versionNumber + CanvasUrls.favouriteBeneficiary
+        
         
         AF.request(apiUlr, method: .post, parameters: postParameters, encoding:
             JSONEncoding.default, headers: headersWithAuthorization).responseJSON
@@ -756,9 +752,12 @@ class NetWorkDataManager {
     //Beneficiary transaction filter
     func benefTransctnFilterImplimentation(headersTobePassed : HTTPHeaders,postParameters :[String:Any],completionHandler: @escaping (NSDictionary?, String?) -> ())
     {
-       
+        
+        Global.shared.methodName = ""
         
         let apiUlr = CanvasUrls.baseUrl +  CanvasUrls.versionNumber + CanvasUrls.benefTransctnFilter
+        
+        
         print(apiUlr)
         
         AF.request(apiUlr, method: .post, parameters: postParameters, encoding:
@@ -1022,6 +1021,8 @@ func appVersionControl(headersTobePassed : HTTPHeaders,postParameters :[String:A
         
         let apiUlr = CanvasUrls.baseUrl +  CanvasUrls.versionNumber + CanvasUrls.ttRateCalculator
         
+        
+        
         AF.request(apiUlr, method: .post, parameters: postParameters, encoding:
             JSONEncoding.default, headers: headers).responseJSON
             { response in
@@ -1154,6 +1155,8 @@ func appVersionControl(headersTobePassed : HTTPHeaders,postParameters :[String:A
         
         let apiUlr = CanvasUrls.baseUrl +  CanvasUrls.versionNumber + CanvasUrls.checkBiometricEnabled
         print(apiUlr)
+        
+        
         
         AF.request(apiUlr, method: .post, parameters: postParameters, encoding:
             JSONEncoding.default, headers: headers).responseJSON
@@ -1313,6 +1316,7 @@ func appVersionControl(headersTobePassed : HTTPHeaders,postParameters :[String:A
                      
                      let completion = self.dealWithDictResponse(response: response)
                      completionHandler(completion.0, completion.1)
+                     
              }
          }
       
@@ -1321,6 +1325,7 @@ func appVersionControl(headersTobePassed : HTTPHeaders,postParameters :[String:A
             {
                 
                 let apiUlr = CanvasUrls.baseUrl +  CanvasUrls.versionNumber + CanvasUrls.lineChartData
+               
                 
                 AF.request(apiUlr, method: .post, parameters: postParameters, encoding:
                     JSONEncoding.default, headers: headersWithAuthorization).responseJSON
@@ -1331,8 +1336,49 @@ func appVersionControl(headersTobePassed : HTTPHeaders,postParameters :[String:A
                 }
             }
     
+         //channel Exception
+          func channelExceptionImplementation(headersTobePassed : HTTPHeaders,postParameters :[String:Any],completionHandler: @escaping (NSDictionary?, String?) -> ())
+          {
+              
+              let apiUlr = CanvasUrls.baseUrl +  CanvasUrls.versionNumber + CanvasUrls.channelException
+              
+              AF.request(apiUlr, method: .post, parameters: postParameters, encoding:
+                  JSONEncoding.default, headers: headersWithAuthorization).responseJSON
+                  { response in
+                      
+                      let completion = self.dealWithDictResponse(response: response)
+                      completionHandler(completion.0, completion.1)
+              }
+          }
     
     
+    func callChannelException()
+    {
+        let paramaterPasing: [String:Any] = ["channel": 3,
+                                              "methodName": Global.shared.methodName,
+                                              "exception": Global.shared.exceptionMsg,
+                                              "exceptionStack": Global.shared.methodName,
+                                              "registrationId": Global.shared.afterLoginRegistrtnId ?? ""]
+        
+        let headers: HTTPHeaders = [
+            "Content-Type": "application/json"
+        ]
+        
+        channelExceptionImplementation(headersTobePassed: headers, postParameters: paramaterPasing) { resonseTal , errorString in
+           
+            if errorString == nil
+            {
+                print(resonseTal)
+                Global.shared.methodName = ""
+                Global.shared.exceptionMsg = ""
+                Global.shared.methodName = ""
+            }
+            else
+            {
+               
+            }
+        }
+    }
     //for speciality descipline api
     /*func specialityDesplineImplimentation(headersTobePassed :[String:String],completionHandler: @escaping (NSDictionary?, String?) -> ())
      {
@@ -1348,9 +1394,6 @@ func appVersionControl(headersTobePassed : HTTPHeaders,postParameters :[String:A
      }
      }*/
     
-    
-    
-    
     func dealWithDictResponse(response:AFDataResponse<Any>)->(NSDictionary?, String?)
     {
         var errorString:String = ""
@@ -1361,6 +1404,10 @@ func appVersionControl(headersTobePassed : HTTPHeaders,postParameters :[String:A
             if let statusCode = response.response?.statusCode
             {
                 errorString = errorString + "Error Code: \(statusCode)"
+//                if statusCode == 400
+//                {
+//                    self.navigateAppSiteUnderMaintananceController()
+//                }
             }
             if let responseDict = value as? NSDictionary
             {
@@ -1379,15 +1426,34 @@ func appVersionControl(headersTobePassed : HTTPHeaders,postParameters :[String:A
             print(error)
             // completion(nil)
             errorString = errorString + "\nMessage: \(error.localizedDescription)"
-            /*     if response.error?._code == NSURLErrorNotConnectedToInternet{
+                 if response.error?._code == NSURLErrorNotConnectedToInternet{
              print("no internet")
-             }*/
+             }
             errorString = error.localizedDescription
+            Global.shared.exceptionMsg = errorString
             return (nil, errorString)
             
         }
         
   //  return (responseValue, nil)
     }
+    func navigateAppSiteUnderMaintananceController() {
+        
+        guard let approotNavVC = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "SiteUnderMaintnanceController") as? SiteUnderMaintnanceController else {
+               fatalError("Unable to Instantiate SiteUnderMaintnanceController")
+           }
+
+           // Push Quotes View Controller Onto Navigation Stack
+           
+      //  let approotNavVC = UIStoryboard..instantiateViewController(withIdentifier: "SiteUnderMaintnanceController") as! SiteUnderMaintnanceController
+        //approotNavVC.dict_maintenance = dict
+      if #available(iOS 13.0, *) {
+        SceneDelegate.shared?.window?.rootViewController = approotNavVC
+      } else {
+        AppDelegate.sharedInstance().window?.rootViewController = approotNavVC
+        AppDelegate.sharedInstance().window?.makeKeyAndVisible()
+        // Fallback on earlier versions
+      }
+   }
     
 }

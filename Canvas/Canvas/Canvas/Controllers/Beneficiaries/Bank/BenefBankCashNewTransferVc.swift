@@ -267,7 +267,7 @@ class BenefBankCashNewTransferVc: BaseViewController, UITextFieldDelegate {
         
        // self.removeSpinner()
         if  BeneficiaryDetails.shared.quickSend == "Quick" {
-       print("nothing")
+              print("nothing")
         }
         else {
             self.removeLoader()
@@ -366,6 +366,7 @@ class BenefBankCashNewTransferVc: BaseViewController, UITextFieldDelegate {
                     self.purposeField.text = (benList[0] as AnyObject).value(forKey: "defaultPurposeName") as? String ?? ""
                     
                     self.assigningLabels()
+                        
                     
                     if  BeneficiaryDetails.shared.quickSend == "Quick" {
                         

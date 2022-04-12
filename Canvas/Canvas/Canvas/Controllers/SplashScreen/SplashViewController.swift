@@ -105,8 +105,8 @@ class SplashViewController: BaseViewController {
                        }
                    else if statusCode == 400
                     {
-                        self.navigateAppSiteUnderMaintananceController()
-                      //    self.navigateAppRootNavigationController()
+                       // self.navigateAppSiteUnderMaintananceController()
+                          self.navigateAppRootNavigationController()
                     }
                     else
                     {
@@ -135,17 +135,16 @@ class SplashViewController: BaseViewController {
 
                                }
                                
-                               else {
+                              
 //                                   let alert = ViewControllerManager.displayAlert(message: errorString ?? "", title:APPLICATIONNAME)
-//                                   self.present(alert, animated: true, completion: nil)
+       //                           self.present(alert, animated: true, completion: nil)
                                   // self.navigateAppRootNavigationController()
-                                   self.navigateAppSiteUnderMaintananceController()
-                               }
+                             //      self.navigateAppSiteUnderMaintananceController()
+                         //      }
                               
                                
                            }
 
-               
            }
         
     }
@@ -154,8 +153,29 @@ class SplashViewController: BaseViewController {
 
 extension SplashViewController: SwiftyGifDelegate {
     func gifDidStop(sender: UIImageView) {
+        
+        if Connectivity.isConnectedToInternet {
+                callSiteUnderMencAPI()
+        }
+        else
+        {
+            let alert = UIAlertController(title: "Alert", message: "The Internet connection appears to be offline.", preferredStyle: UIAlertController.Style.alert)
+            // add an action (button)
+            alert.view.tintColor = ColorCodes.newAppRed
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: {_ in
+                if Connectivity.isConnectedToInternet {
+                    self.callSiteUnderMencAPI()
+                }
+                else{
+                    exit(0)
+                }
+               
+            }))
+            // show the alert
+            self.present(alert, animated: true, completion: nil)
+        }
       //
-        callSiteUnderMencAPI()
+        
        // self.navigateAppRootNavigationController()
         
     }

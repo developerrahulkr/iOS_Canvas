@@ -231,6 +231,7 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
             if errorString == nil
             {
                 
+                
              //  print(resonseTal)
                 if let offers = resonseTal?.value(forKey: "preLoginListOffersResponseModels") as? NSArray
                 {
@@ -568,6 +569,7 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
         navigationController?.setNavigationBarHidden(true, animated: animated)
          self.userTxtField.text = ""
          self.pswdTxtField.text = ""
+        Global.shared.biometricPoup = ""
         //  navigationController?.navigationBar.barStyle = .black
         
     }
@@ -796,6 +798,8 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
                         if let footerContent = dataDict.value(forKey: "footer_content") as? NSDictionary {
                             
                             Global.shared.faqTxt = footerContent["faqs"] as? String ?? ""
+                            Global.shared.helpTxt = footerContent["help"] as? String ?? ""
+                            
                         }
                         
                         
@@ -1404,6 +1408,13 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
                                 Global.shared.changeNewPassword = changePswdScreen["new_password"] as? String ?? ""
                                 
                             }
+                            if let biometricModel = userManagment.value(forKey: "biometric_modal") as? NSDictionary {
+                                
+                                Global.shared.bioEnable = biometricModel["lbl_desc1"] as? String ?? ""
+                                Global.shared.bioDoItlater = biometricModel["lbl_desc2"] as? String ?? ""
+                                Global.shared.biometricHeader = biometricModel["lbl_header1"] as? String ?? ""
+                                
+                            }
                             
                         }
                     }
@@ -1469,7 +1480,7 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
         
         
         self.termsAndConditionsLbl.text =  Global.shared.termsConditionBtnTxt
-        self.faqLbl.text = Global.shared.faqTxt
+        self.faqLbl.text = Global.shared.helpTxt
         self.ourBranchesLbl.text = Global.shared.ourBranches
         self.rateCalculatorLbl.text = Global.shared.rateCalculatorHeader
         self.downContactUsLbl.text = Global.shared.menuContact
@@ -1499,6 +1510,7 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
         let headers: HTTPHeaders = [
             "Content-Type": "application/json"
         ]
+        
         
         NetWorkDataManager.sharedInstance.loginImplimentation(headersTobePassed: headers, postParameters: paramaterPasing) { [self] resonseTal , errorString in
             self.loginBtnOtlt.isEnabled = true
@@ -1565,6 +1577,11 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
                     let alert = ViewControllerManager.displayAlert(message: errorString ?? "", title:APPLICATIONNAME)
                     self.present(alert, animated: true, completion: nil)
                 }
+                Global.shared.methodName = CanvasUrls.login
+                NetWorkDataManager.sharedInstance.callChannelException()
+                
+                
+                
 //                let alert = ViewControllerManager.displayAlert(message: finalError?[1] ?? "", title:APPLICATIONNAME)
 //                self.present(alert, animated: true, completion: nil)
                 
@@ -2272,8 +2289,11 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
                     let alert = ViewControllerManager.displayAlert(message: errorString ?? "", title:APPLICATIONNAME)
                     self.present(alert, animated: true, completion: nil)
                 }
+             
 //                let alert = ViewControllerManager.displayAlert(message: finalError?[1] ?? "", title:APPLICATIONNAME)
 //                self.present(alert, animated: true, completion: nil)
+                Global.shared.methodName = CanvasUrls.checkBiometricEnabled
+                NetWorkDataManager.sharedInstance.callChannelException()
                 
             }
         }

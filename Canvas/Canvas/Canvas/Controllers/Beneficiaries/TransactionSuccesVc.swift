@@ -151,6 +151,7 @@ class TransactionSuccesVc: UIViewController {
          ]*/
         
         print(paramaterPasing)
+        self.showSpinner(onView: self.view)
         
         let headers: HTTPHeaders = [.authorization(bearerToken: UserDefaults.standard.string(forKey: "token")!)]
         
@@ -158,7 +159,7 @@ class TransactionSuccesVc: UIViewController {
             
             if errorString == nil
             {
-                
+                self.removeSpinner()
                 print(resonseTal!)
                 
                 if let transctnHistory = resonseTal?.value(forKey: "transactionHistory") as? NSArray {

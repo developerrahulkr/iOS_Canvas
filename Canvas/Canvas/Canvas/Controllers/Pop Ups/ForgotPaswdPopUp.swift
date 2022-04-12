@@ -87,6 +87,7 @@ class ForgotPaswdPopUp: UIViewController, UITextFieldDelegate {
         requiredLbl.textColor = ColorCodes.newAppRed
         
         self.termsAndConditionsLbl.text =  Global.shared.termsConditionBtnTxt
+       // self.faqLbl.text = Global.shared.helpTxt
         self.faqLbl.text = Global.shared.faqTxt
         self.ourBranchesLbl.text = Global.shared.ourBranches
         self.rateCalculatorLbl.text = Global.shared.rateCalculatorHeader

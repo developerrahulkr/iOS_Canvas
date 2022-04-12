@@ -49,7 +49,7 @@ class TransactionsMainVc: UIViewController, XMSegmentedControlDelegate, navigate
     menuItemsData()
     assigningLabels()
     btn_tips.isHidden = true
-   // getHelpList()
+    getHelpList()
   }
     
     func assigningLabels() {

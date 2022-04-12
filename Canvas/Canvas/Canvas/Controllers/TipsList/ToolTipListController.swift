@@ -101,7 +101,8 @@ extension ToolTipListController : UITableViewDelegate
     {
         let tips = helpVideoList[indexPath.row]
         let videoUrl = tips["videoURL"] as? String ?? ""
-        playDefaultSampleVideo(videoStr: videoUrl)
+      //  let urlString = videoUrl.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
+        playDefaultSampleVideo(videoStr: videoUrl ?? "")
         print("You selected url #\(videoUrl)!")
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

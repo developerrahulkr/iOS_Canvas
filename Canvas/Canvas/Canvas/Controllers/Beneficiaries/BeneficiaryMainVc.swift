@@ -46,7 +46,7 @@ class BeneficiaryMainVc: BaseViewController, XMSegmentedControlDelegate, navigat
     override func viewDidLoad() {
         super.viewDidLoad()
         btn_tip.isHidden = true
-       // getHelpList()
+        getHelpList()
         
         if LocalizationSystem.sharedInstance.getLanguage() == "ar" {
             let titles = [Global.shared.addWesternUnion! ,Global.shared.addCash!,Global.shared.addBank!]

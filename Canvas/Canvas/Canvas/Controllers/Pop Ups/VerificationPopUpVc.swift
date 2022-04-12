@@ -897,7 +897,7 @@ class VerificationPopUpVc: UIViewController, UITextFieldDelegate {
                  // print(resonseTal)
                 let statusMsgg = resonseTal?.value(forKey: "statusMessage") as? String ?? ""
                 if let statusCode = resonseTal?.value(forKey: "statusCodes") as? Int {
-                 
+                let mesageCode = resonseTal?.value(forKey: "messageCode") as? String ?? statusMsgg
                  print(statusCode)
                  if(statusCode == 200) {
                     if  Global.shared.fromNewExistUser == "Benef1"  || Global.shared.fromNewExistUser == "Benef1Edit"  {
@@ -918,8 +918,8 @@ class VerificationPopUpVc: UIViewController, UITextFieldDelegate {
                         self.pushViewController(controller: BenefWuNewDirectTrnferVc.initiateController())
                        }
                  }
-                    let mesageCode = resonseTal?.value(forKey: "messageCode") as? String ?? statusMsgg
-                    if statusCode ==  400 {
+                   
+                    else if statusCode ==  400 {
                         if mesageCode == "E110042"
                         {
                             self.showAlert(withTitle: "", withMessage: resonseTal?["statusMessage"] as? String ?? "")

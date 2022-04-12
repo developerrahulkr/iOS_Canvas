@@ -139,13 +139,13 @@ class BenefWuNewDirectTrnferVc: UIViewController, UITextFieldDelegate {
         
        
         sendNowBtnOtlt.setTitle(" " + Global.shared.sendNowTxt, for: .normal)
-        self.showSpinner(onView: self.view)
+     //   self.showSpinner(onView: self.view)
         secndHideLbl.text = Global.shared.youPauOnlyyTxt
         inrOrOtherCurencyLbl.text = BeneficiaryDetails.shared.targetCurncyFulName
         
         let indexG = Global.shared.countryNameData.firstIndex(of: BeneficiaryDetails.shared.country)
 
-                           let countryCodeD = Global.shared.countryCodesData[indexG ?? 0]
+        let countryCodeD = Global.shared.countryCodesData[indexG ?? 0]
                                      //  self.placeOfBirthImg.image = UIImage(named: dropDisplay)
         self.targetCurncyImg.image = UIImage(named:  countryCodeD.lowercased())
    //     targetCurncyImg.image = UIImage(named: BeneficiaryDetails.shared.country)

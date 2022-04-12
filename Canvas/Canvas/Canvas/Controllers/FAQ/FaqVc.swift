@@ -41,11 +41,12 @@ class FaqVc: UIViewController, UITableViewDataSource, UITableViewDelegate, UISea
     var faqList = [FaqSearch]()
     var faqSearchList = [FaqSearch]()
    
-        
     var searching = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         
         UISegmentedControl.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .selected)
         UISegmentedControl.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.darkGray], for: .normal)
@@ -66,10 +67,10 @@ class FaqVc: UIViewController, UITableViewDataSource, UITableViewDelegate, UISea
 //        self.seg.delegate = self
 //        self.seg.segmentTitle = titles
 //        }
-        segment.setTitle("Help", forSegmentAt: 0)
-       // segment.setTitle(Global.shared.faqTxt!, forSegmentAt: 0)
-        segment.setTitle("FAQ's", forSegmentAt: 1)
-       // segmentHeight.constant = 0
+      
+        segment.setTitle(Global.shared.helpTxt!, forSegmentAt: 0)
+        segment.setTitle(Global.shared.faqTxt!, forSegmentAt: 1)
+      //  segmentHeight.constant = 0
        // segment.isHidden = true
         
         
@@ -88,17 +89,11 @@ class FaqVc: UIViewController, UITableViewDataSource, UITableViewDelegate, UISea
 //        self.navigationController?.navigationBar.isHidden = true
 //        self.seg.backgroundColor = UIColor.white
         
-        self.showSpinner(onView: self.view)
-        
-        self.navHeaderLbl.text = Global.shared.faqTxt
-       // self.navHeaderLbl.text = "Help"
-      
+       self.showSpinner(onView: self.view)
+       self.navHeaderLbl.text = Global.shared.helpTxt
+      //  self.navHeaderLbl.text = Global.shared.faqTxt
         segment.selectedSegmentIndex = 0
-     
-      
-       // faqTableView.estimatedRowHeight = 68
-       // faqTableView.rowHeight = UITableView.automaticDimension
-        checkBtn = "1"
+        checkBtn = "0"
         
         self.faqTableView.estimatedRowHeight = 140
         self.faqTableView.rowHeight = UITableView.automaticDimension
@@ -286,8 +281,16 @@ class FaqVc: UIViewController, UITableViewDataSource, UITableViewDelegate, UISea
                  let image = UIImage(named: "al-muzainilogo")
                  let url = URL(string: thumbImg ?? "")
                 // cell.helpThumbImg.kf.setImage(with: url)
+                if url == nil
+                {
+                    cell.helpThumbImg.kf.setImage(with: url, placeholder: image, options: nil, completionHandler: nil)
+                }
+                else{
+                    cell.helpThumbImg.kf.setImage(with: url, placeholder: nil, options: nil, completionHandler: nil)
+                }
                  cell.helpThumbImg.backgroundColor = UIColor.clear
-                 cell.helpThumbImg.kf.setImage(with: url, placeholder: nil, options: nil, completionHandler: nil)
+                
+              //   cell.helpThumbImg.kf.setImage(with: url, placeholder: nil, options: nil, completionHandler: nil)
                  
                  // for less/more button
                  cell.btn_more.tag = indexPath.row
@@ -303,7 +306,7 @@ class FaqVc: UIViewController, UITableViewDataSource, UITableViewDelegate, UISea
                  else{
                      cell.btn_more.setTitle("More", for: .normal)
                  }
-                 if eachObj.content!.count <= 100
+                 if eachObj.content!.count <= 160
                  {
                      cell.btn_more.setTitle("", for: .normal)
                  }
@@ -321,6 +324,7 @@ class FaqVc: UIViewController, UITableViewDataSource, UITableViewDelegate, UISea
                 
                 // for thumb Image
                 let thumbImg = eachObj.thumbNailURL
+              //  let urlString = thumbImg?.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
                 cell.helpThumbImg.contentMode = .scaleToFill
                
                 let image = UIImage(named: "al-muzainilogo")
@@ -352,7 +356,7 @@ class FaqVc: UIViewController, UITableViewDataSource, UITableViewDelegate, UISea
                 else{
                     cell.btn_more.setTitle("More..", for: .normal)
                 }
-                if eachObj.content!.count <= 170
+                if eachObj.content!.count <= 160
                 {
                     cell.btn_more.setTitle("", for: .normal)
                 }
@@ -374,13 +378,16 @@ class FaqVc: UIViewController, UITableViewDataSource, UITableViewDelegate, UISea
             {
                 let eachObj = self.helpSearchList[indexPath.row]
                 let videoUrl = eachObj.videoURL
+              //  let urlString = videoUrl?.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
                 playDefaultSampleVideo(videoStr:videoUrl ?? "")
                 print("You selected cell #\(indexPath.row)!")
             }
             else{
                 let eachObj = self.helpVideoList[indexPath.row]
                 let videoUrl = eachObj.videoURL
+             //   let urlString = videoUrl?.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
                 playDefaultSampleVideo(videoStr:videoUrl ?? "")
+                
                 print("You selected cell #\(indexPath.row)!")
             }
           
@@ -483,12 +490,12 @@ class FaqVc: UIViewController, UITableViewDataSource, UITableViewDelegate, UISea
     {
         if segment.selectedSegmentIndex == 0 {
             print("Select 0")
-            self.navHeaderLbl.text = Global.shared.faqTxt
+            self.navHeaderLbl.text = Global.shared.helpTxt
             checkBtn = "0"
             
         } else {
             print("Select 1")
-            self.navHeaderLbl.text = "FAQ's"
+            self.navHeaderLbl.text = Global.shared.faqTxt
             checkBtn = "1"
         }
         self.faqTableView.reloadData()
@@ -499,7 +506,8 @@ class FaqVc: UIViewController, UITableViewDataSource, UITableViewDelegate, UISea
             //duelsView.isHidden=false
             if selectedSegment == 0 {
                 print("Select 0")
-                self.navHeaderLbl.text = Global.shared.faqTxt
+               // self.navHeaderLbl.text = Global.shared.faqTxt
+                self.navHeaderLbl.text = "Help"
                 checkBtn = "0"
                 
             } else {

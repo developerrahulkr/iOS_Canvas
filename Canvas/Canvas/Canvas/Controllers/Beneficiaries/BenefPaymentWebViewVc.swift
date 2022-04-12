@@ -41,7 +41,7 @@ class BenefPaymentWebViewVc: UIViewController, WKNavigationDelegate {
         // Staging
        //  "http://online-uat.muzaini.com:8076/paygate/paymentrequest?tid="
       
-        let gatewayUrl = NSURL(string: "http://online-uat.muzaini.com:8076/paygate/paymentrequest?tid=" + BeneficiaryDetails.shared.txnRefNo)
+        let gatewayUrl = NSURL(string: "https://online1.muzaini.com/paygate/paymentrequest?tid=" + BeneficiaryDetails.shared.txnRefNo)
         let urlRequest = URLRequest(url: gatewayUrl! as URL)
         webView?.load(urlRequest)
         
@@ -55,14 +55,14 @@ class BenefPaymentWebViewVc: UIViewController, WKNavigationDelegate {
         let urlString = webView.url?.absoluteString
             
         //Production
-     //  if urlString == "https://online1.muzaini.com/paygate/PaymentSuccess"  || urlString == "https://online1.muzaini.com/paygate/PaymentError" {
+       if urlString == "https://online1.muzaini.com/paygate/PaymentSuccess"  || urlString == "https://online1.muzaini.com/paygate/PaymentError" {
            
     // Staging
            
-           if urlString == "http://online-uat.muzaini.com:8076/paygate/PaymentSuccess"  || urlString == "http://online-uat.muzaini.com:8076/paygate/PaymentError" {
+      //     if urlString == "http://online-uat.muzaini.com:8076/paygate/PaymentSuccess"  || urlString == "http://online-uat.muzaini.com:8076/paygate/PaymentError" {
         
         //deployment
-     //    if urlString == "http://online-uat.muzaini.com:83/paygate/PaymentSuccess"  || urlString == "http://online-uat.muzaini.com:83/paygate/PaymentError" {
+      //   if urlString == "http://online-uat.muzaini.com:83/paygate/PaymentSuccess"  || urlString == "http://online-uat.muzaini.com:83/paygate/PaymentError" {
                  
         //presnet development
             
@@ -71,11 +71,11 @@ class BenefPaymentWebViewVc: UIViewController, WKNavigationDelegate {
              self.pushViewController(controller: TransactionSuccesVc.initiateController())
        }
 
-     //   else if urlString == "https://online1.muzaini.com/paygate/PaymentError" {
+        else if urlString == "https://online1.muzaini.com/paygate/PaymentError" {
             
-            else if urlString == "http://online-uat.muzaini.com:8076/paygate/PaymentError" {
+        //    else if urlString == "http://online-uat.muzaini.com:8076/paygate/PaymentError" {
 
-     //    else if urlString == "http://online-uat.muzaini.com:83/paygate/PaymentError" {
+    //     else if urlString == "http://online-uat.muzaini.com:83/paygate/PaymentError" {
           // else if urlString == "http://15.207.206.161/home/PaymentError" {
             self.hidesBottomBarWhenPushed = false
             self.pushViewController(controller: TransactionSuccesVc.initiateController())
