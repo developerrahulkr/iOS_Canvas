@@ -88,6 +88,8 @@ class ForgotUsernamePopUp: UIViewController, UITextFieldDelegate {
         
         subHeaderLbl.text = Global.shared.confirmCivildIdTxt
         
+        civilIdField.keyboardType = .asciiCapableNumberPad
+        
         
     }
    

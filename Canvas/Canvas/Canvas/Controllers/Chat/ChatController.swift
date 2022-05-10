@@ -35,11 +35,7 @@ class ChatController: BaseViewController,WKNavigationDelegate {
       
         if checkPath == "0"
         {
-        
-          
             gatewayUrl = NSURL(string: "https://chat.muzaini.com/amec-webchat/mobile.html?channelsrc=IOS&ChatPluginState=max&lang=\(currentLang)")!
-            
-          //  gatewayUrl = NSURL(string: htmlStr)!
 
         }
         else
@@ -49,19 +45,13 @@ class ChatController: BaseViewController,WKNavigationDelegate {
             let salute = UserDefaults.standard.string(forKey: "salutation")!
             let email = UserDefaults.standard.string(forKey: "displayEmail")!
             let mobile = UserDefaults.standard.string(forKey: "displayMobile")!
-        //    let htmlStr =  "https://chat.muzaini.com/amec-webchat/mobile.html?channelsrc=IOS&ChatPluginState=max&lang=\(currentLang)&salute=\(salute)%20&FName=\(firstName)&LName=\(lastName)&email=\(email)&mNumber=\(mobile)"
-            
-            
             let htmlStr =   "https://chat.muzaini.com/amec-webchat/mobile.html?channelsrc=IOS&ChatPluginState=max&lang=\(currentLang)&FName=\(firstName)&LName=\(lastName)&email=\(email)&mNumber=\(mobile)&salute=\(salute)%20"
             gatewayUrl = NSURL(string: htmlStr)!
-           // gatewayUrl = NSURL(string: "https://chat.muzaini.com/amec-webchat/mobile.html?channelsrc=IOS&ChatPluginState=max&lang=en")!
+
         }
-        
         
         let urlRequest = URLRequest(url: gatewayUrl as URL)
         webView?.load(urlRequest)
-       // https://csapi-uat.muzaini.com/amec-webchat/muzaini.html?channelsrc=IOS
-        
     }
 
     override func viewWillAppear(_ animated: Bool) {

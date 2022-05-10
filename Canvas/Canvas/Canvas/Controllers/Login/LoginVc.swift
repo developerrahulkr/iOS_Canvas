@@ -2263,10 +2263,10 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
                 if let statusCode = resonseTal?.value(forKey: "statusCodes") as? Int {
                     
                     if(statusCode == 200) {
-                        
+
                         self.authenticationWithTouchID()
                     }
-                    
+
                     else {
                         let alert = ViewControllerManager.displayAlert(message:Global.shared.messageCodeType(text: mesageCode), title:APPLICATIONNAME)
                         self.present(alert, animated: true, completion: nil)

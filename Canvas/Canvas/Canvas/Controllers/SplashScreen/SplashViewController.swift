@@ -76,6 +76,8 @@ class SplashViewController: BaseViewController {
                        
                        print(statusCode)
                        if(statusCode == 200) {
+                           
+                           
                          
                            let startDate = resonseTal?.value(forKey: "startDate") as? String
                            let endDate = resonseTal?.value(forKey: "endDate") as? String
@@ -85,24 +87,40 @@ class SplashViewController: BaseViewController {
                            let dateFormatter = DateFormatter()
                            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
                            
-                           let currentDate = dateFormatter.date(from: currentDateStr)
-                           let start = dateFormatter.date(from: startDate ?? "")!
-                           let end = dateFormatter.date(from: endDate ?? "")!
-                           if start.compare(currentDate!) == .orderedAscending && end.compare(currentDate!) == .orderedDescending {
-                               self.dict["titleAr"] =  resonseTal?.value(forKey: "titleAr") as? String
-                               self.dict["descriptionEn"] =  resonseTal?.value(forKey: "descriptionEn") as? String
-                               self.dict["descriptionAr"] =  resonseTal?.value(forKey: "descriptionAr") as? String
-                               self.dict["titleEn"] =  resonseTal?.value(forKey: "titleEn") as? String
-                               self.navigateAppSiteUnderMaintananceController()
-                                  }
+                          if let currentDate = dateFormatter.date(from: currentDateStr)
+                          {
+                           if let start = dateFormatter.date(from: startDate ?? "")
+                            {
+                                if let end = dateFormatter.date(from: endDate ?? "")
+                                {
+                                    if start.compare(currentDate) == .orderedAscending && end.compare(currentDate) == .orderedDescending {
+                                            self.dict["titleAr"] =  resonseTal?.value(forKey: "titleAr") as? String
+                                            self.dict["descriptionEn"] =  resonseTal?.value(forKey: "descriptionEn") as? String
+                                            self.dict["descriptionAr"] =  resonseTal?.value(forKey: "descriptionAr") as? String
+                                            self.dict["titleEn"] =  resonseTal?.value(forKey: "titleEn") as? String
+                                            self.navigateAppSiteUnderMaintananceController()
+                                          }
+                                          else{
+                                              self.navigateAppRootNavigationController()
+                                          }
+                                 }
+                               else{
+                                   self.navigateAppRootNavigationController()
+                               }
+                           }
+                              
                            else
                            {
                               // self.navigateAppSiteUnderMaintananceController()
                                self.navigateAppRootNavigationController()
                            }
+                        }
+                        else{
+                            self.navigateAppRootNavigationController()
+                        }
                            
-                        
-                       }
+                           
+                   }
                    else if statusCode == 400
                     {
                        // self.navigateAppSiteUnderMaintananceController()
@@ -110,7 +128,8 @@ class SplashViewController: BaseViewController {
                     }
                     else
                     {
-                        self.navigateAppSiteUnderMaintananceController()
+                       // self.navigateAppSiteUnderMaintananceController()
+                        self.navigateAppRootNavigationController()
                     }
                        
                     

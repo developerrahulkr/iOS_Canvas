@@ -375,7 +375,9 @@ class BenefBankCashNewTransferVc: BaseViewController, UITextFieldDelegate {
                         self.purposeField.text = (benList[0] as AnyObject).value(forKey: "defaultPurposeName") as? String ?? ""
                      //   self.removeLoader()
                     //    self.removeSpinner()
-                        self.rateSourceCalculator()
+                        DispatchQueue.main.async {
+                            self.rateSourceCalculator()
+                        }
                         
                     }
                 }

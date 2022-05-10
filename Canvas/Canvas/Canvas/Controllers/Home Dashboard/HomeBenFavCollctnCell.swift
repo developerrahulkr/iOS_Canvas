@@ -48,7 +48,7 @@ class HomeBenFavCollctnCell: UICollectionViewCell {
        var swiftCode = ""
        var ibanCode = ""
        var cnicno = ""
-       
+
        var abaRouteCode = ""
        var agentID = ""
        var agentName = ""

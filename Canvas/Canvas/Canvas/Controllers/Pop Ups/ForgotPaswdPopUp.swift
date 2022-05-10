@@ -87,17 +87,15 @@ class ForgotPaswdPopUp: UIViewController, UITextFieldDelegate {
         requiredLbl.textColor = ColorCodes.newAppRed
         
         self.termsAndConditionsLbl.text =  Global.shared.termsConditionBtnTxt
-       // self.faqLbl.text = Global.shared.helpTxt
+        // self.faqLbl.text = Global.shared.helpTxt
         self.faqLbl.text = Global.shared.faqTxt
         self.ourBranchesLbl.text = Global.shared.ourBranches
         self.rateCalculatorLbl.text = Global.shared.rateCalculatorHeader
         self.downContactUsLbl.text = Global.shared.menuContact
         
         subHeaderLbl.text = Global.shared.confrmUserToResetPaswd
-        
         requiredLbl.font = Global.shared.fontReqLbl
         requiredLbl.textColor = ColorCodes.newAppRed
-        
         
         headerLbl.text = Global.shared.forgotPswdTxt
         userNameLbl.text = Global.shared.userNameTxt + "*"
@@ -108,9 +106,11 @@ class ForgotPaswdPopUp: UIViewController, UITextFieldDelegate {
         confirmBtnOtlt.setTitle(Global.shared.verifctnConfirmBtnTxt, for: .normal)
         requiredLbl.text = Global.shared.userNameTxt + " " + Global.shared.errorTxtRequired
         cancelBtnOtlt.setTitle(Global.shared.backBtnTxt, for: .normal)
+        
+        civilIdField.keyboardType = .asciiCapableNumberPad
+        userNameField.keyboardType = .asciiCapable
     }
    
-    
     @IBAction func cancelBtnActn(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -125,9 +125,6 @@ class ForgotPaswdPopUp: UIViewController, UITextFieldDelegate {
         else {
             self.showSpinner(onView: self.view)
             forgotPassword()
-            
-            
-            
         }
     }
     

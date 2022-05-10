@@ -203,6 +203,14 @@ class BenefWuDirectTransferVc: UIViewController, UITextFieldDelegate, UIDropDown
               imageGesture()
         
         assigingLabels()
+        setKeyBoardType()
+        
+    }
+    func setKeyBoardType(){
+        firstField.keyboardType = UIKeyboardType.asciiCapable
+        lastField.keyboardType = UIKeyboardType.asciiCapable
+        middleField.keyboardType = UIKeyboardType.asciiCapable
+       
         
     }
     

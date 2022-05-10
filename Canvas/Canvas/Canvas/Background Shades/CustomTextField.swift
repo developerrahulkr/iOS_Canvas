@@ -134,13 +134,13 @@ class CustomTextField: UITextField {
     }
          return true
     }
-//    override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
-//        if action == #selector(UIResponderStandardEditActions.paste(_:)) ||  action == #selector(UIResponderStandardEditActions.copy(_:)) || action == #selector(UIResponderStandardEditActions.cut(_:)) {
-//                print("abc")
-//                return false
-//            }
-//            return super.canPerformAction(action, withSender: sender)
-//       }
+    override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+        if action == #selector(UIResponderStandardEditActions.paste(_:)) ||  action == #selector(UIResponderStandardEditActions.copy(_:)) || action == #selector(UIResponderStandardEditActions.cut(_:)) {
+                print("abc")
+                return false
+            }
+            return super.canPerformAction(action, withSender: sender)
+       }
 }
 
 

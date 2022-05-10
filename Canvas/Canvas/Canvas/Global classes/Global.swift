@@ -882,8 +882,9 @@ class Global {
                return messageType
             }
         }
-        return ""
-        
+        else{
+            return ""
+        }
     }
     
     func convertToAryDictionary(text: String) -> [[String: Any]]? {
