@@ -325,6 +325,17 @@ extension String {
         
    
     }
+        func utf8DecodedString()-> String {
+            let data = self.data(using: .utf8)
+            let message = String(data: data!, encoding: .nonLossyASCII) ?? ""
+            return message
+        }
+        
+        func utf8EncodedString()-> String {
+            let messageData = self.data(using: .nonLossyASCII)
+            let text = String(data: messageData!, encoding: .utf8) ?? ""
+            return text
+        }
     
         func matches(for regex: String) -> [String] {
             do {
@@ -339,7 +350,20 @@ extension String {
                 return []
             }
         }
+    var base64Decoded: Data? {
+            return Data(base64Encoded: self)
+        }
     
+}
+extension Data {
+    var string: String? {
+        return String(data: self, encoding: .utf8)
+    }
+}
+extension StringProtocol {
+    var data: Data {
+        return Data(utf8)
+    }
 }
 extension UIImage {
 

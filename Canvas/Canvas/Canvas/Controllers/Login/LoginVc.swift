@@ -11,6 +11,7 @@ import Alamofire
 import GoogleMaps
 import GooglePlaces
 import LocalAuthentication
+import Firebase
 
 let reuseIdentifier = "offerCell";
 class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource, UICollectionViewDelegate{
@@ -100,7 +101,9 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
     
     override func viewDidLoad() {
         super.viewDidLoad()
+       
        // self.collectionView!.register(PreLoginOfferCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        
         let devicee = UIDevice.current.name
        // self.faceIdTopConstrt.constant =  CGFloat(getHeightOfScreen(text: devicee)
         collectionViewHeight.constant = 0
@@ -657,6 +660,7 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
     
     
     @IBAction func loginBtnActn(_ sender: Any) {
+       
         
         if userTxtField.text == "" &&  pswdTxtField.text == "" {
             
@@ -1503,7 +1507,7 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
     // MARK: For login
     func loginToAccount() {
         
-        
+        Analytics.logEvent("ios_Login", parameters: nil)
         let paramaterPasing: [String:Any] = ["username": userTxtField.text ?? "",
                                              "password": pswdTxtField.text ?? ""]
         

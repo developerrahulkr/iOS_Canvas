@@ -27,6 +27,7 @@
 		2CA2D99B272E739B00CC9058 /* PhotoSliderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CA2D99A272E739B00CC9058 /* PhotoSliderView.xib */; };
 		2CA2D9A4273D285E00CC9058 /* UpdateCivilIDController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA2D9A2273D285E00CC9058 /* UpdateCivilIDController.swift */; };
 		2CA2D9A5273D285E00CC9058 /* ShowImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA2D9A3273D285E00CC9058 /* ShowImageController.swift */; };
+		2CC5180D284F61A50040F7A2 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CC5180C284F61A50040F7A2 /* AdSupport.framework */; };
 		2CEE5FF3277C4517005BC4B9 /* SiteUnderMaintnanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEE5FF2277C4517005BC4B9 /* SiteUnderMaintnanceController.swift */; };
 		2EA904DDF467A2A39B14AD27 /* Pods_Canvas.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1919899CC39E0CDDA2C7E03 /* Pods_Canvas.framework */; };
 		8E07CEA82583DAC600891289 /* TransctionPeriodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E07CEA62583DAC600891289 /* TransctionPeriodCell.swift */; };
@@ -256,6 +257,7 @@
 		2CA2D99A272E739B00CC9058 /* PhotoSliderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PhotoSliderView.xib; path = ../../../../../../../../Desktop/PhotoSliderView.xib; sourceTree = "<group>"; };
 		2CA2D9A2273D285E00CC9058 /* UpdateCivilIDController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateCivilIDController.swift; sourceTree = "<group>"; };
 		2CA2D9A3273D285E00CC9058 /* ShowImageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowImageController.swift; sourceTree = "<group>"; };
+		2CC5180C284F61A50040F7A2 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		2CEE5FF2277C4517005BC4B9 /* SiteUnderMaintnanceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SiteUnderMaintnanceController.swift; sourceTree = "<group>"; };
 		682E4A379B29BB72C880381F /* Pods-Canvas-CanvasUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Canvas-CanvasUITests.debug.xcconfig"; path = "Target Support Files/Pods-Canvas-CanvasUITests/Pods-Canvas-CanvasUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		8E07CEA62583DAC600891289 /* TransctionPeriodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransctionPeriodCell.swift; sourceTree = "<group>"; };
@@ -473,6 +475,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CC5180D284F61A50040F7A2 /* AdSupport.framework in Frameworks */,
 				D545D1F82508A36A0098DC4D /* LocalAuthentication.framework in Frameworks */,
 				D55D3FC2253F216A004B521C /* WebKit.framework in Frameworks */,
 				D53393DD24E427100031D4A5 /* CloudKit.framework in Frameworks */,
@@ -502,6 +505,7 @@
 		01C7A88490678698CDC0FC70 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2CC5180C284F61A50040F7A2 /* AdSupport.framework */,
 				D55D3FC1253F2169004B521C /* WebKit.framework */,
 				D545D1F72508A36A0098DC4D /* LocalAuthentication.framework */,
 				D53393DC24E4270F0031D4A5 /* CloudKit.framework */,

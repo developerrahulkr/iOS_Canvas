@@ -8,7 +8,7 @@
 
 import UIKit
 import Alamofire
-
+import Firebase
 class VerifyOnlineAcntVc: BaseViewController, UITextFieldDelegate, EasyTipViewDelegate  {
     
     @IBOutlet weak var headerLbl: UILabel!
@@ -245,6 +245,7 @@ class VerifyOnlineAcntVc: BaseViewController, UITextFieldDelegate, EasyTipViewDe
     
     
     @IBAction func submitBtnActn(_ sender: Any) {
+        Analytics.logEvent("ios_registration", parameters: nil)
         if self.easyTipView == nil {
             print("nothing")
         }

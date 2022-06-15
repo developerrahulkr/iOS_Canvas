@@ -683,13 +683,42 @@ class VerificationPopUpVc: UIViewController, UITextFieldDelegate {
             self.confirmBtnOtlt.isEnabled = true
             if errorString == nil
             {
-                   print(resonseTal)
+                 //  print(resonseTal)
                 let mesageCode = resonseTal?.value(forKey: "messageCode") as? String
                 if let statusCode = resonseTal?.value(forKey: "statusCodes") as? Int {
                     
                     print(statusCode)
                     if(statusCode == 200) {
-                        self.verifyAccount()
+                        if let status = resonseTal?.value(forKey: "status") as? String
+                        {
+                            let base64String = status
+                            if let data = base64String.base64Decoded {
+                                print(data)                                    //  11 bytes
+                                print(data.base64EncodedString())              //
+                                print(data.string ?? "nil")
+                                let str = data.string
+                                let StringArr = str?.components(separatedBy: ":")
+                                let checkTrue: String = StringArr?[1] ?? ""
+                                
+                                if checkTrue == "true"
+                                {
+                                    self.verifyAccount()
+                                }
+                                else{
+                                    self.removeSpinner()
+                                    self.otp1.text = ""
+                                    self.otp2.text = ""
+                                    self.otp3.text = ""
+                                    self.otp4.text = ""
+                                    self.invalidOtpTxt.isHidden = false
+                                }
+                            }
+                         //   let decodedStr = status.utf8EncodedString()
+                         //   let newStr = String(utf8String: status.cString(using: .utf8)!)
+                         //   print(newStr)
+                        }
+                        
+                      
                         
                     }
                         
@@ -738,7 +767,7 @@ class VerificationPopUpVc: UIViewController, UITextFieldDelegate {
             self.confirmBtnOtlt.isEnabled = true
             if errorString == nil
             {
-                 print(resonseTal)
+               //  print(resonseTal)
                 let mesageCode = resonseTal?.value(forKey: "messageCode") as? String
                 if let statusCode = resonseTal?.value(forKey: "statusCodes") as? Int {
                     
@@ -750,7 +779,36 @@ class VerificationPopUpVc: UIViewController, UITextFieldDelegate {
                         popOverVC.view.frame = self.view.frame
                         self.view.addSubview(popOverVC.view)
                         popOverVC.didMove(toParent: self)*/
-                        self.createNewUserMultipart()
+                        if let status = resonseTal?.value(forKey: "status") as? String
+                        {
+                            let base64String = status
+                            if let data = base64String.base64Decoded {
+                                print(data)                                    //  11 bytes
+                                print(data.base64EncodedString())              //
+                                print(data.string ?? "nil")
+                                let str = data.string
+                                let StringArr = str?.components(separatedBy: ":")
+                                let checkTrue: String = StringArr?[1] ?? ""
+                                
+                                if checkTrue == "true"
+                                {
+                                    self.createNewUserMultipart()
+                                }
+                                else{
+                                    self.removeSpinner()
+                                    self.otp1.text = ""
+                                    self.otp2.text = ""
+                                    self.otp3.text = ""
+                                    self.otp4.text = ""
+                                    self.invalidOtpTxt.isHidden = false
+                                }
+                            }
+                         //   let decodedStr = status.utf8EncodedString()
+                         //   let newStr = String(utf8String: status.cString(using: .utf8)!)
+                         //   print(newStr)
+                        }
+
+                        
                     }
                         
                     else {
@@ -799,14 +857,43 @@ class VerificationPopUpVc: UIViewController, UITextFieldDelegate {
             self.confirmBtnOtlt.isEnabled = true
             if errorString == nil
             {
-                //  print(resonseTal)
+                  print(resonseTal)
               //  let mesageCode = resonseTal?.value(forKey: "messageCode") as? String
                 if let statusCode = resonseTal?.value(forKey: "statusCodes") as? Int {
                     
                     print(statusCode)
                     if(statusCode == 200) {
-                        Global.shared.otpStr = otpStr
-                      self.pushViewController(controller: ResetPswdVc.initiateController())
+                        if let status = resonseTal?.value(forKey: "status") as? String
+                        {
+                            let base64String = status
+                            if let data = base64String.base64Decoded {
+                                print(data)                                    //  11 bytes
+                                print(data.base64EncodedString())              //
+                                print(data.string ?? "nil")
+                                let str = data.string
+                                let StringArr = str?.components(separatedBy: ":")
+                                let checkTrue: String = StringArr?[1] ?? ""
+                                
+                                if checkTrue == "true"
+                                {
+                                    Global.shared.otpStr = otpStr
+                                    self.pushViewController(controller: ResetPswdVc.initiateController())
+                                }
+                                else{
+                                    self.removeSpinner()
+                                    self.otp1.text = ""
+                                    self.otp2.text = ""
+                                    self.otp3.text = ""
+                                    self.otp4.text = ""
+                                    self.invalidOtpTxt.isHidden = false
+                                }
+                            }
+                         //   let decodedStr = status.utf8EncodedString()
+                         //   let newStr = String(utf8String: status.cString(using: .utf8)!)
+                         //   print(newStr)
+                        }
+                       
+                     
                       
                     }
                         

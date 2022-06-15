@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import MaterialShowcase
+import Firebase
 class ProfileVc: BaseViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIPopoverControllerDelegate, XMSegmentedControlDelegate, navigateToDiffrentScreenDelegate  {
     @IBOutlet weak var btn_tips: UIButton!
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -138,6 +139,7 @@ class ProfileVc: BaseViewController,UIImagePickerControllerDelegate,UINavigation
     }
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
+      Analytics.logEvent("ios_Profile", parameters: nil)
     Global.shared.timeoUtOrNot = "yes"
     observeTimeout()
     addGuideViews()

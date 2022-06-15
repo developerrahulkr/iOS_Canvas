@@ -10,6 +10,7 @@ import UIKit
 import Charts
 import Alamofire
 import MaterialShowcase
+import Firebase
 class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollectionViewDelegate, UITextFieldDelegate, navigateToDiffrentScreenDelegate, UIDropDownCurrencyDelegateM, XMSegmentedControlDelegate   {
     @IBOutlet weak var HelpCollectionHeight: NSLayoutConstraint!
     @IBOutlet weak var helpCollectionView: UICollectionView!
@@ -442,6 +443,7 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
     override func viewWillAppear(_ animated: Bool) {
         
         super.viewWillAppear(animated)
+        Analytics.logEvent("ios_Dashboard", parameters: nil)
         helpCollectionView.isHidden = true
         
         let remiterStatus = UserDefaults.standard.string(forKey: "remitterStatus")!

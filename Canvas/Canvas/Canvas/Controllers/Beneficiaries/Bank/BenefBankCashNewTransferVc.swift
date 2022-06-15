@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import Firebase
 class BenefBankCashNewTransferVc: BaseViewController, UITextFieldDelegate {
     
     
@@ -128,10 +129,12 @@ class BenefBankCashNewTransferVc: BaseViewController, UITextFieldDelegate {
        
         
         if  BeneficiaryDetails.shared.beneficiaryType == 100 {
+            Analytics.logEvent("ios_BankBeneficiary", parameters: nil)
             Global.shared.countrysChangeAccordingly = "Bank"
             navHeaderLbl.text = Global.shared.addBank
         }
         else {
+            Analytics.logEvent("ios_CashBeneficiary", parameters: nil)
             Global.shared.countrysChangeAccordingly = "Bank"
             navHeaderLbl.text = Global.shared.addCash
         }

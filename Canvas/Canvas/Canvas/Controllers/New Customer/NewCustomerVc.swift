@@ -447,6 +447,23 @@ class NewCustomerVc: UIViewController,UIImagePickerControllerDelegate,UINavigati
                 
                 let fileUrl = info[UIImagePickerController.InfoKey.imageURL] as? URL
                 
+                let fileData = NSData(contentsOf: fileUrl! as URL)!
+                print(fileData)
+                
+               // let filename =  fileUrl!.deletingPathExtension().lastPathComponent
+                
+                let  mbsize = Double(fileData.count) / 1024 / 1024
+                print(mbsize)
+                
+                if Int(mbsize) > Int(imagSize) ?? 0 {
+                    
+                    let alert = ViewControllerManager.displayAlert(message:"pdf/image cannot exceed more than 2MB", title:APPLICATIONNAME)
+                    self.present(alert, animated: true, completion: nil)
+                    
+                }
+                
+                else {
+                
                 if fileUrl != nil {
                     fileName = fileUrl?.deletingPathExtension().lastPathComponent as! String
                 }
@@ -522,6 +539,7 @@ class NewCustomerVc: UIViewController,UIImagePickerControllerDelegate,UINavigati
                     secndPdfProgresView.isHidden = false
                 }
                 
+             }
             }
         }
         else {
@@ -722,7 +740,7 @@ class NewCustomerVc: UIViewController,UIImagePickerControllerDelegate,UINavigati
         
         if Int(mbsize) > Int(pdfSize) ?? 0 {
             
-            let alert = ViewControllerManager.displayAlert(message:"pdf/image cannot exceed more than 5MB", title:APPLICATIONNAME)
+            let alert = ViewControllerManager.displayAlert(message:"pdf/image cannot exceed more than 2MB", title:APPLICATIONNAME)
             self.present(alert, animated: true, completion: nil)
             
         }
@@ -1167,13 +1185,13 @@ class NewCustomerVc: UIViewController,UIImagePickerControllerDelegate,UINavigati
                                     self.videoDuration = videoDuration
                                 }
                                 
-                            } else if name == "document" {
+                            }
+                            if name == "document" {
                                 if let imagePdfsizemb = dataObj["size_mb"] as? String{
                                     self.imagSize = imagePdfsizemb
                                     self.pdfSize = imagePdfsizemb
                                 }
                             }
-                            
                         }
                         print(self.videoSize)
                         print(self.imagSize)
@@ -1182,7 +1200,6 @@ class NewCustomerVc: UIViewController,UIImagePickerControllerDelegate,UINavigati
                         
                     }
                 }
-                
             }
                 
             else
