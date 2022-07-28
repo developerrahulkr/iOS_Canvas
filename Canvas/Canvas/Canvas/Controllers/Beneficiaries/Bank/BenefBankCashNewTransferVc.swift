@@ -512,13 +512,40 @@ class BenefBankCashNewTransferVc: BaseViewController, UITextFieldDelegate {
         fcAmnt = 0
         let fcConvertAmnt = amntDecimal
         lcAmnt = fcConvertAmnt
+            
+            let todayDate = Date().today(format: "dd/MM/yyyy")
+            
+            let promoPasing: [String:Any] = ["date" : todayDate,
+                                             "fcAmount": fcAmnt!,
+                                             "entity": "",
+                                             "country": "",
+                                             "product": "",
+                                             "productType": "",
+                                             "promoType": "",
+                                             "promoMode": "",
+                                             "staffID": "",
+                                             "customerID": "",
+                                             "benID": "",
+                                             "oldRef": ""]
         
         let paramaterPasing: [String:Any] = ["sourceCurrenyCode": sourceCurencyCodeLbl.text!,
                                              "targetCurrenyCode": targetCurencyCodeLbl.text!,
                                              "oldTnxRef": String(BeneficiaryDetails.shared.txnRef),
                                              "fcAmount": fcAmnt!,
                                              "lcAmount": lcAmnt!,
-                                             "calcType": calcType]
+                                             "calcType": calcType,
+                                             "promoCode": "",
+                                             "includeCommission": "N",
+                                             "getPromoList": promoPasing
+                                           //  "sessionID": self.sessionId
+        ]
+        
+//        let paramaterPasing: [String:Any] = ["sourceCurrenyCode": sourceCurencyCodeLbl.text!,
+//                                             "targetCurrenyCode": targetCurencyCodeLbl.text!,
+//                                             "oldTnxRef": String(BeneficiaryDetails.shared.txnRef),
+//                                             "fcAmount": fcAmnt!,
+//                                             "lcAmount": lcAmnt!,
+//                                             "calcType": calcType]
         
       
           let headers: HTTPHeaders = [
@@ -642,14 +669,39 @@ class BenefBankCashNewTransferVc: BaseViewController, UITextFieldDelegate {
         let fcConvertAmnt = amntDecimal
         fcAmnt = fcConvertAmnt 
         
+            let todayDate = Date().today(format: "dd/MM/yyyy")
+            
+            let promoPasing: [String:Any] = ["date" : todayDate,
+                                             "fcAmount": fcAmnt!,
+                                             "entity": "",
+                                             "country": "",
+                                             "product": "",
+                                             "productType": "",
+                                             "promoType": "",
+                                             "promoMode": "",
+                                             "staffID": "",
+                                             "customerID": "",
+                                             "benID": "",
+                                             "oldRef": ""]
         
-        
-        let paramaterPasing: [String:Any] = ["sourceCurrenyCode": targetCurencyCodeLbl.text!,
-                                             "targetCurrenyCode": sourceCurencyCodeLbl.text!,
+        let paramaterPasing: [String:Any] = ["sourceCurrenyCode": sourceCurencyCodeLbl.text!,
+                                             "targetCurrenyCode": targetCurencyCodeLbl.text!,
                                              "oldTnxRef": String(BeneficiaryDetails.shared.txnRef),
                                              "fcAmount": fcAmnt!,
                                              "lcAmount": lcAmnt!,
-                                             "calcType": calcType]
+                                             "calcType": calcType,
+                                             "promoCode": "",
+                                             "includeCommission": "N",
+                                             "getPromoList": promoPasing
+                                           //  "sessionID": self.sessionId
+        ]
+        
+//        let paramaterPasing: [String:Any] = ["sourceCurrenyCode": targetCurencyCodeLbl.text!,
+//                                             "targetCurrenyCode": sourceCurencyCodeLbl.text!,
+//                                             "oldTnxRef": String(BeneficiaryDetails.shared.txnRef),
+//                                             "fcAmount": fcAmnt!,
+//                                             "lcAmount": lcAmnt!,
+//                                             "calcType": calcType]
         
        
         let headers: HTTPHeaders = [
@@ -975,31 +1027,68 @@ class BenefBankCashNewTransferVc: BaseViewController, UITextFieldDelegate {
                       // print(ipAddress)
                 let newIpAdress = ipAddress ?? ""
 
-        let paramaterPasing: [String:Any] = [
-            "registrationId": UserDefaults.standard.string(forKey: "registrationId")!,
-            "beneficiaryId": BeneficiaryDetails.shared.beneficiaryId!,
-            "beneficiaryType": BeneficiaryDetails.shared.beneficiaryType!,
-            "oldTnxRef": BeneficiaryDetails.shared.txnRef!,
-            "remID": BeneficiaryDetails.shared.remID!,
-            "benID": Int(benIDValueP)!,
-            "fcAmount": fcAmntDecimal,
-            "lcAmount": lcAmntDecimal,
-            "totalLCAmount": totalLcAmntDecimal,
-            "commission": commisionDecimal,
-            "rate": newRateDecimal,
-            "sourceCurrenyCode": BeneficiaryDetails.shared.sourceCurrenyCode ?? "KWD",
-            "targetCurrenyCode": BeneficiaryDetails.shared.targetCurencyCode ?? "KWD",
-            "distributorRef": "10000000000000000001",
-            "getUserDetails": 1,
-            "dump": "Y",
-            "soi": BeneficiaryDetails.shared.sourceOfIncome!,
-            "pot": purposeCode,
-            "disbursalMode": BeneficiaryDetails.shared.disbursalMode!,
-            "postTransactionType": 1,
-            "calcType": BeneficiaryDetails.shared.calcType!,"accountNumber": BeneficiaryDetails.shared.accountNumber ?? "",
-            "branchName": BeneficiaryDetails.shared.branchName ?? "",
-            "potName": purposeField.text!,
-            "loginSource": 3, "IPAddress": newIpAdress]
+//        let paramaterPasing: [String:Any] = [
+//            "registrationId": UserDefaults.standard.string(forKey: "registrationId")!,
+//            "beneficiaryId": BeneficiaryDetails.shared.beneficiaryId!,
+//            "beneficiaryType": BeneficiaryDetails.shared.beneficiaryType!,
+//            "oldTnxRef": BeneficiaryDetails.shared.txnRef!,
+//            "remID": BeneficiaryDetails.shared.remID!,
+//            "benID": Int(benIDValueP)!,
+//            "fcAmount": fcAmntDecimal,
+//            "lcAmount": lcAmntDecimal,
+//            "totalLCAmount": totalLcAmntDecimal,
+//            "commission": commisionDecimal,
+//            "rate": newRateDecimal,
+//            "sourceCurrenyCode": BeneficiaryDetails.shared.sourceCurrenyCode ?? "KWD",
+//            "targetCurrenyCode": BeneficiaryDetails.shared.targetCurencyCode ?? "KWD",
+//            "distributorRef": "10000000000000000001",
+//            "getUserDetails": 1,
+//            "dump": "Y",
+//            "soi": BeneficiaryDetails.shared.sourceOfIncome!,
+//            "pot": purposeCode,
+//            "disbursalMode": BeneficiaryDetails.shared.disbursalMode!,
+//            "postTransactionType": 1,
+//            "calcType": BeneficiaryDetails.shared.calcType!,"accountNumber": BeneficiaryDetails.shared.accountNumber ?? "",
+//            "branchName": BeneficiaryDetails.shared.branchName ?? "",
+//            "potName": purposeField.text!,
+//            "loginSource": 3, "IPAddress": newIpAdress]
+        let paramaterPasing: [String:Any] =  [
+        "registrationId": UserDefaults.standard.string(forKey: "registrationId")!,
+         "beneficiaryId": BeneficiaryDetails.shared.beneficiaryId!,
+         "beneficiaryType": BeneficiaryDetails.shared.beneficiaryType!,
+         "oldTnxRef": BeneficiaryDetails.shared.txnRef!,
+         "remID": BeneficiaryDetails.shared.remID!,
+         "benID": Int(benIDValueP)!,
+         "fcAmount": fcAmntDecimal,
+         "lcAmount": lcAmntDecimal,
+         "totalLCAmount": totalLcAmntDecimal,
+         "commission": commisionDecimal,
+         "rate": newRateDecimal,
+         "sourceCurrenyCode": BeneficiaryDetails.shared.sourceCurrenyCode ?? "KWD",
+         "targetCurrenyCode": BeneficiaryDetails.shared.targetCurencyCode ?? "KWD",
+         "distributorRef": "10000000000000000001",
+         "getUserDetails": 1,
+         "dump": "Y",
+         "soi": BeneficiaryDetails.shared.sourceOfIncome!,
+         "pot": purposeCode,
+         "disbursalMode": BeneficiaryDetails.shared.disbursalMode!,
+         "postTransactionType": 1,
+         "calcType": BeneficiaryDetails.shared.calcType!,
+         "accountNumber": BeneficiaryDetails.shared.accountNumber ?? "",
+         "branchName": BeneficiaryDetails.shared.branchName ?? "",
+         "potName": purposeField.text!,
+         "loginSource": 3,
+         "ipAddress": newIpAdress,
+         "txnRef": "",
+         "promoCode": "",
+         "promoType": "",
+         "specialRate": 0.0,
+         "commisonDiscountAmount":0.0,
+         "netLCAmount": totalLcAmntDecimal,
+         "payMode": "1",
+         "cashierID": ""
+         //"sessionID": self.sessionId
+       ]
         
        
       /*    let headers: HTTPHeaders = [

@@ -323,6 +323,8 @@ open class XMSegmentedControl: UIView {
                     tab.tintColor = i == selectedSegment ? highlightTint : tint
                 }
 
+                tab.titleLabel?.numberOfLines = 2
+                tab.titleLabel?.textAlignment = .center
                 tab.tag = i
                 tab.addTarget(self, action: #selector(XMSegmentedControl.segmentPressed(_:)), for: .touchUpInside)
                 self.addSubview(tab)

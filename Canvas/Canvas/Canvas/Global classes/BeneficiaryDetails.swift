@@ -38,8 +38,11 @@ class BeneficiaryDetails {
     var ibanCode:String!
     var cnicno:String!
     
-     var countryName:String!
+    var transactionStatus:String!
     
+     var countryName:String!
+    var cardNumber = ""
+    var sendToOwnCard = ""
     
     var rate:String!
     var commisionAmnt:String!
@@ -372,6 +375,18 @@ class BeneficiaryDetails {
     var wu_MiddleName_max_length:Int!
     var wu_MiddleName_min_length:Int!
     
+    
+    
+    var visa_CardNumber_is_required:Bool!
+    var visa_CardNumber_field_accept:String!
+    var visa_CardNumber_max_length:Int!
+    var visa_CardNumber_min_length:Int!
+    
+    var visa_SentToOwnCard_is_required:Bool!
+    var visa_SentToOwnCard_field_accept:String!
+    var visa_SentToOwnCard_max_length:Int!
+    var visa_SentToOwnCard_min_length:Int!
+    
     var wu_City_is_required:Bool!
     
     
@@ -394,6 +409,9 @@ class BeneficiaryDetails {
     var bankAccountTypesValueData = [String]()
     var pickerbankAccountTypesData = [[String: String]]()
     
+    var visaSendToOwnTypesNameData = [String]()
+    var visaSendToOwnTypesValueData = [String]()
+    var pickervisaSendToOwnTypesData = [[String: String]]()
     
     var createdDatee:String!
     var sourceTotalAmnt: String!
@@ -428,6 +446,14 @@ class BeneficiaryDetails {
     var beneficaryBankFilteredResponse = [Any]()
     var beneficaryCashFilteredResponse = [Any]()
     var beneficaryWuFilteredResponse = [Any]()
+    var beneficaryVisaFilteredResponse = [Any]()
+    
+    var Visa_Nationality_is_required:Bool!
+    
+    var visa_Address1_is_required:Bool!
+    var visa_Address1_field_accept:String!
+    var visa_Address1_max_length:Int!
+    var visa_Address1_min_length:Int!
     
     
 }

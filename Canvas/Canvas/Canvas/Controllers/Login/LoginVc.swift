@@ -781,6 +781,26 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
                             
                             Global.shared.statusVoucher = voucher["account_number"] as? String ?? ""
                         }
+                        if let transactionEnquiry = dataDict.value(forKey: "Transaction_Enquiry") as? NSDictionary {
+                            
+                            Global.shared.tmtcn = transactionEnquiry["mtcn"] as? String ?? ""
+                            Global.shared.tttno = transactionEnquiry["ttno"] as? String ?? ""
+                            
+                            Global.shared.tbeneficiaryBank = transactionEnquiry["beneficiary_bank"] as? String ?? ""
+                            Global.shared.tbenficiaryfullName = transactionEnquiry["benficiaryfull_name"] as? String ?? ""
+                            
+                            Global.shared.treceiveAmount = transactionEnquiry["receive_amount"] as? String ?? ""
+                            Global.shared.treferenceNumber = transactionEnquiry["reference_number"] as? String ?? ""
+                            
+                            Global.shared.ttransaction = transactionEnquiry["transaction"] as? String ?? ""
+                            Global.shared.ttransactionStatus = transactionEnquiry["transaction_status"] as? String ?? ""
+                            
+                            Global.shared.ttransferAmount = transactionEnquiry["transfer_amount"] as? String ?? ""
+                            Global.shared.tviewStatus = transactionEnquiry["view_status"] as? String ?? ""
+                            
+                          
+                        }
+                        
                         if let menuLabels = dataDict.value(forKey: "menu_labels") as? NSDictionary {
                             print(menuLabels)
                             
@@ -1072,6 +1092,12 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
                                 Global.shared.AddBenefAccountType = adBeneficiary["accounttype"] as? String ?? ""
                                 Global.shared.AddBenefBranchAddress1 = adBeneficiary["branchaddress1"] as? String ?? ""
                                 Global.shared.AddBenefBranchAddress2 = adBeneficiary["branchaddress2"] as? String ?? ""
+                                
+                                Global.shared.VisaSendToOwnCard = adBeneficiary["sendto_owncard"] as? String ?? ""
+                                Global.shared.VisaCardDetails = adBeneficiary["card_details"] as? String ?? ""
+                                Global.shared.VisaCardNumber = adBeneficiary["card_number"] as? String ?? ""
+                                Global.shared.VisaDirect = adBeneficiary["visa_direct"] as? String ?? ""
+                                Global.shared.rrn = adBeneficiary["rrn"] as? String ?? ""
                                 
                                 
                             }

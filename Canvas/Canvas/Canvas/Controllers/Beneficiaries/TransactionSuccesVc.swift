@@ -262,7 +262,29 @@ class TransactionSuccesVc: UIViewController {
                         self.acntbranchDetailsHeghtConstrt.constant = 0
                         self.secndStackTopConstrt.constant = -10
                         
-                    }
+                      }
+                      else if BeneficiaryDetails.shared.beneficiaryType == 103 {
+                          self.mtcnKeyLbl.text = Global.shared.rrn
+                          self.mtcnValueLbl.text = transctnHistry["ttRefNo"] as? String ?? ""
+  //                        self.firstStackTopConstrt.constant = 0
+  //                        self.acntBrnchStckHeightConstrt.constant = 0net
+  //                        self.acntbranchDetailsHeghtConstrt.constant = 0
+  //                        self.secndStackTopConstrt.constant = -10
+                          self.bankLbl.text = ""
+                          self.bankLbl.isHidden = true
+                          self.branchLbl.text = ""
+                          self.branchLbl.isHidden = true
+                          self.bankField.isHidden = true
+                          self.branchField.isHidden = true
+                          
+                         // self.acountField.font = 
+                          
+                          self.acountLbl.text = Global.shared.VisaCardNumber
+                         // self.bankNameLbl.text = ""
+                          self.bankField.text = ""
+                          
+                          
+                      }
                     else {
                         self.mtcnKeyLbl.text = Global.shared.ttNumbr
                         self.mtcnValueLbl.text = transctnHistry["ttRefNo"] as? String ?? ""
@@ -462,6 +484,9 @@ class TransactionSuccesVc: UIViewController {
       self.pushViewController(controller: BenefBankCashNewTransferVc.initiateController(),animated: false)
       
     }
+      else if benificiaryType == 103  {
+          self.pushViewController(controller: VisaDirectNewTransferVC.initiateController(),animated: false)
+      }
     else {
         Global.shared.fraudPopUpDirectWu = "Normal"
         

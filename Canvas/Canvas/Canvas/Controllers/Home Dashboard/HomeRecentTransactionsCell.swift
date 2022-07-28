@@ -10,6 +10,7 @@ import UIKit
 
 class HomeRecentTransactionsCell: UICollectionViewCell {
     
+    @IBOutlet weak var centerConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var imgePic: UIImageView!
     
@@ -24,6 +25,7 @@ class HomeRecentTransactionsCell: UICollectionViewCell {
     
     
     @IBOutlet weak var bankOrWuLbl: UILabel!
+    @IBOutlet weak var viewStatusBtnOtlt: PassableUIButton!
     
    
    

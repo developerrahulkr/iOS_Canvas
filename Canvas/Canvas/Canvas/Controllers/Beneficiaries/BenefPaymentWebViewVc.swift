@@ -34,8 +34,11 @@ class BenefPaymentWebViewVc: UIViewController, WKNavigationDelegate {
       
         //"https://online1.muzaini.com/paygate/paymentrequest?tid="
         
+        // For UAT
         //"http://online-uat.muzaini.com:83/paygate/paymentrequest?tid="
         
+        
+      //  For Live
      //   "https://online1.muzaini.com/paygate/paymentrequest?tid="
         
         // Staging
@@ -55,11 +58,11 @@ class BenefPaymentWebViewVc: UIViewController, WKNavigationDelegate {
         let urlString = webView.url?.absoluteString
             
         //Production
-    //   if urlString == "https://online1.muzaini.com/paygate/PaymentSuccess"  || urlString == "https://online1.muzaini.com/paygate/PaymentError" {
+  //     if urlString == "https://online1.muzaini.com/paygate/PaymentSuccess"  || urlString == "https://online1.muzaini.com/paygate/PaymentError" {
            
     // Staging
            
-    //       if urlString == "http://online-uat.muzaini.com:8076/paygate/PaymentSuccess"  || urlString == "http://online-uat.muzaini.com:8076/paygate/PaymentError" {
+        //   if urlString == "http://online-uat.muzaini.com:8076/paygate/PaymentSuccess"  || urlString == "http://online-uat.muzaini.com:8076/paygate/PaymentError" {
         
         //deployment
          if urlString == "http://online-uat.muzaini.com:83/paygate/PaymentSuccess"  || urlString == "http://online-uat.muzaini.com:83/paygate/PaymentError" {
@@ -71,9 +74,9 @@ class BenefPaymentWebViewVc: UIViewController, WKNavigationDelegate {
              self.pushViewController(controller: TransactionSuccesVc.initiateController())
        }
 
-     //   else if urlString == "https://online1.muzaini.com/paygate/PaymentError" {
+    //    else if urlString == "https://online1.muzaini.com/paygate/PaymentError" {
             
-      //      else if urlString == "http://online-uat.muzaini.com:8076/paygate/PaymentError" {
+     //       else if urlString == "http://online-uat.muzaini.com:8076/paygate/PaymentError" {
 
          else if urlString == "http://online-uat.muzaini.com:83/paygate/PaymentError" {
           // else if urlString == "http://15.207.206.161/home/PaymentError" {

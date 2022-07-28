@@ -10,12 +10,14 @@ import UIKit
 
 class TransctionPeriodCell: UITableViewCell {
 
-  static let identifier = "TransctionPeriodCell"
-  @IBOutlet weak var nameLabel: UILabel!
-  @IBOutlet weak var currencyLabel: UILabel!
-  @IBOutlet weak var refId: UILabel!
-  @IBOutlet weak var dateLabel: UILabel!
-  @IBOutlet weak var bankLabel: UILabel!
+    @IBOutlet weak var btn_transaction: UIButton!
+    @IBOutlet weak var img_transaction: UIImageView!
+    static let identifier = "TransctionPeriodCell"
+   @IBOutlet weak var nameLabel: UILabel!
+   @IBOutlet weak var currencyLabel: UILabel!
+   @IBOutlet weak var refId: UILabel!
+   @IBOutlet weak var dateLabel: UILabel!
+   @IBOutlet weak var bankLabel: UILabel!
 
     @IBOutlet weak var imgSucesFail: UIImageView!
     
@@ -30,7 +32,7 @@ class TransctionPeriodCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
     }
-  func setupData(_ json: NSDictionary?) {
+    func setupData(_ json: NSDictionary?) {
     guard let obj = json else {return}
     let firstName = obj.value(forKey: "beneficiaryFirstName") as? String ?? ""
     let middlename = obj.value(forKey: "beneficiaryMiddleName") as? String ?? ""
@@ -102,6 +104,8 @@ class TransctionPeriodCell: UITableViewCell {
         self.imgSucesFail.image = UIImage(named: "retail")
     }*/
       if status == 0 {
+          img_transaction.isHidden = true
+          btn_transaction.isHidden = true
         
         self.imgSucesFail.image = UIImage(named: "pending-transaction")
         
@@ -110,6 +114,8 @@ class TransctionPeriodCell: UITableViewCell {
         //sucess
     
     else if status == 1 {
+        img_transaction.isHidden = false
+        btn_transaction.isHidden = false
         self.imgSucesFail.image = UIImage(named: "success-transaction")
        
 
@@ -122,12 +128,16 @@ class TransctionPeriodCell: UITableViewCell {
         
         //failed
     else if status == 2 {
+        img_transaction.isHidden = true
+        btn_transaction.isHidden = true
         self.imgSucesFail.image = UIImage(named: "failed-transaction")
        
 
     }
     //cancelled
     else if status == 3 {
+        img_transaction.isHidden = true
+        btn_transaction.isHidden = true
         self.imgSucesFail.image = UIImage(named: "failed-transaction")
        
 
@@ -135,10 +145,9 @@ class TransctionPeriodCell: UITableViewCell {
     else {
         print("nothing")
     }
-    
-    
+      
+     
  //   imgSucesFail.image
     
   }
-    
 }

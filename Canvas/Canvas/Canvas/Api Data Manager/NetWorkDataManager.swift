@@ -441,6 +441,20 @@ class NetWorkDataManager {
                 completionHandler(completion.0, completion.1)
         }
     }
+    //Beneficiary Visa Direct Transfer
+    func benefVisaDirectTransferImplimentation(headersTobePassed : HTTPHeaders,postParameters :[String:Any],completionHandler: @escaping (NSDictionary?, String?) -> ())
+    {
+        
+        let apiUlr = CanvasUrls.baseUrl +  CanvasUrls.versionNumber + CanvasUrls.benefVisaDirectTransfer
+        
+        AF.request(apiUlr, method: .post, parameters: postParameters, encoding:
+            JSONEncoding.default, headers: headersWithAuthorization).responseJSON
+            { response in
+                
+                let completion = self.dealWithDictResponse(response: response)
+                completionHandler(completion.0, completion.1)
+        }
+    }
     //Beneficiary Bank Transfer
     func benefBankTransferImplimentation(headersTobePassed : HTTPHeaders,postParameters :[String:Any],completionHandler: @escaping (NSDictionary?, String?) -> ())
     {
@@ -504,6 +518,22 @@ class NetWorkDataManager {
     {
         
         let apiUlr = CanvasUrls.baseUrl +  CanvasUrls.versionNumber + CanvasUrls.benefValidateOtp
+        
+        AF.request(apiUlr, method: .post, parameters: postParameters, encoding:
+            JSONEncoding.default, headers: headersWithAuthorization).responseJSON
+            { response in
+                
+                let completion = self.dealWithDictResponse(response: response)
+                completionHandler(completion.0, completion.1)
+        }
+    }
+    //Session Id
+    func getSessionIdImplimentation(headersTobePassed : HTTPHeaders,postParameters :[String:Any],completionHandler: @escaping (NSDictionary?, String?) -> ())
+    {
+        print(headersWithAuthorization)
+        
+        
+        let apiUlr = CanvasUrls.baseUrl +  CanvasUrls.versionNumber + CanvasUrls.getSessionID
         
         AF.request(apiUlr, method: .post, parameters: postParameters, encoding:
             JSONEncoding.default, headers: headersWithAuthorization).responseJSON
@@ -587,6 +617,9 @@ class NetWorkDataManager {
     {
         
         let apiUlr = CanvasUrls.baseUrl +  CanvasUrls.versionNumber + CanvasUrls.benefRate2Calculator
+        
+        print(apiUlr)
+        print(postParameters)
         
         AF.request(apiUlr, method: .post, parameters: postParameters, encoding:
             JSONEncoding.default, headers: headers).responseJSON
@@ -1309,6 +1342,21 @@ func appVersionControl(headersTobePassed : HTTPHeaders,postParameters :[String:A
          {
              
              let apiUlr = CanvasUrls.baseUrl +  CanvasUrls.versionNumber + CanvasUrls.barChartData
+             
+             AF.request(apiUlr, method: .post, parameters: postParameters, encoding:
+                 JSONEncoding.default, headers: headersWithAuthorization).responseJSON
+                 { response in
+                     
+                     let completion = self.dealWithDictResponse(response: response)
+                     completionHandler(completion.0, completion.1)
+                     
+             }
+         }
+    //Transaction Enquiry
+         func transactionEnquiryImplementation(headersTobePassed : HTTPHeaders,postParameters :[String:Any],completionHandler: @escaping (NSDictionary?, String?) -> ())
+         {
+             
+             let apiUlr = CanvasUrls.baseUrl +  CanvasUrls.versionNumber + CanvasUrls.transactionEnquiry
              
              AF.request(apiUlr, method: .post, parameters: postParameters, encoding:
                  JSONEncoding.default, headers: headersWithAuthorization).responseJSON

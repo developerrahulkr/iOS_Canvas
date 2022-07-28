@@ -143,6 +143,17 @@ class CustomTabBarVc: UITabBarController {
                         }
                     }
                 }
+                if let visaSendToOwnTypes = resonseTal?.value(forKey: "visaDirectSendToOwnCardList") as? String {
+                    let newObj = Global.shared.convertToAryDictionary(text: visaSendToOwnTypes)
+                    for dataObj in newObj! {
+                        if let name = dataObj["name"] as? String{
+                            BeneficiaryDetails.shared.visaSendToOwnTypesNameData.append(name)
+                        }
+                        if let type = dataObj["value"] as? String{
+                            BeneficiaryDetails.shared.visaSendToOwnTypesValueData.append(type)
+                        }
+                    }
+                }
                 
                 if let wuPurposes = resonseTal?.value(forKey: "wuPurposeOfTransfer") as? String {
                     let newObj = Global.shared.convertToAryDictionary(text: wuPurposes)
@@ -170,6 +181,48 @@ class CustomTabBarVc: UITabBarController {
                 
                 for i in 0..<BeneficiaryDetails.shared.bankAccountTypesNameData.count {
                     BeneficiaryDetails.shared.pickerbankAccountTypesData.append(["value": BeneficiaryDetails.shared.bankAccountTypesValueData[i], "display": BeneficiaryDetails.shared.bankAccountTypesNameData[i]])
+                }
+                for i in 0..<BeneficiaryDetails.shared.visaSendToOwnTypesNameData.count {
+                    BeneficiaryDetails.shared.pickervisaSendToOwnTypesData.append(["value": BeneficiaryDetails.shared.visaSendToOwnTypesValueData[i], "display": BeneficiaryDetails.shared.visaSendToOwnTypesNameData[i]])
+                }
+                if let fieldLengths = resonseTal?.value(forKey: "visaDirectBeneficiary") as? String {
+                    let newObj = Global.shared.convertToDictionary(text: fieldLengths)
+                    if let dataDict = newObj as NSDictionary? {
+                        print(dataDict)
+                        
+                        if let visaDirectBeneficiary = dataDict.value(forKey: "visadirect_beneficiary") as? NSDictionary {
+                            
+                            if let Nationality = visaDirectBeneficiary.value(forKey: "Nationality") as? NSDictionary {
+                                BeneficiaryDetails.shared.Visa_Nationality_is_required = Nationality["is_required"] as? Bool ?? false
+                                
+                            }
+                            if let Address1 = visaDirectBeneficiary.value(forKey: "Address1") as? NSDictionary {
+                                BeneficiaryDetails.shared.visa_Address1_is_required = Address1["is_required"] as? Bool ?? false
+                                BeneficiaryDetails.shared.visa_Address1_field_accept = Address1["field_accept"] as? String ?? "any"
+                                BeneficiaryDetails.shared.visa_Address1_max_length = Address1["max_length"] as? Int ?? 15
+                                BeneficiaryDetails.shared.visa_Address1_min_length = Address1["min_length"] as? Int ?? 0
+                                
+                            }
+                            
+                            if let cardNumber = visaDirectBeneficiary.value(forKey: "CardNumber") as? NSDictionary {
+                                BeneficiaryDetails.shared.visa_CardNumber_is_required = cardNumber["is_required"] as? Bool ?? false
+                                BeneficiaryDetails.shared.visa_CardNumber_field_accept = cardNumber["field_accept"] as? String ?? "any"
+                                BeneficiaryDetails.shared.visa_CardNumber_max_length = cardNumber["max_length"] as? Int ?? 16
+                                BeneficiaryDetails.shared.visa_CardNumber_min_length = cardNumber["min_length"] as? Int ?? 0
+                                
+                            }
+                            if let SentToOwnCard = visaDirectBeneficiary.value(forKey: "SentToOwnCard") as? NSDictionary {
+                                BeneficiaryDetails.shared.visa_SentToOwnCard_is_required = SentToOwnCard["is_required"] as? Bool ?? false
+                                BeneficiaryDetails.shared.visa_SentToOwnCard_field_accept = SentToOwnCard["field_accept"] as? String ?? "any"
+                                BeneficiaryDetails.shared.visa_SentToOwnCard_max_length = SentToOwnCard["max_length"] as? Int ?? 15
+                                BeneficiaryDetails.shared.visa_SentToOwnCard_min_length = SentToOwnCard["min_length"] as? Int ?? 0
+                                
+                            }
+                            
+                        }
+                        
+                        
+                    }
                 }
                 if let fieldLengths = resonseTal?.value(forKey: "beneficiaryFieldLengths") as? String {
                     let newObj = Global.shared.convertToDictionary(text: fieldLengths)

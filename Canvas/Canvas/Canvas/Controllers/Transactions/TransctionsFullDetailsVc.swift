@@ -241,6 +241,22 @@ class TransctionsFullDetailsVc: UIViewController {
             secndStackTopConstrt.constant = -10
             
         }
+       else if data.beneficiaryType == 103 {
+            self.mtcnKeyLbl.text = Global.shared.rrn
+            self.mtcnValueLbl.text = BeneficiaryDetails.shared.ttRefNottn
+            self.acountLbl.text = Global.shared.VisaCardNumber
+            self.bankField.text = ""
+         
+            self.branchField.text = ""
+            self.bankLbl.text = ""
+            self.branchLbl.text = ""
+            
+//            firstStackTopConstrt.constant = 0
+//            acntBrnchStckHeightConstrt.constant = 0
+//            acntbranchDetailsHeghtConstrt.constant = 0
+//            secndStackTopConstrt.constant = -10
+            
+        }
         else {
             self.mtcnKeyLbl.text = Global.shared.ttNumbr
             self.mtcnValueLbl.text = BeneficiaryDetails.shared.ttRefNottn
@@ -476,6 +492,20 @@ class TransctionsFullDetailsVc: UIViewController {
                                     }
                               //    self.pushViewController(controller: BenefBankCashNewTransferVc.initiateController(),animated: false)
                                  }
+                           else if benificiaryType == 103{
+                              let disablee = BeneficiaryDetails.shared.enableOrDisable
+                              
+                              if disablee == false {
+                                  self.pushViewController(controller: VisaDirectNewTransferVC.initiateController(),animated: false)
+
+                              }
+                              else {
+                                  let alert = ViewControllerManager.displayAlert(message:  Global.shared.selectedBenefDisabled, title:APPLICATIONNAME)
+                                  self.present(alert, animated: true, completion: nil)
+                                  
+                              }
+                        //    self.pushViewController(controller: BenefBankCashNewTransferVc.initiateController(),animated: false)
+                           }
                                  else {
                                     
                                     let disablee = BeneficiaryDetails.shared.enableOrDisable

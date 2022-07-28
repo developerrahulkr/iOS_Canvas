@@ -179,6 +179,15 @@ class VerificationPopUpVc: UIViewController, UITextFieldDelegate {
          /*   self.showSpinner(onView: self.view)
             submitWesternUnionTransfer()*/
         }
+        // Visa Direct
+        else if  Global.shared.fromNewExistUser == "Benef4" || Global.shared.fromNewExistUser == "Benef4Edit" {
+            confirmBtnOtlt.isEnabled = false
+            verifyBeneficiaryOTP()
+            
+            //without otp validation
+         /*   self.showSpinner(onView: self.view)
+            submitWesternUnionTransfer()*/
+        }
         
         else if  Global.shared.fromNewExistUser == "BenefDirectTransfer" {
             confirmBtnOtlt.isEnabled = false
@@ -249,6 +258,10 @@ class VerificationPopUpVc: UIViewController, UITextFieldDelegate {
         }
         else if  Global.shared.fromNewExistUser == "Benef3" || Global.shared.fromNewExistUser ==  "Benef1Edit"  {
             beneficiaryWesternUnionGenerateOTP()
+            
+        }
+        else if  Global.shared.fromNewExistUser == "Benef4" || Global.shared.fromNewExistUser ==  "Benef4Edit"  {
+            beneficiaryVisaGenerateOTP()
             
         }
         else  if  Global.shared.fromNewExistUser == "Exist User" {
@@ -355,6 +368,71 @@ class VerificationPopUpVc: UIViewController, UITextFieldDelegate {
         }
         
     }
+    
+    func beneficiaryVisaGenerateOTP() {
+        
+        let paramaterPasing: [String:Any] =
+            ["registrationId": Global.shared.afterLoginRegistrtnId ?? "",
+             "beneficiaryFirstName": VisaDirect.shared.firstName ?? "" ]
+        
+     /*
+        let headers: HTTPHeaders = [
+            "Content-Type": "application/json"
+        ]*/
+        let headers: HTTPHeaders = [.authorization(bearerToken: UserDefaults.standard.string(forKey: "token")!)]
+        
+        NetWorkDataManager.sharedInstance.benefGenerateOtpImplimentation(headersTobePassed: headers, postParameters: paramaterPasing) { resonseTal , errorString in
+            
+            if errorString == nil
+            {
+               // print(resonseTal!)
+                let statusMsg = resonseTal?.value(forKey: "statusMessage") as? String
+                let statusCode = resonseTal?.value(forKey: "statusCodes") as? Int
+                let mesageCode = resonseTal?.value(forKey: "messageCode") as? String ?? statusMsg
+
+                if statusCode ==  400 {
+                    if mesageCode == "E110042"
+                    {
+                        self.showAlert(withTitle: "", withMessage: resonseTal?["statusMessage"] as? String ?? "")
+
+                    }
+                    else{
+                    let alert = ViewControllerManager.displayAlert(message: statusMsg ?? "", title:APPLICATIONNAME)
+                    self.present(alert, animated: true, completion: nil)
+                    }
+                }
+                
+                
+            }
+            else
+            {
+                            print(errorString!)
+                            self.removeSpinner()
+                        
+                            if errorString == "Response could not be serialized, input data was nil or zero length." {
+                                Global.shared.timeoUtOrNot = "no"
+                                self.showAlertForTimer(titulo: "", mensagem: Global.shared.sessionTimedOutTxt, vc: self)
+//                                let refreshAlert = UIAlertController(title: "", message: Global.shared.sessionTimedOutTxt, preferredStyle: UIAlertController.Style.alert)
+//                                refreshAlert.view.tintColor = ColorCodes.newAppRed
+//                                refreshAlert.addAction(UIAlertAction(title: Global.shared.okTxt, style: .default, handler: { (action: UIAlertAction!) in
+//                                   self.pushViewController(controller: LoginVc.initiateController())
+//                                }))
+//
+//                                self.present(refreshAlert, animated: true, completion: nil)
+                            }
+                            
+                            else {
+                                let alert = ViewControllerManager.displayAlert(message: errorString ?? "", title:APPLICATIONNAME)
+                                self.present(alert, animated: true, completion: nil)
+                            }
+                           
+                            
+                        }
+
+        }
+        
+    }
+    
     
     func beneficiaryBankGenerateOTP() {
         
@@ -688,37 +766,39 @@ class VerificationPopUpVc: UIViewController, UITextFieldDelegate {
                 if let statusCode = resonseTal?.value(forKey: "statusCodes") as? Int {
                     
                     print(statusCode)
+//                    if(statusCode == 200) {
+//                        if let status = resonseTal?.value(forKey: "status") as? String
+//                        {
+//                            let base64String = status
+//                            if let data = base64String.base64Decoded {
+//                                print(data)                                    //  11 bytes
+//                                print(data.base64EncodedString())              //
+//                                print(data.string ?? "nil")
+//                                let str = data.string
+//                                let StringArr = str?.components(separatedBy: ":")
+//                                let checkTrue: String = StringArr?[1] ?? ""
+//
+//                                if checkTrue == "true"
+//                                {
+//                                    self.verifyAccount()
+//                                }
+//                                else{
+//                                    self.removeSpinner()
+//                                    self.otp1.text = ""
+//                                    self.otp2.text = ""
+//                                    self.otp3.text = ""
+//                                    self.otp4.text = ""
+//                                    self.invalidOtpTxt.isHidden = false
+//                                }
+//                            }
+//
+//                        }
+//
+//
+//
+//                    }
                     if(statusCode == 200) {
-                        if let status = resonseTal?.value(forKey: "status") as? String
-                        {
-                            let base64String = status
-                            if let data = base64String.base64Decoded {
-                                print(data)                                    //  11 bytes
-                                print(data.base64EncodedString())              //
-                                print(data.string ?? "nil")
-                                let str = data.string
-                                let StringArr = str?.components(separatedBy: ":")
-                                let checkTrue: String = StringArr?[1] ?? ""
-                                
-                                if checkTrue == "true"
-                                {
-                                    self.verifyAccount()
-                                }
-                                else{
-                                    self.removeSpinner()
-                                    self.otp1.text = ""
-                                    self.otp2.text = ""
-                                    self.otp3.text = ""
-                                    self.otp4.text = ""
-                                    self.invalidOtpTxt.isHidden = false
-                                }
-                            }
-                         //   let decodedStr = status.utf8EncodedString()
-                         //   let newStr = String(utf8String: status.cString(using: .utf8)!)
-                         //   print(newStr)
-                        }
-                        
-                      
+                        self.verifyAccount()
                         
                     }
                         
@@ -772,6 +852,44 @@ class VerificationPopUpVc: UIViewController, UITextFieldDelegate {
                 if let statusCode = resonseTal?.value(forKey: "statusCodes") as? Int {
                     
                     print(statusCode)
+                    // When VAPT Goes live
+//                    if(statusCode == 200) {
+//
+//                       /* let popOverVC = self.storyboard?.instantiateViewController(withIdentifier: "ProfileUnderReviewPopUp") as! ProfileUnderReviewPopUp
+//                        self.addChild(popOverVC)
+//                        popOverVC.view.frame = self.view.frame
+//                        self.view.addSubview(popOverVC.view)
+//                        popOverVC.didMove(toParent: self)*/
+//                        if let status = resonseTal?.value(forKey: "status") as? String
+//                        {
+//                            let base64String = status
+//                            if let data = base64String.base64Decoded {
+//                                print(data)                                    //  11 bytes
+//                                print(data.base64EncodedString())              //
+//                                print(data.string ?? "nil")
+//                                let str = data.string
+//                                let StringArr = str?.components(separatedBy: ":")
+//                                let checkTrue: String = StringArr?[1] ?? ""
+//
+//                                if checkTrue == "true"
+//                                {
+//                                    self.createNewUserMultipart()
+//                                }
+//                                else{
+//                                    self.removeSpinner()
+//                                    self.otp1.text = ""
+//                                    self.otp2.text = ""
+//                                    self.otp3.text = ""
+//                                    self.otp4.text = ""
+//                                    self.invalidOtpTxt.isHidden = false
+//                                }
+//                            }
+
+//                        }
+//
+//
+//                    }
+                    // If VAPT NOT goes Live
                     if(statusCode == 200) {
                         
                        /* let popOverVC = self.storyboard?.instantiateViewController(withIdentifier: "ProfileUnderReviewPopUp") as! ProfileUnderReviewPopUp
@@ -779,36 +897,7 @@ class VerificationPopUpVc: UIViewController, UITextFieldDelegate {
                         popOverVC.view.frame = self.view.frame
                         self.view.addSubview(popOverVC.view)
                         popOverVC.didMove(toParent: self)*/
-                        if let status = resonseTal?.value(forKey: "status") as? String
-                        {
-                            let base64String = status
-                            if let data = base64String.base64Decoded {
-                                print(data)                                    //  11 bytes
-                                print(data.base64EncodedString())              //
-                                print(data.string ?? "nil")
-                                let str = data.string
-                                let StringArr = str?.components(separatedBy: ":")
-                                let checkTrue: String = StringArr?[1] ?? ""
-                                
-                                if checkTrue == "true"
-                                {
-                                    self.createNewUserMultipart()
-                                }
-                                else{
-                                    self.removeSpinner()
-                                    self.otp1.text = ""
-                                    self.otp2.text = ""
-                                    self.otp3.text = ""
-                                    self.otp4.text = ""
-                                    self.invalidOtpTxt.isHidden = false
-                                }
-                            }
-                         //   let decodedStr = status.utf8EncodedString()
-                         //   let newStr = String(utf8String: status.cString(using: .utf8)!)
-                         //   print(newStr)
-                        }
-
-                        
+                        self.createNewUserMultipart()
                     }
                         
                     else {
@@ -862,38 +951,43 @@ class VerificationPopUpVc: UIViewController, UITextFieldDelegate {
                 if let statusCode = resonseTal?.value(forKey: "statusCodes") as? Int {
                     
                     print(statusCode)
+//                    if(statusCode == 200) {
+//                        if let status = resonseTal?.value(forKey: "status") as? String
+//                        {
+//                            let base64String = status
+//                            if let data = base64String.base64Decoded {
+//                                print(data)                                    //  11 bytes
+//                                print(data.base64EncodedString())              //
+//                                print(data.string ?? "nil")
+//                                let str = data.string
+//                                let StringArr = str?.components(separatedBy: ":")
+//                                let checkTrue: String = StringArr?[1] ?? ""
+//
+//                                if checkTrue == "true"
+//                                {
+//                                    Global.shared.otpStr = otpStr
+//                                    self.pushViewController(controller: ResetPswdVc.initiateController())
+//                                }
+//                                else{
+//                                    self.removeSpinner()
+//                                    self.otp1.text = ""
+//                                    self.otp2.text = ""
+//                                    self.otp3.text = ""
+//                                    self.otp4.text = ""
+//                                    self.invalidOtpTxt.isHidden = false
+//                                }
+//                            }
+//                         //   let decodedStr = status.utf8EncodedString()
+//                         //   let newStr = String(utf8String: status.cString(using: .utf8)!)
+//                         //   print(newStr)
+//                        }
+//
+//
+//
+//                    }
                     if(statusCode == 200) {
-                        if let status = resonseTal?.value(forKey: "status") as? String
-                        {
-                            let base64String = status
-                            if let data = base64String.base64Decoded {
-                                print(data)                                    //  11 bytes
-                                print(data.base64EncodedString())              //
-                                print(data.string ?? "nil")
-                                let str = data.string
-                                let StringArr = str?.components(separatedBy: ":")
-                                let checkTrue: String = StringArr?[1] ?? ""
-                                
-                                if checkTrue == "true"
-                                {
-                                    Global.shared.otpStr = otpStr
-                                    self.pushViewController(controller: ResetPswdVc.initiateController())
-                                }
-                                else{
-                                    self.removeSpinner()
-                                    self.otp1.text = ""
-                                    self.otp2.text = ""
-                                    self.otp3.text = ""
-                                    self.otp4.text = ""
-                                    self.invalidOtpTxt.isHidden = false
-                                }
-                            }
-                         //   let decodedStr = status.utf8EncodedString()
-                         //   let newStr = String(utf8String: status.cString(using: .utf8)!)
-                         //   print(newStr)
-                        }
-                       
-                     
+                        Global.shared.otpStr = otpStr
+                      self.pushViewController(controller: ResetPswdVc.initiateController())
                       
                     }
                         
@@ -1001,6 +1095,10 @@ class VerificationPopUpVc: UIViewController, UITextFieldDelegate {
                         
                  
                  }
+                     else if  Global.shared.fromNewExistUser == "Benef4" || Global.shared.fromNewExistUser == "Benef4Edit" {
+                         self.submitVisaDirectTransfer()
+                         
+                     }
                        else if Global.shared.fromNewExistUser == "BenefDirectTransfer" {
                         self.pushViewController(controller: BenefWuNewDirectTrnferVc.initiateController())
                        }
@@ -1379,7 +1477,182 @@ class VerificationPopUpVc: UIViewController, UITextFieldDelegate {
             }
         }
     
-    
+    func submitVisaDirectTransfer()
+     {
+         var beneficiaryIdd = BeneficiaryDetails.shared.beneficiaryId ?? 0
+         if  Global.shared.fromNewExistUser == "Benef4"  {
+             beneficiaryIdd = 0
+            
+        }
+         else {
+           beneficiaryIdd = BeneficiaryDetails.shared.beneficiaryId ?? 0
+        }
+        
+        if BankTransfer.shared.dob == "" {
+            BankTransfer.shared.dob = nil
+        }
+         
+ //        "beneficiaryId": 0,
+ //          "registrationId": "string",
+ //          "firstName": "string",
+ //          "lastName": "string",
+ //          "middleName": "string",
+ //          "mobile": "string",
+ //          "telephone": "string",
+ //          "nationality": "string",
+ //          "address1": "string",
+ //          "address2": "string",
+ //          "city": "string",
+ //          "country": "string",
+ //          "currency": "string",
+ //          "beneficiaryRelationship": "string",
+ //          "beneficiaryImage": "string",
+ //          "remarks": "2022-05-18",
+ //          "cardNumber": "string",
+ //          "sendToOwnCard": "string"
+        
+        let paramaterPasing: [String:Any] = ["beneficiaryId": beneficiaryIdd, "registrationId": Global.shared.afterLoginRegistrtnId ?? "",
+                                             "firstName": VisaDirect.shared.firstName ?? "",
+                                            "lastName": VisaDirect.shared.lastName ?? "",
+                                            "middleName": VisaDirect.shared.middleName ?? "",
+                                            "mobile": VisaDirect.shared.mobile ?? "",
+                                            "telephone": VisaDirect.shared.telephone ?? "",
+                                            "nationality": VisaDirect.shared.nationality ?? "",
+                                            "address1": VisaDirect.shared.address1 ?? "",
+                                            "address2": VisaDirect.shared.address2 ?? "",
+                                           // "district": "",
+                                            "city": VisaDirect.shared.city ?? "",
+                                         //   "state": "",
+                                         //   "postCode": "",
+                                            "country": VisaDirect.shared.country ?? "",
+                                            "currency": VisaDirect.shared.currency ?? "",
+                                         //   "beneficiaryIdType": "",
+                                        //    "beneficiaryIdNumber": "",
+                                        //     "dob": "2000-05-09",
+                                             "cardNumber": VisaDirect.shared.cardNum ?? "",
+                                             "sendToOwnCard": VisaDirect.shared.benefSendToOwn ?? "",
+                                             "remarks": VisaDirect.shared.remarks ?? "",
+                                            "beneficiaryRelationship": VisaDirect.shared.beneficiaryRelationship ?? "",
+                                            "BeneficiaryImage": VisaDirect.shared.benefImg ?? ""]
+        
+        let headers: HTTPHeaders = [.authorization(bearerToken: UserDefaults.standard.string(forKey: "token")!)]
+        
+     /*   let headers: HTTPHeaders = [
+            "Content-Type": "application/json"
+        ]*/
+        
+        NetWorkDataManager.sharedInstance.benefVisaDirectTransferImplimentation(headersTobePassed: headers, postParameters: paramaterPasing) { resonseTal , errorString in
+            
+            if errorString == nil
+            {
+                self.removeSpinner()
+                
+                print(resonseTal!)
+                
+                let statusMsg = resonseTal?.value(forKey: "statusMessage") as? String
+                if let statusCode = resonseTal?.value(forKey: "statusCodes") as? Int {
+                    
+                    print(statusCode)
+                    if(statusCode == 200) {
+                
+                if  Global.shared.fromNewExistUser == "Benef4"  {
+                    let popOverVC = self.storyboard?.instantiateViewController(withIdentifier: "BenefAddedPopUpVc") as! BenefAddedPopUpVc
+                                           self.addChild(popOverVC)
+                                           popOverVC.view.frame = self.view.frame
+                                           self.view.addSubview(popOverVC.view)
+                                           popOverVC.didMove(toParent: self)
+                }
+                
+                else if  Global.shared.fromNewExistUser == "Benef4Edit" {
+               /*     self.navigationController?.popToRootViewController(animated: true)
+                    let alert = ViewControllerManager.displayAlert(message: statusMsg ?? "Invalid input", title:APPLICATIONNAME)
+                    self.present(alert, animated: true, completion: nil)
+                 //   self.navigationController?.popToRootViewController(animated: true)*/
+                    
+                    
+                    let alert6 = UIAlertController(
+                        title: "",
+                        message: statusMsg ?? "Invalid input",
+                        preferredStyle: UIAlertController.Style.alert)
+                    
+                    let OKAction = UIAlertAction(title: "OK", style: .default) { (action) in
+                        self.navigationController?.popToRootViewController(animated: true)
+                    }
+                    alert6.addAction(OKAction)
+                    self.present(alert6, animated: true, completion: nil)
+                    
+                }
+                    }
+                    
+                    
+                    
+                    let mesageCode = resonseTal?.value(forKey: "messageCode") as? String ?? statusMsg
+
+                    if statusCode ==  400 {
+                        if mesageCode == "E110042"
+                        {
+                            self.showAlert(withTitle: "", withMessage: resonseTal?["statusMessage"] as? String ?? "")
+
+                        }
+                        else{
+                        let alert = ViewControllerManager.displayAlert(message: statusMsg ?? "", title:APPLICATIONNAME)
+                        self.present(alert, animated: true, completion: nil)
+                        }
+                    }
+                    
+                }
+                
+                
+             /*   if let statusCode = resonseTal?.value(forKey: "statusCodes") as? Int {
+                    
+                    print(statusCode)
+                    if(statusCode == 200) {
+                     /*   let alert = ViewControllerManager.displayAlert(message: "Beneficiary added successfully", title:APPLICATIONNAME)
+                        self.present(alert, animated: true, completion: nil)
+                        self.navigationController?.popViewController(animated: true)*/
+                        
+                    }
+                    else {
+                        let alert = ViewControllerManager.displayAlert(message: "Beneficiary added successfully", title:APPLICATIONNAME)
+                        self.present(alert, animated: true, completion: nil)
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                }*/
+                
+                
+                
+            }
+                
+            else
+            {
+                            print(errorString!)
+                          
+                            self.removeSpinner()
+                          /*  let finalError = errorString?.components(separatedBy: ":")
+                            let alert = ViewControllerManager.displayAlert(message: finalError?[1] ?? "", title:APPLICATIONNAME)
+                            self.present(alert, animated: true, completion: nil)*/
+                            if errorString == "Response could not be serialized, input data was nil or zero length." {
+                                Global.shared.timeoUtOrNot = "no"
+                                self.showAlertForTimer(titulo: "", mensagem: Global.shared.sessionTimedOutTxt, vc: self)
+ //                                let refreshAlert = UIAlertController(title: "", message: Global.shared.sessionTimedOutTxt, preferredStyle: UIAlertController.Style.alert)
+ //                                refreshAlert.view.tintColor = ColorCodes.newAppRed
+ //                                refreshAlert.addAction(UIAlertAction(title: Global.shared.okTxt, style: .default, handler: { (action: UIAlertAction!) in
+ //                                   self.pushViewController(controller: LoginVc.initiateController())
+ //                                }))
+ //
+ //                                self.present(refreshAlert, animated: true, completion: nil)
+                            }
+                            
+                            else {
+                                let alert = ViewControllerManager.displayAlert(message: errorString ?? "", title:APPLICATIONNAME)
+                                self.present(alert, animated: true, completion: nil)
+                            }
+                           
+                            
+                        }
+        }
+     }
+     
     func submitWesternUnionTransfer() {
         
         var beneficiaryIdd = BeneficiaryDetails.shared.beneficiaryId ?? 0

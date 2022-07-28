@@ -309,6 +309,7 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
             downloadAccountConfigCountriesWu()
             downloadAccountConfigCountriesBank()
             downloadAccountConfigCountriesFc()
+            downloadAccountConfigCountriesVisa()
             
 //            DispatchQueue.main.async {
 //                self.downloadBarChartData()
@@ -1239,7 +1240,7 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
                         
                         if let beneficiaryType = eachObj?.value(forKey: "beneficiaryType") as?Int
                         {
-                            if (beneficiaryType == 100 || beneficiaryType == 101 || beneficiaryType == 102)
+                            if (beneficiaryType == 100 || beneficiaryType == 101 || beneficiaryType == 102 || beneficiaryType == 103)
                             {
                                 // if let dataDict = eachObj {
                                 self.beneficaryFilteredResponse.append(eachObj!)
@@ -1349,8 +1350,12 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
         
         if  collectionView == self.recentTransctnsCollectnView {
             let cell = recentTransctnsCollectnView.dequeueReusableCell(withReuseIdentifier: "HomeRecentTransactionsCell", for: indexPath) as! HomeRecentTransactionsCell
-            
-            
+            if LocalizationSystem.sharedInstance.getLanguage() == "ar" {
+                cell.centerConstraint.constant = 25
+            }
+            else{
+                cell.centerConstraint.constant = -15
+            }
             cell.contentView.layer.cornerRadius = 2.0
             cell.contentView.layer.borderWidth = 0.5
             cell.contentView.layer.borderColor = UIColor.lightGray.cgColor
@@ -1452,7 +1457,18 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
             
             
             //   let finalCurency = String(eachObj?.value(forKey: "totalLCAmount") as? Int ?? 10) + " " + curencyName
+           
+            
             cell.currencyLbl.text = finalCurency
+            cell.viewStatusBtnOtlt.params["txnNo"] = eachObj?.value(forKey: "txnRefNo")
+            
+       
+            cell.viewStatusBtnOtlt.tag = indexPath.row
+            cell.viewStatusBtnOtlt.setTitle(Global.shared.tviewStatus, for: .normal)
+            cell.viewStatusBtnOtlt.addTarget(self, action:  #selector(TransStatusActn(sender:)), for: .touchUpInside)
+            
+           
+            
             
             cell.repeatBtnOtlt.addTarget(self, action: #selector(quickSendActnn(sender:)), for: .touchUpInside)
             cell.repeatBtnOtlt.params["beneficiaryType"] = eachObj?.value(forKey: "beneficiaryType") as? Int ?? 0
@@ -1551,18 +1567,27 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
             }
             
             
+            cell.cardNumber = eachObj?.value(forKey: "cardNumber") as? String ?? ""
+            cell.beneficiaryType = eachObj?.value(forKey: "beneficiaryType") as? Int ?? 0
             
             let firstNameTxt  = eachObj?.value(forKey: "firstName") as? String ?? ""
             let middleNameTxt  = eachObj?.value(forKey: "middleName") as? String ?? ""
             let lastNameTxt  = eachObj?.value(forKey: "lastName") as? String ?? ""
             cell.nameLbl.text = firstNameTxt + " " + middleNameTxt + " " + lastNameTxt
-            
+            let cardNumber = eachObj?.value(forKey: "cardNumber") as? String ?? ""
             let acntNumbr = eachObj?.value(forKey: "accountNumber") as? String ?? ""
             let curencyTxt = eachObj?.value(forKey: "currency") as? String ?? ""
             cell.currencyLbl.text = acntNumbr + "\n" + curencyTxt
            // cell.bankLbl.text = eachObj?.value(forKey: "bankName") as? String ?? ""
             let benefTypeName = eachObj?.value(forKey: "beneficiaryTypeName") as? String ?? ""
             cell.bankLbl.text = eachObj?.value(forKey: "bankName") as? String ?? benefTypeName
+            
+            if cell.beneficiaryType == 103
+            {
+                cell.bankLbl.text = eachObj?.value(forKey: "bankName") as? String ?? Global.shared.VisaDirect
+                cell.currencyLbl.text = cardNumber + "\n" + curencyTxt
+            }
+        
             
             cell.abaRouteCode = eachObj?.value(forKey: "abaRouteCode") as? String ?? ""
             cell.accountNumber = eachObj?.value(forKey: "accountNumber") as? String ?? ""
@@ -1662,6 +1687,8 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
             cell.edittBtnOtlt.params["swiftCode"] = eachObj?.value(forKey: "swiftCode") as? String ?? ""
             cell.edittBtnOtlt.params["telePhone"] = eachObj?.value(forKey: "telePhone") as? String ?? ""
             cell.edittBtnOtlt.params["txnRef"] = eachObj?.value(forKey: "txnRef") as? String ?? ""
+            cell.edittBtnOtlt.params["cardNumber"] = eachObj?.value(forKey: "cardNumber") as? String ?? ""
+            cell.edittBtnOtlt.params["sendToOwnCard"] = eachObj?.value(forKey: "sendToOwnCard") as? String ?? ""
            
             return cell
         }
@@ -1776,6 +1803,8 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
             BeneficiaryDetails.shared.swiftCode = eachObj?.value(forKey: "swiftCode") as? String ?? ""
             BeneficiaryDetails.shared.telePhone = eachObj?.value(forKey: "telePhone") as? String ?? ""
             BeneficiaryDetails.shared.txnRef = eachObj?.value(forKey: "txnRef") as? String ?? ""
+            BeneficiaryDetails.shared.cardNumber = eachObj?.value(forKey: "cardNumber") as? String ?? ""
+            BeneficiaryDetails.shared.sendToOwnCard = eachObj?.value(forKey: "sendToOwnCard") as? String ?? ""
             
             
             BeneficiaryDetails.shared.quickSend = "Details"
@@ -1787,7 +1816,7 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
             BeneficiaryDetails.shared.beneficiaryType = eachObj?.value(forKey: "beneficiaryType") as? Int ?? 0
             let benificiaryType = eachObj?.value(forKey: "beneficiaryType") as? Int ?? 0
             
-            if benificiaryType == 100 || benificiaryType == 101 {
+            if benificiaryType == 100 || benificiaryType == 101 || benificiaryType == 103 {
                 
                 if disablee == false {
                   /*  let vc = self.storyboard?.instantiateViewController(withIdentifier: "BenefBankCashNewTransferVc") as! BenefBankCashNewTransferVc
@@ -1954,6 +1983,9 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
             BeneficiaryDetails.shared.telePhone = sender.params["telePhone"] as? String ?? ""
             BeneficiaryDetails.shared.txnRef = sender.params["txnRef"] as? String ?? ""
             
+            BeneficiaryDetails.shared.cardNumber = sender.params["cardNumber"] as? String ?? ""
+            BeneficiaryDetails.shared.sendToOwnCard = sender.params["sendToOwnCard"] as? String ?? ""
+            
             
             let benificiaryType = sender.params["beneficiaryType"] ?? 0
             
@@ -1963,6 +1995,10 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
             }
             else   if benificiaryType as! Int == 101 {
                 let vc = self.storyboard?.instantiateViewController(withIdentifier: "BenefCashEditVc") as! BenefCashEditVc
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+            else   if benificiaryType as! Int == 103 {
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "BenefVisaCardEditVC") as! BenefVisaCardEditVC
                 self.navigationController?.pushViewController(vc, animated: true)
             }
             else {
@@ -2093,6 +2129,128 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
         
         
     }
+    @objc func TransStatusActn(sender: PassableUIButton)
+    {
+        
+        let eachObj = self.transctnResponse[sender.tag] as?NSDictionary
+        
+        
+        print(eachObj)
+        
+        BeneficiaryDetails.shared.beneficiaryId = eachObj?.value(forKey: "beneficiaryId") as? Int ?? 0
+        
+        BeneficiaryDetails.shared.mtcn = eachObj?.value(forKey: "mtcn") as? String ?? ""
+        BeneficiaryDetails.shared.ttRefNottn = eachObj?.value(forKey: "ttRefNo") as? String ?? ""
+        
+        let lcAmnt =  eachObj?.value(forKey: "lcAmount") as? String  ?? "0"
+        let doubleLcAmnt = Double(lcAmnt)
+        BeneficiaryDetails.shared.lcAmntQuickSend = doubleLcAmnt
+        
+        BeneficiaryDetails.shared.quickSend = "Quick"
+        BeneficiaryDetails.shared.beneficiaryType = eachObj?.value(forKey: "beneficiaryType") as? Int ?? 0
+        BeneficiaryDetails.shared.isRetail = eachObj?.value(forKey: "isRetail") as? Bool ?? false
+        BeneficiaryDetails.shared.remitterEmail = eachObj?.value(forKey: "remitterEmail") as? String ?? ""
+        
+        BeneficiaryDetails.shared.txnRef = eachObj?.value(forKey: "txnRefNo") as? String ?? ""
+        BeneficiaryDetails.shared.sourceCurrenyCode = eachObj?.value(forKey: "sourceCurrenyCode") as? String ?? ""
+        BeneficiaryDetails.shared.targetCurencyCode = eachObj?.value(forKey: "targetCurrenyCode") as? String ?? ""
+        BeneficiaryDetails.shared.beneficiaryTypeName = eachObj?.value(forKey: "beneficiaryTypeName") as? String ?? ""
+        BeneficiaryDetails.shared.firstName = eachObj?.value(forKey: "beneficiaryFirstName") as? String ?? ""
+        BeneficiaryDetails.shared.middleName = eachObj?.value(forKey: "beneficiaryMiddleName") as? String ?? ""
+        BeneficiaryDetails.shared.lastName = eachObj?.value(forKey: "beneficiaryLastName") as? String ?? ""
+        BeneficiaryDetails.shared.voucherMsg = eachObj?.value(forKey: "voucherMessage") as? String ?? ""
+  
+        BeneficiaryDetails.shared.sourceTotalAmnt = eachObj?["totalLCAmount"] as? String ?? ""
+        
+        BeneficiaryDetails.shared.targetTotalAmnt =  eachObj?["fcAmount"] as? String ?? ""
+        
+        BeneficiaryDetails.shared.countryCode = eachObj?.value(forKey: "beneficiaryCountry") as? String ?? ""
+        BeneficiaryDetails.shared.enableOrDisable = eachObj?.value(forKey: "isDisable") as? Bool ?? false
+        
+        let newDate = eachObj?.value(forKey: "createdDate") as? String ?? ""
+        
+        if newDate.contains(".") {
+         BeneficiaryDetails.shared.createdDatee = Date.getMonthDayYearString(newDate)
+        }
+        else {
+            BeneficiaryDetails.shared.createdDatee = Date.getMonthDayYearWithoutSecndsString(newDate)
+        }
+        
+        BeneficiaryDetails.shared.transctnStatusText = eachObj?.value(forKey: "statusName") as? String ?? ""
+        BeneficiaryDetails.shared.transctnStatusInt = eachObj?.value(forKey: "status") as? Int ?? 0
+        
+        BeneficiaryDetails.shared.bankName = eachObj?.value(forKey: "bankName") as? String ?? ""
+        BeneficiaryDetails.shared.branchName = eachObj?.value(forKey: "branchName") as? String ?? ""
+        BeneficiaryDetails.shared.accountNumber = eachObj?.value(forKey: "accountNumber") as? String ?? ""
+        
+        
+        let txnNo = eachObj?.value(forKey: "txnRefNo") as! String
+        self.showSpinner(onView: self.view)
+        let paramaterPasing: [String:Any] = [
+            "registrationId": Global.shared.afterLoginRegistrtnId ?? "",
+            "txnNo":txnNo
+        ]
+        
+        
+        /*    let headers: HTTPHeaders = [
+         "Content-Type": "application/json"
+         ]*/
+        
+        let headers: HTTPHeaders = [.authorization(bearerToken: UserDefaults.standard.string(forKey: "token")!)]
+        
+        NetWorkDataManager.sharedInstance.transactionEnquiryImplementation(headersTobePassed: headers, postParameters: paramaterPasing) { resonseTal , errorString in
+            
+            if errorString == nil
+            {
+                print(resonseTal)
+                self.removeSpinner()
+                
+            let statusMsg = resonseTal?.value(forKey: "statusMessage") as? String ?? ""
+            let mesageCode = resonseTal?.value(forKey: "messageCode") as? String ?? statusMsg
+                if let statusCode = resonseTal?.value(forKey: "statusCodes") as? Int {
+                    if statusCode == 200 {
+                        BeneficiaryDetails.shared.transactionStatus = resonseTal?.value(forKey: "transactionStatus") as? String ?? ""
+                        let vc = self.storyboard?.instantiateViewController(withIdentifier: "TransactionStatusController") as! TransactionStatusController
+                        self.present(vc, animated: true, completion: nil)
+                        
+                    }
+                    else {
+                        let alert = ViewControllerManager.displayAlert(message:Global.shared.messageCodeType(text: mesageCode), title:APPLICATIONNAME)
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                    
+                }
+                
+            }
+            
+            else
+            {
+                print(errorString!)
+                self.removeSpinner()
+              //  Global.shared.methodName = CanvasUrls.ttRateCalculator
+              //  NetWorkDataManager.sharedInstance.callChannelException()
+                let finalError = errorString?.components(separatedBy: ":")
+                if finalError?.count == 2
+                {
+                let alert = ViewControllerManager.displayAlert(message: finalError?[1] ?? "", title:APPLICATIONNAME)
+                self.present(alert, animated: true, completion: nil)
+                }
+                else
+                {
+                    let alert = ViewControllerManager.displayAlert(message: finalError?[0] ?? "", title:APPLICATIONNAME)
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }
+            
+        }
+        callStatusAPI()
+    }
+    func callStatusAPI()
+    {
+       
+    }
+    
+    
     
     @objc func quickSendActnn(sender: PassableUIButton){
         
@@ -2661,6 +2819,10 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
                                  if benificiaryType == 100 || benificiaryType == 101 {
                                   self.pushViewController(controller: BenefBankCashNewTransferVc.initiateController(),animated: false)
                                  }
+                             else if  benificiaryType == 103 {
+                                 self.pushViewController(controller: VisaDirectNewTransferVC.initiateController(),animated: false)
+                                 
+                             }
                                  else {
                                     Global.shared.fraudPopUpDirectWu = "Normal"
                                  
@@ -2691,6 +2853,86 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
 
         }
     }
+    
+    func downloadAccountConfigCountriesVisa()
+    {
+        let paramaterPasing: [String:Any] = ["languageCode":LocalizationSystem.sharedInstance.getLanguage(),
+                                             "type": 8]
+        
+        
+        let headers: HTTPHeaders = [
+            "Content-Type": "application/json"
+        ]
+        
+        NetWorkDataManager.sharedInstance.countryListImplimentation(headersTobePassed: headers, postParameters: paramaterPasing) { resonseTal , errorString in
+            
+            if errorString == nil
+            {
+                
+                print(resonseTal!)
+                if let countres = resonseTal?.value(forKey: "countriesList") as? [[String: Any]] {
+                    //  Global.shared.countrisBank = Country.getCountries(countres)
+                    Global.shared.countrisAllVisa = countres
+                    
+                }
+                if let countries = resonseTal?.value(forKey: "countriesList") as? NSArray {
+                    print(countries)
+                    //please check country
+                    
+                    
+                    if let countryName = countries.value(forKey: "countryName") as? [String] {
+                        Global.shared.countryNameDataVisa = countryName
+                    }
+                    if let countryCode = countries.value(forKey: "countryCode") as? [String] {
+                        Global.shared.countryCodesDataVisa = countryCode
+                    }
+                    if let currency = countries.value(forKey: "countryCurrency") as? [String] {
+                        Global.shared.currencyCodesDataVisa = currency
+                    }
+                    if let currencyNames = countries.value(forKey: "currencyName") as? [String] {
+                        Global.shared.currencyNameDataVisa = currencyNames
+                    }
+                    
+                    if let phoneCodes = countries.value(forKey: "phoneCode") as? [String] {
+                        Global.shared.phoneCodesDataVisa = phoneCodes
+                    }
+                    
+                    for i in 0..<Global.shared.currencyCodesDataVisa.count {
+                        Global.shared.pickerResponseOnlyCurrencyDataVisa.append(["value":  Global.shared.currencyCodesDataVisa[i], "display":  Global.shared.currencyCodesDataVisa[i]])
+                    }
+                    
+                    for i in 0..<Global.shared.currencyNameDataVisa.count {
+                        Global.shared.pickerResponseFullCurrencyNameDataVisa.append(["value":  Global.shared.currencyNameDataVisa[i], "display":  Global.shared.currencyNameDataVisa[i]])
+                    }
+                    
+                    
+                    for i in 0..<Global.shared.countryNameDataVisa.count {
+                        Global.shared.pickerResponseCountryDataVisa.append(["value": Global.shared.countryNameDataVisa[i], "display": Global.shared.countryNameDataVisa[i]])
+                    }
+                    
+                    /*    for i in 0..<self.countryNameData.count {
+                     self.pickerResponseData.append(["value": self.countryCodeData[i], "display": self.countryNameData[i]])
+                     }*/
+                    
+                    
+                }
+                //       print(self.pickerResponseData)
+                
+            }
+            
+            else
+            {
+                print(errorString!)
+                self.removeSpinner()
+                NetWorkDataManager.sharedInstance.callChannelException()
+                let finalError = errorString?.components(separatedBy: ":")
+                let alert = ViewControllerManager.displayAlert(message: finalError?[1] ?? "", title:APPLICATIONNAME)
+                self.present(alert, animated: true, completion: nil)
+                
+            }
+        }
+    }
+    
     
     func downloadAccountConfigCountriesWu() {
         

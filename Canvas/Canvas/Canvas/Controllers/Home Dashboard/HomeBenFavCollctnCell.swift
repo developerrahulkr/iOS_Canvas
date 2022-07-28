@@ -71,5 +71,7 @@ class HomeBenFavCollctnCell: UICollectionViewCell {
        var sourceOfIncome = ""
        var telePhone = ""
        var txnRef = ""
+       var cardNumber = ""
+       var sendToOwnCard = ""
     
 }

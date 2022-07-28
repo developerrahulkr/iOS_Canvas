@@ -33,11 +33,13 @@ class Global {
     var countrisAllFc = [[String: Any]]()
     var countrisAllWU = [[String: Any]]()
     var countrisAllWUAdd = [[String: Any]]()
+    var countrisAllVisa = [[String: Any]]()
     var countrisAllBankAdd = [[String: Any]]()
     var countrisAllCashAdd = [[String: Any]]()
     var countrisAllRate = [[String: Any]]()
    
     var countryCurncyAry:NSArray!
+    var countryCurncyVisaAry:NSArray!
     var countryCurncyBankAry:NSArray!
     var countryCurncyCashAry:NSArray!
     
@@ -368,6 +370,12 @@ class Global {
     var AddBenefAccountType: String!
     var AddBenefBranchAddress1: String!
     var AddBenefBranchAddress2: String!
+    
+    var VisaSendToOwnCard: String!
+    var VisaCardDetails: String!
+    var VisaCardNumber: String!
+    var VisaDirect: String!
+    var rrn: String!
    
     
     //Rate calculator
@@ -440,6 +448,16 @@ class Global {
     var pickerResponseCountryDataWU  = [[String: String]]()
     var pickerResponseOnlyCurrencyDataWU  = [[String: String]]()
     var pickerResponseFullCurrencyNameDataWU  = [[String: String]]()
+    
+    //Drop downs
+    var countryNameDataVisa = [String]()
+    var countryCodesDataVisa  = [String]()
+    var currencyCodesDataVisa  = [String]()
+    var currencyNameDataVisa  = [String]()
+    var phoneCodesDataVisa  = [String]()
+    var pickerResponseCountryDataVisa  = [[String: String]]()
+    var pickerResponseOnlyCurrencyDataVisa  = [[String: String]]()
+    var pickerResponseFullCurrencyNameDataVisa  = [[String: String]]()
     
     //Drop downs
     var countryNameDataWUAdd = [String]()
@@ -1322,6 +1340,20 @@ class Global {
     var failedTxt: String!
     var cancelleddTxt: String!
     var youPauOnlyyTxt: String!
+    
+    //  Transaction_Enquiry
+    
+    var tbeneficiaryBank: String!
+    var tbenficiaryfullName: String!
+    var tmtcn: String!
+    var treceiveAmount: String!
+    var treferenceNumber: String!
+    
+    var ttransaction: String!
+    var ttransactionStatus: String!
+    var ttransferAmount: String!
+    var tttno: String!
+    var tviewStatus: String!
    
     
     func rateApp() {

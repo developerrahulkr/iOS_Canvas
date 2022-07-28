@@ -49,6 +49,23 @@ class CountryDrpDownSearch: UIViewController, UITableViewDataSource, UITableView
             
             originalAry = Global.shared.countryNameData
         }
+           
+           
+           // Mark: For Visa Transfer
+          else if Global.shared.countrysChangeAccordingly == "Visa" {
+           
+            Global.shared.countryNameData =  Global.shared.countryNameDataVisa
+            Global.shared.countryCodesData =  Global.shared.countryCodesDataVisa
+            Global.shared.currencyCodesData = Global.shared.currencyCodesDataVisa
+            Global.shared.currencyNameData = Global.shared.currencyNameDataVisa
+            Global.shared.phoneCodesData = Global.shared.phoneCodesDataVisa
+            Global.shared.pickerResponseCountryData = Global.shared.pickerResponseCountryDataVisa
+            Global.shared.pickerResponseOnlyCurrencyData = Global.shared.pickerResponseOnlyCurrencyDataVisa
+            Global.shared.pickerResponseFullCurrencyNameData = Global.shared.pickerResponseFullCurrencyNameDataVisa
+            
+            originalAry = Global.shared.countryNameData
+               
+           }
         
         // Mark: For Bank Transfer
        else if Global.shared.countrysChangeAccordingly == "Bank" {

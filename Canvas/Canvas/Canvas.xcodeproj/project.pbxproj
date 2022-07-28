@@ -28,6 +28,14 @@
 		2CA2D9A4273D285E00CC9058 /* UpdateCivilIDController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA2D9A2273D285E00CC9058 /* UpdateCivilIDController.swift */; };
 		2CA2D9A5273D285E00CC9058 /* ShowImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA2D9A3273D285E00CC9058 /* ShowImageController.swift */; };
 		2CC5180D284F61A50040F7A2 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CC5180C284F61A50040F7A2 /* AdSupport.framework */; };
+		2CC5181A28619BF00040F7A2 /* BeneficiaryFourthTabVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC5180F28619BEF0040F7A2 /* BeneficiaryFourthTabVc.swift */; };
+		2CC5181F28619BF00040F7A2 /* BenefVisaCardEditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC5181528619BEF0040F7A2 /* BenefVisaCardEditVC.swift */; };
+		2CC5182028619BF00040F7A2 /* VisaDirectNewTransferVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC5181628619BEF0040F7A2 /* VisaDirectNewTransferVC.swift */; };
+		2CC5182128619BF00040F7A2 /* beneficiaryFourthTabCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC5181728619BEF0040F7A2 /* beneficiaryFourthTabCell.swift */; };
+		2CC5182228619BF00040F7A2 /* BenefVisaDirectTransferVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC5181828619BEF0040F7A2 /* BenefVisaDirectTransferVc.swift */; };
+		2CC5182328619BF00040F7A2 /* BeneficaryFourTabCollectnCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC5181928619BEF0040F7A2 /* BeneficaryFourTabCollectnCell.swift */; };
+		2CC5182528619FAD0040F7A2 /* VisaDirect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC5182428619FAD0040F7A2 /* VisaDirect.swift */; };
+		2CC518282861BBD40040F7A2 /* TransactionStatusController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC518272861BBD40040F7A2 /* TransactionStatusController.swift */; };
 		2CEE5FF3277C4517005BC4B9 /* SiteUnderMaintnanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEE5FF2277C4517005BC4B9 /* SiteUnderMaintnanceController.swift */; };
 		2EA904DDF467A2A39B14AD27 /* Pods_Canvas.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1919899CC39E0CDDA2C7E03 /* Pods_Canvas.framework */; };
 		8E07CEA82583DAC600891289 /* TransctionPeriodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E07CEA62583DAC600891289 /* TransctionPeriodCell.swift */; };
@@ -258,6 +266,14 @@
 		2CA2D9A2273D285E00CC9058 /* UpdateCivilIDController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateCivilIDController.swift; sourceTree = "<group>"; };
 		2CA2D9A3273D285E00CC9058 /* ShowImageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowImageController.swift; sourceTree = "<group>"; };
 		2CC5180C284F61A50040F7A2 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		2CC5180F28619BEF0040F7A2 /* BeneficiaryFourthTabVc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeneficiaryFourthTabVc.swift; sourceTree = "<group>"; };
+		2CC5181528619BEF0040F7A2 /* BenefVisaCardEditVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BenefVisaCardEditVC.swift; sourceTree = "<group>"; };
+		2CC5181628619BEF0040F7A2 /* VisaDirectNewTransferVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisaDirectNewTransferVC.swift; sourceTree = "<group>"; };
+		2CC5181728619BEF0040F7A2 /* beneficiaryFourthTabCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = beneficiaryFourthTabCell.swift; sourceTree = "<group>"; };
+		2CC5181828619BEF0040F7A2 /* BenefVisaDirectTransferVc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BenefVisaDirectTransferVc.swift; sourceTree = "<group>"; };
+		2CC5181928619BEF0040F7A2 /* BeneficaryFourTabCollectnCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeneficaryFourTabCollectnCell.swift; sourceTree = "<group>"; };
+		2CC5182428619FAD0040F7A2 /* VisaDirect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisaDirect.swift; sourceTree = "<group>"; };
+		2CC518272861BBD40040F7A2 /* TransactionStatusController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionStatusController.swift; sourceTree = "<group>"; };
 		2CEE5FF2277C4517005BC4B9 /* SiteUnderMaintnanceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SiteUnderMaintnanceController.swift; sourceTree = "<group>"; };
 		682E4A379B29BB72C880381F /* Pods-Canvas-CanvasUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Canvas-CanvasUITests.debug.xcconfig"; path = "Target Support Files/Pods-Canvas-CanvasUITests/Pods-Canvas-CanvasUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		8E07CEA62583DAC600891289 /* TransctionPeriodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransctionPeriodCell.swift; sourceTree = "<group>"; };
@@ -585,6 +601,27 @@
 			path = UpdateCivilID;
 			sourceTree = "<group>";
 		};
+		2CC5180E28619BEF0040F7A2 /* VisaDirect */ = {
+			isa = PBXGroup;
+			children = (
+				2CC5180F28619BEF0040F7A2 /* BeneficiaryFourthTabVc.swift */,
+				2CC5181528619BEF0040F7A2 /* BenefVisaCardEditVC.swift */,
+				2CC5181628619BEF0040F7A2 /* VisaDirectNewTransferVC.swift */,
+				2CC5181728619BEF0040F7A2 /* beneficiaryFourthTabCell.swift */,
+				2CC5181828619BEF0040F7A2 /* BenefVisaDirectTransferVc.swift */,
+				2CC5181928619BEF0040F7A2 /* BeneficaryFourTabCollectnCell.swift */,
+			);
+			path = VisaDirect;
+			sourceTree = "<group>";
+		};
+		2CC518262861BBD40040F7A2 /* TransactionStatus */ = {
+			isa = PBXGroup;
+			children = (
+				2CC518272861BBD40040F7A2 /* TransactionStatusController.swift */,
+			);
+			path = TransactionStatus;
+			sourceTree = "<group>";
+		};
 		2CEE5FED277C4499005BC4B9 /* SiteUnderMaintanence */ = {
 			isa = PBXGroup;
 			children = (
@@ -780,15 +817,16 @@
 			isa = PBXGroup;
 			children = (
 				D5147EDA24DED9F700B41715 /* Global.swift */,
-				D5030F1924EFC9150001D686 /* AlertsValidations.swift */,
-				D5030F1724EFB7290001D686 /* ExistingUser.swift */,
 				D564540724F4D97400D62196 /* NewUser.swift */,
 				D571385F24F7AB160088A5BA /* BankTransfer.swift */,
 				D571386124F7AB2A0088A5BA /* CashTransfer.swift */,
+				D5030F1724EFB7290001D686 /* ExistingUser.swift */,
 				D571386324F7AB3D0088A5BA /* WesternUnion.swift */,
+				D5030F1924EFC9150001D686 /* AlertsValidations.swift */,
 				D5801F1024F8B60500BFAF77 /* BeneficiaryDetails.swift */,
 				D5973C67252F2C53004BC953 /* ProfileDetails.swift */,
 				D56B547925D6B16E00B08B15 /* main.swift */,
+				2CC5182428619FAD0040F7A2 /* VisaDirect.swift */,
 			);
 			path = "Global classes";
 			sourceTree = "<group>";
@@ -796,6 +834,7 @@
 		D55ACCC1254293D400DE2F11 /* Beneficiaries */ = {
 			isa = PBXGroup;
 			children = (
+				2CC5180E28619BEF0040F7A2 /* VisaDirect */,
 				D55A084224F6720C00AFAF12 /* BeneficiaryMainVc.swift */,
 				D55A084C24F6894F00AFAF12 /* BeneficiaryAddVc.swift */,
 				D50EF0BE251DDAA300790C4F /* ContactVc.swift */,
@@ -1074,6 +1113,7 @@
 		D562FD3025FF22FF004E81DE /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				2CC518262861BBD40040F7A2 /* TransactionStatus */,
 				2C805274278581AF00CB3B4D /* TipsList */,
 				2CEE5FED277C4499005BC4B9 /* SiteUnderMaintanence */,
 				2CA2D9A1273D285E00CC9058 /* UpdateCivilID */,
@@ -1454,6 +1494,7 @@
 				D55A083B24F64F3400AFAF12 /* FaqVc.swift in Sources */,
 				D583A55925028BA80029C942 /* BranchLocatorMapVc.swift in Sources */,
 				D56A113C25A2E6D300DF2293 /* RateCalculatorFcVc.swift in Sources */,
+				2CC518282861BBD40040F7A2 /* TransactionStatusController.swift in Sources */,
 				8E3BA91C25721C8A0078A025 /* String+Extension.swift in Sources */,
 				D51E88CF24E2C9800010C57B /* XMSegmentedControl.swift in Sources */,
 				D5AC88B124D939B7007E4A74 /* GradiantColor.swift in Sources */,
@@ -1471,6 +1512,7 @@
 				8ECB2192257F70F300617DF3 /* PopupViewController.swift in Sources */,
 				D564540824F4D97400D62196 /* NewUser.swift in Sources */,
 				D5DAD8C12577731E00908738 /* HomeWuRateCalcVc.swift in Sources */,
+				2CC5182528619FAD0040F7A2 /* VisaDirect.swift in Sources */,
 				D50EF0BF251DDAA300790C4F /* ContactVc.swift in Sources */,
 				D55A084724F688F100AFAF12 /* BeneficiarySecndTabVc.swift in Sources */,
 				19C96EF526D6462500B1321E /* PreLoginOfferCell.swift in Sources */,
@@ -1488,6 +1530,7 @@
 				D569AE30256E5652006DBD78 /* UIKitExtensions.swift in Sources */,
 				D5CB69662533DF26003076CA /* RateAlertsCell.swift in Sources */,
 				D55A083D24F64F9300AFAF12 /* FaqCell.swift in Sources */,
+				2CC5182328619BF00040F7A2 /* BeneficaryFourTabCollectnCell.swift in Sources */,
 				2C80527A27A187B300CB3B4D /* BiometricController.swift in Sources */,
 				D571385A24F78E170088A5BA /* BeneficiaryThirdTabCell.swift in Sources */,
 				D55A084524F688D200AFAF12 /* BeneficiaryFirstTabVc.swift in Sources */,
@@ -1501,6 +1544,7 @@
 				D55CF463255701BF00E77B07 /* ProfileFirstTabVc.swift in Sources */,
 				D5DAD8BB25775C9300908738 /* OccupationSearch.swift in Sources */,
 				D56DF0F4250F722A00DBEF82 /* TransactionSuccesVc.swift in Sources */,
+				2CC5181F28619BF00040F7A2 /* BenefVisaCardEditVC.swift in Sources */,
 				8E8508942575607900AFC0EF /* SecuirtyRule.swift in Sources */,
 				8E865DDC256FC84A000526B5 /* AppRootNavgationCotroller.swift in Sources */,
 				D54828222580F53800FAFCC5 /* BenefWuNewDirectTrnferVc.swift in Sources */,
@@ -1522,6 +1566,7 @@
 				D569E74925398FF2004A4BD1 /* DropDownSearchVc.swift in Sources */,
 				D55A084324F6720D00AFAF12 /* BeneficiaryMainVc.swift in Sources */,
 				D55C934C24D8461F003F7F5F /* SceneDelegate.swift in Sources */,
+				2CC5181A28619BF00040F7A2 /* BeneficiaryFourthTabVc.swift in Sources */,
 				8E3BA91B25721C8A0078A025 /* PasswordStrengthManager.swift in Sources */,
 				D586927E25471985004B983E /* CustomTabBarVc.swift in Sources */,
 				D571386024F7AB170088A5BA /* BankTransfer.swift in Sources */,
@@ -1550,6 +1595,7 @@
 				D55ECD2A254054D100C12BBE /* HomeBenefFavCell.swift in Sources */,
 				D561DC5125249943001AF424 /* BenefEmailPopUpVc.swift in Sources */,
 				197C47AF2702B16C00CCF84E /* BannerGridCell.swift in Sources */,
+				2CC5182228619BF00040F7A2 /* BenefVisaDirectTransferVc.swift in Sources */,
 				8E1D3CF82574EE4900BEF295 /* SecurityQuestion.swift in Sources */,
 				D55CF45B255697CE00E77B07 /* BranchLocatorFirstVc.swift in Sources */,
 				D5B55D87252DEE1100B6D4C8 /* ProfileEmploymentVc.swift in Sources */,
@@ -1560,6 +1606,7 @@
 				D5801F1124F8B60500BFAF77 /* BeneficiaryDetails.swift in Sources */,
 				8ECB2197257F75AF00617DF3 /* BeneficiaryPurposeData.swift in Sources */,
 				D5973C68252F2C53004BC953 /* ProfileDetails.swift in Sources */,
+				2CC5182028619BF00040F7A2 /* VisaDirectNewTransferVC.swift in Sources */,
 				D5030F1A24EFC9160001D686 /* AlertsValidations.swift in Sources */,
 				D59EBC4224DC5B550056FF03 /* VerifyAccountFirstVc.swift in Sources */,
 				D56FC719257F61AB004A02E4 /* BranchLocatorSearch.swift in Sources */,
@@ -1606,6 +1653,7 @@
 				D5147EDB24DED9F700B41715 /* Global.swift in Sources */,
 				D50FF9942551262B009DA3F1 /* HomeDashboardVc.swift in Sources */,
 				8E3BA91D25721C8A0078A025 /* PasswordStrengthType.swift in Sources */,
+				2CC5182128619BF00040F7A2 /* beneficiaryFourthTabCell.swift in Sources */,
 				D542F56C24EE637D00213C80 /* ResetPswdVc.swift in Sources */,
 				8ECB218A257CD30900617DF3 /* BaseViewController.swift in Sources */,
 				D55E82BF257089DB00226A60 /* CountryDrpDwnSearchCell.swift in Sources */,
@@ -1820,7 +1868,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Canvas/Canvas.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -1835,7 +1883,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.8;
+				MARKETING_VERSION = 5.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.almuzaini.almuzaini;
 				"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]" = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1865,12 +1913,12 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.8;
+				MARKETING_VERSION = 5.12;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.almuzaini.almuzaini;
 				"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]" = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "MUZAINI Adhoc Profile";
+				PROVISIONING_PROFILE_SPECIFIER = "MUZAINI Appstore Profile";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;

@@ -32,7 +32,7 @@ class BeneficiaryMainVc: BaseViewController, XMSegmentedControlDelegate, navigat
     @IBOutlet weak var secndView: UIView!
     
     @IBOutlet weak var thirdView: UIView!
-    
+    @IBOutlet weak var fourthView: UIView!
     
     @IBOutlet weak var addBtnOtlt: UIButton!
     
@@ -49,13 +49,13 @@ class BeneficiaryMainVc: BaseViewController, XMSegmentedControlDelegate, navigat
         getHelpList()
         
         if LocalizationSystem.sharedInstance.getLanguage() == "ar" {
-            let titles = [Global.shared.addWesternUnion! ,Global.shared.addCash!,Global.shared.addBank!]
+            let titles = [Global.shared.VisaDirect!,Global.shared.addWesternUnion! ,Global.shared.addCash!,Global.shared.addBank!]
             self.view.semanticContentAttribute = .forceRightToLeft
             self.seg.delegate = self
             self.seg.segmentTitle = titles
         }
         else {
-        let titles = [Global.shared.addBank! ,Global.shared.addCash!,Global.shared.addWesternUnion!]
+            let titles = [Global.shared.addBank! ,Global.shared.addCash!,Global.shared.addWesternUnion!, Global.shared.VisaDirect!]
         self.seg.delegate = self
         self.seg.segmentTitle = titles
         }
@@ -113,6 +113,7 @@ class BeneficiaryMainVc: BaseViewController, XMSegmentedControlDelegate, navigat
         BeneficiaryDetails.shared.beneficaryBankFilteredResponse.removeAll()
         BeneficiaryDetails.shared.beneficaryCashFilteredResponse.removeAll()
         BeneficiaryDetails.shared.beneficaryWuFilteredResponse.removeAll()
+        BeneficiaryDetails.shared.beneficaryVisaFilteredResponse.removeAll()
         
         Global.shared.refreshOrNot = "no"
         let paramaterPasing: [String:Any] = ["registrationId": Global.shared.afterLoginRegistrtnId ?? "",
@@ -136,6 +137,7 @@ class BeneficiaryMainVc: BaseViewController, XMSegmentedControlDelegate, navigat
                 BeneficiaryDetails.shared.beneficaryBankFilteredResponse.removeAll()
                 BeneficiaryDetails.shared.beneficaryCashFilteredResponse.removeAll()
                 BeneficiaryDetails.shared.beneficaryWuFilteredResponse.removeAll()
+                BeneficiaryDetails.shared.beneficaryVisaFilteredResponse.removeAll()
                 
                self.beneficiaryResponse.removeAll()
                self.removeLoader()
@@ -168,6 +170,13 @@ class BeneficiaryMainVc: BaseViewController, XMSegmentedControlDelegate, navigat
                             {
                                 // if let dataDict = eachObj {
                                 BeneficiaryDetails.shared.beneficaryWuFilteredResponse.append(eachObj!)
+                               // print(self.beneficaryBankFilteredResponse)
+                             
+                        }
+                            if (beneficiaryType == 103)
+                            {
+                                // if let dataDict = eachObj {
+                                BeneficiaryDetails.shared.beneficaryVisaFilteredResponse.append(eachObj!)
                                // print(self.beneficaryBankFilteredResponse)
                              
                         }
@@ -286,13 +295,13 @@ class BeneficiaryMainVc: BaseViewController, XMSegmentedControlDelegate, navigat
     
     func menuItemsData()  {
         if LocalizationSystem.sharedInstance.getLanguage() == "ar" {
-            let titles = [Global.shared.addWesternUnion! ,Global.shared.addCash!,Global.shared.addBank!]
+            let titles = [Global.shared.VisaDirect!,Global.shared.addWesternUnion! ,Global.shared.addCash!,Global.shared.addBank!]
             self.view.semanticContentAttribute = .forceRightToLeft
             self.seg.delegate = self
             self.seg.segmentTitle = titles
         }
         else {
-        let titles = [Global.shared.addBank! ,Global.shared.addCash!,Global.shared.addWesternUnion!]
+            let titles = [Global.shared.addBank! ,Global.shared.addCash!,Global.shared.addWesternUnion!,Global.shared.VisaDirect!]
         self.seg.delegate = self
         self.seg.segmentTitle = titles
         }
@@ -306,28 +315,32 @@ class BeneficiaryMainVc: BaseViewController, XMSegmentedControlDelegate, navigat
         // self.seg.tint = ColorCodes.DarkCement
         self.seg.tint = UIColor.gray
         self.seg.highlightTint = UIColor.red
-        self.seg.font = UIFont.boldSystemFont(ofSize: 12)
+        self.seg.font = UIFont.boldSystemFont(ofSize: 14)
         if LocalizationSystem.sharedInstance.getLanguage() == "ar" {
             firstView.isHidden = true
             secndView.isHidden = true
-            thirdView.isHidden = false
+            thirdView.isHidden = true
+            fourthView.isHidden = false
         }
         else {
-        firstView.isHidden = false
-        secndView.isHidden = true
-        thirdView.isHidden = true
+          firstView.isHidden = false
+          secndView.isHidden = true
+          thirdView.isHidden = true
+          fourthView.isHidden = true
         }
         
         if let vcOne = children.filter({$0 is BeneficiaryFirstTabVc}).first as? BeneficiaryFirstTabVc {
             vcOne.viewDidLoad()
         }
-            if let vcTwo = children.filter({$0 is BeneficiarySecndTabVc}).first as? BeneficiarySecndTabVc {
+        if let vcTwo = children.filter({$0 is BeneficiarySecndTabVc}).first as? BeneficiarySecndTabVc {
                 vcTwo.viewDidLoad()
-            }
-                if let vcThree = children.filter({$0 is BeneficiaryThirdTabVc}).first as? BeneficiaryThirdTabVc {
-                    vcThree.viewDidLoad()
-                }
-        
+        }
+        if let vcThree = children.filter({$0 is BeneficiaryThirdTabVc}).first as? BeneficiaryThirdTabVc {
+            vcThree.viewDidLoad()
+        }
+        if let vcFour = children.filter({$0 is BeneficiaryFourthTabVc}).first as? BeneficiaryFourthTabVc {
+            vcFour.viewDidLoad()
+        }
       //  self.removeLoader()
         self.removeSpinner()
         /*   let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
@@ -356,19 +369,19 @@ class BeneficiaryMainVc: BaseViewController, XMSegmentedControlDelegate, navigat
                     // saapView.isHidden=false
                     firstView.isHidden = true
                     secndView.isHidden = true
-                    thirdView.isHidden = false
-                    
+                    thirdView.isHidden = true
+                    fourthView.isHidden = false
+
                     if let vc = children.filter({$0 is BeneficiaryFirstTabVc}).first as? BeneficiaryFirstTabVc {
                         vc.viewWillAppear(true)
                         
-                           }
-                    
-                    
+                    }
                 case 1:
                     
                     firstView.isHidden = true
-                    secndView.isHidden = false
-                    thirdView.isHidden = true
+                    secndView.isHidden = true
+                    thirdView.isHidden = false
+                    fourthView.isHidden = true
                     
                     if let vc = children.filter({$0 is BeneficiarySecndTabVc}).first as? BeneficiarySecndTabVc {
                         vc.viewWillAppear(true)
@@ -376,13 +389,23 @@ class BeneficiaryMainVc: BaseViewController, XMSegmentedControlDelegate, navigat
                     
                 case 2:
                     
-                    firstView.isHidden = false
-                    secndView.isHidden = true
+                    firstView.isHidden = true
+                    secndView.isHidden = false
                     thirdView.isHidden = true
+                    fourthView.isHidden = true
                     
                     if let vc = children.filter({$0 is BeneficiaryThirdTabVc}).first as? BeneficiaryThirdTabVc {
                          vc.viewWillAppear(true)
                            }
+                case 3:
+                    firstView.isHidden = false
+                    secndView.isHidden = true
+                    thirdView.isHidden = true
+                    fourthView.isHidden = true
+                    
+                    if let vc = children.filter({$0 is BeneficiaryFourthTabVc}).first as? BeneficiaryFourthTabVc {
+                         vc.viewWillAppear(true)
+                    }
                     
                 default:
                     
@@ -400,18 +423,18 @@ class BeneficiaryMainVc: BaseViewController, XMSegmentedControlDelegate, navigat
                 firstView.isHidden = false
                 secndView.isHidden = true
                 thirdView.isHidden = true
+                fourthView.isHidden = true
                 
                 if let vc = children.filter({$0 is BeneficiaryFirstTabVc}).first as? BeneficiaryFirstTabVc {
                     vc.viewWillAppear(true)
                     
-                       }
-                
-                
+            }
             case 1:
                 
                 firstView.isHidden = true
                 secndView.isHidden = false
                 thirdView.isHidden = true
+                fourthView.isHidden = true
                 
                 if let vc = children.filter({$0 is BeneficiarySecndTabVc}).first as? BeneficiarySecndTabVc {
                     vc.viewWillAppear(true)
@@ -422,8 +445,20 @@ class BeneficiaryMainVc: BaseViewController, XMSegmentedControlDelegate, navigat
                 firstView.isHidden = true
                 secndView.isHidden = true
                 thirdView.isHidden = false
+                fourthView.isHidden = true
                 
                 if let vc = children.filter({$0 is BeneficiaryThirdTabVc}).first as? BeneficiaryThirdTabVc {
+                     vc.viewWillAppear(true)
+                       }
+                
+            case 3:
+                
+                firstView.isHidden = true
+                secndView.isHidden = true
+                thirdView.isHidden = true
+                fourthView.isHidden = false
+                
+                if let vc = children.filter({$0 is BeneficiaryFourthTabVc}).first as? BeneficiaryFourthTabVc {
                      vc.viewWillAppear(true)
                        }
                 
@@ -432,7 +467,7 @@ class BeneficiaryMainVc: BaseViewController, XMSegmentedControlDelegate, navigat
                 break
             }
         }
-        }
+      }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -579,13 +614,13 @@ class BeneficiaryMainVc: BaseViewController, XMSegmentedControlDelegate, navigat
             let remiterStatus = UserDefaults.standard.string(forKey: "remitterStatus")!
             if remiterStatus == "1" {
                 print("nothing")
-                if firstView.isHidden == false &&  secndView.isHidden == true && thirdView.isHidden == true {
+                if firstView.isHidden == false &&  secndView.isHidden == true && thirdView.isHidden == true && fourthView.isHidden == true {
                   self.pushViewController(controller: BeneficiaryBankTransferVc.initiateController())
                     
-                } else if firstView.isHidden == true && secndView.isHidden == false && thirdView.isHidden == true {
+                } else if firstView.isHidden == true && secndView.isHidden == false && thirdView.isHidden == true && fourthView.isHidden == true {
                   self.pushViewController(controller: BeneficiaryCashTransferVc.initiateController())
                     
-                }  else if firstView.isHidden == true && secndView.isHidden == true && thirdView.isHidden == false {
+                }  else if firstView.isHidden == true && secndView.isHidden == true && thirdView.isHidden == false && fourthView.isHidden == true {
                     
                  /*   if Global.shared.fraudRemovePopUpWu == "AddDisable" {
                         print("do nothing")
@@ -603,6 +638,10 @@ class BeneficiaryMainVc: BaseViewController, XMSegmentedControlDelegate, navigat
                 //  self.pushViewController(controller: BenefWuDirectTransferVc.initiateController())
 
                 }
+                else if firstView.isHidden == true && secndView.isHidden == true && thirdView.isHidden == true && fourthView.isHidden == false {
+                    self.pushViewController(controller: BenefVisaDirectTransferVc.initiateController())
+                
+            }
                 
             }
             else {
@@ -684,6 +723,12 @@ class BeneficiaryMainVc: BaseViewController, XMSegmentedControlDelegate, navigat
             vc.removeSpinner()*/
             vc.viewWillAppear(true)
         }
+        if let vc = children.filter({$0 is BeneficiaryFourthTabVc}).first as? BeneficiaryFourthTabVc {
+          /*   vc.showSpinner(onView: vc.view)
+            vc.viewDidLoad()
+            vc.removeSpinner()*/
+            vc.viewWillAppear(true)
+        }
         
         
         
@@ -712,6 +757,10 @@ class BeneficiaryMainVc: BaseViewController, XMSegmentedControlDelegate, navigat
             vc.viewWillAppear(true)
         }
         if let vc = children.filter({$0 is BeneficiaryThirdTabVc}).first as? BeneficiaryThirdTabVc {
+        //     vc.showSpinner(onView: vc.view)
+            vc.viewWillAppear(true)
+        }
+        if let vc = children.filter({$0 is BeneficiaryFourthTabVc}).first as? BeneficiaryFourthTabVc {
         //     vc.showSpinner(onView: vc.view)
             vc.viewWillAppear(true)
         }

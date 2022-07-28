@@ -66,7 +66,7 @@ class TransactionsByDateVc: UIViewController, UITableViewDataSource, UITableView
         self.downloadPdfBtnOtlt.isHidden = true
                                  self.downloadXlsBtnOtlt.isHidden = true
         
-        transctnTbleView.rowHeight = 67
+        transctnTbleView.rowHeight = 120
         fromDateValue = nil
         toDateValue = nil
       //  downloadBenefConfig()
@@ -352,6 +352,8 @@ class TransactionsByDateVc: UIViewController, UITableViewDataSource, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
       let cell = tableView.dequeueReusableCell(withIdentifier: TransctionPeriodCell.identifier)! as! TransctionPeriodCell
       let eachObj = self.beneficiaryResponse[indexPath.row] as?NSDictionary
+        cell.btn_transaction.tag = indexPath.row
+        cell.btn_transaction.addTarget(self, action: #selector(TransStatusActn(sender:)), for: .touchUpInside)
       cell.setupData(eachObj)
 //        let cell = transctnTbleView.dequeueReusableCell(withIdentifier: "TransctnByDateCell")! as! TransctnByDateCell
 //        let eachObj = self.beneficiaryResponse[indexPath.row] as?NSDictionary
@@ -398,11 +400,130 @@ class TransactionsByDateVc: UIViewController, UITableViewDataSource, UITableView
         
         return cell
     }
-  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    return UITableView.automaticDimension
-  }
+    @objc func TransStatusActn(sender: UIButton?){
+        
+        let eachObj = self.beneficiaryResponse[sender!.tag] as? NSDictionary
+        
+        BeneficiaryDetails.shared.beneficiaryId = eachObj?.value(forKey: "beneficiaryId") as? Int ?? 0
+        
+        BeneficiaryDetails.shared.mtcn = eachObj?.value(forKey: "mtcn") as? String ?? ""
+        BeneficiaryDetails.shared.ttRefNottn = eachObj?.value(forKey: "ttRefNo") as? String ?? ""
+    
+        let lcAmnt =  eachObj?.value(forKey: "lcAmount") as? String  ?? "0"
+        let doubleLcAmnt = Double(lcAmnt)
+        BeneficiaryDetails.shared.lcAmntQuickSend = doubleLcAmnt
+        BeneficiaryDetails.shared.quickSend = "Quick"
+        BeneficiaryDetails.shared.beneficiaryType = eachObj?.value(forKey: "beneficiaryType") as? Int ?? 0
+        BeneficiaryDetails.shared.isRetail = eachObj?.value(forKey: "isRetail") as? Bool ?? false
+        BeneficiaryDetails.shared.remitterEmail = eachObj?.value(forKey: "remitterEmail") as? String ?? ""
+        
+        BeneficiaryDetails.shared.txnRef = eachObj?.value(forKey: "txnRefNo") as? String ?? ""
+        BeneficiaryDetails.shared.sourceCurrenyCode = eachObj?.value(forKey: "sourceCurrenyCode") as? String ?? ""
+        BeneficiaryDetails.shared.targetCurencyCode = eachObj?.value(forKey: "targetCurrenyCode") as? String ?? ""
+        BeneficiaryDetails.shared.beneficiaryTypeName = eachObj?.value(forKey: "beneficiaryTypeName") as? String ?? ""
+        BeneficiaryDetails.shared.firstName = eachObj?.value(forKey: "beneficiaryFirstName") as? String ?? ""
+               BeneficiaryDetails.shared.middleName = eachObj?.value(forKey: "beneficiaryMiddleName") as? String ?? ""
+        BeneficiaryDetails.shared.lastName = eachObj?.value(forKey: "beneficiaryLastName") as? String ?? ""
+        BeneficiaryDetails.shared.voucherMsg = eachObj?.value(forKey: "voucherMessage") as? String ?? ""
+ 
+        BeneficiaryDetails.shared.sourceTotalAmnt = eachObj?["totalLCAmount"] as? String ?? ""
+        
+        BeneficiaryDetails.shared.targetTotalAmnt =  eachObj?["fcAmount"] as? String ?? ""
+        
+        BeneficiaryDetails.shared.countryCode = eachObj?.value(forKey: "beneficiaryCountry") as? String ?? ""
+        BeneficiaryDetails.shared.enableOrDisable = eachObj?.value(forKey: "isDisable") as? Bool ?? false
+        
+        let newDate = eachObj?.value(forKey: "createdDate") as? String ?? ""
+        
+        if newDate.contains(".") {
+         BeneficiaryDetails.shared.createdDatee = Date.getMonthDayYearString(newDate)
+        }
+        else {
+            BeneficiaryDetails.shared.createdDatee = Date.getMonthDayYearWithoutSecndsString(newDate)
+        }
+        BeneficiaryDetails.shared.transctnStatusText = eachObj?.value(forKey: "statusName") as? String ?? ""
+        BeneficiaryDetails.shared.transctnStatusInt = eachObj?.value(forKey: "status") as? Int ?? 0
+        
+        BeneficiaryDetails.shared.bankName = eachObj?.value(forKey: "bankName") as? String ?? ""
+        BeneficiaryDetails.shared.branchName = eachObj?.value(forKey: "branchName") as? String ?? ""
+        BeneficiaryDetails.shared.accountNumber = eachObj?.value(forKey: "accountNumber") as? String ?? ""
+        
+        let txnNo = eachObj?.value(forKey: "txnRefNo") as! String
+        self.showSpinner(onView: self.view)
+        let paramaterPasing: [String:Any] = [
+            "registrationId": Global.shared.afterLoginRegistrtnId ?? "",
+            "txnNo":txnNo
+        ]
+        
+        
+        /*    let headers: HTTPHeaders = [
+         "Content-Type": "application/json"
+         ]*/
+        
+        let headers: HTTPHeaders = [.authorization(bearerToken: UserDefaults.standard.string(forKey: "token")!)]
+        
+        NetWorkDataManager.sharedInstance.transactionEnquiryImplementation(headersTobePassed: headers, postParameters: paramaterPasing) { resonseTal , errorString in
+            
+            if errorString == nil
+            {
+                print(resonseTal)
+                self.removeSpinner()
+                
+            let statusMsg = resonseTal?.value(forKey: "statusMessage") as? String ?? ""
+            let mesageCode = resonseTal?.value(forKey: "messageCode") as? String ?? statusMsg
+                if let statusCode = resonseTal?.value(forKey: "statusCodes") as? Int {
+                    if statusCode == 200 {
+                        BeneficiaryDetails.shared.transactionStatus = resonseTal?.value(forKey: "transactionStatus") as? String ?? ""
+                        let vc = self.storyboard?.instantiateViewController(withIdentifier: "TransactionStatusController") as! TransactionStatusController
+                        self.present(vc, animated: true, completion: nil)
+                        
+                    }
+                    else {
+                        let alert = ViewControllerManager.displayAlert(message:Global.shared.messageCodeType(text: mesageCode), title:APPLICATIONNAME)
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                    
+                }
+                
+            }
+            
+            else
+            {
+                print(errorString!)
+                self.removeSpinner()
+              //  Global.shared.methodName = CanvasUrls.ttRateCalculator
+              //  NetWorkDataManager.sharedInstance.callChannelException()
+                let finalError = errorString?.components(separatedBy: ":")
+                if finalError?.count == 2
+                {
+                let alert = ViewControllerManager.displayAlert(message: finalError?[1] ?? "", title:APPLICATIONNAME)
+                self.present(alert, animated: true, completion: nil)
+                }
+                else
+                {
+                    let alert = ViewControllerManager.displayAlert(message: finalError?[0] ?? "", title:APPLICATIONNAME)
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }
+            
+        }
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        let eachObj = self.beneficiaryResponse[indexPath.row] as?NSDictionary
+        let status = eachObj?.value(forKey: "status") as? Int ?? 0
+        if status == 1
+        {
+           
+            return 120
+        }
+        else{
+            return 90
+        }
+        
+    }
   func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-    return 50
+    return 67
   }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let eachObj = self.beneficiaryResponse[indexPath.row] as?NSDictionary
