@@ -1198,7 +1198,7 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
         lineChartVieww.leftAxis.drawAxisLineEnabled = false
         lineChartVieww.leftAxis.drawGridLinesEnabled = false
         
-        let lineChartDataSet = LineChartDataSet(entries: chartdataEntries, label: nil)
+        let lineChartDataSet = LineChartDataSet(entries: chartdataEntries, label: "")
         lineChartDataSet.colors = .init(arrayLiteral: .red)
         lineChartDataSet.valueFormatter = DefaultValueFormatter(decimals: 3)
         let lineChartData = LineChartData(dataSet: lineChartDataSet)
@@ -3505,7 +3505,7 @@ extension UIView {
             .forEach { $0.removeFromSuperview() }
     }
 }
-class DigitValueFormatter : NSObject, IValueFormatter {
+class DigitValueFormatter : NSObject, ValueFormatter {
 
     func stringForValue(_ value: Double,
                         entry: ChartDataEntry,
@@ -3515,7 +3515,7 @@ class DigitValueFormatter : NSObject, IValueFormatter {
         return "\(valueWithoutDecimalPart)"
     }
 }
-class ChartValueFormatter: NSObject, IValueFormatter {
+class ChartValueFormatter: NSObject, ValueFormatter {
     fileprivate var numberFormatter: NumberFormatter?
 
     convenience init(numberFormatter: NumberFormatter) {

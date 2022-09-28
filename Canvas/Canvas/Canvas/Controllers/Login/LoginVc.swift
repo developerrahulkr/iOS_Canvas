@@ -804,6 +804,7 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
                         if let menuLabels = dataDict.value(forKey: "menu_labels") as? NSDictionary {
                             print(menuLabels)
                             
+                            Global.shared.lbl_fxbooking = menuLabels["lbl_fxbooking"] as? String ?? ""
                             Global.shared.menuRateThisAppString = menuLabels["lbl_rate_this_app"] as? String ?? ""
                             
                             Global.shared.menuBeneficiary = menuLabels["lbl_benefeciaries"] as? String ?? ""

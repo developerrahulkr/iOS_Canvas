@@ -7,6 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1854037528E40FA200ED3362 /* PhotoSliderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1854037428E40FA200ED3362 /* PhotoSliderView.xib */; };
+		1854037828E40FB500ED3362 /* SiteUnderMaintnanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1854037728E40FB500ED3362 /* SiteUnderMaintnanceController.swift */; };
+		1854037A28E419FD00ED3362 /* FXBooking.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1854037928E419FD00ED3362 /* FXBooking.storyboard */; };
+		1854038928E41A7900ED3362 /* CellSectionTwo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1854037D28E41A7800ED3362 /* CellSectionTwo.xib */; };
+		1854038A28E41A7900ED3362 /* CellYourAddress.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1854037E28E41A7800ED3362 /* CellYourAddress.xib */; };
+		1854038B28E41A7900ED3362 /* CellSectionTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1854037F28E41A7800ED3362 /* CellSectionTwo.swift */; };
+		1854038C28E41A7900ED3362 /* CellAddNewAddress.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1854038028E41A7800ED3362 /* CellAddNewAddress.xib */; };
+		1854038D28E41A7900ED3362 /* CellDeliveryOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1854038128E41A7800ED3362 /* CellDeliveryOption.swift */; };
+		1854038E28E41A7900ED3362 /* CellDeliveryOption.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1854038228E41A7800ED3362 /* CellDeliveryOption.xib */; };
+		1854038F28E41A7900ED3362 /* CellYourAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1854038328E41A7800ED3362 /* CellYourAddress.swift */; };
+		1854039028E41A7900ED3362 /* CellCountry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1854038428E41A7800ED3362 /* CellCountry.swift */; };
+		1854039128E41A7900ED3362 /* CellAddNewAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1854038528E41A7800ED3362 /* CellAddNewAddress.swift */; };
+		1854039228E41A7900ED3362 /* YourAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1854038628E41A7800ED3362 /* YourAddress.swift */; };
+		1854039328E41A7900ED3362 /* FXBookingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1854038728E41A7800ED3362 /* FXBookingVC.swift */; };
+		1854039428E41A7900ED3362 /* AddNewAddressVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1854038828E41A7800ED3362 /* AddNewAddressVC.swift */; };
+		1854039628E476DD00ED3362 /* CMFXBooking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1854039528E476DD00ED3362 /* CMFXBooking.swift */; };
+		1882135928E486A200E1E865 /* FXBookingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1882135828E486A200E1E865 /* FXBookingViewModel.swift */; };
 		1924D54426E51E9800533445 /* PhotoSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1924D54226E51E9700533445 /* PhotoSliderView.swift */; };
 		197B589126E345D600D27D18 /* BannerImgCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197B589026E345D600D27D18 /* BannerImgCell.swift */; };
 		197B589326E3461200D27D18 /* ShowOffersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197B589226E3461200D27D18 /* ShowOffersCell.swift */; };
@@ -24,7 +41,6 @@
 		2C805276278581DF00CB3B4D /* ToolTipListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C805275278581DF00CB3B4D /* ToolTipListController.swift */; };
 		2C805278278583DB00CB3B4D /* ToolTopsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C805277278583DB00CB3B4D /* ToolTopsCell.swift */; };
 		2C80527A27A187B300CB3B4D /* BiometricController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C80527927A187B200CB3B4D /* BiometricController.swift */; };
-		2CA2D99B272E739B00CC9058 /* PhotoSliderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CA2D99A272E739B00CC9058 /* PhotoSliderView.xib */; };
 		2CA2D9A4273D285E00CC9058 /* UpdateCivilIDController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA2D9A2273D285E00CC9058 /* UpdateCivilIDController.swift */; };
 		2CA2D9A5273D285E00CC9058 /* ShowImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA2D9A3273D285E00CC9058 /* ShowImageController.swift */; };
 		2CC5180D284F61A50040F7A2 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CC5180C284F61A50040F7A2 /* AdSupport.framework */; };
@@ -36,7 +52,6 @@
 		2CC5182328619BF00040F7A2 /* BeneficaryFourTabCollectnCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC5181928619BEF0040F7A2 /* BeneficaryFourTabCollectnCell.swift */; };
 		2CC5182528619FAD0040F7A2 /* VisaDirect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC5182428619FAD0040F7A2 /* VisaDirect.swift */; };
 		2CC518282861BBD40040F7A2 /* TransactionStatusController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC518272861BBD40040F7A2 /* TransactionStatusController.swift */; };
-		2CEE5FF3277C4517005BC4B9 /* SiteUnderMaintnanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEE5FF2277C4517005BC4B9 /* SiteUnderMaintnanceController.swift */; };
 		2EA904DDF467A2A39B14AD27 /* Pods_Canvas.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1919899CC39E0CDDA2C7E03 /* Pods_Canvas.framework */; };
 		8E07CEA82583DAC600891289 /* TransctionPeriodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E07CEA62583DAC600891289 /* TransctionPeriodCell.swift */; };
 		8E07CEA92583DAC600891289 /* TransctionPeriodCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E07CEA72583DAC600891289 /* TransctionPeriodCell.xib */; };
@@ -243,6 +258,23 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1854037428E40FA200ED3362 /* PhotoSliderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoSliderView.xib; sourceTree = "<group>"; };
+		1854037728E40FB500ED3362 /* SiteUnderMaintnanceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SiteUnderMaintnanceController.swift; sourceTree = "<group>"; };
+		1854037928E419FD00ED3362 /* FXBooking.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FXBooking.storyboard; sourceTree = "<group>"; };
+		1854037D28E41A7800ED3362 /* CellSectionTwo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CellSectionTwo.xib; sourceTree = "<group>"; };
+		1854037E28E41A7800ED3362 /* CellYourAddress.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CellYourAddress.xib; sourceTree = "<group>"; };
+		1854037F28E41A7800ED3362 /* CellSectionTwo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellSectionTwo.swift; sourceTree = "<group>"; };
+		1854038028E41A7800ED3362 /* CellAddNewAddress.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CellAddNewAddress.xib; sourceTree = "<group>"; };
+		1854038128E41A7800ED3362 /* CellDeliveryOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellDeliveryOption.swift; sourceTree = "<group>"; };
+		1854038228E41A7800ED3362 /* CellDeliveryOption.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CellDeliveryOption.xib; sourceTree = "<group>"; };
+		1854038328E41A7800ED3362 /* CellYourAddress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellYourAddress.swift; sourceTree = "<group>"; };
+		1854038428E41A7800ED3362 /* CellCountry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellCountry.swift; sourceTree = "<group>"; };
+		1854038528E41A7800ED3362 /* CellAddNewAddress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellAddNewAddress.swift; sourceTree = "<group>"; };
+		1854038628E41A7800ED3362 /* YourAddress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YourAddress.swift; sourceTree = "<group>"; };
+		1854038728E41A7800ED3362 /* FXBookingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FXBookingVC.swift; sourceTree = "<group>"; };
+		1854038828E41A7800ED3362 /* AddNewAddressVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewAddressVC.swift; sourceTree = "<group>"; };
+		1854039528E476DD00ED3362 /* CMFXBooking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMFXBooking.swift; sourceTree = "<group>"; };
+		1882135828E486A200E1E865 /* FXBookingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FXBookingViewModel.swift; sourceTree = "<group>"; };
 		18DF4CDB0157E249526220FD /* Pods_CanvasTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CanvasTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1924D54226E51E9700533445 /* PhotoSliderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoSliderView.swift; sourceTree = "<group>"; };
 		197B589026E345D600D27D18 /* BannerImgCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerImgCell.swift; sourceTree = "<group>"; };
@@ -262,7 +294,6 @@
 		2C805275278581DF00CB3B4D /* ToolTipListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolTipListController.swift; sourceTree = "<group>"; };
 		2C805277278583DB00CB3B4D /* ToolTopsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolTopsCell.swift; sourceTree = "<group>"; };
 		2C80527927A187B200CB3B4D /* BiometricController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricController.swift; sourceTree = "<group>"; };
-		2CA2D99A272E739B00CC9058 /* PhotoSliderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PhotoSliderView.xib; path = ../../../../../../../../Desktop/PhotoSliderView.xib; sourceTree = "<group>"; };
 		2CA2D9A2273D285E00CC9058 /* UpdateCivilIDController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateCivilIDController.swift; sourceTree = "<group>"; };
 		2CA2D9A3273D285E00CC9058 /* ShowImageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowImageController.swift; sourceTree = "<group>"; };
 		2CC5180C284F61A50040F7A2 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
@@ -274,7 +305,6 @@
 		2CC5181928619BEF0040F7A2 /* BeneficaryFourTabCollectnCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeneficaryFourTabCollectnCell.swift; sourceTree = "<group>"; };
 		2CC5182428619FAD0040F7A2 /* VisaDirect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisaDirect.swift; sourceTree = "<group>"; };
 		2CC518272861BBD40040F7A2 /* TransactionStatusController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionStatusController.swift; sourceTree = "<group>"; };
-		2CEE5FF2277C4517005BC4B9 /* SiteUnderMaintnanceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SiteUnderMaintnanceController.swift; sourceTree = "<group>"; };
 		682E4A379B29BB72C880381F /* Pods-Canvas-CanvasUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Canvas-CanvasUITests.debug.xcconfig"; path = "Target Support Files/Pods-Canvas-CanvasUITests/Pods-Canvas-CanvasUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		8E07CEA62583DAC600891289 /* TransctionPeriodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransctionPeriodCell.swift; sourceTree = "<group>"; };
 		8E07CEA72583DAC600891289 /* TransctionPeriodCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransctionPeriodCell.xib; sourceTree = "<group>"; };
@@ -532,6 +562,42 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		1854037628E40FB500ED3362 /* SiteUnderMaintanence */ = {
+			isa = PBXGroup;
+			children = (
+				1854037728E40FB500ED3362 /* SiteUnderMaintnanceController.swift */,
+			);
+			path = SiteUnderMaintanence;
+			sourceTree = "<group>";
+		};
+		1854037B28E41A7800ED3362 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1854037C28E41A7800ED3362 /* Cells */,
+				1854038628E41A7800ED3362 /* YourAddress.swift */,
+				1854038728E41A7800ED3362 /* FXBookingVC.swift */,
+				1854038828E41A7800ED3362 /* AddNewAddressVC.swift */,
+				1882135828E486A200E1E865 /* FXBookingViewModel.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		1854037C28E41A7800ED3362 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				1854037D28E41A7800ED3362 /* CellSectionTwo.xib */,
+				1854037E28E41A7800ED3362 /* CellYourAddress.xib */,
+				1854037F28E41A7800ED3362 /* CellSectionTwo.swift */,
+				1854038028E41A7800ED3362 /* CellAddNewAddress.xib */,
+				1854038128E41A7800ED3362 /* CellDeliveryOption.swift */,
+				1854038228E41A7800ED3362 /* CellDeliveryOption.xib */,
+				1854038328E41A7800ED3362 /* CellYourAddress.swift */,
+				1854038428E41A7800ED3362 /* CellCountry.swift */,
+				1854038528E41A7800ED3362 /* CellAddNewAddress.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		19C96EF326D645DD00B1321E /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -556,7 +622,7 @@
 		19C96EFD26DF850300B1321E /* BannerOfferCell */ = {
 			isa = PBXGroup;
 			children = (
-				2CA2D99A272E739B00CC9058 /* PhotoSliderView.xib */,
+				1854037428E40FA200ED3362 /* PhotoSliderView.xib */,
 				1924D54226E51E9700533445 /* PhotoSliderView.swift */,
 				19C96EFE26DF853C00B1321E /* BannerOfferCell.swift */,
 				197B589026E345D600D27D18 /* BannerImgCell.swift */,
@@ -622,15 +688,6 @@
 			path = TransactionStatus;
 			sourceTree = "<group>";
 		};
-		2CEE5FED277C4499005BC4B9 /* SiteUnderMaintanence */ = {
-			isa = PBXGroup;
-			children = (
-				2CEE5FF2277C4517005BC4B9 /* SiteUnderMaintnanceController.swift */,
-			);
-			name = SiteUnderMaintanence;
-			path = ../../../../../../Desktop/SiteUnderMaintanence;
-			sourceTree = "<group>";
-		};
 		8E29736D258CF01300601984 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -661,6 +718,7 @@
 				8E1D3CF72574EE4900BEF295 /* SecurityQuestion.swift */,
 				8E8508932575607900AFC0EF /* SecuirtyRule.swift */,
 				8ECB2196257F75AF00617DF3 /* BeneficiaryPurposeData.swift */,
+				1854039528E476DD00ED3362 /* CMFXBooking.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1113,9 +1171,10 @@
 		D562FD3025FF22FF004E81DE /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				1854037B28E41A7800ED3362 /* Controller */,
+				1854037628E40FB500ED3362 /* SiteUnderMaintanence */,
 				2CC518262861BBD40040F7A2 /* TransactionStatus */,
 				2C805274278581AF00CB3B4D /* TipsList */,
-				2CEE5FED277C4499005BC4B9 /* SiteUnderMaintanence */,
 				2CA2D9A1273D285E00CC9058 /* UpdateCivilID */,
 				19C96EF626D8D69C00B1321E /* Offers */,
 				19D34FBE26959BEE00BAB4EF /* Chat */,
@@ -1143,6 +1202,7 @@
 		D562FD3A25FF248C004E81DE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				1854037928E419FD00ED3362 /* FXBooking.storyboard */,
 				D55C934F24D8461F003F7F5F /* Main.storyboard */,
 				D55C935724D8462B003F7F5F /* LaunchScreen.storyboard */,
 			);
@@ -1174,8 +1234,8 @@
 				D55C934324D8461F003F7F5F /* Frameworks */,
 				D55C934424D8461F003F7F5F /* Resources */,
 				D5601F172576AB0300435A56 /* ShellScript */,
-				B4085397A9A160B95B0F15DF /* [CP] Embed Pods Frameworks */,
-				1FEC34B8C2D43313613433D4 /* [CP] Copy Pods Resources */,
+				6D28D82B6B767D8C2A952BD0 /* [CP] Embed Pods Frameworks */,
+				5F52008617F8D37D32640DAB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1213,8 +1273,8 @@
 				D55C936624D8462C003F7F5F /* Sources */,
 				D55C936724D8462C003F7F5F /* Frameworks */,
 				D55C936824D8462C003F7F5F /* Resources */,
-				B59D9D2AF1CCDBBF666ABA12 /* [CP] Embed Pods Frameworks */,
-				6E1982981DAA877E7E2E2286 /* [CP] Copy Pods Resources */,
+				E159DBF15A67EDA65D70D46A /* [CP] Embed Pods Frameworks */,
+				4BAB447D4D3BA5E77866561A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1281,16 +1341,21 @@
 				D55E875425D25FF20059D8E3 /* roboto_regular.ttf in Resources */,
 				D55E875125D25FF20059D8E3 /* roboto_blackitalic.ttf in Resources */,
 				D55E875025D25FF20059D8E3 /* roboto_bold.ttf in Resources */,
+				1854038C28E41A7900ED3362 /* CellAddNewAddress.xib in Resources */,
 				D55D2BD325B1D7410068B96F /* spinner.gif in Resources */,
+				1854038928E41A7900ED3362 /* CellSectionTwo.xib in Resources */,
 				8E865DDA256FC652000526B5 /* splash.gif in Resources */,
 				D55E874C25D25FF20059D8E3 /* roboto_medium.ttf in Resources */,
+				1854038A28E41A7900ED3362 /* CellYourAddress.xib in Resources */,
 				D55E874D25D25FF20059D8E3 /* roboto_light.ttf in Resources */,
 				D55C935924D8462B003F7F5F /* LaunchScreen.storyboard in Resources */,
 				D55E874F25D25FF20059D8E3 /* roboto_medium_italic.ttf in Resources */,
 				8E519AEB2574DB3D00241D17 /* SecuityQuestionCell.xib in Resources */,
 				D55E874E25D25FF20059D8E3 /* roboto_thinitalic.ttf in Resources */,
+				1854037A28E419FD00ED3362 /* FXBooking.storyboard in Resources */,
+				1854038E28E41A7900ED3362 /* CellDeliveryOption.xib in Resources */,
+				1854037528E40FA200ED3362 /* PhotoSliderView.xib in Resources */,
 				D55E875225D25FF20059D8E3 /* roboto_thin.ttf in Resources */,
-				2CA2D99B272E739B00CC9058 /* PhotoSliderView.xib in Resources */,
 				D55E875625D25FF20059D8E3 /* roboto_bold_italic.ttf in Resources */,
 				D55E875525D25FF20059D8E3 /* roboto_italic.ttf in Resources */,
 				D5531BFB24DA852600BF17C3 /* Localizable.strings in Resources */,
@@ -1322,7 +1387,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1FEC34B8C2D43313613433D4 /* [CP] Copy Pods Resources */ = {
+		4BAB447D4D3BA5E77866561A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Canvas-CanvasUITests/Pods-Canvas-CanvasUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Canvas-CanvasUITests/Pods-Canvas-CanvasUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Canvas-CanvasUITests/Pods-Canvas-CanvasUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5F52008617F8D37D32640DAB /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1339,21 +1421,21 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Canvas/Pods-Canvas-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		6E1982981DAA877E7E2E2286 /* [CP] Copy Pods Resources */ = {
+		6D28D82B6B767D8C2A952BD0 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Canvas-CanvasUITests/Pods-Canvas-CanvasUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Canvas/Pods-Canvas-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Canvas-CanvasUITests/Pods-Canvas-CanvasUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Canvas/Pods-Canvas-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Canvas-CanvasUITests/Pods-Canvas-CanvasUITests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Canvas/Pods-Canvas-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		71F056DFA0FC61CF4883A65F /* [CP] Check Pods Manifest.lock */ = {
@@ -1400,40 +1482,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B4085397A9A160B95B0F15DF /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Canvas/Pods-Canvas-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Canvas/Pods-Canvas-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Canvas/Pods-Canvas-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B59D9D2AF1CCDBBF666ABA12 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Canvas-CanvasUITests/Pods-Canvas-CanvasUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Canvas-CanvasUITests/Pods-Canvas-CanvasUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Canvas-CanvasUITests/Pods-Canvas-CanvasUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		CCAEDCCAF890866D03DC79F2 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1474,6 +1522,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n${PODS_ROOT}/FirebaseCrashlytics/run\n\"${PODS_ROOT}/FirebaseCrashlytics/upload-symbols\" -gsp \"${PROJECT_DIR}/Canvas/Resources/GoogleService-Info.plist\" -p ios \"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}\"\n\n";
+		};
+		E159DBF15A67EDA65D70D46A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Canvas-CanvasUITests/Pods-Canvas-CanvasUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Canvas-CanvasUITests/Pods-Canvas-CanvasUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Canvas-CanvasUITests/Pods-Canvas-CanvasUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1554,6 +1619,7 @@
 				D5EB6B55256905450089038F /* RateCalculatorBankVc.swift in Sources */,
 				D55C934A24D8461F003F7F5F /* AppDelegate.swift in Sources */,
 				D569AE32256E576E006DBD78 /* EasyTipView.swift in Sources */,
+				1854039228E41A7900ED3362 /* YourAddress.swift in Sources */,
 				2C80527327842A4F00CB3B4D /* DashboardHelpCell.swift in Sources */,
 				19D34FC026959C2500BAB4EF /* ChatController.swift in Sources */,
 				D5030F1C24EFCA260001D686 /* ViewControllerManager.swift in Sources */,
@@ -1563,14 +1629,15 @@
 				D56FC717257F5CE5004A02E4 /* FaqSearch.swift in Sources */,
 				8E519AEA2574DB3D00241D17 /* SecurityQuestionCell.swift in Sources */,
 				D56A115825A2E78300DF2293 /* HomeFcRateCalcVc.swift in Sources */,
+				1854038D28E41A7900ED3362 /* CellDeliveryOption.swift in Sources */,
 				D569E74925398FF2004A4BD1 /* DropDownSearchVc.swift in Sources */,
 				D55A084324F6720D00AFAF12 /* BeneficiaryMainVc.swift in Sources */,
 				D55C934C24D8461F003F7F5F /* SceneDelegate.swift in Sources */,
 				2CC5181A28619BF00040F7A2 /* BeneficiaryFourthTabVc.swift in Sources */,
 				8E3BA91B25721C8A0078A025 /* PasswordStrengthManager.swift in Sources */,
+				1882135928E486A200E1E865 /* FXBookingViewModel.swift in Sources */,
 				D586927E25471985004B983E /* CustomTabBarVc.swift in Sources */,
 				D571386024F7AB170088A5BA /* BankTransfer.swift in Sources */,
-				2CEE5FF3277C4517005BC4B9 /* SiteUnderMaintnanceController.swift in Sources */,
 				2C805278278583DB00CB3B4D /* ToolTopsCell.swift in Sources */,
 				8E865DD4256FC564000526B5 /* LogoAnimationView.swift in Sources */,
 				19C96EF826D8D6D400B1321E /* OfferWebController.swift in Sources */,
@@ -1580,9 +1647,11 @@
 				D55E21FF257B55BD00199A3D /* ExistingEmploymentVc.swift in Sources */,
 				2CA2D9A5273D285E00CC9058 /* ShowImageController.swift in Sources */,
 				D55A084D24F6894F00AFAF12 /* BeneficiaryAddVc.swift in Sources */,
+				1854039628E476DD00ED3362 /* CMFXBooking.swift in Sources */,
 				2C805270278429EB00CB3B4D /* HelpVideoCell.swift in Sources */,
 				D50EF0B7251DC54F00790C4F /* BankContactCell.swift in Sources */,
 				D50FFFFE2542A5CD00F6D8E5 /* BenefWuDirectTransferVc.swift in Sources */,
+				1854039028E41A7900ED3362 /* CellCountry.swift in Sources */,
 				8E3BA91A25721C8A0078A025 /* UIColor+Extension.swift in Sources */,
 				D51E88C724E2C4060010C57B /* NewCustIdentityVc.swift in Sources */,
 				D533848C24E1424900A0A705 /* VerifyOnlineAcntVc.swift in Sources */,
@@ -1605,9 +1674,11 @@
 				D55C1E68254AACA000DF7949 /* BenefWuNewTrnsferVc.swift in Sources */,
 				D5801F1124F8B60500BFAF77 /* BeneficiaryDetails.swift in Sources */,
 				8ECB2197257F75AF00617DF3 /* BeneficiaryPurposeData.swift in Sources */,
+				1854038F28E41A7900ED3362 /* CellYourAddress.swift in Sources */,
 				D5973C68252F2C53004BC953 /* ProfileDetails.swift in Sources */,
 				2CC5182028619BF00040F7A2 /* VisaDirectNewTransferVC.swift in Sources */,
 				D5030F1A24EFC9160001D686 /* AlertsValidations.swift in Sources */,
+				1854039428E41A7900ED3362 /* AddNewAddressVC.swift in Sources */,
 				D59EBC4224DC5B550056FF03 /* VerifyAccountFirstVc.swift in Sources */,
 				D56FC719257F61AB004A02E4 /* BranchLocatorSearch.swift in Sources */,
 				D5678690256FCBBE0094C16E /* WuSecndTermsConditions.swift in Sources */,
@@ -1625,22 +1696,26 @@
 				D5678692256FF3840094C16E /* WuTermsConditionsCell.swift in Sources */,
 				D5EB6B59256960220089038F /* HomeBenFavCollctnCell.swift in Sources */,
 				D5DAD8BF2577730900908738 /* HomeBankRateCalcVc.swift in Sources */,
+				1854038B28E41A7900ED3362 /* CellSectionTwo.swift in Sources */,
 				D571385624F78DD00088A5BA /* BeneficiaryWesternUnionVc.swift in Sources */,
 				2C805276278581DF00CB3B4D /* ToolTipListController.swift in Sources */,
 				D54BA62B24E28C70001000E7 /* NewCustomerVc.swift in Sources */,
 				8EFD2F6B25700F9B00052539 /* Extensions.swift in Sources */,
+				1854037828E40FB500ED3362 /* SiteUnderMaintnanceController.swift in Sources */,
 				D571385424F78DA20088A5BA /* BeneficiaryCashTransferVc.swift in Sources */,
 				D55C935424D8461F003F7F5F /* Canvas.xcdatamodeld in Sources */,
 				D55C1E66254AABF900DF7949 /* BenefBankCashNewTransferVc.swift in Sources */,
 				D55D056A2549BCB600998DCB /* BenefSecndTabCollectnCell.swift in Sources */,
 				D534E18D25011A1F00DDAFBE /* CustomTextField.swift in Sources */,
 				D59EBC4624DC5B8D0056FF03 /* VerifyAcntThirdVc.swift in Sources */,
+				1854039328E41A7900ED3362 /* FXBookingVC.swift in Sources */,
 				D55A083F24F668B500AFAF12 /* MenuViewController.swift in Sources */,
 				19C96EFF26DF853C00B1321E /* BannerOfferCell.swift in Sources */,
 				D50FF9962551B3FF009DA3F1 /* HomeRecentTransactionsCell.swift in Sources */,
 				D55A083124F6365200AFAF12 /* RateCalculatorVc.swift in Sources */,
 				D51E88CD24E2C4540010C57B /* NewCustBankVc.swift in Sources */,
 				D55E82C32570A54800226A60 /* CurrencyDrpDwnSearchCell.swift in Sources */,
+				1854039128E41A7900ED3362 /* CellAddNewAddress.swift in Sources */,
 				D5EB6B53256902710089038F /* RateTabsCalculatorVc.swift in Sources */,
 				D533848824E13EDC00A0A705 /* VerificationPopUpVc.swift in Sources */,
 				D55B32CD254FFD7F005E57F5 /* TransctnByPeriodCell.swift in Sources */,
@@ -1868,8 +1943,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Canvas/Canvas.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				"DEBUG_INFORMATION_FORMAT[sdk=iphoneos*]" = dwarf;
@@ -1887,7 +1962,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.almuzaini.almuzaini;
 				"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]" = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "MUZAINI Dev Profile";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
@@ -1901,11 +1976,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Canvas/Canvas.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = ZKQ37Q6LB8;
+				DEVELOPMENT_TEAM = "";
 				EXCLUDED_ARCHS = "";
 				INFOPLIST_FILE = Canvas/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -1918,7 +1993,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.almuzaini.almuzaini;
 				"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]" = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "MUZAINI Appstore Profile";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;

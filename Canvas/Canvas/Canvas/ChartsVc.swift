@@ -114,7 +114,7 @@ let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oc
                 let chartdataEntry = ChartDataEntry(x: Double(valuesX[i]), y: Double(valuesY[i]), data: dataPoints)
                 chartdataEntries.append(chartdataEntry)
               }
-              let lineChartDataSet = LineChartDataSet(entries: chartdataEntries, label: nil)
+              let lineChartDataSet = LineChartDataSet(entries: chartdataEntries, label: "")
               let lineChartData = LineChartData(dataSet: lineChartDataSet)
               lineChartVieww.data = lineChartData
     }

@@ -935,6 +935,7 @@ class Global {
     var menuChangePaswd:String!
     var menuContact:String!
     var menuDashboard:String!
+    var lbl_fxbooking : String!
     var menuFeedback:String!
     var menuMessages:String!
     var menuProfile:String!

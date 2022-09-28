@@ -126,6 +126,14 @@ struct CanvasUrls {
     static let getSessionID = "/beneficiary/getSessionID"
     static let transactionEnquiry = "/transactionenquiry/TransactionEnquiryGet"
     
+    static let getfxbookinaddress = "/fxbooking/getfxbookingaddress"
+    static let addfxbookingaddress = "/fxbooking/addfxbookingaddress"
+    static let updatefxbookingaddress = "fxbooking/updatefxaddress"
+    static let deletefxbookingaddress = "fxbooking/deletefxaddress"
+    
+    static let getfxbookingbranchlist = "/fxbooking/fxbranches"
+    static let getfxbookingdatelist = "fxbooking/getselecteddate"
+    
 }
 
 //headers

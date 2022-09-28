@@ -10,17 +10,23 @@ import UIKit
 
 extension UIViewController {
   
-  static func initiateController<T>()-> T {
-    let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
-     let controller = storyBoard.instantiateViewController(withIdentifier: String(describing: self)) as? T
-  
-    return controller!
-  }
-  func pushViewController(controller: UIViewController, isGestureEnable: Bool = true, animated: Bool = true) {
-    self.navigationController?.pushViewController(controller, animated: animated)
-    self.navigationController?.interactivePopGestureRecognizer?.isEnabled = isGestureEnable
+    static func initiateController<T>()-> T {
+        let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let controller = storyBoard.instantiateViewController(withIdentifier: String(describing: self)) as? T
+        
+        return controller!
+    }
 
-  }
+    static func fxBookingInitiated<T>() -> T {
+        let controller = Storyboad.shared.fxBookingStoryboard?.instantiateViewController(withIdentifier: String(describing: self)) as? T
+        return controller!
+    }
+    
+    func pushViewController(controller: UIViewController, isGestureEnable: Bool = true, animated: Bool = true) {
+        self.navigationController?.pushViewController(controller, animated: animated)
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = isGestureEnable
+        
+    }
   func presentController(presentationStyle style: UIModalPresentationStyle = .fullScreen, controller: UIViewController) {
     controller.modalPresentationStyle  = style
     self.present(controller, animated: true, completion: nil)
@@ -29,23 +35,23 @@ extension UIViewController {
     
     func MenuScreenShow(screen:String){
         if screen == Global.shared.menuDashboard {
-          //  let homeDashboardVC: HomeDashboardVc  = .initiateController()
+            let homeDashboardVC: HomeDashboardVc  = .initiateController()
             self.tabBarController?.selectedIndex = 0
-           // self.pushViewController(controller: homeDashboardVC)
+            self.pushViewController(controller: homeDashboardVC)
         }
         else if screen == Global.shared.menuBeneficiary {
-           // let beneficiaryMainVc: BeneficiaryMainVc  = .initiateController()
-           // self.pushViewController(controller: beneficiaryMainVc)
+            let beneficiaryMainVc: BeneficiaryMainVc  = .initiateController()
+            self.pushViewController(controller: beneficiaryMainVc)
             self.tabBarController?.selectedIndex = 1
         }
         else if screen == Global.shared.menuTransactions{
-          //  let transactionsMainVc: TransactionsMainVc  = .initiateController()
-          //  self.pushViewController(controller: transactionsMainVc)
+            let transactionsMainVc: TransactionsMainVc  = .initiateController()
+            self.pushViewController(controller: transactionsMainVc)
             self.tabBarController?.selectedIndex = 2
         }
         else if screen == Global.shared.menuProfile{
-           // let profileVc: ProfileVc  = .initiateController()
-           // self.pushViewController(controller: profileVc)
+            let profileVc: ProfileVc  = .initiateController()
+            self.pushViewController(controller: profileVc)
             self.tabBarController?.selectedIndex = 3
         }
         else if screen == Global.shared.transactionsQuickSend{
@@ -66,6 +72,11 @@ extension UIViewController {
         else if screen == Global.shared.ourBranches {
             let branchLocatorFirstVC: BranchLocatorFirstVc  = .initiateController()
             self.pushViewController(controller: branchLocatorFirstVC)
+        }else if screen == Global.shared.lbl_fxbooking {
+            let vc : FXBookingVC = .fxBookingInitiated()
+            self.pushViewController(controller: vc)
+            
+            
         }
         else if screen == Global.shared.helpTxt {
             
@@ -393,4 +404,17 @@ extension Double {
         let divisor = pow(10.0, Double(places))
         return (self * divisor).rounded() / divisor
     }
+}
+
+class Storyboad {
+    static let shared = Storyboad()
+    
+    var mainStoryboard : UIStoryboard? {
+        return UIStoryboard(name: "Main", bundle: nil)
+    }
+
+    var fxBookingStoryboard : UIStoryboard? {
+        return UIStoryboard(name: "FXBooking", bundle: nil)
+    }
+
 }
