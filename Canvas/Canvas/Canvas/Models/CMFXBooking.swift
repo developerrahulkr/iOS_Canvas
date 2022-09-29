@@ -13,21 +13,36 @@ struct CMFXBooking {
 }
 
 struct CMBookingHomeAddress : Codable{
-    let addressId : String
-    let firstName : String
-    let flat : String
-    let floor : String
-    let building : String
-    let gada : String
-    let street : String
-    let block : String
-    let areaCity : String
-    let postalCode : String
-    let phoneNumber : String
-    let createdDate : String
-    let updatedDate : String
-    let registrationId : String
-    let bIsDefault : String
-    let latitude : String
-    let longitude : String
+     var addressId : String?
+     var firstName : String?
+     var flat : String?
+     var floor : String?
+     var building : String?
+     var gada : String?
+     var street : String?
+     var block : String?
+     var areaCity : String?
+     var postalCode : String?
+     var phoneNumber : String?
+     var createdDate : String?
+     var updatedDate : String?
+     var registrationId : String?
+     var bIsDefault : String?
+     var latitude : String?
+     var longitude : String?
 }
+
+
+struct CMBookingBranchAddress : Codable{
+     var id : Int?
+     var branchCode : String?
+     var branchName : String?
+     var branchAddress : String?
+     var phone : String?
+     var fax : String?
+     var latitude : String?
+     var longitude : String?
+     var languageCode : String?
+     var isFEEnabled : Bool?
+}
+

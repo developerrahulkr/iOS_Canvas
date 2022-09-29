@@ -10,6 +10,8 @@ import UIKit
 
 protocol protocolPush: NSObjectProtocol{
     func didPressCell(sender: Any)
+    func getHomeAddress()
+    func getBranchAddress()
 }
 class CellSectionTwo: UITableViewCell {
     
@@ -30,6 +32,16 @@ class CellSectionTwo: UITableViewCell {
     
     //MARK: - VARIABLES
     var Pushdelegate:protocolPush?
+    
+    var homeDataSource : [CMBookingHomeAddress] = {
+      let data = [CMBookingHomeAddress]()
+        return data
+    }()
+    
+    lazy var branchDataSource : [CMBookingBranchAddress] = {
+        let data = [CMBookingBranchAddress]()
+          return data
+    }()
 
     let DatePickerView = UIPickerView()
     let toolbar = UIToolbar()
@@ -41,7 +53,8 @@ class CellSectionTwo: UITableViewCell {
     //MARK: - LIFECYCLE METHODS
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+        collectionViewDeliveryOption.dataSource = self
+        collectionViewDeliveryOption.delegate = self
         TFSelectDate.text = dateValue[0]
         TFSelectDate.inputView = UIPickerView()
         
@@ -71,16 +84,22 @@ class CellSectionTwo: UITableViewCell {
         homeSegment.layer.borderColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
         homeSegment.layer.borderWidth = 1
         
-        
         collectionViewDeliveryOption.register(UINib(nibName: "CellDeliveryOption", bundle: nil), forCellWithReuseIdentifier: "CellDeliveryOption")
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        collectionViewDeliveryOption.setCollectionViewLayout(layout, animated: true)
         
-        collectionViewDeliveryOption.dataSource = self
-        collectionViewDeliveryOption.delegate = self
+        
+        
         
     }
         // Configure the view for the selected state
 
     
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        print("Home Cell Data : ::::::::::      :::::::::::::    \(homeDataSource)", homeDataSource.count)
+        collectionViewDeliveryOption.reloadData()
+    }
     
     //MARK: - ACTIONS
     
@@ -99,6 +118,15 @@ class CellSectionTwo: UITableViewCell {
     }
     
     
+    @IBAction func onClickedSengment(_ sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 0 {
+            Pushdelegate?.getHomeAddress()
+        }else {
+            Pushdelegate?.getBranchAddress()
+        }
+    }
+    
+    
     @IBAction func onTapHighValue(_ sender: Any) {
         
         
@@ -112,18 +140,28 @@ class CellSectionTwo: UITableViewCell {
 //MARK: - EXTENSIONS
 extension CellSectionTwo : UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        if homeDataSource.isEmpty {
+            return branchDataSource.count
+        }else {
+            return homeDataSource.count
+        }
     }
     
+//    Flat florr building, gara, street, block, areaCity, postalCode
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CellDeliveryOption", for: indexPath) as! CellDeliveryOption
+        if homeDataSource.isEmpty {
+            cell.lblAddress.text = "\(branchDataSource[indexPath.row].branchAddress ?? ""), \(branchDataSource[indexPath.row].branchCode ?? "")"
+            cell.lblFirstName.text = branchDataSource[indexPath.row].branchName
+//            cell.lblLocation.text = getAddressFromLatLon(pdblLatitude: branchDataSource[indexPath.row].latitude ?? "", withLongitude: branchDataSource[indexPath.row].longitude ?? "")
+        }else {
+            cell.lblFirstName.text = homeDataSource[indexPath.row].firstName ?? ""
+            cell.lblAddress.text = "\(homeDataSource[indexPath.row].flat ?? ""), \(homeDataSource[indexPath.row].floor ?? ""), \(homeDataSource[indexPath.row].building ?? ""), \(homeDataSource[indexPath.row].gada ?? ""), \(homeDataSource[indexPath.row].street ?? ""), \(homeDataSource[indexPath.row].block ?? ""), \(homeDataSource[indexPath.row].areaCity ?? ""), \(homeDataSource[indexPath.row].postalCode ?? "")"
+        }
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let height = collectionView.bounds.height
-        let widthh = collectionView.bounds.width / 2.7
-        
-        return CGSize(width: widthh, height: 150)
+        return CGSize(width: 200, height: 120)
     }
     
 }

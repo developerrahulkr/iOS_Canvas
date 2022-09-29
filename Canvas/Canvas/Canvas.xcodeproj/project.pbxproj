@@ -1959,6 +1959,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 5.12;
+				OTHER_SWIFT_FLAGS = "-Xfrontend -warn-long-expression-type-checking=100";
 				PRODUCT_BUNDLE_IDENTIFIER = com.almuzaini.almuzaini;
 				"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]" = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1990,6 +1991,7 @@
 				);
 				MARKETING_VERSION = 5.12;
 				ONLY_ACTIVE_ARCH = NO;
+				OTHER_SWIFT_FLAGS = "-Xfrontend -warn-long-expression-type-checking=100";
 				PRODUCT_BUNDLE_IDENTIFIER = com.almuzaini.almuzaini;
 				"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]" = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";

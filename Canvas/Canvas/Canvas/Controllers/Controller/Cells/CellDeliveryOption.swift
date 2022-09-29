@@ -10,6 +10,9 @@ import UIKit
 
 class CellDeliveryOption: UICollectionViewCell {
 
+    @IBOutlet weak var lblLocation: UILabel!
+    @IBOutlet weak var lblFirstName: UILabel!
+    @IBOutlet weak var lblAddress: UILabel!
     @IBOutlet weak var viewCellDelivery: UIView!
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -19,3 +22,6 @@ class CellDeliveryOption: UICollectionViewCell {
     }
 
 }
+
+
+// Flat florr building, gara, street, block, areaCity, postalCode

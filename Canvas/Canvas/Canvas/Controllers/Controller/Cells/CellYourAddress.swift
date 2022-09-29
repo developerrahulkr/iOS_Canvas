@@ -10,9 +10,12 @@ import UIKit
 class CellYourAddress: UITableViewCell {
 //MARK: - OUTLET
     
+    @IBOutlet weak var lblFullName: UILabel!
+    @IBOutlet weak var lblAddress: UILabel!
     @IBOutlet weak var btnEdit: UIButton!
     @IBOutlet weak var btnDelete: UIButton!
     @IBOutlet weak var ViewCellYourAddress: UIView!
+    @IBOutlet weak var lblLocation: UILabel!
     
     //MARK: - VARIABLES
     override func awakeFromNib() {

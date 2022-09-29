@@ -10,6 +10,16 @@ import UIKit
 class YourAddress: UIViewController {
 
     @IBOutlet weak var tableViewYourAddress: UITableView!
+    
+    var homeDataSource : [CMBookingHomeAddress] = {
+      let data = [CMBookingHomeAddress]()
+        return data
+    }()
+    
+    var branchDataSource : [CMBookingBranchAddress] = {
+        let data = [CMBookingBranchAddress]()
+          return data
+    }()
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -20,10 +30,14 @@ class YourAddress: UIViewController {
         tableViewYourAddress.register(UINib(nibName: "CellYourAddress", bundle: nil), forCellReuseIdentifier: "CellYourAddress")
         tableViewYourAddress.register(UINib(nibName: "CellAddNewAddress", bundle: nil), forCellReuseIdentifier: "CellAddNewAddress")
 
+        
 
         // Do any additional setup after loading the view.
     }
     
+    @IBAction func onClickedBackBtn(_ sender: UIButton) {
+        self.navigationController?.popViewController(animated: true)
+    }
     
 
     /*
@@ -42,24 +56,25 @@ extension YourAddress : UITableViewDelegate,UITableViewDataSource{
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 1 {
-            return 1
-        }
-        else{
-            return 10
-            
+        if homeDataSource.isEmpty {
+            return branchDataSource.count
+        }else{
+            return homeDataSource.count
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 0{
-            let cell = tableView.dequeueReusableCell(withIdentifier: "CellAddNewAddress") as! CellAddNewAddress
-            return cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CellYourAddress") as! CellYourAddress
+        if homeDataSource.isEmpty {
+            cell.lblAddress.text = "\(branchDataSource[indexPath.row].branchAddress ?? ""), \(branchDataSource[indexPath.row].branchCode ?? "")"
+            cell.lblFullName.text = branchDataSource[indexPath.row].branchName
+        }else{
+            cell.lblFullName.text = homeDataSource[indexPath.row].firstName ?? ""
+            cell.lblAddress.text = "\(homeDataSource[indexPath.row].flat ?? ""), \(homeDataSource[indexPath.row].floor ?? ""), \(homeDataSource[indexPath.row].building ?? ""), \(homeDataSource[indexPath.row].gada ?? ""), \(homeDataSource[indexPath.row].street ?? ""), \(homeDataSource[indexPath.row].block ?? ""), \(homeDataSource[indexPath.row].areaCity ?? ""), \(homeDataSource[indexPath.row].postalCode ?? "")"
         }
-        else{
-            let cell = tableView.dequeueReusableCell(withIdentifier: "CellYourAddress") as! CellYourAddress
-            return cell
-        }
+        print("Home Address ::: ::: ::: ::\(homeDataSource)")
+        print("Home Address ::: ::: ::: ::\(branchDataSource)")
+        return cell
        
     }
     
