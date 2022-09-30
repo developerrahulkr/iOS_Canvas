@@ -9,19 +9,22 @@
 import UIKit
 import Alamofire
 
-class FXBookingVC: UIViewController,protocolPush, navigateToDiffrentScreenDelegate, UIDropDownCurrencyDelegateM, UITextFieldDelegate {
+class FXBookingVC: UIViewController,protocolPush, navigateToDiffrentScreenDelegate, UIDropDownCurrencyDelegateM, UITextFieldDelegate, PopupDelegate {
+    
+    
 
     
     //MARK: - OUTLETS
-    @IBOutlet weak var collectionViewLocation: UICollectionView!
     @IBOutlet weak var tableViewFX: UITableView!
-    
+    @IBOutlet weak var centerCardView: UIView!
+    @IBOutlet weak var lblFinalText: UILabel!
     @IBOutlet weak var countriesWidth: NSLayoutConstraint!
     @IBOutlet weak var btnSelectCountries: UIButton!
     @IBOutlet weak var imgCountries: UIImageView!
     @IBOutlet weak var lblSelectCities: UILabel!
     @IBOutlet var footer: UIView!
     
+    @IBOutlet weak var tableViewTopConstraints: NSLayoutConstraint!
     @IBOutlet weak var tfDestinationAmount: UITextField!
     @IBOutlet weak var tfSourceAmount: UITextField!
     @IBOutlet weak var btnAddCurrency: UIButton!
@@ -34,6 +37,10 @@ class FXBookingVC: UIViewController,protocolPush, navigateToDiffrentScreenDelega
     var countryCode : String?
     var fxHomeAddress : CMBookingHomeAddress?
 
+    var selectDate : String?
+    var timeSlot : String?
+    var purposeCode : String?
+    
     lazy var fxBookingDataSource : [CMFXBooking] = {
       let data = [CMFXBooking]()
         return data
@@ -48,6 +55,18 @@ class FXBookingVC: UIViewController,protocolPush, navigateToDiffrentScreenDelega
     lazy var branchDataSource : [CMBookingBranchAddress] = {
         let data = [CMBookingBranchAddress]()
           return data
+    }()
+    
+    lazy var selectDateDataSource : [CMSelectDate] = {
+        let data = [CMSelectDate]()
+        return data
+        
+    }()
+    
+    lazy var fxTimemSlotDataSource : [FXTimeSlot] = {
+        let data = [FXTimeSlot]()
+        return data
+        
     }()
     
     //MARK: - VARIABLES
@@ -75,20 +94,51 @@ class FXBookingVC: UIViewController,protocolPush, navigateToDiffrentScreenDelega
         self.tfSourceAmount.addTarget(self, action: #selector(sourceTextFieldDidEditingChanged(_:)), for: UIControl.Event.editingChanged)
         self.tfDestinationAmount.addTarget(self, action: #selector(targetTextFieldDidEditingChanged(_:)), for: UIControl.Event.editingChanged)
         self.getHomeData()
-//        DispatchQueue.global(qos: .background).async { [weak self] in
-//            guard let self = self else {return}
-//
-////            self.getBranchData()
-//        }
+        DispatchQueue.global(qos: .background).async { [weak self] in
+            guard let self = self else {return}
+            
+            self.getSelectDateData()
+            self.getTimeSlotData()
+//            self.getBranchData()
+        }
 //        self.navigationController?.navigationBar.isHidden = true
+    }
+    
+    override func viewDidLayoutSubviews() {
+        centerCardView.layer.masksToBounds = true
+        centerCardView.layer.cornerRadius = centerCardView.bounds.height / 2
+        centerCardView.layer.borderColor = UIColor.gray.cgColor
+        centerCardView.layer.borderWidth = 1.0
+        
+        let bottomLine = CALayer()
+        bottomLine.frame = CGRect(x: 0.0, y: tfSourceAmount.frame.height - 1, width: tfSourceAmount.frame.width, height: 1.0)
+        
+        let bottomLine1 = CALayer()
+        bottomLine1.frame = CGRect(x: 0.0, y: tfDestinationAmount.frame.height - 1, width: tfDestinationAmount.frame.width, height: 1.0)
+        bottomLine.backgroundColor = UIColor.gray.cgColor
+        bottomLine1.backgroundColor = UIColor.gray.cgColor
+        tfSourceAmount.borderStyle = UITextField.BorderStyle.none
+        tfSourceAmount.layer.addSublayer(bottomLine)
+        tfDestinationAmount.layer.addSublayer(bottomLine1)
     }
     
     @IBAction func onClickedAddBtn(_ sender: UIButton) {
         guard cmFXBooking != nil else {
             return 
         }
-        fxBookingDataSource.append(cmFXBooking!)
+        if fxBookingDataSource.count <= 10 {
+            fxBookingDataSource.append(cmFXBooking!)
+        }else{
+            let alert = ViewControllerManager.displayAlert(message: "Maximum length is 8", title:"Canvas")
+            self.present(alert, animated: true, completion: nil)
+        }
+        
         tableViewFX.reloadData()
+    }
+    
+    
+    @IBAction func onClickedInfoBtn(_ sender: UIButton) {
+        
     }
     
     
@@ -213,6 +263,9 @@ extension FXBookingVC: UITableViewDelegate,UITableViewDataSource,Delete{
             cell.selectionStyle = .none
             cell.homeDataSource = homeDataSource
             cell.branchDataSource = branchDataSource
+            cell.TFSelectDate.text = selectDate
+            cell.TFTimeSlot.text = timeSlot
+            cell.TFSelectPurposeOf.text = purposeCode
             cell.Pushdelegate = self
             return cell
         }
@@ -224,6 +277,8 @@ extension FXBookingVC: UITableViewDelegate,UITableViewDataSource,Delete{
         branchDataSource.removeAll()
         self.getHomeData()
     }
+    
+    
     
     func getBranchAddress() {
         branchDataSource.removeAll()
@@ -255,6 +310,40 @@ extension FXBookingVC: UITableViewDelegate,UITableViewDataSource,Delete{
         self.view.endEditing(true)
         rateCalculator()
         
+    }
+    
+    func getSelectDate() {
+        let popupViewController = Storyboad.shared.fxBookingStoryboard?.instantiateViewController(withIdentifier: "CalanderPopupVC") as! CalanderPopupVC
+        popupViewController.modalPresentationStyle = .custom
+        popupViewController.modalTransitionStyle = .crossDissolve
+          //presenting the pop up viewController from the parent viewController
+        popupViewController.setListData(with: .calander, data: selectDateDataSource)
+        popupViewController.delegate = self
+//        popupViewController.item = selectDateDataSource
+        
+        self.present(popupViewController, animated: true)
+    }
+    
+    func getTimeSlot() {
+        let popupViewController = Storyboad.shared.fxBookingStoryboard?.instantiateViewController(withIdentifier: "CalanderPopupVC") as! CalanderPopupVC
+        popupViewController.modalPresentationStyle = .custom
+        popupViewController.modalTransitionStyle = .crossDissolve
+          //presenting the pop up viewController from the parent viewController
+        popupViewController.setListData(with: .timeSlot, data: fxTimemSlotDataSource)
+        popupViewController.delegate = self
+
+//        popupViewController.item = selectDateDataSource
+        self.present(popupViewController, animated: true)
+
+    }
+    
+//    MARK: - Purpose Code Delegate Function
+    
+    func getPurposeName() {
+        guard BeneficiaryDetails.shared.purposeList.count > 0 else {return}
+      let popupVc = PopupViewController.showPopup(parentVC: self, data: BeneficiaryDetails.shared.purposeList)
+        popupVc?.setListData(with: .purposeScreen, data: BeneficiaryDetails.shared.purposeList)
+       popupVc?.delegate = self
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView?
@@ -325,11 +414,15 @@ extension FXBookingVC: UITableViewDelegate,UITableViewDataSource,Delete{
                             print(finalTxt)
                             self.cmFXBooking = CMFXBooking(type: "FC", fcAmount: self.tfSourceAmount.text ?? "", lcAmount: self.tfDestinationAmount.text ?? "", currencyCode: self.lblSelectCities.text ?? "", countryCode: self.countryCode ?? "", finalText: finalTxt)
                             print("myModel is \(self.cmFXBooking)")
+                            self.centerCardView.isHidden = false
+                            self.tableViewTopConstraints.constant = 50.0
+                            self.lblFinalText.text = finalTxt
 //                            self.rateCalculationLbl.text = finalTxt
 //                            self.rateCalculationLbl.isHidden = false
                             self.tableViewFX.reloadData()
                         }
                         else {
+                            self.centerCardView.isHidden = true
                             let alert = ViewControllerManager.displayAlert(message:Global.shared.messageCodeType(text: mesageCode), title:APPLICATIONNAME)
                             self.present(alert, animated: true, completion: nil)
                         }
@@ -341,6 +434,7 @@ extension FXBookingVC: UITableViewDelegate,UITableViewDataSource,Delete{
                 else
                 {
                     print(errorString!)
+                    self.centerCardView.isHidden = true
                     self.removeSpinner()
                     let finalError = errorString?.components(separatedBy: ":")
                     let alert = ViewControllerManager.displayAlert(message: finalError?[1] ?? "", title:APPLICATIONNAME)
@@ -580,5 +674,114 @@ extension FXBookingVC {
                 }
             }
         }
+    }
+    
+    
+    
+    
+    func getSelectDateData() {
+        self.selectDateDataSource.removeAll()
+        let paramaterPasing: [String:Any] = [:]
+        let headers: HTTPHeaders = [
+            "Content-Type": "application/json"
+        ]
+//        self.showSpinner(onView: self.view)
+        NetWorkDataManager.sharedInstance.getSelectDate(headersTobePassed: headers, postParameters: paramaterPasing) { [weak self] responseData, errString in
+            guard let self = self else {return}
+//            self.removeSpinner()
+            guard errString == nil else {
+                print(errString ?? "")
+                
+                let finalError = errString?.components(separatedBy: ":")
+                let alert = ViewControllerManager.displayAlert(message: finalError?[1] ?? "", title:APPLICATIONNAME)
+                self.present(alert, animated: true, completion: nil)
+                return
+            }
+            let statusMsg = responseData?.value(forKey: "statusMessage") as? String ?? ""
+            let mesageCode = responseData?.value(forKey: "messageCode") as? String ?? statusMsg
+            
+            if let statusCode = responseData?.value(forKey: "statusCodes") as? Int {
+                print(statusCode)
+                if(statusCode == 200) {
+                    if let dataArray = responseData?.value(forKey: "lstSelectedDate") as? NSArray {
+                        for onemessage in dataArray as! [Dictionary<String, AnyObject>] {
+                            self.selectDateDataSource.append(CMSelectDate(id: onemessage["id"] as? String, sDate: onemessage["sDate"] as? String))
+                        }
+                    }
+                    print("Select Date Data : \(self.selectDateDataSource)")
+                }else {
+                    let alert = ViewControllerManager.displayAlert(message:Global.shared.messageCodeType(text: mesageCode), title:APPLICATIONNAME)
+                    self.present(alert, animated: true, completion: nil)
+                    
+                    
+                    
+                }
+                
+            }
+        }
+    }
+    
+//    MARK: - GetTime Slot Data
+    func getTimeSlotData() {
+        self.selectDateDataSource.removeAll()
+        let paramaterPasing: [String:Any] = ["languageCode":LocalizationSystem.sharedInstance.getLanguage()]
+        
+        
+        let headers: HTTPHeaders = [
+            "Content-Type": "application/json"
+        ]
+        
+        NetWorkDataManager.sharedInstance.accountConfigsImplimentation(headersTobePassed: headers, postParameters: paramaterPasing) { [weak self] responseData , errString in
+            
+            guard let self = self else {return}
+//            self.removeSpinner()
+            guard errString == nil else {
+                print(errString ?? "")
+                
+                let finalError = errString?.components(separatedBy: ":")
+                let alert = ViewControllerManager.displayAlert(message: finalError?[1] ?? "", title:APPLICATIONNAME)
+                self.present(alert, animated: true, completion: nil)
+                return
+            }
+            let statusMsg = responseData?.value(forKey: "statusMessage") as? String ?? ""
+            let mesageCode = responseData?.value(forKey: "messageCode") as? String ?? statusMsg
+            if let statusCode = responseData?.value(forKey: "statusCodes") as? Int {
+                print(statusCode)
+                
+                if(statusCode == 200) {
+                    print("Time Slot ResponseData  : \(responseData)")
+                    if let fxTimeSlot = responseData?.value(forKey: "fxTimeSlot") as? String {
+                        let newObj = Global.shared.convertToAryDictionary(text: fxTimeSlot)
+                        for dataObj in newObj! {
+                            self.fxTimemSlotDataSource.append(FXTimeSlot(name: dataObj["name"] as? String, value: dataObj["value"] as? String))
+                        }
+                    }
+                    
+                    print("timeSlot Data : \(self.fxTimemSlotDataSource)")
+                }else{
+                    let alert = ViewControllerManager.displayAlert(message:Global.shared.messageCodeType(text: mesageCode), title:APPLICATIONNAME)
+                    self.present(alert, animated: true, completion: nil)
+                }
+                
+            }
+            
+        }
+        
+    }
+}
+
+extension FXBookingVC : PopupViewControllerDelegate {
+    func didSelectItem<T>(item: T, vc: UIViewController?) {
+        if let itemData = item as? CMSelectDate {
+            selectDate = itemData.sDate
+        }else if let timeData = item as? FXTimeSlot{
+            timeSlot = timeData.name
+            print("time Slot Date : \(item)")
+        }else if let purposeCodeData = item as? BeneficiaryPurposeData {
+            purposeCode = purposeCodeData.name ?? ""
+            
+        }
+        vc?.dismiss(animated: true)
+        tableViewFX.reloadData()
     }
 }

@@ -134,8 +134,31 @@ class PopupViewController: UIViewController {
     }
     return nil
   }
+    
+    
+    @discardableResult
+    static func showCalanderPopup(parentVC: UIViewController, data: [BeneficiaryPurposeData]) -> CalanderPopupVC?{
+      
+      //creating a reference for the dialogView controller
+        if let popupViewController = Storyboad.shared.fxBookingStoryboard?.instantiateViewController(withIdentifier: "CalanderPopupVC") as? CalanderPopupVC {
+        popupViewController.modalPresentationStyle = .custom
+        popupViewController.modalTransitionStyle = .crossDissolve
+//        popupViewController.items = data
+        //presenting the pop up viewController from the parent viewController
+        parentVC.present(popupViewController, animated: true)
+        return popupViewController
+      }
+      return nil
+    }
   
 }
+
+
+
+
+
+
+
 
 
 

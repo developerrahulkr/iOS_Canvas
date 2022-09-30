@@ -11,6 +11,7 @@ class YourAddress: UIViewController {
 
     @IBOutlet weak var tableViewYourAddress: UITableView!
     
+    @IBOutlet weak var btnAdd: UIButton!
     var homeDataSource : [CMBookingHomeAddress] = {
       let data = [CMBookingHomeAddress]()
         return data
@@ -34,12 +35,19 @@ class YourAddress: UIViewController {
 
         // Do any additional setup after loading the view.
     }
+    override func viewDidLayoutSubviews() {
+        btnAdd.layer.cornerRadius = btnAdd.bounds.height / 2
+    }
     
     @IBAction func onClickedBackBtn(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
     }
     
-
+    @IBAction func onClickedAddBtn(_ sender: UIButton) {
+        let vc = Storyboad.shared.fxBookingStoryboard?.instantiateViewController(withIdentifier: "AddNewAddressVC") as! AddNewAddressVC
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -51,10 +59,9 @@ class YourAddress: UIViewController {
     */
 
 }
-extension YourAddress : UITableViewDelegate,UITableViewDataSource{
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
+extension YourAddress : UITableViewDelegate,UITableViewDataSource, YourAddressDelegate{
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if homeDataSource.isEmpty {
             return branchDataSource.count
@@ -65,6 +72,9 @@ extension YourAddress : UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CellYourAddress") as! CellYourAddress
+        cell.btnEdit.tag = indexPath.row
+        cell.btnDelete.tag = indexPath.row
+        cell.delegate = self
         if homeDataSource.isEmpty {
             cell.lblAddress.text = "\(branchDataSource[indexPath.row].branchAddress ?? ""), \(branchDataSource[indexPath.row].branchCode ?? "")"
             cell.lblFullName.text = branchDataSource[indexPath.row].branchName
@@ -76,6 +86,14 @@ extension YourAddress : UITableViewDelegate,UITableViewDataSource{
         print("Home Address ::: ::: ::: ::\(branchDataSource)")
         return cell
        
+    }
+    
+    func updateAddress(tag: Int) {
+        <#code#>
+    }
+    
+    func deleteAddress(indexPath: Int) {
+        <#code#>
     }
     
     

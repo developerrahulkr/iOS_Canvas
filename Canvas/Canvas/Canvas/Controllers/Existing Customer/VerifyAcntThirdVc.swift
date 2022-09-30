@@ -499,8 +499,7 @@ extension VerifyAcntThirdVc: SecurityQuestionCellDelegate {
     let popOverVC = PopupViewController.showPopup(parentVC: self, data: [])
     popOverVC?.setListData(with: .questionsScreen, data: self.securityQuestionListForDrpDwn)
     popOverVC?.delegate = cell
-    
-    
+
   }
 }
 

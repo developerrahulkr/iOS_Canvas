@@ -7,6 +7,11 @@
 
 import UIKit
 
+protocol YourAddressDelegate {
+    func updateAddress (tag : Int) -> Void
+    func deleteAddress(indexPath : Int) -> Void
+}
+
 class CellYourAddress: UITableViewCell {
 //MARK: - OUTLET
     
@@ -17,6 +22,7 @@ class CellYourAddress: UITableViewCell {
     @IBOutlet weak var ViewCellYourAddress: UIView!
     @IBOutlet weak var lblLocation: UILabel!
     
+    var delegate : YourAddressDelegate?
     //MARK: - VARIABLES
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -34,7 +40,13 @@ class CellYourAddress: UITableViewCell {
 
     //MARK: - ACTIONS
     
+    @IBAction func onClickedDeleteBtnq(_ sender: UIButton) {
+        delegate?.deleteAddress(indexPath: sender.tag)
+    }
     
+    @IBAction func onClickedUpdateBtn(_ sender: UIButton) {
+        delegate?.updateAddress(tag: sender.tag)
+    }
     
     
     //MARK: - FUNCTIONS

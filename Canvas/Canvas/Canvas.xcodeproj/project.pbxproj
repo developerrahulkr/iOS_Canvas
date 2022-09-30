@@ -24,6 +24,9 @@
 		1854039428E41A7900ED3362 /* AddNewAddressVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1854038828E41A7800ED3362 /* AddNewAddressVC.swift */; };
 		1854039628E476DD00ED3362 /* CMFXBooking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1854039528E476DD00ED3362 /* CMFXBooking.swift */; };
 		1882135928E486A200E1E865 /* FXBookingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1882135828E486A200E1E865 /* FXBookingViewModel.swift */; };
+		1882135D28E5B75700E1E865 /* CalanderPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1882135C28E5B75700E1E865 /* CalanderPopupVC.swift */; };
+		1882136128E5B7C000E1E865 /* CalanderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1882135F28E5B7C000E1E865 /* CalanderCell.swift */; };
+		1882136228E5B7C000E1E865 /* CalanderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1882136028E5B7C000E1E865 /* CalanderCell.xib */; };
 		1924D54426E51E9800533445 /* PhotoSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1924D54226E51E9700533445 /* PhotoSliderView.swift */; };
 		197B589126E345D600D27D18 /* BannerImgCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197B589026E345D600D27D18 /* BannerImgCell.swift */; };
 		197B589326E3461200D27D18 /* ShowOffersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197B589226E3461200D27D18 /* ShowOffersCell.swift */; };
@@ -275,6 +278,9 @@
 		1854038828E41A7800ED3362 /* AddNewAddressVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewAddressVC.swift; sourceTree = "<group>"; };
 		1854039528E476DD00ED3362 /* CMFXBooking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMFXBooking.swift; sourceTree = "<group>"; };
 		1882135828E486A200E1E865 /* FXBookingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FXBookingViewModel.swift; sourceTree = "<group>"; };
+		1882135C28E5B75700E1E865 /* CalanderPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalanderPopupVC.swift; sourceTree = "<group>"; };
+		1882135F28E5B7C000E1E865 /* CalanderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalanderCell.swift; sourceTree = "<group>"; };
+		1882136028E5B7C000E1E865 /* CalanderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalanderCell.xib; sourceTree = "<group>"; };
 		18DF4CDB0157E249526220FD /* Pods_CanvasTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CanvasTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1924D54226E51E9700533445 /* PhotoSliderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoSliderView.swift; sourceTree = "<group>"; };
 		197B589026E345D600D27D18 /* BannerImgCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerImgCell.swift; sourceTree = "<group>"; };
@@ -578,6 +584,7 @@
 				1854038728E41A7800ED3362 /* FXBookingVC.swift */,
 				1854038828E41A7800ED3362 /* AddNewAddressVC.swift */,
 				1882135828E486A200E1E865 /* FXBookingViewModel.swift */,
+				1882135C28E5B75700E1E865 /* CalanderPopupVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -596,6 +603,15 @@
 				1854038528E41A7800ED3362 /* CellAddNewAddress.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		1882135E28E5B7A200E1E865 /* CalanderCell */ = {
+			isa = PBXGroup;
+			children = (
+				1882135F28E5B7C000E1E865 /* CalanderCell.swift */,
+				1882136028E5B7C000E1E865 /* CalanderCell.xib */,
+			);
+			path = CalanderCell;
 			sourceTree = "<group>";
 		};
 		19C96EF326D645DD00B1321E /* Cell */ = {
@@ -1202,6 +1218,7 @@
 		D562FD3A25FF248C004E81DE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				1882135E28E5B7A200E1E865 /* CalanderCell */,
 				1854037928E419FD00ED3362 /* FXBooking.storyboard */,
 				D55C934F24D8461F003F7F5F /* Main.storyboard */,
 				D55C935724D8462B003F7F5F /* LaunchScreen.storyboard */,
@@ -1339,6 +1356,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D55E875425D25FF20059D8E3 /* roboto_regular.ttf in Resources */,
+				1882136228E5B7C000E1E865 /* CalanderCell.xib in Resources */,
 				D55E875125D25FF20059D8E3 /* roboto_blackitalic.ttf in Resources */,
 				D55E875025D25FF20059D8E3 /* roboto_bold.ttf in Resources */,
 				1854038C28E41A7900ED3362 /* CellAddNewAddress.xib in Resources */,
@@ -1658,6 +1676,7 @@
 				D55B32CF254FFDA3005E57F5 /* TransctnByDateCell.swift in Sources */,
 				D5822E52252C88B4003C0BD0 /* ChartsVc.swift in Sources */,
 				D51E88CB24E2C43B0010C57B /* NewCustEmploymentVc.swift in Sources */,
+				1882135D28E5B75700E1E865 /* CalanderPopupVC.swift in Sources */,
 				D55E82C12570A52000226A60 /* CurrencyDrpDwnSearch.swift in Sources */,
 				D5328DF62521AB980079E314 /* ContactUsVc.swift in Sources */,
 				D571386424F7AB3D0088A5BA /* WesternUnion.swift in Sources */,
@@ -1700,6 +1719,7 @@
 				D571385624F78DD00088A5BA /* BeneficiaryWesternUnionVc.swift in Sources */,
 				2C805276278581DF00CB3B4D /* ToolTipListController.swift in Sources */,
 				D54BA62B24E28C70001000E7 /* NewCustomerVc.swift in Sources */,
+				1882136128E5B7C000E1E865 /* CalanderCell.swift in Sources */,
 				8EFD2F6B25700F9B00052539 /* Extensions.swift in Sources */,
 				1854037828E40FB500ED3362 /* SiteUnderMaintnanceController.swift in Sources */,
 				D571385424F78DA20088A5BA /* BeneficiaryCashTransferVc.swift in Sources */,

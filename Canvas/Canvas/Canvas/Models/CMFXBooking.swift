@@ -46,3 +46,12 @@ struct CMBookingBranchAddress : Codable{
      var isFEEnabled : Bool?
 }
 
+
+struct CMSelectDate : Codable {
+    var id, sDate : String?
+}
+
+struct FXTimeSlot : Codable {
+    var name, value : String?
+}
+

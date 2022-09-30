@@ -12,6 +12,9 @@ protocol protocolPush: NSObjectProtocol{
     func didPressCell(sender: Any)
     func getHomeAddress()
     func getBranchAddress()
+    func getSelectDate() -> Void
+    func getTimeSlot() -> Void
+    func getPurposeName() -> Void
 }
 class CellSectionTwo: UITableViewCell {
     
@@ -19,7 +22,6 @@ class CellSectionTwo: UITableViewCell {
     //MARK: - OUTLETS
     
     @IBOutlet weak var btnAdd: UIButton!
-    @IBOutlet weak var pickerViewDate: UIPickerView!
     @IBOutlet weak var TFSelectPurposeOf: UITextField!
     @IBOutlet weak var homeSegment: UISegmentedControl!
     @IBOutlet weak var collectionViewDeliveryOption: UICollectionView!
@@ -42,24 +44,12 @@ class CellSectionTwo: UITableViewCell {
         let data = [CMBookingBranchAddress]()
           return data
     }()
-
-    let DatePickerView = UIPickerView()
-    let toolbar = UIToolbar()
-    
-    
-    let dateValue = ["09/26/02022","09/27/02022","09/28/02022","09/29/02022"]
-    let timeValue = ["10 AM - 12 PM","12 PM - 02 PM","02 PM - 04 PM","04 PM - 06 PM"]
     
     //MARK: - LIFECYCLE METHODS
     override func awakeFromNib() {
         super.awakeFromNib()
         collectionViewDeliveryOption.dataSource = self
         collectionViewDeliveryOption.delegate = self
-        TFSelectDate.text = dateValue[0]
-        TFSelectDate.inputView = UIPickerView()
-        
-        DatePickerView.delegate = self
-        DatePickerView.dataSource = self
         
         TFSelectDate.layer.borderWidth = 1
         TFTimeSlot.layer.borderWidth = 1
@@ -118,10 +108,25 @@ class CellSectionTwo: UITableViewCell {
     }
     
     
+    @IBAction func onClickedSelectDate(_ sender: UIButton) {
+        Pushdelegate?.getSelectDate()
+    }
+    
+    @IBAction func onClickedTimeSlotData(_ sender: UIButton) {
+        Pushdelegate?.getTimeSlot()
+    }
+    
+    @IBAction func onClickedPurposeCode(_ sender: UIButton) {
+        self.Pushdelegate?.getPurposeName()
+    }
+    
+    
     @IBAction func onClickedSengment(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
+            sender.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.colorFrom(hexString: "#FFFFFF")!], for: .selected)
             Pushdelegate?.getHomeAddress()
         }else {
+            sender.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.colorFrom(hexString: "#FFFFFF")!], for: .selected)
             Pushdelegate?.getBranchAddress()
         }
     }
@@ -164,37 +169,4 @@ extension CellSectionTwo : UICollectionViewDelegate,UICollectionViewDataSource,U
         return CGSize(width: 200, height: 120)
     }
     
-}
-    //MARK: - EXTENSION FOR PICKERVIEW
-extension CellSectionTwo : UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource{
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        dateValue.count
-    }
-    
-    
-   
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return dateValue[row]
-
-    }
-    
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        TFSelectDate.text = dateValue[row]
-        self.endEditing(true)
-        pickerView.isHidden = true
-    }
-    
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        textField == TFSelectDate
-        pickerViewDate.isHidden = false
-    }
-
 }
