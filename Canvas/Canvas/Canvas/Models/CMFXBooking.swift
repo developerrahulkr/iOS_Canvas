@@ -13,7 +13,7 @@ struct CMFXBooking {
 }
 
 struct CMBookingHomeAddress : Codable{
-     var addressId : String?
+     var addressId : Int?
      var firstName : String?
      var flat : String?
      var floor : String?

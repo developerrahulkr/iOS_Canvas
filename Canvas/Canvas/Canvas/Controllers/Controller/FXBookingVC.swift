@@ -93,14 +93,8 @@ class FXBookingVC: UIViewController,protocolPush, navigateToDiffrentScreenDelega
         tfDestinationAmount.delegate = self
         self.tfSourceAmount.addTarget(self, action: #selector(sourceTextFieldDidEditingChanged(_:)), for: UIControl.Event.editingChanged)
         self.tfDestinationAmount.addTarget(self, action: #selector(targetTextFieldDidEditingChanged(_:)), for: UIControl.Event.editingChanged)
-        self.getHomeData()
-        DispatchQueue.global(qos: .background).async { [weak self] in
-            guard let self = self else {return}
-            
-            self.getSelectDateData()
-            self.getTimeSlotData()
-//            self.getBranchData()
-        }
+        
+
 //        self.navigationController?.navigationBar.isHidden = true
     }
     
@@ -206,6 +200,15 @@ class FXBookingVC: UIViewController,protocolPush, navigateToDiffrentScreenDelega
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
+        DispatchQueue.main.asyncAfter(deadline: .now()) {[weak self] in
+            guard let self = self else {return}
+            self.getHomeData()
+        }
+        DispatchQueue.global(qos: .background).async { [weak self] in
+            guard let self = self else {return}
+            self.getSelectDateData()
+            self.getTimeSlotData()
+        }
     }
     
     @IBAction func onClickMenuBtn(_ sender: Any) {
@@ -551,66 +554,70 @@ extension FXBookingVC {
 //    }
     
     func getHomeData() {
+        self.homeDataSource.removeAll()
+        self.branchDataSource.removeAll()
         let paramaterPasing: [String:Any] = ["registrationId": Global.shared.afterLoginRegistrtnId ?? ""]
         let headers: HTTPHeaders = [
             "Content-Type": "application/json"
         ]
         self.showSpinner(onView: self.view)
-        NetWorkDataManager.sharedInstance.gethomeaddressList(headersTobePassed: headers, postParameters: paramaterPasing) { [weak self] responseData, errString in
-            guard let self = self else {return}
-            self.removeSpinner()
-            
-            guard errString == nil else {
-                print(errString ?? "")
-                let finalError = errString?.components(separatedBy: ":")
-                let alert = ViewControllerManager.displayAlert(message: finalError?[1] ?? "", title:APPLICATIONNAME)
-                self.present(alert, animated: true, completion: nil)
-                return
-            }
-            let statusMsg = responseData?.value(forKey: "statusMessage") as? String ?? ""
-            let mesageCode = responseData?.value(forKey: "messageCode") as? String ?? statusMsg
-            if let statusCode = responseData?.value(forKey: "statusCodes") as? Int {
+        DispatchQueue.main.asyncAfter(deadline: .now()) {
+            NetWorkDataManager.sharedInstance.gethomeaddressList(headersTobePassed: headers, postParameters: paramaterPasing) { [weak self] responseData, errString in
+                guard let self = self else {return}
+                self.removeSpinner()
                 
-                print(statusCode)
-                if(statusCode == 200) {
-                    if let dataArray = responseData?.value(forKey: "fxAddressResult") as? NSArray {
-                        print(dataArray)
-                        for onemessage in dataArray as! [Dictionary<String, AnyObject>] {
-                            self.homeDataSource.append(
-                                CMBookingHomeAddress(addressId: onemessage["addressId"] as? String,
-                                                     firstName: onemessage["firstName"] as? String,
-                                                     flat: onemessage["flat"] as? String,
-                                                     floor: onemessage["floor"] as? String,
-                                                     building: onemessage["building"] as? String,
-                                                     gada: onemessage["gada"] as? String,
-                                                     street: onemessage["street"] as? String,
-                                                     block: onemessage["block"] as? String,
-                                                     areaCity: onemessage["areaCity"] as? String,
-                                                     postalCode: onemessage["postalCode"] as? String,
-                                                     phoneNumber: onemessage["phoneNumber"] as? String,
-                                                     createdDate: onemessage["createdDate"] as? String,
-                                                     updatedDate: onemessage["updatedDate"] as? String,
-                                                     registrationId: onemessage["registrationId"] as? String,
-                                                     bIsDefault: onemessage["bIsDefault"] as? String,
-                                                     latitude: onemessage["latitude"] as? String,
-                                                     longitude: onemessage["longitude"] as? String))
+                guard errString == nil else {
+                    print(errString ?? "")
+                    let finalError = errString?.components(separatedBy: ":")
+                    let alert = ViewControllerManager.displayAlert(message: finalError?[1] ?? "", title:APPLICATIONNAME)
+                    self.present(alert, animated: true, completion: nil)
+                    return
+                }
+                let statusMsg = responseData?.value(forKey: "statusMessage") as? String ?? ""
+                let mesageCode = responseData?.value(forKey: "messageCode") as? String ?? statusMsg
+                if let statusCode = responseData?.value(forKey: "statusCodes") as? Int {
+                    
+                    print(statusCode)
+                    if(statusCode == 200) {
+                        if let dataArray = responseData?.value(forKey: "fxAddressResult") as? NSArray {
+                            print(dataArray)
+                            for onemessage in dataArray as! [Dictionary<String, AnyObject>] {
+                                self.homeDataSource.append(
+                                    CMBookingHomeAddress(addressId: onemessage["addressId"] as? Int,
+                                                         firstName: onemessage["firstName"] as? String,
+                                                         flat: onemessage["flat"] as? String,
+                                                         floor: onemessage["floor"] as? String,
+                                                         building: onemessage["building"] as? String,
+                                                         gada: onemessage["gada"] as? String,
+                                                         street: onemessage["street"] as? String,
+                                                         block: onemessage["block"] as? String,
+                                                         areaCity: onemessage["areaCity"] as? String,
+                                                         postalCode: onemessage["postalCode"] as? String,
+                                                         phoneNumber: onemessage["phoneNumber"] as? String,
+                                                         createdDate: onemessage["createdDate"] as? String,
+                                                         updatedDate: onemessage["updatedDate"] as? String,
+                                                         registrationId: onemessage["registrationId"] as? String,
+                                                         bIsDefault: onemessage["bIsDefault"] as? String,
+                                                         latitude: onemessage["latitude"] as? String,
+                                                         longitude: onemessage["longitude"] as? String))
+                            }
+                            
+                            
                         }
                         
+                        print("My Home Address is : \(self.homeDataSource)")
+                        self.tableViewFX.reloadData()
+                    }
+                    else {
+                        let alert = ViewControllerManager.displayAlert(message:Global.shared.messageCodeType(text: mesageCode), title:APPLICATIONNAME)
+                        self.present(alert, animated: true, completion: nil)
                         
                     }
                     
-                    print("My Home Address is : \(self.homeDataSource)")
-                    self.tableViewFX.reloadData()
-                }
-                else {
-                    let alert = ViewControllerManager.displayAlert(message:Global.shared.messageCodeType(text: mesageCode), title:APPLICATIONNAME)
-                    self.present(alert, animated: true, completion: nil)
-                    
                 }
                 
+                
             }
-            
-            
         }
     }
     
@@ -730,7 +737,7 @@ extension FXBookingVC {
         let headers: HTTPHeaders = [
             "Content-Type": "application/json"
         ]
-        
+//        self.showSpinner(onView: self.view)
         NetWorkDataManager.sharedInstance.accountConfigsImplimentation(headersTobePassed: headers, postParameters: paramaterPasing) { [weak self] responseData , errString in
             
             guard let self = self else {return}

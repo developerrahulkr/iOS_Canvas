@@ -1552,6 +1552,44 @@ func appVersionControl(headersTobePassed : HTTPHeaders,postParameters :[String:A
         }
     }
     
+//    MARK: - Add Address
+    func AddAddressFunc(headersTobePassed : HTTPHeaders,postParameters :[String:Any],completionHandler: @escaping (NSDictionary?, String?) ->()){
+        let apiUlr = CanvasUrls.baseUrl + CanvasUrls.versionNumber + CanvasUrls.addfxbookingaddress
+        
+        AF.request(apiUlr, method: .post, parameters: postParameters, encoding:
+                    JSONEncoding.default, headers: headersWithAuthorization).responseJSON
+        { response in
+            let completion = self.dealWithDictResponse(response: response)
+            completionHandler(completion.0, completion.1)
+        }
+    }
+    
+//    MARK: - Update Homme Address
+    func updateHomeAddress(headersTobePassed : HTTPHeaders,postParameters :[String:Any],completionHandler: @escaping (NSDictionary?, String?) -> ())
+    {
+        
+        let apiUlr = CanvasUrls.baseUrl +  CanvasUrls.versionNumber + CanvasUrls.updatefxbookingaddress
+        AF.request(apiUlr, method: .post, parameters: postParameters, encoding:
+                    JSONEncoding.default, headers: headersWithAuthorization).responseJSON
+        { response in
+            let completion = self.dealWithDictResponse(response: response)
+            completionHandler(completion.0, completion.1)
+        }
+    }
+    
+//    MARK: - Delete FXBooking Home Address
+    
+    func deleteHomeAddressAPI(headersToBePassed : HTTPHeaders,postParameter : [String:Any],completionHadler: @escaping (NSDictionary?, String?) ->()){
+            let apiUrl = CanvasUrls.baseUrl + CanvasUrls.versionNumber + CanvasUrls.deletefxbookingaddress
+            
+            AF.request(apiUrl, method: .post, parameters: postParameter, encoding: JSONEncoding.default, headers: headersWithAuthorization).responseJSON{
+                response in
+                let competion = self.dealWithDictResponse(response: response)
+                completionHadler(competion.0, competion.1)
+                
+            }
+        }
+    
     
     
 }

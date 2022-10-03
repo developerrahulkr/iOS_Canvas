@@ -27,6 +27,7 @@
 		1882135D28E5B75700E1E865 /* CalanderPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1882135C28E5B75700E1E865 /* CalanderPopupVC.swift */; };
 		1882136128E5B7C000E1E865 /* CalanderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1882135F28E5B7C000E1E865 /* CalanderCell.swift */; };
 		1882136228E5B7C000E1E865 /* CalanderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1882136028E5B7C000E1E865 /* CalanderCell.xib */; };
+		18CB9F5328EAA98200123A3B /* CheckMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CB9F5228EAA98200123A3B /* CheckMessage.swift */; };
 		1924D54426E51E9800533445 /* PhotoSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1924D54226E51E9700533445 /* PhotoSliderView.swift */; };
 		197B589126E345D600D27D18 /* BannerImgCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197B589026E345D600D27D18 /* BannerImgCell.swift */; };
 		197B589326E3461200D27D18 /* ShowOffersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197B589226E3461200D27D18 /* ShowOffersCell.swift */; };
@@ -281,6 +282,7 @@
 		1882135C28E5B75700E1E865 /* CalanderPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalanderPopupVC.swift; sourceTree = "<group>"; };
 		1882135F28E5B7C000E1E865 /* CalanderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalanderCell.swift; sourceTree = "<group>"; };
 		1882136028E5B7C000E1E865 /* CalanderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalanderCell.xib; sourceTree = "<group>"; };
+		18CB9F5228EAA98200123A3B /* CheckMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckMessage.swift; sourceTree = "<group>"; };
 		18DF4CDB0157E249526220FD /* Pods_CanvasTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CanvasTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1924D54226E51E9700533445 /* PhotoSliderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoSliderView.swift; sourceTree = "<group>"; };
 		197B589026E345D600D27D18 /* BannerImgCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerImgCell.swift; sourceTree = "<group>"; };
@@ -579,6 +581,7 @@
 		1854037B28E41A7800ED3362 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				18CB9F5228EAA98200123A3B /* CheckMessage.swift */,
 				1854037C28E41A7800ED3362 /* Cells */,
 				1854038628E41A7800ED3362 /* YourAddress.swift */,
 				1854038728E41A7800ED3362 /* FXBookingVC.swift */,
@@ -1673,6 +1676,7 @@
 				8E3BA91A25721C8A0078A025 /* UIColor+Extension.swift in Sources */,
 				D51E88C724E2C4060010C57B /* NewCustIdentityVc.swift in Sources */,
 				D533848C24E1424900A0A705 /* VerifyOnlineAcntVc.swift in Sources */,
+				18CB9F5328EAA98200123A3B /* CheckMessage.swift in Sources */,
 				D55B32CF254FFDA3005E57F5 /* TransctnByDateCell.swift in Sources */,
 				D5822E52252C88B4003C0BD0 /* ChartsVc.swift in Sources */,
 				D51E88CB24E2C43B0010C57B /* NewCustEmploymentVc.swift in Sources */,
