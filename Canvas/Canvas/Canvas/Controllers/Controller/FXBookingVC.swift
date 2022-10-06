@@ -73,7 +73,8 @@ class FXBookingVC: UIViewController,protocolPush, navigateToDiffrentScreenDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        FXbookingMaster.shared.deliveryType = "Home"
+
         if lblSelectCities.text == "Currency" {
             imgCountries.isHidden = true
             leftConstantCurrency.constant = 20
@@ -153,7 +154,19 @@ class FXBookingVC: UIViewController,protocolPush, navigateToDiffrentScreenDelega
     
     @IBAction func onClickedInfoBtn(_ sender: UIButton)
     {
-        FXbookingMaster.shared.cretefctransaction()
+//        FXbookingMaster.shared.cretefctransaction()
+        let fccurrencydict = FXbookingMaster.shared.fxBookingDataSource.map {["type": "S", "fcCurrencyCode": $0.currenyCodeTo, "fcAmount": Double($0.amountTo) ?? 0.0, "lcAmount": Double($0.amountFrom) ?? 0.0, "rate": Double($0.actualRate) ?? 0.0]}
+        var  netamount = 0.0
+        for count in fccurrencydict
+        {
+            netamount = count["lcAmount"] as! Double + netamount
+        }
+        print(fccurrencydict)
+        print(netamount)
+        FXbookingMaster.shared.netamount = netamount
+        
+        let vc = Storyboad.shared.fxBookingStoryboard?.instantiateViewController(withIdentifier: "TransactionSummaryVC") as! TransactionSummaryVC
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     
@@ -335,7 +348,7 @@ extension FXBookingVC: UITableViewDelegate,UITableViewDataSource,Delete{
                 cell.tfSourceField.text = FXbookingMaster.shared.fxBookingDataSource[indexPath.row].amountFrom
                 cell.tfTargetField.text = FXbookingMaster.shared.fxBookingDataSource[indexPath.row].amountTo
                 cell.lblCurrencyCode.text = FXbookingMaster.shared.fxBookingDataSource[indexPath.row].currenyCodeTo
-                cell.imgCountry.image = UIImage(named: FXbookingMaster.shared.fxBookingDataSource[indexPath.row].currenyCodeTo.lowercased())
+                cell.imgCountry.image = UIImage(named: FXbookingMaster.shared.fxBookingDataSource[indexPath.row].countryCode.lowercased())
             }
             
             cell.delegate = self
@@ -344,6 +357,7 @@ extension FXBookingVC: UITableViewDelegate,UITableViewDataSource,Delete{
         else
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "CellSectionTwo", for: indexPath) as! CellSectionTwo
+            
             cell.selectionStyle = .none
             cell.TFSelectDate.text = FXbookingMaster.shared.selecteddateslot
             cell.TFTimeSlot.text = FXbookingMaster.shared.selectedtimeslot
@@ -537,7 +551,7 @@ extension FXBookingVC: UITableViewDelegate,UITableViewDataSource,Delete{
                                 self.txtLCamount.text = "\(ratecalobj["amountFrom"] ?? "")"
                                 let ratee = "\(ratecalobj["rate"] ?? "")"
                                 
-                                let finalTxt = "1 \(self.lblSelectCities.text!) = \(ratee) \nKWD"
+                                let finalTxt = "\(ratee) KWD"
                                 print(finalTxt)
                                 self.lblrate.text = finalTxt
                                 self.cmFXBooking = CMFXBooking(
@@ -549,7 +563,7 @@ extension FXBookingVC: UITableViewDelegate,UITableViewDataSource,Delete{
                                     commAmount: "\(ratecalobj["commAmount"] ?? "")",
                                     promoCommAmount: "\(ratecalobj["promoCommAmount"] ?? "")",
                                     currenyCodeFrom: "\(ratecalobj["currenyCodeFrom"] ?? "")",
-                                    currenyCodeTo: "\(ratecalobj["currenyCodeTo"] ?? "")"
+                                    currenyCodeTo: "\(ratecalobj["currenyCodeTo"] ?? "")", countryCode: self.countryCode ?? ""
                                 )
                                 print("myModel is \(self.cmFXBooking)")
                                 //                            self.rateCalculationLbl.text = finalTxt
@@ -596,10 +610,11 @@ extension FXBookingVC {
     func didSelectedCountry(country: Country) {
         lblSelectCities.text = country.currencyCode
         countryCode = country.countryCode?.lowercased()
+        
         imgCountries.image = UIImage(named: country.countryCode?.lowercased() ?? "")
         imgCountries.isHidden = false
         leftConstantCurrency.constant = 45
-
+        
         if txtFCamount.text == "" && txtLCamount.text == "" {
             print("no action")
         }
@@ -813,9 +828,9 @@ extension FXBookingVC : PopupViewControllerDelegate {
 //"rate": 0.3050000
 
 
-class FXbookingMaster{
+class FXbookingMaster {
     static var shared = FXbookingMaster()
-    
+    var deliveryType : String?
     var selecytedhomeaddress : Int?
     var selecedbranchaddress : Int?
     var selectedaddresstype = 0
@@ -824,8 +839,15 @@ class FXbookingMaster{
     var deliveryinstruction = ""
     var selectedpurpose = ""
     var deminations = ""
-    
+    var netamount = 0.0
     var fxsessionid : String = ""
+    lazy var dataSource : [CMSummery] = {
+        let data = [CMSummery]()
+        return data
+    }()
+    
+    
+    
     
     lazy var fxBookingDataSource : [CMFXBooking] = {
         let data = [CMFXBooking]()
@@ -842,6 +864,21 @@ class FXbookingMaster{
         return data
     }()
     
+    
+    
+    func getData(){
+        let data0 = CMSummery(summery: "", ammount: "")
+        dataSource.append(data0)
+        let data1 = CMSummery(summery: "Commission Discount", ammount: "0.0 KWD")
+        dataSource.append(data1)
+        let data2 = CMSummery(summery: "Delivery Chanrges", ammount: "1 KWD")
+        dataSource.append(data2)
+        let data3 = CMSummery(summery: "Commission Discount", ammount: "0.0 KWD")
+        dataSource.append(data3)
+        let data4 = CMSummery(summery: "", ammount: "")
+        dataSource.append(data4)
+        
+    }
     
     
     func getHomeData(completionHandler: @escaping (Bool,String?) -> ())
@@ -868,6 +905,7 @@ class FXbookingMaster{
                     
                     print(statusCode)
                     if(statusCode == 200) {
+                        
                         if let dataArray = responseData?.value(forKey: "fxAddressResult") as? NSArray {
                             print(dataArray)
                             for onemessage in dataArray as! [Dictionary<String, AnyObject>] {
@@ -893,6 +931,7 @@ class FXbookingMaster{
                         }
                         
                         print("My Home Address is : \(self.homeDataSource)")
+                        FXbookingMaster.shared.deliveryType = "Home"
                         completionHandler(true,"")
 //                        self.tableViewFX.reloadData()
                     }
@@ -959,6 +998,7 @@ class FXbookingMaster{
                     }
                     
                     print("All Branch Data : \(self.branchDataSource)")
+                    FXbookingMaster.shared.deliveryType = "Branch"
                     completionHandler(true,"")
 
                 }else {
@@ -985,7 +1025,7 @@ class FXbookingMaster{
         }
         print(fccurrencydict)
         print(netamount)
-
+        FXbookingMaster.shared.netamount = netamount
         FXbookingMaster.shared.branchDataSource.removeAll()
 
         let paramaterPasing: [String:Any] =
@@ -1026,6 +1066,13 @@ class FXbookingMaster{
             guard let self = self else {return}
             guard errString == nil else {
                 print(errString ?? "")
+//                BeneficiaryDetails.shared.txnRefNo = responseData?.value(forKey: "newTnxRef") as? String
+//                self.pushViewController(controller: BenefPaymentWebViewVc.initiateController())
+//                let vc = Storyboad.shared.fxBookingStoryboard?.instantiateViewController(withIdentifier: "BenefPaymentWebViewVc") as! BenefPaymentWebViewVc
+                
+
+
+
                 
 //                let finalError = errString?.components(separatedBy: ":")
 //                let alert = ViewControllerManager.displayAlert(message: finalError?[1] ?? "", title:APPLICATIONNAME)
@@ -1068,9 +1115,7 @@ class FXbookingMaster{
             }
         }
     }
-
 }
-
 
 protocol delegatecallbackfromFxbooking
 {

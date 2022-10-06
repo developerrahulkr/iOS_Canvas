@@ -28,6 +28,15 @@
 		1882136128E5B7C000E1E865 /* CalanderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1882135F28E5B7C000E1E865 /* CalanderCell.swift */; };
 		1882136228E5B7C000E1E865 /* CalanderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1882136028E5B7C000E1E865 /* CalanderCell.xib */; };
 		18CB9F5328EAA98200123A3B /* CheckMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CB9F5228EAA98200123A3B /* CheckMessage.swift */; };
+		18CB9F8428EEE96200123A3B /* CellTermsAndConditions.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18CB9F7C28EEE96100123A3B /* CellTermsAndConditions.xib */; };
+		18CB9F8528EEE96200123A3B /* CellCurrencyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CB9F7D28EEE96100123A3B /* CellCurrencyData.swift */; };
+		18CB9F8628EEE96200123A3B /* CellSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CB9F7E28EEE96100123A3B /* CellSummary.swift */; };
+		18CB9F8728EEE96200123A3B /* CellPurpose.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18CB9F7F28EEE96100123A3B /* CellPurpose.xib */; };
+		18CB9F8828EEE96200123A3B /* CellTermsAndConditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CB9F8028EEE96200123A3B /* CellTermsAndConditions.swift */; };
+		18CB9F8928EEE96200123A3B /* CellSummary.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18CB9F8128EEE96200123A3B /* CellSummary.xib */; };
+		18CB9F8A28EEE96200123A3B /* CellCurrencyData.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18CB9F8228EEE96200123A3B /* CellCurrencyData.xib */; };
+		18CB9F8B28EEE96200123A3B /* CellPurpose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CB9F8328EEE96200123A3B /* CellPurpose.swift */; };
+		18CB9F8D28EEE98100123A3B /* TransactionSummaryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CB9F8C28EEE98100123A3B /* TransactionSummaryVC.swift */; };
 		1924D54426E51E9800533445 /* PhotoSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1924D54226E51E9700533445 /* PhotoSliderView.swift */; };
 		197B589126E345D600D27D18 /* BannerImgCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197B589026E345D600D27D18 /* BannerImgCell.swift */; };
 		197B589326E3461200D27D18 /* ShowOffersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197B589226E3461200D27D18 /* ShowOffersCell.swift */; };
@@ -283,6 +292,15 @@
 		1882135F28E5B7C000E1E865 /* CalanderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalanderCell.swift; sourceTree = "<group>"; };
 		1882136028E5B7C000E1E865 /* CalanderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalanderCell.xib; sourceTree = "<group>"; };
 		18CB9F5228EAA98200123A3B /* CheckMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckMessage.swift; sourceTree = "<group>"; };
+		18CB9F7C28EEE96100123A3B /* CellTermsAndConditions.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CellTermsAndConditions.xib; sourceTree = "<group>"; };
+		18CB9F7D28EEE96100123A3B /* CellCurrencyData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellCurrencyData.swift; sourceTree = "<group>"; };
+		18CB9F7E28EEE96100123A3B /* CellSummary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellSummary.swift; sourceTree = "<group>"; };
+		18CB9F7F28EEE96100123A3B /* CellPurpose.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CellPurpose.xib; sourceTree = "<group>"; };
+		18CB9F8028EEE96200123A3B /* CellTermsAndConditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellTermsAndConditions.swift; sourceTree = "<group>"; };
+		18CB9F8128EEE96200123A3B /* CellSummary.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CellSummary.xib; sourceTree = "<group>"; };
+		18CB9F8228EEE96200123A3B /* CellCurrencyData.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CellCurrencyData.xib; sourceTree = "<group>"; };
+		18CB9F8328EEE96200123A3B /* CellPurpose.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellPurpose.swift; sourceTree = "<group>"; };
+		18CB9F8C28EEE98100123A3B /* TransactionSummaryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionSummaryVC.swift; sourceTree = "<group>"; };
 		18DF4CDB0157E249526220FD /* Pods_CanvasTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CanvasTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1924D54226E51E9700533445 /* PhotoSliderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoSliderView.swift; sourceTree = "<group>"; };
 		197B589026E345D600D27D18 /* BannerImgCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerImgCell.swift; sourceTree = "<group>"; };
@@ -581,6 +599,7 @@
 		1854037B28E41A7800ED3362 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				18CB9F8C28EEE98100123A3B /* TransactionSummaryVC.swift */,
 				18CB9F5228EAA98200123A3B /* CheckMessage.swift */,
 				1854037C28E41A7800ED3362 /* Cells */,
 				1854038628E41A7800ED3362 /* YourAddress.swift */,
@@ -615,6 +634,21 @@
 				1882136028E5B7C000E1E865 /* CalanderCell.xib */,
 			);
 			path = CalanderCell;
+			sourceTree = "<group>";
+		};
+		18CB9F7B28EEE91F00123A3B /* FXBookingCell */ = {
+			isa = PBXGroup;
+			children = (
+				18CB9F7D28EEE96100123A3B /* CellCurrencyData.swift */,
+				18CB9F8228EEE96200123A3B /* CellCurrencyData.xib */,
+				18CB9F8328EEE96200123A3B /* CellPurpose.swift */,
+				18CB9F7F28EEE96100123A3B /* CellPurpose.xib */,
+				18CB9F7E28EEE96100123A3B /* CellSummary.swift */,
+				18CB9F8128EEE96200123A3B /* CellSummary.xib */,
+				18CB9F8028EEE96200123A3B /* CellTermsAndConditions.swift */,
+				18CB9F7C28EEE96100123A3B /* CellTermsAndConditions.xib */,
+			);
+			path = FXBookingCell;
 			sourceTree = "<group>";
 		};
 		19C96EF326D645DD00B1321E /* Cell */ = {
@@ -1221,6 +1255,7 @@
 		D562FD3A25FF248C004E81DE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				18CB9F7B28EEE91F00123A3B /* FXBookingCell */,
 				1882135E28E5B7A200E1E865 /* CalanderCell */,
 				1854037928E419FD00ED3362 /* FXBooking.storyboard */,
 				D55C934F24D8461F003F7F5F /* Main.storyboard */,
@@ -1372,6 +1407,7 @@
 				D55C935924D8462B003F7F5F /* LaunchScreen.storyboard in Resources */,
 				D55E874F25D25FF20059D8E3 /* roboto_medium_italic.ttf in Resources */,
 				8E519AEB2574DB3D00241D17 /* SecuityQuestionCell.xib in Resources */,
+				18CB9F8728EEE96200123A3B /* CellPurpose.xib in Resources */,
 				D55E874E25D25FF20059D8E3 /* roboto_thinitalic.ttf in Resources */,
 				1854037A28E419FD00ED3362 /* FXBooking.storyboard in Resources */,
 				1854038E28E41A7900ED3362 /* CellDeliveryOption.xib in Resources */,
@@ -1379,13 +1415,16 @@
 				D55E875225D25FF20059D8E3 /* roboto_thin.ttf in Resources */,
 				D55E875625D25FF20059D8E3 /* roboto_bold_italic.ttf in Resources */,
 				D55E875525D25FF20059D8E3 /* roboto_italic.ttf in Resources */,
+				18CB9F8A28EEE96200123A3B /* CellCurrencyData.xib in Resources */,
 				D5531BFB24DA852600BF17C3 /* Localizable.strings in Resources */,
 				D55C935624D8462B003F7F5F /* Assets.xcassets in Resources */,
 				D55E875725D25FF20059D8E3 /* roboto_light_italic.ttf in Resources */,
 				D55E875325D25FF20059D8E3 /* roboto_black.ttf in Resources */,
 				8ECB2194257F70F300617DF3 /* CustomView.storyboard in Resources */,
 				D598A54425DAC77600595EE9 /* GoogleService-Info.plist in Resources */,
+				18CB9F8928EEE96200123A3B /* CellSummary.xib in Resources */,
 				8E07CEA92583DAC600891289 /* TransctionPeriodCell.xib in Resources */,
+				18CB9F8428EEE96200123A3B /* CellTermsAndConditions.xib in Resources */,
 				D55C935124D8461F003F7F5F /* Main.storyboard in Resources */,
 				8E3BA92525729FAD0078A025 /* spinnerOld.gif in Resources */,
 			);
@@ -1588,6 +1627,7 @@
 				8E07CEA82583DAC600891289 /* TransctionPeriodCell.swift in Sources */,
 				D5D9F94825063D790053E962 /* BenefCashEditVc.swift in Sources */,
 				D55E21FD257B55A400199A3D /* ExistingPersonalVc.swift in Sources */,
+				18CB9F8628EEE96200123A3B /* CellSummary.swift in Sources */,
 				D56FC71B257F7885004A02E4 /* BranchLoctorAllBranchesMapVc.swift in Sources */,
 				D55B32C7254FFCF2005E57F5 /* TransctionsByPeriodVc.swift in Sources */,
 				D5030F1824EFB7290001D686 /* ExistingUser.swift in Sources */,
@@ -1617,7 +1657,9 @@
 				D5CB69662533DF26003076CA /* RateAlertsCell.swift in Sources */,
 				D55A083D24F64F9300AFAF12 /* FaqCell.swift in Sources */,
 				2CC5182328619BF00040F7A2 /* BeneficaryFourTabCollectnCell.swift in Sources */,
+				18CB9F8B28EEE96200123A3B /* CellPurpose.swift in Sources */,
 				2C80527A27A187B300CB3B4D /* BiometricController.swift in Sources */,
+				18CB9F8528EEE96200123A3B /* CellCurrencyData.swift in Sources */,
 				D571385A24F78E170088A5BA /* BeneficiaryThirdTabCell.swift in Sources */,
 				D55A084524F688D200AFAF12 /* BeneficiaryFirstTabVc.swift in Sources */,
 				D55CF465255701DC00E77B07 /* ProfileSecndTabVc.swift in Sources */,
@@ -1728,6 +1770,7 @@
 				1854037828E40FB500ED3362 /* SiteUnderMaintnanceController.swift in Sources */,
 				D571385424F78DA20088A5BA /* BeneficiaryCashTransferVc.swift in Sources */,
 				D55C935424D8461F003F7F5F /* Canvas.xcdatamodeld in Sources */,
+				18CB9F8828EEE96200123A3B /* CellTermsAndConditions.swift in Sources */,
 				D55C1E66254AABF900DF7949 /* BenefBankCashNewTransferVc.swift in Sources */,
 				D55D056A2549BCB600998DCB /* BenefSecndTabCollectnCell.swift in Sources */,
 				D534E18D25011A1F00DDAFBE /* CustomTextField.swift in Sources */,
@@ -1736,6 +1779,7 @@
 				D55A083F24F668B500AFAF12 /* MenuViewController.swift in Sources */,
 				19C96EFF26DF853C00B1321E /* BannerOfferCell.swift in Sources */,
 				D50FF9962551B3FF009DA3F1 /* HomeRecentTransactionsCell.swift in Sources */,
+				18CB9F8D28EEE98100123A3B /* TransactionSummaryVC.swift in Sources */,
 				D55A083124F6365200AFAF12 /* RateCalculatorVc.swift in Sources */,
 				D51E88CD24E2C4540010C57B /* NewCustBankVc.swift in Sources */,
 				D55E82C32570A54800226A60 /* CurrencyDrpDwnSearchCell.swift in Sources */,

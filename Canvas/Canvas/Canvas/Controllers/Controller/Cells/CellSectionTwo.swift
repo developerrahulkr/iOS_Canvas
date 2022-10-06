@@ -53,6 +53,7 @@ class CellSectionTwo: UITableViewCell, delegatecallbackfromFxbooking
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        
         btnAdd.cornerRadius = 20
         
         collectionViewDeliveryOption.dataSource = self
@@ -93,6 +94,7 @@ class CellSectionTwo: UITableViewCell, delegatecallbackfromFxbooking
         if homeSegment.selectedSegmentIndex == 0
         {
             FXbookingMaster.shared.getHomeData {  success, errorcode in
+                
                 self.collectionViewDeliveryOption.reloadData()}
         }
         else

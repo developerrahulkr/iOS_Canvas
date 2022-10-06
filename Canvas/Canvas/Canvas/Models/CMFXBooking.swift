@@ -11,7 +11,7 @@ import Foundation
 struct CMFXBooking {
      
     var actualRate,amountFrom,netAmt,rate : String
-    var amountTo,commAmount,promoCommAmount,currenyCodeFrom,currenyCodeTo : String
+    var amountTo,commAmount,promoCommAmount,currenyCodeFrom,currenyCodeTo,countryCode : String
 //    var getPromoListResult
 //    currenyCodeFrom
 //    currenyCodeTo = INR;
