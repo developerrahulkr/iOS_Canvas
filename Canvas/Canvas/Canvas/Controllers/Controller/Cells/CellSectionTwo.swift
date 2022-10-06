@@ -10,17 +10,18 @@ import UIKit
 
 protocol protocolPush: NSObjectProtocol{
     func didPressCell(sender: Any)
-    func getHomeAddress()
-    func getBranchAddress()
+//    func getHomeAddress()
+//    func getBranchAddress()
     func getSelectDate() -> Void
     func getTimeSlot() -> Void
     func getPurposeName() -> Void
 }
-class CellSectionTwo: UITableViewCell {
-    
-    
+class CellSectionTwo: UITableViewCell, delegatecallbackfromFxbooking
+{
     //MARK: - OUTLETS
     
+    @IBOutlet weak var imgHighNote: UIImageView!
+    @IBOutlet weak var imgMixNote: UIImageView!
     @IBOutlet weak var btnAdd: UIButton!
     @IBOutlet weak var TFSelectPurposeOf: UITextField!
     @IBOutlet weak var homeSegment: UISegmentedControl!
@@ -31,23 +32,29 @@ class CellSectionTwo: UITableViewCell {
     @IBOutlet weak var TFDeliveryInst: UITextField!
     @IBOutlet weak var btnSubmit: UIButton!
     @IBOutlet weak var BtnCancle: UIButton!
-    
+    @IBOutlet weak var lblnote: UILabel!
+
+    var parentobj : FXBookingVC?
     //MARK: - VARIABLES
+    
     var Pushdelegate:protocolPush?
+    var intData : Int?
+//    var homeDataSource : [CMBookingHomeAddress] = {
+//      let data = [CMBookingHomeAddress]()
+//        return data
+//    }()
     
-    var homeDataSource : [CMBookingHomeAddress] = {
-      let data = [CMBookingHomeAddress]()
-        return data
-    }()
-    
-    lazy var branchDataSource : [CMBookingBranchAddress] = {
-        let data = [CMBookingBranchAddress]()
-          return data
-    }()
+//    lazy var branchDataSource : [CMBookingBranchAddress] = {
+//        let data = [CMBookingBranchAddress]()
+//          return data
+//    }()
     
     //MARK: - LIFECYCLE METHODS
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        btnAdd.cornerRadius = 20
+        
         collectionViewDeliveryOption.dataSource = self
         collectionViewDeliveryOption.delegate = self
         
@@ -78,17 +85,39 @@ class CellSectionTwo: UITableViewCell {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         collectionViewDeliveryOption.setCollectionViewLayout(layout, animated: true)
-        
-        
+       // (self.superview as! FXBookingVC).fxdelegate = self
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [unowned self] in
+            self.test()
+        }
+        lblnote.text = Global.shared.note
+        if homeSegment.selectedSegmentIndex == 0
+        {
+            FXbookingMaster.shared.getHomeData {  success, errorcode in
+                self.collectionViewDeliveryOption.reloadData()}
+        }
+        else
+        {
+            FXbookingMaster.shared.getBranchData {  success, errorcode in
+                self.collectionViewDeliveryOption.reloadData()}
+        }
+
         
         
     }
+    
+    func test()
+    {
+        parentobj?.fxdelegate = self
+    }
         // Configure the view for the selected state
 
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        print("Home Cell Data : ::::::::::      :::::::::::::    \(homeDataSource)", homeDataSource.count)
+    func reloadhomeaddress()
+    {
         collectionViewDeliveryOption.reloadData()
+    }
+    override func setSelected(_ selected: Bool, animated: Bool) {
+//        print("Home Cell Data : ::::::::::      :::::::::::::    \(homeDataSource)", homeDataSource.count)
+//        collectionViewDeliveryOption.reloadData()
     }
     
     //MARK: - ACTIONS
@@ -103,8 +132,10 @@ class CellSectionTwo: UITableViewCell {
     }
    
     @IBAction func onTapMix(_ sender: Any) {
+        imgMixNote.image = UIImage(named: "circleChecked")
+        imgHighNote.image = UIImage(named: "circleUnchecked")
         
-        
+        print("Action on Mix Note")
     }
     
     
@@ -121,20 +152,29 @@ class CellSectionTwo: UITableViewCell {
     }
     
     
-    @IBAction func onClickedSengment(_ sender: UISegmentedControl) {
-        if sender.selectedSegmentIndex == 0 {
-            sender.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.colorFrom(hexString: "#FFFFFF")!], for: .selected)
-            Pushdelegate?.getHomeAddress()
-        }else {
-            sender.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.colorFrom(hexString: "#FFFFFF")!], for: .selected)
-            Pushdelegate?.getBranchAddress()
+    @IBAction func onClickedSengment(_ sender: UISegmentedControl)
+    {
+        FXbookingMaster.shared.selectedaddresstype = sender.selectedSegmentIndex
+        sender.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.colorFrom(hexString: "#FFFFFF")!], for: .selected)
+
+        if sender.selectedSegmentIndex == 0
+        {
+            FXbookingMaster.shared.getHomeData {  success, errorcode in
+                self.collectionViewDeliveryOption.reloadData()}
+        }
+        else
+        {
+            FXbookingMaster.shared.getBranchData {  success, errorcode in
+                self.collectionViewDeliveryOption.reloadData()}
         }
     }
     
     
     @IBAction func onTapHighValue(_ sender: Any) {
+        imgMixNote.image = UIImage(named: "circleUnchecked")
+        imgHighNote.image = UIImage(named: "circleChecked")
         
-        
+        print("Action on High value")
         
     }
     
@@ -143,30 +183,64 @@ class CellSectionTwo: UITableViewCell {
     
 }
 //MARK: - EXTENSIONS
-extension CellSectionTwo : UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if homeDataSource.isEmpty {
-            return branchDataSource.count
-        }else {
-            return homeDataSource.count
-        }
+extension CellSectionTwo : UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout
+{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
+    {
+        return  homeSegment.selectedSegmentIndex == 0 ? FXbookingMaster.shared.homeDataSource.count : FXbookingMaster.shared.branchDataSource.count
     }
     
 //    Flat florr building, gara, street, block, areaCity, postalCode
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CellDeliveryOption", for: indexPath) as! CellDeliveryOption
-        if homeDataSource.isEmpty {
-            cell.lblAddress.text = "\(branchDataSource[indexPath.row].branchAddress ?? ""), \(branchDataSource[indexPath.row].branchCode ?? "")"
-            cell.lblFirstName.text = branchDataSource[indexPath.row].branchName
-//            cell.lblLocation.text = getAddressFromLatLon(pdblLatitude: branchDataSource[indexPath.row].latitude ?? "", withLongitude: branchDataSource[indexPath.row].longitude ?? "")
-        }else {
-            cell.lblFirstName.text = homeDataSource[indexPath.row].firstName ?? ""
-            cell.lblAddress.text = "\(homeDataSource[indexPath.row].flat ?? ""), \(homeDataSource[indexPath.row].floor ?? ""), \(homeDataSource[indexPath.row].building ?? ""), \(homeDataSource[indexPath.row].gada ?? ""), \(homeDataSource[indexPath.row].street ?? ""), \(homeDataSource[indexPath.row].block ?? ""), \(homeDataSource[indexPath.row].areaCity ?? ""), \(homeDataSource[indexPath.row].postalCode ?? "")"
+        if homeSegment.selectedSegmentIndex == 0
+        {
+            cell.lblFirstName.text = FXbookingMaster.shared.homeDataSource[indexPath.row].firstName ?? ""
+            cell.lblAddress.text = "\(FXbookingMaster.shared.homeDataSource[indexPath.row].flat ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].floor ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].building ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].gada ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].street ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].block ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].areaCity ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].postalCode ?? "")"
+            if FXbookingMaster.shared.selecytedhomeaddress == FXbookingMaster.shared.homeDataSource[indexPath.row].addressId{
+                print("Select cell index : \(indexPath.row)")
+                cell.viewCellDelivery.layer.borderWidth = 2
+                cell.viewCellDelivery.layer.borderColor = #colorLiteral(red: 0.8272326589, green: 0, blue: 0.1346516907, alpha: 1)
+            }else{
+                cell.viewCellDelivery.layer.borderWidth = 1
+                cell.viewCellDelivery.layer.borderColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+            }
         }
+        else
+        {
+            cell.lblAddress.text = "\(FXbookingMaster.shared.branchDataSource[indexPath.row].branchAddress ?? ""), \(FXbookingMaster.shared.branchDataSource[indexPath.row].branchCode ?? "")"
+            cell.lblFirstName.text = FXbookingMaster.shared.branchDataSource[indexPath.row].branchName
+            if FXbookingMaster.shared.selecedbranchaddress == FXbookingMaster.shared.branchDataSource[indexPath.row].id{
+                print("Select cell index : \(indexPath.row)")
+                cell.viewCellDelivery.layer.borderWidth = 2
+                cell.viewCellDelivery.layer.borderColor = #colorLiteral(red: 0.8272326589, green: 0, blue: 0.1346516907, alpha: 1)
+            }else{
+                cell.viewCellDelivery.layer.borderWidth = 1
+                cell.viewCellDelivery.layer.borderColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+            }
+        }
+        
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
+    {
+        if homeSegment.selectedSegmentIndex == 0
+        {
+            FXbookingMaster.shared.selecytedhomeaddress = FXbookingMaster.shared.homeDataSource[indexPath.row].addressId
+        }
+        else
+        {
+            FXbookingMaster.shared.selecedbranchaddress = FXbookingMaster.shared.branchDataSource[indexPath.row].id
+
+        }        
+        collectionView.reloadData()
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 200, height: 120)
     }
     
 }
+
+

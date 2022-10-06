@@ -20,8 +20,8 @@ class CellYourAddress: UITableViewCell {
     @IBOutlet weak var btnEdit: UIButton!
     @IBOutlet weak var btnDelete: UIButton!
     @IBOutlet weak var ViewCellYourAddress: UIView!
-    @IBOutlet weak var lblLocation: UILabel!
-    
+    @IBOutlet weak var imgdefault: UIImageView!
+
     var delegate : YourAddressDelegate?
     //MARK: - VARIABLES
     override func awakeFromNib() {
@@ -40,12 +40,20 @@ class CellYourAddress: UITableViewCell {
 
     //MARK: - ACTIONS
     
-    @IBAction func onClickedDeleteBtnq(_ sender: UIButton) {
-        delegate?.deleteAddress(indexPath: sender.tag)
+    @IBAction func onClickedDeleteBtnq(_ sender: UIButton)
+    {
+        if let index = (self.superview as! UITableView).indexPath(for: self)
+        {
+            self.delegate?.deleteAddress(indexPath: index.row)
+        }
     }
     
-    @IBAction func onClickedUpdateBtn(_ sender: UIButton) {
-        delegate?.updateAddress(tag: sender.tag)
+    @IBAction func onClickedUpdateBtn(_ sender: UIButton)
+    {
+        if let index = (self.superview as! UITableView).indexPath(for: self)
+        {
+            delegate?.updateAddress(tag: index.row)
+        }
     }
     
     

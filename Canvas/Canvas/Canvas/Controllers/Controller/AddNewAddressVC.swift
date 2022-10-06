@@ -26,10 +26,12 @@ class AddNewAddressVC: UIViewController {
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var btnCCancel: UIButton!
     @IBOutlet weak var btnSaveAddress: UIButton!
-    var baneficieryId : Int?
+    var homeAddressObj : CMBookingHomeAddress?
+    var isopenforedit = false
     
     @IBOutlet weak var tableViewAddAddress: UITableView!
-    
+    @IBOutlet weak var btnDefaultAddress: UIButton!
+    var unchecked = true
     
     //MARK: - VARIABLES
     
@@ -42,7 +44,8 @@ class AddNewAddressVC: UIViewController {
     var building:String?
     
     
-    
+    //MARK: - LIFECYCLE METHODS
+
     override func viewDidLoad() {
         super.viewDidLoad()
         btnCCancel.layer.cornerRadius = 3
@@ -57,33 +60,43 @@ class AddNewAddressVC: UIViewController {
         TFAreaCity.TFDesign()
         TFPostalCode.TFDesign()
         TFPhoneNumber.TFDesign()
-        
-        
-        //        TFSelectDate.layer.borderWidth = 1
-        //        TFTimeSlot.layer.borderWidth = 1
-        //        TFDeliveryInst.layer.borderWidth = 1
-        //MARK: - LIFECYCLE METHODS
-        
         tableViewAddAddress.delegate = self
         tableViewAddAddress.dataSource = self
+        
+        if(isopenforedit)
+        {
+            TFFullName.text = homeAddressObj?.firstName
+            TFFalt.text = homeAddressObj?.flat
+            TFFloor.text = homeAddressObj?.floor
+            TFBuilding.text = homeAddressObj?.building
+            TFGada.text  = homeAddressObj?.gada
+            TFStreet.text = homeAddressObj?.street
+            TFBlock.text = homeAddressObj?.block
+            TFAreaCity.text = homeAddressObj?.areaCity
+            TFPostalCode.text = homeAddressObj?.postalCode
+            TFPhoneNumber.text = homeAddressObj?.phoneNumber
+        }
     }
+    
     //MARK: - ACTIONS
     
-    @IBAction func onClickedSaveData(_ sender: UIButton) {
-        if btnSaveAddress.currentTitle == "Update" {
-            homeUpdateAddressFunc()
-        }else {
-            if validation() {
-                AddAddress()
-            }else{
-                print("something went Wrong")
-            }
+    @IBAction func onClickedSaveData(_ sender: UIButton)
+    {
+        if validation()
+        {
+            _ = isopenforedit ? homeUpdateAddressFunc() : AddAddress()
         }
-        
+    }
+    
+    @IBAction func taponbackbtn(sender:UIButton)
+    {
+        self.navigationController?.popViewController(animated: true)
     }
     
     
-    @IBAction func onClickedCancelBtn(_ sender: UIButton) {
+    @IBAction func onClickedCancelBtn(_ sender: UIButton)
+    {
+        self.navigationController?.popViewController(animated: true)
     }
     
     
@@ -211,11 +224,24 @@ extension AddNewAddressVC : UITableViewDelegate,UITableViewDataSource{
         }
     }
     
+    @IBAction func onTapDefaultAddress(_ sender: Any) {
+            if unchecked {
+                btnDefaultAddress.setImage(UIImage(named:"checkboxActive"), for: .normal)
+                    unchecked = false
+                }
+                else {
+                    btnDefaultAddress.setImage( UIImage(named:"checkboxNormal"), for: .normal)
+                    unchecked = true
+                }
+
+            //        checkboxActive
+        }
+    
     //    MARK: - Update Home Address
     
     func homeUpdateAddressFunc() {
         let paramaterPasing: [String:Any] = ["registrationId": Global.shared.afterLoginRegistrtnId ?? "",
-                                             "addressId" : baneficieryId ?? 0,
+                                             "addressId" : homeAddressObj?.addressId,
                                              "firstName" : TFFullName.text ?? "",
                                              "flat": TFFalt.text ?? "",
                                              "floor" : TFFloor.text ?? "",

@@ -1589,7 +1589,56 @@ func appVersionControl(headersTobePassed : HTTPHeaders,postParameters :[String:A
                 
             }
         }
+    //    MARK: - FXBooking rate calculator
+
+    func fxbookingratecalculator(headersTobePassed : HTTPHeaders,postParameters :[String:Any],completionHandler: @escaping (NSDictionary?, String?) -> ())
+    {
+        
+        let apiUlr = CanvasUrls.baseUrl +  CanvasUrls.versionNumber + CanvasUrls.getfxbookingratecalculator
+        
+        
+        
+        AF.request(apiUlr, method: .post, parameters: postParameters, encoding:
+            JSONEncoding.default, headers: headers).responseJSON
+            { response in
+                let completion = self.dealWithDictResponse(response: response)
+                completionHandler(completion.0, completion.1)
+        }
+    }
+  
+    //    MARK: - FXBooking rate calculator
+    func hitPromotionListAPI(headersToBePassed : HTTPHeaders,postParameter : [String:Any],completionHadler: @escaping (NSDictionary?, String?) ->()){
+            let apiUrl = CanvasUrls.baseUrl + CanvasUrls.versionNumber + CanvasUrls.deletefxbookingaddress
+            
+            AF.request(apiUrl, method: .post, parameters: postParameter, encoding: JSONEncoding.default, headers: headersWithAuthorization).responseJSON{
+                response in
+                let competion = self.dealWithDictResponse(response: response)
+                completionHadler(competion.0, competion.1)
+            }
+        }
+
+    func hitforgetfxseesionid(headersToBePassed : HTTPHeaders,postParameter : [String:Any],completionHadler: @escaping (NSDictionary?, String?) ->()){
+            let apiUrl = CanvasUrls.baseUrl + CanvasUrls.versionNumber + CanvasUrls.getfxsessionid
+            
+            AF.request(apiUrl, method: .post, parameters: postParameter, encoding: JSONEncoding.default, headers: headersWithAuthorization).responseJSON{
+                response in
+                let competion = self.dealWithDictResponse(response: response)
+                completionHadler(competion.0, competion.1)
+            }
+        }
     
+    func hitcreatefctransaction(headersToBePassed : HTTPHeaders,postParameter : [String:Any],completionHadler: @escaping (NSDictionary?, String?) ->()){
+            let apiUrl = CanvasUrls.baseUrl + CanvasUrls.versionNumber + CanvasUrls.createfxtransaction
+            
+            AF.request(apiUrl, method: .post, parameters: postParameter, encoding: JSONEncoding.default, headers: headersWithAuthorization).responseJSON{
+                response in
+                let competion = self.dealWithDictResponse(response: response)
+                completionHadler(competion.0, competion.1)
+            }
+        }
+
+
     
     
 }
+

@@ -12,28 +12,32 @@ class YourAddress: UIViewController {
     
     @IBOutlet weak var tableViewYourAddress: UITableView!
     @IBOutlet weak var btnAdd: UIButton!
-    var homeDataSource : [CMBookingHomeAddress] = {
-        let data = [CMBookingHomeAddress]()
-        return data
-    }()
-    
-    var branchDataSource : [CMBookingBranchAddress] = {
-        let data = [CMBookingBranchAddress]()
-        return data
-    }()
+//    var homeDataSource : [CMBookingHomeAddress] = {
+//        let data = [CMBookingHomeAddress]()
+//        return data
+//    }()
+//
+//    var branchDataSource : [CMBookingBranchAddress] = {
+//        let data = [CMBookingBranchAddress]()
+//        return data
+//    }()
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         tableViewYourAddress.delegate = self
         tableViewYourAddress.dataSource = self
-        
-        
         tableViewYourAddress.register(UINib(nibName: "CellYourAddress", bundle: nil), forCellReuseIdentifier: "CellYourAddress")
         tableViewYourAddress.register(UINib(nibName: "CellAddNewAddress", bundle: nil), forCellReuseIdentifier: "CellAddNewAddress")
-        
-        
-        
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool)
+    {
+        FXbookingMaster.shared.getHomeData { succes, error in
+            if (succes)
+            {
+                self.tableViewYourAddress.reloadData()
+            }
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -63,43 +67,48 @@ class YourAddress: UIViewController {
 extension YourAddress : UITableViewDelegate,UITableViewDataSource, YourAddressDelegate{
     
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if homeDataSource.isEmpty {
-            return branchDataSource.count
-        }else{
-            return homeDataSource.count
-        }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        return FXbookingMaster.shared.selectedaddresstype == 0 ? FXbookingMaster.shared.homeDataSource.count : FXbookingMaster.shared.branchDataSource.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CellYourAddress") as! CellYourAddress
-        cell.btnEdit.tag = indexPath.row
-        cell.btnDelete.tag = indexPath.row
         cell.delegate = self
-        if homeDataSource.isEmpty {
-            cell.lblAddress.text = "\(branchDataSource[indexPath.row].branchAddress ?? ""), \(branchDataSource[indexPath.row].branchCode ?? "")"
-            cell.lblFullName.text = branchDataSource[indexPath.row].branchName
-        }else{
-            cell.lblFullName.text = homeDataSource[indexPath.row].firstName ?? ""
-            cell.lblAddress.text = "\(homeDataSource[indexPath.row].flat ?? ""), \(homeDataSource[indexPath.row].floor ?? ""), \(homeDataSource[indexPath.row].building ?? ""), \(homeDataSource[indexPath.row].gada ?? ""), \(homeDataSource[indexPath.row].street ?? ""), \(homeDataSource[indexPath.row].block ?? ""), \(homeDataSource[indexPath.row].areaCity ?? ""), \(homeDataSource[indexPath.row].postalCode ?? "")"
+        if FXbookingMaster.shared.selectedaddresstype == 0
+        {
+            cell.lblFullName.text = FXbookingMaster.shared.homeDataSource[indexPath.row].firstName ?? ""
+            cell.lblAddress.text = "\(FXbookingMaster.shared.homeDataSource[indexPath.row].flat ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].floor ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].building ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].gada ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].street ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].block ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].areaCity ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].postalCode ?? "")"
+            cell.imgdefault.isHidden = !FXbookingMaster.shared.homeDataSource[indexPath.row].bIsDefault!
         }
-        print("Home Address ::: ::: ::: ::\(homeDataSource)")
-        print("Home Address ::: ::: ::: ::\(branchDataSource)")
+        else
+        {
+            cell.lblAddress.text = "\(FXbookingMaster.shared.branchDataSource[indexPath.row].branchAddress ?? ""), \(FXbookingMaster.shared.branchDataSource[indexPath.row].branchCode ?? "")"
+            cell.lblFullName.text = FXbookingMaster.shared.branchDataSource[indexPath.row].branchName
+        }
         return cell
-        
     }
     
-    func updateAddress(tag: Int) {
+    func updateAddress(tag: Int)
+    {
         let vc = storyboard?.instantiateViewController(withIdentifier: "AddNewAddressVC") as! AddNewAddressVC
-        vc.baneficieryId = homeDataSource[tag].addressId
+        vc.homeAddressObj = FXbookingMaster.shared.homeDataSource[tag]
+        vc.isopenforedit = true
         navigationController?.pushViewController(vc, animated: true)
-        
-        vc.btnSaveAddress.setTitle("Update", for: .normal)
-        //        vc.lblTitle.text = "Update Address"
     }
     
-    func deleteAddress(indexPath: Int) {
-        fxBookingDeleteAddress(addressId: homeDataSource[indexPath].addressId ?? 0)
+    func deleteAddress(indexPath: Int)
+    {
+        let alertView = UIAlertController(title: "", message: Global.shared.delete_confirmation, preferredStyle: .alert)
+        let action = UIAlertAction(title: Global.shared.okTxt, style: .default, handler: { (alert) in
+            self.fxBookingDeleteAddress(addressId: FXbookingMaster.shared.homeDataSource[indexPath].addressId ?? 0)
+        })
+        let action1 = UIAlertAction(title: Global.shared.cancelTxt, style: .default, handler: { (alert) in
+        })
+        alertView.addAction(action)
+        alertView.addAction(action1)
+        self.present(alertView, animated: true, completion: nil)
     }
     
     
@@ -128,7 +137,13 @@ extension YourAddress : UITableViewDelegate,UITableViewDataSource, YourAddressDe
             if let statusCode = responseData?.value(forKey: "statusCodes") as? Int {
                 print(statusCode)
                 if(statusCode == 200)  {
-                    self.navigationController?.popViewController(animated: true)
+                    FXbookingMaster.shared.getHomeData { succes, error in
+                        if (succes)
+                        {
+                            self.tableViewYourAddress.reloadData()
+                        }
+                    }
+//                    self.navigationController?.popViewController(animated: true)
                     //                    self.navigationController?.popViewController(animated: true)
                 }else{
                     let alert = ViewControllerManager.displayAlert(message:Global.shared.messageCodeType(text: mesageCode), title:APPLICATIONNAME)

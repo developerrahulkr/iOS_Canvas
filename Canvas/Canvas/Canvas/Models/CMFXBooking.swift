@@ -9,7 +9,14 @@
 import Foundation
 
 struct CMFXBooking {
-    let type, fcAmount, lcAmount, currencyCode, countryCode, finalText : String?
+     
+    var actualRate,amountFrom,netAmt,rate : String
+    var amountTo,commAmount,promoCommAmount,currenyCodeFrom,currenyCodeTo : String
+//    var getPromoListResult
+//    currenyCodeFrom
+//    currenyCodeTo = INR;
+
+//    let type, fcAmount, lcAmount, currencyCode, countryCode, finalText : String?
 }
 
 struct CMBookingHomeAddress : Codable{
@@ -27,9 +34,10 @@ struct CMBookingHomeAddress : Codable{
      var createdDate : String?
      var updatedDate : String?
      var registrationId : String?
-     var bIsDefault : String?
+     var bIsDefault : Bool?
      var latitude : String?
      var longitude : String?
+     var isselected : Bool = false
 }
 
 
@@ -55,3 +63,15 @@ struct FXTimeSlot : Codable {
     var name, value : String?
 }
 
+struct Welcome: Codable {
+    var status: Bool?
+    var statusCodes: Int?
+    var statusMessage, messageCode: String?
+    var getPromoListResult: [GetPromoListResult]?
+}
+
+// MARK: - GetPromoListResult
+struct GetPromoListResult: Codable {
+    var headerText, contentText, promoImage, promoCode: String?
+//    let defaultFlag: JSONNull?
+}

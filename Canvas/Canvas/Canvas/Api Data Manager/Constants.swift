@@ -133,7 +133,9 @@ struct CanvasUrls {
     
     static let getfxbookingbranchlist = "/fxbooking/fxbranches"
     static let getfxbookingdatelist = "/fxbooking/getselecteddate"
-    
+    static let getfxbookingratecalculator = "/fxbooking/fcrate2calculator"
+    static let getfxsessionid = "/fxbooking/getSessionID"
+    static let createfxtransaction = "/fxbooking/createfctransaction"
 }
 
 //headers

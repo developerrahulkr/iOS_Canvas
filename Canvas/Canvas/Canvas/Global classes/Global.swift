@@ -1335,7 +1335,7 @@ class Global {
     
     
     var employmntToolTip: String!
-    
+
     var deleteTxt: String!
     var doneTxt: String!
     var failedTxt: String!
@@ -1357,6 +1357,86 @@ class Global {
     var tviewStatus: String!
    
     
+    //fxbooking
+    var delete_confirmation: String!
+    var add_currency: String!
+           var add_location: String!
+           var add_manage: String!
+           var add_new_address: String!
+           var address: String!
+           var address_required_msg: String!
+           var amount_in_kwd: String!
+           var amount_in_word: String!
+           var area_city: String!
+           var back: String!
+           var block: String!
+           var branch: String!
+           var building: String!
+           var cancel: String!
+           var choose_location: String!
+           var commission: String!
+           var commission_discount: String!
+           var created_date: String!
+           var currency: String!
+           var currency_required_msg: String!
+           var date_required_msg: String!
+           var date_timeslot: String!
+           var default_address: String!
+           var delete: String!
+           var delivery_charge: String!
+           var delivery_instruction: String!
+           var delivery_option: String!
+           var delivery_type: String!
+           var denominations: String!
+           var edit: String!
+           var fc_amount: String!
+           var flat: String!
+           var floor: String!
+           var full_name: String!
+           var fx_booking: String!
+           var gada: String!
+           var high_value: String!
+           var home: String!
+           var lbl_fx_1: String!
+           var lbl_fx_2: String!
+           var lbl_fx_3: String!
+           var lbl_fx_4: String!
+           var lbl_fx_5: String!
+           var lbl_fx_6: String!
+           var lbl_fx_7: String!
+           var lc_amonut: String!
+           var mix_notes: String!
+           var note: String!
+           var pay: String!
+           var phone_number: String!
+           var pot_required_msg: String!
+           var preferred_date: String!
+           var promocode: String!
+           var purpose: String!
+           var rate: String!
+           var remarks: String!
+           var rr_no: String!
+           var save_address: String!
+           var select_date: String!
+           var service_opt: String!
+           var service_opted: String!
+           var status: String!
+           var street: String!
+           var submit: String!
+           var summary: String!
+           var terms: String!
+           var time_required_msg: String!
+           var timeslot: String!
+           var total: String!
+           var total_lc: String!
+           var transaction_summary: String!
+           var update_address: String!
+           var update_location: String!
+           var voucher_number: String!
+           var you_pay: String!
+           var your_address: String!
+           var zip_code: String!
+
     func rateApp() {
         if #available(iOS 10.3, *) {
             SKStoreReviewController.requestReview()
