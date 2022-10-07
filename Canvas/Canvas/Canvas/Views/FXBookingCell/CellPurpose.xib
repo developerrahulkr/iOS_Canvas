@@ -135,10 +135,16 @@
             <connections>
                 <outlet property="ViewBackground" destination="Dwg-Ck-k9N" id="68h-ZI-Ufa"/>
                 <outlet property="lblAddress" destination="oYy-ae-Ecj" id="chi-WJ-V4k"/>
+                <outlet property="lblAddressLang" destination="X7k-hj-hPv" id="xT2-oM-WqY"/>
+                <outlet property="lblDateAndTime" destination="4uV-y9-lny" id="u58-pt-H7W"/>
                 <outlet property="lblDateTime" destination="4nT-2m-gSR" id="XV2-Ym-KEm"/>
+                <outlet property="lblDelivery" destination="cCI-9y-5ks" id="SLs-nJ-hjl"/>
                 <outlet property="lblDeliveryType" destination="7py-px-Yd1" id="9B2-G2-FmO"/>
+                <outlet property="lblPurpose" destination="NMt-ig-yYK" id="wLJ-rU-Qyp"/>
                 <outlet property="lblPurposeTrnf" destination="2Ad-EU-1tS" id="KFL-UB-Ont"/>
                 <outlet property="lblRemark" destination="F2N-h0-5Rg" id="l8H-uB-fX4"/>
+                <outlet property="lblRemarks" destination="Sbh-Sf-80p" id="oZg-FT-EDX"/>
+                <outlet property="viewBackground" destination="Dwg-Ck-k9N" id="nk4-oX-q2I"/>
             </connections>
             <point key="canvasLocation" x="104.61538461538461" y="20.616113744075829"/>
         </tableViewCell>

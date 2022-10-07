@@ -10,6 +10,16 @@ import UIKit
 class CellPurpose: UITableViewCell {
 
     
+    @IBOutlet weak var lblPurpose: UILabel!
+    
+    
+    @IBOutlet weak var lblDelivery: UILabel!
+    
+    @IBOutlet weak var lblAddressLang: UILabel!
+    
+    @IBOutlet weak var lblDateAndTime: UILabel!
+    
+    @IBOutlet weak var lblRemarks: UILabel!
     
     @IBOutlet weak var lblPurposeTrnf: UILabel!
     

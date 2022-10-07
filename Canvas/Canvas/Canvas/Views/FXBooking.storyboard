@@ -790,6 +790,8 @@
                                             <outlet property="imgCountry" destination="fiT-GT-KOk" id="GqC-TD-WE6"/>
                                             <outlet property="lblConverter" destination="Vuo-Eb-gdM" id="LYK-t7-JSO"/>
                                             <outlet property="lblCurrencyCode" destination="KqP-sj-Ddt" id="22L-hN-h3I"/>
+                                            <outlet property="lblFCAmmount" destination="VDd-i4-O8d" id="jWI-y4-OSL"/>
+                                            <outlet property="lblLCAmount" destination="qGo-xV-1oZ" id="4ou-x1-iWu"/>
                                             <outlet property="tfSourceField" destination="oNC-Vy-V5r" id="a5z-Xr-dxh"/>
                                             <outlet property="tfTargetField" destination="Jor-7w-KXH" id="JYv-v0-5YY"/>
                                             <outlet property="viewCellBackground" destination="j4F-Hr-M7C" id="6x6-Bv-OTG"/>
@@ -925,7 +927,13 @@
                     <connections>
                         <outlet property="ViewTotalLCAmount" destination="y8T-s4-RPk" id="Ha9-ta-6w5"/>
                         <outlet property="headerViewTitle" destination="mig-jx-hF7" id="P7f-99-Jsi"/>
+                        <outlet property="lblCurrency" destination="d3Y-LV-YwG" id="qKt-IL-Cog"/>
+                        <outlet property="lblFCAmount" destination="6C6-OF-ZMm" id="9DG-Ic-OoO"/>
+                        <outlet property="lblLCAmount" destination="fc0-gw-4Ry" id="exu-Nc-0AX"/>
+                        <outlet property="lblRate" destination="Vi6-4E-Fds" id="mo3-5c-zpZ"/>
+                        <outlet property="lblTotal" destination="XSb-AN-dyR" id="WUp-Vz-qh4"/>
                         <outlet property="lblTotalAmount" destination="MZ6-yb-foM" id="fBn-ad-nhT"/>
+                        <outlet property="lblTransectionSummery" destination="MSc-jE-lfy" id="DNJ-Yp-oRc"/>
                         <outlet property="tableViewTransaction" destination="Se0-N3-yMI" id="uJk-cm-lg0"/>
                         <outlet property="viewActualTotal" destination="UBE-lK-gM5" id="zp0-1e-d5k"/>
                         <outlet property="viewCurrency" destination="gie-QI-ARC" id="xl9-eV-SxO"/>

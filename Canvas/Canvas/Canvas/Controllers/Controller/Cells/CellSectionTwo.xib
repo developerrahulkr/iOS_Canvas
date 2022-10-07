@@ -140,13 +140,13 @@
                             <constraint firstAttribute="trailing" secondItem="RqO-cy-jMn" secondAttribute="trailing" constant="10" id="tHX-qb-RRE"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Denominations" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bJu-ru-oye">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Denominations" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bJu-ru-oye">
                         <rect key="frame" x="12" y="399.5" width="106" height="20.5"/>
                         <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="15"/>
                         <color key="textColor" systemColor="secondaryLabelColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="knZ-2j-mf7">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="knZ-2j-mf7">
                         <rect key="frame" x="138" y="390" width="130" height="40"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circleUnchecked" translatesAutoresizingMaskIntoConstraints="NO" id="gc9-JJ-kip">
@@ -189,7 +189,7 @@
                             <constraint firstItem="yeJ-jF-AFI" firstAttribute="leading" secondItem="knZ-2j-mf7" secondAttribute="leading" id="xBS-gW-xAJ"/>
                         </constraints>
                     </view>
-                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v2g-MI-O2L">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v2g-MI-O2L">
                         <rect key="frame" x="271" y="390" width="110" height="40"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c4K-Pf-qyl">
@@ -278,8 +278,8 @@
                             <action selector="onTapAdd:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Eko-rR-DBh"/>
                         </connections>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zlY-T5-375">
-                        <rect key="frame" x="12" y="430" width="25" height="14"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zlY-T5-375">
+                        <rect key="frame" x="12" y="430" width="25" height="12"/>
                         <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="10"/>
                         <color key="textColor" red="0.85490196078431369" green="0.22745098039215686" blue="0.19607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
@@ -350,6 +350,11 @@
                 <outlet property="homeSegment" destination="qMN-ix-rq3" id="9lj-vB-ygI"/>
                 <outlet property="imgHighNote" destination="gc9-JJ-kip" id="p23-YL-lb5"/>
                 <outlet property="imgMixNote" destination="ICz-VX-aA0" id="fw0-ri-cu6"/>
+                <outlet property="lblChooseDeliveryOptions" destination="MfB-20-cE2" id="Wdv-Hb-mTg"/>
+                <outlet property="lblDenominations" destination="bJu-ru-oye" id="yBS-Jm-oqr"/>
+                <outlet property="lblHighValue" destination="igM-zf-5U4" id="UID-wE-Q1S"/>
+                <outlet property="lblMixedNotes" destination="N0s-Lt-ya7" id="PHe-KZ-d3c"/>
+                <outlet property="lblPurpose" destination="m84-6k-33x" id="uo2-eG-zKB"/>
                 <outlet property="lblnote" destination="zlY-T5-375" id="2as-wZ-FaQ"/>
                 <outlet property="viewPurposeOf" destination="pzL-E8-jdn" id="WFO-Qo-gOY"/>
             </connections>
