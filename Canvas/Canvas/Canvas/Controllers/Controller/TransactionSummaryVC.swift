@@ -236,7 +236,9 @@ extension TransactionSummaryVC: UITableViewDelegate,UITableViewDataSource, Trans
     
     func onClickPayDelagate() {
         print("Woring Delegate")
-                FXbookingMaster.shared.cretefctransaction()
+//                FXbookingMaster.shared.cretefctransaction()
+        let vc = Storyboad.shared.fxBookingStoryboard?.instantiateViewController(withIdentifier: "FinalSummaryVC") as! FinalSummaryVC
+        navigationController?.pushViewController(vc, animated: true)
 //        BeneficiaryDetails.shared.txnRefNo = ""
 //                    self.pushViewController(controller: BenefPaymentWebViewVc.initiateController())
 //        let vc = Storyboad.shared.mainStoryboard?.instantiateViewController(withIdentifier: "BenefPaymentWebViewVc") as! BenefPaymentWebViewVc
