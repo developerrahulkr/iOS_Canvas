@@ -7,14 +7,21 @@
 
 import UIKit
 
+
+protocol ActionDownloadOrMail{
+    func navigateAction(buttonType:Int)
+}
+
 class CellStatus: UITableViewCell {
     
-    
-    
+    @IBOutlet weak var imgFailSuccess: UIImageView!
+    @IBOutlet weak var lblSuccessFailure: UILabel!
+    @IBOutlet weak var lblLCValue: UILabel!
     @IBOutlet weak var viewDownload: UIView!
-    
-    
     @IBOutlet weak var viewSuccessFailure: UIView!
+    
+    
+    var delegate : ActionDownloadOrMail?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -37,5 +44,23 @@ class CellStatus: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    
+    
+    @IBAction func onTapDownload(_ sender: Any) {
+        
+        delegate?.navigateAction(buttonType: 0)
+        
+    }
+    
+    
+    
+    @IBAction func onTapMail(_ sender: Any) {
+        delegate?.navigateAction(buttonType: 1)
+        
+        
+        
+    }
+    
     
 }

@@ -8,7 +8,8 @@
 import UIKit
 protocol TransectionActionDelegate{
     func onClickPayDelagate()
-    
+    func onClickbackDelagate()
+
     
 }
 
@@ -23,6 +24,8 @@ class CellTermsAndConditions: UITableViewCell {
     @IBOutlet weak var btnBack: UIButton!
     @IBOutlet weak var btnPay: UIButton!
     @IBOutlet weak var viewCheckBox: UIView!
+    @IBOutlet weak var btncheck: UIButton!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -33,7 +36,9 @@ class CellTermsAndConditions: UITableViewCell {
         btnBack.layer.cornerRadius = 3
         btnPay.layer.cornerRadius = 3
         
-        
+        btncheck.setImage(UIImage(named : "checkboxNormal"), for: .normal)
+        btncheck.setImage(UIImage(named : "checkboxActive"), for: .selected)
+        btncheck.isSelected = false
         // Initialization code
     }
 
@@ -45,8 +50,15 @@ class CellTermsAndConditions: UITableViewCell {
     
     @IBAction func onClickBack(_ sender: UIButton) {
         
-        
+        delegate?.onClickbackDelagate()
+
     }
+    
+    @IBAction func onclickcheck(_ sender: UIButton)
+    {
+        sender.isSelected = !sender.isSelected
+    }
+
     
     @IBAction func onClickPay(_ sender: UIButton) {
         delegate?.onClickPayDelagate()

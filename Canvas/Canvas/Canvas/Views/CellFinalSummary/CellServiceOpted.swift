@@ -9,6 +9,11 @@ import UIKit
 
 class CellServiceOpted: UITableViewCell {
 
+    
+    @IBOutlet weak var lblDateTime: UILabel!
+    @IBOutlet weak var lblDeliveryType: UILabel!
+    @IBOutlet weak var lblVoucherNumber: UILabel!
+    @IBOutlet weak var lblName: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

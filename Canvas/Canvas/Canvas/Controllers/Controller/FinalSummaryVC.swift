@@ -20,11 +20,15 @@ class FinalSummaryVC: UIViewController {
     @IBOutlet weak var viewFCAmount: UIView!
     @IBOutlet weak var viewRate: UIView!
     @IBOutlet weak var viewLCAmount: UIView!
-    
-    
+    var pdfString = ""
+
+    var pdfUrl:NSURL!
+
     
     //MARK: - VARIABLES
-    var fxBookingModel : CMFXBookingModel!
+        var fxBookingModel : FXBookingModel?
+        
+
     
     
     
@@ -47,7 +51,6 @@ class FinalSummaryVC: UIViewController {
         viewLCAmount.layer.borderColor = #colorLiteral(red: 0.6666666667, green: 0.6666666667, blue: 0.6666666667, alpha: 1)
         viewLCAmount.layer.borderWidth = 1
         
-        
         tableViewFinal.delegate = self
         tableViewFinal.dataSource = self
         
@@ -63,27 +66,114 @@ class FinalSummaryVC: UIViewController {
         
         tableViewFinal.register(UINib(nibName: "CellCurrencyData", bundle: nil), forCellReuseIdentifier: "CellCurrencyData")
         
-        
-        
-        
     }
     //MARK: - ACTIONS
     
-    @IBAction func onClickedBAckBtn(_ sender: UIButton) {
-        self.navigationController?.popViewController(animated: true)
-    }
     
+    @IBAction func onTapBack(_ sender: Any) {
+        
+        self.navigationController?.popToRootViewController(animated: true)
+//        navigationController?.popViewController(animated: true)
+    }
     
     
     //MARK: - FUNCTIONS
     
     
+    func downloadTrnsctnPdf() {
+        
+        self.showSpinner(onView: self.view)
+        
+        let paramaterPasing: [String:Any] = ["registrationId": UserDefaults.standard.string(forKey: "registrationId")!,
+                                             "amfcBookingID": fxBookingModel?.fXBookingDetails?[0].amfcBookingID ?? 0,
+                                             "txnRefNo": fxBookingModel?.txnRefNo ?? "",
+                                             "languageCode": LocalizationSystem.sharedInstance.getLanguage()]
+
+        
+     /*   let headers: HTTPHeaders = [
+            "Content-Type": "application/json"
+        ]*/
+        
+        let headers: HTTPHeaders = [.authorization(bearerToken: UserDefaults.standard.string(forKey: "token")!)]
+
+        
+        NetWorkDataManager.sharedInstance.fxVoucherPdfImplimentation(headersTobePassed: headers, postParameters: paramaterPasing) { resonseTal , errorString in
+            
+            if errorString == nil
+            {
+                self.removeSpinner()
+                print(resonseTal!)
+                
+                self.pdfString = resonseTal?.value(forKey: "voucherPdf") as? String ?? ""
+                
+                do {
+                    try self.savePdf()
+                    self.loadPDFAndShare()
+                } catch  {
+                    print("FAiled to load PDF")
+                }
+                
+                let statusMsg = resonseTal?.value(forKey: "statusMessage") as? String
+                let statusCode = resonseTal?.value(forKey: "statusCodes") as? Int
+                let mesageCode = resonseTal?.value(forKey: "messageCode") as? String ?? statusMsg
+
+                if statusCode ==  400 {
+                    if mesageCode == "E110042"
+                    {
+                        self.showAlert(withTitle: "", withMessage: resonseTal?["statusMessage"] as? String ?? "")
+
+                    }
+                    else{
+                    let alert = ViewControllerManager.displayAlert(message: statusMsg ?? "", title:APPLICATIONNAME)
+                    self.present(alert, animated: true, completion: nil)
+                    }
+                }
+            }
+                
+            else
+            {
+                print(errorString!)
+                self.removeSpinner()
+                let finalError = errorString?.components(separatedBy: ":")
+                let alert = ViewControllerManager.displayAlert(message: finalError?[1] ?? "", title:APPLICATIONNAME)
+                self.present(alert, animated: true, completion: nil)
+                
+            }
+        }
+        
+    }
+    
+    // Mark: for saving pdf
+          func savePdf() throws {
+            self.removeSpinner()
+              let documentsURL = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+              let pdfDocURL = documentsURL.appendingPathComponent("transaction.pdf")
+              let pdfData = Data(base64Encoded: pdfString)
+              try pdfData!.write(to: pdfDocURL)
+              pdfUrl = pdfDocURL as NSURL
+          }
+          
+          func loadPDFAndShare(){
+              do {
+                  let documentsURL = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+                  let pdfDocURL = documentsURL.appendingPathComponent("transaction.pdf")
+                  
+                  let document = NSData(contentsOf: pdfDocURL)
+                  let activityViewController: UIActivityViewController = UIActivityViewController(activityItems: [document!], applicationActivities: nil)
+                  activityViewController.popoverPresentationController?.sourceView=self.view
+                  present(activityViewController, animated: true, completion: nil)
+                  print("document was not found")
+              } catch  {
+                  print("document was not found")
+              }
+          }
+
+    
     
     func callFXBookingDetailsAPI(){
-                self.showSpinner(onView: self.view)
+        self.showSpinner(onView: self.view)
         let parameterPassing: [String:Any] = ["txnRefNo": "222010420000053",
-                                             "registrationId":Global.shared.afterLoginRegistrtnId ?? ""]
-//                                              "registrationId": "6f016d46-2cfd-44f5-86bc-f259df57209d" ?? ""]
+                                              "registrationId":Global.shared.afterLoginRegistrtnId ?? ""]
         
         let headers: HTTPHeaders = [
             "Content-Type": "application/json"
@@ -115,73 +205,97 @@ class FinalSummaryVC: UIViewController {
                 if(statusCode == 200)  {
                     print("Successfully hit API FXBooking Details")
                     if let fXBooking = responseData?.value(forKey: "fXBooking") as? NSDictionary {
-                       
-                        if let id = fXBooking["id"]{
-                            self.fxBookingModel
-                            self.fxBookingModel?.id = id as? Int
-                        }
-                        
-                        
-//                        CMFXBookingModel.init(id: id
-                    
+                        print(fXBooking)
+                        print( fXBooking["txnRefNo"] )
                         
                         
                         
-//                        self.fxBookingModel.txnRefNo = fXBooking["txnRefNo"] as? String
-//                        self.fxBookingModel.remID = fXBooking["remID"] as? String
-//                        self.fxBookingModel.commAmount = fXBooking["commAmount"] as? Int
-//                        self.fxBookingModel.id = fXBooking["netAmt"] as? Int
-//                        self.fxBookingModel.id = fXBooking["payMode"] as? Int
-//                        self.fxBookingModel.id = fXBooking["pot"] as? String
-//                        self.fxBookingModel.id = fXBooking["soi"] as? String
-//                        self.fxBookingModel.id = fXBooking["remark"] as? String
-////                        self.fxBookingModel.id = fXBooking["cashierID"] as? Int
-//                        self.fxBookingModel.id = fXBooking["entity"] as? String
-//                        self.fxBookingModel.id = fXBooking["promoCode"] as? String
-//                        self.fxBookingModel.id = fXBooking["amountInWords"] as? String
-////                        self.fxBookingModel.id = fXBooking["loginSource"] as? Int
-////                        self.fxBookingModel.id = fXBooking["processId"] as? Int
-//                        self.fxBookingModel.id = fXBooking["ipAddress"] as? String
-//                        self.fxBookingModel.id = fXBooking["statusVocher"] as? Int
-//                        self.fxBookingModel.id = fXBooking["status"] as? Int
-//                        self.fxBookingModel.id = fXBooking["registerationID"] as? String
-//                        self.fxBookingModel.id = fXBooking["deliveryType"] as? Int
-//                        self.fxBookingModel.id = fXBooking["objectReferenceID"] as? String
-//                        self.fxBookingModel.id = fXBooking["remitterFirstName"] as? String
-//                        self.fxBookingModel.id = fXBooking["remitterMiddleName"] as? String
-//                        self.fxBookingModel.id = fXBooking["remitterLastName"] as? String
-//                        self.fxBookingModel.id = fXBooking["remitterAddress1"] as? String
-//                        self.fxBookingModel.id = fXBooking["remitterAddress2"] as? String
-//                        self.fxBookingModel.id = fXBooking["remitterNationality"] as? String
-//                        self.fxBookingModel.id = fXBooking["remitterDOB"] as? String
-//                        self.fxBookingModel.id = fXBooking["remitterPhone"] as? String
-//                        self.fxBookingModel.id = fXBooking["timeSlot"] as? String
-//                        self.fxBookingModel.id = fXBooking["denomination"] as? String
-//                        self.fxBookingModel.id = fXBooking["purposeOfTransfer"] as? String
-//                        self.fxBookingModel.id = fXBooking["selectedDate"] as? String
-//                        self.fxBookingModel.id = fXBooking["deliveryInsruction"] as? String
-//                        self.fxBookingModel.id = fXBooking["commissionDiscount"] as? String
-//                        self.fxBookingModel.id = fXBooking["youPay"] as? String
-//                        self.fxBookingModel.id = fXBooking["deliveryCharges"] as? String
-////                        self.fxBookingModel.id = fXBooking["jsonData"] as? Int
-////                        self.fxBookingModel.id = fXBooking["knetApprovalNo"] as? Int
-//                        self.fxBookingModel.id = fXBooking["knetStatus"] as? Int
-////                        self.fxBookingModel.id = fXBooking["ttRefNo"] as? Int
-//
-//
-//                        self.fxBookingModel.id = fXBooking["id"] as? Int
-//                        self.fxBookingModel.id = fXBooking["id"] as? Int
-//                        self.fxBookingModel.id = fXBooking["id"] as? Int
-//                        self.fxBookingModel.id = fXBooking["id"] as? Int
-
+                      var  arrayDetails = fXBooking["fXBookingDetails"] as? NSDictionary
                         
+                
+              
+                        
+                        let media = fXBooking["fXBookingDetails"] as! Array<Any>
+                                            var mediaurl = [FXBookingDetail]()
+                                            for i in media{
+                                                print(i)
+                                                let resultNew = i as? [String:Any]
+                                                let url = resultNew?["fcCurrencyCode"]  as! String
+                                                mediaurl.append(FXBookingDetail.init(id: resultNew?["id"] as? Int,
+                                                        amfcBookingID: resultNew?["amfcBookingID"] as? Int,
+                                                        fcCurrencyCode: resultNew?["fcCurrencyCode"] as? String,
+                                                        fcAmount: resultNew?["fcAmount"] as? Int,
+                                                        lcAmount: resultNew?["lcAmount"] as? Double,
+                                                        rate: resultNew?["rate"] as? Double,
+                                                        currencyName: resultNew?["currencyName"] as? String,
+                                                        countryCode: resultNew?["countryCode"] as? String,
+                                                        createdDate: resultNew?["createdDate"] as? String,
+                                                        updatedDate: resultNew?["updatedDate"] as? String))
+                                            }
+                        
+                        
+//                        var arrData = FXBookingDetail.init(id: arrayDetails?["id"] as? Int,
+//                                                               amfcBookingID: arrayDetails?["amfcBookingID"] as? Int,
+//                                                               type: arrayDetails?["type"] as? String,
+//                                                               fcCurrencyCode:  arrayDetails?["fcCurrencyCode"] as? String,
+//                                                               fcAmount: arrayDetails?["fcAmount"] as? Int,
+//                                                               lcAmount: arrayDetails?["lcAmount"] as? Double,
+//                                                               rate: arrayDetails?["rate"] as? Double,
+//                                                               currencyName:  arrayDetails?["currencyName"] as? String,
+//                                                               countryCode:  arrayDetails?["countryCode"] as? String,
+//                                                               createdDate:  arrayDetails?["createdDate"] as? String,
+//                                                               updatedDate:  arrayDetails?["updatedDate"] as? String)
+                  
+                        
+                        
+                        
+                        var data =  FXBookingModel.init(id: fXBooking["id"] as? Int,
+                                                        txnRefNo: fXBooking["txnRefNo"] as? String,
+                                                        remID: fXBooking["remID"] as? String,
+                                                        commAmount: fXBooking["commAmount"] as? Int,
+                                                        netAmt: fXBooking["netAmt"] as? Double,
+                                                        payMode: fXBooking["payMode"] as? Int,
+                                                        soi: fXBooking["soi"] as? String,
+                                                        pot: fXBooking["pot"] as? String,
+                                                        remark: fXBooking["remark"] as? String,
+                                                        entity: fXBooking["entity"] as? String,
+                                                        promoCode: fXBooking["promoCode"] as? String,
+                                                        amountInWords: fXBooking["amountInWords"] as? String,
+                                                        ipAddress: fXBooking["ipAddress"] as? String,
+                                                        statusVocher: fXBooking["statusVocher"] as? Int,
+                                                        status: fXBooking["status"] as? Int,
+                                                        registerationID: fXBooking["registerationID"] as? String,
+                                                        deliveryType: fXBooking["deliveryType"] as? Int,
+                                                        objectReferenceID: fXBooking["objectReferenceID"] as? String,
+                                                        remitterFirstName: fXBooking["remitterFirstName"] as? String,
+                                                        remitterMiddleName: fXBooking["remitterMiddleName"] as? String,
+                                                        remitterLastName: fXBooking["remitterLastName"] as? String,
+                                                        remitterAddress1: fXBooking["remitterAddress1"] as? String,
+                                                        remitterAddress2: fXBooking["remitterAddress2"] as? String,
+                                                        remitterNationality: ["remitterNationality"] as? String,
+                                                        remitterDOB: fXBooking["remitterDOB"] as? String,
+                                                        remitterPhone: fXBooking["remitterPhone"] as? String,
+                                                        timeSlot: fXBooking["timeSlot"] as? String,
+                                                        denomination: fXBooking["denomination"] as? String,
+                                                        purposeOfTransfer: fXBooking["purposeOfTransfer"] as? String,
+                                                        selectedDate: fXBooking["selectedDate"] as? String,
+                                                        deliveryInsruction: fXBooking["deliveryInsruction"] as? String,
+                                                        commissionDiscount: fXBooking["commissionDiscount"] as? String,
+                                                        youPay: fXBooking["youPay"] as? String,
+                                                        deliveryCharges: fXBooking["deliveryCharges"] as? String,
+                                                        knetStatus: fXBooking["knetStatus"] as? Int,
+                                                        fXBookingDetails: mediaurl)
+                        
+                        
+                        
+                        self.fxBookingModel = data
+                        self.tableViewFinal.reloadData()
+                    }else{
+                        let alert = ViewControllerManager.displayAlert(message:Global.shared.messageCodeType(text: mesageCode), title:APPLICATIONNAME)
+                        self.present(alert, animated: true, completion: nil)
                     }
                     
-                }else{
-                    let alert = ViewControllerManager.displayAlert(message:Global.shared.messageCodeType(text: mesageCode), title:APPLICATIONNAME)
-                    self.present(alert, animated: true, completion: nil)
                 }
-                
             }
         }
     }
@@ -198,7 +312,7 @@ class FinalSummaryVC: UIViewController {
             if section == 0 {
                 return 1
             }else if section == 1{
-                return 3
+                return fxBookingModel?.fXBookingDetails?.count ?? 0
             }
             else if section == 2 {
                 return 1
@@ -208,19 +322,81 @@ class FinalSummaryVC: UIViewController {
                 return 0
             }
         }
-    
+        
         
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             if indexPath.section == 0 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "CellServiceOpted", for: indexPath) as! CellServiceOpted
+                var fullName = ""
+                if let name = fxBookingModel?.remitterFirstName{
+                    fullName = name
+                       
+                }
+                if let nameMiddle = fxBookingModel?.remitterMiddleName{
+                    fullName = fullName + " " + nameMiddle
+                       
+                }
+                if let nameLast = fxBookingModel?.remitterLastName{
+                    fullName = fullName + " " + nameLast
+                       
+                }
+                cell.lblName.text = fullName
+                if let deliveryType = fxBookingModel?.deliveryType{
+                       cell.lblDeliveryType.text = String(deliveryType)
+                }
+                if let createdDate = fxBookingModel?.selectedDate{
+                       cell.lblDateTime.text = String(createdDate)
+                }
+                if let voucherNumber = fxBookingModel?.txnRefNo{
+                       cell.lblVoucherNumber.text = String(voucherNumber)
+                }
+                
+                
+            
+                
+             
                 return cell
             }
             else if indexPath.section == 1{
                 let cell = tableView.dequeueReusableCell(withIdentifier: "CellCurrencyData", for: indexPath) as! CellCurrencyData
+                if let currencyCode = fxBookingModel?.fXBookingDetails?[indexPath.row].fcCurrencyCode{
+                    cell.lblCurrencyCode.text = String(currencyCode)
+                }
+                if let FCAmount = fxBookingModel?.fXBookingDetails?[indexPath.row].fcAmount{
+                    cell.lblFCAmount.text = String(FCAmount)
+                }
+                
+                if let rate = fxBookingModel?.fXBookingDetails?[indexPath.row].rate{
+                    cell.lblFinalTxt.text = String(rate)
+                }
+                if let currCode = fxBookingModel?.fXBookingDetails?[indexPath.row].fcCurrencyCode{
+                    cell.lblCurrencyCode.text = String(currCode)
+                }
+                if let LCAmount = fxBookingModel?.fXBookingDetails?[indexPath.row].lcAmount{
+                    cell.lblLCAmount.text = String(LCAmount)
+                }
+                if let countryImg = fxBookingModel?.fXBookingDetails?[indexPath.row].countryCode{
+                    cell.imgFlag.image = UIImage(named: (countryImg.lowercased()) )
+                }
+                
+                
                 return cell
             }
             else if indexPath.section == 2{
                 let cell = tableView.dequeueReusableCell(withIdentifier: "CellStatus", for: indexPath) as! CellStatus
+                if let youPay = fxBookingModel?.youPay{
+                    cell.lblLCValue.text = String(youPay)
+                }
+                if  fxBookingModel?.status != 1{
+                    cell.viewSuccessFailure.borderWidth = 1
+                    cell.viewSuccessFailure.borderColor = #colorLiteral(red: 1, green: 0, blue: 0, alpha: 1)
+                    cell.imgFailSuccess.image = UIImage(named: "failed")
+                    cell.viewSuccessFailure.backgroundColor = #colorLiteral(red: 1, green: 0, blue: 0, alpha: 0.1669523732)
+                    cell.lblSuccessFailure.text = "Cancelled" //217,58,50
+                    cell.lblSuccessFailure.textColor = #colorLiteral(red: 0.8885897398, green: 0.317481935, blue: 0.2528121173, alpha: 1)
+                }
+                
+                cell.delegate = self
                 return cell
             }
             else {
@@ -250,48 +426,58 @@ class FinalSummaryVC: UIViewController {
         }
         
     }
+    
+
 
 //MARK: FXBooking Details Model
-struct modelFXBookingDetails: Codable {
-    var status: Bool?
-    var statusCodes: Int?
-    var statusMessage, messageCode: String?
-//    let fXBooking: FXBooking?
-}
-
-// MARK: - FXBooking
-struct CMFXBookingModel: Codable {
-    var id: Int?
-//    var txnRefNo, remID: String?
-//    var commAmount: Int?
-//    var netAmt: Double?
-//    var payMode: Int?
-//    var soi, pot, remark: String?
-////    let cashierID: JSONNull?
-//    var entity, promoCode, amountInWords: String?
-////    let loginSource, processID: JSONNull?
-//    var ipAddress: String?
-//    var statusVocher, status: Int?
-//    var registerationID: String?
-//    var deliveryType: Int?
-//    var objectReferenceID, remitterFirstName, remitterMiddleName, remitterLastName: String?
-//    var remitterAddress1, remitterAddress2, remitterNationality, remitterDOB: String?
-//    var remitterPhone, timeSlot, denomination, purposeOfTransfer: String?
-//    var selectedDate, deliveryInsruction, commissionDiscount, youPay: String?
-//    var deliveryCharges: String?
-////    let fXBookingJSONData, knetApprovalNo: JSONNull?
-//    var knetStatus: Int?
-////    let ttRefNo: JSONNull?
-//    var fXBookingDetails: [FXBookingDetail]?
-
+struct FXBookingModel: Codable {
+    let id: Int?
+    let txnRefNo, remID: String?
+    let commAmount: Int?
+    let netAmt: Double?
+    let payMode: Int?
+    let soi, pot, remark: String?
+//    let cashierID: JSONNull?
+    let entity, promoCode, amountInWords: String?
+//    let loginSource, processID: JSONNull?
+    let ipAddress: String?
+    let statusVocher, status: Int?
+    let registerationID: String?
+    let deliveryType: Int?
+    let objectReferenceID, remitterFirstName, remitterMiddleName, remitterLastName: String?
+    let remitterAddress1, remitterAddress2, remitterNationality, remitterDOB: String?
+    let remitterPhone, timeSlot, denomination, purposeOfTransfer: String?
+    let selectedDate, deliveryInsruction, commissionDiscount, youPay: String?
+    let deliveryCharges: String?
+//    let fXBookingJSONData, knetApprovalNo: JSONNull?
+    let knetStatus: Int?
+//    let ttRefNo: JSONNull?
+   let fXBookingDetails: [FXBookingDetail]?
 }
 
 // MARK: - FXBookingDetail
 struct FXBookingDetail: Codable {
-    var id, amfcBookingID: Int?
-    var type, fcCurrencyCode: String?
-    var fcAmount: Int?
-    var lcAmount, rate: Double?
-    var currencyName, countryCode, createdDate, updatedDate: String?
+    let id, amfcBookingID: Int?
+    let fcCurrencyCode: String?
+    let fcAmount: Int?
+    let lcAmount, rate: Double?
+    let currencyName, countryCode, createdDate, updatedDate: String?
 }
 
+extension FinalSummaryVC: ActionDownloadOrMail{
+    func navigateAction(buttonType: Int) {
+        if buttonType == 0{
+            downloadTrnsctnPdf()
+        }else{
+
+            let popOverVC = Storyboad.shared.mainStoryboard?.instantiateViewController(withIdentifier: "BenefEmailPopUpVc") as! BenefEmailPopUpVc
+            popOverVC.isopenfromfx = true
+            popOverVC.bookingid = fxBookingModel?.fXBookingDetails?[0].amfcBookingID ?? 0
+            popOverVC.trancationid = fxBookingModel?.txnRefNo ?? ""
+                          self.addChild(popOverVC)
+                          popOverVC.view.frame = self.view.frame
+                          self.view.addSubview(popOverVC.view)
+                          popOverVC.didMove(toParent: self)
+        }
+    }
+}

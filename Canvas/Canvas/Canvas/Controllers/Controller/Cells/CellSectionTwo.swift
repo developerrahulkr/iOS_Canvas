@@ -15,6 +15,8 @@ protocol protocolPush: NSObjectProtocol{
     func getSelectDate() -> Void
     func getTimeSlot() -> Void
     func getPurposeName() -> Void
+    func onclicksubmit() -> Void
+
 }
 class CellSectionTwo: UITableViewCell, delegatecallbackfromFxbooking
 {
@@ -158,6 +160,12 @@ class CellSectionTwo: UITableViewCell, delegatecallbackfromFxbooking
         self.Pushdelegate?.getPurposeName()
     }
     
+    @IBAction func onClickedsubmitbtb(_ sender: UIButton)
+    {
+        self.Pushdelegate?.onclicksubmit()
+    }
+    
+    
     
     @IBAction func onClickedSengment(_ sender: UISegmentedControl)
     {
@@ -235,6 +243,7 @@ extension CellSectionTwo : UICollectionViewDelegate,UICollectionViewDataSource,U
         if homeSegment.selectedSegmentIndex == 0
         {
             FXbookingMaster.shared.selecytedhomeaddress = FXbookingMaster.shared.homeDataSource[indexPath.row].addressId
+            FXbookingMaster.shared.selecytedhomeaddress1name = "\(FXbookingMaster.shared.homeDataSource[indexPath.row].flat ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].floor ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].building ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].gada ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].street ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].block ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].areaCity ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].postalCode ?? "")"
         }
         else
         {

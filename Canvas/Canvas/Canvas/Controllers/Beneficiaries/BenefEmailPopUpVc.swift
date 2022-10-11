@@ -25,6 +25,11 @@ class BenefEmailPopUpVc: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var submitBtnOtlt: UIButton!
     
+    var isopenfromfx = false
+    var bookingid = 0
+    var trancationid = ""
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -86,7 +91,14 @@ class BenefEmailPopUpVc: UIViewController, UITextFieldDelegate {
        }
         else {
             self.showSpinner(onView: self.view)
-            sendEmailIdData()
+            if(isopenfromfx)
+            {
+                sendEmailIdDatafromFX()
+            }
+            else
+            {
+                sendEmailIdData()
+            }
             
             
         }
@@ -109,9 +121,79 @@ class BenefEmailPopUpVc: UIViewController, UITextFieldDelegate {
         ]*/
         
         let headers: HTTPHeaders = [.authorization(bearerToken: UserDefaults.standard.string(forKey: "token")!)]
-
-        
         NetWorkDataManager.sharedInstance.benefVoucherSendEmailImplimentation(headersTobePassed: headers, postParameters: paramaterPasing) { resonseTal , errorString in
+            
+            if errorString == nil
+            {
+                self.removeSpinner()
+                
+                print(resonseTal!)
+                
+                let statusMsg = resonseTal?.value(forKey: "statusMessage") as? String ?? ""
+                let mesageCode = resonseTal?.value(forKey: "messageCode") as? String ?? statusMsg
+                if let statusCode = resonseTal?.value(forKey: "statusCodes") as? Int {
+                    
+                    print(statusCode)
+                    if(statusCode == 200) {
+                        
+                        //let alert = ViewControllerManager.displayAlert(message: statusMsg, title:APPLICATIONNAME)
+                        let alert =  ViewControllerManager.displayAlert(message:Global.shared.messageCodeType(text: mesageCode), title:APPLICATIONNAME)
+                        self.present(alert, animated: true, completion: nil)
+                        self.removeAnimate()
+                        
+                    }
+                    else if statusCode ==  400 {
+                        if mesageCode == "E110042"
+                        {
+                            self.showAlert(withTitle: "", withMessage: resonseTal?["statusMessage"] as? String ?? "")
+
+                        }
+                        else{
+                           let alert = ViewControllerManager.displayAlert(message: statusMsg ?? "", title:APPLICATIONNAME)
+                          self.present(alert, animated: true, completion: nil)
+                        }
+                        self.removeAnimate()
+                    }
+                    else {
+                        let alert = ViewControllerManager.displayAlert(message: statusMsg, title:APPLICATIONNAME)
+                        self.present(alert, animated: true, completion: nil)
+                        self.removeAnimate()
+                    }
+                    
+                }
+                
+            }
+                
+            else
+            {
+                print(errorString!)
+                self.removeSpinner()
+                let finalError = errorString?.components(separatedBy: ":")
+                let alert = ViewControllerManager.displayAlert(message: finalError?[1] ?? "", title:APPLICATIONNAME)
+                self.present(alert, animated: true, completion: nil)
+                
+            }
+        }
+        
+    }
+    
+    
+    
+    func sendEmailIdDatafromFX()
+    {
+        let paramaterPasing: [String:Any] = ["registrationId": UserDefaults.standard.string(forKey: "registrationId")!,
+                                             "amfeBookingId": self.bookingid,
+                                             "txnRefNo": self.trancationid,
+                                             "languageCode": LocalizationSystem.sharedInstance.getLanguage(),
+                                             "email": emailIdField.text ?? ""]
+        
+        
+     /*   let headers: HTTPHeaders = [
+            "Content-Type": "application/json"
+        ]*/
+        
+        let headers: HTTPHeaders = [.authorization(bearerToken: UserDefaults.standard.string(forKey: "token")!)]
+        NetWorkDataManager.sharedInstance.fxvoucherSendEmailImplimentation(headersTobePassed: headers, postParameters: paramaterPasing) { resonseTal , errorString in
             
             if errorString == nil
             {

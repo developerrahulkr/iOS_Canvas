@@ -50,8 +50,8 @@
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.50928269950000005" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1234532345323434" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kaW-SI-6pj">
-                                                <rect key="frame" x="0.0" y="27.666666666666664" width="132.66666666666666" height="19.333333333333336"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Temp 1234532345323434" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kaW-SI-6pj">
+                                                <rect key="frame" x="0.0" y="27.666666666666664" width="172.33333333333334" height="19.333333333333336"/>
                                                 <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -101,8 +101,8 @@
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.50928269950000005" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lcz-Tl-btL">
-                                                <rect key="frame" x="0.0" y="27.666666666666686" width="67.666666666666671" height="19.333333333333329"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Temp Date Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lcz-Tl-btL">
+                                                <rect key="frame" x="0.0" y="27.666666666666686" width="107.33333333333333" height="19.333333333333329"/>
                                                 <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -145,6 +145,12 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <connections>
+                <outlet property="lblDateTime" destination="Lcz-Tl-btL" id="EwV-6Q-w2T"/>
+                <outlet property="lblDeliveryType" destination="ZC8-mE-s2q" id="o4K-K0-t5t"/>
+                <outlet property="lblName" destination="G2L-af-m0T" id="ISu-WM-Ivc"/>
+                <outlet property="lblVoucherNumber" destination="kaW-SI-6pj" id="3pW-gD-Dp3"/>
+            </connections>
             <point key="canvasLocation" x="135.38461538461539" y="19.90521327014218"/>
         </tableViewCell>
     </objects>
