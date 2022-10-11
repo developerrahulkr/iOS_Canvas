@@ -67,6 +67,9 @@ class FinalSummaryVC: UIViewController {
         tableViewFinal.register(UINib(nibName: "CellCurrencyData", bundle: nil), forCellReuseIdentifier: "CellCurrencyData")
         
     }
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = true
+    }
     //MARK: - ACTIONS
     
     
@@ -179,11 +182,6 @@ class FinalSummaryVC: UIViewController {
             "Content-Type": "application/json"
         ]
         NetWorkDataManager.sharedInstance.hitFXBookingDetails(headerToBePassed: headers, postParameter: parameterPassing){ responseData, errString in
-            
-            
-            
-            
-            
             
             print(responseData)
             self.removeSpinner()
@@ -307,7 +305,6 @@ class FinalSummaryVC: UIViewController {
             return 3
         }
         
-        
         func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             if section == 0 {
                 return 1
@@ -341,8 +338,11 @@ class FinalSummaryVC: UIViewController {
                        
                 }
                 cell.lblName.text = fullName
-                if let deliveryType = fxBookingModel?.deliveryType{
-                       cell.lblDeliveryType.text = String(deliveryType)
+                if     fxBookingModel?.deliveryType == 1{
+                       cell.lblDeliveryType.text = "Home"
+                }
+                else{
+                    cell.lblDeliveryType.text = "Branch"
                 }
                 if let createdDate = fxBookingModel?.selectedDate{
                        cell.lblDateTime.text = String(createdDate)
@@ -351,10 +351,7 @@ class FinalSummaryVC: UIViewController {
                        cell.lblVoucherNumber.text = String(voucherNumber)
                 }
                 
-                
-            
-                
-             
+        
                 return cell
             }
             else if indexPath.section == 1{
@@ -481,3 +478,4 @@ extension FinalSummaryVC: ActionDownloadOrMail{
         }
     }
 }
+	
