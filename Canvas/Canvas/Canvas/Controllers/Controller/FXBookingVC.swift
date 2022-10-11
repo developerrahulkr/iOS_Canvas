@@ -84,6 +84,8 @@ class FXBookingVC: UIViewController,protocolPush, navigateToDiffrentScreenDelega
         viewRate.borderWidth = 1
         
         tableViewFX.register(UINib(nibName: "CellSectionTwo", bundle: nil), forCellReuseIdentifier: "CellSectionTwo")
+        
+        localizeData()
         tableViewFX.delegate = self
         tableViewFX.dataSource = self
         txtFCamount.delegate = self
@@ -93,6 +95,15 @@ class FXBookingVC: UIViewController,protocolPush, navigateToDiffrentScreenDelega
         getsessionid()
         
         //        self.navigationController?.navigationBar.isHidden = true
+        
+    }
+    
+    func localizeData() {
+        txtLCamount.placeholder = Global.shared.lc_amonut
+        txtFCamount.placeholder = Global.shared.fc_amount
+        lblrate.text = Global.shared.rate
+        lblSelectCities.text = Global.shared.currency
+        
     }
     
     override func viewDidLayoutSubviews() {
@@ -341,6 +352,8 @@ extension FXBookingVC: UITableViewDelegate,UITableViewDataSource,Delete{
             let cell = tableView.dequeueReusableCell(withIdentifier: "CellCountry", for: indexPath) as! CellCountry
             cell.selectionStyle = UITableViewCell.SelectionStyle.none
             cell.deleteBtn.tag = indexPath.row
+            cell.lblLCAmount.text = Global.shared.lc_amonut
+            cell.lblFCAmmount.text = Global.shared.fc_amount
             if !FXbookingMaster.shared.fxBookingDataSource.isEmpty {
                 let finalTxt = "1 \(FXbookingMaster.shared.fxBookingDataSource[indexPath.row].currenyCodeTo) = \(FXbookingMaster.shared.fxBookingDataSource[indexPath.row].rate) \(FXbookingMaster.shared.fxBookingDataSource[indexPath.row].currenyCodeFrom)"
 
@@ -357,11 +370,24 @@ extension FXBookingVC: UITableViewDelegate,UITableViewDataSource,Delete{
         else
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "CellSectionTwo", for: indexPath) as! CellSectionTwo
-            
             cell.selectionStyle = .none
+            cell.TFTimeSlot.placeholder = Global.shared.timeslot
+            cell.TFSelectDate.placeholder = Global.shared.select_date
+            cell.TFSelectPurposeOf.placeholder = Global.shared.pot_required_msg
+            cell.lblPurpose.text = Global.shared.purpose
+            cell.homeSegment.setTitle(Global.shared.home, forSegmentAt: 0)
+            cell.homeSegment.setTitle(Global.shared.branch, forSegmentAt: 1)
             cell.TFSelectDate.text = FXbookingMaster.shared.selecteddateslot
             cell.TFTimeSlot.text = FXbookingMaster.shared.selectedtimeslot
             cell.TFSelectPurposeOf.text = FXbookingMaster.shared.selectedpurpose
+            cell.lblDenominations.text = Global.shared.denominations
+            cell.lblHighValue.text = Global.shared.high_value
+            cell.lblMixedNotes.text = Global.shared.mix_notes
+            cell.lblnote.text = Global.shared.note
+            cell.lblChooseDeliveryOptions.text = Global.shared.delivery_option
+            cell.btnSubmit.setTitle(Global.shared.submit, for: .normal)
+            cell.BtnCancle.setTitle(Global.shared.cancel, for: .normal)
+            
             cell.Pushdelegate = self
             cell.parentobj = self
             return cell
@@ -867,6 +893,7 @@ class FXbookingMaster {
     
     
     func getData(){
+        dataSource.removeAll()
         let data0 = CMSummery(summery: "", ammount: "")
         dataSource.append(data0)
         let data1 = CMSummery(summery: "Commission Discount", ammount: "0.0 KWD")

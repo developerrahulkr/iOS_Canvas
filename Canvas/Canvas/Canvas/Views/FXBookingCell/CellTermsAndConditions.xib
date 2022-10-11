@@ -85,15 +85,9 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Note* :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zUU-S2-8s1">
-                                <rect key="frame" x="5" y="5.0000000000000009" width="37.666666666666664" height="15.333333333333336"/>
+                                <rect key="frame" x="5" y="5.0000000000000009" width="399" height="15.333333333333336"/>
                                 <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="11"/>
                                 <color key="textColor" red="0.85490196078431369" green="0.21568627450980393" blue="0.19607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Booking after 3:00 pm will be delivered next day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OZh-AJ-wg1">
-                                <rect key="frame" x="43.666666666666657" y="5.0000000000000009" width="252.99999999999997" height="15.333333333333336"/>
-                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="11"/>
-                                <color key="textColor" red="0.85490196080000003" green="0.2156862745" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -105,12 +99,11 @@
                             <constraint firstItem="yzf-H9-7Pt" firstAttribute="leading" secondItem="Zpf-XJ-DIp" secondAttribute="trailing" constant="10" id="O2h-qR-WbK"/>
                             <constraint firstItem="Fey-yG-REH" firstAttribute="leading" secondItem="gkW-Wc-yMf" secondAttribute="leading" constant="5" id="Pje-rt-cgb"/>
                             <constraint firstAttribute="trailing" secondItem="Fey-yG-REH" secondAttribute="trailing" constant="5" id="RdG-5P-g6w"/>
-                            <constraint firstItem="Fey-yG-REH" firstAttribute="top" secondItem="OZh-AJ-wg1" secondAttribute="bottom" constant="8" id="UEr-ui-Yel"/>
-                            <constraint firstItem="OZh-AJ-wg1" firstAttribute="centerY" secondItem="zUU-S2-8s1" secondAttribute="centerY" id="fMe-32-8Yi"/>
+                            <constraint firstAttribute="trailing" secondItem="zUU-S2-8s1" secondAttribute="trailing" constant="10" id="Zan-rR-6HV"/>
                             <constraint firstAttribute="trailing" secondItem="yzf-H9-7Pt" secondAttribute="trailing" constant="3" id="gmy-Bh-g5l"/>
                             <constraint firstAttribute="bottom" secondItem="Zpf-XJ-DIp" secondAttribute="bottom" constant="10" id="i1j-8d-bbo"/>
-                            <constraint firstItem="OZh-AJ-wg1" firstAttribute="leading" secondItem="zUU-S2-8s1" secondAttribute="trailing" constant="1" id="l01-Xr-KsB"/>
                             <constraint firstItem="zUU-S2-8s1" firstAttribute="top" secondItem="gkW-Wc-yMf" secondAttribute="top" constant="5" id="mwh-kt-86x"/>
+                            <constraint firstItem="Fey-yG-REH" firstAttribute="top" secondItem="zUU-S2-8s1" secondAttribute="bottom" constant="8" id="uRS-KR-5tW"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -127,6 +120,9 @@
             <connections>
                 <outlet property="btnBack" destination="Zpf-XJ-DIp" id="rl3-6C-K4Y"/>
                 <outlet property="btnPay" destination="yzf-H9-7Pt" id="JSS-bx-qGW"/>
+                <outlet property="lblNote" destination="zUU-S2-8s1" id="IbI-mg-5WE"/>
+                <outlet property="lblPromoTitle" destination="cq2-mn-Pyv" id="Vcm-He-gpy"/>
+                <outlet property="lblTermAndConditions" destination="vIl-Ol-Nfi" id="Rk2-bG-blk"/>
                 <outlet property="viewCheckBox" destination="Fey-yG-REH" id="lPS-8W-dAz"/>
             </connections>
             <point key="canvasLocation" x="136.92307692307691" y="20.616113744075829"/>

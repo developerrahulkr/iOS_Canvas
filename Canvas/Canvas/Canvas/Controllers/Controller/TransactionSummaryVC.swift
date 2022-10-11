@@ -12,6 +12,21 @@ class TransactionSummaryVC: UIViewController, navigateToDiffrentScreenDelegate {
     
     
     //MARK: - OUTLETS
+    
+    
+    
+    
+    @IBOutlet weak var lblCurrency: UILabel!
+    @IBOutlet weak var lblFCAmount: UILabel!
+    @IBOutlet weak var lblRate: UILabel!
+    @IBOutlet weak var lblLCAmount: UILabel!
+    @IBOutlet weak var lblTotal: UILabel!
+    
+    
+    
+    
+    
+    @IBOutlet weak var lblTransectionSummery: UILabel!
     public var menuPopUp: MenuViewController!
     @IBOutlet weak var lblTotalAmount: UILabel!
     @IBOutlet weak var viewActualTotal: UIView!
@@ -63,9 +78,17 @@ class TransactionSummaryVC: UIViewController, navigateToDiffrentScreenDelegate {
         
         tableViewTransaction.register(UINib(nibName: "CellSummary", bundle: nil), forCellReuseIdentifier: "CellSummary")
         // Do any additional setup after loading the view.
+        langTranslation()
     }
     //MARK: - ACTIONS
-    
+    func langTranslation() {
+        lblRate.text = Global.shared.rate
+        lblTotal.text = Global.shared.total
+        lblFCAmount.text = Global.shared.fc_amount
+        lblLCAmount.text = Global.shared.lc_amonut
+        lblCurrency.text = Global.shared.currency
+        lblTransectionSummery.text = Global.shared.transaction_summary
+    }
     
     @IBAction func onClickMenuBtn(_ sender: UIButton) {
         menuPopUp = Storyboad.shared.mainStoryboard?.instantiateViewController(withIdentifier: "MenuViewController") as? MenuViewController
@@ -132,6 +155,11 @@ extension TransactionSummaryVC: UITableViewDelegate,UITableViewDataSource, Trans
         }
         else if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "CellPurpose", for: indexPath) as! CellPurpose
+            cell.lblPurpose.text = "\(Global.shared.purpose ?? "") : "
+            cell.lblAddressLang.text = "\( Global.shared.address ?? "") : "
+            cell.lblRemarks.text = "\(Global.shared.remarks ?? "") : "
+            cell.lblDelivery.text = "\(Global.shared.delivery_type ?? "") : "
+            cell.lblDateAndTime.text = "\(Global.shared.date_timeslot ?? "") : "
             cell.lblAddress.text = "\(FXbookingMaster.shared.homeDataSource[indexPath.row].flat ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].floor ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].building ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].gada ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].street ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].block ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].areaCity ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].postalCode ?? "")"
             cell.lblDateTime.text = FXbookingMaster.shared.selectedtimeslot
             cell.lblDeliveryType.text = FXbookingMaster.shared.deliveryType
@@ -142,7 +170,7 @@ extension TransactionSummaryVC: UITableViewDelegate,UITableViewDataSource, Trans
             let cell = tableView.dequeueReusableCell(withIdentifier: "CellSummary", for: indexPath) as! CellSummary
             
             if indexPath.row == 0{
-                cell.lblLeft.text = "Summary"
+                cell.lblLeft.text = Global.shared.summary
                 cell.lblRight.text = ""
                 cell.lblLeft.textColor = .white
                 cell.contentView.backgroundColor = #colorLiteral(red: 0.8509803922, green: 0.2156862745, blue: 0.1921568627, alpha: 1)
@@ -150,7 +178,7 @@ extension TransactionSummaryVC: UITableViewDelegate,UITableViewDataSource, Trans
             }
             
             else if indexPath.row == FXbookingMaster.shared.dataSource.count - 1{
-                cell.lblLeft.text = "You Pay Only"
+                cell.lblLeft.text = Global.shared.you_pay
                 cell.lblRight.text = "Total Amount"
                 cell.lblRight.textColor = .white
                 cell.contentView.backgroundColor = .gray
@@ -168,6 +196,10 @@ extension TransactionSummaryVC: UITableViewDelegate,UITableViewDataSource, Trans
         }
         else{                   //MARK: Section 3rd cell
             let cell = tableView.dequeueReusableCell(withIdentifier: "CellTermsAndConditions", for: indexPath) as! CellTermsAndConditions
+            cell.lblNote.text = Global.shared.note
+            cell.lblTermAndConditions.setTitle(Global.shared.terms, for: .normal)
+            cell.btnPay.setTitle(Global.shared.pay, for: .normal)
+            cell.btnBack.setTitle(Global.shared.back, for: .normal)
             cell.delegate = self
             return cell
         }
@@ -204,9 +236,11 @@ extension TransactionSummaryVC: UITableViewDelegate,UITableViewDataSource, Trans
     
     func onClickPayDelagate() {
         print("Woring Delegate")
-                FXbookingMaster.shared.cretefctransaction()
+//                FXbookingMaster.shared.cretefctransaction()
+        let vc = Storyboad.shared.fxBookingStoryboard?.instantiateViewController(withIdentifier: "FinalSummaryVC") as! FinalSummaryVC
+        navigationController?.pushViewController(vc, animated: true)
 //        BeneficiaryDetails.shared.txnRefNo = ""
-//        //                     self.pushViewController(controller: BenefPaymentWebViewVc.initiateController())
+//                    self.pushViewController(controller: BenefPaymentWebViewVc.initiateController())
 //        let vc = Storyboad.shared.mainStoryboard?.instantiateViewController(withIdentifier: "BenefPaymentWebViewVc") as! BenefPaymentWebViewVc
 //        self.navigationController?.pushViewController(vc, animated: true)
     }

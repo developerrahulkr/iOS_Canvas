@@ -1636,6 +1636,17 @@ func appVersionControl(headersTobePassed : HTTPHeaders,postParameters :[String:A
                 completionHadler(competion.0, competion.1)
             }
         }
+    
+    func hitFXBookingDetails(headerToBePassed : HTTPHeaders,postParameter : [String:Any], completionHandeler : @escaping (NSDictionary?, String?) ->()){
+        let apiUrl = CanvasUrls.baseUrl + CanvasUrls.versionNumber + CanvasUrls.fxBookingDetails
+        
+        AF.request(apiUrl, method: .post, parameters: postParameter, encoding: JSONEncoding.default,
+            headers: headersWithAuthorization).responseJSON{
+            response in
+            let competion = self.dealWithDictResponse(response: response)
+            completionHandeler(competion.0, competion.1)
+        }
+    }
 
 
     

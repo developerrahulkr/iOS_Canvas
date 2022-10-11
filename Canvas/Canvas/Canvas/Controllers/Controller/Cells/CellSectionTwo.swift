@@ -20,6 +20,8 @@ class CellSectionTwo: UITableViewCell, delegatecallbackfromFxbooking
 {
     //MARK: - OUTLETS
     
+    @IBOutlet weak var lblChooseDeliveryOptions: UILabel!
+    @IBOutlet weak var lblPurpose: UILabel!
     @IBOutlet weak var imgHighNote: UIImageView!
     @IBOutlet weak var imgMixNote: UIImageView!
     @IBOutlet weak var btnAdd: UIButton!
@@ -33,7 +35,10 @@ class CellSectionTwo: UITableViewCell, delegatecallbackfromFxbooking
     @IBOutlet weak var btnSubmit: UIButton!
     @IBOutlet weak var BtnCancle: UIButton!
     @IBOutlet weak var lblnote: UILabel!
-
+    @IBOutlet weak var lblDenominations: UILabel!
+    @IBOutlet weak var lblHighValue: UILabel!
+    @IBOutlet weak var lblMixedNotes: UILabel!
+    
     var parentobj : FXBookingVC?
     //MARK: - VARIABLES
     

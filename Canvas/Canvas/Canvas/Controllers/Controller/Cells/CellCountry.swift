@@ -19,7 +19,9 @@ class CellCountry: UITableViewCell {
     @IBOutlet weak var tfTargetField: UITextField!
     @IBOutlet weak var tfSourceField: UITextField!
     @IBOutlet weak var deleteBtn: UIButton!
+    @IBOutlet weak var lblLCAmount: UILabel!
     
+    @IBOutlet weak var lblFCAmmount: UILabel!
     var delegate: Delete?
     
     override func awakeFromNib() {
@@ -32,6 +34,7 @@ class CellCountry: UITableViewCell {
         viewCellBackground.cornerRadius = 5
         viewCellBackground.borderColor = #colorLiteral(red: 0.6666666667, green: 0.6666666667, blue: 0.6666666667, alpha: 1)
         viewCellBackground.borderWidth = 1
+        
         
         // Initialization code
     }
