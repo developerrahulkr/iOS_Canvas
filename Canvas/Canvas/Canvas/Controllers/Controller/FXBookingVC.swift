@@ -65,13 +65,15 @@ class FXBookingVC: UIViewController,protocolPush, navigateToDiffrentScreenDelega
     }()
     
     //MARK: - VARIABLES
-    var count = 0
+   // var count = 0
     
     
     
     //MARK: - LIFECYCLE METHODS
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        txtLCamount.isUserInteractionEnabled = false
         
         FXbookingMaster.shared.deliveryType = 1
 
@@ -229,6 +231,13 @@ class FXBookingVC: UIViewController,protocolPush, navigateToDiffrentScreenDelega
         }
         targetTimer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(targetSearchForKeyword(_:)), userInfo: textField.text!, repeats: false)
     }
+    
+
+    
+    
+    
+    
+    
     
     @objc func targetSearchForKeyword(_ timer: Timer) {
         
@@ -469,7 +478,13 @@ extension FXBookingVC: UITableViewDelegate,UITableViewDataSource,Delete{
         self.view.endEditing(true)
         if(countryCode != nil && countryCode != "")
         {
-            rateCalculator()
+            if txtFCamount.text!.count > 0{
+                rateCalculator()
+            }else{
+                txtLCamount.text = nil
+                lblrate.text = "Rate"
+            }
+          
         }
     }
     
@@ -517,15 +532,18 @@ extension FXBookingVC: UITableViewDelegate,UITableViewDataSource,Delete{
 //        return section == 0 ?  50 : 0.1
 //    }
     
-    func deleteRow(index:Int) {
-        print("click")
-        print(index)
-        if count < 12 && count > 1{
-            
-            count = count - 1
-            tableViewFX.reloadData()
-            
-        }
+    func deleteRow(index:Int)
+    {
+        FXbookingMaster.shared.fxBookingDataSource.remove(at: index)
+        tableViewFX.reloadSections([0], with: .none)
+//        print("click")
+//        print(index)
+//        if count < 12 && count > 1{
+//
+//            count = count - 1
+//            tableViewFX.reloadData()
+//
+//        }
     }
     
 //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -611,7 +629,7 @@ extension FXBookingVC: UITableViewDelegate,UITableViewDataSource,Delete{
                             {
                                 
                                 self.txtFCamount.text = "\(ratecalobj["amountTo"] ?? "")"
-                                self.txtLCamount.text = "\(ratecalobj["amountFrom"] ?? "")"
+                                self.txtLCamount.text = "\(ratecalobj["amountFrom"] ?? "")" + " KWD"
                                 let ratee = "\(ratecalobj["rate"] ?? "")"
                                 
                                 let finalTxt = "\(ratee) KWD"
@@ -677,8 +695,8 @@ extension FXBookingVC {
         imgCountries.image = UIImage(named: country.countryCode?.lowercased() ?? "")
         imgCountries.isHidden = false
         leftConstantCurrency.constant = 45
-        
-
+         
+       
        if txtFCamount.text != ""
         {
             rateCalculator()

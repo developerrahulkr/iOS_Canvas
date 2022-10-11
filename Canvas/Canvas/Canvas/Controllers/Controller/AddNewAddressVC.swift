@@ -48,6 +48,13 @@ class AddNewAddressVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
+        
+        
+        
+        
         btnCCancel.layer.cornerRadius = 3
         btnSaveAddress.layer.cornerRadius = 3
         TFFullName.TFDesign()
@@ -76,6 +83,10 @@ class AddNewAddressVC: UIViewController {
             TFPostalCode.text = homeAddressObj?.postalCode
             TFPhoneNumber.text = homeAddressObj?.phoneNumber
         }
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+//        lblTitle.text = "Add New Address"
+        btnSaveAddress.setTitle("Save Address", for: .normal)
     }
     
     //MARK: - ACTIONS
@@ -172,7 +183,7 @@ extension AddNewAddressVC : UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 700
+        return 630
     }
     
     
@@ -259,7 +270,7 @@ extension AddNewAddressVC : UITableViewDelegate,UITableViewDataSource{
         
         NetWorkDataManager.sharedInstance.updateHomeAddress(headersTobePassed: headers, postParameters: paramaterPasing){responseData,errString in
             self.removeSpinner()
-            
+            print(responseData)
             guard errString == nil else {
                 print(errString ?? "")
                 self.removeSpinner()

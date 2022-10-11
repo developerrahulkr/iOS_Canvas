@@ -93,6 +93,7 @@ extension YourAddress : UITableViewDelegate,UITableViewDataSource, YourAddressDe
     func updateAddress(tag: Int)
     {
         let vc = storyboard?.instantiateViewController(withIdentifier: "AddNewAddressVC") as! AddNewAddressVC
+        vc.btnSaveAddress.setTitle("Update", for: .normal)
         vc.homeAddressObj = FXbookingMaster.shared.homeDataSource[tag]
         vc.isopenforedit = true
         navigationController?.pushViewController(vc, animated: true)
@@ -153,5 +154,13 @@ extension YourAddress : UITableViewDelegate,UITableViewDataSource, YourAddressDe
             
         }
         
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return UIView()
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 100.0
     }
 }
