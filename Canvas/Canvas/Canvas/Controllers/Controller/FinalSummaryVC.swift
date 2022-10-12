@@ -175,7 +175,7 @@ class FinalSummaryVC: UIViewController {
     
     func callFXBookingDetailsAPI(){
         self.showSpinner(onView: self.view)
-        let parameterPassing: [String:Any] = ["txnRefNo": "222010420000053",
+        let parameterPassing: [String:Any] = ["txnRefNo": FXbookingMaster.shared.txnRefNo,
                                               "registrationId":Global.shared.afterLoginRegistrtnId ?? ""]
         
         let headers: HTTPHeaders = [

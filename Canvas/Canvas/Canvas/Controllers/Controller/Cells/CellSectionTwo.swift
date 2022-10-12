@@ -250,9 +250,10 @@ extension CellSectionTwo : UICollectionViewDelegate,UICollectionViewDataSource,U
                 cell.viewCellDelivery.layer.borderColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
             }
         }
-        
+            
         return cell
     }
+    
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {

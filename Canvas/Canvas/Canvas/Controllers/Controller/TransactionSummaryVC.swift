@@ -50,7 +50,7 @@ class TransactionSummaryVC: UIViewController, navigateToDiffrentScreenDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        lblTotalAmount.text = "\(FXbookingMaster.shared.netamount) \nKWD"
+        lblTotalAmount.text = "\(FXbookingMaster.shared.netamount) KWD"
         FXbookingMaster.shared.getData()
         tableViewTransaction.allowsSelection = false
         
@@ -347,7 +347,7 @@ extension TransactionSummaryVC: UITableViewDelegate,UITableViewDataSource, Trans
                 if(statusCode == 200)  {
                     let dict = responseData?.value(forKey: "fcTransactionResult") as! Dictionary<String,Any>
                     
-                    BeneficiaryDetails.shared.txnRefNo = dict["txnRefNo"] as! String
+                    FXbookingMaster.shared.txnRefNo = dict["txnRefNo"] as! String
                    
                     let vc = Storyboad.shared.mainStoryboard?.instantiateViewController(withIdentifier: "BenefPaymentWebViewVc") as! BenefPaymentWebViewVc
                     vc.isfromfxbooking = true

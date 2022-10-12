@@ -14,6 +14,8 @@ class FXBookingVC: UIViewController,protocolPush, navigateToDiffrentScreenDelega
     //MARK: - OUTLETS
     
     
+    @IBOutlet weak var lblFCAmtPlaceholder: UILabel!
+    @IBOutlet weak var lblLCAmtPlaceholder: UILabel!
     @IBOutlet weak var viewRate: UIView!
     @IBOutlet weak var tableViewFX: UITableView!
 //    @IBOutlet weak var countriesWidth: NSLayoutConstraint!
@@ -101,8 +103,13 @@ class FXBookingVC: UIViewController,protocolPush, navigateToDiffrentScreenDelega
     }
     
     func localizeData() {
-        txtLCamount.placeholder = Global.shared.lc_amonut
-        txtFCamount.placeholder = Global.shared.fc_amount
+        lblFCAmtPlaceholder.text = Global.shared.fc_amount
+        lblLCAmtPlaceholder.text = Global.shared.lc_amonut
+        
+//        txtLCamount.placeholder = Global.shared.lc_amonut
+//        txtFCamount.placeholder = Global.shared.fc_amount
+//        txtFCamount.placeholder = ""
+//        txtLCamount.placeholder = ""
         lblrate.text = Global.shared.rate
         lblSelectCities.text = Global.shared.currency
         
@@ -377,6 +384,7 @@ class FXBookingVC: UIViewController,protocolPush, navigateToDiffrentScreenDelega
         }
     }
     
+    
     func onclickcancel()
     {
 //        let vc = storyboard?.instantiateViewController(withIdentifier: "HomeDashboardVc" )as! HomeDashboardVc
@@ -479,7 +487,7 @@ extension FXBookingVC: UITableViewDelegate,UITableViewDataSource,Delete{
         if (isBackSpace == -92) {
 //            txtFCamount.text = nil
             lblrate.text = "Rate"
-            txtLCamount.text = nil
+            txtLCamount.text = ""
             self.cmFXBooking = nil
 
         }
@@ -499,7 +507,7 @@ extension FXBookingVC: UITableViewDelegate,UITableViewDataSource,Delete{
             if txtFCamount.text!.count > 0{
                 rateCalculator()
             }else{
-                txtLCamount.text = nil
+                txtLCamount.text = ""
                 lblrate.text = "Rate"
                 self.cmFXBooking = nil
 
@@ -935,6 +943,7 @@ class FXbookingMaster {
     var fxsessionid : String = ""
     var selecytedhomeaddress1name = ""
     var selecytedhomeaddress2name = ""
+    var txnRefNo = ""
     lazy var dataSource : [CMSummery] = {
         let data = [CMSummery]()
         return data

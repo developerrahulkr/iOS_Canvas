@@ -48,19 +48,25 @@ class BenefPaymentWebViewVc: UIViewController, WKNavigationDelegate {
        // "http://online-uat.muzaini.com:83/paygateFXBooking/paymentrequest?tid="
         
         var urlstr = ""
+        
         if(isfromfxbooking)
         {
             urlstr = "http://online-uat.muzaini.com:83/paygateFXBooking/paymentrequest?tid="
+            let gatewayUrl = NSURL(string: urlstr + FXbookingMaster.shared.txnRefNo)
+            let urlRequest = URLRequest(url: gatewayUrl! as URL)
+            webView?.load(urlRequest)
+
         }
         else
         {
             urlstr = "http://online-uat.muzaini.com:83/paygate/paymentrequest?tid="
+            let gatewayUrl = NSURL(string: urlstr + BeneficiaryDetails.shared.txnRefNo)
+            let urlRequest = URLRequest(url: gatewayUrl! as URL)
+            webView?.load(urlRequest)
+
         }
         
         
-        let gatewayUrl = NSURL(string: urlstr + BeneficiaryDetails.shared.txnRefNo)
-        let urlRequest = URLRequest(url: gatewayUrl! as URL)
-        webView?.load(urlRequest)
     }
     
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
