@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -51,16 +51,16 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fey-yG-REH">
-                                <rect key="frame" x="5" y="28.333333333333329" width="404" height="50"/>
+                                <rect key="frame" x="5" y="10" width="404" height="65"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I have read and agree to the      " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cq2-mn-Pyv">
-                                        <rect key="frame" x="53" y="10.666666666666668" width="161" height="17"/>
+                                        <rect key="frame" x="53" y="19" width="161" height="17"/>
                                         <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="12"/>
                                         <color key="textColor" systemColor="secondaryLabelColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sRj-et-DIb">
-                                        <rect key="frame" x="0.0" y="5.0000000000000036" width="48" height="38"/>
+                                        <rect key="frame" x="0.0" y="13.666666666666671" width="48" height="38"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="checkboxActive" title=""/>
                                         <connections>
@@ -68,7 +68,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vIl-Ol-Nfi">
-                                        <rect key="frame" x="53" y="20" width="113" height="28"/>
+                                        <rect key="frame" x="53" y="10" width="113" height="65"/>
                                         <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="11"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="Terms and Conditions">
@@ -78,35 +78,27 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstItem="sRj-et-DIb" firstAttribute="top" secondItem="Fey-yG-REH" secondAttribute="top" constant="5" id="247-io-bXb"/>
+                                    <constraint firstItem="sRj-et-DIb" firstAttribute="centerY" secondItem="Fey-yG-REH" secondAttribute="centerY" id="2By-5n-Sbs"/>
                                     <constraint firstItem="cq2-mn-Pyv" firstAttribute="centerY" secondItem="sRj-et-DIb" secondAttribute="centerY" constant="-5" id="2fl-dn-Yx5"/>
                                     <constraint firstItem="vIl-Ol-Nfi" firstAttribute="centerY" secondItem="sRj-et-DIb" secondAttribute="centerY" constant="10" id="7sI-H6-HAf"/>
-                                    <constraint firstAttribute="height" constant="50" id="NBe-ah-gDB"/>
+                                    <constraint firstItem="vIl-Ol-Nfi" firstAttribute="top" secondItem="Fey-yG-REH" secondAttribute="top" constant="10" id="ITR-br-oiD"/>
+                                    <constraint firstAttribute="height" constant="65" id="NBe-ah-gDB"/>
                                     <constraint firstItem="sRj-et-DIb" firstAttribute="leading" secondItem="Fey-yG-REH" secondAttribute="leading" id="Vs8-7a-2M4"/>
                                     <constraint firstItem="vIl-Ol-Nfi" firstAttribute="leading" secondItem="cq2-mn-Pyv" secondAttribute="leading" id="Y11-qL-9JO"/>
                                     <constraint firstItem="cq2-mn-Pyv" firstAttribute="leading" secondItem="sRj-et-DIb" secondAttribute="trailing" constant="5" id="qHq-Hg-FuA"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Note* :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zUU-S2-8s1">
-                                <rect key="frame" x="5" y="5.0000000000000009" width="399" height="15.333333333333336"/>
-                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="11"/>
-                                <color key="textColor" red="0.85490196078431369" green="0.21568627450980393" blue="0.19607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="zUU-S2-8s1" firstAttribute="leading" secondItem="gkW-Wc-yMf" secondAttribute="leading" constant="5" id="1NN-KY-ojM"/>
                             <constraint firstAttribute="bottom" secondItem="yzf-H9-7Pt" secondAttribute="bottom" constant="10" id="2yS-Ko-rLn"/>
+                            <constraint firstItem="Fey-yG-REH" firstAttribute="top" secondItem="gkW-Wc-yMf" secondAttribute="top" constant="10" id="3ed-Cj-zdg"/>
                             <constraint firstAttribute="height" constant="150" id="JjQ-16-GuN"/>
                             <constraint firstItem="yzf-H9-7Pt" firstAttribute="leading" secondItem="Zpf-XJ-DIp" secondAttribute="trailing" constant="10" id="O2h-qR-WbK"/>
                             <constraint firstItem="Fey-yG-REH" firstAttribute="leading" secondItem="gkW-Wc-yMf" secondAttribute="leading" constant="5" id="Pje-rt-cgb"/>
                             <constraint firstAttribute="trailing" secondItem="Fey-yG-REH" secondAttribute="trailing" constant="5" id="RdG-5P-g6w"/>
-                            <constraint firstAttribute="trailing" secondItem="zUU-S2-8s1" secondAttribute="trailing" constant="10" id="Zan-rR-6HV"/>
                             <constraint firstAttribute="trailing" secondItem="yzf-H9-7Pt" secondAttribute="trailing" constant="3" id="gmy-Bh-g5l"/>
                             <constraint firstAttribute="bottom" secondItem="Zpf-XJ-DIp" secondAttribute="bottom" constant="10" id="i1j-8d-bbo"/>
-                            <constraint firstItem="zUU-S2-8s1" firstAttribute="top" secondItem="gkW-Wc-yMf" secondAttribute="top" constant="5" id="mwh-kt-86x"/>
-                            <constraint firstItem="Fey-yG-REH" firstAttribute="top" secondItem="zUU-S2-8s1" secondAttribute="bottom" constant="8" id="uRS-KR-5tW"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -124,7 +116,6 @@
                 <outlet property="btnBack" destination="Zpf-XJ-DIp" id="rl3-6C-K4Y"/>
                 <outlet property="btnPay" destination="yzf-H9-7Pt" id="JSS-bx-qGW"/>
                 <outlet property="btncheck" destination="sRj-et-DIb" id="AKs-V4-wM5"/>
-                <outlet property="lblNote" destination="zUU-S2-8s1" id="IbI-mg-5WE"/>
                 <outlet property="lblPromoTitle" destination="cq2-mn-Pyv" id="Vcm-He-gpy"/>
                 <outlet property="lblTermAndConditions" destination="vIl-Ol-Nfi" id="Rk2-bG-blk"/>
                 <outlet property="viewCheckBox" destination="Fey-yG-REH" id="lPS-8W-dAz"/>

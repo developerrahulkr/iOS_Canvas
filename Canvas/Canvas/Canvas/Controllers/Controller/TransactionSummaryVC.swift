@@ -154,7 +154,7 @@ extension TransactionSummaryVC: UITableViewDelegate,UITableViewDataSource, Trans
             let cell = tableView.dequeueReusableCell(withIdentifier: "CellCurrencyData", for: indexPath) as! CellCurrencyData
             cell.lblFCAmount.text = FXbookingMaster.shared.fxBookingDataSource[indexPath.row].amountTo
             cell.lblLCAmount.text = "\(FXbookingMaster.shared.fxBookingDataSource[indexPath.row].amountFrom) KWD"
-            cell.lblFinalTxt.text = "1 \(FXbookingMaster.shared.fxBookingDataSource[indexPath.row].amountTo) = \(FXbookingMaster.shared.fxBookingDataSource[indexPath.row].actualRate)"
+            cell.lblFinalTxt.text = "1 \(FXbookingMaster.shared.fxBookingDataSource[indexPath.row].currenyCodeTo) = \(FXbookingMaster.shared.fxBookingDataSource[indexPath.row].actualRate)"
             cell.imgFlag.image = UIImage(named: FXbookingMaster.shared.fxBookingDataSource[indexPath.row].countryCode.lowercased())
             cell.lblCurrencyCode.text = FXbookingMaster.shared.fxBookingDataSource[indexPath.row].currenyCodeTo
             return cell
@@ -167,7 +167,7 @@ extension TransactionSummaryVC: UITableViewDelegate,UITableViewDataSource, Trans
             cell.lblDelivery.text = "\(Global.shared.delivery_type ?? "") : "
             cell.lblDateAndTime.text = "\(Global.shared.date_timeslot ?? "") : "
             cell.lblAddress.text = FXbookingMaster.shared.selecytedhomeaddress1name
-            cell.lblDateTime.text = FXbookingMaster.shared.selectedtimeslot
+            cell.lblDateTime.text = "\(FXbookingMaster.shared.selecteddateslot) | \(FXbookingMaster.shared.selectedtimeslot)"
             cell.lblDeliveryType.text = FXbookingMaster.shared.deliveryType == 1 ? "Home" : "Branch"
             cell.lblPurposeTrnf.text = FXbookingMaster.shared.selectedpurpose
             cell.lblRemark.text = FXbookingMaster.shared.deliveryinstruction
@@ -186,7 +186,8 @@ extension TransactionSummaryVC: UITableViewDelegate,UITableViewDataSource, Trans
             
             else if indexPath.row == FXbookingMaster.shared.dataSource.count - 1{
                 cell.lblLeft.text = Global.shared.you_pay
-                cell.lblRight.text = "Total Amount"
+                
+                cell.lblRight.text = "\((Float(FXbookingMaster.shared.netamount) ?? 0.0) + 1.0)"
                 cell.lblRight.textColor = .white
                 cell.contentView.backgroundColor = .gray
                 cell.lblLeft.textColor = .white
@@ -203,7 +204,6 @@ extension TransactionSummaryVC: UITableViewDelegate,UITableViewDataSource, Trans
         }
         else{                   //MARK: Section 3rd cell
             let cell = tableView.dequeueReusableCell(withIdentifier: "CellTermsAndConditions", for: indexPath) as! CellTermsAndConditions
-            cell.lblNote.text = Global.shared.note
             cell.lblTermAndConditions.setTitle(Global.shared.terms, for: .normal)
             cell.btnPay.setTitle(Global.shared.pay, for: .normal)
             cell.btnBack.setTitle(Global.shared.back, for: .normal)

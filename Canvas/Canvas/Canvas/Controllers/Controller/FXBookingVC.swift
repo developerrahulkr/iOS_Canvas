@@ -186,18 +186,18 @@ class FXBookingVC: UIViewController,protocolPush, navigateToDiffrentScreenDelega
             self.present(alert, animated: true, completion: nil)
             return
         }
-        if(FXbookingMaster.shared.selecteddateslot == "")
-        {
-            let alert = ViewControllerManager.displayAlert(message: Global.shared.date_required_msg, title:"")
-            self.present(alert, animated: true, completion: nil)
-            return
-        }
-        if(FXbookingMaster.shared.selectedtimeslot == "")
-        {
-            let alert = ViewControllerManager.displayAlert(message: Global.shared.time_required_msg, title:"")
-            self.present(alert, animated: true, completion: nil)
-            return
-        }
+//        if(FXbookingMaster.shared.selecteddateslot == "")
+//        {
+//            let alert = ViewControllerManager.displayAlert(message: Global.shared.date_required_msg, title:"")
+//            self.present(alert, animated: true, completion: nil)
+//            return
+//        }
+//        if(FXbookingMaster.shared.selectedtimeslot == "")
+//        {
+//            let alert = ViewControllerManager.displayAlert(message: Global.shared.time_required_msg, title:"")
+//            self.present(alert, animated: true, completion: nil)
+//            return
+//        }
         if(FXbookingMaster.shared.selectedpurpose == "")
         {
             let alert = ViewControllerManager.displayAlert(message: Global.shared.pot_required_msg, title:"")
@@ -368,13 +368,19 @@ class FXBookingVC: UIViewController,protocolPush, navigateToDiffrentScreenDelega
     {
         if(FXbookingMaster.shared.selectedaddresstype == 0)
         {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "YourAddress") as! YourAddress
-        navigationController?.pushViewController(vc, animated: true)
+            let vc = storyboard?.instantiateViewController(withIdentifier: "YourAddress") as! YourAddress
+            navigationController?.pushViewController(vc, animated: true)
         }
         else
         {
             self.pushViewController(controller: BranchLocatorFirstVc.initiateController())
         }
+    }
+    
+    func onclickcancel()
+    {
+//        let vc = storyboard?.instantiateViewController(withIdentifier: "HomeDashboardVc" )as! HomeDashboardVc
+//        navigationController?.pushViewController(vc, animated: true)
     }
 }
 
@@ -467,6 +473,18 @@ extension FXBookingVC: UITableViewDelegate,UITableViewDataSource,Delete{
         sourceTimer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(sourceSearchForKeyword(_:)), userInfo: textField.text!, repeats: false)
         
     }
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let  char = string.cString(using: String.Encoding.utf8)!
+        let isBackSpace = strcmp(char, "\\b")
+        if (isBackSpace == -92) {
+//            txtFCamount.text = nil
+            lblrate.text = "Rate"
+            txtLCamount.text = nil
+            self.cmFXBooking = nil
+
+        }
+        return true
+    }
     
     @objc func sourceSearchForKeyword(_ timer: Timer) {
         
@@ -483,6 +501,8 @@ extension FXBookingVC: UITableViewDelegate,UITableViewDataSource,Delete{
             }else{
                 txtLCamount.text = nil
                 lblrate.text = "Rate"
+                self.cmFXBooking = nil
+
             }
           
         }
@@ -695,8 +715,9 @@ extension FXBookingVC {
         imgCountries.image = UIImage(named: country.countryCode?.lowercased() ?? "")
         imgCountries.isHidden = false
         leftConstantCurrency.constant = 45
-         
-       
+        txtLCamount.text = ""
+        lblrate.text = "Rate"
+        self.cmFXBooking = nil
        if txtFCamount.text != ""
         {
             rateCalculator()
@@ -919,9 +940,6 @@ class FXbookingMaster {
         return data
     }()
     
-    
-    
-    
     lazy var fxBookingDataSource : [CMFXBooking] = {
         let data = [CMFXBooking]()
         return data
@@ -947,8 +965,8 @@ class FXbookingMaster {
         dataSource.append(data1)
         let data2 = CMSummery(summery: "Delivery Chanrges", ammount: "1 KWD")
         dataSource.append(data2)
-        let data3 = CMSummery(summery: "Commission Discount", ammount: "0.0 KWD")
-        dataSource.append(data3)
+//        let data3 = CMSummery(summery: "Commission Discount", ammount: "0.0 KWD")
+//        dataSource.append(data3)
         let data4 = CMSummery(summery: "", ammount: "")
         dataSource.append(data4)
         

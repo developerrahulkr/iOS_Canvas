@@ -32,6 +32,8 @@ class AddNewAddressVC: UIViewController {
     @IBOutlet weak var tableViewAddAddress: UITableView!
     @IBOutlet weak var btnDefaultAddress: UIButton!
     var unchecked = true
+    var bIsDefault = true
+    
     
     //MARK: - VARIABLES
     
@@ -45,7 +47,7 @@ class AddNewAddressVC: UIViewController {
     
     
     //MARK: - LIFECYCLE METHODS
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -85,7 +87,7 @@ class AddNewAddressVC: UIViewController {
         }
     }
     override func viewWillDisappear(_ animated: Bool) {
-//        lblTitle.text = "Add New Address"
+        //        lblTitle.text = "Add New Address"
         btnSaveAddress.setTitle("Save Address", for: .normal)
     }
     
@@ -123,39 +125,39 @@ class AddNewAddressVC: UIViewController {
         
         if(fullName?.count ?? 0 == 0){
             
-            createAlert(title: appName, message: fullNameMsg)
+            createAlert(title: "", message: "Fullname is required")
             
             return false
         }
         else if(flat?.count ?? 0 == 0){
-            createAlert(title: appName, message: flatMsg)
+            createAlert(title: "", message: Global.shared.lbl_fx_1)
             
             return false
         }
         else if(floor?.count ?? 0 == 0){
             
-            createAlert(title: appName, message: floorMsg)
+            createAlert(title: "", message: Global.shared.lbl_fx_2)
             
             return false
             
         }
         else if(building?.count == 0){
-            createAlert(title: appName, message: buildingMsg)
+            createAlert(title: "", message: Global.shared.lbl_fx_3)
             return false
             
         }
         else if(gada?.count ?? 0 == 0){
             
-            createAlert(title: appName, message: gadaMsg)
+            createAlert(title: "", message: Global.shared.lbl_fx_4)
             return false
         }
         else if(street?.count ?? 0 == 0){
-            createAlert(title: appName, message: streetMsg)
+            createAlert(title: "", message: Global.shared.lbl_fx_5)
             return false
         }
         else if(block?.count ?? 0 == 0){
             
-            createAlert(title: appName, message: blockMsg)
+            createAlert(title: "", message: Global.shared.lbl_fx_6)
             return false
         }
         
@@ -236,17 +238,19 @@ extension AddNewAddressVC : UITableViewDelegate,UITableViewDataSource{
     }
     
     @IBAction func onTapDefaultAddress(_ sender: Any) {
-            if unchecked {
-                btnDefaultAddress.setImage(UIImage(named:"checkboxActive"), for: .normal)
-                    unchecked = false
-                }
-                else {
-                    btnDefaultAddress.setImage( UIImage(named:"checkboxNormal"), for: .normal)
-                    unchecked = true
-                }
-
-            //        checkboxActive
+        if unchecked {
+            btnDefaultAddress.setImage(UIImage(named:"checkboxActive"), for: .normal)
+            unchecked = false
+            bIsDefault = true
         }
+        else {
+            btnDefaultAddress.setImage( UIImage(named:"checkboxNormal"), for: .normal)
+            unchecked = true
+            bIsDefault = false
+        }
+        
+        //        checkboxActive
+    }
     
     //    MARK: - Update Home Address
     

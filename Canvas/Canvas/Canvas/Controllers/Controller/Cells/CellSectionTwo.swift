@@ -16,6 +16,7 @@ protocol protocolPush: NSObjectProtocol{
     func getTimeSlot() -> Void
     func getPurposeName() -> Void
     func onclicksubmit() -> Void
+    func onclickcancel() -> Void
 
 }
 class CellSectionTwo: UITableViewCell, delegatecallbackfromFxbooking
@@ -60,7 +61,7 @@ class CellSectionTwo: UITableViewCell, delegatecallbackfromFxbooking
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        
+        imgMixNote.image = UIImage(named:"circleUnchecked")
         btnAdd.cornerRadius = 20
         
         collectionViewDeliveryOption.dataSource = self
@@ -133,6 +134,17 @@ class CellSectionTwo: UITableViewCell, delegatecallbackfromFxbooking
     
 //    btnAdd.addTarget(self, action: #selector(onTapAdd(sender:)), for: .touchUpInside)
 
+    
+    
+    
+    
+    
+    @IBAction func onTapCancle(_ sender: Any) {
+        
+        Pushdelegate?.onclickcancel()
+    }
+    
+    
     
     @IBAction func onTapAdd(_ sender: UIButton) {
         self.Pushdelegate?.didPressCell(sender: sender.tag)
@@ -210,6 +222,10 @@ extension CellSectionTwo : UICollectionViewDelegate,UICollectionViewDataSource,U
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CellDeliveryOption", for: indexPath) as! CellDeliveryOption
         if homeSegment.selectedSegmentIndex == 0
         {
+            if FXbookingMaster.shared.homeDataSource[indexPath.row].bIsDefault == true {
+                cell.imgStar.isHidden = false
+            }
+            else{cell.imgStar.isHidden = true}
             cell.lblFirstName.text = FXbookingMaster.shared.homeDataSource[indexPath.row].firstName ?? ""
             cell.lblAddress.text = "\(FXbookingMaster.shared.homeDataSource[indexPath.row].flat ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].floor ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].building ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].gada ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].street ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].block ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].areaCity ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].postalCode ?? "")"
             if FXbookingMaster.shared.selecytedhomeaddress == FXbookingMaster.shared.homeDataSource[indexPath.row].addressId{

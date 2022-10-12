@@ -18,7 +18,7 @@ class CellTermsAndConditions: UITableViewCell {
     var delegate : TransectionActionDelegate?
     
     
-    @IBOutlet weak var lblNote: UILabel!
+    
     @IBOutlet weak var lblPromoTitle: UILabel!
     @IBOutlet weak var lblTermAndConditions: UIButton!
     @IBOutlet weak var btnBack: UIButton!

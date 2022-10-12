@@ -10,12 +10,14 @@ import UIKit
 
 class CellDeliveryOption: UICollectionViewCell {
 
+    @IBOutlet weak var imgStar: UIImageView!
     @IBOutlet weak var lblLocation: UILabel!
     @IBOutlet weak var lblFirstName: UILabel!
     @IBOutlet weak var lblAddress: UILabel!
     @IBOutlet weak var viewCellDelivery: UIView!
     override func awakeFromNib() {
         super.awakeFromNib()
+        imgStar.isHidden = true
         self.viewCellDelivery.layer.borderWidth = 1
         self.viewCellDelivery.layer.borderColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
         // Initialization code
