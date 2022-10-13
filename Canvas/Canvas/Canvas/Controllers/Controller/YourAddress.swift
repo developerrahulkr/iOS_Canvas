@@ -69,14 +69,14 @@ extension YourAddress : UITableViewDelegate,UITableViewDataSource, YourAddressDe
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return FXbookingMaster.shared.selectedaddresstype == 0 ? FXbookingMaster.shared.homeDataSource.count : FXbookingMaster.shared.branchDataSource.count
+        return FXbookingMaster.shared.deliveryType == 2 ? FXbookingMaster.shared.homeDataSource.count : FXbookingMaster.shared.branchDataSource.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CellYourAddress") as! CellYourAddress
         cell.delegate = self
-        if FXbookingMaster.shared.selectedaddresstype == 0
+        if FXbookingMaster.shared.deliveryType == 2
         {
             cell.lblFullName.text = FXbookingMaster.shared.homeDataSource[indexPath.row].firstName ?? ""
             cell.lblAddress.text = "\(FXbookingMaster.shared.homeDataSource[indexPath.row].flat ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].floor ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].building ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].gada ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].street ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].block ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].areaCity ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].postalCode ?? "")"

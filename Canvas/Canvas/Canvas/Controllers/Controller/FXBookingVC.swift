@@ -160,6 +160,7 @@ class FXBookingVC: UIViewController,protocolPush, navigateToDiffrentScreenDelega
             txtLCamount.text = ""
             txtFCamount.text = ""
             lblrate.text = "Rate"
+            countryCode = ""
             lblSelectCities.text = "Currency"
             leftConstantCurrency.constant = 20
             imgCountries.image = nil
@@ -400,7 +401,7 @@ class FXBookingVC: UIViewController,protocolPush, navigateToDiffrentScreenDelega
     //MARK: - Delegate Push
     func didPressCell(sender: Any)
     {
-        if(FXbookingMaster.shared.selectedaddresstype == 0)
+        if(FXbookingMaster.shared.deliveryType == 2)
         {
             let vc = storyboard?.instantiateViewController(withIdentifier: "YourAddress") as! YourAddress
             navigationController?.pushViewController(vc, animated: true)
@@ -976,10 +977,10 @@ class FXbookingMaster {
     
     
 //    static var shared = FXbookingMaster()
-    var deliveryType  = 1
+    var deliveryType  = 2
     var selecytedhomeaddress : Int?
     var selecedbranchaddress : Int?
-    var selectedaddresstype = 0
+//    var selectedaddresstype = 0
     var selecteddateslot = ""
     var selectedtimeslot = ""
     var deliveryinstruction = ""
@@ -987,8 +988,11 @@ class FXbookingMaster {
     var deminations = ""
     var netamount = ""
     var fxsessionid : String = ""
-    var selecytedhomeaddress1name = ""
-    var selecytedhomeaddress2name = ""
+    var selectedhomeaddress1name = ""
+    var selectedhomeaddress2name = ""
+    var selectedbranchaddress1name = ""
+    var selectedbranchaddress2name = ""
+
     var txnRefNo = ""
     lazy var dataSource : [CMSummery] = {
         let data = [CMSummery]()

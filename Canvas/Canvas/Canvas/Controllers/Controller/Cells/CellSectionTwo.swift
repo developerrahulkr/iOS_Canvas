@@ -187,7 +187,8 @@ class CellSectionTwo: UITableViewCell, delegatecallbackfromFxbooking
     
     @IBAction func onClickedSengment(_ sender: UISegmentedControl)
     {
-        FXbookingMaster.shared.selectedaddresstype = sender.selectedSegmentIndex
+//        FXbookingMaster.shared.selectedaddresstype = sender.selectedSegmentIndex
+        FXbookingMaster.shared.deliveryType = sender.selectedSegmentIndex == 0 ? 2 : 1
         sender.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.colorFrom(hexString: "#FFFFFF")!], for: .selected)
 
         if sender.selectedSegmentIndex == 0
@@ -271,12 +272,14 @@ extension CellSectionTwo : UICollectionViewDelegate,UICollectionViewDataSource,U
         if homeSegment.selectedSegmentIndex == 0
         {
             FXbookingMaster.shared.selecytedhomeaddress = FXbookingMaster.shared.homeDataSource[indexPath.row].addressId
-            FXbookingMaster.shared.selecytedhomeaddress1name = "\(FXbookingMaster.shared.homeDataSource[indexPath.row].flat ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].floor ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].building ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].gada ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].street ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].block ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].areaCity ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].postalCode ?? "")"
+            FXbookingMaster.shared.selectedhomeaddress1name = "\(FXbookingMaster.shared.homeDataSource[indexPath.row].flat ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].floor ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].building ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].gada ?? ""))"
+            FXbookingMaster.shared.selectedhomeaddress1name = "\(FXbookingMaster.shared.homeDataSource[indexPath.row].street ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].block ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].areaCity ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].postalCode ?? "")"
         }
         else
         {
             FXbookingMaster.shared.selecedbranchaddress = FXbookingMaster.shared.branchDataSource[indexPath.row].id
-
+            FXbookingMaster.shared.selectedbranchaddress1name = (FXbookingMaster.shared.branchDataSource[indexPath.row].branchAddress ?? "")
+            FXbookingMaster.shared.selectedbranchaddress2name = (FXbookingMaster.shared.branchDataSource[indexPath.row].branchCode ?? "")
         }        
         collectionView.reloadData()
     }
