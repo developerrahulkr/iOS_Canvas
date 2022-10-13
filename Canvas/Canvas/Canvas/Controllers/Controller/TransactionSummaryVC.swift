@@ -8,7 +8,9 @@
 import UIKit
 import Alamofire
 
-class TransactionSummaryVC: UIViewController, navigateToDiffrentScreenDelegate {
+class TransactionSummaryVC: UIViewController, navigateToDiffrentScreenDelegate, protocolTermAndCondition {
+    
+    
     
     
     
@@ -43,6 +45,8 @@ class TransactionSummaryVC: UIViewController, navigateToDiffrentScreenDelegate {
     
     //MARK: - VARIABLES
     var tempForSummaryCount = 0
+    var termsConditionsResponse = [Any]()
+    
     
     
     
@@ -81,6 +85,10 @@ class TransactionSummaryVC: UIViewController, navigateToDiffrentScreenDelegate {
         // Do any additional setup after loading the view.
         langTranslation()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = true
+    }
+    
     //MARK: - ACTIONS
     func langTranslation() {
         lblRate.text = Global.shared.rate
@@ -108,6 +116,16 @@ class TransactionSummaryVC: UIViewController, navigateToDiffrentScreenDelegate {
         logout()
     }
     //MARK: - FUNCTIONS
+    
+    func funcTermsAndContions(btnTerm: Int) {
+        let popOverVC = Storyboad.shared.mainStoryboard?.instantiateViewController(withIdentifier: "WuSecndTermsConditions") as! WuSecndTermsConditions
+        self.addChild(popOverVC)
+        popOverVC.isSummeryTerm = true
+        popOverVC.view.frame = self.view.frame
+        self.view.addSubview(popOverVC.view)
+        popOverVC.didMove(toParent: self)
+//        getTermsConditions()
+    }
     
     
     
@@ -208,6 +226,7 @@ extension TransactionSummaryVC: UITableViewDelegate,UITableViewDataSource, Trans
             cell.btnPay.setTitle(Global.shared.pay, for: .normal)
             cell.btnBack.setTitle(Global.shared.back, for: .normal)
             cell.delegate = self
+            cell.varDelegate = self
             return cell
         }
     }

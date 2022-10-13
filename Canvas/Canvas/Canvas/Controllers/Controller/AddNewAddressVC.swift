@@ -110,6 +110,16 @@ class AddNewAddressVC: UIViewController {
     
     //MARK: - ACTIONS
     
+    
+    @IBAction func onTapAddLocation(_ sender: Any) {
+        
+        
+        
+    }
+    
+    
+    
+    
     @IBAction func onClickedSaveData(_ sender: UIButton)
     {
         if validation()

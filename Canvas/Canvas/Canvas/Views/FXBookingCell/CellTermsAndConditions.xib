@@ -74,6 +74,9 @@
                                         <state key="normal" title="Terms and Conditions">
                                             <color key="titleColor" red="0.85490196078431369" green="0.21568627450980393" blue="0.19607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="onTapTermAndConditions:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="xsl-Rd-al8"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>

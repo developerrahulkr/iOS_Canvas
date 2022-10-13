@@ -18,6 +18,8 @@ class WuSecndTermsConditions: UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet weak var wuTbleView: UITableView!
     
     @IBOutlet weak var okBtnOtlt: UIButton!
+    var isSummeryTerm : Bool = false
+    
     
      var termsConditionsResponse = [Any]()
     
@@ -39,11 +41,91 @@ class WuSecndTermsConditions: UIViewController, UITableViewDataSource, UITableVi
                          self.showAnimate()
                wuTbleView.estimatedRowHeight = 42
                       wuTbleView.rowHeight = UITableView.automaticDimension
-        DispatchQueue.main.async {
-           self.downloadTermsConditions()
-           self.downloadTermsConditionsOther()
+        
+        if isSummeryTerm  {
+            DispatchQueue.main.async {
+                //self.downloadTermsConditions(type: 605, indexValue: 0)
+//               self.downloadTermsConditionsOther()
+                self.getSummeryTermsConditions()
+                
+            }
+        }else{
+            DispatchQueue.main.async {
+                self.downloadTermsConditions(type: 602, indexValue: 0)
+               self.downloadTermsConditionsOther()
+            }
         }
+        
     }
+    
+    //     Mark: For downloading terms and conditions
+        func getSummeryTermsConditions() {
+
+            let paramaterPasing: [String:Any] = ["languageCode":LocalizationSystem.sharedInstance.getLanguage(), "type": 605]
+
+
+            let headers: HTTPHeaders = [
+                "Content-Type": "application/json"
+            ]
+
+            NetWorkDataManager.sharedInstance.termsConditionsImplimentation(headersTobePassed: headers, postParameters: paramaterPasing) { resonseTal , errorString in
+
+                if errorString == nil
+                {
+                    self.removeSpinner()
+
+                    print(resonseTal!)
+                    if let termsAndConditions = resonseTal?.value(forKey: "termsAndConditions") as? NSArray {
+                        print(termsAndConditions)
+                     /*   let newObj = Global.shared.convertToAryDictionary(text: termsAndConditions)
+                        self.termsConditionsResponse = newObj!*/
+
+                        let newv =  termsAndConditions[0] as! NSDictionary
+                        print(newv)
+                  
+                        self.titleLbl.text = newv["header"] as? String
+                        let dataStr = newv["fcTermsAndsConditions"] as? String
+                        let newObj = Global.shared.convertToAryDictionary(text: dataStr ?? "")
+
+                        for i in 0..<newObj!.count {
+//                            let finalobj = newObj?[i]["items"]  as? NSArray
+                            let finalobj1 = newObj?[i]["value"]  as? String
+                         //   self.termsConditionsResponse = newObj!
+                    
+                          //  print(finalobj)
+//                            if let securityHeading = newObj?[i]["heading"] as? String {
+//                              //  self.valuesData = securityQuestion
+//                                self.valuesData.append(securityHeading)
+//                                   //  self.wuTbleView.reloadData()
+//
+//                            }
+                            
+                         
+                           // if let securityQuestion = finalobj1?.value(forKey: "value") as? [String] {
+                              //  self.valuesData = securityQuestion
+                            self.valuesData.append(finalobj1 ?? "")
+                              //  self.valuesData.append(contentsOf: finalobj1)
+                                     self.wuTbleView.reloadData()
+                              
+                          //  }
+                        }
+
+                   // self.termsConditionsResponse = termsAndConditions as! [Any]
+                    }
+
+                    self.wuTbleView.reloadData()
+                }
+
+                else
+                {
+                    print(errorString!)
+                    self.removeSpinner()
+                    let finalError = errorString?.components(separatedBy: ":")
+                    let alert = ViewControllerManager.displayAlert(message: finalError?[1] ?? "", title:APPLICATIONNAME)
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }
+        }
     
     func assignLabels() {
        okBtnOtlt.setTitle(Global.shared.okTxt, for: .normal)
@@ -73,9 +155,9 @@ class WuSecndTermsConditions: UIViewController, UITableViewDataSource, UITableVi
        }
     
     
-    func downloadTermsConditions() {
+    func downloadTermsConditions(type : Int, indexValue : Int) {
            
-           let paramaterPasing: [String:Any] = ["languageCode":LocalizationSystem.sharedInstance.getLanguage(), "type": 602]
+           let paramaterPasing: [String:Any] = ["languageCode":LocalizationSystem.sharedInstance.getLanguage(), "type": type]
            
            
            let headers: HTTPHeaders = [
@@ -93,9 +175,9 @@ class WuSecndTermsConditions: UIViewController, UITableViewDataSource, UITableVi
                     /*   let newObj = Global.shared.convertToAryDictionary(text: termsAndConditions)
                        self.termsConditionsResponse = newObj!*/
                        
-                       let newv =  termsAndConditions[0] as! NSDictionary
-                       print(newv)
                        
+                       let newv =  termsAndConditions[indexValue] as! NSDictionary
+                       print(newv)
                        let dataStr = newv["wuPrivacy"] as? String
                        let newObj = Global.shared.convertToAryDictionary(text: dataStr ?? "")
                     //print(newObj)

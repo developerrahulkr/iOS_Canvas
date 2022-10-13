@@ -6,6 +6,11 @@
 //
 
 import UIKit
+protocol protocolTermAndCondition : AnyObject{
+    func funcTermsAndContions(btnTerm : Int)
+        
+    
+}
 protocol TransectionActionDelegate{
     func onClickPayDelagate()
     func onClickbackDelagate()
@@ -25,6 +30,8 @@ class CellTermsAndConditions: UITableViewCell {
     @IBOutlet weak var btnPay: UIButton!
     @IBOutlet weak var viewCheckBox: UIView!
     @IBOutlet weak var btncheck: UIButton!
+    
+    weak var varDelegate : protocolTermAndCondition?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -65,4 +72,60 @@ class CellTermsAndConditions: UITableViewCell {
     }
     
     
+    
+    @IBAction func onTapTermAndConditions(_ sender: Any) {
+        
+        varDelegate?.funcTermsAndContions(btnTerm: 1)
+        
+    }
+    
+    
+    
 }
+
+
+// Mark: For downloading terms and conditions
+//func downloadTermsConditions() {
+//
+//    let paramaterPasing: [String:Any] = ["languageCode":LocalizationSystem.sharedInstance.getLanguage(), "type": 600]
+//
+//
+//    let headers: HTTPHeaders = [
+//        "Content-Type": "application/json"
+//    ]
+//
+//    NetWorkDataManager.sharedInstance.termsConditionsImplimentation(headersTobePassed: headers, postParameters: paramaterPasing) { resonseTal , errorString in
+//
+//        if errorString == nil
+//        {
+//
+//            print(resonseTal!)
+//            if let termsAndConditions = resonseTal?.value(forKey: "termsAndConditions") as? NSArray {
+//                print(termsAndConditions)
+//             /*   let newObj = Global.shared.convertToAryDictionary(text: termsAndConditions)
+//                self.termsConditionsResponse = newObj!*/
+//
+//                let newv =  termsAndConditions[0] as! NSDictionary
+//                print(newv)
+//
+//                let dataStr = newv["termsAndsConditions"] as? String
+//                let newObj = Global.shared.convertToAryDictionary(text: dataStr ?? "")
+//
+//                self.termsConditionsResponse = newObj!
+//
+//           // self.termsConditionsResponse = termsAndConditions as! [Any]
+//            }
+//
+//            self.termsConditionTbleView.reloadData()
+//        }
+//
+//        else
+//        {
+//            print(errorString!)
+//            self.removeSpinner()
+//            let finalError = errorString?.components(separatedBy: ":")
+//            let alert = ViewControllerManager.displayAlert(message: finalError?[1] ?? "", title:APPLICATIONNAME)
+//            self.present(alert, animated: true, completion: nil)
+//        }
+//    }
+//}
