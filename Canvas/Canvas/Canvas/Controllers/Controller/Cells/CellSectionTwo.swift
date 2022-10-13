@@ -152,11 +152,17 @@ class CellSectionTwo: UITableViewCell, delegatecallbackfromFxbooking
         
     }
    
-    @IBAction func onTapMix(_ sender: Any) {
-        imgMixNote.image = UIImage(named: "circleChecked")
-        imgHighNote.image = UIImage(named: "circleUnchecked")
-        
-        print("Action on Mix Note")
+    @IBAction func onTapMix(_ sender: Any)
+    {
+        if(imgMixNote.image == UIImage(named: "circleChecked") )
+        {
+            imgMixNote.image = UIImage(named: "circleUnchecked")
+        }
+        else
+        {
+            imgMixNote.image = UIImage(named: "circleChecked")
+            imgHighNote.image = UIImage(named: "circleUnchecked")
+        }
     }
     
     
@@ -197,12 +203,17 @@ class CellSectionTwo: UITableViewCell, delegatecallbackfromFxbooking
     }
     
     
-    @IBAction func onTapHighValue(_ sender: Any) {
-        imgMixNote.image = UIImage(named: "circleUnchecked")
-        imgHighNote.image = UIImage(named: "circleChecked")
-        
-        print("Action on High value")
-        
+    @IBAction func onTapHighValue(_ sender: Any)
+    {
+        if(imgHighNote.image == UIImage(named: "circleChecked") )
+        {
+            imgHighNote.image = UIImage(named: "circleUnchecked")
+        }
+        else
+        {
+            imgHighNote.image = UIImage(named: "circleChecked")
+            imgMixNote.image = UIImage(named: "circleUnchecked")
+        }
     }
     
     

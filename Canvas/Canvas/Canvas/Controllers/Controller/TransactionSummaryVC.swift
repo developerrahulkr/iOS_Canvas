@@ -168,7 +168,7 @@ extension TransactionSummaryVC: UITableViewDelegate,UITableViewDataSource, Trans
             cell.lblDateAndTime.text = "\(Global.shared.date_timeslot ?? "") : "
             cell.lblAddress.text = FXbookingMaster.shared.selecytedhomeaddress1name
             cell.lblDateTime.text = "\(FXbookingMaster.shared.selecteddateslot) | \(FXbookingMaster.shared.selectedtimeslot)"
-            cell.lblDeliveryType.text = FXbookingMaster.shared.deliveryType == 1 ? "Home" : "Branch"
+            cell.lblDeliveryType.text = FXbookingMaster.shared.deliveryType == 2 ? "Home" : "Branch"
             cell.lblPurposeTrnf.text = FXbookingMaster.shared.selectedpurpose
             cell.lblRemark.text = FXbookingMaster.shared.deliveryinstruction
             return cell
@@ -300,8 +300,8 @@ extension TransactionSummaryVC: UITableViewDelegate,UITableViewDataSource, Trans
             "cashierID": "9998",
             "entity": "201",
             "promoCode": "",
-            "deliveryType": 2,
-            "objectReferenceID": "\(FXbookingMaster.shared.deliveryType == 1 ? FXbookingMaster.shared.selecytedhomeaddress! : FXbookingMaster.shared.selecedbranchaddress!)",
+            "deliveryType": FXbookingMaster.shared.deliveryType,
+            "objectReferenceID": "\(FXbookingMaster.shared.deliveryType == 2 ? FXbookingMaster.shared.selecytedhomeaddress! : FXbookingMaster.shared.selecedbranchaddress!)",
             "timeSlot": FXbookingMaster.shared.selectedtimeslot,
             "denomination": FXbookingMaster.shared.deminations,
             "purposeOfTransfer": FXbookingMaster.shared.selectedpurpose,

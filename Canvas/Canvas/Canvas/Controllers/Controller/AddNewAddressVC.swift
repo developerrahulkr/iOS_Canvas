@@ -31,8 +31,8 @@ class AddNewAddressVC: UIViewController {
     
     @IBOutlet weak var tableViewAddAddress: UITableView!
     @IBOutlet weak var btnDefaultAddress: UIButton!
-    var unchecked = true
-    var bIsDefault = true
+//    var unchecked = true
+    var bIsDefault = false
     
     
     //MARK: - VARIABLES
@@ -84,7 +84,24 @@ class AddNewAddressVC: UIViewController {
             TFAreaCity.text = homeAddressObj?.areaCity
             TFPostalCode.text = homeAddressObj?.postalCode
             TFPhoneNumber.text = homeAddressObj?.phoneNumber
+            bIsDefault = ((homeAddressObj?.bIsDefault) != nil)
+            if(bIsDefault)
+            {
+                btnDefaultAddress.setImage( UIImage(named:"checkboxActive"), for: .normal)
+
+            }
+            else
+            {
+                btnDefaultAddress.setImage(UIImage(named:"checkboxNormal"), for: .normal)
+
+            }
+
         }
+        else
+        {
+            TFFullName.text = Global.shared.firstNameTxt + " " + Global.shared.lastNameTxt
+        }
+            
     }
     override func viewWillDisappear(_ animated: Bool) {
         //        lblTitle.text = "Add New Address"
@@ -203,7 +220,10 @@ extension AddNewAddressVC : UITableViewDelegate,UITableViewDataSource{
                                              "block" : self.TFBlock.text ?? "",
                                              "areaCity": self.TFAreaCity.text ?? "",
                                              "postalCode" : self.TFPostalCode.text ?? "",
-                                             "phoneNumber" : self.TFPhoneNumber.text ?? ""]
+                                             "phoneNumber" : self.TFPhoneNumber.text ?? "",
+                                             "bIsDefault" : self.bIsDefault
+                    
+                            ]
         let headers: HTTPHeaders = [
             "Content-Type": "application/json"
         ]
@@ -237,19 +257,18 @@ extension AddNewAddressVC : UITableViewDelegate,UITableViewDataSource{
         }
     }
     
-    @IBAction func onTapDefaultAddress(_ sender: Any) {
-        if unchecked {
-            btnDefaultAddress.setImage(UIImage(named:"checkboxActive"), for: .normal)
-            unchecked = false
-            bIsDefault = true
-        }
-        else {
-            btnDefaultAddress.setImage( UIImage(named:"checkboxNormal"), for: .normal)
-            unchecked = true
+    @IBAction func onTapDefaultAddress(_ sender: Any)
+    {
+        if(bIsDefault)
+        {
+            btnDefaultAddress.setImage(UIImage(named:"checkboxNormal"), for: .normal)
             bIsDefault = false
         }
-        
-        //        checkboxActive
+        else
+        {
+            btnDefaultAddress.setImage( UIImage(named:"checkboxActive"), for: .normal)
+            bIsDefault = true
+        }
     }
     
     //    MARK: - Update Home Address
@@ -266,7 +285,9 @@ extension AddNewAddressVC : UITableViewDelegate,UITableViewDataSource{
                                              "block" : TFBlock.text ?? "",
                                              "areaCity" : TFAreaCity.text ?? "",
                                              "postalCode" : TFPostalCode.text ?? "",
-                                             "phoneNumber" : TFPhoneNumber.text ?? ""]
+                                             "phoneNumber" : TFPhoneNumber.text ?? "",
+                                             "bIsDefault" : self.bIsDefault
+                                            ]
         let headers: HTTPHeaders = [
             "Content-Type": "application/json"
         ]

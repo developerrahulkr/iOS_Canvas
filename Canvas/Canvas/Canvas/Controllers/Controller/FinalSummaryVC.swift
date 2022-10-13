@@ -297,6 +297,29 @@ class FinalSummaryVC: UIViewController {
             }
         }
     }
+    
+    static func getMonthDayYearString(_ dateString: String) -> String? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        guard
+            let userDOBDate = dateFormatter.date(from:String(dateString)) else {
+            return nil
+        }
+        dateFormatter.dateFormat = "dd-MMM-yyyy h:mm a"
+        return  dateFormatter.string(from: userDOBDate)
+    }
+    
+    static func getMonthDayYearWithoutSecndsString(_ dateString: String) -> String? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+        guard
+            let userDOBDate = dateFormatter.date(from:String(dateString)) else {
+            return nil
+            
+        }
+        dateFormatter.dateFormat = "dd-MMM-yyyy h:mm a"
+        return  dateFormatter.string(from: userDOBDate)
+    }
 }
     //MARK: - EXTENSIONS
     extension FinalSummaryVC: UITableViewDelegate,UITableViewDataSource{
@@ -339,13 +362,14 @@ class FinalSummaryVC: UIViewController {
                 }
                 cell.lblName.text = fullName
                 if     fxBookingModel?.deliveryType == 1{
-                       cell.lblDeliveryType.text = "Home"
+                       cell.lblDeliveryType.text = "Branch"
                 }
                 else{
-                    cell.lblDeliveryType.text = "Branch"
+                    cell.lblDeliveryType.text = "Home"
                 }
-                if let createdDate = fxBookingModel?.selectedDate{
-                       cell.lblDateTime.text = String(createdDate)
+                if let createdDate = fxBookingModel?.fXBookingDetails![0].createdDate{
+                    
+                        cell.lblDateTime.text = Date.getMonthDayYearString2(createdDate)
                 }
                 if let voucherNumber = fxBookingModel?.txnRefNo{
                        cell.lblVoucherNumber.text = String(voucherNumber)

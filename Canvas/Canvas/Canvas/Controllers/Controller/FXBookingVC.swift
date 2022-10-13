@@ -75,9 +75,10 @@ class FXBookingVC: UIViewController,protocolPush, navigateToDiffrentScreenDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        FXbookingMaster.shared.dispose()
         txtLCamount.isUserInteractionEnabled = false
         
-        FXbookingMaster.shared.deliveryType = 1
+        FXbookingMaster.shared.deliveryType = 2
 
         if lblSelectCities.text == "Currency" {
             imgCountries.isHidden = true
@@ -176,7 +177,33 @@ class FXBookingVC: UIViewController,protocolPush, navigateToDiffrentScreenDelega
     
     @IBAction func onClickedInfoBtn(_ sender: UIButton)
     {
-        
+        if let viewController = Storyboad.shared.mainStoryboard?.instantiateViewController(withIdentifier: "ToolTipListController") as? ToolTipListController {
+            var index = 0
+            var height = 0
+//               print( "Value of index is \(index)")
+//                if index == 0
+//                {
+                    height = height + 60
+//                }
+//                else {
+//                    height = height + 60
+//                }
+//
+               index = index + 1
+//            }
+            viewController.preferredContentSize = CGSize(width: 300, height: height)
+                let navController = UINavigationController(rootViewController: viewController)
+                navController.modalPresentationStyle = .popover
+
+                if let pctrl = navController.popoverPresentationController {
+                    pctrl.delegate = self
+
+                    pctrl.sourceView = (sender as! UIView)
+                    pctrl.sourceRect = (sender as! UIView).bounds
+
+                    self.present(navController, animated: true, completion: nil)
+                }
+            }
     }
    
     func onclicksubmit()
@@ -387,8 +414,7 @@ class FXBookingVC: UIViewController,protocolPush, navigateToDiffrentScreenDelega
     
     func onclickcancel()
     {
-//        let vc = storyboard?.instantiateViewController(withIdentifier: "HomeDashboardVc" )as! HomeDashboardVc
-//        navigationController?.pushViewController(vc, animated: true)
+        MenuScreenShow(screen:"Dashboard")
     }
 }
 
@@ -416,7 +442,7 @@ extension FXBookingVC: UITableViewDelegate,UITableViewDataSource,Delete{
                 let finalTxt = "1 \(FXbookingMaster.shared.fxBookingDataSource[indexPath.row].currenyCodeTo) = \(FXbookingMaster.shared.fxBookingDataSource[indexPath.row].rate) \(FXbookingMaster.shared.fxBookingDataSource[indexPath.row].currenyCodeFrom)"
 
                 cell.lblConverter.text = finalTxt
-                cell.tfSourceField.text = FXbookingMaster.shared.fxBookingDataSource[indexPath.row].amountFrom
+                cell.tfSourceField.text = "\(FXbookingMaster.shared.fxBookingDataSource[indexPath.row].amountFrom) KWD"
                 cell.tfTargetField.text = FXbookingMaster.shared.fxBookingDataSource[indexPath.row].amountTo
                 cell.lblCurrencyCode.text = FXbookingMaster.shared.fxBookingDataSource[indexPath.row].currenyCodeTo
                 cell.imgCountry.image = UIImage(named: FXbookingMaster.shared.fxBookingDataSource[indexPath.row].countryCode.lowercased())
@@ -431,8 +457,7 @@ extension FXBookingVC: UITableViewDelegate,UITableViewDataSource,Delete{
             cell.selectionStyle = .none
             cell.TFTimeSlot.placeholder = Global.shared.timeslot
             cell.TFSelectDate.placeholder = Global.shared.select_date
-            cell.TFSelectPurposeOf.placeholder = Global.shared.pot_required_msg
-            cell.lblPurpose.text = Global.shared.purpose
+            cell.lblPurpose.text = "\(Global.shared.purpose!) *"
             cell.homeSegment.setTitle(Global.shared.home, forSegmentAt: 0)
             cell.homeSegment.setTitle(Global.shared.branch, forSegmentAt: 1)
             cell.TFSelectDate.text = FXbookingMaster.shared.selecteddateslot
@@ -657,7 +682,7 @@ extension FXBookingVC: UITableViewDelegate,UITableViewDataSource,Delete{
                             {
                                 
                                 self.txtFCamount.text = "\(ratecalobj["amountTo"] ?? "")"
-                                self.txtLCamount.text = "\(ratecalobj["amountFrom"] ?? "")" + " KWD"
+                                self.txtLCamount.text = "\(ratecalobj["amountFrom"] ?? "")"
                                 let ratee = "\(ratecalobj["rate"] ?? "")"
                                 
                                 let finalTxt = "\(ratee) KWD"
@@ -894,9 +919,7 @@ extension FXBookingVC {
                 }
                 
             }
-            
         }
-        
     }
 }
 
@@ -929,7 +952,30 @@ extension FXBookingVC : PopupViewControllerDelegate {
 
 
 class FXbookingMaster {
-    static var shared = FXbookingMaster()
+    
+    struct Static
+        {
+            static var shared: FXbookingMaster?
+        }
+
+        class var shared: FXbookingMaster
+        {
+            if Static.shared == nil
+            {
+                Static.shared = FXbookingMaster()
+            }
+
+            return Static.shared!
+        }
+
+        func dispose()
+        {
+            FXbookingMaster.Static.shared = nil
+            print("Disposed Singleton instance")
+        }
+    
+    
+//    static var shared = FXbookingMaster()
     var deliveryType  = 1
     var selecytedhomeaddress : Int?
     var selecedbranchaddress : Int?
@@ -1032,7 +1078,6 @@ class FXbookingMaster {
                         }
                         
                         print("My Home Address is : \(self.homeDataSource)")
-                        FXbookingMaster.shared.deliveryType = 1
                         completionHandler(true,"")
 //                        self.tableViewFX.reloadData()
                     }
@@ -1099,7 +1144,6 @@ class FXbookingMaster {
                     }
                     
                     print("All Branch Data : \(self.branchDataSource)")
-                    FXbookingMaster.shared.deliveryType = 2
                     completionHandler(true,"")
 
                 }else {

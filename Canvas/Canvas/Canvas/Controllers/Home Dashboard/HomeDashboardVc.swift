@@ -3313,6 +3313,17 @@ extension Date {
         dateFormatter.dateFormat = "dd-MMM-yyyy h:mm a"
         return  dateFormatter.string(from: userDOBDate)
     }
+    static func getMonthDayYearString2(_ dateString: String) -> String? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        guard
+            let userDOBDate = dateFormatter.date(from:String(dateString)) else {
+            return nil
+            
+        }
+        dateFormatter.dateFormat = "dd-MMM-yyyy h:mm a"
+        return  dateFormatter.string(from: userDOBDate)
+    }
     static func getMonthDayYearWithoutSecndsString(_ dateString: String) -> String? {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
