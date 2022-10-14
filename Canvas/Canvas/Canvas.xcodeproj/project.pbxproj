@@ -28,6 +28,7 @@
 		1867E4BC28F1F9D400D4F09E /* CellServiceOpted.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1867E4B828F1F9D400D4F09E /* CellServiceOpted.xib */; };
 		1867E4BD28F1F9D400D4F09E /* CellStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1867E4B928F1F9D400D4F09E /* CellStatus.swift */; };
 		1867E4BF28F1FA1E00D4F09E /* FinalSummaryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1867E4BE28F1FA1E00D4F09E /* FinalSummaryVC.swift */; };
+		187F3F4728F992DD008333AA /* AddNewAddressMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187F3F4628F992DD008333AA /* AddNewAddressMap.swift */; };
 		1882135928E486A200E1E865 /* FXBookingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1882135828E486A200E1E865 /* FXBookingViewModel.swift */; };
 		1882135D28E5B75700E1E865 /* CalanderPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1882135C28E5B75700E1E865 /* CalanderPopupVC.swift */; };
 		1882136128E5B7C000E1E865 /* CalanderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1882135F28E5B7C000E1E865 /* CalanderCell.swift */; };
@@ -297,6 +298,7 @@
 		1867E4B828F1F9D400D4F09E /* CellServiceOpted.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CellServiceOpted.xib; sourceTree = "<group>"; };
 		1867E4B928F1F9D400D4F09E /* CellStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellStatus.swift; sourceTree = "<group>"; };
 		1867E4BE28F1FA1E00D4F09E /* FinalSummaryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinalSummaryVC.swift; sourceTree = "<group>"; };
+		187F3F4628F992DD008333AA /* AddNewAddressMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewAddressMap.swift; sourceTree = "<group>"; };
 		1882135828E486A200E1E865 /* FXBookingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FXBookingViewModel.swift; sourceTree = "<group>"; };
 		1882135C28E5B75700E1E865 /* CalanderPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalanderPopupVC.swift; sourceTree = "<group>"; };
 		1882135F28E5B7C000E1E865 /* CalanderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalanderCell.swift; sourceTree = "<group>"; };
@@ -618,6 +620,7 @@
 				1854038828E41A7800ED3362 /* AddNewAddressVC.swift */,
 				1882135828E486A200E1E865 /* FXBookingViewModel.swift */,
 				1882135C28E5B75700E1E865 /* CalanderPopupVC.swift */,
+				187F3F4628F992DD008333AA /* AddNewAddressMap.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1782,6 +1785,7 @@
 				D5EB6B572569055F0089038F /* RateCalculatorWuVc.swift in Sources */,
 				D545D1FA2508DF720098DC4D /* Reachability.swift in Sources */,
 				D55B32C5254FFC76005E57F5 /* TransactionsMainVc.swift in Sources */,
+				187F3F4728F992DD008333AA /* AddNewAddressMap.swift in Sources */,
 				D55CF45F25569A0200E77B07 /* BranchLocatorCell.swift in Sources */,
 				D55B32C9254FFD16005E57F5 /* TransactionsByDateVc.swift in Sources */,
 				D583B7E4250B3B420019D136 /* PdfVc.swift in Sources */,

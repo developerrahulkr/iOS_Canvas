@@ -194,6 +194,8 @@ class BranchLocatorMapVc: UIViewController, GMSMapViewDelegate {
      }*/
     
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
+        mapVieww.clear()
+        
         let lat = coordinate.latitude
         let long = coordinate.longitude
         let marker = GMSMarker()

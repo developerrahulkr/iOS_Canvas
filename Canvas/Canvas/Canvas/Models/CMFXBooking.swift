@@ -38,6 +38,7 @@ struct CMBookingHomeAddress : Codable{
      var latitude : String?
      var longitude : String?
      var isselected : Bool = false
+    
 }
 
 

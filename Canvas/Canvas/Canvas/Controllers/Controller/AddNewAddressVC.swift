@@ -8,7 +8,16 @@
 import UIKit
 import Alamofire
 
-class AddNewAddressVC: UIViewController {
+class AddNewAddressVC: UIViewController, MapDelgate {
+    
+    func getLatLong(lat: String, long: String) {
+        print("Get Call...........")
+        print(lat, long)
+        latitude = lat
+        longitude = long
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     //MARK: - OUTLETS
     
     @IBOutlet weak var TFFullName: UITextField!
@@ -44,6 +53,8 @@ class AddNewAddressVC: UIViewController {
     var street:String?
     var block:String?
     var building:String?
+    var latitude : String?
+    var longitude : String?
     
     
     //MARK: - LIFECYCLE METHODS
@@ -114,6 +125,10 @@ class AddNewAddressVC: UIViewController {
     @IBAction func onTapAddLocation(_ sender: Any) {
         
         print("Add Location")
+        let vc = Storyboad.shared.fxBookingStoryboard?.instantiateViewController(withIdentifier: "AddNewAddressMap") as! AddNewAddressMap
+        vc.delegate = self
+        self.navigationController?.pushViewController(vc, animated: true)
+        
         
     }
     
@@ -231,7 +246,9 @@ extension AddNewAddressVC : UITableViewDelegate,UITableViewDataSource{
                                              "areaCity": self.TFAreaCity.text ?? "",
                                              "postalCode" : self.TFPostalCode.text ?? "",
                                              "phoneNumber" : self.TFPhoneNumber.text ?? "",
-                                             "bIsDefault" : self.bIsDefault
+                                             "bIsDefault" : self.bIsDefault,
+                                             "latitude" : latitude ?? "",
+                                             "longitude" : longitude ?? ""
                     
                             ]
         let headers: HTTPHeaders = [
@@ -296,7 +313,9 @@ extension AddNewAddressVC : UITableViewDelegate,UITableViewDataSource{
                                              "areaCity" : TFAreaCity.text ?? "",
                                              "postalCode" : TFPostalCode.text ?? "",
                                              "phoneNumber" : TFPhoneNumber.text ?? "",
-                                             "bIsDefault" : self.bIsDefault
+                                             "bIsDefault" : self.bIsDefault,
+                                             "latitude": latitude ?? "",
+                                               "longitude": longitude ?? ""
                                             ]
         let headers: HTTPHeaders = [
             "Content-Type": "application/json"
