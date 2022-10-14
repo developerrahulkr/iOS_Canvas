@@ -22,6 +22,7 @@ class TermsAndConditionsVc: UIViewController, UITableViewDataSource, UITableView
   //  @IBOutlet weak var searchOtlt: UITextField!
     
     var termsConditionsResponse = [Any]()
+    var isSummeryTerm : Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +32,12 @@ class TermsAndConditionsVc: UIViewController, UITableViewDataSource, UITableView
         // Do any additional setup after loading the view.
         termsConditionTbleView.estimatedRowHeight = 42
         termsConditionTbleView.rowHeight = UITableView.automaticDimension
-        downloadTermsConditions()
+        if isSummeryTerm {
+            getSummeryTermsConditions()
+        }else{
+            downloadTermsConditions()
+        }
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -88,6 +94,100 @@ class TermsAndConditionsVc: UIViewController, UITableViewDataSource, UITableView
             }
         }
     }
+    
+    
+    //     Mark: For downloading terms and conditions
+        func getSummeryTermsConditions() {
+
+            let paramaterPasing: [String:Any] = ["languageCode":LocalizationSystem.sharedInstance.getLanguage(), "type": 605]
+
+
+            let headers: HTTPHeaders = [
+                "Content-Type": "application/json"
+            ]
+
+            NetWorkDataManager.sharedInstance.termsConditionsImplimentation(headersTobePassed: headers, postParameters: paramaterPasing) { resonseTal , errorString in
+
+                if errorString == nil
+                {
+
+                    print(resonseTal!)
+                    if let termsAndConditions = resonseTal?.value(forKey: "termsAndConditions") as? NSArray {
+                        print(termsAndConditions)
+                     /*   let newObj = Global.shared.convertToAryDictionary(text: termsAndConditions)
+                        self.termsConditionsResponse = newObj!*/
+
+                        let newv =  termsAndConditions[0] as! NSDictionary
+                        print(newv)
+
+                        let dataStr = newv["fcTermsAndsConditions"] as? String
+                        let newObj = Global.shared.convertToAryDictionary(text: dataStr ?? "")
+
+                        self.termsConditionsResponse = newObj!
+
+                   // self.termsConditionsResponse = termsAndConditions as! [Any]
+                    }
+
+                    self.termsConditionTbleView.reloadData()
+                }
+
+                else
+                {
+                    print(errorString!)
+                    self.removeSpinner()
+                    let finalError = errorString?.components(separatedBy: ":")
+                    let alert = ViewControllerManager.displayAlert(message: finalError?[1] ?? "", title:APPLICATIONNAME)
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }
+        }
+    
+    // Mark: For downloading terms and conditions
+    //func downloadTermsConditions() {
+    //
+    //    let paramaterPasing: [String:Any] = ["languageCode":LocalizationSystem.sharedInstance.getLanguage(), "type": 600]
+    //
+    //
+    //    let headers: HTTPHeaders = [
+    //        "Content-Type": "application/json"
+    //    ]
+    //
+    //    NetWorkDataManager.sharedInstance.termsConditionsImplimentation(headersTobePassed: headers, postParameters: paramaterPasing) { resonseTal , errorString in
+    //
+    //        if errorString == nil
+    //        {
+    //
+    //            print(resonseTal!)
+    //            if let termsAndConditions = resonseTal?.value(forKey: "termsAndConditions") as? NSArray {
+    //                print(termsAndConditions)
+    //             /*   let newObj = Global.shared.convertToAryDictionary(text: termsAndConditions)
+    //                self.termsConditionsResponse = newObj!*/
+    //
+    //                let newv =  termsAndConditions[0] as! NSDictionary
+    //                print(newv)
+    //
+    //                let dataStr = newv["termsAndsConditions"] as? String
+    //                let newObj = Global.shared.convertToAryDictionary(text: dataStr ?? "")
+    //
+    //                self.termsConditionsResponse = newObj!
+    //
+    //           // self.termsConditionsResponse = termsAndConditions as! [Any]
+    //            }
+    //
+    //            self.termsConditionTbleView.reloadData()
+    //        }
+    //
+    //        else
+    //        {
+    //            print(errorString!)
+    //            self.removeSpinner()
+    //            let finalError = errorString?.components(separatedBy: ":")
+    //            let alert = ViewControllerManager.displayAlert(message: finalError?[1] ?? "", title:APPLICATIONNAME)
+    //            self.present(alert, animated: true, completion: nil)
+    //        }
+    //    }
+    //}
+
     
     @IBAction func bckBtnActn(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)

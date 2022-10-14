@@ -150,6 +150,9 @@ class BranchLocatorMapVc: UIViewController, GMSMapViewDelegate {
         Global.shared.languageChangeActn()
     }
     
+    
+    
+    
   /*   func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
 
          if marker.title != nil {
@@ -190,6 +193,16 @@ class BranchLocatorMapVc: UIViewController, GMSMapViewDelegate {
          return true
      }*/
     
+    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
+        let lat = coordinate.latitude
+        let long = coordinate.longitude
+        let marker = GMSMarker()
+        marker.position = CLLocationCoordinate2D(latitude: lat, longitude: long)
+        marker.title =  Global.shared.branchNameLocator
+        marker.snippet = Global.shared.branchAdresLocator
+        marker.map = mapVieww
+        
+    }
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
 
         if marker.title != nil {

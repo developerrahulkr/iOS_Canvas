@@ -8,11 +8,11 @@
 
 import Foundation
 
-let appName = "Al muzaini"
-let fullNameMsg = "Fullname is required"
-let flatMsg = "flat is required"
-let gadaMsg = "Gada is required"
-let blockMsg = "Block is required"
-let buildingMsg = "Building is required"
-let streetMsg = "Street is required"
-let floorMsg = "Floor is required"
+//let appName = "Al muzaini"
+//let fullNameMsg = "Fullname is required"
+//let flatMsg = "flat is required"
+//let gadaMsg = "Gada is required"
+//let blockMsg = "Block is required"
+//let buildingMsg = "Building is required"
+//let streetMsg = "Street is required"
+//let floorMsg = "Floor is required"

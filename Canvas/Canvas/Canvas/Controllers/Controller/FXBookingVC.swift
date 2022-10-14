@@ -14,6 +14,8 @@ class FXBookingVC: UIViewController,protocolPush, navigateToDiffrentScreenDelega
     //MARK: - OUTLETS
     
     
+    @IBOutlet weak var lblFCAmtPlaceholder: UILabel!
+    @IBOutlet weak var lblLCAmtPlaceholder: UILabel!
     @IBOutlet weak var viewRate: UIView!
     @IBOutlet weak var tableViewFX: UITableView!
 //    @IBOutlet weak var countriesWidth: NSLayoutConstraint!
@@ -65,7 +67,7 @@ class FXBookingVC: UIViewController,protocolPush, navigateToDiffrentScreenDelega
     }()
     
     //MARK: - VARIABLES
-    var count = 0
+   // var count = 0
     
     
     
@@ -73,7 +75,10 @@ class FXBookingVC: UIViewController,protocolPush, navigateToDiffrentScreenDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        FXbookingMaster.shared.deliveryType = "Home"
+        FXbookingMaster.shared.dispose()
+        txtLCamount.isUserInteractionEnabled = false
+        
+        FXbookingMaster.shared.deliveryType = 2
 
         if lblSelectCities.text == "Currency" {
             imgCountries.isHidden = true
@@ -99,12 +104,19 @@ class FXBookingVC: UIViewController,protocolPush, navigateToDiffrentScreenDelega
     }
     
     func localizeData() {
-        txtLCamount.placeholder = Global.shared.lc_amonut
-        txtFCamount.placeholder = Global.shared.fc_amount
+        lblFCAmtPlaceholder.text = Global.shared.fc_amount
+        lblLCAmtPlaceholder.text = Global.shared.lc_amonut
+        
+//        txtLCamount.placeholder = Global.shared.lc_amonut
+//        txtFCamount.placeholder = Global.shared.fc_amount
+//        txtFCamount.placeholder = ""
+//        txtLCamount.placeholder = ""
         lblrate.text = Global.shared.rate
         lblSelectCities.text = Global.shared.currency
         
     }
+    
+
     
     override func viewDidLayoutSubviews() {
 //        centerCardView.layer.masksToBounds = true
@@ -148,6 +160,7 @@ class FXBookingVC: UIViewController,protocolPush, navigateToDiffrentScreenDelega
             txtLCamount.text = ""
             txtFCamount.text = ""
             lblrate.text = "Rate"
+            countryCode = ""
             lblSelectCities.text = "Currency"
             leftConstantCurrency.constant = 20
             imgCountries.image = nil
@@ -165,8 +178,72 @@ class FXBookingVC: UIViewController,protocolPush, navigateToDiffrentScreenDelega
     
     @IBAction func onClickedInfoBtn(_ sender: UIButton)
     {
-//        FXbookingMaster.shared.cretefctransaction()
-        let fccurrencydict = FXbookingMaster.shared.fxBookingDataSource.map {["type": "S", "fcCurrencyCode": $0.currenyCodeTo, "fcAmount": Double($0.amountTo) ?? 0.0, "lcAmount": Double($0.amountFrom) ?? 0.0, "rate": Double($0.actualRate) ?? 0.0]}
+        if let viewController = Storyboad.shared.mainStoryboard?.instantiateViewController(withIdentifier: "ToolTipListController") as? ToolTipListController {
+            var index = 0
+            var height = 0
+//               print( "Value of index is \(index)")
+//                if index == 0
+//                {
+                    height = height + 60
+//                }
+//                else {
+//                    height = height + 60
+//                }
+//
+               index = index + 1
+//            }
+            viewController.preferredContentSize = CGSize(width: 300, height: height)
+                let navController = UINavigationController(rootViewController: viewController)
+                navController.modalPresentationStyle = .popover
+
+                if let pctrl = navController.popoverPresentationController {
+                    pctrl.delegate = self
+
+                    pctrl.sourceView = (sender as! UIView)
+                    pctrl.sourceRect = (sender as! UIView).bounds
+
+                    self.present(navController, animated: true, completion: nil)
+                }
+            }
+    }
+   
+    func onclicksubmit()
+    {
+        if(FXbookingMaster.shared.fxBookingDataSource.count == 0)
+        {
+            let alert = ViewControllerManager.displayAlert(message: Global.shared.currency_required_msg, title:"")
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        if(FXbookingMaster.shared.selecytedhomeaddress == nil)
+        {
+            let alert = ViewControllerManager.displayAlert(message: Global.shared.address_required_msg, title:"")
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+//        if(FXbookingMaster.shared.selecteddateslot == "")
+//        {
+//            let alert = ViewControllerManager.displayAlert(message: Global.shared.date_required_msg, title:"")
+//            self.present(alert, animated: true, completion: nil)
+//            return
+//        }
+//        if(FXbookingMaster.shared.selectedtimeslot == "")
+//        {
+//            let alert = ViewControllerManager.displayAlert(message: Global.shared.time_required_msg, title:"")
+//            self.present(alert, animated: true, completion: nil)
+//            return
+//        }
+        if(FXbookingMaster.shared.selectedpurpose == "")
+        {
+            let alert = ViewControllerManager.displayAlert(message: Global.shared.pot_required_msg, title:"")
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        var fccurrencydict = FXbookingMaster.shared.fxBookingDataSource.map {["type": "S", "fcCurrencyCode": $0.currenyCodeTo, "fcAmount": Double($0.amountTo) ?? 0.0, "lcAmount": Double($0.amountFrom) ?? 0.0, "rate": Double($0.actualRate) ?? 0.0]}
+        if let cell = tableViewFX.cellForRow(at: IndexPath(row: 0, section: 1)) as? CellSectionTwo
+        {
+            FXbookingMaster.shared.deliveryinstruction = cell.TFDeliveryInst.text!
+        }
         var  netamount = 0.0
         for count in fccurrencydict
         {
@@ -174,12 +251,11 @@ class FXBookingVC: UIViewController,protocolPush, navigateToDiffrentScreenDelega
         }
         print(fccurrencydict)
         print(netamount)
-        FXbookingMaster.shared.netamount = netamount
-        
+        FXbookingMaster.shared.netamount = "\(netamount)"
+
         let vc = Storyboad.shared.fxBookingStoryboard?.instantiateViewController(withIdentifier: "TransactionSummaryVC") as! TransactionSummaryVC
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    
     
     @objc func targetTextFieldDidEditingChanged(_ textField: UITextField) {
         
@@ -188,12 +264,15 @@ class FXBookingVC: UIViewController,protocolPush, navigateToDiffrentScreenDelega
             targetTimer?.invalidate()
             targetTimer = nil
         }
-        
-        
-        
         targetTimer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(targetSearchForKeyword(_:)), userInfo: textField.text!, repeats: false)
-        
     }
+    
+
+    
+    
+    
+    
+    
     
     @objc func targetSearchForKeyword(_ timer: Timer) {
         
@@ -322,15 +401,21 @@ class FXBookingVC: UIViewController,protocolPush, navigateToDiffrentScreenDelega
     //MARK: - Delegate Push
     func didPressCell(sender: Any)
     {
-        if(FXbookingMaster.shared.selectedaddresstype == 0)
+        if(FXbookingMaster.shared.deliveryType == 2)
         {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "YourAddress") as! YourAddress
-        navigationController?.pushViewController(vc, animated: true)
+            let vc = storyboard?.instantiateViewController(withIdentifier: "YourAddress") as! YourAddress
+            navigationController?.pushViewController(vc, animated: true)
         }
         else
         {
             self.pushViewController(controller: BranchLocatorFirstVc.initiateController())
         }
+    }
+    
+    
+    func onclickcancel()
+    {
+        MenuScreenShow(screen:"Dashboard")
     }
 }
 
@@ -358,7 +443,15 @@ extension FXBookingVC: UITableViewDelegate,UITableViewDataSource,Delete{
                 let finalTxt = "1 \(FXbookingMaster.shared.fxBookingDataSource[indexPath.row].currenyCodeTo) = \(FXbookingMaster.shared.fxBookingDataSource[indexPath.row].rate) \(FXbookingMaster.shared.fxBookingDataSource[indexPath.row].currenyCodeFrom)"
 
                 cell.lblConverter.text = finalTxt
-                cell.tfSourceField.text = FXbookingMaster.shared.fxBookingDataSource[indexPath.row].amountFrom
+//                cell.tfSourceField.text = "\(FXbookingMaster.shared.fxBookingDataSource[indexPath.row].amountFrom) KWD"
+                let amountFrom = FXbookingMaster.shared.fxBookingDataSource[indexPath.row].amountFrom
+                if let lcAmounnt = Double(amountFrom) {
+                    print("Float value = \(lcAmounnt)")
+                    let lvAmnt = String(format: "%.3f", lcAmounnt)
+                    cell.tfSourceField.text =  "\(lvAmnt) KWD"
+                } else {
+                    print("String does not contain Float")
+                }
                 cell.tfTargetField.text = FXbookingMaster.shared.fxBookingDataSource[indexPath.row].amountTo
                 cell.lblCurrencyCode.text = FXbookingMaster.shared.fxBookingDataSource[indexPath.row].currenyCodeTo
                 cell.imgCountry.image = UIImage(named: FXbookingMaster.shared.fxBookingDataSource[indexPath.row].countryCode.lowercased())
@@ -373,8 +466,7 @@ extension FXBookingVC: UITableViewDelegate,UITableViewDataSource,Delete{
             cell.selectionStyle = .none
             cell.TFTimeSlot.placeholder = Global.shared.timeslot
             cell.TFSelectDate.placeholder = Global.shared.select_date
-            cell.TFSelectPurposeOf.placeholder = Global.shared.pot_required_msg
-            cell.lblPurpose.text = Global.shared.purpose
+            cell.lblPurpose.text = "\(Global.shared.purpose!) *"
             cell.homeSegment.setTitle(Global.shared.home, forSegmentAt: 0)
             cell.homeSegment.setTitle(Global.shared.branch, forSegmentAt: 1)
             cell.TFSelectDate.text = FXbookingMaster.shared.selecteddateslot
@@ -423,6 +515,18 @@ extension FXBookingVC: UITableViewDelegate,UITableViewDataSource,Delete{
         sourceTimer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(sourceSearchForKeyword(_:)), userInfo: textField.text!, repeats: false)
         
     }
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let  char = string.cString(using: String.Encoding.utf8)!
+        let isBackSpace = strcmp(char, "\\b")
+        if (isBackSpace == -92) {
+//            txtFCamount.text = nil
+            lblrate.text = "Rate"
+            txtLCamount.text = ""
+            self.cmFXBooking = nil
+
+        }
+        return true
+    }
     
     @objc func sourceSearchForKeyword(_ timer: Timer) {
         
@@ -432,8 +536,18 @@ extension FXBookingVC: UITableViewDelegate,UITableViewDataSource,Delete{
         print("Searching for keyword \(keyword)")
         
         self.view.endEditing(true)
-        rateCalculator()
-        
+        if(countryCode != nil && countryCode != "")
+        {
+            if txtFCamount.text!.count > 0{
+                rateCalculator()
+            }else{
+                txtLCamount.text = ""
+                lblrate.text = "Rate"
+                self.cmFXBooking = nil
+
+            }
+          
+        }
     }
     
     func getSelectDate() {
@@ -480,15 +594,18 @@ extension FXBookingVC: UITableViewDelegate,UITableViewDataSource,Delete{
 //        return section == 0 ?  50 : 0.1
 //    }
     
-    func deleteRow(index:Int) {
-        print("click")
-        print(index)
-        if count < 12 && count > 1{
-            
-            count = count - 1
-            tableViewFX.reloadData()
-            
-        }
+    func deleteRow(index:Int)
+    {
+        FXbookingMaster.shared.fxBookingDataSource.remove(at: index)
+        tableViewFX.reloadSections([0], with: .none)
+//        print("click")
+//        print(index)
+//        if count < 12 && count > 1{
+//
+//            count = count - 1
+//            tableViewFX.reloadData()
+//
+//        }
     }
     
 //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -498,7 +615,7 @@ extension FXBookingVC: UITableViewDelegate,UITableViewDataSource,Delete{
     
     func getsessionid()
     {
-        
+        Decimal()
         let paramaterPasing: [String:Any] = ["registrationId": Global.shared.afterLoginRegistrtnId ?? ""]
         print(paramaterPasing)
         let headers: HTTPHeaders = ["Content-Type": "application/json"]
@@ -538,7 +655,6 @@ extension FXBookingVC: UITableViewDelegate,UITableViewDataSource,Delete{
         
     
     func rateCalculator() {
-        
         let amntDecimal = NSDecimalNumber(string: txtFCamount.text?.replacingOccurrences(of: ",", with: "", options: .literal, range: nil) ?? "0.0")
         
         //    if Int(truncating: amntDecimal) > 0 {
@@ -547,7 +663,7 @@ extension FXBookingVC: UITableViewDelegate,UITableViewDataSource,Delete{
             let paramaterPasing: [String:Any] = [
                 "sessionId": FXbookingMaster.shared.fxsessionid,
                  "currenyCodeFrom": "KWD",
-                 "currenyCodeTO": lblSelectCities.text,
+                "currenyCodeTO": lblSelectCities.text!,
                  "amount": amntDecimal,
                  "promoCode": ""
             ]
@@ -573,8 +689,19 @@ extension FXBookingVC: UITableViewDelegate,UITableViewDataSource,Delete{
                             if let ratecalobj = (resonseTal?["getFCRate2Result"]) as? [String:Any]
                             {
                                 
+                                let amountFrom = "\(ratecalobj["amountFrom"] ?? "")"
+                                
+                                
+                                if let lcAmounnt = Double(amountFrom) {
+                                    print("Float value = \(lcAmounnt)")
+                                    let lvAmnt = String(format: "%.3f", lcAmounnt)
+                                    self.txtLCamount.text = "\(lvAmnt)"
+                                } else {
+                                    print("String does not contain Float")
+                                }
+                                
                                 self.txtFCamount.text = "\(ratecalobj["amountTo"] ?? "")"
-                                self.txtLCamount.text = "\(ratecalobj["amountFrom"] ?? "")"
+//                                self.txtLCamount.text = "\(ratecalobj["amountFrom"] ?? "")"
                                 let ratee = "\(ratecalobj["rate"] ?? "")"
                                 
                                 let finalTxt = "\(ratee) KWD"
@@ -640,23 +767,14 @@ extension FXBookingVC {
         imgCountries.image = UIImage(named: country.countryCode?.lowercased() ?? "")
         imgCountries.isHidden = false
         leftConstantCurrency.constant = 45
-        
-        if txtFCamount.text == "" && txtLCamount.text == "" {
-            print("no action")
-        }
-        
-        //        else if tfSourceAmount.text == "" {
-        //            rateCalculatorThey()
-        //        }
-        else if txtLCamount.text == ""{
+        txtLCamount.text = ""
+        lblrate.text = "Rate"
+        self.cmFXBooking = nil
+       if txtFCamount.text != ""
+        {
             rateCalculator()
         }
-        else  if txtFCamount.text != nil {
-            rateCalculator()
-        }
-        else {
-            print("no action")
-        }
+
     }
     
     // Mark: Calculating the rate when entered in target field
@@ -725,15 +843,6 @@ extension FXBookingVC {
     //
     //        }
     //    }
-    
-
-    
-    
-    
-    
-    
-    
-    
     
     func getSelectDateData() {
         self.selectDateDataSource.removeAll()
@@ -820,9 +929,7 @@ extension FXBookingVC {
                 }
                 
             }
-            
         }
-        
     }
 }
 
@@ -855,25 +962,51 @@ extension FXBookingVC : PopupViewControllerDelegate {
 
 
 class FXbookingMaster {
-    static var shared = FXbookingMaster()
-    var deliveryType : String?
+    
+    struct Static
+        {
+            static var shared: FXbookingMaster?
+        }
+
+        class var shared: FXbookingMaster
+        {
+            if Static.shared == nil
+            {
+                Static.shared = FXbookingMaster()
+            }
+
+            return Static.shared!
+        }
+
+        func dispose()
+        {
+            FXbookingMaster.Static.shared = nil
+            print("Disposed Singleton instance")
+        }
+    
+    
+//    static var shared = FXbookingMaster()
+    var deliveryType  = 2
     var selecytedhomeaddress : Int?
     var selecedbranchaddress : Int?
-    var selectedaddresstype = 0
+//    var selectedaddresstype = 0
     var selecteddateslot = ""
     var selectedtimeslot = ""
     var deliveryinstruction = ""
     var selectedpurpose = ""
     var deminations = ""
-    var netamount = 0.0
+    var netamount = ""
     var fxsessionid : String = ""
+    var selectedhomeaddress1name = ""
+    var selectedhomeaddress2name = ""
+    var selectedbranchaddress1name = ""
+    var selectedbranchaddress2name = ""
+
+    var txnRefNo = ""
     lazy var dataSource : [CMSummery] = {
         let data = [CMSummery]()
         return data
     }()
-    
-    
-    
     
     lazy var fxBookingDataSource : [CMFXBooking] = {
         let data = [CMFXBooking]()
@@ -900,8 +1033,8 @@ class FXbookingMaster {
         dataSource.append(data1)
         let data2 = CMSummery(summery: "Delivery Chanrges", ammount: "1 KWD")
         dataSource.append(data2)
-        let data3 = CMSummery(summery: "Commission Discount", ammount: "0.0 KWD")
-        dataSource.append(data3)
+//        let data3 = CMSummery(summery: "Commission Discount", ammount: "0.0 KWD")
+//        dataSource.append(data3)
         let data4 = CMSummery(summery: "", ammount: "")
         dataSource.append(data4)
         
@@ -958,7 +1091,6 @@ class FXbookingMaster {
                         }
                         
                         print("My Home Address is : \(self.homeDataSource)")
-                        FXbookingMaster.shared.deliveryType = "Home"
                         completionHandler(true,"")
 //                        self.tableViewFX.reloadData()
                     }
@@ -975,6 +1107,66 @@ class FXbookingMaster {
                 
             }
         }
+    }
+    
+    
+    
+    
+//    MARK: - get_user_branch_details_url
+    
+    func getUserBranchDetails(completionhandler : @escaping (Bool, String) -> Void) {
+        FXbookingMaster.shared.branchDataSource.removeAll()
+        let paramaterPasing: [String:Any] = ["registrationId": Global.shared.afterLoginRegistrtnId ?? ""]
+        let headers: HTTPHeaders = [
+            "Content-Type": "application/json"
+        ]
+        
+        NetWorkDataManager.sharedInstance.getUserBranchDetails(headersTobePassed: headers, postParameters: paramaterPasing) {  [weak self] responseData, errString in
+            guard let self = self else {return}
+            guard errString == nil else {
+                print(errString ?? "")
+                
+                let finalError = errString?.components(separatedBy: ":")
+                let alert = ViewControllerManager.displayAlert(message: finalError?[1] ?? "", title:APPLICATIONNAME)
+//                self.present(alert, animated: true, completion: nil)
+                return
+            }
+            let statusMsg = responseData?.value(forKey: "statusMessage") as? String ?? ""
+            let mesageCode = responseData?.value(forKey: "messageCode") as? String ?? statusMsg
+            
+            if let statusCode = responseData?.value(forKey: "statusCodes") as? Int {
+                print(statusCode)
+                if(statusCode == 200) {
+                    if let dataArray = responseData?.value(forKey: "userBranchList") as? NSArray {
+                        print("User Branch List \(dataArray)")
+                        for onemessage in dataArray as! [Dictionary<String, AnyObject>] {
+                            print("oneMessage Data is : \(onemessage)")
+                            if let branchDetail = onemessage["branchDetail"] as? NSDictionary {
+//                                let dataObj = Global.shared.convertToDictionary(text: branchDetail)
+                                FXbookingMaster.shared.branchDataSource.append(CMBookingBranchAddress(id: branchDetail["id"] as? Int,
+                                                                                    branchCode: branchDetail["branchCode"] as? String,
+                                                                                    branchName: branchDetail["branchName"] as? String,
+                                                                                    branchAddress: branchDetail["branchAddress"] as? String,
+                                                                                    phone: branchDetail["phone"] as? String,
+                                                                                    fax: branchDetail["fax"] as? String,
+                                                                                    latitude: branchDetail["latitude"] as? String,
+                                                                                    longitude: branchDetail["longitude"] as? String,
+                                                                                    languageCode: branchDetail["languageCode"] as? String,
+                                                                                    isFEEnabled: branchDetail["isFEEnabled"] as? Bool))
+                                print("Dictionary Data : \(branchDetail)")
+                                
+                            }      
+                        }
+                    }
+                    print("All Branch Data : \(self.branchDataSource)")
+                    completionhandler(true, mesageCode)
+                }else{
+                    completionhandler(false, mesageCode)
+                }
+                
+            }
+        }
+        
     }
     
     //    MARK: - get Branch Data
@@ -1025,7 +1217,6 @@ class FXbookingMaster {
                     }
                     
                     print("All Branch Data : \(self.branchDataSource)")
-                    FXbookingMaster.shared.deliveryType = "Branch"
                     completionHandler(true,"")
 
                 }else {
@@ -1042,106 +1233,7 @@ class FXbookingMaster {
     }
     
 //    (completionHandler: @escaping (Bool,String?) -> ())
-    func cretefctransaction()
-    {
-        let fccurrencydict = FXbookingMaster.shared.fxBookingDataSource.map {["type": "S", "fcCurrencyCode": $0.currenyCodeTo, "fcAmount": Double($0.amountTo) ?? 0.0, "lcAmount": Double($0.amountFrom) ?? 0.0, "rate": Double($0.actualRate) ?? 0.0]}
-        var  netamount = 0.0
-        for count in fccurrencydict
-        {
-            netamount = count["lcAmount"] as! Double + netamount
-        }
-        print(fccurrencydict)
-        print(netamount)
-        FXbookingMaster.shared.netamount = netamount
-        FXbookingMaster.shared.branchDataSource.removeAll()
 
-        let paramaterPasing: [String:Any] =
-        [
-            "sessionId": FXbookingMaster.shared.fxsessionid,
-            "registrationId": Global.shared.afterLoginRegistrtnId ?? "",
-            "txnRefNo": "",
-            "remID": "421186897",
-            "commAmount":0.0,
-            "netAmt": netamount,
-            "payMode": 1,
-            "soi": "SALARY",
-            "pot": "FAM",
-            "remarks": "test",
-            "cashierID": "9998",
-            "entity": "201",
-            "promoCode": "",
-            "deliveryType": 1,
-            "objectReferenceID": "",
-            "timeSlot": FXbookingMaster.shared.selectedtimeslot,
-            "denomination": FXbookingMaster.shared.deminations,
-            "purposeOfTransfer": FXbookingMaster.shared.selectedpurpose,
-            "selectedDate": FXbookingMaster.shared.selecteddateslot,
-            "deliveryInsruction": FXbookingMaster.shared.deliveryinstruction,
-            "remitterAddress1": "xyz 00111",
-            "remitterAddress2": "23 park side",
-            "fcDetails": fccurrencydict
-        ]
-        let headers: HTTPHeaders = [
-            "Content-Type": "application/json"
-        ]
-    
-        
-        
-        
-        
-        NetWorkDataManager.sharedInstance.hitcreatefctransaction(headersToBePassed: headers, postParameter: paramaterPasing) { [weak self] responseData, errString in
-            guard let self = self else {return}
-            guard errString == nil else {
-                print(errString ?? "")
-//                BeneficiaryDetails.shared.txnRefNo = responseData?.value(forKey: "newTnxRef") as? String
-//                self.pushViewController(controller: BenefPaymentWebViewVc.initiateController())
-//                let vc = Storyboad.shared.fxBookingStoryboard?.instantiateViewController(withIdentifier: "BenefPaymentWebViewVc") as! BenefPaymentWebViewVc
-                
-
-
-
-                
-//                let finalError = errString?.components(separatedBy: ":")
-//                let alert = ViewControllerManager.displayAlert(message: finalError?[1] ?? "", title:APPLICATIONNAME)
-//                self.present(alert, animated: true, completion: nil)
-                return
-            }
-            let statusMsg = responseData?.value(forKey: "statusMessage") as? String ?? ""
-            let mesageCode = responseData?.value(forKey: "messageCode") as? String ?? statusMsg
-            
-            if let statusCode = responseData?.value(forKey: "statusCodes") as? Int {
-                print(statusCode)
-                if(statusCode == 200) {
-                    
-                    if let dataArray = responseData?.value(forKey: "branchesList") as? NSArray {
-                        print(dataArray)
-                        for onemessage in dataArray as! [Dictionary<String, AnyObject>] {
-                            FXbookingMaster.shared.branchDataSource.append(CMBookingBranchAddress(id: onemessage["id"] as? Int,
-                                                                                branchCode: onemessage["branchCode"] as? String,
-                                                                                branchName: onemessage["branchName"] as? String,
-                                                                                branchAddress: onemessage["branchAddress"] as? String,
-                                                                                phone: onemessage["phone"] as? String,
-                                                                                fax: onemessage["fax"] as? String,
-                                                                                latitude: onemessage["latitude"] as? String,
-                                                                                longitude: onemessage["longitude"] as? String,
-                                                                                languageCode: onemessage["languageCode"] as? String,
-                                                                                isFEEnabled: onemessage["languageCode"] as? Bool))
-                        }
-                    }
-                    
-                    print("All Branch Data : \(self.branchDataSource)")
-
-                }else {
-
-//                    let alert = ViewControllerManager.displayAlert(message:Global.shared.messageCodeType(text: mesageCode), title:APPLICATIONNAME)
-//                    self.present(alert, animated: true, completion: nil)
-                    
-                    
-                    
-                }
-            }
-        }
-    }
 }
 
 protocol delegatecallbackfromFxbooking

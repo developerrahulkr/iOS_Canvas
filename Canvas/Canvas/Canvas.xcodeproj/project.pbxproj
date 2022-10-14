@@ -1312,8 +1312,8 @@
 				D55C934324D8461F003F7F5F /* Frameworks */,
 				D55C934424D8461F003F7F5F /* Resources */,
 				D5601F172576AB0300435A56 /* ShellScript */,
-				089D1555E2FE580F8131B000 /* [CP] Embed Pods Frameworks */,
-				E74A8E0702B94362BF1B91E1 /* [CP] Copy Pods Resources */,
+				C0580551D931C2CE583B1317 /* [CP] Embed Pods Frameworks */,
+				DF92FBE617B1FD94B4C1F73C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1351,8 +1351,8 @@
 				D55C936624D8462C003F7F5F /* Sources */,
 				D55C936724D8462C003F7F5F /* Frameworks */,
 				D55C936824D8462C003F7F5F /* Resources */,
-				86613668CD0C105BF5B099FF /* [CP] Embed Pods Frameworks */,
-				8F9614443FF4171F1EE1F278 /* [CP] Copy Pods Resources */,
+				8C52ED30D566408DB809A125 /* [CP] Embed Pods Frameworks */,
+				5A911469FA5ACC4090B4D2FF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1472,21 +1472,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		089D1555E2FE580F8131B000 /* [CP] Embed Pods Frameworks */ = {
+		5A911469FA5ACC4090B4D2FF /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Canvas/Pods-Canvas-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Canvas-CanvasUITests/Pods-Canvas-CanvasUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Canvas/Pods-Canvas-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Canvas-CanvasUITests/Pods-Canvas-CanvasUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Canvas/Pods-Canvas-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Canvas-CanvasUITests/Pods-Canvas-CanvasUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		71F056DFA0FC61CF4883A65F /* [CP] Check Pods Manifest.lock */ = {
@@ -1511,7 +1511,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		86613668CD0C105BF5B099FF /* [CP] Embed Pods Frameworks */ = {
+		8C52ED30D566408DB809A125 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1526,23 +1526,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Canvas-CanvasUITests/Pods-Canvas-CanvasUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8F9614443FF4171F1EE1F278 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Canvas-CanvasUITests/Pods-Canvas-CanvasUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Canvas-CanvasUITests/Pods-Canvas-CanvasUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Canvas-CanvasUITests/Pods-Canvas-CanvasUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		AA70155012BB98F642D3F46F /* [CP] Check Pods Manifest.lock */ = {
@@ -1565,6 +1548,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C0580551D931C2CE583B1317 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Canvas/Pods-Canvas-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Canvas/Pods-Canvas-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Canvas/Pods-Canvas-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		CCAEDCCAF890866D03DC79F2 /* [CP] Check Pods Manifest.lock */ = {
@@ -1608,7 +1608,7 @@
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n${PODS_ROOT}/FirebaseCrashlytics/run\n\"${PODS_ROOT}/FirebaseCrashlytics/upload-symbols\" -gsp \"${PROJECT_DIR}/Canvas/Resources/GoogleService-Info.plist\" -p ios \"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}\"\n\n";
 		};
-		E74A8E0702B94362BF1B91E1 /* [CP] Copy Pods Resources */ = {
+		DF92FBE617B1FD94B4C1F73C /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (

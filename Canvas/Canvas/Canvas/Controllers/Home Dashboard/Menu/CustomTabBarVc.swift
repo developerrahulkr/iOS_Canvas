@@ -68,9 +68,9 @@ class CustomTabBarVc: UITabBarController {
         
         
         let myTabBarItem4 = (self.tabBar.items?[3])! as UITabBarItem
-        myTabBarItem4.image = UIImage(named: "profileTab")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+        myTabBarItem4.image = UIImage(named: "fxbooking-icon")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
         //        myTabBarItem4.selectedImage = UIImage(named: "profileSelected")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
-        myTabBarItem4.title = Global.shared.profileTab
+        myTabBarItem4.title = Global.shared.lbl_fxbooking
         
     }
     /* override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
@@ -90,6 +90,14 @@ class CustomTabBarVc: UITabBarController {
      
      }
      }*/
+    
+    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        if myTabBar.selectedItem == self.tabBar.items?[3] {
+            print("FXBooking......")
+            let vc = Storyboad.shared.fxBookingStoryboard?.instantiateViewController(withIdentifier: "FXBookingVC") as! FXBookingVC
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
     
     // Mark: Downloading beneficiary configuratiions
     func downloadBenefConfig() {

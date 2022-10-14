@@ -20,7 +20,7 @@ struct CanvasUrls {
   // http://168.187.217.88:81
     // For UAT
    static let baseUrl = "http://online-uat.muzaini.com:81/api/"
-    
+
    // For Staging
  //  static let baseUrl =  "http://online-uat.muzaini.com:8075/api/"
     
@@ -137,6 +137,11 @@ struct CanvasUrls {
     static let getfxsessionid = "/fxbooking/getSessionID"
     static let createfxtransaction = "/fxbooking/createfctransaction"
     static let fxBookingDetails = "/fxbooking/fxbookingdetails"
+    static let fxsharefxvoucher = "/fxbooking/sharefxvoucher"
+    static let downloadfxvoucher = "/fxbooking/downloadfxvoucher"
+    static let get_user_branch_details_url = "/fxbooking/getuserbranchdetails"
+    static let add_user_branch = "/fxbooking/adduserbranch"
+
 }
 
 //headers

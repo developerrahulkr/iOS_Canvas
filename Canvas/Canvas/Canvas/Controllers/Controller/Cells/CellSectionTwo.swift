@@ -15,6 +15,9 @@ protocol protocolPush: NSObjectProtocol{
     func getSelectDate() -> Void
     func getTimeSlot() -> Void
     func getPurposeName() -> Void
+    func onclicksubmit() -> Void
+    func onclickcancel() -> Void
+
 }
 class CellSectionTwo: UITableViewCell, delegatecallbackfromFxbooking
 {
@@ -58,7 +61,7 @@ class CellSectionTwo: UITableViewCell, delegatecallbackfromFxbooking
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        
+        imgMixNote.image = UIImage(named:"circleUnchecked")
         btnAdd.cornerRadius = 20
         
         collectionViewDeliveryOption.dataSource = self
@@ -104,13 +107,18 @@ class CellSectionTwo: UITableViewCell, delegatecallbackfromFxbooking
         }
         else
         {
-            FXbookingMaster.shared.getBranchData {  success, errorcode in
-                self.collectionViewDeliveryOption.reloadData()}
+            FXbookingMaster.shared.getUserBranchDetails { success, errCode in
+                if success {
+                    print("Hit Successfully..............")
+                    self.collectionViewDeliveryOption.reloadData()}
+                }
         }
 
         
         
     }
+     
+    
     
     func test()
     {
@@ -132,17 +140,34 @@ class CellSectionTwo: UITableViewCell, delegatecallbackfromFxbooking
 //    btnAdd.addTarget(self, action: #selector(onTapAdd(sender:)), for: .touchUpInside)
 
     
+    
+    
+    
+    
+    @IBAction func onTapCancle(_ sender: Any) {
+        
+        Pushdelegate?.onclickcancel()
+    }
+    
+    
+    
     @IBAction func onTapAdd(_ sender: UIButton) {
         self.Pushdelegate?.didPressCell(sender: sender.tag)
         let buttonTag = sender.tag
         
     }
    
-    @IBAction func onTapMix(_ sender: Any) {
-        imgMixNote.image = UIImage(named: "circleChecked")
-        imgHighNote.image = UIImage(named: "circleUnchecked")
-        
-        print("Action on Mix Note")
+    @IBAction func onTapMix(_ sender: Any)
+    {
+        if(imgMixNote.image == UIImage(named: "circleChecked") )
+        {
+            imgMixNote.image = UIImage(named: "circleUnchecked")
+        }
+        else
+        {
+            imgMixNote.image = UIImage(named: "circleChecked")
+            imgHighNote.image = UIImage(named: "circleUnchecked")
+        }
     }
     
     
@@ -158,10 +183,17 @@ class CellSectionTwo: UITableViewCell, delegatecallbackfromFxbooking
         self.Pushdelegate?.getPurposeName()
     }
     
+    @IBAction func onClickedsubmitbtb(_ sender: UIButton)
+    {
+        self.Pushdelegate?.onclicksubmit()
+    }
+    
+    
     
     @IBAction func onClickedSengment(_ sender: UISegmentedControl)
     {
-        FXbookingMaster.shared.selectedaddresstype = sender.selectedSegmentIndex
+//        FXbookingMaster.shared.selectedaddresstype = sender.selectedSegmentIndex
+        FXbookingMaster.shared.deliveryType = sender.selectedSegmentIndex == 0 ? 2 : 1
         sender.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.colorFrom(hexString: "#FFFFFF")!], for: .selected)
 
         if sender.selectedSegmentIndex == 0
@@ -171,18 +203,29 @@ class CellSectionTwo: UITableViewCell, delegatecallbackfromFxbooking
         }
         else
         {
-            FXbookingMaster.shared.getBranchData {  success, errorcode in
-                self.collectionViewDeliveryOption.reloadData()}
-        }
+            FXbookingMaster.shared.getUserBranchDetails { success, errCode in
+                if success {
+                    print("Hit Successfully..............")
+                    self.collectionViewDeliveryOption.reloadData()}
+                }
+            }
+//            FXbookingMaster.shared.getBranchData {  success, errorcode in
+//                self.collectionViewDeliveryOption.reloadData()}
+//        } 
     }
     
     
-    @IBAction func onTapHighValue(_ sender: Any) {
-        imgMixNote.image = UIImage(named: "circleUnchecked")
-        imgHighNote.image = UIImage(named: "circleChecked")
-        
-        print("Action on High value")
-        
+    @IBAction func onTapHighValue(_ sender: Any)
+    {
+        if(imgHighNote.image == UIImage(named: "circleChecked") )
+        {
+            imgHighNote.image = UIImage(named: "circleUnchecked")
+        }
+        else
+        {
+            imgHighNote.image = UIImage(named: "circleChecked")
+            imgMixNote.image = UIImage(named: "circleUnchecked")
+        }
     }
     
     
@@ -202,6 +245,10 @@ extension CellSectionTwo : UICollectionViewDelegate,UICollectionViewDataSource,U
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CellDeliveryOption", for: indexPath) as! CellDeliveryOption
         if homeSegment.selectedSegmentIndex == 0
         {
+            if FXbookingMaster.shared.homeDataSource[indexPath.row].bIsDefault == true {
+                cell.imgStar.isHidden = false
+            }
+            else{cell.imgStar.isHidden = true}
             cell.lblFirstName.text = FXbookingMaster.shared.homeDataSource[indexPath.row].firstName ?? ""
             cell.lblAddress.text = "\(FXbookingMaster.shared.homeDataSource[indexPath.row].flat ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].floor ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].building ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].gada ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].street ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].block ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].areaCity ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].postalCode ?? "")"
             if FXbookingMaster.shared.selecytedhomeaddress == FXbookingMaster.shared.homeDataSource[indexPath.row].addressId{
@@ -226,20 +273,24 @@ extension CellSectionTwo : UICollectionViewDelegate,UICollectionViewDataSource,U
                 cell.viewCellDelivery.layer.borderColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
             }
         }
-        
+            
         return cell
     }
+    
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
         if homeSegment.selectedSegmentIndex == 0
         {
             FXbookingMaster.shared.selecytedhomeaddress = FXbookingMaster.shared.homeDataSource[indexPath.row].addressId
+            FXbookingMaster.shared.selectedhomeaddress1name = "\(FXbookingMaster.shared.homeDataSource[indexPath.row].flat ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].floor ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].building ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].gada ?? ""))"
+            FXbookingMaster.shared.selectedhomeaddress1name = "\(FXbookingMaster.shared.homeDataSource[indexPath.row].street ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].block ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].areaCity ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].postalCode ?? "")"
         }
         else
         {
             FXbookingMaster.shared.selecedbranchaddress = FXbookingMaster.shared.branchDataSource[indexPath.row].id
-
+            FXbookingMaster.shared.selectedbranchaddress1name = (FXbookingMaster.shared.branchDataSource[indexPath.row].branchAddress ?? "")
+            FXbookingMaster.shared.selectedbranchaddress2name = (FXbookingMaster.shared.branchDataSource[indexPath.row].branchCode ?? "")
         }        
         collectionView.reloadData()
     }

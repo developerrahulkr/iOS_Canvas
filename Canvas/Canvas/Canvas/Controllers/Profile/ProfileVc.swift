@@ -159,18 +159,18 @@ class ProfileVc: BaseViewController,UIImagePickerControllerDelegate,UINavigation
     
     
     //MARK:- Profile Pic Gesture Methods
-    func imageGesture()
-    {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(ProfileVc.tappedMe))
-        profileImg.addGestureRecognizer(tap)
-        profileImg.isUserInteractionEnabled = true
-    }
-    func imageGestureTwo()
-      {
-          let tap = UITapGestureRecognizer(target: self, action: #selector(ProfileVc.tappedMe))
-          imgNameLbl.addGestureRecognizer(tap)
-          imgNameLbl.isUserInteractionEnabled = true
-      }
+//    func imageGesture()
+//    {
+//        let tap = UITapGestureRecognizer(target: self, action: #selector(ProfileVc.tappedMe))
+//        profileImg.addGestureRecognizer(tap)
+//        profileImg.isUserInteractionEnabled = true
+//    }
+//    func imageGestureTwo()
+//      {
+//          let tap = UITapGestureRecognizer(target: self, action: #selector(ProfileVc.tappedMe))
+//          imgNameLbl.addGestureRecognizer(tap)
+//          imgNameLbl.isUserInteractionEnabled = true
+//      }
     
     @objc func tappedMe()
     {
@@ -300,8 +300,8 @@ class ProfileVc: BaseViewController,UIImagePickerControllerDelegate,UINavigation
         
         
         pickerImg!.delegate=self as UIImagePickerControllerDelegate & UINavigationControllerDelegate
-        imageGesture()
-        imageGestureTwo()
+//        imageGesture()
+//        imageGestureTwo()
         
       //  getProfileDetails()
            super.viewWillAppear(animated)

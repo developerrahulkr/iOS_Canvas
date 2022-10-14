@@ -183,6 +183,11 @@ class BranchLocatorFirstVc: UIViewController, UITableViewDataSource, UITableView
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(branchLocatorList[indexPath.row].id ?? 0)
+        addUserAPI(branchID: branchLocatorList[indexPath.row].id ?? 0)
+    }
+    
     /*  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
      return UITableView.automaticDimension
      }*/
@@ -225,6 +230,45 @@ class BranchLocatorFirstVc: UIViewController, UITableViewDataSource, UITableView
       self.pushViewController(controller: BranchLoctorAllBranchesMapVc.initiateController(),animated: true)
 
     }
+    
+    
+}
+
+//MARK: -   Add User Branch
+extension BranchLocatorFirstVc  {
+    
+    
+    func addUserAPI(branchID:Int){
+        let paramaterPasing: [String:Any] = ["registrationId": Global.shared.afterLoginRegistrtnId ?? "", "branchId" : branchID, "createdBy" : "Backend"]
+        let headers: HTTPHeaders = [
+            "Content-Type": "application/json"
+        ]
+        NetWorkDataManager.sharedInstance.addUserBranchDetails(headersTobePassed: headers, postParameters: paramaterPasing) { [weak self] responseData, errString in
+            guard let self = self else {return}
+            guard errString == nil else {
+                print(errString ?? "")
+                
+                let finalError = errString?.components(separatedBy: ":")
+                let alert = ViewControllerManager.displayAlert(message: finalError?[1] ?? "", title:APPLICATIONNAME)
+//                self.present(alert, animated: true, completion: nil)
+                return
+            }
+            let statusMsg = responseData?.value(forKey: "statusMessage") as? String ?? ""
+            let mesageCode = responseData?.value(forKey: "messageCode") as? String ?? statusMsg
+            if let statusCode = responseData?.value(forKey: "statusCodes") as? Int {
+                print(statusCode)
+                if(statusCode == 200) {
+                    let alert = ViewControllerManager.displayAlert(message: statusMsg, title:APPLICATIONNAME)
+                    self.present(alert, animated: true)
+                }
+                
+            }
+            
+        }
+        
+        
+    }
+    
     
     
 }

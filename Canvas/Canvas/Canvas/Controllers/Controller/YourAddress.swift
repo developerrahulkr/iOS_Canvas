@@ -69,18 +69,18 @@ extension YourAddress : UITableViewDelegate,UITableViewDataSource, YourAddressDe
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return FXbookingMaster.shared.selectedaddresstype == 0 ? FXbookingMaster.shared.homeDataSource.count : FXbookingMaster.shared.branchDataSource.count
+        return FXbookingMaster.shared.deliveryType == 2 ? FXbookingMaster.shared.homeDataSource.count : FXbookingMaster.shared.branchDataSource.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CellYourAddress") as! CellYourAddress
         cell.delegate = self
-        if FXbookingMaster.shared.selectedaddresstype == 0
+        if FXbookingMaster.shared.deliveryType == 2
         {
             cell.lblFullName.text = FXbookingMaster.shared.homeDataSource[indexPath.row].firstName ?? ""
             cell.lblAddress.text = "\(FXbookingMaster.shared.homeDataSource[indexPath.row].flat ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].floor ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].building ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].gada ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].street ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].block ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].areaCity ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].postalCode ?? "")"
-            cell.imgdefault.isHidden = !FXbookingMaster.shared.homeDataSource[indexPath.row].bIsDefault!
+            cell.imgdefault.isHidden = !FXbookingMaster.shared.homeDataSource[indexPath.row].bIsDefault
         }
         else
         {
@@ -93,6 +93,7 @@ extension YourAddress : UITableViewDelegate,UITableViewDataSource, YourAddressDe
     func updateAddress(tag: Int)
     {
         let vc = storyboard?.instantiateViewController(withIdentifier: "AddNewAddressVC") as! AddNewAddressVC
+        vc.btnSaveAddress.setTitle("Update", for: .normal)
         vc.homeAddressObj = FXbookingMaster.shared.homeDataSource[tag]
         vc.isopenforedit = true
         navigationController?.pushViewController(vc, animated: true)
@@ -153,5 +154,13 @@ extension YourAddress : UITableViewDelegate,UITableViewDataSource, YourAddressDe
             
         }
         
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return UIView()
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 100.0
     }
 }

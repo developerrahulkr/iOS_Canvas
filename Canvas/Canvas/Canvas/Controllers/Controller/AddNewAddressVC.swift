@@ -31,7 +31,9 @@ class AddNewAddressVC: UIViewController {
     
     @IBOutlet weak var tableViewAddAddress: UITableView!
     @IBOutlet weak var btnDefaultAddress: UIButton!
-    var unchecked = true
+//    var unchecked = true
+    var bIsDefault = false
+    
     
     //MARK: - VARIABLES
     
@@ -45,9 +47,16 @@ class AddNewAddressVC: UIViewController {
     
     
     //MARK: - LIFECYCLE METHODS
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
+        
+        
+        
+        
         btnCCancel.layer.cornerRadius = 3
         btnSaveAddress.layer.cornerRadius = 3
         TFFullName.TFDesign()
@@ -75,10 +84,41 @@ class AddNewAddressVC: UIViewController {
             TFAreaCity.text = homeAddressObj?.areaCity
             TFPostalCode.text = homeAddressObj?.postalCode
             TFPhoneNumber.text = homeAddressObj?.phoneNumber
+            bIsDefault = ((homeAddressObj?.bIsDefault) != nil)
+            if(bIsDefault)
+            {
+                btnDefaultAddress.setImage( UIImage(named:"checkboxActive"), for: .normal)
+
+            }
+            else
+            {
+                btnDefaultAddress.setImage(UIImage(named:"checkboxNormal"), for: .normal)
+
+            }
+
         }
+        else
+        {
+            TFFullName.text = Global.shared.firstNameTxt + " " + Global.shared.lastNameTxt
+        }
+            
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        //        lblTitle.text = "Add New Address"
+        btnSaveAddress.setTitle("Save Address", for: .normal)
     }
     
     //MARK: - ACTIONS
+    
+    
+    @IBAction func onTapAddLocation(_ sender: Any) {
+        
+        print("Add Location")
+        
+    }
+    
+    
+    
     
     @IBAction func onClickedSaveData(_ sender: UIButton)
     {
@@ -112,39 +152,39 @@ class AddNewAddressVC: UIViewController {
         
         if(fullName?.count ?? 0 == 0){
             
-            createAlert(title: appName, message: fullNameMsg)
+            createAlert(title: "", message: "Fullname is required")
             
             return false
         }
         else if(flat?.count ?? 0 == 0){
-            createAlert(title: appName, message: flatMsg)
+            createAlert(title: "", message: Global.shared.lbl_fx_1)
             
             return false
         }
         else if(floor?.count ?? 0 == 0){
             
-            createAlert(title: appName, message: floorMsg)
+            createAlert(title: "", message: Global.shared.lbl_fx_2)
             
             return false
             
         }
         else if(building?.count == 0){
-            createAlert(title: appName, message: buildingMsg)
+            createAlert(title: "", message: Global.shared.lbl_fx_3)
             return false
             
         }
         else if(gada?.count ?? 0 == 0){
             
-            createAlert(title: appName, message: gadaMsg)
+            createAlert(title: "", message: Global.shared.lbl_fx_4)
             return false
         }
         else if(street?.count ?? 0 == 0){
-            createAlert(title: appName, message: streetMsg)
+            createAlert(title: "", message: Global.shared.lbl_fx_5)
             return false
         }
         else if(block?.count ?? 0 == 0){
             
-            createAlert(title: appName, message: blockMsg)
+            createAlert(title: "", message: Global.shared.lbl_fx_6)
             return false
         }
         
@@ -172,7 +212,7 @@ extension AddNewAddressVC : UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 700
+        return 630
     }
     
     
@@ -190,7 +230,10 @@ extension AddNewAddressVC : UITableViewDelegate,UITableViewDataSource{
                                              "block" : self.TFBlock.text ?? "",
                                              "areaCity": self.TFAreaCity.text ?? "",
                                              "postalCode" : self.TFPostalCode.text ?? "",
-                                             "phoneNumber" : self.TFPhoneNumber.text ?? ""]
+                                             "phoneNumber" : self.TFPhoneNumber.text ?? "",
+                                             "bIsDefault" : self.bIsDefault
+                    
+                            ]
         let headers: HTTPHeaders = [
             "Content-Type": "application/json"
         ]
@@ -224,18 +267,19 @@ extension AddNewAddressVC : UITableViewDelegate,UITableViewDataSource{
         }
     }
     
-    @IBAction func onTapDefaultAddress(_ sender: Any) {
-            if unchecked {
-                btnDefaultAddress.setImage(UIImage(named:"checkboxActive"), for: .normal)
-                    unchecked = false
-                }
-                else {
-                    btnDefaultAddress.setImage( UIImage(named:"checkboxNormal"), for: .normal)
-                    unchecked = true
-                }
-
-            //        checkboxActive
+    @IBAction func onTapDefaultAddress(_ sender: Any)
+    {
+        if(bIsDefault)
+        {
+            btnDefaultAddress.setImage(UIImage(named:"checkboxNormal"), for: .normal)
+            bIsDefault = false
         }
+        else
+        {
+            btnDefaultAddress.setImage( UIImage(named:"checkboxActive"), for: .normal)
+            bIsDefault = true
+        }
+    }
     
     //    MARK: - Update Home Address
     
@@ -251,7 +295,9 @@ extension AddNewAddressVC : UITableViewDelegate,UITableViewDataSource{
                                              "block" : TFBlock.text ?? "",
                                              "areaCity" : TFAreaCity.text ?? "",
                                              "postalCode" : TFPostalCode.text ?? "",
-                                             "phoneNumber" : TFPhoneNumber.text ?? ""]
+                                             "phoneNumber" : TFPhoneNumber.text ?? "",
+                                             "bIsDefault" : self.bIsDefault
+                                            ]
         let headers: HTTPHeaders = [
             "Content-Type": "application/json"
         ]
@@ -259,7 +305,7 @@ extension AddNewAddressVC : UITableViewDelegate,UITableViewDataSource{
         
         NetWorkDataManager.sharedInstance.updateHomeAddress(headersTobePassed: headers, postParameters: paramaterPasing){responseData,errString in
             self.removeSpinner()
-            
+            print(responseData)
             guard errString == nil else {
                 print(errString ?? "")
                 self.removeSpinner()

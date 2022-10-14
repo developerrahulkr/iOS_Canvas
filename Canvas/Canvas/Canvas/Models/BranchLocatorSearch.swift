@@ -9,11 +9,12 @@
 import Foundation
 import Foundation
 struct BranchLocatorSearch {
-  let branchAddress: String?
-  let branchName: String?
+    let branchAddress: String?
+    let branchName: String?
     let latitude: String?
     let longitude: String?
     let phone: String?
+    let id : Int?
    
  
   static func getBranches(_ json: [[String:Any]]) -> [BranchLocatorSearch] {
@@ -22,7 +23,7 @@ struct BranchLocatorSearch {
   
       return BranchLocatorSearch(branchAddress: branchLocatorJson["branchAddress"] as? String,
                      branchName: branchLocatorJson["branchName"] as? String,latitude: branchLocatorJson["latitude"] as? String,
-                     longitude: branchLocatorJson["longitude"] as? String,phone: branchLocatorJson["phone"] as? String)
+                                 longitude: branchLocatorJson["longitude"] as? String,phone: branchLocatorJson["phone"] as? String, id: branchLocatorJson["id"] as? Int)
     }
     return branchLocatorList
   }

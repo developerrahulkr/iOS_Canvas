@@ -34,7 +34,7 @@ struct CMBookingHomeAddress : Codable{
      var createdDate : String?
      var updatedDate : String?
      var registrationId : String?
-     var bIsDefault : Bool?
+     var bIsDefault : Bool = false
      var latitude : String?
      var longitude : String?
      var isselected : Bool = false

@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import Alamofire
 
-class TransactionSummaryVC: UIViewController, navigateToDiffrentScreenDelegate {
+class TransactionSummaryVC: UIViewController, navigateToDiffrentScreenDelegate, protocolTermAndCondition {
+    
+    
     
     
     
@@ -42,6 +45,8 @@ class TransactionSummaryVC: UIViewController, navigateToDiffrentScreenDelegate {
     
     //MARK: - VARIABLES
     var tempForSummaryCount = 0
+    var termsConditionsResponse = [Any]()
+    
     
     
     
@@ -49,7 +54,7 @@ class TransactionSummaryVC: UIViewController, navigateToDiffrentScreenDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        lblTotalAmount.text = "\(FXbookingMaster.shared.netamount) \nKWD"
+        lblTotalAmount.text = "\(FXbookingMaster.shared.netamount) KWD"
         FXbookingMaster.shared.getData()
         tableViewTransaction.allowsSelection = false
         
@@ -80,6 +85,10 @@ class TransactionSummaryVC: UIViewController, navigateToDiffrentScreenDelegate {
         // Do any additional setup after loading the view.
         langTranslation()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = true
+    }
+    
     //MARK: - ACTIONS
     func langTranslation() {
         lblRate.text = Global.shared.rate
@@ -108,12 +117,27 @@ class TransactionSummaryVC: UIViewController, navigateToDiffrentScreenDelegate {
     }
     //MARK: - FUNCTIONS
     
+    func funcTermsAndContions(btnTerm: Int) {
+        let popOverVC = Storyboad.shared.mainStoryboard?.instantiateViewController(withIdentifier: "WuSecndTermsConditions") as! WuSecndTermsConditions
+        self.addChild(popOverVC)
+        popOverVC.isSummeryTerm = true
+        popOverVC.view.frame = self.view.frame
+        self.view.addSubview(popOverVC.view)
+        popOverVC.didMove(toParent: self)
+//        getTermsConditions()
+    }
+    
     
     
 }
 //MARK: - EXTENSIONS
 
 extension TransactionSummaryVC: UITableViewDelegate,UITableViewDataSource, TransectionActionDelegate{
+    
+    func onClickbackDelagate() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     
     
     
@@ -147,8 +171,18 @@ extension TransactionSummaryVC: UITableViewDelegate,UITableViewDataSource, Trans
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "CellCurrencyData", for: indexPath) as! CellCurrencyData
             cell.lblFCAmount.text = FXbookingMaster.shared.fxBookingDataSource[indexPath.row].amountTo
-            cell.lblLCAmount.text = "\(FXbookingMaster.shared.fxBookingDataSource[indexPath.row].amountFrom) KWD"
-            cell.lblFinalTxt.text = "1 \(FXbookingMaster.shared.fxBookingDataSource[indexPath.row].amountTo) = \(FXbookingMaster.shared.fxBookingDataSource[indexPath.row].actualRate)"
+            let amountFrom = FXbookingMaster.shared.fxBookingDataSource[indexPath.row].amountFrom
+            if let lcAmounnt = Double(amountFrom) {
+                print("Float value = \(lcAmounnt)")
+                let lvAmnt = String(format: "%.3f", lcAmounnt)
+                cell.lblLCAmount.text =  "\(lvAmnt) KWD"
+            } else {
+                print("String does not contain Float")
+            }
+            
+            
+//            cell.lblLCAmount.text = "\(FXbookingMaster.shared.fxBookingDataSource[indexPath.row].amountFrom) KWD"
+            cell.lblFinalTxt.text = "1 \(FXbookingMaster.shared.fxBookingDataSource[indexPath.row].currenyCodeTo) = \(FXbookingMaster.shared.fxBookingDataSource[indexPath.row].actualRate)"
             cell.imgFlag.image = UIImage(named: FXbookingMaster.shared.fxBookingDataSource[indexPath.row].countryCode.lowercased())
             cell.lblCurrencyCode.text = FXbookingMaster.shared.fxBookingDataSource[indexPath.row].currenyCodeTo
             return cell
@@ -160,10 +194,11 @@ extension TransactionSummaryVC: UITableViewDelegate,UITableViewDataSource, Trans
             cell.lblRemarks.text = "\(Global.shared.remarks ?? "") : "
             cell.lblDelivery.text = "\(Global.shared.delivery_type ?? "") : "
             cell.lblDateAndTime.text = "\(Global.shared.date_timeslot ?? "") : "
-            cell.lblAddress.text = "\(FXbookingMaster.shared.homeDataSource[indexPath.row].flat ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].floor ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].building ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].gada ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].street ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].block ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].areaCity ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].postalCode ?? "")"
-            cell.lblDateTime.text = FXbookingMaster.shared.selectedtimeslot
-            cell.lblDeliveryType.text = FXbookingMaster.shared.deliveryType
+            cell.lblAddress.text = FXbookingMaster.shared.selectedhomeaddress1name
+            cell.lblDateTime.text = "\(FXbookingMaster.shared.selecteddateslot) | \(FXbookingMaster.shared.selectedtimeslot)"
+            cell.lblDeliveryType.text = FXbookingMaster.shared.deliveryType == 2 ? "Home" : "Branch"
             cell.lblPurposeTrnf.text = FXbookingMaster.shared.selectedpurpose
+            cell.lblRemark.text = FXbookingMaster.shared.deliveryinstruction
             return cell
         }
         else if indexPath.section == 2{
@@ -179,7 +214,8 @@ extension TransactionSummaryVC: UITableViewDelegate,UITableViewDataSource, Trans
             
             else if indexPath.row == FXbookingMaster.shared.dataSource.count - 1{
                 cell.lblLeft.text = Global.shared.you_pay
-                cell.lblRight.text = "Total Amount"
+                
+                cell.lblRight.text = "\((Float(FXbookingMaster.shared.netamount) ?? 0.0) + 1.0)"
                 cell.lblRight.textColor = .white
                 cell.contentView.backgroundColor = .gray
                 cell.lblLeft.textColor = .white
@@ -196,11 +232,11 @@ extension TransactionSummaryVC: UITableViewDelegate,UITableViewDataSource, Trans
         }
         else{                   //MARK: Section 3rd cell
             let cell = tableView.dequeueReusableCell(withIdentifier: "CellTermsAndConditions", for: indexPath) as! CellTermsAndConditions
-            cell.lblNote.text = Global.shared.note
             cell.lblTermAndConditions.setTitle(Global.shared.terms, for: .normal)
             cell.btnPay.setTitle(Global.shared.pay, for: .normal)
             cell.btnBack.setTitle(Global.shared.back, for: .normal)
             cell.delegate = self
+            cell.varDelegate = self
             return cell
         }
     }
@@ -234,15 +270,24 @@ extension TransactionSummaryVC: UITableViewDelegate,UITableViewDataSource, Trans
         else {return 0.01}
     }
     
-    func onClickPayDelagate() {
-        print("Woring Delegate")
-//                FXbookingMaster.shared.cretefctransaction()
-        let vc = Storyboad.shared.fxBookingStoryboard?.instantiateViewController(withIdentifier: "FinalSummaryVC") as! FinalSummaryVC
-        navigationController?.pushViewController(vc, animated: true)
-//        BeneficiaryDetails.shared.txnRefNo = ""
-//                    self.pushViewController(controller: BenefPaymentWebViewVc.initiateController())
-//        let vc = Storyboad.shared.mainStoryboard?.instantiateViewController(withIdentifier: "BenefPaymentWebViewVc") as! BenefPaymentWebViewVc
-//        self.navigationController?.pushViewController(vc, animated: true)
+    func onClickPayDelagate()
+    {
+        if let cell = tableViewTransaction.cellForRow(at: IndexPath(row: 0, section: 3)) as? CellTermsAndConditions
+        {
+            if(cell.btncheck.isSelected)
+            {
+                self.cretefctransaction()
+            }
+            else
+            {
+                let alert = ViewControllerManager.displayAlert(message: Global.shared.acceptTermsCondtnsAlert, title:"")
+                self.present(alert, animated: true, completion: nil)
+                return
+            }
+        }
+
+//        let vc = Storyboad.shared.fxBookingStoryboard?.instantiateViewController(withIdentifier: "FinalSummaryVC") as! FinalSummaryVC
+//        navigationController?.pushViewController(vc, animated: true)
     }
     //Menu Delegate
     
@@ -257,6 +302,95 @@ extension TransactionSummaryVC: UITableViewDelegate,UITableViewDataSource, Trans
         
     }
     
+    
+    func cretefctransaction()
+    {
+
+        let fccurrencydict = FXbookingMaster.shared.fxBookingDataSource.map {
+            ["type": "S",
+             "fcCurrencyCode": $0.currenyCodeTo,
+             "fcAmount": NSDecimalNumber(string: $0.amountTo.replacingOccurrences(of: ",", with: "", options: .literal, range: nil)) ,
+             "lcAmount": NSDecimalNumber(string: $0.amountFrom.replacingOccurrences(of: ",", with: "", options: .literal, range: nil)),
+             "rate": NSDecimalNumber(string: $0.rate.replacingOccurrences(of: ",", with: "", options: .literal, range: nil))]
+            }
+        self.showSpinner(onView: self.view)
+        let paramaterPasing: [String:Any] =
+        [
+            "sessionId": FXbookingMaster.shared.fxsessionid,
+            "registrationId": Global.shared.afterLoginRegistrtnId ?? "",
+            "txnRefNo": "",
+            "remID": "421186897",
+            "commAmount":NSDecimalNumber(string: "0.0".replacingOccurrences(of: ",", with: "", options: .literal, range: nil)),
+            "netAmt": NSDecimalNumber(string: FXbookingMaster.shared.netamount.replacingOccurrences(of: ",", with: "", options: .literal, range: nil)),
+            "payMode": 1,
+            "soi": "SALARY",
+            "pot": "FAM",
+            "remarks": FXbookingMaster.shared.deliveryinstruction,
+            "cashierID": "9998",
+            "entity": "201",
+            "promoCode": "",
+            "deliveryType": FXbookingMaster.shared.deliveryType,
+            "objectReferenceID": "\(FXbookingMaster.shared.deliveryType == 2 ? FXbookingMaster.shared.selecytedhomeaddress! : FXbookingMaster.shared.selecedbranchaddress!)",
+            "timeSlot": FXbookingMaster.shared.selectedtimeslot,
+            "denomination": FXbookingMaster.shared.deminations,
+            "purposeOfTransfer": FXbookingMaster.shared.selectedpurpose,
+            "selectedDate": FXbookingMaster.shared.selecteddateslot,
+            "deliveryInsruction": FXbookingMaster.shared.deliveryinstruction,
+            "remitterAddress1": "\(FXbookingMaster.shared.deliveryType == 2 ? FXbookingMaster.shared.selectedhomeaddress1name : FXbookingMaster.shared.selectedbranchaddress1name)",
+            "remitterAddress2": "\(FXbookingMaster.shared.deliveryType == 2 ? FXbookingMaster.shared.selectedhomeaddress2name : FXbookingMaster.shared.selectedbranchaddress2name)",
+            "fcDetails": fccurrencydict
+        ]
+        
+            let hmacResult2: String = Global.shared.publicKeyStr.hmac(algorithm: HMACAlgorithm.SHA512, key: Global.shared.privateKeyStr)
+            var headers = HTTPHeaders()
+            if let authToken = UserDefaults.standard.string(forKey: "token") {
+                headers  = [.authorization(bearerToken: authToken)]
+
+                    headers["x-publickey"] = Global.shared.publicKeyStr
+                    headers["x-client"] = hmacResult2
+                    headers["x-hash"] = ""
+                    headers["sessionId"] = FXbookingMaster.shared.fxsessionid
+
+            }
+        NetWorkDataManager.sharedInstance.hitcreatefctransaction(headersToBePassed: headers, postParameter: paramaterPasing) { [weak self] responseData, errString in
+            self!.removeSpinner()
+
+            guard let self = self else {return}
+            guard errString == nil else {
+                print(errString ?? "")
+//                let vc = Storyboad.shared.fxBookingStoryboard?.instantiateViewController(withIdentifier: "BenefPaymentWebViewVc") as! BenefPaymentWebViewVc
+                
+
+
+
+                
+//                let finalError = errString?.components(separatedBy: ":")
+//                let alert = ViewControllerManager.displayAlert(message: finalError?[1] ?? "", title:APPLICATIONNAME)
+//                self.present(alert, animated: true, completion: nil)
+                return
+            }
+            let statusMsg = responseData?.value(forKey: "statusMessage") as? String ?? ""
+            let mesageCode = responseData?.value(forKey: "messageCode") as? String ?? statusMsg
+            if let statusCode = responseData?.value(forKey: "statusCodes") as? Int {
+                print(statusCode)
+                if(statusCode == 200)  {
+                    let dict = responseData?.value(forKey: "fcTransactionResult") as! Dictionary<String,Any>
+                    
+                    FXbookingMaster.shared.txnRefNo = dict["txnRefNo"] as! String
+                   
+                    let vc = Storyboad.shared.mainStoryboard?.instantiateViewController(withIdentifier: "BenefPaymentWebViewVc") as! BenefPaymentWebViewVc
+                    vc.isfromfxbooking = true
+                    self.navigationController?.pushViewController(vc, animated: true)
+//                    self.navigationController?.pushViewController(vc, animated: true)
+
+//                    self.pushViewController(controller: BenefPaymentWebViewVc.initiateController())
+                }else{
+                    let alert = ViewControllerManager.displayAlert(message:Global.shared.messageCodeType(text: mesageCode), title:APPLICATIONNAME)
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }
+        }
+    }
 }
 
 

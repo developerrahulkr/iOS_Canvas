@@ -1599,7 +1599,7 @@ func appVersionControl(headersTobePassed : HTTPHeaders,postParameters :[String:A
         
         
         AF.request(apiUlr, method: .post, parameters: postParameters, encoding:
-            JSONEncoding.default, headers: headers).responseJSON
+            JSONEncoding.default, headers: headersWithAuthorization).responseJSON
             { response in
                 let completion = self.dealWithDictResponse(response: response)
                 completionHandler(completion.0, completion.1)
@@ -1629,9 +1629,10 @@ func appVersionControl(headersTobePassed : HTTPHeaders,postParameters :[String:A
     
     func hitcreatefctransaction(headersToBePassed : HTTPHeaders,postParameter : [String:Any],completionHadler: @escaping (NSDictionary?, String?) ->()){
             let apiUrl = CanvasUrls.baseUrl + CanvasUrls.versionNumber + CanvasUrls.createfxtransaction
-            
+            print(postParameter)
             AF.request(apiUrl, method: .post, parameters: postParameter, encoding: JSONEncoding.default, headers: headersWithAuthorization).responseJSON{
                 response in
+                print(response)
                 let competion = self.dealWithDictResponse(response: response)
                 completionHadler(competion.0, competion.1)
             }
@@ -1647,8 +1648,70 @@ func appVersionControl(headersTobePassed : HTTPHeaders,postParameters :[String:A
             completionHandeler(competion.0, competion.1)
         }
     }
-
-
+    
+    func fxvoucherSendEmailImplimentation(headersTobePassed : HTTPHeaders,postParameters :[String:Any],completionHandler: @escaping (NSDictionary?, String?) -> ())
+    {
+        
+        let apiUlr = CanvasUrls.baseUrl +  CanvasUrls.versionNumber + CanvasUrls.fxsharefxvoucher
+        
+        AF.request(apiUlr, method: .post, parameters: postParameters, encoding:
+            JSONEncoding.default, headers: headersWithAuthorization).responseJSON
+            { response in
+                
+                let completion = self.dealWithDictResponse(response: response)
+                completionHandler(completion.0, completion.1)
+        }
+    }
+    
+    func fxVoucherPdfImplimentation(headersTobePassed : HTTPHeaders,postParameters :[String:Any],completionHandler: @escaping (NSDictionary?, String?) -> ())
+    {
+        
+        let apiUlr = CanvasUrls.baseUrl +  CanvasUrls.versionNumber + CanvasUrls.downloadfxvoucher
+        print(apiUlr)
+        print(postParameters)
+        
+        AF.request(apiUlr, method: .post, parameters: postParameters, encoding:
+            JSONEncoding.default, headers: headersWithAuthorization).responseJSON
+            { response in
+                
+                let completion = self.dealWithDictResponse(response: response)
+                completionHandler(completion.0, completion.1)
+        }
+    }
+    //MARK: FXBooking Get Branch Details (14/oct/2022)
+    func getUserBranchDetails(headersTobePassed : HTTPHeaders,postParameters :[String:Any],completionHandler: @escaping (NSDictionary?, String?) -> ())
+    {
+        
+        let apiUlr = CanvasUrls.baseUrl +  CanvasUrls.versionNumber + CanvasUrls.get_user_branch_details_url
+        print(apiUlr)
+        print(postParameters)
+        
+        AF.request(apiUlr, method: .post, parameters: postParameters, encoding:
+            JSONEncoding.default, headers: headersWithAuthorization).responseJSON
+            { response in
+                
+                let completion = self.dealWithDictResponse(response: response)
+                completionHandler(completion.0, completion.1)
+        }
+    }
+    //MARK: FXBooking add user Branch Details (14/oct/2022)
+    
+    func addUserBranchDetails(headersTobePassed : HTTPHeaders,postParameters :[String:Any],completionHandler: @escaping (NSDictionary?, String?) -> ())
+    {
+        
+        let apiUlr = CanvasUrls.baseUrl +  CanvasUrls.versionNumber + CanvasUrls.add_user_branch
+        print(apiUlr)
+        print(postParameters)
+        
+        AF.request(apiUlr, method: .post, parameters: postParameters, encoding:
+            JSONEncoding.default, headers: headersWithAuthorization).responseJSON
+            { response in
+                
+                let completion = self.dealWithDictResponse(response: response)
+                completionHandler(completion.0, completion.1)
+        }
+    }
+    
     
     
 }

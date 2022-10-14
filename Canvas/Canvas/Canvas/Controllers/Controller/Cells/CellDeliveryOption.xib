@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -28,8 +28,8 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="asd" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cb9-4p-Dog">
-                                <rect key="frame" x="5" y="33.5" width="163" height="23.5"/>
-                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="17"/>
+                                <rect key="frame" x="5" y="33.5" width="163" height="19.5"/>
+                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="14"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="locationRed" translatesAutoresizingMaskIntoConstraints="NO" id="os7-yg-WIj">
@@ -48,12 +48,22 @@
                                 <color key="textColor" red="0.61176470588235299" green="0.81568627450980391" blue="0.90980392156862744" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star_icon" translatesAutoresizingMaskIntoConstraints="NO" id="Z42-Wh-UmA">
+                                <rect key="frame" x="156.5" y="5" width="16.5" height="23.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="23.5" id="3YV-No-Rfo"/>
+                                    <constraint firstAttribute="width" constant="16.5" id="bhy-XN-Q2c"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="JMI-Jk-P8t" firstAttribute="leading" secondItem="os7-yg-WIj" secondAttribute="trailing" constant="6" id="0U6-zu-Yim"/>
                             <constraint firstItem="NAF-f9-Ghm" firstAttribute="top" secondItem="3w0-Yw-FlO" secondAttribute="top" constant="5" id="3AG-fi-121"/>
+                            <constraint firstItem="Z42-Wh-UmA" firstAttribute="top" secondItem="NAF-f9-Ghm" secondAttribute="top" id="86f-ds-aNf"/>
+                            <constraint firstAttribute="trailing" secondItem="Z42-Wh-UmA" secondAttribute="trailing" constant="5" id="C3d-7g-dB0"/>
                             <constraint firstItem="os7-yg-WIj" firstAttribute="bottom" secondItem="JMI-Jk-P8t" secondAttribute="bottom" id="J0M-4e-0bj"/>
+                            <constraint firstItem="Z42-Wh-UmA" firstAttribute="bottom" secondItem="NAF-f9-Ghm" secondAttribute="bottom" id="Ozn-Cl-aeI"/>
                             <constraint firstAttribute="bottom" secondItem="JMI-Jk-P8t" secondAttribute="bottom" constant="3" id="Wy4-8b-FCB"/>
                             <constraint firstItem="os7-yg-WIj" firstAttribute="leading" secondItem="cb9-4p-Dog" secondAttribute="leading" id="Z5H-K9-KpY"/>
                             <constraint firstItem="NAF-f9-Ghm" firstAttribute="leading" secondItem="3w0-Yw-FlO" secondAttribute="leading" constant="5" id="bpr-Wg-ZUf"/>
@@ -61,8 +71,8 @@
                             <constraint firstAttribute="trailing" secondItem="cb9-4p-Dog" secondAttribute="trailing" constant="10" id="ddC-Cq-Kwj"/>
                             <constraint firstItem="os7-yg-WIj" firstAttribute="top" secondItem="JMI-Jk-P8t" secondAttribute="top" id="eTd-uc-AHc"/>
                             <constraint firstItem="cb9-4p-Dog" firstAttribute="top" secondItem="NAF-f9-Ghm" secondAttribute="bottom" constant="5" id="iAJ-DW-J5h"/>
-                            <constraint firstItem="os7-yg-WIj" firstAttribute="top" relation="greaterThanOrEqual" secondItem="cb9-4p-Dog" secondAttribute="bottom" constant="20" id="keJ-sd-yfg"/>
                             <constraint firstAttribute="trailing" secondItem="JMI-Jk-P8t" secondAttribute="trailing" constant="15" id="w6w-65-Qyg"/>
+                            <constraint firstItem="os7-yg-WIj" firstAttribute="top" relation="greaterThanOrEqual" secondItem="cb9-4p-Dog" secondAttribute="bottom" constant="5" id="ygq-NM-dOR"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -77,6 +87,7 @@
             </constraints>
             <size key="customSize" width="115" height="105"/>
             <connections>
+                <outlet property="imgStar" destination="Z42-Wh-UmA" id="URe-1b-c2q"/>
                 <outlet property="lblAddress" destination="cb9-4p-Dog" id="oIZ-pQ-Xhd"/>
                 <outlet property="lblFirstName" destination="NAF-f9-Ghm" id="Idd-ZO-dB4"/>
                 <outlet property="lblLocation" destination="JMI-Jk-P8t" id="pJo-WD-puc"/>
@@ -87,6 +98,7 @@
     </objects>
     <resources>
         <image name="locationRed" width="66" height="66"/>
+        <image name="star_icon" width="16.5" height="15.5"/>
         <systemColor name="tintColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
