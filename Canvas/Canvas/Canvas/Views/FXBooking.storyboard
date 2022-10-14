@@ -1436,7 +1436,6 @@
                                         </constraints>
                                         <state key="normal" image="language-change"/>
                                         <connections>
-                                            <action selector="languageChangeActn:" destination="NjJ-Lu-3fV" eventType="touchUpInside" id="Mpj-pG-h67"/>
                                             <action selector="onClickedChangeLang:" destination="NjJ-Lu-3fV" eventType="touchUpInside" id="PU2-nj-6NU"/>
                                         </connections>
                                     </button>
