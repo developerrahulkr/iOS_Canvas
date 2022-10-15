@@ -465,7 +465,7 @@ extension FXBookingVC: UITableViewDelegate,UITableViewDataSource,Delete{
             let cell = tableView.dequeueReusableCell(withIdentifier: "CellSectionTwo", for: indexPath) as! CellSectionTwo
             cell.selectionStyle = .none
             cell.TFTimeSlot.placeholder = Global.shared.timeslot
-            cell.TFSelectDate.placeholder = Global.shared.select_date
+            cell.TFSelectDate.placeholder = Global.shared.preferred_date
             cell.lblPurpose.text = "\(Global.shared.purpose!) *"
             cell.homeSegment.setTitle(Global.shared.home, forSegmentAt: 0)
             cell.homeSegment.setTitle(Global.shared.branch, forSegmentAt: 1)
@@ -888,7 +888,7 @@ extension FXBookingVC {
     
     //    MARK: - GetTime Slot Data
     func getTimeSlotData() {
-        self.selectDateDataSource.removeAll()
+        self.fxTimemSlotDataSource.removeAll()
         let paramaterPasing: [String:Any] = ["languageCode":LocalizationSystem.sharedInstance.getLanguage()]
         
         
