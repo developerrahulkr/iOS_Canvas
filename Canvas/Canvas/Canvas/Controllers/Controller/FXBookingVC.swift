@@ -777,6 +777,88 @@ extension FXBookingVC {
 
     }
     
+    
+    // Mark: Downloading data for fc calculator
+    func downloadAccountConfigCountriesFc() {
+        
+        let paramaterPasing: [String:Any] = ["languageCode":LocalizationSystem.sharedInstance.getLanguage(),
+                                             "type": 6]
+        
+        
+        let headers: HTTPHeaders = [
+            "Content-Type": "application/json"
+        ]
+        
+        NetWorkDataManager.sharedInstance.countryListImplimentation(headersTobePassed: headers, postParameters: paramaterPasing) { resonseTal , errorString in
+            
+            if errorString == nil
+            {
+                
+                print(resonseTal!)
+              if let countres = resonseTal?.value(forKey: "countriesList") as? [[String: Any]] {
+              //  Global.shared.countrisBank = Country.getCountries(countres)
+                Global.shared.countrisAllFc = countres
+
+              }
+                if let countries = resonseTal?.value(forKey: "countriesList") as? NSArray {
+                    print(countries)
+                    //please check country
+                    
+                    
+                    if let countryName = countries.value(forKey: "countryName") as? [String] {
+                        Global.shared.countryNameDataFc = countryName
+                    }
+                    if let countryCode = countries.value(forKey: "countryCode") as? [String] {
+                        Global.shared.countryCodesDataFc = countryCode
+                    }
+                    if let currency = countries.value(forKey: "countryCurrency") as? [String] {
+                        Global.shared.currencyCodesDataFc = currency
+                    }
+                    if let currencyNames = countries.value(forKey: "currencyName") as? [String] {
+                        Global.shared.currencyNameDataFc = currencyNames
+                    }
+                    
+                    if let phoneCodes = countries.value(forKey: "phoneCode") as? [String] {
+                                           Global.shared.phoneCodesDataFc = phoneCodes
+                                       }
+                    
+                    for i in 0..<Global.shared.currencyCodesDataFc.count {
+                        Global.shared.pickerResponseOnlyCurrencyDataFc.append(["value":  Global.shared.currencyCodesDataFc[i], "display":  Global.shared.currencyCodesDataFc[i]])
+                    }
+                    
+                    for i in 0..<Global.shared.currencyNameDataFc.count {
+                        Global.shared.pickerResponseFullCurrencyNameDataFc.append(["value":  Global.shared.currencyNameDataFc[i], "display":  Global.shared.currencyNameDataFc[i]])
+                    }
+                    
+                    
+                    for i in 0..<Global.shared.countryNameDataFc.count {
+                        Global.shared.pickerResponseCountryDataFc.append(["value": Global.shared.countryNameDataFc[i], "display": Global.shared.countryNameDataFc[i]])
+                    }
+                    
+                    /*    for i in 0..<self.countryNameData.count {
+                     self.pickerResponseData.append(["value": self.countryCodeData[i], "display": self.countryNameData[i]])
+                     }*/
+                    
+                    
+                }
+                //       print(self.pickerResponseData)
+                self.removeSpinner()
+                
+            }
+                
+            else
+            {
+                print(errorString!)
+                self.removeSpinner()
+                let finalError = errorString?.components(separatedBy: ":")
+                let alert = ViewControllerManager.displayAlert(message: finalError?[1] ?? "", title:APPLICATIONNAME)
+                self.present(alert, animated: true, completion: nil)
+                
+            }
+        }
+        
+    }
+    
     // Mark: Calculating the rate when entered in target field
     
     //    func rateCalculatorThey() {

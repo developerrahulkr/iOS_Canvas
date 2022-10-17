@@ -69,8 +69,9 @@ class CustomTabBarVc: UITabBarController {
         
         let myTabBarItem4 = (self.tabBar.items?[3])! as UITabBarItem
 //        myTabBarItem4.image = UIImage(named: "fxbooking-icon")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
-        myTabBarItem4.selectedImage = UIImage(named: "profileSelected")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
-        myTabBarItem4.title = Global.shared.profileTab
+        myTabBarItem4.image = UIImage(named: "fxbooking-icon")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+        myTabBarItem4.title = "FX Booking"
+//        myTabBarItem4.title = Global.shared.fxbookingTitle
         
     }
     /* override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {

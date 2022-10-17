@@ -42,7 +42,7 @@ class AddNewAddressVC: UIViewController, MapDelgate {
     @IBOutlet weak var btnDefaultAddress: UIButton!
 //    var unchecked = true
     var bIsDefault = false
-    
+    var titelText = 0
     
     //MARK: - VARIABLES
     
@@ -62,8 +62,10 @@ class AddNewAddressVC: UIViewController, MapDelgate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
+        if titelText == 1 {
+            lblTitle.text = "Update Address"
+        }
+        else {lblTitle.text = "Add New Address"}
         
         
         
@@ -116,6 +118,7 @@ class AddNewAddressVC: UIViewController, MapDelgate {
     }
     override func viewWillDisappear(_ animated: Bool) {
         //        lblTitle.text = "Add New Address"
+        lblTitle.text = "Add New Address"
         btnSaveAddress.setTitle("Save Address", for: .normal)
     }
     

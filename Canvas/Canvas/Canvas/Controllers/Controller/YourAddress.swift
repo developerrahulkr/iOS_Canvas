@@ -10,6 +10,7 @@ import Alamofire
 
 class YourAddress: UIViewController {
     
+    
     @IBOutlet weak var tableViewYourAddress: UITableView!
     @IBOutlet weak var btnAdd: UIButton!
 //    var homeDataSource : [CMBookingHomeAddress] = {
@@ -94,6 +95,8 @@ extension YourAddress : UITableViewDelegate,UITableViewDataSource, YourAddressDe
     {
         let vc = storyboard?.instantiateViewController(withIdentifier: "AddNewAddressVC") as! AddNewAddressVC
         vc.btnSaveAddress.setTitle("Update", for: .normal)
+        vc.titelText = 1
+//        vc.lblTitle.text = "Update Address"
         vc.homeAddressObj = FXbookingMaster.shared.homeDataSource[tag]
         vc.isopenforedit = true
         navigationController?.pushViewController(vc, animated: true)
