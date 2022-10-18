@@ -85,10 +85,13 @@ extension CalanderPopupVC : UITableViewDelegate, UITableViewDataSource{
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CalanderCell", for: indexPath) as! CalanderCell
+        cell.lblCalander.font = UIFont.systemFont(ofSize: 14.0)
         if screenType == .calander {
             cell.lblCalander.text = item[indexPath.row].sDate
+            
         }else{
             cell.lblCalander.text = timeSlotData[indexPath.row].name
+            
         }
         
         return cell
@@ -97,7 +100,7 @@ extension CalanderPopupVC : UITableViewDelegate, UITableViewDataSource{
     
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80.0
+        return 43.5
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

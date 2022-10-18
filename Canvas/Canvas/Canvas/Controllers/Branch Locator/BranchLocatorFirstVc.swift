@@ -203,6 +203,7 @@ class BranchLocatorFirstVc: UIViewController, UITableViewDataSource, UITableView
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -258,6 +259,16 @@ extension BranchLocatorFirstVc  {
             if let statusCode = responseData?.value(forKey: "statusCodes") as? Int {
                 print(statusCode)
                 if(statusCode == 200) {
+                    FXbookingMaster.shared.getUserBranchDetails { success, errCode in
+                        if success {
+                            print("Hit Successfully..............")
+                            let alert = ViewControllerManager.displayAlert(message: statusMsg, title:APPLICATIONNAME)
+                            self.present(alert, animated: true)
+                            self.searchTbleView.reloadData()
+                        }
+                    }
+                    
+                }else{
                     let alert = ViewControllerManager.displayAlert(message: statusMsg, title:APPLICATIONNAME)
                     self.present(alert, animated: true)
                 }

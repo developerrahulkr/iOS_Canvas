@@ -408,13 +408,20 @@ class FinalSummaryVC: UIViewController {
                 if let youPay = fxBookingModel?.youPay{
                     cell.lblLCValue.text = String(youPay)
                 }
-                if  fxBookingModel?.status != 1{
+                if  fxBookingModel?.status != 2{
                     cell.viewSuccessFailure.borderWidth = 1
                     cell.viewSuccessFailure.borderColor = #colorLiteral(red: 1, green: 0, blue: 0, alpha: 1)
                     cell.imgFailSuccess.image = UIImage(named: "failed")
                     cell.viewSuccessFailure.backgroundColor = #colorLiteral(red: 1, green: 0, blue: 0, alpha: 0.1669523732)
                     cell.lblSuccessFailure.text = "Cancelled" //217,58,50
                     cell.lblSuccessFailure.textColor = #colorLiteral(red: 0.8885897398, green: 0.317481935, blue: 0.2528121173, alpha: 1)
+                }else{
+                    cell.viewSuccessFailure.borderWidth = 0.5
+                    cell.viewSuccessFailure.borderColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
+                    cell.imgFailSuccess.image = UIImage(named: "success")
+                    cell.viewSuccessFailure.backgroundColor = UIColor.fromHex(hexString: "#DBF2F2")
+                    cell.lblSuccessFailure.text = "Success" //217,58,50
+                    cell.lblSuccessFailure.textColor = UIColor.fromHex(hexString: "#436A6C")
                 }
                 
                 cell.delegate = self

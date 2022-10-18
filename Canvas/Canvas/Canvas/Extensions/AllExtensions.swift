@@ -52,7 +52,9 @@ extension UIViewController {
         }
         else if screen == Global.shared.lbl_fxbooking {
             let vc : FXBookingVC = .fxBookingInitiated()
+            FXbookingMaster.shared.iscomefromtab = true
             self.pushViewController(controller: vc)
+            
             self.tabBarController?.selectedIndex = 3
             
             

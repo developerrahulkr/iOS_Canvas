@@ -94,9 +94,17 @@ class CustomTabBarVc: UITabBarController {
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         if myTabBar.selectedItem == self.tabBar.items?[3] {
-            print("FXBooking......")
-            let vc = Storyboad.shared.fxBookingStoryboard?.instantiateViewController(withIdentifier: "FXBookingVC") as! FXBookingVC
-            self.navigationController?.pushViewController(vc, animated: true)
+            
+            FXbookingMaster.shared.iscomefromtab = true
+//            let myTabBarItem4 = (self.tabBar.items?[3])! as UITabBarItem
+//            myTabBarItem4.image = UIImage(named: "fxbooking-icon")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+//            myTabBarItem4.title = "FX Booking"
+//            let vc = Storyboad.shared.fxBookingStoryboard?.instantiateViewController(withIdentifier: "FXBookingVC") as! FXBookingVC
+//            self.viewControllers![3] = vc
+            
+            
+//            print("FXBooking......")
+//            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     

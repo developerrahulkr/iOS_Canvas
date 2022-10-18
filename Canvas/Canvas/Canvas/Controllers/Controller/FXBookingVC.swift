@@ -79,31 +79,33 @@ class FXBookingVC: UIViewController,protocolPush, navigateToDiffrentScreenDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        Global.shared.countrysChangeAccordingly = "fc"
-        print("denomination is >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>************ \(Global.shared.denominationFCCurrency)")
-        FXbookingMaster.shared.dispose()
-        txtLCamount.isUserInteractionEnabled = false
-        
-        FXbookingMaster.shared.deliveryType = 2
-
-        if lblSelectCities.text == "Currency" {
-            imgCountries.isHidden = true
-            leftConstantCurrency.constant = 20
-        }
-        viewRate.cornerRadius = 15
-        viewRate.borderColor = #colorLiteral(red: 0.6666666667, green: 0.6666666667, blue: 0.6666666667, alpha: 1)
-        viewRate.borderWidth = 1
-        
-        tableViewFX.register(UINib(nibName: "CellSectionTwo", bundle: nil), forCellReuseIdentifier: "CellSectionTwo")
-        
-        localizeData()
-        tableViewFX.delegate = self
-        tableViewFX.dataSource = self
-        txtFCamount.delegate = self
-        txtLCamount.delegate = self
-        self.txtFCamount.addTarget(self, action: #selector(sourceTextFieldDidEditingChanged(_:)), for: UIControl.Event.editingChanged)
-        self.txtLCamount.addTarget(self, action: #selector(targetTextFieldDidEditingChanged(_:)), for: UIControl.Event.editingChanged)
-        getsessionid()
+////        Global.shared.countrysChangeAccordingly = "fc"
+//        print("denomination is >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>************ \(Global.shared.denominationFCCurrency)")
+//        FXbookingMaster.shared.dispose()
+//        txtLCamount.isUserInteractionEnabled = false
+//        
+//        FXbookingMaster.shared.deliveryType = 2
+//
+//        if lblSelectCities.text == "Currency" {
+//            imgCountries.isHidden = true
+//            leftConstantCurrency.constant = 20
+//            txtFCamount.isUserInteractionEnabled = false
+//            
+//        }
+//        viewRate.cornerRadius = 15
+//        viewRate.borderColor = #colorLiteral(red: 0.6666666667, green: 0.6666666667, blue: 0.6666666667, alpha: 1)
+//        viewRate.borderWidth = 1
+//        
+//        tableViewFX.register(UINib(nibName: "CellSectionTwo", bundle: nil), forCellReuseIdentifier: "CellSectionTwo")
+//        
+//        localizeData()
+//        tableViewFX.delegate = self
+//        tableViewFX.dataSource = self
+//        txtFCamount.delegate = self
+//        txtLCamount.delegate = self
+//        self.txtFCamount.addTarget(self, action: #selector(sourceTextFieldDidEditingChanged(_:)), for: UIControl.Event.editingChanged)
+//        self.txtLCamount.addTarget(self, action: #selector(targetTextFieldDidEditingChanged(_:)), for: UIControl.Event.editingChanged)
+//        getsessionid()
         
         //        self.navigationController?.navigationBar.isHidden = true
         
@@ -168,6 +170,7 @@ class FXBookingVC: UIViewController,protocolPush, navigateToDiffrentScreenDelega
             lblrate.text = "Rate"
             countryCode = ""
             lblSelectCities.text = "Currency"
+            txtFCamount.isUserInteractionEnabled = false
             leftConstantCurrency.constant = 20
             imgCountries.image = nil
             
@@ -221,7 +224,7 @@ class FXBookingVC: UIViewController,protocolPush, navigateToDiffrentScreenDelega
             self.present(alert, animated: true, completion: nil)
             return
         }
-        if(FXbookingMaster.shared.selecytedhomeaddress == nil)
+        if(FXbookingMaster.shared.selecytedhomeaddress == nil && FXbookingMaster.shared.selecedbranchaddress == nil)
         {
             let alert = ViewControllerManager.displayAlert(message: Global.shared.address_required_msg, title:"")
             self.present(alert, animated: true, completion: nil)
@@ -336,9 +339,65 @@ class FXBookingVC: UIViewController,protocolPush, navigateToDiffrentScreenDelega
         logout()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool)
+    {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
+        
+        if(FXbookingMaster.shared.iscomefromtab)
+        {
+            FXbookingMaster.shared.iscomefromtab = false
+            FXbookingMaster.shared.dispose()
+            txtFCamount.text = ""
+            txtLCamount.text = ""
+            lblSelectCities.text = "Currency"
+            
+            txtLCamount.isUserInteractionEnabled = false
+            
+            FXbookingMaster.shared.deliveryType = 2
+
+            if lblSelectCities.text == "Currency" {
+                imgCountries.isHidden = true
+                leftConstantCurrency.constant = 20
+                txtFCamount.isUserInteractionEnabled = false
+                
+            }
+            
+            self.cmFXBooking = nil
+//            txtLCamount.text = ""
+//            txtFCamount.text = ""
+//            lblrate.text = "Rate"
+//            countryCode = ""
+//            lblSelectCities.text = "Currency"
+//            txtFCamount.isUserInteractionEnabled = false
+//            leftConstantCurrency.constant = 20
+//            imgCountries.image = nil
+
+            
+            viewRate.cornerRadius = 15
+            viewRate.borderColor = #colorLiteral(red: 0.6666666667, green: 0.6666666667, blue: 0.6666666667, alpha: 1)
+            viewRate.borderWidth = 1
+            
+            tableViewFX.register(UINib(nibName: "CellSectionTwo", bundle: nil), forCellReuseIdentifier: "CellSectionTwo")
+            
+            localizeData()
+            tableViewFX.delegate = self
+            tableViewFX.dataSource = self
+            txtFCamount.delegate = self
+            txtLCamount.delegate = self
+            self.txtFCamount.addTarget(self, action: #selector(sourceTextFieldDidEditingChanged(_:)), for: UIControl.Event.editingChanged)
+            self.txtLCamount.addTarget(self, action: #selector(targetTextFieldDidEditingChanged(_:)), for: UIControl.Event.editingChanged)
+            getsessionid()
+            self.tableViewFX.reloadData()
+            self.fxdelegate?.reloadhomeaddress()
+            
+            //        self.navigationController?.navigationBar.isHidden = true
+            
+        }
+        
+        
+        
+        
         
         if(self.fxdelegate != nil)
         {
@@ -449,9 +508,18 @@ extension FXBookingVC: UITableViewDelegate,UITableViewDataSource,Delete{
             cell.lblLCAmount.text = Global.shared.lc_amonut
             cell.lblFCAmmount.text = Global.shared.fc_amount
             if !FXbookingMaster.shared.fxBookingDataSource.isEmpty {
-                let finalTxt = "1 \(FXbookingMaster.shared.fxBookingDataSource[indexPath.row].currenyCodeTo) = \(FXbookingMaster.shared.fxBookingDataSource[indexPath.row].rate) \(FXbookingMaster.shared.fxBookingDataSource[indexPath.row].currenyCodeFrom)"
-
-                cell.lblConverter.text = finalTxt
+                
+                
+                if let fcRate = Double(FXbookingMaster.shared.fxBookingDataSource[indexPath.row].rate) {
+                    print("Float value = \(fcRate)")
+                    let lvAmnt = String(format: "%.3f", fcRate)
+                    let finalTxt = "1 \(FXbookingMaster.shared.fxBookingDataSource[indexPath.row].currenyCodeTo) = \(lvAmnt) \(FXbookingMaster.shared.fxBookingDataSource[indexPath.row].currenyCodeFrom)"
+                    cell.lblConverter.text = finalTxt
+                } else {
+                    print("String does not contain Float")
+                }
+                
+                
 //                cell.tfSourceField.text = "\(FXbookingMaster.shared.fxBookingDataSource[indexPath.row].amountFrom) KWD"
                 let amountFrom = FXbookingMaster.shared.fxBookingDataSource[indexPath.row].amountFrom
                 if let lcAmounnt = Double(amountFrom) {
@@ -729,9 +797,15 @@ extension FXBookingVC: UITableViewDelegate,UITableViewDataSource,Delete{
 //                                self.txtLCamount.text = "\(ratecalobj["amountFrom"] ?? "")"
                                 let ratee = "\(ratecalobj["rate"] ?? "")"
                                 
-                                let finalTxt = "\(ratee) KWD"
-                                print(finalTxt)
-                                self.lblrate.text = finalTxt
+                                if let rateFloat = Double(ratee) {
+                                    print("Float value = \(rateFloat)")
+                                    let rateAmnt = String(format: "%.3f", rateFloat)
+                                    let finalTxt = "\(rateAmnt) KWD"
+                                    print(finalTxt)
+                                    self.lblrate.text = finalTxt
+                                } else {
+                                    print("String does not contain Float")
+                                }
                                 self.cmFXBooking = CMFXBooking(
                                     actualRate: "\(ratecalobj["actualRate"] ?? "")",
                                     amountFrom: "\(ratecalobj["amountFrom"] ?? "")",
@@ -792,11 +866,11 @@ extension FXBookingVC {
         imgCountries.image = UIImage(named: country.countryCode?.lowercased() ?? "")
         imgCountries.isHidden = false
         denomination = country.denomination ?? 0
-        print("denomination is : ********************>>>>>>>>>>>>>>>>_______________\(country.denomination)")
         leftConstantCurrency.constant = 45
         txtLCamount.text = ""
         lblrate.text = "Rate"
         self.cmFXBooking = nil
+        txtFCamount.isUserInteractionEnabled = true
        if txtFCamount.text != ""
         {
            if (Int(txtFCamount.text ?? "") ?? 0) % (denomination ?? 0) == 0 {
@@ -1096,10 +1170,12 @@ class FXbookingMaster {
         func dispose()
         {
             FXbookingMaster.Static.shared = nil
+            
             print("Disposed Singleton instance")
         }
     
     
+    var iscomefromtab = false
 //    static var shared = FXbookingMaster()
     var deliveryType  = 2
     var selecytedhomeaddress : Int?

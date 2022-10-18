@@ -68,7 +68,7 @@ class BenefPaymentWebViewVc: UIViewController, WKNavigationDelegate {
         
         
     }
-    
+//http://online-uat.muzaini.com:83/paygateFXBooking/paymentrequest?tid=222010420000614
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
         self.showSpinner(onView: self.view)
     }

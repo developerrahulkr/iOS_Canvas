@@ -195,7 +195,20 @@ extension TransactionSummaryVC: UITableViewDelegate,UITableViewDataSource, Trans
             cell.lblDelivery.text = "\(Global.shared.delivery_type ?? "") : "
             cell.lblDateAndTime.text = "\(Global.shared.date_timeslot ?? "") : "
             cell.lblAddress.text = FXbookingMaster.shared.selectedhomeaddress1name
-            cell.lblDateTime.text = "\(FXbookingMaster.shared.selecteddateslot) | \(FXbookingMaster.shared.selectedtimeslot)"
+            if (FXbookingMaster.shared.selecteddateslot == "" && FXbookingMaster.shared.selectedtimeslot == "" )
+            {
+                cell.lblDateTime.text = ""
+            }
+            else if (FXbookingMaster.shared.selecteddateslot != "" && FXbookingMaster.shared.selectedtimeslot != "" )
+            {
+                cell.lblDateTime.text = "\(FXbookingMaster.shared.selecteddateslot) | \(FXbookingMaster.shared.selectedtimeslot)"
+            }
+            else
+            {
+                cell.lblDateTime.text = "\(FXbookingMaster.shared.selecteddateslot) \(FXbookingMaster.shared.selectedtimeslot)"
+            }
+            
+            
             cell.lblDeliveryType.text = FXbookingMaster.shared.deliveryType == 2 ? "Home" : "Branch"
             cell.lblPurposeTrnf.text = FXbookingMaster.shared.selectedpurpose
             cell.lblRemark.text = FXbookingMaster.shared.deliveryinstruction
@@ -333,8 +346,8 @@ extension TransactionSummaryVC: UITableViewDelegate,UITableViewDataSource, Trans
             "objectReferenceID": "\(FXbookingMaster.shared.deliveryType == 2 ? FXbookingMaster.shared.selecytedhomeaddress! : FXbookingMaster.shared.selecedbranchaddress!)",
             "timeSlot": FXbookingMaster.shared.selectedtimeslot,
             "denomination": FXbookingMaster.shared.deminations,
-            "purposeOfTransfer": FXbookingMaster.shared.selectedpurpose,
-            "selectedDate": FXbookingMaster.shared.selecteddateslot,
+            "purposeOfTransfer": FXbookingMaster.shared.selectedpurpose == "" ? nil : FXbookingMaster.shared.selectedpurpose,
+            "selectedDate": FXbookingMaster.shared.selecteddateslot == "" ? nil : FXbookingMaster.shared.selecteddateslot,
             "deliveryInsruction": FXbookingMaster.shared.deliveryinstruction,
             "remitterAddress1": "\(FXbookingMaster.shared.deliveryType == 2 ? FXbookingMaster.shared.selectedhomeaddress1name : FXbookingMaster.shared.selectedbranchaddress1name)",
             "remitterAddress2": "\(FXbookingMaster.shared.deliveryType == 2 ? FXbookingMaster.shared.selectedhomeaddress2name : FXbookingMaster.shared.selectedbranchaddress2name)",

@@ -112,7 +112,7 @@ class AddNewAddressVC: UIViewController, MapDelgate {
         }
         else
         {
-            TFFullName.text = Global.shared.firstNameTxt + " " + Global.shared.lastNameTxt
+            TFFullName.text = UserDefaults.standard.string(forKey: "username")
         }
             
     }

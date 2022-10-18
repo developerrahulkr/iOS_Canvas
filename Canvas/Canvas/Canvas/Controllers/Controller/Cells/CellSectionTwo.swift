@@ -100,20 +100,7 @@ class CellSectionTwo: UITableViewCell, delegatecallbackfromFxbooking
             self.test()
         }
         lblnote.text = Global.shared.note
-        if homeSegment.selectedSegmentIndex == 0
-        {
-            FXbookingMaster.shared.getHomeData {  success, errorcode in
-                
-                self.collectionViewDeliveryOption.reloadData()}
-        }
-        else
-        {
-            FXbookingMaster.shared.getUserBranchDetails { success, errCode in
-                if success {
-                    print("Hit Successfully..............")
-                    self.collectionViewDeliveryOption.reloadData()}
-                }
-        }
+        
 
         
         
@@ -134,6 +121,21 @@ class CellSectionTwo: UITableViewCell, delegatecallbackfromFxbooking
     override func setSelected(_ selected: Bool, animated: Bool) {
 //        print("Home Cell Data : ::::::::::      :::::::::::::    \(homeDataSource)", homeDataSource.count)
 //        collectionViewDeliveryOption.reloadData()
+        if homeSegment.selectedSegmentIndex == 0
+        {
+            FXbookingMaster.shared.getHomeData {  success, errorcode in
+                self.collectionViewDeliveryOption.reloadData()
+                
+            }
+        }
+        else
+        {
+            FXbookingMaster.shared.getUserBranchDetails { success, errCode in
+                if success {
+                    print("Hit Successfully..............")
+                    self.collectionViewDeliveryOption.reloadData()}
+                }
+        }
     }
     
     //MARK: - ACTIONS
@@ -252,7 +254,10 @@ extension CellSectionTwo : UICollectionViewDelegate,UICollectionViewDataSource,U
             if FXbookingMaster.shared.homeDataSource[indexPath.row].bIsDefault == true {
                 cell.imgStar.isHidden = false
             }
-            else{cell.imgStar.isHidden = true}
+            else{
+                cell.imgStar.isHidden = true
+                
+            }
             cell.lblFirstName.text = FXbookingMaster.shared.homeDataSource[indexPath.row].firstName ?? ""
             cell.lblAddress.text = "\(FXbookingMaster.shared.homeDataSource[indexPath.row].flat ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].floor ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].building ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].gada ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].street ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].block ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].areaCity ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].postalCode ?? "")"
             if FXbookingMaster.shared.selecytedhomeaddress == FXbookingMaster.shared.homeDataSource[indexPath.row].addressId{
@@ -266,6 +271,8 @@ extension CellSectionTwo : UICollectionViewDelegate,UICollectionViewDataSource,U
         }
         else
         {
+            cell.imgStar.isHidden = true
+
             cell.lblAddress.text = "\(FXbookingMaster.shared.branchDataSource[indexPath.row].branchAddress ?? ""), \(FXbookingMaster.shared.branchDataSource[indexPath.row].branchCode ?? "")"
             cell.lblFirstName.text = FXbookingMaster.shared.branchDataSource[indexPath.row].branchName
             if FXbookingMaster.shared.selecedbranchaddress == FXbookingMaster.shared.branchDataSource[indexPath.row].id{
