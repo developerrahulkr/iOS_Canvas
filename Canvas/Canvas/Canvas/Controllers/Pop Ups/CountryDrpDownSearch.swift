@@ -162,6 +162,8 @@ class CountryDrpDownSearch: UIViewController, UITableViewDataSource, UITableView
         Global.shared.pickerResponseCountryData = Global.shared.pickerResponseCountryDataFc
         Global.shared.pickerResponseOnlyCurrencyData = Global.shared.pickerResponseOnlyCurrencyDataFc
         Global.shared.pickerResponseFullCurrencyNameData = Global.shared.pickerResponseFullCurrencyNameDataFc
+          Global.shared.pickerResponseDenominationData = Global.shared.pickerResponseDenominationFc
+        
         
             originalAry = Global.shared.countryNameData
         }

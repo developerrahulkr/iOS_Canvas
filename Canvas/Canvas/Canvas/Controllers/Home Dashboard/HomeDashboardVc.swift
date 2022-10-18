@@ -3243,6 +3243,9 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
                     if let currencyNames = countries.value(forKey: "currencyName") as? [String] {
                         Global.shared.currencyNameDataFc = currencyNames
                     }
+                    if let denomination = countries.value(forKey: "denomination") as? [Int] {
+                        Global.shared.denominationFCCurrency = denomination
+                    }
                     
                     if let phoneCodes = countries.value(forKey: "phoneCode") as? [String] {
                                            Global.shared.phoneCodesDataFc = phoneCodes
@@ -3259,6 +3262,10 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
                     
                     for i in 0..<Global.shared.countryNameDataFc.count {
                         Global.shared.pickerResponseCountryDataFc.append(["value": Global.shared.countryNameDataFc[i], "display": Global.shared.countryNameDataFc[i]])
+                    }
+                    
+                    for i in 0..<Global.shared.denominationFCCurrency.count {
+                        Global.shared.pickerResponseDenominationFc.append(["value": Global.shared.denominationFCCurrency[i], "display": Global.shared.denominationFCCurrency[i]])
                     }
                     
                     /*    for i in 0..<self.countryNameData.count {

@@ -14,16 +14,18 @@ struct Country {
     let countryName: String?
     let currencyFulName: String?
     let phoneCode: String?
+    let denomination : Int?
     static func getCountries(_ json: [[String:Any]]) -> [Country] {
-      var countriesList: [Country] = []
-     countriesList =  json.map{ countryJSon in
-      print(countryJSon)
-        return Country(countryCode: countryJSon["countryCode"] as? String,
-                       currencyCode: countryJSon["countryCurrency"] as? String,
-                       countryName: countryJSon["countryName"] as? String,
-                       currencyFulName: countryJSon["currencyName"] as? String,
-                       phoneCode: countryJSon["phoneCode"] as? String)
-      }
-      return countriesList
+        var countriesList: [Country] = []
+        countriesList =  json.map{ countryJSon in
+            print(countryJSon)
+            return Country(countryCode: countryJSon["countryCode"] as? String,
+                           currencyCode: countryJSon["countryCurrency"] as? String,
+                           countryName: countryJSon["countryName"] as? String,
+                           currencyFulName: countryJSon["currencyName"] as? String,
+                           phoneCode: countryJSon["phoneCode"] as? String,
+                           denomination: countryJSon["denomination"] as? Int)
+        }
+        return countriesList
     }
-  }
+}

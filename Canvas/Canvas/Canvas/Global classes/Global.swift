@@ -407,6 +407,7 @@ class Global {
     var pickerResponseCountryData = [[String: String]]()
     var pickerResponseOnlyCurrencyData = [[String: String]]()
     var pickerResponseFullCurrencyNameData = [[String: String]]()
+    var pickerResponseDenominationData = [[String : Int]]()
     
     //Drop downs
     var countryNameDataAll = [String]()
@@ -434,9 +435,12 @@ class Global {
     var currencyCodesDataFc = [String]()
     var currencyNameDataFc = [String]()
     var phoneCodesDataFc = [String]()
+    var denominationFCCurrency = [Int]()
     var pickerResponseCountryDataFc = [[String: String]]()
     var pickerResponseOnlyCurrencyDataFc = [[String: String]]()
     var pickerResponseFullCurrencyNameDataFc = [[String: String]]()
+    var pickerResponseDenominationFc = [[String:Int]]()
+    
     
     
     //Drop downs

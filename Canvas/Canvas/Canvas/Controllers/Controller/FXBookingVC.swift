@@ -11,6 +11,8 @@ import Alamofire
 
 class FXBookingVC: UIViewController,protocolPush, navigateToDiffrentScreenDelegate, UIDropDownCurrencyDelegateM, UITextFieldDelegate, PopupDelegate {
     
+    
+    
     //MARK: - OUTLETS
     
     
@@ -35,7 +37,9 @@ class FXBookingVC: UIViewController,protocolPush, navigateToDiffrentScreenDelega
     var cmFXBooking : CMFXBooking?
     var countryCode : String?
     var fxHomeAddress : CMBookingHomeAddress?
-    
+    var highValue : String?
+    var mixTap : String?
+    var denomination : Int?
     //var selectDate : String?
 //    var timeSlot : String?
 //    var purposeCode : String?
@@ -75,6 +79,8 @@ class FXBookingVC: UIViewController,protocolPush, navigateToDiffrentScreenDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        Global.shared.countrysChangeAccordingly = "fc"
+        print("denomination is >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>************ \(Global.shared.denominationFCCurrency)")
         FXbookingMaster.shared.dispose()
         txtLCamount.isUserInteractionEnabled = false
         
@@ -308,8 +314,8 @@ class FXBookingVC: UIViewController,protocolPush, navigateToDiffrentScreenDelega
     }
     
     @IBAction func onClickedSelectCountries(_ sender: UIButton) {
-        Global.shared.fromWuBankCashRate = "Any"
-        Global.shared.countris = Country.getCountries(Global.shared.countrisAllBank)
+        self.curencyRate = "Currency"
+        Global.shared.countris = Country.getCountries(Global.shared.countrisAllFc)
         let popOverVC = Storyboad.shared.mainStoryboard?.instantiateViewController(withIdentifier: "CurrencyDrpDwnSearch") as! CurrencyDrpDwnSearch
         self.addChild(popOverVC)
         popOverVC.delegate = self
@@ -417,6 +423,9 @@ class FXBookingVC: UIViewController,protocolPush, navigateToDiffrentScreenDelega
     {
         MenuScreenShow(screen:"Dashboard")
     }
+    
+    
+    
 }
 
 
@@ -539,7 +548,10 @@ extension FXBookingVC: UITableViewDelegate,UITableViewDataSource,Delete{
         if(countryCode != nil && countryCode != "")
         {
             if txtFCamount.text!.count > 0{
-                rateCalculator()
+                if (Int(txtFCamount.text ?? "") ?? 0) % (denomination ?? 0) == 0 {
+                    rateCalculator()
+                }
+                
             }else{
                 txtLCamount.text = ""
                 lblrate.text = "Rate"
@@ -548,6 +560,16 @@ extension FXBookingVC: UITableViewDelegate,UITableViewDataSource,Delete{
             }
           
         }
+    }
+    
+    func onClickedHighValue(value: String) {
+        highValue = value
+        print("High Value : \(value)")
+    }
+    
+    func onClickedMixedNoted(value: String) {
+        mixTap = value
+        print("mixed Value : \(value)")
     }
     
     func getSelectDate() {
@@ -763,16 +785,20 @@ extension FXBookingVC {
     func didSelectedCountry(country: Country) {
         lblSelectCities.text = country.currencyCode
         countryCode = country.countryCode?.lowercased()
-        
         imgCountries.image = UIImage(named: country.countryCode?.lowercased() ?? "")
         imgCountries.isHidden = false
+        denomination = country.denomination ?? 0
+        print("denomination is : ********************>>>>>>>>>>>>>>>>_______________\(country.denomination)")
         leftConstantCurrency.constant = 45
         txtLCamount.text = ""
         lblrate.text = "Rate"
         self.cmFXBooking = nil
        if txtFCamount.text != ""
         {
-            rateCalculator()
+           if (Int(txtFCamount.text ?? "") ?? 0) % (denomination ?? 0) == 0 {
+               rateCalculator()
+           }
+//            rateCalculator()
         }
 
     }

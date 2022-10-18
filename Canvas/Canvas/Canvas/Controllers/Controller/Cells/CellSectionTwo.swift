@@ -17,7 +17,8 @@ protocol protocolPush: NSObjectProtocol{
     func getPurposeName() -> Void
     func onclicksubmit() -> Void
     func onclickcancel() -> Void
-
+    func onClickedMixedNoted(value : String) -> Void
+    func onClickedHighValue(value : String) -> Void
 }
 class CellSectionTwo: UITableViewCell, delegatecallbackfromFxbooking
 {
@@ -157,7 +158,7 @@ class CellSectionTwo: UITableViewCell, delegatecallbackfromFxbooking
         
     }
    
-    @IBAction func onTapMix(_ sender: Any)
+    @IBAction func onTapMix(_ sender: UIButton)
     {
         if(imgMixNote.image == UIImage(named: "circleChecked") )
         {
@@ -165,9 +166,11 @@ class CellSectionTwo: UITableViewCell, delegatecallbackfromFxbooking
         }
         else
         {
+            Pushdelegate?.onClickedMixedNoted(value: lblMixedNotes.text ?? "")
             imgMixNote.image = UIImage(named: "circleChecked")
             imgHighNote.image = UIImage(named: "circleUnchecked")
         }
+        
     }
     
     
@@ -215,7 +218,7 @@ class CellSectionTwo: UITableViewCell, delegatecallbackfromFxbooking
     }
     
     
-    @IBAction func onTapHighValue(_ sender: Any)
+    @IBAction func onTapHighValue(_ sender: UIButton)
     {
         if(imgHighNote.image == UIImage(named: "circleChecked") )
         {
@@ -223,6 +226,7 @@ class CellSectionTwo: UITableViewCell, delegatecallbackfromFxbooking
         }
         else
         {
+            Pushdelegate?.onClickedHighValue(value: lblHighValue.text ?? "")
             imgHighNote.image = UIImage(named: "circleChecked")
             imgMixNote.image = UIImage(named: "circleUnchecked")
         }
