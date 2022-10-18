@@ -50,6 +50,13 @@ extension UIViewController {
             self.pushViewController(controller: transactionsMainVc)
             self.tabBarController?.selectedIndex = 2
         }
+        else if screen == Global.shared.lbl_fxbooking {
+            let vc : FXBookingVC = .fxBookingInitiated()
+            self.pushViewController(controller: vc)
+            self.tabBarController?.selectedIndex = 3
+            
+            
+        }
         else if screen == Global.shared.menuProfile{
             let profileVc: ProfileVc  = .initiateController()
             self.pushViewController(controller: profileVc)
@@ -73,11 +80,6 @@ extension UIViewController {
         else if screen == Global.shared.ourBranches {
             let branchLocatorFirstVC: BranchLocatorFirstVc  = .initiateController()
             self.pushViewController(controller: branchLocatorFirstVC)
-        }else if screen == Global.shared.lbl_fxbooking {
-            let vc : FXBookingVC = .fxBookingInitiated()
-            self.pushViewController(controller: vc)
-            
-            
         }
         else if screen == Global.shared.helpTxt {
             

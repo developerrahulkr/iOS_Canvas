@@ -1005,6 +1005,8 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
                             Global.shared.purpose = fx_label["purpose"] as? String ?? ""
                             Global.shared.rate = fx_label["rate"] as? String ?? ""
                             Global.shared.remarks = fx_label["remarks"] as? String ?? ""
+                            Global.shared.denomination_lbl = fx_label["denomination_lbl"] as? String ?? ""
+                            
                             Global.shared.rr_no = fx_label["rr_no"] as? String ?? ""
                             Global.shared.save_address = fx_label["save_address"] as? String ?? ""
                             Global.shared.select_date = fx_label["select_date"] as? String ?? ""

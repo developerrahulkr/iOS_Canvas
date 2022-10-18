@@ -247,22 +247,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "5097E555-E60C-4B8D-B1AB-708B385652BF"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Canvas/Extensions/AllExtensions.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
-            landmarkName = "MenuScreenShow(screen:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "E2F2293F-358A-4F5B-9A79-131FEBF58E6B"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -503,80 +487,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "CD004572-B684-48E3-9E76-3C038DBA0686"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Canvas/Controllers/Home Dashboard/HomeDashboardVc.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3246"
-            endingLineNumber = "3246"
-            landmarkName = "downloadAccountConfigCountriesFc()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "CD004572-B684-48E3-9E76-3C038DBA0686 - 28f87014f481fddc"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;__C.NSDictionary&gt;, Swift.Optional&lt;Swift.String&gt;) -&gt; () in Canvas.HomeDashboardVc.downloadAccountConfigCountriesFc() -&gt; ()"
-                  moduleName = "Canvas"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apple/Documents/Ripenapps_project/Git_canvas/Canvas/Canvas/Canvas/Controllers/Home%20Dashboard/HomeDashboardVc.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "3246"
-                  endingLineNumber = "3246"
-                  offsetFromSymbolStart = "3441">
-               </Location>
-               <Location
-                  uuid = "CD004572-B684-48E3-9E76-3C038DBA0686 - 28f87014f481fddc"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;__C.NSDictionary&gt;, Swift.Optional&lt;Swift.String&gt;) -&gt; () in Canvas.HomeDashboardVc.downloadAccountConfigCountriesFc() -&gt; ()"
-                  moduleName = "Canvas"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apple/Documents/Ripenapps_project/Git_canvas/Canvas/Canvas/Canvas/Controllers/Home%20Dashboard/HomeDashboardVc.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "3246"
-                  endingLineNumber = "3246"
-                  offsetFromSymbolStart = "3726">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "126AC995-B867-4DC7-8D2E-8BD4412E7714"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Canvas/Controllers/Home Dashboard/HomeDashboardVc.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3268"
-            endingLineNumber = "3268"
-            landmarkName = "downloadAccountConfigCountriesFc()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "4164B9DA-422D-4386-9870-015DEE0D929E"
+            uuid = "8CB06893-5EC5-4940-A018-FACC0F37C7A0"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Canvas/Controllers/Controller/FXBookingVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "798"
-            endingLineNumber = "798"
-            landmarkName = "didSelectedCountry(country:)"
+            startingLineNumber = "218"
+            endingLineNumber = "218"
+            landmarkName = "onclicksubmit()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

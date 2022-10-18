@@ -25,7 +25,7 @@ class Global {
     
     var timeoUtOrNot:String!
     var countris: [Country] = []
-   
+    
     
     var logoutValue:Int!
     var countrisAll = [[String: Any]]()
@@ -37,7 +37,7 @@ class Global {
     var countrisAllBankAdd = [[String: Any]]()
     var countrisAllCashAdd = [[String: Any]]()
     var countrisAllRate = [[String: Any]]()
-   
+    
     var countryCurncyAry:NSArray!
     var countryCurncyVisaAry:NSArray!
     var countryCurncyBankAry:NSArray!
@@ -126,10 +126,10 @@ class Global {
     
     //new customer
     var newSelectVideoTxt:String!
-       var newPreviewVideoTxt:String!
-       var newUplodFrntImgeTxt:String!
-       var newUplodBckImgTxt:String!
-       var newRecordVideoTxt:String!
+    var newPreviewVideoTxt:String!
+    var newUplodFrntImgeTxt:String!
+    var newUplodBckImgTxt:String!
+    var newRecordVideoTxt:String!
     
     var enableBiometricTxt: String!
     
@@ -376,7 +376,7 @@ class Global {
     var VisaCardNumber: String!
     var VisaDirect: String!
     var rrn: String!
-   
+    
     
     //Rate calculator
     var rateCalculatorHeader:String!
@@ -508,7 +508,7 @@ class Global {
     
     var afterLoginSecurityQuestnsList = [String]()
     var afterLoginSecurityIdList = [Int]()
-     var afterLoginSecurityIdListString = [String]()
+    var afterLoginSecurityIdListString = [String]()
     
     var civilIdNames = [String]()
     var identityTypes = [String]()
@@ -832,7 +832,7 @@ class Global {
     var alreadyExistsTxt:String!
     var username_toolTipTxt:String!
     
-   
+    
     var pdfUrl:NSURL!
     var noRecordsFoundTxt:String!
     
@@ -875,18 +875,18 @@ class Global {
         }
         return textFieldType
     }
-  /*  public String getErrorCode(String messageCode) {
-
-           if (apiMessageCodes.has(messageCode)) {
-               try {
-                   return apiMessageCodes.getString(messageCode);
-               } catch (JSONException e) {
-                   e.printStackTrace();
-               }
-           }
-
-           return null;
-       }*/
+    /*  public String getErrorCode(String messageCode) {
+     
+     if (apiMessageCodes.has(messageCode)) {
+     try {
+     return apiMessageCodes.getString(messageCode);
+     } catch (JSONException e) {
+     e.printStackTrace();
+     }
+     }
+     
+     return null;
+     }*/
     
     var messageCodeAry:NSDictionary!
     
@@ -897,11 +897,11 @@ class Global {
             messageType =  messageCodeAry[text] as? String ?? ""
             if messageType == ""
             {
-               return ""
+                return ""
             }
             else
             {
-               return messageType
+                return messageType
             }
         }
         else{
@@ -978,42 +978,42 @@ class Global {
     
     var toolTipTxt: String!
     
-  static var dashBoardGuideView: Bool {
-    set {
-      UserDefaults.standard.set(true, forKey: "GUIDE_VIEW_DASHBOARD")
+    static var dashBoardGuideView: Bool {
+        set {
+            UserDefaults.standard.set(true, forKey: "GUIDE_VIEW_DASHBOARD")
+        }
+        get {
+            return UserDefaults.standard.bool(forKey: "GUIDE_VIEW_DASHBOARD")
+            
+        }
     }
-    get {
-      return UserDefaults.standard.bool(forKey: "GUIDE_VIEW_DASHBOARD")
-      
+    static var transGuideView: Bool {
+        set {
+            UserDefaults.standard.set(true, forKey: "GUIDE_VIEW_TRANS")
+        }
+        get {
+            return UserDefaults.standard.bool(forKey: "GUIDE_VIEW_TRANS")
+            
+        }
     }
-  }
-  static var transGuideView: Bool {
-    set {
-      UserDefaults.standard.set(true, forKey: "GUIDE_VIEW_TRANS")
+    static var benficiaryGuideView: Bool {
+        set {
+            UserDefaults.standard.set(true, forKey: "GUIDE_VIEW_BENEFICIARY")
+        }
+        get {
+            return UserDefaults.standard.bool(forKey: "GUIDE_VIEW_BENEFICIARY")
+            
+        }
     }
-    get {
-      return UserDefaults.standard.bool(forKey: "GUIDE_VIEW_TRANS")
-      
+    static var profileGuideView: Bool {
+        set {
+            UserDefaults.standard.set(true, forKey: "GUIDE_VIEW_PROFILE")
+        }
+        get {
+            return UserDefaults.standard.bool(forKey: "GUIDE_VIEW_PROFILE")
+            
+        }
     }
-  }
-  static var benficiaryGuideView: Bool {
-    set {
-      UserDefaults.standard.set(true, forKey: "GUIDE_VIEW_BENEFICIARY")
-    }
-    get {
-      return UserDefaults.standard.bool(forKey: "GUIDE_VIEW_BENEFICIARY")
-      
-    }
-  }
-  static var profileGuideView: Bool {
-    set {
-      UserDefaults.standard.set(true, forKey: "GUIDE_VIEW_PROFILE")
-    }
-    get {
-      return UserDefaults.standard.bool(forKey: "GUIDE_VIEW_PROFILE")
-      
-    }
-  }
     
     
     
@@ -1021,7 +1021,7 @@ class Global {
     
     var contryNationality:String!
     var lastLoginTxt:String!
-   
+    
     var fontReqLbl:UIFont = UIFont(name: "Avenir-Book", size: 12.0)!
     var fontTopLbl:UIFont = UIFont(name: "Avenir-Book", size: 14.0)!
     var fontBottomLbl:UIFont = UIFont(name: "Avenir-Medium", size: 17.0)!
@@ -1031,30 +1031,30 @@ class Global {
     
     
     
-     var viewProfileTxt:String!
-     var AllQuetnAry:[[String:Any]]!
-     var isInvalidTxt:String!
-     var uscedfulMailAlert:String!
-     var selectVideoFileAlert:String!
-     var selectFrontBackFilesAlert:String!
-     var selectIdProfDocAlert:String!
-     var paswdDoesntMatchAlert:String!
-     var sizeLimitOnlyTxtAlert:String!
-     var isueExpireSameAlert:String!
-     var duplicateSecrtQuestnsAlert:String!
-     var answer3QuestnsAlert:String!
-     var invalidMobileNumberTxtAlert:String!
-     var invalidEmailTxtAlert:String!
-     var sendLimit = 10
-     var receiveLimit = 15
+    var viewProfileTxt:String!
+    var AllQuetnAry:[[String:Any]]!
+    var isInvalidTxt:String!
+    var uscedfulMailAlert:String!
+    var selectVideoFileAlert:String!
+    var selectFrontBackFilesAlert:String!
+    var selectIdProfDocAlert:String!
+    var paswdDoesntMatchAlert:String!
+    var sizeLimitOnlyTxtAlert:String!
+    var isueExpireSameAlert:String!
+    var duplicateSecrtQuestnsAlert:String!
+    var answer3QuestnsAlert:String!
+    var invalidMobileNumberTxtAlert:String!
+    var invalidEmailTxtAlert:String!
+    var sendLimit = 10
+    var receiveLimit = 15
     
-     var digitsAfterDecimal = 3
+    var digitsAfterDecimal = 3
     
-     var proceedTermsCondtnAlertTxt:String!
-     var okTxt: String!
+    var proceedTermsCondtnAlertTxt:String!
+    var okTxt: String!
     
-     var pendingTrnsctnTxt:String!
-     var failedTrnsctnTxt: String!
+    var pendingTrnsctnTxt:String!
+    var failedTrnsctnTxt: String!
     
     
     var persnalDetlsLbl:String!
@@ -1178,7 +1178,7 @@ class Global {
     //beneficiaries
     var addBeneficiaryTxt:String!
     var editBeneficiryTxt:String!
-  
+    
     var alertNotToResetTxt = "Changing language during data entry will clear the existing forms"
     
     var remiterInactiveDashboard:String!
@@ -1225,7 +1225,7 @@ class Global {
     var createYourOwnQuestnTxt: String!
     var finalCountSecurityQuestn: String!
     var firstTimeStr = "first"
-
+    
     
     var acceptTermsCondtnsAlert: String!
     var localCurncyTxt: String!
@@ -1240,12 +1240,12 @@ class Global {
     var unfavBenefTxt: String!
     var enableBenefTxt: String!
     var disableBenefTxt: String!
-
+    
     
     
     var refreshOrNot = "no"
     var onlyThresholdTxt: String!
-   
+    
     
     var sessionTimedOutTxt: String!
     
@@ -1339,7 +1339,7 @@ class Global {
     
     
     var employmntToolTip: String!
-
+    
     var deleteTxt: String!
     var doneTxt: String!
     var failedTxt: String!
@@ -1359,111 +1359,112 @@ class Global {
     var ttransferAmount: String!
     var tttno: String!
     var tviewStatus: String!
-   
+    
     
     //fxbooking
     var delete_confirmation: String!
     var add_currency: String!
-           var add_location: String!
-           var add_manage: String!
-           var add_new_address: String!
-           var address: String!
-           var address_required_msg: String!
-           var amount_in_kwd: String!
-           var amount_in_word: String!
-           var area_city: String!
-           var back: String!
-           var block: String!
-           var branch: String!
-           var building: String!
-           var cancel: String!
-           var choose_location: String!
-           var commission: String!
-           var commission_discount: String!
-           var created_date: String!
-           var currency: String!
-           var currency_required_msg: String!
-           var date_required_msg: String!
-           var date_timeslot: String!
-           var default_address: String!
-           var delete: String!
-           var delivery_charge: String!
-           var delivery_instruction: String!
-           var delivery_option: String!
-           var delivery_type: String!
-           var denominations: String!
-           var edit: String!
-           var fc_amount: String!
-           var flat: String!
-           var floor: String!
-           var full_name: String!
-           var fx_booking: String!
-           var gada: String!
-           var high_value: String!
-           var home: String!
-           var lbl_fx_1: String!
-           var lbl_fx_2: String!
-           var lbl_fx_3: String!
-           var lbl_fx_4: String!
-           var lbl_fx_5: String!
-           var lbl_fx_6: String!
-           var lbl_fx_7: String!
-           var lc_amonut: String!
-           var mix_notes: String!
-           var note: String!
-           var pay: String!
-           var phone_number: String!
-           var pot_required_msg: String!
-           var preferred_date: String!
-           var promocode: String!
-           var purpose: String!
-           var rate: String!
-           var remarks: String!
-           var rr_no: String!
-           var save_address: String!
-           var select_date: String!
-           var service_opt: String!
-           var service_opted: String!
-           var status: String!
-           var street: String!
-           var submit: String!
-           var summary: String!
-           var terms: String!
-           var time_required_msg: String!
-           var timeslot: String!
-           var total: String!
-           var total_lc: String!
-           var transaction_summary: String!
-           var update_address: String!
-           var update_location: String!
-           var voucher_number: String!
-           var you_pay: String!
-           var your_address: String!
-           var zip_code: String!
-
+    var add_location: String!
+    var add_manage: String!
+    var add_new_address: String!
+    var address: String!
+    var address_required_msg: String!
+    var amount_in_kwd: String!
+    var amount_in_word: String!
+    var area_city: String!
+    var back: String!
+    var block: String!
+    var branch: String!
+    var building: String!
+    var cancel: String!
+    var choose_location: String!
+    var commission: String!
+    var commission_discount: String!
+    var created_date: String!
+    var currency: String!
+    var currency_required_msg: String!
+    var date_required_msg: String!
+    var date_timeslot: String!
+    var default_address: String!
+    var delete: String!
+    var delivery_charge: String!
+    var delivery_instruction: String!
+    var delivery_option: String!
+    var delivery_type: String!
+    var denominations: String!
+    var edit: String!
+    var fc_amount: String!
+    var flat: String!
+    var floor: String!
+    var full_name: String!
+    var fx_booking: String!
+    var gada: String!
+    var high_value: String!
+    var home: String!
+    var lbl_fx_1: String!
+    var lbl_fx_2: String!
+    var lbl_fx_3: String!
+    var lbl_fx_4: String!
+    var lbl_fx_5: String!
+    var lbl_fx_6: String!
+    var lbl_fx_7: String!
+    var lc_amonut: String!
+    var mix_notes: String!
+    var note: String!
+    var pay: String!
+    var phone_number: String!
+    var pot_required_msg: String!
+    var preferred_date: String!
+    var promocode: String!
+    var purpose: String!
+    var rate: String!
+    var remarks: String!
+    var rr_no: String!
+    var denomination_lbl : String!
+    var save_address: String!
+    var select_date: String!
+    var service_opt: String!
+    var service_opted: String!
+    var status: String!
+    var street: String!
+    var submit: String!
+    var summary: String!
+    var terms: String!
+    var time_required_msg: String!
+    var timeslot: String!
+    var total: String!
+    var total_lc: String!
+    var transaction_summary: String!
+    var update_address: String!
+    var update_location: String!
+    var voucher_number: String!
+    var you_pay: String!
+    var your_address: String!
+    var zip_code: String!
+    
     func rateApp() {
         if #available(iOS 10.3, *) {
             SKStoreReviewController.requestReview()
-
+            
         } else if let url = URL(string: "itms-apps://itunes.apple.com/app/" + "appId") {
             if #available(iOS 10, *) {
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
-
+                
             } else {
                 UIApplication.shared.openURL(url)
             }
         }
     }
-
     
-   /* var publicKeyStr = "iub286hhg485ea11859c37455b5dc0a0664103ef8b44309df57bc5197de8426159"
     
-    var hmacResult2: String = self.publicKeyStr.hmac(algorithm: HMACAlgorithm.SHA512, key: "iib286hhg485ea11859c37455b5dc0a0664103ef8b44309df57bc5197de8426159")*/
+    /* var publicKeyStr = "iub286hhg485ea11859c37455b5dc0a0664103ef8b44309df57bc5197de8426159"
+     
+     var hmacResult2: String = self.publicKeyStr.hmac(algorithm: HMACAlgorithm.SHA512, key: "iib286hhg485ea11859c37455b5dc0a0664103ef8b44309df57bc5197de8426159")*/
     
     var publicKeyStr = "iub286hhg485ea11859c37455b5dc0a0664103ef8b44309df57bc5197de8426159"
     var privateKeyStr = "iib286hhg485ea11859c37455b5dc0a0664103ef8b44309df57bc5197de8426159"
     
-   
+    
     
     
     func languageChangeActn() {
@@ -1474,58 +1475,58 @@ class Global {
             if langcode == "en" {
                 LocalizationSystem.sharedInstance.setLanguage(languageCode: "en")
                 UIView.appearance().semanticContentAttribute = .forceLeftToRight
-               
+                
             }
             else if langcode == "ar" {
                 LocalizationSystem.sharedInstance.setLanguage(languageCode: "ar")
                 UIView.appearance().semanticContentAttribute = .forceRightToLeft
-           
+                
             }
             else if langcode == "hi" {
                 LocalizationSystem.sharedInstance.setLanguage(languageCode: "hi")
                 UIView.appearance().semanticContentAttribute = .forceLeftToRight
-               
+                
             }
             else if langcode == "ml" {
                 LocalizationSystem.sharedInstance.setLanguage(languageCode: "ml")
                 UIView.appearance().semanticContentAttribute = .forceLeftToRight
-               
+                
             }
             else if langcode == "fil" {
                 LocalizationSystem.sharedInstance.setLanguage(languageCode: "fil")
                 UIView.appearance().semanticContentAttribute = .forceLeftToRight
-               
+                
             }
             else {
                 print("no language")
             }
-           
+            
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController = storyboard.instantiateInitialViewController()
-    }
+        }
     }
     
     
 }
 
 class TimerApplication: UIApplication {
-
+    
     // the timeout in seconds, after which should perform custom actions
     // such as disconnecting the user
     private var timeoutInSeconds: TimeInterval {
         // 2 minutes
-      //  return  0.5 * 60
+        //  return  0.5 * 60
         return 15 * 60
     }
-
+    
     private var idleTimer: Timer?
-
+    
     // resent the timer because there was user interaction
     private func resetIdleTimer() {
         if let idleTimer = idleTimer {
             idleTimer.invalidate()
         }
-
+        
         idleTimer = Timer.scheduledTimer(timeInterval: timeoutInSeconds,
                                          target: self,
                                          selector: #selector(TimerApplication.timeHasExceeded),
@@ -1533,23 +1534,23 @@ class TimerApplication: UIApplication {
                                          repeats: false
         )
     }
-
+    
     // if the timer reaches the limit as defined in timeoutInSeconds, post this notification
     @objc private func timeHasExceeded() {
         NotificationCenter.default.post(name: .appTimeout,
                                         object: nil
         )
     }
-
+    
     override func sendEvent(_ event: UIEvent) {
-
+        
         super.sendEvent(event)
-
+        
         if idleTimer != nil {
             self.resetIdleTimer()
             
         }
-
+        
         if let touches = event.allTouches {
             for touch in touches where touch.phase == UITouch.Phase.began {
                 self.resetIdleTimer()
@@ -1558,7 +1559,7 @@ class TimerApplication: UIApplication {
     }
 }
 extension Notification.Name {
-
+    
     static let appTimeout = Notification.Name("appTimeout")
-
+    
 }

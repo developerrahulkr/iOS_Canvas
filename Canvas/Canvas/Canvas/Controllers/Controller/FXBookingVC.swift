@@ -550,6 +550,9 @@ extension FXBookingVC: UITableViewDelegate,UITableViewDataSource,Delete{
             if txtFCamount.text!.count > 0{
                 if (Int(txtFCamount.text ?? "") ?? 0) % (denomination ?? 0) == 0 {
                     rateCalculator()
+                }else{
+                    let alert = ViewControllerManager.displayAlert(message:"\(Global.shared.denomination_lbl ?? "") \(denomination ?? 0)", title:APPLICATIONNAME)
+                    self.present(alert, animated: true, completion: nil)
                 }
                 
             }else{
@@ -772,15 +775,16 @@ extension FXBookingVC: UITableViewDelegate,UITableViewDataSource,Delete{
 }
 
 extension FXBookingVC {
-    func navigateToDiffrentScreenDelegate(toWhichScreenWeAreNaviagting: String) {
-        print(toWhichScreenWeAreNaviagting)
-        if toWhichScreenWeAreNaviagting == Global.shared.lbl_fxbooking {
-            // same screen
-        }
-        else{
-            MenuScreenShow(screen:toWhichScreenWeAreNaviagting)
-        }
-    }
+    func navigateToDiffrentScreenDelegate(toWhichScreenWeAreNaviagting : String)
+     {
+         print(toWhichScreenWeAreNaviagting)
+         if toWhichScreenWeAreNaviagting == Global.shared.lbl_fxbooking{
+             
+         }
+         else{
+             MenuScreenShow(screen:toWhichScreenWeAreNaviagting)
+         }
+     }
     
     func didSelectedCountry(country: Country) {
         lblSelectCities.text = country.currencyCode
@@ -797,6 +801,9 @@ extension FXBookingVC {
         {
            if (Int(txtFCamount.text ?? "") ?? 0) % (denomination ?? 0) == 0 {
                rateCalculator()
+           }else{
+               let alert = ViewControllerManager.displayAlert(message:"\(Global.shared.denomination_lbl ?? "") \(denomination ?? 0)", title:APPLICATIONNAME)
+               self.present(alert, animated: true, completion: nil)
            }
 //            rateCalculator()
         }
