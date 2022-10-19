@@ -543,7 +543,8 @@ extension FXBookingVC: UITableViewDelegate,UITableViewDataSource,Delete{
             cell.selectionStyle = .none
             cell.TFTimeSlot.placeholder = Global.shared.timeslot
             cell.TFSelectDate.placeholder = Global.shared.preferred_date
-            cell.lblPurpose.text = "\(Global.shared.purpose!) *"
+//            cell.lblPurpose.text = "\(Global.shared.purpose!) *"
+            cell.TFSelectPurposeOf.text = "\(Global.shared.purpose!) *"
             cell.homeSegment.setTitle(Global.shared.home, forSegmentAt: 0)
             cell.homeSegment.setTitle(Global.shared.branch, forSegmentAt: 1)
             cell.TFSelectDate.text = FXbookingMaster.shared.selecteddateslot
@@ -1218,15 +1219,15 @@ class FXbookingMaster {
     
     func getData(){
         dataSource.removeAll()
-        let data0 = CMSummery(summery: "", ammount: "")
+        let data0 = CMSummery(summery: "", amount: "")
         dataSource.append(data0)
-        let data1 = CMSummery(summery: "Commission Discount", ammount: "0.0 KWD")
+        let data1 = CMSummery(summery: "Commission Discount", amount: "0.0")
         dataSource.append(data1)
-        let data2 = CMSummery(summery: "Delivery Chanrges", ammount: "1 KWD")
+        let data2 = CMSummery(summery: "Delivery Chanrges", amount: "1.0")
         dataSource.append(data2)
-        let data3 = CMSummery(summery: "Commission Discount", ammount: "0.0 KWD")
+        let data3 = CMSummery(summery: "Commission Discount", amount: "0.0")
         dataSource.append(data3)
-        let data4 = CMSummery(summery: "", ammount: "")
+        let data4 = CMSummery(summery: "", amount: "")
         dataSource.append(data4)
         
     }

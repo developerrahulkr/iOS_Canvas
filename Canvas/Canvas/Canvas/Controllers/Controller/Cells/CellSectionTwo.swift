@@ -30,6 +30,7 @@ class CellSectionTwo: UITableViewCell, delegatecallbackfromFxbooking
     @IBOutlet weak var imgMixNote: UIImageView!
     @IBOutlet weak var btnAdd: UIButton!
     @IBOutlet weak var TFSelectPurposeOf: UITextField!
+//    Purpose Of Transfer*
     @IBOutlet weak var homeSegment: UISegmentedControl!
     @IBOutlet weak var collectionViewDeliveryOption: UICollectionView!
     @IBOutlet weak var TFSelectDate: UITextField!

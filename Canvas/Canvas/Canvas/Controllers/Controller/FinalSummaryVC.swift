@@ -388,7 +388,7 @@ class FinalSummaryVC: UIViewController {
                 }
                 
                 if let rate = fxBookingModel?.fXBookingDetails?[indexPath.row].rate{
-                    cell.lblFinalTxt.text = String(rate)
+                    cell.lblFinalTxt.text = "1 \(FXbookingMaster.shared.fxBookingDataSource[indexPath.row].currenyCodeTo) = \(FXbookingMaster.shared.fxBookingDataSource[indexPath.row].actualRate)"
                 }
                 if let currCode = fxBookingModel?.fXBookingDetails?[indexPath.row].fcCurrencyCode{
                     cell.lblCurrencyCode.text = String(currCode)

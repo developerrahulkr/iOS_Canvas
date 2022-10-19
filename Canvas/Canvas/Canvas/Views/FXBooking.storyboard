@@ -992,7 +992,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="101" height="30"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TOTAL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XSb-AN-dyR">
-                                            <rect key="frame" x="25" y="7.333333333333333" width="51" height="15.333333333333336"/>
+                                            <rect key="frame" x="25" y="7.5" width="51" height="15.5"/>
                                             <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="11"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -1045,7 +1045,7 @@
                                             </constraints>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MZ6-yb-foM">
-                                            <rect key="frame" x="40.666666666666686" y="15" width="0.0" height="0.0"/>
+                                            <rect key="frame" x="50.5" y="15" width="0.0" height="0.0"/>
                                             <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="10"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -1061,7 +1061,7 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="bottom" secondItem="Bl9-gA-S6N" secondAttribute="bottom" id="9gk-HY-k0X"/>
-                                        <constraint firstItem="MZ6-yb-foM" firstAttribute="centerX" secondItem="y8T-s4-RPk" secondAttribute="centerX" constant="-10" id="EBZ-jg-E0q"/>
+                                        <constraint firstItem="MZ6-yb-foM" firstAttribute="centerX" secondItem="y8T-s4-RPk" secondAttribute="centerX" id="EBZ-jg-E0q"/>
                                         <constraint firstItem="MZ6-yb-foM" firstAttribute="centerY" secondItem="y8T-s4-RPk" secondAttribute="centerY" id="EJX-PD-RWv"/>
                                         <constraint firstItem="KP7-LH-e6m" firstAttribute="top" secondItem="y8T-s4-RPk" secondAttribute="top" id="EoW-Xf-CrP"/>
                                         <constraint firstItem="Bl9-gA-S6N" firstAttribute="top" secondItem="y8T-s4-RPk" secondAttribute="top" id="Puy-YH-By3"/>
@@ -1103,7 +1103,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="101" height="50"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CURRENCY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d3Y-LV-YwG">
-                                            <rect key="frame" x="18" y="16.666666666666664" width="65" height="16.666666666666664"/>
+                                            <rect key="frame" x="18" y="17" width="65" height="16.5"/>
                                             <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="12"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -1119,7 +1119,7 @@
                                     <rect key="frame" x="101" y="0.0" width="101" height="50"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FC AMOUNT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6C6-OF-ZMm">
-                                            <rect key="frame" x="13.666666666666671" y="16.666666666666664" width="73.666666666666671" height="16.666666666666664"/>
+                                            <rect key="frame" x="13.5" y="17" width="74" height="16.5"/>
                                             <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="12"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -1135,7 +1135,7 @@
                                     <rect key="frame" x="202" y="0.0" width="101" height="50"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RATE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vi6-4E-Fds">
-                                            <rect key="frame" x="35.666666666666657" y="16.666666666666664" width="29.666666666666671" height="16.666666666666664"/>
+                                            <rect key="frame" x="36" y="17" width="29.5" height="16.5"/>
                                             <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="12"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -1151,7 +1151,7 @@
                                     <rect key="frame" x="303" y="0.0" width="101" height="50"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LC AMOUNT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fc0-gw-4Ry">
-                                            <rect key="frame" x="14" y="16.666666666666664" width="73" height="16.666666666666664"/>
+                                            <rect key="frame" x="14" y="17" width="73" height="16.5"/>
                                             <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="12"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -1282,7 +1282,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="101" height="50"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CURRENCY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4UT-Xt-SyI">
-                                            <rect key="frame" x="18" y="16.666666666666664" width="65" height="16.666666666666664"/>
+                                            <rect key="frame" x="18" y="17" width="65" height="16.5"/>
                                             <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="12"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -1298,7 +1298,7 @@
                                     <rect key="frame" x="101" y="0.0" width="101" height="50"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FC AMOUNT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t9s-Cn-OeC">
-                                            <rect key="frame" x="13.666666666666671" y="16.666666666666664" width="73.666666666666671" height="16.666666666666664"/>
+                                            <rect key="frame" x="13.5" y="17" width="74" height="16.5"/>
                                             <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="12"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -1314,7 +1314,7 @@
                                     <rect key="frame" x="202" y="0.0" width="101" height="50"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RATE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c0Z-6h-U3E">
-                                            <rect key="frame" x="35.666666666666657" y="16.666666666666664" width="29.666666666666671" height="16.666666666666664"/>
+                                            <rect key="frame" x="36" y="17" width="29.5" height="16.5"/>
                                             <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="12"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -1330,7 +1330,7 @@
                                     <rect key="frame" x="303" y="0.0" width="101" height="50"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LC AMOUNT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pgB-ym-RdL">
-                                            <rect key="frame" x="14" y="16.666666666666664" width="73" height="16.666666666666664"/>
+                                            <rect key="frame" x="14" y="17" width="73" height="16.5"/>
                                             <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="12"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>

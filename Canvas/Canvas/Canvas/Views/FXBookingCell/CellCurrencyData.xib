@@ -28,13 +28,13 @@
                                         <rect key="frame" x="0.0" y="0.0" width="77.666666666666671" height="38"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INR" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cDu-aW-Mhq">
-                                                <rect key="frame" x="35" y="10.666666666666666" width="20.666666666666671" height="16.666666666666671"/>
+                                                <rect key="frame" x="48" y="10.666666666666666" width="20.666666666666671" height="16.666666666666671"/>
                                                 <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="12"/>
                                                 <color key="textColor" systemColor="secondaryLabelColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="in" translatesAutoresizingMaskIntoConstraints="NO" id="BDB-By-mHr">
-                                                <rect key="frame" x="5" y="6.6666666666666679" width="25" height="25"/>
+                                                <rect key="frame" x="18" y="6.6666666666666679" width="25" height="25"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="25" id="BdK-GT-v04"/>
                                                     <constraint firstAttribute="height" constant="25" id="HVN-ww-8l9"/>
@@ -43,7 +43,7 @@
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="BDB-By-mHr" firstAttribute="leading" secondItem="y34-GS-uOV" secondAttribute="leading" constant="5" id="9iW-Hi-8xX"/>
+                                            <constraint firstItem="BDB-By-mHr" firstAttribute="leading" secondItem="y34-GS-uOV" secondAttribute="leading" constant="18" id="9iW-Hi-8xX"/>
                                             <constraint firstItem="cDu-aW-Mhq" firstAttribute="centerY" secondItem="BDB-By-mHr" secondAttribute="centerY" id="RsA-tq-E3S"/>
                                             <constraint firstItem="cDu-aW-Mhq" firstAttribute="leading" secondItem="BDB-By-mHr" secondAttribute="trailing" constant="5" id="WbY-BK-NaF"/>
                                             <constraint firstItem="BDB-By-mHr" firstAttribute="centerY" secondItem="y34-GS-uOV" secondAttribute="centerY" id="g7m-hc-wmd"/>

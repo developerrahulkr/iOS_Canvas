@@ -47,7 +47,7 @@ class TransactionSummaryVC: UIViewController, navigateToDiffrentScreenDelegate, 
     var tempForSummaryCount = 0
     var termsConditionsResponse = [Any]()
     
-    
+//
     
     
     //MARK: - LIFECYCLE METHODS
@@ -233,8 +233,21 @@ extension TransactionSummaryVC: UITableViewDelegate,UITableViewDataSource, Trans
                 cell.contentView.backgroundColor = .gray
                 cell.lblLeft.textColor = .white
             }else{
+                
+                if let fcRate = Double(FXbookingMaster.shared.dataSource[indexPath.row].amount ?? "") {
+                        print("Float value = \(fcRate)")
+                        let lvAmnt = String(format: "%.3f", fcRate)
+                    cell.lblRight.text = lvAmnt + " KWD"    
+                    } else {
+                        print("String does not contain Float")
+                    }
+                
+                
+                
+                
+                
                 cell.lblLeft.text = FXbookingMaster.shared.dataSource[indexPath.row].summery
-                cell.lblRight.text = FXbookingMaster.shared.dataSource[indexPath.row].ammount
+                
                 cell.lblLeft.textColor = .gray
                 cell.lblRight.textColor = .gray
                 cell.contentView.backgroundColor = .clear
@@ -413,7 +426,7 @@ extension TransactionSummaryVC: UITableViewDelegate,UITableViewDataSource, Trans
 
 
 struct CMSummery {
-    let summery, ammount : String?
+    let summery, amount : String?
 }
 
 
