@@ -614,6 +614,10 @@ class AfterLoginVerificationVc: UIViewController, UITextFieldDelegate {
         
         let lastLogin = resonseTal?.value(forKey: "lastLogin") as? String
         UserDefaults.standard.set(lastLogin, forKey: "lastLogin")
+         
+         let remId = resonseTal?.value(forKey: "remId") as? String
+         UserDefaults.standard.set(remId, forKey: "remId")
+
         
         let profileImg = resonseTal?.value(forKey: "profileImage") as? String ?? ""
         UserDefaults.standard.set(profileImg, forKey: "profileImage")

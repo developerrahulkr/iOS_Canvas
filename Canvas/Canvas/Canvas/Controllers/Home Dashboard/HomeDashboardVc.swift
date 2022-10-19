@@ -3322,7 +3322,7 @@ extension Date {
     }
     static func getMonthDayYearString2(_ dateString: String) -> String? {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS"
         guard
             let userDOBDate = dateFormatter.date(from:String(dateString)) else {
             return nil

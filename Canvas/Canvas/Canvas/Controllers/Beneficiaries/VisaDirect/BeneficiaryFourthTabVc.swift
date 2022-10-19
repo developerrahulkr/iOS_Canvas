@@ -551,9 +551,7 @@ class BeneficiaryFourthTabVc: BaseViewController, UITableViewDataSource, UITable
             BeneficiaryDetails.shared.txnRef = eachObj?.value(forKey: "txnRef") as? String ?? ""
             BeneficiaryDetails.shared.cardNumber = eachObj?.value(forKey: "cardNumber") as? String ?? ""
             BeneficiaryDetails.shared.sendToOwnCard = eachObj?.value(forKey: "sendToOwnCard") as? String ?? ""
-            
-            
-          self.pushViewController(controller: BenefVisaCardEditVC.initiateController())
+            self.pushViewController(controller: BenefVisaCardEditVC.initiateController())
 
             
             success(true)

@@ -394,7 +394,7 @@ class FinalSummaryVC: UIViewController {
                     cell.lblCurrencyCode.text = String(currCode)
                 }
                 if let LCAmount = fxBookingModel?.fXBookingDetails?[indexPath.row].lcAmount{
-                    cell.lblLCAmount.text = String(LCAmount)
+                    cell.lblLCAmount.text = String(LCAmount) + " KWD"
                 }
                 if let countryImg = fxBookingModel?.fXBookingDetails?[indexPath.row].countryCode{
                     cell.imgFlag.image = UIImage(named: (countryImg.lowercased()) )
@@ -406,7 +406,7 @@ class FinalSummaryVC: UIViewController {
             else if indexPath.section == 2{
                 let cell = tableView.dequeueReusableCell(withIdentifier: "CellStatus", for: indexPath) as! CellStatus
                 if let youPay = fxBookingModel?.youPay{
-                    cell.lblLCValue.text = String(youPay)
+                    cell.lblLCValue.text = String(youPay) + " KWD"
                 }
                 if  fxBookingModel?.status != 2{
                     cell.viewSuccessFailure.borderWidth = 1

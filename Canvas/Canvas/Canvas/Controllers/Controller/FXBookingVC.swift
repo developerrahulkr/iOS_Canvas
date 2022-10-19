@@ -1224,8 +1224,8 @@ class FXbookingMaster {
         dataSource.append(data1)
         let data2 = CMSummery(summery: "Delivery Chanrges", ammount: "1 KWD")
         dataSource.append(data2)
-//        let data3 = CMSummery(summery: "Commission Discount", ammount: "0.0 KWD")
-//        dataSource.append(data3)
+        let data3 = CMSummery(summery: "Commission Discount", ammount: "0.0 KWD")
+        dataSource.append(data3)
         let data4 = CMSummery(summery: "", ammount: "")
         dataSource.append(data4)
         

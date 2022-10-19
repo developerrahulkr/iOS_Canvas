@@ -228,7 +228,7 @@ extension TransactionSummaryVC: UITableViewDelegate,UITableViewDataSource, Trans
             else if indexPath.row == FXbookingMaster.shared.dataSource.count - 1{
                 cell.lblLeft.text = Global.shared.you_pay
                 
-                cell.lblRight.text = "\((Float(FXbookingMaster.shared.netamount) ?? 0.0) + 1.0)"
+                cell.lblRight.text = "\((Float(FXbookingMaster.shared.netamount) ?? 0.0) + 1.0) KWD"
                 cell.lblRight.textColor = .white
                 cell.contentView.backgroundColor = .gray
                 cell.lblLeft.textColor = .white
@@ -332,7 +332,7 @@ extension TransactionSummaryVC: UITableViewDelegate,UITableViewDataSource, Trans
             "sessionId": FXbookingMaster.shared.fxsessionid,
             "registrationId": Global.shared.afterLoginRegistrtnId ?? "",
             "txnRefNo": "",
-            "remID": "421186897",
+            "remID": UserDefaults.standard.string(forKey: "remId")!,
             "commAmount":NSDecimalNumber(string: "0.0".replacingOccurrences(of: ",", with: "", options: .literal, range: nil)),
             "netAmt": NSDecimalNumber(string: FXbookingMaster.shared.netamount.replacingOccurrences(of: ",", with: "", options: .literal, range: nil)),
             "payMode": 1,

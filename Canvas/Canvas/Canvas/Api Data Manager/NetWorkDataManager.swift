@@ -1630,7 +1630,7 @@ func appVersionControl(headersTobePassed : HTTPHeaders,postParameters :[String:A
     func hitcreatefctransaction(headersToBePassed : HTTPHeaders,postParameter : [String:Any],completionHadler: @escaping (NSDictionary?, String?) ->()){
             let apiUrl = CanvasUrls.baseUrl + CanvasUrls.versionNumber + CanvasUrls.createfxtransaction
             print(postParameter)
-            AF.request(apiUrl, method: .post, parameters: postParameter, encoding: JSONEncoding.default, headers: headersWithAuthorization).responseJSON{
+            AF.request(apiUrl, method: .post, parameters: postParameter, encoding: JSONEncoding.default, headers: headersToBePassed).responseJSON{
                 response in
                 print(response)
                 let competion = self.dealWithDictResponse(response: response)
