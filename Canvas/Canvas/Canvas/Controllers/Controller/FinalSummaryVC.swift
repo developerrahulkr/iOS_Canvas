@@ -21,14 +21,14 @@ class FinalSummaryVC: UIViewController {
     @IBOutlet weak var viewRate: UIView!
     @IBOutlet weak var viewLCAmount: UIView!
     var pdfString = ""
-
+    
     var pdfUrl:NSURL!
-
+    
     
     //MARK: - VARIABLES
-        var fxBookingModel : FXBookingModel?
-        
-
+    var fxBookingModel : FXBookingModel?
+    
+    
     
     
     
@@ -76,7 +76,7 @@ class FinalSummaryVC: UIViewController {
     @IBAction func onTapBack(_ sender: Any) {
         
         self.navigationController?.popToRootViewController(animated: true)
-//        navigationController?.popViewController(animated: true)
+        //        navigationController?.popViewController(animated: true)
     }
     
     
@@ -91,14 +91,14 @@ class FinalSummaryVC: UIViewController {
                                              "amfcBookingID": fxBookingModel?.fXBookingDetails?[0].amfcBookingID ?? 0,
                                              "txnRefNo": fxBookingModel?.txnRefNo ?? "",
                                              "languageCode": LocalizationSystem.sharedInstance.getLanguage()]
-
         
-     /*   let headers: HTTPHeaders = [
-            "Content-Type": "application/json"
-        ]*/
+        
+        /*   let headers: HTTPHeaders = [
+         "Content-Type": "application/json"
+         ]*/
         
         let headers: HTTPHeaders = [.authorization(bearerToken: UserDefaults.standard.string(forKey: "token")!)]
-
+        
         
         NetWorkDataManager.sharedInstance.fxVoucherPdfImplimentation(headersTobePassed: headers, postParameters: paramaterPasing) { resonseTal , errorString in
             
@@ -119,20 +119,20 @@ class FinalSummaryVC: UIViewController {
                 let statusMsg = resonseTal?.value(forKey: "statusMessage") as? String
                 let statusCode = resonseTal?.value(forKey: "statusCodes") as? Int
                 let mesageCode = resonseTal?.value(forKey: "messageCode") as? String ?? statusMsg
-
+                
                 if statusCode ==  400 {
                     if mesageCode == "E110042"
                     {
                         self.showAlert(withTitle: "", withMessage: resonseTal?["statusMessage"] as? String ?? "")
-
+                        
                     }
                     else{
-                    let alert = ViewControllerManager.displayAlert(message: statusMsg ?? "", title:APPLICATIONNAME)
-                    self.present(alert, animated: true, completion: nil)
+                        let alert = ViewControllerManager.displayAlert(message: statusMsg ?? "", title:APPLICATIONNAME)
+                        self.present(alert, animated: true, completion: nil)
                     }
                 }
             }
-                
+            
             else
             {
                 print(errorString!)
@@ -147,30 +147,30 @@ class FinalSummaryVC: UIViewController {
     }
     
     // Mark: for saving pdf
-          func savePdf() throws {
-            self.removeSpinner()
-              let documentsURL = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
-              let pdfDocURL = documentsURL.appendingPathComponent("transaction.pdf")
-              let pdfData = Data(base64Encoded: pdfString)
-              try pdfData!.write(to: pdfDocURL)
-              pdfUrl = pdfDocURL as NSURL
-          }
-          
-          func loadPDFAndShare(){
-              do {
-                  let documentsURL = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
-                  let pdfDocURL = documentsURL.appendingPathComponent("transaction.pdf")
-                  
-                  let document = NSData(contentsOf: pdfDocURL)
-                  let activityViewController: UIActivityViewController = UIActivityViewController(activityItems: [document!], applicationActivities: nil)
-                  activityViewController.popoverPresentationController?.sourceView=self.view
-                  present(activityViewController, animated: true, completion: nil)
-                  print("document was not found")
-              } catch  {
-                  print("document was not found")
-              }
-          }
-
+    func savePdf() throws {
+        self.removeSpinner()
+        let documentsURL = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+        let pdfDocURL = documentsURL.appendingPathComponent("transaction.pdf")
+        let pdfData = Data(base64Encoded: pdfString)
+        try pdfData!.write(to: pdfDocURL)
+        pdfUrl = pdfDocURL as NSURL
+    }
+    
+    func loadPDFAndShare(){
+        do {
+            let documentsURL = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+            let pdfDocURL = documentsURL.appendingPathComponent("transaction.pdf")
+            
+            let document = NSData(contentsOf: pdfDocURL)
+            let activityViewController: UIActivityViewController = UIActivityViewController(activityItems: [document!], applicationActivities: nil)
+            activityViewController.popoverPresentationController?.sourceView=self.view
+            present(activityViewController, animated: true, completion: nil)
+            print("document was not found")
+        } catch  {
+            print("document was not found")
+        }
+    }
+    
     
     
     func callFXBookingDetailsAPI(){
@@ -208,42 +208,42 @@ class FinalSummaryVC: UIViewController {
                         
                         
                         
-                      var  arrayDetails = fXBooking["fXBookingDetails"] as? NSDictionary
+                        var  arrayDetails = fXBooking["fXBookingDetails"] as? NSDictionary
                         
-                
-              
+                        
+                        
                         
                         let media = fXBooking["fXBookingDetails"] as! Array<Any>
-                                            var mediaurl = [FXBookingDetail]()
-                                            for i in media{
-                                                print(i)
-                                                let resultNew = i as? [String:Any]
-                                                let url = resultNew?["fcCurrencyCode"]  as! String
-                                                mediaurl.append(FXBookingDetail.init(id: resultNew?["id"] as? Int,
-                                                        amfcBookingID: resultNew?["amfcBookingID"] as? Int,
-                                                        fcCurrencyCode: resultNew?["fcCurrencyCode"] as? String,
-                                                        fcAmount: resultNew?["fcAmount"] as? Int,
-                                                        lcAmount: resultNew?["lcAmount"] as? Double,
-                                                        rate: resultNew?["rate"] as? Double,
-                                                        currencyName: resultNew?["currencyName"] as? String,
-                                                        countryCode: resultNew?["countryCode"] as? String,
-                                                        createdDate: resultNew?["createdDate"] as? String,
-                                                        updatedDate: resultNew?["updatedDate"] as? String))
-                                            }
+                        var mediaurl = [FXBookingDetail]()
+                        for i in media{
+                            print(i)
+                            let resultNew = i as? [String:Any]
+                            let url = resultNew?["fcCurrencyCode"]  as! String
+                            mediaurl.append(FXBookingDetail.init(id: resultNew?["id"] as? Int,
+                                                                 amfcBookingID: resultNew?["amfcBookingID"] as? Int,
+                                                                 fcCurrencyCode: resultNew?["fcCurrencyCode"] as? String,
+                                                                 fcAmount: resultNew?["fcAmount"] as? Int,
+                                                                 lcAmount: resultNew?["lcAmount"] as? Double,
+                                                                 rate: resultNew?["rate"] as? Double,
+                                                                 currencyName: resultNew?["currencyName"] as? String,
+                                                                 countryCode: resultNew?["countryCode"] as? String,
+                                                                 createdDate: resultNew?["createdDate"] as? String,
+                                                                 updatedDate: resultNew?["updatedDate"] as? String))
+                        }
                         
                         
-//                        var arrData = FXBookingDetail.init(id: arrayDetails?["id"] as? Int,
-//                                                               amfcBookingID: arrayDetails?["amfcBookingID"] as? Int,
-//                                                               type: arrayDetails?["type"] as? String,
-//                                                               fcCurrencyCode:  arrayDetails?["fcCurrencyCode"] as? String,
-//                                                               fcAmount: arrayDetails?["fcAmount"] as? Int,
-//                                                               lcAmount: arrayDetails?["lcAmount"] as? Double,
-//                                                               rate: arrayDetails?["rate"] as? Double,
-//                                                               currencyName:  arrayDetails?["currencyName"] as? String,
-//                                                               countryCode:  arrayDetails?["countryCode"] as? String,
-//                                                               createdDate:  arrayDetails?["createdDate"] as? String,
-//                                                               updatedDate:  arrayDetails?["updatedDate"] as? String)
-                  
+                        //                        var arrData = FXBookingDetail.init(id: arrayDetails?["id"] as? Int,
+                        //                                                               amfcBookingID: arrayDetails?["amfcBookingID"] as? Int,
+                        //                                                               type: arrayDetails?["type"] as? String,
+                        //                                                               fcCurrencyCode:  arrayDetails?["fcCurrencyCode"] as? String,
+                        //                                                               fcAmount: arrayDetails?["fcAmount"] as? Int,
+                        //                                                               lcAmount: arrayDetails?["lcAmount"] as? Double,
+                        //                                                               rate: arrayDetails?["rate"] as? Double,
+                        //                                                               currencyName:  arrayDetails?["currencyName"] as? String,
+                        //                                                               countryCode:  arrayDetails?["countryCode"] as? String,
+                        //                                                               createdDate:  arrayDetails?["createdDate"] as? String,
+                        //                                                               updatedDate:  arrayDetails?["updatedDate"] as? String)
+                        
                         
                         
                         
@@ -321,140 +321,156 @@ class FinalSummaryVC: UIViewController {
         return  dateFormatter.string(from: userDOBDate)
     }
 }
-    //MARK: - EXTENSIONS
-    extension FinalSummaryVC: UITableViewDelegate,UITableViewDataSource{
-        
-        func numberOfSections(in tableView: UITableView) -> Int {
-            return 3
-        }
-        
-        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            if section == 0 {
-                return 1
-            }else if section == 1{
-                return fxBookingModel?.fXBookingDetails?.count ?? 0
-            }
-            else if section == 2 {
-                return 1
-                
-            }
-            else {
-                return 0
-            }
-        }
-        
-        
-        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            if indexPath.section == 0 {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "CellServiceOpted", for: indexPath) as! CellServiceOpted
-                var fullName = ""
-                if let name = fxBookingModel?.remitterFirstName{
-                    fullName = name
-                       
-                }
-                if let nameMiddle = fxBookingModel?.remitterMiddleName{
-                    fullName = fullName + " " + nameMiddle
-                       
-                }
-                if let nameLast = fxBookingModel?.remitterLastName{
-                    fullName = fullName + " " + nameLast
-                       
-                }
-                cell.lblName.text = fullName
-                if     fxBookingModel?.deliveryType == 1{
-                       cell.lblDeliveryType.text = "Branch"
-                }
-                else{
-                    cell.lblDeliveryType.text = "Home"
-                }
-                if let createdDate = fxBookingModel?.fXBookingDetails![0].createdDate{
-                    
-                        cell.lblDateTime.text = Date.getMonthDayYearString2(createdDate)
-                }
-                if let voucherNumber = fxBookingModel?.txnRefNo{
-                       cell.lblVoucherNumber.text = String(voucherNumber)
-                }
-                
-        
-                return cell
-            }
-            else if indexPath.section == 1{
-                let cell = tableView.dequeueReusableCell(withIdentifier: "CellCurrencyData", for: indexPath) as! CellCurrencyData
-                if let currencyCode = fxBookingModel?.fXBookingDetails?[indexPath.row].fcCurrencyCode{
-                    cell.lblCurrencyCode.text = String(currencyCode)
-                }
-                if let FCAmount = fxBookingModel?.fXBookingDetails?[indexPath.row].fcAmount{
-                    cell.lblFCAmount.text = String(FCAmount)
-                }
-                
-                if let rate = fxBookingModel?.fXBookingDetails?[indexPath.row].rate{
-                    cell.lblFinalTxt.text = "1 \(FXbookingMaster.shared.fxBookingDataSource[indexPath.row].currenyCodeTo) = \(FXbookingMaster.shared.fxBookingDataSource[indexPath.row].actualRate)"
-                }
-                if let currCode = fxBookingModel?.fXBookingDetails?[indexPath.row].fcCurrencyCode{
-                    cell.lblCurrencyCode.text = String(currCode)
-                }
-                if let LCAmount = fxBookingModel?.fXBookingDetails?[indexPath.row].lcAmount{
-                    cell.lblLCAmount.text = String(LCAmount) + " KWD"
-                }
-                if let countryImg = fxBookingModel?.fXBookingDetails?[indexPath.row].countryCode{
-                    cell.imgFlag.image = UIImage(named: (countryImg.lowercased()) )
-                }
-                
-                
-                return cell
-            }
-            else if indexPath.section == 2{
-                let cell = tableView.dequeueReusableCell(withIdentifier: "CellStatus", for: indexPath) as! CellStatus
-                if let youPay = fxBookingModel?.youPay{
-                    cell.lblLCValue.text = String(youPay) + " KWD"
-                }
-                if  fxBookingModel?.status != 2{
-                    cell.viewSuccessFailure.borderWidth = 1
-                    cell.viewSuccessFailure.borderColor = #colorLiteral(red: 1, green: 0, blue: 0, alpha: 1)
-                    cell.imgFailSuccess.image = UIImage(named: "failed")
-                    cell.viewSuccessFailure.backgroundColor = #colorLiteral(red: 1, green: 0, blue: 0, alpha: 0.1669523732)
-                    cell.lblSuccessFailure.text = "Cancelled" //217,58,50
-                    cell.lblSuccessFailure.textColor = #colorLiteral(red: 0.8885897398, green: 0.317481935, blue: 0.2528121173, alpha: 1)
-                }else{
-                    cell.viewSuccessFailure.borderWidth = 0.5
-                    cell.viewSuccessFailure.borderColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
-                    cell.imgFailSuccess.image = UIImage(named: "success")
-                    cell.viewSuccessFailure.backgroundColor = UIColor.fromHex(hexString: "#DBF2F2")
-                    cell.lblSuccessFailure.text = "Success" //217,58,50
-                    cell.lblSuccessFailure.textColor = UIColor.fromHex(hexString: "#436A6C")
-                }
-                
-                cell.delegate = self
-                return cell
-            }
-            else {
-                return UITableViewCell()
-            }
-        }
-        
-        func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-            if section == 1{
-                return headerViewCurrency
-            }
-            else {
-                return UIView()
-                
-            }
-        }
-        
-        
-        func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-            if section != 1 {
-                return 0.01
-            }
-            else {
-                return 30.0
-                
-            }
-        }
-        
+//MARK: - EXTENSIONS
+extension FinalSummaryVC: UITableViewDelegate,UITableViewDataSource{
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 3
     }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return 1
+        }else if section == 1{
+            return fxBookingModel?.fXBookingDetails?.count ?? 0
+        }
+        else if section == 2 {
+            return 1
+            
+        }
+        else {
+            return 0
+        }
+    }
+    
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CellServiceOpted", for: indexPath) as! CellServiceOpted
+            var fullName = ""
+            if let name = fxBookingModel?.remitterFirstName{
+                fullName = name
+                
+            }
+            if let nameMiddle = fxBookingModel?.remitterMiddleName{
+                fullName = fullName + " " + nameMiddle
+                
+            }
+            if let nameLast = fxBookingModel?.remitterLastName{
+                fullName = fullName + " " + nameLast
+                
+            }
+            cell.lblName.text = fullName
+            if     fxBookingModel?.deliveryType == 1{
+                cell.lblDeliveryType.text = "Branch"
+            }
+            else{
+                cell.lblDeliveryType.text = "Home"
+            }
+            if let createdDate = fxBookingModel?.fXBookingDetails![0].createdDate{
+                
+                cell.lblDateTime.text = Date.getMonthDayYearString2(createdDate)
+            }
+            if let voucherNumber = fxBookingModel?.txnRefNo{
+                cell.lblVoucherNumber.text = String(voucherNumber)
+            }
+            
+            
+            return cell
+        }
+        else if indexPath.section == 1{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CellCurrencyData", for: indexPath) as! CellCurrencyData
+            if let currencyCode = fxBookingModel?.fXBookingDetails?[indexPath.row].fcCurrencyCode{
+                cell.lblCurrencyCode.text = String(currencyCode)
+            }
+            if let FCAmount = fxBookingModel?.fXBookingDetails?[indexPath.row].fcAmount{
+                cell.lblFCAmount.text = String(FCAmount)
+            }
+            
+            if let rate = fxBookingModel?.fXBookingDetails?[indexPath.row].rate{
+                cell.lblFinalTxt.text = "1 \(FXbookingMaster.shared.fxBookingDataSource[indexPath.row].currenyCodeTo) = \(FXbookingMaster.shared.fxBookingDataSource[indexPath.row].actualRate)"
+            }
+            if let currCode = fxBookingModel?.fXBookingDetails?[indexPath.row].fcCurrencyCode{
+                cell.lblCurrencyCode.text = String(currCode)
+            }
+            if let LCAmount = fxBookingModel?.fXBookingDetails?[indexPath.row].lcAmount{
+                
+                
+                
+                var digitTwo = Double(LCAmount)
+                var digitThree = String(format: "%.3f", digitTwo)
+                cell.lblLCAmount.text = "\(digitThree) KWD"
+                
+                
+                
+//                cell.lblLCAmount.text = String(LCAmount) + " KWD"
+                
+                
+                
+                
+                
+            }
+            if let countryImg = fxBookingModel?.fXBookingDetails?[indexPath.row].countryCode{
+                cell.imgFlag.image = UIImage(named: (countryImg.lowercased()) )
+            }
+            
+            
+            return cell
+        }
+        else if indexPath.section == 2{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CellStatus", for: indexPath) as! CellStatus
+            if let youPay = fxBookingModel?.youPay{
+                cell.lblLCValue.text = String(youPay) + " KWD"
+                
+            }
+            
+            if  fxBookingModel?.status != 2{
+                cell.viewSuccessFailure.borderWidth = 1
+                cell.viewSuccessFailure.borderColor = #colorLiteral(red: 1, green: 0, blue: 0, alpha: 1)
+                cell.imgFailSuccess.image = UIImage(named: "failed")
+                cell.viewSuccessFailure.backgroundColor = #colorLiteral(red: 1, green: 0, blue: 0, alpha: 0.1669523732)
+                cell.lblSuccessFailure.text = "Cancelled" //217,58,50
+                cell.lblSuccessFailure.textColor = #colorLiteral(red: 0.8885897398, green: 0.317481935, blue: 0.2528121173, alpha: 1)
+            }else{
+                cell.viewSuccessFailure.borderWidth = 0.5
+                cell.viewSuccessFailure.borderColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
+                cell.imgFailSuccess.image = UIImage(named: "success")
+                cell.viewSuccessFailure.backgroundColor = UIColor.fromHex(hexString: "#DBF2F2")
+                cell.lblSuccessFailure.text = "Success" //217,58,50
+                cell.lblSuccessFailure.textColor = UIColor.fromHex(hexString: "#436A6C")
+            }
+            
+            cell.delegate = self
+            return cell
+        }
+        else {
+            return UITableViewCell()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section == 1{
+            return headerViewCurrency
+        }
+        else {
+            return UIView()
+            
+        }
+    }
+    
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section != 1 {
+            return 0.01
+        }
+        else {
+            return 30.0
+            
+        }
+    }
+    
+}
+
 
 
 //MARK: FXBooking Details Model
@@ -465,9 +481,9 @@ struct FXBookingModel: Codable {
     let netAmt: Double?
     let payMode: Int?
     let soi, pot, remark: String?
-//    let cashierID: JSONNull?
+    //    let cashierID: JSONNull?
     let entity, promoCode, amountInWords: String?
-//    let loginSource, processID: JSONNull?
+    //    let loginSource, processID: JSONNull?
     let ipAddress: String?
     let statusVocher, status: Int?
     let registerationID: String?
@@ -477,10 +493,10 @@ struct FXBookingModel: Codable {
     let remitterPhone, timeSlot, denomination, purposeOfTransfer: String?
     let selectedDate, deliveryInsruction, commissionDiscount, youPay: String?
     let deliveryCharges: String?
-//    let fXBookingJSONData, knetApprovalNo: JSONNull?
+    //    let fXBookingJSONData, knetApprovalNo: JSONNull?
     let knetStatus: Int?
-//    let ttRefNo: JSONNull?
-   let fXBookingDetails: [FXBookingDetail]?
+    //    let ttRefNo: JSONNull?
+    let fXBookingDetails: [FXBookingDetail]?
 }
 
 // MARK: - FXBookingDetail
@@ -497,16 +513,16 @@ extension FinalSummaryVC: ActionDownloadOrMail{
         if buttonType == 0{
             downloadTrnsctnPdf()
         }else{
-
+            
             let popOverVC = Storyboad.shared.mainStoryboard?.instantiateViewController(withIdentifier: "BenefEmailPopUpVc") as! BenefEmailPopUpVc
             popOverVC.isopenfromfx = true
             popOverVC.bookingid = fxBookingModel?.fXBookingDetails?[0].amfcBookingID ?? 0
             popOverVC.trancationid = fxBookingModel?.txnRefNo ?? ""
-                          self.addChild(popOverVC)
-                          popOverVC.view.frame = self.view.frame
-                          self.view.addSubview(popOverVC.view)
-                          popOverVC.didMove(toParent: self)
+            self.addChild(popOverVC)
+            popOverVC.view.frame = self.view.frame
+            self.view.addSubview(popOverVC.view)
+            popOverVC.didMove(toParent: self)
         }
     }
 }
-	
+

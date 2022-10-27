@@ -787,13 +787,15 @@ class ProfileVc: BaseViewController,UIImagePickerControllerDelegate,UINavigation
     
     @IBAction func menuActn(_ sender: Any) {
         
-        menuPopUp = self.storyboard?.instantiateViewController(withIdentifier: "MenuViewController") as? MenuViewController
-               
-               menuPopUp.delegateObj = self
-               self.addChild(menuPopUp)
-               menuPopUp.view.frame = self.view.frame
-               self.view.addSubview(menuPopUp.view)
-               menuPopUp.didMove(toParent: self)
+//        menuPopUp = self.storyboard?.instantiateViewController(withIdentifier: "MenuViewController") as? MenuViewController
+//
+//               menuPopUp.delegateObj = self
+//               self.addChild(menuPopUp)
+//               menuPopUp.view.frame = self.view.frame
+//               self.view.addSubview(menuPopUp.view)
+//               menuPopUp.didMove(toParent: self)
+        navigationController?.popViewController(animated: true)
+        self.tabBarController?.tabBar.isHidden = false
     }
     
     @IBAction func logoutActn(_ sender: Any) {

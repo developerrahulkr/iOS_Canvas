@@ -220,11 +220,11 @@ class MenuViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     }
     
     @IBAction func editProfileBtnActn(_ sender: Any) {
-       // let vc = self.storyboard?.instantiateViewController(withIdentifier: "ProfileVc") as! ProfileVc
-        
-       // self.navigationController?.pushViewController(vc, animated: true)
         self.view.removeFromSuperview()
-        self.tabBarController?.selectedIndex = 3
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ProfileVc") as! ProfileVc
+        self.navigationController?.pushViewController(vc, animated: true)
+        self.tabBarController?.tabBar.isHidden = true
+//        self.tabBarController?.selectedIndex = 3
         
     }
     

@@ -36,34 +36,34 @@ extension UIViewController {
     
     func MenuScreenShow(screen:String){
         if screen == Global.shared.menuDashboard {
-            let homeDashboardVC: HomeDashboardVc  = .initiateController()
+//            let homeDashboardVC: HomeDashboardVc  = .initiateController()
             self.tabBarController?.selectedIndex = 0
-            self.pushViewController(controller: homeDashboardVC)
+//            self.pushViewController(controller: homeDashboardVC)
         }
         else if screen == Global.shared.menuBeneficiary {
-            let beneficiaryMainVc: BeneficiaryMainVc  = .initiateController()
-            self.pushViewController(controller: beneficiaryMainVc)
+            //let beneficiaryMainVc: BeneficiaryMainVc  = .initiateController()
+            //self.pushViewController(controller: beneficiaryMainVc)
             self.tabBarController?.selectedIndex = 1
         }
         else if screen == Global.shared.menuTransactions{
-            let transactionsMainVc: TransactionsMainVc  = .initiateController()
-            self.pushViewController(controller: transactionsMainVc)
+            //let transactionsMainVc: TransactionsMainVc  = .initiateController()
+            //self.pushViewController(controller: transactionsMainVc)
             self.tabBarController?.selectedIndex = 2
         }
         else if screen == Global.shared.lbl_fxbooking {
-            let vc : FXBookingVC = .fxBookingInitiated()
+            //let vc : FXBookingVC = .fxBookingInitiated()
             FXbookingMaster.shared.iscomefromtab = true
-            self.pushViewController(controller: vc)
+            //self.pushViewController(controller: vc)
             
             self.tabBarController?.selectedIndex = 3
             
             
         }
-        else if screen == Global.shared.menuProfile{
-            let profileVc: ProfileVc  = .initiateController()
-            self.pushViewController(controller: profileVc)
-            self.tabBarController?.selectedIndex = 3
-        }
+//        else if screen == Global.shared.menuProfile{
+//            let profileVc: ProfileVc  = .initiateController()
+//            self.pushViewController(controller: profileVc)
+//            self.tabBarController?.selectedIndex = 3
+//        }
         else if screen == Global.shared.transactionsQuickSend{
             
         }

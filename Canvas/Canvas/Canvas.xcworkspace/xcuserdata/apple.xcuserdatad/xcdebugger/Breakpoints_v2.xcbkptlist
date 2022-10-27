@@ -36,14 +36,14 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "BD90F06C-CE76-4276-A023-EE8F54F21E1C - 64e51ad01680f8ec"
+                  uuid = "BD90F06C-CE76-4276-A023-EE8F54F21E1C - 6bade6380d372010"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "Canvas.TermsAndConditionsVc.getSummeryTermsConditions() -&gt; ()"
                   moduleName = "Canvas"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apple/Documents/Ripenapps_project/Git_canvas/Canvas/Canvas/Canvas/Controllers/Terms%20and%20Conditions/TermsAndConditionsVc.swift"
+                  urlString = "file:///Users/apple/Documents/Git%20Canvas/Canvas/Canvas/Canvas/Controllers/Terms%20and%20Conditions/TermsAndConditionsVc.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "109"
@@ -51,14 +51,14 @@
                   offsetFromSymbolStart = "536">
                </Location>
                <Location
-                  uuid = "BD90F06C-CE76-4276-A023-EE8F54F21E1C - f6bfb7149e8212c9"
+                  uuid = "BD90F06C-CE76-4276-A023-EE8F54F21E1C - f9f74bfc8535cab5"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "closure #1 (Swift.Optional&lt;__C.NSDictionary&gt;, Swift.Optional&lt;Swift.String&gt;) -&gt; () in Canvas.TermsAndConditionsVc.getSummeryTermsConditions() -&gt; ()"
                   moduleName = "Canvas"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apple/Documents/Ripenapps_project/Git_canvas/Canvas/Canvas/Canvas/Controllers/Terms%20and%20Conditions/TermsAndConditionsVc.swift"
+                  urlString = "file:///Users/apple/Documents/Git%20Canvas/Canvas/Canvas/Canvas/Controllers/Terms%20and%20Conditions/TermsAndConditionsVc.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "111"
@@ -116,14 +116,14 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "CA7A9D9F-236C-4E48-A486-178175321296 - ae3532b408fab6a8"
+                  uuid = "CA7A9D9F-236C-4E48-A486-178175321296 - d2a22d3f89895911"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "closure #1 (Swift.Optional&lt;__C.NSDictionary&gt;, Swift.Optional&lt;Swift.String&gt;) -&gt; () in Canvas.WuSecndTermsConditions.getSummeryTermsConditions() -&gt; ()"
                   moduleName = "Canvas"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apple/Documents/Ripenapps_project/Git_canvas/Canvas/Canvas/Canvas/Controllers/Beneficiaries/WU/WuSecndTermsConditions.swift"
+                  urlString = "file:///Users/apple/Documents/Git%20Canvas/Canvas/Canvas/Canvas/Controllers/Beneficiaries/WU/WuSecndTermsConditions.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "87"
@@ -131,14 +131,14 @@
                   offsetFromSymbolStart = "2653">
                </Location>
                <Location
-                  uuid = "CA7A9D9F-236C-4E48-A486-178175321296 - ae3532b408fab6a8"
+                  uuid = "CA7A9D9F-236C-4E48-A486-178175321296 - d2a22d3f89895911"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "closure #1 (Swift.Optional&lt;__C.NSDictionary&gt;, Swift.Optional&lt;Swift.String&gt;) -&gt; () in Canvas.WuSecndTermsConditions.getSummeryTermsConditions() -&gt; ()"
                   moduleName = "Canvas"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apple/Documents/Ripenapps_project/Git_canvas/Canvas/Canvas/Canvas/Controllers/Beneficiaries/WU/WuSecndTermsConditions.swift"
+                  urlString = "file:///Users/apple/Documents/Git%20Canvas/Canvas/Canvas/Canvas/Controllers/Beneficiaries/WU/WuSecndTermsConditions.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "87"
@@ -196,14 +196,14 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "E44B3228-DD37-49DE-BCBA-7E67C738261E - ae3532b408fab74d"
+                  uuid = "E44B3228-DD37-49DE-BCBA-7E67C738261E - d2a22d3f898959b6"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "closure #1 (Swift.Optional&lt;__C.NSDictionary&gt;, Swift.Optional&lt;Swift.String&gt;) -&gt; () in Canvas.WuSecndTermsConditions.getSummeryTermsConditions() -&gt; ()"
                   moduleName = "Canvas"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apple/Documents/Ripenapps_project/Git_canvas/Canvas/Canvas/Canvas/Controllers/Beneficiaries/WU/WuSecndTermsConditions.swift"
+                  urlString = "file:///Users/apple/Documents/Git%20Canvas/Canvas/Canvas/Canvas/Controllers/Beneficiaries/WU/WuSecndTermsConditions.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "92"
@@ -211,14 +211,14 @@
                   offsetFromSymbolStart = "4195">
                </Location>
                <Location
-                  uuid = "E44B3228-DD37-49DE-BCBA-7E67C738261E - ae3532b408fab74d"
+                  uuid = "E44B3228-DD37-49DE-BCBA-7E67C738261E - d2a22d3f898959b6"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "closure #1 (Swift.Optional&lt;__C.NSDictionary&gt;, Swift.Optional&lt;Swift.String&gt;) -&gt; () in Canvas.WuSecndTermsConditions.getSummeryTermsConditions() -&gt; ()"
                   moduleName = "Canvas"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apple/Documents/Ripenapps_project/Git_canvas/Canvas/Canvas/Canvas/Controllers/Beneficiaries/WU/WuSecndTermsConditions.swift"
+                  urlString = "file:///Users/apple/Documents/Git%20Canvas/Canvas/Canvas/Canvas/Controllers/Beneficiaries/WU/WuSecndTermsConditions.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "92"
@@ -423,24 +423,8 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "9E577B65-0228-4910-86C5-03442966B063"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Canvas/Controllers/Profile/ProfileVc.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "303"
-            endingLineNumber = "303"
-            landmarkName = "viewWillAppear(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "99E201AF-F5B3-452A-A75B-F40E4DB8CA4F"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Canvas/Controllers/Profile/ProfileVc.swift"
@@ -455,352 +439,240 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "308FC605-143A-4199-B8AE-FAFB4039818E"
-            shouldBeEnabled = "No"
+            uuid = "5CAD81DE-1BE2-4ABA-8C64-AC05E10DE15F"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Canvas/Controllers/Controller/Cells/CellSectionTwo.swift"
+            filePath = "Canvas/Controllers/Controller/AddNewAddressVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "180"
-            endingLineNumber = "180"
-            landmarkName = "onClickedSelectDate(_:)"
+            startingLineNumber = "146"
+            endingLineNumber = "146"
+            landmarkName = "onClickedSaveData(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "B99BE32E-78DC-451F-BAFE-96E2A5E08827"
+            uuid = "145E721E-04B3-4475-B0F7-00134B279494"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Canvas/Controllers/Controller/AddNewAddressVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "260"
+            endingLineNumber = "260"
+            landmarkName = "AddAddress()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "145E721E-04B3-4475-B0F7-00134B279494 - e079b2072451880a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Canvas.AddNewAddressVC.AddAddress() -&gt; ()"
+                  moduleName = "Canvas"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/apple/Documents/Git%20Canvas/Canvas/Canvas/Canvas/Controllers/Controller/AddNewAddressVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "260"
+                  endingLineNumber = "260"
+                  offsetFromSymbolStart = "7132">
+               </Location>
+               <Location
+                  uuid = "145E721E-04B3-4475-B0F7-00134B279494 - 92b6d7006f145bbc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.NSDictionary&gt;, Swift.Optional&lt;Swift.String&gt;) -&gt; () in Canvas.AddNewAddressVC.AddAddress() -&gt; ()"
+                  moduleName = "Canvas"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/apple/Documents/Git%20Canvas/Canvas/Canvas/Canvas/Controllers/Controller/AddNewAddressVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "261"
+                  endingLineNumber = "261"
+                  offsetFromSymbolStart = "240">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8CB06893-5EC5-4940-A018-FACC0F37C7A0"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Canvas/Controllers/Controller/FXBookingVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "219"
+            endingLineNumber = "219"
+            landmarkName = "onclicksubmit()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F4FA2437-38C9-4302-9E04-B7C5D4836659"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Canvas/Controllers/Controller/YourAddress.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
+            startingLineNumber = "62"
+            endingLineNumber = "62"
+            landmarkName = "YourAddress"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "25C341D3-EA5F-4C3D-AC6E-F2C5EE3FBC8C"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Canvas/Controllers/Branch Locator/BranchLocatorFirstVc.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "266"
-            endingLineNumber = "266"
-            landmarkName = "addUserAPI(branchID:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "08A9F7FF-819D-433A-9E08-9F68E17273C6"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Canvas/Controllers/Beneficiaries/BenefPaymentWebViewVc.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
-            landmarkName = "webView(_:didFinish:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "CB6D86B8-B871-4CD1-A74F-14A09697EF6F"
+            uuid = "CE5BD1AE-CE30-40E0-8181-7064AF882172"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Canvas/Controllers/Beneficiaries/BenefPaymentWebViewVc.swift"
+            filePath = "Canvas/Controllers/Controller/FXBookingVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
-            landmarkName = "webView(_:didStartProvisionalNavigation:)"
-            landmarkType = "7">
+            startingLineNumber = "416"
+            endingLineNumber = "416"
+            landmarkName = "FXBookingVC"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "20ED9169-C085-41F7-810E-D33851334984"
+            uuid = "7E5FA0A0-CC17-4EE2-8EC5-7A33BD878376"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Canvas/Controllers/Beneficiaries/BenefPaymentWebViewVc.swift"
+            filePath = "Canvas/Controllers/Controller/AddNewAddressVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "130"
-            endingLineNumber = "130"
-            landmarkName = "webView(_:didFail:withError:)"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
+            landmarkName = "viewWillDisappear(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "1ADD4CA8-7406-4FAA-940D-E1FE61DE0D30"
+            uuid = "3A277705-6C67-45ED-B61F-776A10564F50"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Canvas/Controllers/Beneficiaries/BenefPaymentWebViewVc.swift"
+            filePath = "Canvas/Controllers/Beneficiaries/VisaDirect/VisaDirectNewTransferVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
-            landmarkName = "webView(_:didFinish:)"
+            startingLineNumber = "1099"
+            endingLineNumber = "1099"
+            landmarkName = "postTransctn()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "2ACB0644-969D-46FB-B980-ECE34D4E3121"
+            uuid = "11F11B30-DF03-412C-A2AA-AECE1FA1F3E2"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Canvas/Controllers/Controller/TransactionSummaryVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "245"
+            endingLineNumber = "245"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5C9CD986-B62E-4DED-8CE4-DA5E646A6B92"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Canvas/Controllers/Controller/FinalSummaryVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
-            landmarkName = "downloadTrnsctnPdf()"
+            startingLineNumber = "400"
+            endingLineNumber = "400"
+            landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "2ACB0644-969D-46FB-B980-ECE34D4E3121 - f1d247716662755c"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Canvas.FinalSummaryVC.downloadTrnsctnPdf() -&gt; ()"
-                  moduleName = "Canvas"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apple/Documents/Ripenapps_project/Git_canvas/Canvas/Canvas/Canvas/Controllers/Controller/FinalSummaryVC.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "90"
-                  endingLineNumber = "90"
-                  offsetFromSymbolStart = "321">
-               </Location>
-               <Location
-                  uuid = "2ACB0644-969D-46FB-B980-ECE34D4E3121 - f1d247716662755c"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Canvas.FinalSummaryVC.downloadTrnsctnPdf() -&gt; ()"
-                  moduleName = "Canvas"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apple/Documents/Ripenapps_project/Git_canvas/Canvas/Canvas/Canvas/Controllers/Controller/FinalSummaryVC.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "90"
-                  endingLineNumber = "90"
-                  offsetFromSymbolStart = "1472">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "5507C19C-1351-4928-9E6C-BAF6AC152FA2"
+            uuid = "0A031970-66E3-463E-9805-FD5754645443"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Canvas/Controllers/Controller/FinalSummaryVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "401"
+            endingLineNumber = "401"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8324448E-DB13-4722-9593-99634EAC2D9F"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Canvas/Controllers/Controller/FXBookingVC.swift"
+            filePath = "Canvas/Controllers/Home Dashboard/Menu/MenuViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "227"
-            endingLineNumber = "227"
-            landmarkName = "onclicksubmit()"
+            startingLineNumber = "216"
+            endingLineNumber = "216"
+            landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "CEDB5DA2-32AD-4DE5-96DB-3B51472089CB"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Canvas/Controllers/Controller/FXBookingVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "221"
-            endingLineNumber = "221"
-            landmarkName = "onclicksubmit()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "EE6F9ABB-C96A-49BA-B081-DE75B90CF0B6"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Canvas/Views/FXBookingCell/CellTermsAndConditions.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "71"
-            endingLineNumber = "71"
-            landmarkName = "onClickPay(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "21E0C30A-E76D-41B5-AA90-EE651298E7F6"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Canvas/Controllers/Controller/TransactionSummaryVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "371"
-            endingLineNumber = "371"
-            landmarkName = "cretefctransaction()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "2D40F6F5-C923-4343-B0B2-4AEBEF8F1A16"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Canvas/Controllers/Controller/TransactionSummaryVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "359"
-            endingLineNumber = "359"
-            landmarkName = "cretefctransaction()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "2D40F6F5-C923-4343-B0B2-4AEBEF8F1A16 - a9b556c15a941d90"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Canvas.TransactionSummaryVC.cretefctransaction() -&gt; ()"
-                  moduleName = "Canvas"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apple/Documents/Ripenapps_project/Git_canvas/Canvas/Canvas/Canvas/Controllers/Controller/TransactionSummaryVC.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "346"
-                  endingLineNumber = "346"
-                  offsetFromSymbolStart = "6523">
-               </Location>
-               <Location
-                  uuid = "2D40F6F5-C923-4343-B0B2-4AEBEF8F1A16 - a9b556c15a941d90"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Canvas.TransactionSummaryVC.cretefctransaction() -&gt; ()"
-                  moduleName = "Canvas"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apple/Documents/Ripenapps_project/Git_canvas/Canvas/Canvas/Canvas/Controllers/Controller/TransactionSummaryVC.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "346"
-                  endingLineNumber = "346"
-                  offsetFromSymbolStart = "6732">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "99F61A6D-ED7D-4E27-9C7E-F46D0D671D1C"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Canvas/Controllers/Controller/TransactionSummaryVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "322"
-            endingLineNumber = "322"
-            landmarkName = "cretefctransaction()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "99F61A6D-ED7D-4E27-9C7E-F46D0D671D1C - a9b556c15a9410db"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Canvas.TransactionSummaryVC.cretefctransaction() -&gt; ()"
-                  moduleName = "Canvas"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apple/Documents/Ripenapps_project/Git_canvas/Canvas/Canvas/Canvas/Controllers/Controller/TransactionSummaryVC.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "309"
-                  endingLineNumber = "309"
-                  offsetFromSymbolStart = "107">
-               </Location>
-               <Location
-                  uuid = "99F61A6D-ED7D-4E27-9C7E-F46D0D671D1C - b141458db901157e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Canvas.CMFXBooking) -&gt; Swift.Dictionary&lt;Swift.String, Any&gt; in Canvas.TransactionSummaryVC.cretefctransaction() -&gt; ()"
-                  moduleName = "Canvas"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apple/Documents/Ripenapps_project/Git_canvas/Canvas/Canvas/Canvas/Controllers/Controller/TransactionSummaryVC.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "310"
-                  endingLineNumber = "310"
-                  offsetFromSymbolStart = "121">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "A044245B-EF37-4127-B0BE-A03FB6369FE2"
+            uuid = "E577D7B4-5C2D-4035-89DD-18BB6617F15B"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Canvas/Controllers/Controller/TransactionSummaryVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "329"
-            endingLineNumber = "329"
-            landmarkName = "cretefctransaction()"
+            startingLineNumber = "330"
+            endingLineNumber = "330"
+            landmarkName = "navigateToDiffrentScreenDelegate(toWhichScreenWeAreNaviagting:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "A26B96C5-ECDF-4B21-898E-3BCBB86CFC83"
-            shouldBeEnabled = "No"
+            uuid = "EA041863-00C8-45AD-BAAD-BE13DC17AAE1"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Canvas/Controllers/Home Dashboard/Menu/CustomTabBarVc.swift"
+            filePath = "Canvas/Controllers/Controller/TransactionSummaryVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
-            landmarkName = "tabBar(_:didSelect:)"
+            startingLineNumber = "334"
+            endingLineNumber = "334"
+            landmarkName = "navigateToDiffrentScreenDelegate(toWhichScreenWeAreNaviagting:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

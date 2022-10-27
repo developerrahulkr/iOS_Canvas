@@ -54,7 +54,11 @@ class TransactionSummaryVC: UIViewController, navigateToDiffrentScreenDelegate, 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        lblTotalAmount.text = "\(FXbookingMaster.shared.netamount) KWD"
+        
+        var digitTwo = Double(FXbookingMaster.shared.netamount)
+        var digitThree = String(format: "%.3f", digitTwo!)
+        lblTotalAmount.text = "\(digitThree) KWD"
+
         FXbookingMaster.shared.getData()
         tableViewTransaction.allowsSelection = false
         
@@ -227,8 +231,12 @@ extension TransactionSummaryVC: UITableViewDelegate,UITableViewDataSource, Trans
             
             else if indexPath.row == FXbookingMaster.shared.dataSource.count - 1{
                 cell.lblLeft.text = Global.shared.you_pay
+                //MARK: Static Value
+                var digitTwo = ((Double(FXbookingMaster.shared.netamount) ?? 0.0) + 1.0)
+                var digitThree = String(format: "%.3f", digitTwo)
+                cell.lblRight.text = "\(digitThree) KWD"
                 
-                cell.lblRight.text = "\((Float(FXbookingMaster.shared.netamount) ?? 0.0) + 1.0) KWD"
+//                cell.lblRight.text = "\((Float(FXbookingMaster.shared.netamount) ?? 0.0) + 1.0) KWD"
                 cell.lblRight.textColor = .white
                 cell.contentView.backgroundColor = .gray
                 cell.lblLeft.textColor = .white
@@ -428,6 +436,7 @@ extension TransactionSummaryVC: UITableViewDelegate,UITableViewDataSource, Trans
 struct CMSummery {
     let summery, amount : String?
 }
+
 
 
 
