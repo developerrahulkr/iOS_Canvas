@@ -433,12 +433,12 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
     {
         print(toWhichScreenWeAreNaviagting)
         
-        if toWhichScreenWeAreNaviagting == Global.shared.menuDashboard {
-          // same screen
-        }
-        else{
+//        if toWhichScreenWeAreNaviagting == Global.shared.menuDashboard {
+//          // same screen
+//        }
+//        else{
             MenuScreenShow(screen:toWhichScreenWeAreNaviagting)
-        }
+//        }
         
     }
     override func viewWillAppear(_ animated: Bool) {

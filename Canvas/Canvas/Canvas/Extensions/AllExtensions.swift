@@ -59,11 +59,16 @@ extension UIViewController {
             
             
         }
-//        else if screen == Global.shared.menuProfile{
-//            let profileVc: ProfileVc  = .initiateController()
-//            self.pushViewController(controller: profileVc)
-//            self.tabBarController?.selectedIndex = 3
-//        }
+        else if screen == Global.shared.menuProfile{
+            
+//            let rateTabsCalculatorVc: RateTabsCalculatorVc  = .initiateController()
+//            self.pushViewController(controller: rateTabsCalculatorVc)
+
+            
+            let profileVc: ProfileVc  = .initiateController()
+            self.pushViewController(controller: profileVc)
+           // self.tabBarController?.selectedIndex = 3
+        }
         else if screen == Global.shared.transactionsQuickSend{
             
         }

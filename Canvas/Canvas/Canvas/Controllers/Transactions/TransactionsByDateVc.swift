@@ -526,6 +526,15 @@ class TransactionsByDateVc: UIViewController, UITableViewDataSource, UITableView
     return 67
   }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if((self.beneficiaryResponse[indexPath.row] as?NSDictionary)?["beneficiaryTypeName"] as! String == "FXBooking")
+        {
+            let vc = Storyboad.shared.fxBookingStoryboard?.instantiateViewController(withIdentifier: "FinalSummaryVC") as! FinalSummaryVC
+            vc.transrefId = (self.beneficiaryResponse[indexPath.row] as? NSDictionary)?.value(forKey: "txnRefNo") as? String ?? ""
+            navigationController?.pushViewController(vc, animated: true)
+        }
+        else
+        {
         let eachObj = self.beneficiaryResponse[indexPath.row] as?NSDictionary
         
         
@@ -610,6 +619,7 @@ class TransactionsByDateVc: UIViewController, UITableViewDataSource, UITableView
         BeneficiaryDetails.shared.branchName = eachObj?.value(forKey: "branchName") as? String ?? ""
         BeneficiaryDetails.shared.accountNumber = eachObj?.value(forKey: "accountNumber") as? String ?? ""
        self.pushViewController(controller: TransctionsFullDetailsVc.initiateController(), animated: true)
+        }
     }
     
     @IBAction func downloadBtnActn(_ sender: Any) {

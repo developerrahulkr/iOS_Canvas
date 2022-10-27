@@ -97,7 +97,7 @@ class AddNewAddressVC: UIViewController, MapDelgate {
             TFAreaCity.text = homeAddressObj?.areaCity
             TFPostalCode.text = homeAddressObj?.postalCode
             TFPhoneNumber.text = homeAddressObj?.phoneNumber
-            bIsDefault = ((homeAddressObj?.bIsDefault) != nil)
+            bIsDefault = homeAddressObj?.bIsDefault ?? false
             if(bIsDefault)
             {
                 btnDefaultAddress.setImage( UIImage(named:"checkboxActive"), for: .normal)
