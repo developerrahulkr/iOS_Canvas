@@ -563,7 +563,19 @@ class TransctionsByPeriodVc: UIViewController, UITableViewDataSource, UITableVie
           //  return UITableView.automaticDimension
 
     }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        if((self.beneficiaryResponse[indexPath.row] as?NSDictionary)?["beneficiaryTypeName"] as! String == "FXBooking")
+        {
+            let vc = Storyboad.shared.fxBookingStoryboard?.instantiateViewController(withIdentifier: "FinalSummaryVC") as! FinalSummaryVC
+            vc.transrefId = (self.beneficiaryResponse[indexPath.row] as? NSDictionary)?.value(forKey: "txnRefNo") as? String ?? ""
+            navigationController?.pushViewController(vc, animated: true)
+        }
+        else
+        {
+                    
+        
+        
          let eachObj = self.beneficiaryResponse[indexPath.row] as?NSDictionary
         
         
@@ -648,7 +660,7 @@ class TransctionsByPeriodVc: UIViewController, UITableViewDataSource, UITableVie
             BeneficiaryDetails.shared.createdDatee = Date.getMonthDayYearWithoutSecndsString(newDate)
         }
       self.pushViewController(controller: TransctionsFullDetailsVc.initiateController())
-        
+        }
     }
     
     @IBAction func downloadBtnActn(_ sender: Any) {

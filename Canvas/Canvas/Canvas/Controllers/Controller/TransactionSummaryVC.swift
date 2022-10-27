@@ -194,7 +194,7 @@ extension TransactionSummaryVC: UITableViewDelegate,UITableViewDataSource, Trans
             cell.lblRemarks.text = "\(Global.shared.remarks ?? "") : "
             cell.lblDelivery.text = "\(Global.shared.delivery_type ?? "") : "
             cell.lblDateAndTime.text = "\(Global.shared.date_timeslot ?? "") : "
-            cell.lblAddress.text = FXbookingMaster.shared.selectedhomeaddress1name
+            cell.lblAddress.text = FXbookingMaster.shared.deliveryType == 2 ? FXbookingMaster.shared.selectedhomeaddress1name : FXbookingMaster.shared.selectedbranchaddress1name
             if (FXbookingMaster.shared.selecteddateslot == "" && FXbookingMaster.shared.selectedtimeslot == "" )
             {
                 cell.lblDateTime.text = ""
@@ -410,8 +410,15 @@ extension TransactionSummaryVC: UITableViewDelegate,UITableViewDataSource, Trans
 //                    self.navigationController?.pushViewController(vc, animated: true)
 
 //                    self.pushViewController(controller: BenefPaymentWebViewVc.initiateController())
-                }else{
-                    let alert = ViewControllerManager.displayAlert(message:Global.shared.messageCodeType(text: mesageCode), title:APPLICATIONNAME)
+                }
+                else
+                {
+                    var errormsg = Global.shared.messageCodeType(text: mesageCode)
+                    if(errormsg == "")
+                    {
+                        errormsg = statusMsg
+                    }
+                    let alert = ViewControllerManager.displayAlert(message:errormsg, title:APPLICATIONNAME)
                     self.present(alert, animated: true, completion: nil)
                 }
             }

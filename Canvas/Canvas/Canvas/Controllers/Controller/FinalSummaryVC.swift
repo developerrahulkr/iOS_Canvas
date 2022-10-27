@@ -23,7 +23,7 @@ class FinalSummaryVC: UIViewController {
     var pdfString = ""
 
     var pdfUrl:NSURL!
-
+    var transrefId = ""
     
     //MARK: - VARIABLES
         var fxBookingModel : FXBookingModel?
@@ -37,7 +37,14 @@ class FinalSummaryVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        callFXBookingDetailsAPI()
+        if(transrefId != "")
+        {
+            callFXBookingDetailsAPI(tranid: transrefId)
+        }
+        else
+        {
+            callFXBookingDetailsAPI(tranid: FXbookingMaster.shared.txnRefNo)
+        }
         
         viewCurrency.layer.borderColor = #colorLiteral(red: 0.6666666667, green: 0.6666666667, blue: 0.6666666667, alpha: 1)
         viewCurrency.layer.borderWidth = 1
@@ -75,6 +82,7 @@ class FinalSummaryVC: UIViewController {
     
     @IBAction func onTapBack(_ sender: Any) {
         
+        FXbookingMaster.shared.iscomefromtab = true
         self.navigationController?.popToRootViewController(animated: true)
 //        navigationController?.popViewController(animated: true)
     }
@@ -173,9 +181,9 @@ class FinalSummaryVC: UIViewController {
 
     
     
-    func callFXBookingDetailsAPI(){
+    func callFXBookingDetailsAPI(tranid : String){
         self.showSpinner(onView: self.view)
-        let parameterPassing: [String:Any] = ["txnRefNo": FXbookingMaster.shared.txnRefNo,
+        let parameterPassing: [String:Any] = ["txnRefNo": tranid,
                                               "registrationId":Global.shared.afterLoginRegistrtnId ?? ""]
         
         let headers: HTTPHeaders = [
@@ -388,7 +396,7 @@ class FinalSummaryVC: UIViewController {
                 }
                 
                 if let rate = fxBookingModel?.fXBookingDetails?[indexPath.row].rate{
-                    cell.lblFinalTxt.text = "1 \(FXbookingMaster.shared.fxBookingDataSource[indexPath.row].currenyCodeTo) = \(FXbookingMaster.shared.fxBookingDataSource[indexPath.row].actualRate)"
+                    cell.lblFinalTxt.text = "1 \(fxBookingModel?.fXBookingDetails?[indexPath.row].fcCurrencyCode ?? "") = \(rate)"
                 }
                 if let currCode = fxBookingModel?.fXBookingDetails?[indexPath.row].fcCurrencyCode{
                     cell.lblCurrencyCode.text = String(currCode)

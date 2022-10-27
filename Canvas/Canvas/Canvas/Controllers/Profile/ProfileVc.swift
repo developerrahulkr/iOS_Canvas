@@ -149,12 +149,12 @@ class ProfileVc: BaseViewController,UIImagePickerControllerDelegate,UINavigation
    func navigateToDiffrentScreenDelegate(toWhichScreenWeAreNaviagting : String)
     {
         print(toWhichScreenWeAreNaviagting)
-        if toWhichScreenWeAreNaviagting == Global.shared.menuProfile{
-            
-        }
-        else{
+//        if toWhichScreenWeAreNaviagting == Global.shared.menuProfile{
+//
+//        }
+//        else{
             MenuScreenShow(screen:toWhichScreenWeAreNaviagting)
-        }
+//        }
     }
     
     

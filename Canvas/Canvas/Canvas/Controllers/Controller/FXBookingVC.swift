@@ -248,7 +248,7 @@ class FXBookingVC: UIViewController,protocolPush, navigateToDiffrentScreenDelega
             self.present(alert, animated: true, completion: nil)
             return
         }
-        var fccurrencydict = FXbookingMaster.shared.fxBookingDataSource.map {["type": "S", "fcCurrencyCode": $0.currenyCodeTo, "fcAmount": Double($0.amountTo) ?? 0.0, "lcAmount": Double($0.amountFrom) ?? 0.0, "rate": Double($0.actualRate) ?? 0.0]}
+        let fccurrencydict = FXbookingMaster.shared.fxBookingDataSource.map {["type": "S", "fcCurrencyCode": $0.currenyCodeTo, "fcAmount": Double($0.amountTo) ?? 0.0, "lcAmount": Double($0.amountFrom) ?? 0.0, "rate": Double($0.actualRate) ?? 0.0]}
         if let cell = tableViewFX.cellForRow(at: IndexPath(row: 0, section: 1)) as? CellSectionTwo
         {
             FXbookingMaster.shared.deliveryinstruction = cell.TFDeliveryInst.text!
@@ -260,7 +260,7 @@ class FXBookingVC: UIViewController,protocolPush, navigateToDiffrentScreenDelega
         }
         print(fccurrencydict)
         print(netamount)
-        FXbookingMaster.shared.netamount = "\(netamount)"
+        FXbookingMaster.shared.netamount = String(format: "%.3f", netamount) //"\(netamount)"
 
         let vc = Storyboad.shared.fxBookingStoryboard?.instantiateViewController(withIdentifier: "TransactionSummaryVC") as! TransactionSummaryVC
         self.navigationController?.pushViewController(vc, animated: true)
@@ -547,6 +547,7 @@ extension FXBookingVC: UITableViewDelegate,UITableViewDataSource,Delete{
             cell.TFSelectPurposeOf.text = "\(Global.shared.purpose!) *"
             cell.homeSegment.setTitle(Global.shared.home, forSegmentAt: 0)
             cell.homeSegment.setTitle(Global.shared.branch, forSegmentAt: 1)
+            cell.homeSegment.selectedSegmentIndex = FXbookingMaster.shared.deliveryType == 2 ? 0 : 1
             cell.TFSelectDate.text = FXbookingMaster.shared.selecteddateslot
             cell.TFTimeSlot.text = FXbookingMaster.shared.selectedtimeslot
             cell.TFSelectPurposeOf.text = FXbookingMaster.shared.selectedpurpose
