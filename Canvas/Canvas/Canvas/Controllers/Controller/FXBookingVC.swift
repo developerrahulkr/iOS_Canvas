@@ -40,6 +40,7 @@ class FXBookingVC: UIViewController,protocolPush, navigateToDiffrentScreenDelega
     var highValue : String?
     var mixTap : String?
     var denomination : Int?
+    var tipsVideoList = [[String: Any]]()
     //var selectDate : String?
 //    var timeSlot : String?
 //    var purposeCode : String?
@@ -79,6 +80,7 @@ class FXBookingVC: UIViewController,protocolPush, navigateToDiffrentScreenDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        getTipsList()
 ////        Global.shared.countrysChangeAccordingly = "fc"
 //        print("denomination is >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>************ \(Global.shared.denominationFCCurrency)")
 //        FXbookingMaster.shared.dispose()
@@ -188,19 +190,21 @@ class FXBookingVC: UIViewController,protocolPush, navigateToDiffrentScreenDelega
     @IBAction func onClickedInfoBtn(_ sender: UIButton)
     {
         if let viewController = Storyboad.shared.mainStoryboard?.instantiateViewController(withIdentifier: "ToolTipListController") as? ToolTipListController {
+            viewController.helpVideoList = tipsVideoList
             var index = 0
             var height = 0
-//               print( "Value of index is \(index)")
-//                if index == 0
-//                {
+            while index < tipsVideoList.count {
+               print( "Value of index is \(index)")
+                if index == 0
+                {
                     height = height + 60
-//                }
-//                else {
-//                    height = height + 60
-//                }
-//
+                }
+                else {
+                    height = height + 60
+                }
+
                index = index + 1
-//            }
+            }
             viewController.preferredContentSize = CGSize(width: 300, height: height)
                 let navController = UINavigationController(rootViewController: viewController)
                 navController.modalPresentationStyle = .popover
@@ -208,8 +212,8 @@ class FXBookingVC: UIViewController,protocolPush, navigateToDiffrentScreenDelega
                 if let pctrl = navController.popoverPresentationController {
                     pctrl.delegate = self
 
-                    pctrl.sourceView = (sender as! UIView)
-                    pctrl.sourceRect = (sender as! UIView).bounds
+                    pctrl.sourceView = (sender as UIView)
+                    pctrl.sourceRect = (sender as UIView).bounds
 
                     self.present(navController, animated: true, completion: nil)
                 }
@@ -565,6 +569,65 @@ extension FXBookingVC: UITableViewDelegate,UITableViewDataSource,Delete{
         }
     }
     
+    func getTipsList() {
+        let paramaterPasing: [String:Any] = [
+              "helpTypes": 3,
+              "language": LocalizationSystem.sharedInstance.getLanguage(),
+              "screen": 5,
+              "registrationId": Global.shared.afterLoginRegistrtnId!
+            
+          ]
+        let headers: HTTPHeaders = [
+            "Content-Type": "application/json"
+        ]
+       // self.showSpinner(onView: self.view)
+        
+        NetWorkDataManager.sharedInstance.getHelpAndTips(headersTobePassed: headers, postParameters: paramaterPasing) { resonseTal , errorString in
+            
+            if errorString == nil
+            {
+               print(resonseTal)
+                self.removeSpinner()
+                if let helpVideoList = resonseTal?.value(forKey: "helpAndTipsResponseList") as? NSArray
+                {
+                    
+                    self.tipsVideoList = helpVideoList as! [[String : Any]]
+//                    if self.tipsVideoList.count != 0
+//                    {
+//                        self.btn_tip.isHidden = false
+//                    }
+//                    else
+//                    {
+//                        self.btn_tip.isHidden = true
+//                    }
+                    
+                    
+                    print("helpActionTips",helpVideoList)
+                        self.removeSpinner()
+                    
+                }
+              
+            }
+            else
+            {
+                print(errorString!)
+                self.removeSpinner()
+                let finalError = errorString?.components(separatedBy: ":")
+                if finalError?.count == 2
+                {
+                   let alert = ViewControllerManager.displayAlert(message: finalError?[1] ?? "", title:APPLICATIONNAME)
+                    self.present(alert, animated: true, completion: nil)
+                }
+                else
+                {
+                    let alert = ViewControllerManager.displayAlert(message: errorString ?? "", title:APPLICATIONNAME)
+                    self.present(alert, animated: true, completion: nil)
+                }
+                
+            }
+        }
+        
+    }
     
 //    func getHomeAddress()
 //    {

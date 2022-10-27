@@ -440,7 +440,7 @@ class TransctionsByPeriodVc: UIViewController, UITableViewDataSource, UITableVie
         BeneficiaryDetails.shared.ttRefNottn = eachObj?.value(forKey: "ttRefNo") as? String ?? ""
         
     /*    let lcAmntt = eachObj?.value(forKey: "lcAmount") as? String ?? "0"
-        BeneficiaryDetails.shared.lcAmntQuickSend = Int(lcAmntt)*/
+        BeneficiaryDetails.shared.lcAmntQuickSend = Int(lcAmntt) */
         
         let lcAmnt =  eachObj?.value(forKey: "lcAmount") as? String  ?? "0"
         let doubleLcAmnt = Double(lcAmnt)
@@ -488,64 +488,22 @@ class TransctionsByPeriodVc: UIViewController, UITableViewDataSource, UITableVie
         
         let txnNo = eachObj?.value(forKey: "txnRefNo") as! String
         self.showSpinner(onView: self.view)
-        let paramaterPasing: [String:Any] = [
-            "registrationId": Global.shared.afterLoginRegistrtnId ?? "",
-            "txnNo":txnNo
-        ]
-        
-        
-        /*    let headers: HTTPHeaders = [
-         "Content-Type": "application/json"
-         ]*/
-        
-        let headers: HTTPHeaders = [.authorization(bearerToken: UserDefaults.standard.string(forKey: "token")!)]
-        
-        NetWorkDataManager.sharedInstance.transactionEnquiryImplementation(headersTobePassed: headers, postParameters: paramaterPasing) { resonseTal , errorString in
-            
-            if errorString == nil
-            {
-                print(resonseTal)
-                self.removeSpinner()
-                
-            let statusMsg = resonseTal?.value(forKey: "statusMessage") as? String ?? ""
-            let mesageCode = resonseTal?.value(forKey: "messageCode") as? String ?? statusMsg
-                if let statusCode = resonseTal?.value(forKey: "statusCodes") as? Int {
-                    if statusCode == 200 {
-                        BeneficiaryDetails.shared.transactionStatus = resonseTal?.value(forKey: "transactionStatus") as? String ?? ""
-                        let vc = self.storyboard?.instantiateViewController(withIdentifier: "TransactionStatusController") as! TransactionStatusController
-                        self.present(vc, animated: true, completion: nil)
-                        
-                    }
-                    else {
-                        let alert = ViewControllerManager.displayAlert(message:Global.shared.messageCodeType(text: mesageCode), title:APPLICATIONNAME)
-                        self.present(alert, animated: true, completion: nil)
-                    }
-                    
-                }
-                
-            }
-            
-            else
-            {
-                print(errorString!)
-                self.removeSpinner()
-              //  Global.shared.methodName = CanvasUrls.ttRateCalculator
-              //  NetWorkDataManager.sharedInstance.callChannelException()
-                let finalError = errorString?.components(separatedBy: ":")
-                if finalError?.count == 2
-                {
-                let alert = ViewControllerManager.displayAlert(message: finalError?[1] ?? "", title:APPLICATIONNAME)
-                self.present(alert, animated: true, completion: nil)
-                }
-                else
-                {
-                    let alert = ViewControllerManager.displayAlert(message: finalError?[0] ?? "", title:APPLICATIONNAME)
-                    self.present(alert, animated: true, completion: nil)
-                }
-            }
-            
+        if BeneficiaryDetails.shared.beneficiaryType == 104 {
+            fcTransectionEnquiry(txnNo: txnNo)
+        }else{
+            wuTransectionEnquiry(txnNo: txnNo)
         }
+        
+        
+
     }
+    
+    
+    
+    
+    
+    
+    
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
       return 67
     }
@@ -874,4 +832,130 @@ class TransctionsByPeriodVc: UIViewController, UITableViewDataSource, UITableVie
           }
       }
     
+}
+
+extension TransctionsByPeriodVc {
+    
+    func wuTransectionEnquiry(txnNo : String){
+        let paramaterPasing: [String:Any] = [
+            "registrationId": Global.shared.afterLoginRegistrtnId ?? "",
+            "txnNo":txnNo
+        ]
+        
+        
+        /*    let headers: HTTPHeaders = [
+         "Content-Type": "application/json"
+         ]*/
+        
+        let headers: HTTPHeaders = [.authorization(bearerToken: UserDefaults.standard.string(forKey: "token")!)]
+        NetWorkDataManager.sharedInstance.transactionEnquiryImplementation(headersTobePassed: headers, postParameters: paramaterPasing) { resonseTal , errorString in
+            
+            if errorString == nil
+            {
+                print(resonseTal)
+                self.removeSpinner()
+                
+            let statusMsg = resonseTal?.value(forKey: "statusMessage") as? String ?? ""
+            let mesageCode = resonseTal?.value(forKey: "messageCode") as? String ?? statusMsg
+                if let statusCode = resonseTal?.value(forKey: "statusCodes") as? Int {
+                    if statusCode == 200 {
+                        BeneficiaryDetails.shared.transactionStatus = resonseTal?.value(forKey: "transactionStatus") as? String ?? ""
+                        let vc = self.storyboard?.instantiateViewController(withIdentifier: "TransactionStatusController") as! TransactionStatusController
+                        self.present(vc, animated: true, completion: nil)
+                        
+                    }
+                    else {
+                        let alert = ViewControllerManager.displayAlert(message:Global.shared.messageCodeType(text: mesageCode), title:APPLICATIONNAME)
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                    
+                }
+                
+            }
+            
+            else
+            {
+                print(errorString!)
+                self.removeSpinner()
+              //  Global.shared.methodName = CanvasUrls.ttRateCalculator
+              //  NetWorkDataManager.sharedInstance.callChannelException()
+                let finalError = errorString?.components(separatedBy: ":")
+                if finalError?.count == 2
+                {
+                let alert = ViewControllerManager.displayAlert(message: finalError?[1] ?? "", title:APPLICATIONNAME)
+                self.present(alert, animated: true, completion: nil)
+                }
+                else
+                {
+                    let alert = ViewControllerManager.displayAlert(message: finalError?[0] ?? "", title:APPLICATIONNAME)
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }
+            
+        }
+        
+    }
+    
+    
+    func fcTransectionEnquiry(txnNo : String){
+        let paramaterPasing: [String:Any] = [
+//            "registrationId": Global.shared.afterLoginRegistrtnId ?? "",
+            "txnRefNo":txnNo
+        ]
+        
+        
+        /*    let headers: HTTPHeaders = [
+         "Content-Type": "application/json"
+         ]*/
+        
+        let headers: HTTPHeaders = [.authorization(bearerToken: UserDefaults.standard.string(forKey: "token")!)]
+        NetWorkDataManager.sharedInstance.fcTransactionEnquiryImplementation(headersTobePassed: headers, postParameters: paramaterPasing) { resonseTal , errorString in
+            
+            if errorString == nil
+            {
+                print(resonseTal)
+                self.removeSpinner()
+                
+            let statusMsg = resonseTal?.value(forKey: "statusMessage") as? String ?? ""
+            let mesageCode = resonseTal?.value(forKey: "messageCode") as? String ?? statusMsg
+                if let statusCode = resonseTal?.value(forKey: "statusCodes") as? Int {
+                    if statusCode == 200 {
+                        if let getFCStatusResult = resonseTal?.value(forKey: "getFCStatusResult") as? NSDictionary {
+                            BeneficiaryDetails.shared.transactionStatus = getFCStatusResult.value(forKey: "status") as? String ?? ""
+                        }
+                        let vc = self.storyboard?.instantiateViewController(withIdentifier: "TransactionStatusController") as! TransactionStatusController
+                        self.present(vc, animated: true, completion: nil)
+                        
+                    }
+                    else {
+                        let alert = ViewControllerManager.displayAlert(message:Global.shared.messageCodeType(text: mesageCode), title:APPLICATIONNAME)
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                    
+                }
+                
+            }
+            
+            else
+            {
+                print(errorString!)
+                self.removeSpinner()
+              //  Global.shared.methodName = CanvasUrls.ttRateCalculator
+              //  NetWorkDataManager.sharedInstance.callChannelException()
+                let finalError = errorString?.components(separatedBy: ":")
+                if finalError?.count == 2
+                {
+                let alert = ViewControllerManager.displayAlert(message: finalError?[1] ?? "", title:APPLICATIONNAME)
+                self.present(alert, animated: true, completion: nil)
+                }
+                else
+                {
+                    let alert = ViewControllerManager.displayAlert(message: finalError?[0] ?? "", title:APPLICATIONNAME)
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }
+            
+        }
+        
+    }
 }

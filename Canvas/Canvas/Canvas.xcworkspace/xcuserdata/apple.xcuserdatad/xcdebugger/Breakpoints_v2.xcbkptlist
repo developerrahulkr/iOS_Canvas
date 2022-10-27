@@ -36,14 +36,14 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "BD90F06C-CE76-4276-A023-EE8F54F21E1C - 6bade6380d372010"
+                  uuid = "BD90F06C-CE76-4276-A023-EE8F54F21E1C - 64e51ad01680f8ec"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "Canvas.TermsAndConditionsVc.getSummeryTermsConditions() -&gt; ()"
                   moduleName = "Canvas"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apple/Documents/Git%20Canvas/Canvas/Canvas/Canvas/Controllers/Terms%20and%20Conditions/TermsAndConditionsVc.swift"
+                  urlString = "file:///Users/apple/Documents/Ripenapps_project/Git_canvas/Canvas/Canvas/Canvas/Controllers/Terms%20and%20Conditions/TermsAndConditionsVc.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "109"
@@ -51,14 +51,14 @@
                   offsetFromSymbolStart = "536">
                </Location>
                <Location
-                  uuid = "BD90F06C-CE76-4276-A023-EE8F54F21E1C - f9f74bfc8535cab5"
+                  uuid = "BD90F06C-CE76-4276-A023-EE8F54F21E1C - f6bfb7149e8212c9"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "closure #1 (Swift.Optional&lt;__C.NSDictionary&gt;, Swift.Optional&lt;Swift.String&gt;) -&gt; () in Canvas.TermsAndConditionsVc.getSummeryTermsConditions() -&gt; ()"
                   moduleName = "Canvas"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apple/Documents/Git%20Canvas/Canvas/Canvas/Canvas/Controllers/Terms%20and%20Conditions/TermsAndConditionsVc.swift"
+                  urlString = "file:///Users/apple/Documents/Ripenapps_project/Git_canvas/Canvas/Canvas/Canvas/Controllers/Terms%20and%20Conditions/TermsAndConditionsVc.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "111"
@@ -116,14 +116,14 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "CA7A9D9F-236C-4E48-A486-178175321296 - d2a22d3f89895911"
+                  uuid = "CA7A9D9F-236C-4E48-A486-178175321296 - ae3532b408fab6a8"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "closure #1 (Swift.Optional&lt;__C.NSDictionary&gt;, Swift.Optional&lt;Swift.String&gt;) -&gt; () in Canvas.WuSecndTermsConditions.getSummeryTermsConditions() -&gt; ()"
                   moduleName = "Canvas"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apple/Documents/Git%20Canvas/Canvas/Canvas/Canvas/Controllers/Beneficiaries/WU/WuSecndTermsConditions.swift"
+                  urlString = "file:///Users/apple/Documents/Ripenapps_project/Git_canvas/Canvas/Canvas/Canvas/Controllers/Beneficiaries/WU/WuSecndTermsConditions.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "87"
@@ -131,14 +131,14 @@
                   offsetFromSymbolStart = "2653">
                </Location>
                <Location
-                  uuid = "CA7A9D9F-236C-4E48-A486-178175321296 - d2a22d3f89895911"
+                  uuid = "CA7A9D9F-236C-4E48-A486-178175321296 - ae3532b408fab6a8"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "closure #1 (Swift.Optional&lt;__C.NSDictionary&gt;, Swift.Optional&lt;Swift.String&gt;) -&gt; () in Canvas.WuSecndTermsConditions.getSummeryTermsConditions() -&gt; ()"
                   moduleName = "Canvas"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apple/Documents/Git%20Canvas/Canvas/Canvas/Canvas/Controllers/Beneficiaries/WU/WuSecndTermsConditions.swift"
+                  urlString = "file:///Users/apple/Documents/Ripenapps_project/Git_canvas/Canvas/Canvas/Canvas/Controllers/Beneficiaries/WU/WuSecndTermsConditions.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "87"
@@ -196,14 +196,14 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "E44B3228-DD37-49DE-BCBA-7E67C738261E - d2a22d3f898959b6"
+                  uuid = "E44B3228-DD37-49DE-BCBA-7E67C738261E - ae3532b408fab74d"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "closure #1 (Swift.Optional&lt;__C.NSDictionary&gt;, Swift.Optional&lt;Swift.String&gt;) -&gt; () in Canvas.WuSecndTermsConditions.getSummeryTermsConditions() -&gt; ()"
                   moduleName = "Canvas"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apple/Documents/Git%20Canvas/Canvas/Canvas/Canvas/Controllers/Beneficiaries/WU/WuSecndTermsConditions.swift"
+                  urlString = "file:///Users/apple/Documents/Ripenapps_project/Git_canvas/Canvas/Canvas/Canvas/Controllers/Beneficiaries/WU/WuSecndTermsConditions.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "92"
@@ -211,14 +211,14 @@
                   offsetFromSymbolStart = "4195">
                </Location>
                <Location
-                  uuid = "E44B3228-DD37-49DE-BCBA-7E67C738261E - d2a22d3f898959b6"
+                  uuid = "E44B3228-DD37-49DE-BCBA-7E67C738261E - ae3532b408fab74d"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "closure #1 (Swift.Optional&lt;__C.NSDictionary&gt;, Swift.Optional&lt;Swift.String&gt;) -&gt; () in Canvas.WuSecndTermsConditions.getSummeryTermsConditions() -&gt; ()"
                   moduleName = "Canvas"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apple/Documents/Git%20Canvas/Canvas/Canvas/Canvas/Controllers/Beneficiaries/WU/WuSecndTermsConditions.swift"
+                  urlString = "file:///Users/apple/Documents/Ripenapps_project/Git_canvas/Canvas/Canvas/Canvas/Controllers/Beneficiaries/WU/WuSecndTermsConditions.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "92"
@@ -468,14 +468,14 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "145E721E-04B3-4475-B0F7-00134B279494 - e079b2072451880a"
+                  uuid = "145E721E-04B3-4475-B0F7-00134B279494 - 34c4efb61d6a86b8"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "Canvas.AddNewAddressVC.AddAddress() -&gt; ()"
                   moduleName = "Canvas"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apple/Documents/Git%20Canvas/Canvas/Canvas/Canvas/Controllers/Controller/AddNewAddressVC.swift"
+                  urlString = "file:///Users/apple/Documents/Ripenapps_project/Git_canvas/Canvas/Canvas/Canvas/Controllers/Controller/AddNewAddressVC.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "260"
@@ -483,14 +483,14 @@
                   offsetFromSymbolStart = "7132">
                </Location>
                <Location
-                  uuid = "145E721E-04B3-4475-B0F7-00134B279494 - 92b6d7006f145bbc"
+                  uuid = "145E721E-04B3-4475-B0F7-00134B279494 - 460b8ab1562f55c2"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "closure #1 (Swift.Optional&lt;__C.NSDictionary&gt;, Swift.Optional&lt;Swift.String&gt;) -&gt; () in Canvas.AddNewAddressVC.AddAddress() -&gt; ()"
                   moduleName = "Canvas"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apple/Documents/Git%20Canvas/Canvas/Canvas/Canvas/Controllers/Controller/AddNewAddressVC.swift"
+                  urlString = "file:///Users/apple/Documents/Ripenapps_project/Git_canvas/Canvas/Canvas/Canvas/Controllers/Controller/AddNewAddressVC.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "261"
@@ -510,8 +510,8 @@
             filePath = "Canvas/Controllers/Controller/FXBookingVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "219"
-            endingLineNumber = "219"
+            startingLineNumber = "223"
+            endingLineNumber = "223"
             landmarkName = "onclicksubmit()"
             landmarkType = "7">
          </BreakpointContent>
@@ -542,8 +542,8 @@
             filePath = "Canvas/Controllers/Controller/FXBookingVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "416"
-            endingLineNumber = "416"
+            startingLineNumber = "420"
+            endingLineNumber = "420"
             landmarkName = "FXBookingVC"
             landmarkType = "3">
          </BreakpointContent>

@@ -1367,6 +1367,26 @@ func appVersionControl(headersTobePassed : HTTPHeaders,postParameters :[String:A
                      
              }
          }
+    
+    
+//    MARK: - FXBooking Transection Enquiry
+    
+    func fcTransactionEnquiryImplementation(headersTobePassed : HTTPHeaders,postParameters :[String:Any],completionHandler: @escaping (NSDictionary?, String?) -> ())
+    {
+        
+        let apiUlr = CanvasUrls.baseUrl +  CanvasUrls.versionNumber + CanvasUrls.fxBookingTransectionEnquiry
+        
+        AF.request(apiUlr, method: .post, parameters: postParameters, encoding:
+            JSONEncoding.default, headers: headersWithAuthorization).responseJSON
+            { response in
+                
+                let completion = self.dealWithDictResponse(response: response)
+                completionHandler(completion.0, completion.1)
+                
+        }
+    }
+    
+    
       
       //Line chart
             func lineChartImplementation(headersTobePassed : HTTPHeaders,postParameters :[String:Any],completionHandler: @escaping (NSDictionary?, String?) -> ())

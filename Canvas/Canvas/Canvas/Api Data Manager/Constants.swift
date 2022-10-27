@@ -125,6 +125,7 @@ struct CanvasUrls {
     static let benefVisaDirectTransfer = "/beneficiary/addbeneficiary/visadirect"
     static let getSessionID = "/beneficiary/getSessionID"
     static let transactionEnquiry = "/transactionenquiry/TransactionEnquiryGet"
+    static let fxBookingTransectionEnquiry = "/fxbooking/fctransactionenquiry"
     
     static let getfxbookinaddress = "/fxbooking/getfxbookingaddress"
     static let addfxbookingaddress = "/fxbooking/addfxbookingaddress"
