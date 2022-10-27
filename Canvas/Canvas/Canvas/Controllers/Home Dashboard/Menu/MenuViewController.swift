@@ -220,16 +220,16 @@ class MenuViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     }
     
     @IBAction func editProfileBtnActn(_ sender: Any) {
-//        self.view.removeFromSuperview()
-//        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ProfileVc") as! ProfileVc
-//        self.navigationController?.pushViewController(vc, animated: true)
-//        self.tabBarController?.tabBar.isHidden = true
-        
-        
-        
         self.view.removeFromSuperview()
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ProfileVc") as! ProfileVc
+        self.navigationController?.pushViewController(vc, animated: true)
+        self.tabBarController?.tabBar.isHidden = true
+        
+        
+        
+//        self.view.removeFromSuperview()
 
-        delegateObj?.navigateToDiffrentScreenDelegate(toWhichScreenWeAreNaviagting: Global.shared.menuProfile!)
+//        delegateObj?.navigateToDiffrentScreenDelegate(toWhichScreenWeAreNaviagting: Global.shared.menuProfile!)
 
 //        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ProfileVc") as! ProfileVc
 //

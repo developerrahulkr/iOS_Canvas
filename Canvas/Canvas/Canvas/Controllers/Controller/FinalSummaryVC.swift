@@ -23,11 +23,8 @@ class FinalSummaryVC: UIViewController {
     var pdfString = ""
     
     var pdfUrl:NSURL!
-<<<<<<< HEAD
-    
-=======
     var transrefId = ""
->>>>>>> 898cb960b051869ce1119aedd2fe1d04c3f62174
+    
     
     //MARK: - VARIABLES
     var fxBookingModel : FXBookingModel?
@@ -364,33 +361,9 @@ extension FinalSummaryVC: UITableViewDelegate,UITableViewDataSource{
                 fullName = name
                 
             }
-<<<<<<< HEAD
+            
             if let nameMiddle = fxBookingModel?.remitterMiddleName{
                 fullName = fullName + " " + nameMiddle
-=======
-            else if indexPath.section == 1{
-                let cell = tableView.dequeueReusableCell(withIdentifier: "CellCurrencyData", for: indexPath) as! CellCurrencyData
-                if let currencyCode = fxBookingModel?.fXBookingDetails?[indexPath.row].fcCurrencyCode{
-                    cell.lblCurrencyCode.text = String(currencyCode)
-                }
-                if let FCAmount = fxBookingModel?.fXBookingDetails?[indexPath.row].fcAmount{
-                    cell.lblFCAmount.text = String(FCAmount)
-                }
-                
-                if let rate = fxBookingModel?.fXBookingDetails?[indexPath.row].rate{
-                    cell.lblFinalTxt.text = "1 \(fxBookingModel?.fXBookingDetails?[indexPath.row].fcCurrencyCode ?? "") = \(rate)"
-                }
-                if let currCode = fxBookingModel?.fXBookingDetails?[indexPath.row].fcCurrencyCode{
-                    cell.lblCurrencyCode.text = String(currCode)
-                }
-                if let LCAmount = fxBookingModel?.fXBookingDetails?[indexPath.row].lcAmount{
-                    cell.lblLCAmount.text = String(LCAmount) + " KWD"
-                }
-                if let countryImg = fxBookingModel?.fXBookingDetails?[indexPath.row].countryCode{
-                    cell.imgFlag.image = UIImage(named: (countryImg.lowercased()) )
-                }
->>>>>>> 898cb960b051869ce1119aedd2fe1d04c3f62174
-                
             }
             if let nameLast = fxBookingModel?.remitterLastName{
                 fullName = fullName + " " + nameLast
@@ -436,14 +409,6 @@ extension FinalSummaryVC: UITableViewDelegate,UITableViewDataSource{
                 var digitTwo = Double(LCAmount)
                 var digitThree = String(format: "%.3f", digitTwo)
                 cell.lblLCAmount.text = "\(digitThree) KWD"
-                
-                
-                
-//                cell.lblLCAmount.text = String(LCAmount) + " KWD"
-                
-                
-                
-                
                 
             }
             if let countryImg = fxBookingModel?.fXBookingDetails?[indexPath.row].countryCode{
