@@ -41,10 +41,11 @@ class HomeDashboardAllNewsVC: UIViewController {
     }
     
     @IBAction func onClickedLangChange(_ sender: UIButton) {
-        
+        Global.shared.languageChangeActn()
     }
     
     @IBAction func onClickedLogout(_ sender: UIButton) {
+        logout()
     }
     
     @IBAction func onClickedBackButton(_ sender: UIButton) {
