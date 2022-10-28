@@ -1732,6 +1732,42 @@ func appVersionControl(headersTobePassed : HTTPHeaders,postParameters :[String:A
         }
     }
     
+//    MARK: - Home LatestNews API
+    func latestNews(headersTobePassed : HTTPHeaders,postParameters :[String:Any],completionHandler: @escaping (NSDictionary?, String?) -> ())
+    {
+        
+        let apiUlr = CanvasUrls.baseUrl +  CanvasUrls.versionNumber + CanvasUrls.latest_news_url
+        print(apiUlr)
+        print(postParameters)
+        
+        AF.request(apiUlr, method: .post, parameters: postParameters, encoding:
+            JSONEncoding.default, headers: headersWithAuthorization).responseJSON
+            { response in
+                
+                let completion = self.dealWithDictResponse(response: response)
+                completionHandler(completion.0, completion.1)
+        }
+    }
+    
+    
+    //    MARK: - Home All News API
+        func allNews(headersTobePassed : HTTPHeaders,postParameters :[String:Any],completionHandler: @escaping (NSDictionary?, String?) -> ())
+        {
+            
+            let apiUlr = CanvasUrls.baseUrl +  CanvasUrls.versionNumber + CanvasUrls.all_news_url
+            print(apiUlr)
+            print(postParameters)
+            
+            AF.request(apiUlr, method: .post, parameters: postParameters, encoding:
+                JSONEncoding.default, headers: headersWithAuthorization).responseJSON
+                { response in
+                    
+                    let completion = self.dealWithDictResponse(response: response)
+                    completionHandler(completion.0, completion.1)
+            }
+        }
+    
+    
     
     
 }

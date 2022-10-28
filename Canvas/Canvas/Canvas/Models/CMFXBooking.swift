@@ -60,6 +60,11 @@ struct CMSelectDate : Codable {
     var id, sDate : String?
 }
 
+struct CMLatestNews : Codable {
+    var startDate, endDate, title, thumbNailFileName, url, content, language : String?
+    var id, channelID, sequence : Int?
+}
+
 struct FXTimeSlot : Codable {
     var name, value : String?
 }

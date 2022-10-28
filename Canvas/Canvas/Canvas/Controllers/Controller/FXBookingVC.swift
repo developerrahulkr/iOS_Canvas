@@ -46,6 +46,7 @@ class FXBookingVC: UIViewController,protocolPush, navigateToDiffrentScreenDelega
 //    var purposeCode : String?
     
     var fxdelegate : delegatecallbackfromFxbooking?
+    
 
     
     

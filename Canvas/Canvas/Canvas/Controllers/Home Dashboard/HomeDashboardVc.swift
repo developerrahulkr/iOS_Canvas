@@ -11,6 +11,7 @@ import Charts
 import Alamofire
 import MaterialShowcase
 import Firebase
+import Kingfisher
 class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollectionViewDelegate, UITextFieldDelegate, navigateToDiffrentScreenDelegate, UIDropDownCurrencyDelegateM, XMSegmentedControlDelegate   {
     @IBOutlet weak var HelpCollectionHeight: NSLayoutConstraint!
     @IBOutlet weak var helpCollectionView: UICollectionView!
@@ -25,6 +26,7 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
     
     var tipsVideoList = [[String: Any]]()
     
+    @IBOutlet weak var latestNewsView: UIView!
     @IBOutlet weak var setAlertBtnOtlt: UIButton!
     @IBOutlet weak var btn_tip: UIButton!
     
@@ -51,6 +53,7 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
     
     @IBOutlet weak var recentTransctnsCollectnView: UICollectionView!
     
+    @IBOutlet weak var latestNewsTableView: UITableView!
     
     @IBOutlet weak var favBenefCollectnView: UICollectionView!
     
@@ -166,11 +169,16 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
     var titlesAry = ["International Mashaer event", "Hubbulrrasool event by Kerala Islamic Group", "Avenues 2nd branch is now open"]
     var subtitlesAry = ["International Mashaer event in Kuwait Medical Association", "Kerala Islamic group has conducted Hubbulrrasool event", "Avenues 2nd branch is now open is phase 4"]
     var newsImgesAry = ["news1", "news2", "news3"]
+    lazy var latestNewsDataSource : [CMLatestNews] = {
+        let data = [CMLatestNews]()
+        return data
+        
+    }()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        latestNewsAPI()
         self.HelpCollectionHeight.constant = 0
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "OfferPopUpController") as! OfferPopUpController
         self.present(vc, animated: true, completion: nil)
@@ -209,6 +217,7 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
         rateCalctrView.addDropShadowToView(targetView: rateCalctrView)
         ratePatternView.addDropShadowToView(targetView: ratePatternView)
         downBanerImgView.addDropShadowToView(targetView: downBanerImgView)
+        latestNewsView.addDropShadowToView(targetView: latestNewsView)
         
         youSendField.delegate = self
         theyReceiveField.delegate = self
@@ -332,6 +341,8 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
             // loadTransactionLocalData()
         }
         
+        latestNewsTableView.register(UINib(nibName: "HomeLatestNewCell", bundle: nil), forCellReuseIdentifier: "HomeLatestNewCell")
+        
     }
     
     func ShowOfferPopUp() {
@@ -428,6 +439,12 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
         
     }
     
+    @IBAction func onClickedViewAllNews(_ sender: UIButton) {
+        print("View All Events")
+        let vc = Storyboad.shared.fxBookingStoryboard?.instantiateViewController(withIdentifier: "HomeDashboardAllNewsVC") as! HomeDashboardAllNewsVC
+        self.navigationController?.pushViewController(vc, animated: true)
+        
+    }
     
     func navigateToDiffrentScreenDelegate(toWhichScreenWeAreNaviagting : String)
     {
@@ -2854,6 +2871,55 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
         }
     }
     
+    func latestNewsAPI() {
+        let paramaterPasing: [String:Any] = ["languageCode":LocalizationSystem.sharedInstance.getLanguage(),
+                                             "channel": "1"]
+        let headers: HTTPHeaders = [
+            "Content-Type": "application/json"
+        ]
+        
+        NetWorkDataManager.sharedInstance.latestNews(headersTobePassed: headers, postParameters: paramaterPasing) { responseData, errorString in
+            guard errorString == nil else{
+                NetWorkDataManager.sharedInstance.callChannelException()
+                let finalError = errorString?.components(separatedBy: ":")
+                let alert = ViewControllerManager.displayAlert(message: finalError?[1] ?? "", title:APPLICATIONNAME)
+                self.present(alert, animated: true, completion: nil)
+                return
+            }
+            
+            let statusMsg = responseData?.value(forKey: "statusMessage") as? String ?? ""
+            let maxNewsItems = responseData?.value(forKey: "maxNewsItem") as? Int ?? 0
+            let mesageCode = responseData?.value(forKey: "messageCode") as? String ?? statusMsg
+            if let statusCode = responseData?.value(forKey: "statusCodes") as? Int {
+                if statusCode == 200 {
+                    if let newsItems = responseData?.value(forKey: "newsItems") as? NSArray {
+                        for onemessage in newsItems as! [Dictionary<String, AnyObject>] {
+                            
+                            self.latestNewsDataSource.append(CMLatestNews(startDate: onemessage["startDate"] as? String,
+                                                                          endDate: onemessage["endDate"] as? String,
+                                                                          title: onemessage["title"] as? String,
+                                                                          thumbNailFileName: onemessage["thumbNailFileName"] as? String,
+                                                                          url: onemessage["url"] as? String,
+                                                                          content: onemessage["content"] as? String,
+                                                                          language: onemessage["language"] as? String,
+                                                                          id: onemessage["id"] as? Int,
+                                                                          channelID: onemessage["channelID"] as? Int,
+                                                                          sequence: onemessage["sequence"] as? Int))
+//                            self.selectDateDataSource.append(CMSelectDate(id: onemessage["id"] as? String, sDate: onemessage["sDate"] as? String))
+                        }
+                    }
+                    
+                    print("latestNewsData is \(self.latestNewsDataSource)")
+                    self.latestNewsTableView.reloadData()
+                }
+                
+            }
+            
+            
+            
+        }
+    }
+    
     func downloadAccountConfigCountriesVisa()
     {
         let paramaterPasing: [String:Any] = ["languageCode":LocalizationSystem.sharedInstance.getLanguage(),
@@ -3548,4 +3614,23 @@ class ChartValueFormatter: NSObject, ValueFormatter {
         }
         return numberFormatter.string(for: value)!
     }
+}
+
+
+extension HomeDashboardVc : UITableViewDelegate, UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return latestNewsDataSource.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "HomeLatestNewCell", for: indexPath) as! HomeLatestNewCell
+        cell.img.kf.setImage(with: URL(string: latestNewsDataSource[indexPath.row].thumbNailFileName ?? ""))
+        cell.lblTitle.text = latestNewsDataSource[indexPath.row].title ?? ""
+        cell.lblDesc.text = latestNewsDataSource[indexPath.row].content ?? ""
+        return cell
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 110
+    }
+    
 }
