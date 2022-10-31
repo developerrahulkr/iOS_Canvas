@@ -55,6 +55,11 @@ struct CMBookingBranchAddress : Codable{
      var isFEEnabled : Bool?
 }
 
+struct CMTimeSlotSelectDate : Codable {
+    var id : Int?
+    var name, starTime, endTime : String?
+}
+
 
 struct CMSelectDate : Codable {
     var id, sDate : String?

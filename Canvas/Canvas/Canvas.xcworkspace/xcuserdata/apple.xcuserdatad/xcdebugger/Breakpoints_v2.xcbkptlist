@@ -510,8 +510,8 @@
             filePath = "Canvas/Controllers/Controller/FXBookingVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "224"
-            endingLineNumber = "224"
+            startingLineNumber = "231"
+            endingLineNumber = "231"
             landmarkName = "onclicksubmit()"
             landmarkType = "7">
          </BreakpointContent>
@@ -529,22 +529,6 @@
             startingLineNumber = "62"
             endingLineNumber = "62"
             landmarkName = "YourAddress"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "CE5BD1AE-CE30-40E0-8181-7064AF882172"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Canvas/Controllers/Controller/FXBookingVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "421"
-            endingLineNumber = "421"
-            landmarkName = "FXBookingVC"
             landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>

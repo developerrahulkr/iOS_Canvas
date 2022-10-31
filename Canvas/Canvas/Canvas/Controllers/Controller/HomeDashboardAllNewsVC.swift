@@ -20,6 +20,8 @@ class HomeDashboardAllNewsVC: UIViewController {
         return data
         
     }()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         AllNewsAPI()

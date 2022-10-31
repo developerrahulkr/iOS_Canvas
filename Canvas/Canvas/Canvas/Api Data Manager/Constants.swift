@@ -144,6 +144,8 @@ struct CanvasUrls {
     static let add_user_branch = "/fxbooking/adduserbranch"
     static let latest_news_url = "/newsevent/latestnews"
     static let all_news_url = "/newsevent/allnews"
+    static let fxbookingTimeSlotURL = "/fxbooking/fxtimeslot"
+
 
 }
 

@@ -1767,6 +1767,39 @@ func appVersionControl(headersTobePassed : HTTPHeaders,postParameters :[String:A
             }
         }
     
+    //MARK: FXBooking Time Slot API (31/10/22)
+   func fxbookingTimeSlot(headersTobePassed : HTTPHeaders,postParameters :[String:Any],completionHandler: @escaping (NSDictionary?, String?) -> ())
+   {
+       
+       let apiUlr = CanvasUrls.baseUrl +  CanvasUrls.versionNumber + CanvasUrls.fxbookingTimeSlotURL
+       print(apiUlr)
+       print(postParameters)
+       
+       AF.request(apiUlr, method: .post, parameters: postParameters, encoding:
+           JSONEncoding.default, headers: headersWithAuthorization).responseJSON
+           { response in
+               
+               let completion = self.dealWithDictResponse(response: response)
+               completionHandler(completion.0, completion.1)
+       }
+   }
+   
+   
+   
+   func TimeConvertor(string: String, dateFormat : String) -> String
+   {
+       
+       let dateFormatter = DateFormatter()
+       dateFormatter.dateFormat = "dd-MMM-yyyy" // This formate is input formated .
+       if let date = dateFormatter.date(from: "\(string)") {
+           dateFormatter.timeZone = TimeZone(secondsFromGMT: Calendar.current.timeZone.secondsFromGMT())
+           dateFormatter.dateFormat = dateFormat
+           return dateFormatter.string(from: date)
+       } else {
+           // Invalid date
+           return string
+       }
+   }
     
     
     

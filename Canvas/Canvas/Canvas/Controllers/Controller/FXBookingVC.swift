@@ -41,6 +41,7 @@ class FXBookingVC: UIViewController,protocolPush, navigateToDiffrentScreenDelega
     var mixTap : String?
     var denomination : Int?
     var tipsVideoList = [[String: Any]]()
+    var selectedDateForTime = ""
     //var selectDate : String?
 //    var timeSlot : String?
 //    var purposeCode : String?
@@ -68,6 +69,12 @@ class FXBookingVC: UIViewController,protocolPush, navigateToDiffrentScreenDelega
     
     lazy var fxTimemSlotDataSource : [FXTimeSlot] = {
         let data = [FXTimeSlot]()
+        return data
+        
+    }()
+    
+    lazy var selectTimeSlotDateDatasource : [CMTimeSlotSelectDate] = {
+       let data = [CMTimeSlotSelectDate]()
         return data
         
     }()
@@ -415,7 +422,7 @@ class FXBookingVC: UIViewController,protocolPush, navigateToDiffrentScreenDelega
         DispatchQueue.global(qos: .background).async { [weak self] in
             guard let self = self else {return}
             self.getSelectDateData()
-            self.getTimeSlotData()
+//            self.getTimeSlotData()
         }
     }
     
@@ -549,6 +556,12 @@ extension FXBookingVC: UITableViewDelegate,UITableViewDataSource,Delete{
             cell.TFTimeSlot.placeholder = Global.shared.timeslot
             cell.TFSelectDate.placeholder = Global.shared.preferred_date
 //            cell.lblPurpose.text = "\(Global.shared.purpose!) *"
+            
+            if cell.TFSelectDate.text == ""{
+                cell.btnTimeSlot.isUserInteractionEnabled = false
+            }
+            else
+            {cell.btnTimeSlot.isUserInteractionEnabled = true}
             cell.TFSelectPurposeOf.text = "\(Global.shared.purpose!) *"
             cell.homeSegment.setTitle(Global.shared.home, forSegmentAt: 0)
             cell.homeSegment.setTitle(Global.shared.branch, forSegmentAt: 1)
@@ -722,11 +735,18 @@ extension FXBookingVC: UITableViewDelegate,UITableViewDataSource,Delete{
     }
     
     func getTimeSlot() {
+        guard !selectTimeSlotDateDatasource.isEmpty else{
+            let alert = ViewControllerManager.displayAlert(message:"Data is Empty for current selected date.", title:APPLICATIONNAME)
+            self.present(alert, animated: true, completion: nil)
+            FXbookingMaster.shared.selectedtimeslot = ""
+            tableViewFX.reloadData()
+            return
+        }
         let popupViewController = Storyboad.shared.fxBookingStoryboard?.instantiateViewController(withIdentifier: "CalanderPopupVC") as! CalanderPopupVC
         popupViewController.modalPresentationStyle = .custom
         popupViewController.modalTransitionStyle = .crossDissolve
         //presenting the pop up viewController from the parent viewController
-        popupViewController.setListData(with: .timeSlot, data: fxTimemSlotDataSource)
+        popupViewController.setListData(with: .timeSlot, data: selectTimeSlotDateDatasource)
         popupViewController.delegate = self
         
         //        popupViewController.item = selectDateDataSource
@@ -1186,6 +1206,51 @@ extension FXBookingVC {
             }
         }
     }
+    
+    //    MARK: - 31-10-2022 API integration
+        
+        func timeSlotApiData() {
+            self.selectTimeSlotDateDatasource.removeAll()
+            let paramaterPasing: [String:Any] = ["dtDate": selectedDateForTime]
+            
+            
+            let headers: HTTPHeaders = [
+                "Content-Type": "application/json"
+            ]
+            
+            NetWorkDataManager.sharedInstance.fxbookingTimeSlot(headersTobePassed: headers, postParameters: paramaterPasing) { [weak self] responseData, errString in
+                guard let self = self else {return}
+                
+                guard errString == nil else {
+                    print(errString ?? "")
+                    let finalError = errString?.components(separatedBy: ":")
+    //                    let alert = ViewControllerManager.displayAlert(message: finalError?[1] ?? "", title:APPLICATIONNAME)
+    //                    self.present(alert, animated: true, completion: nil)
+                    return
+                }
+                let statusMsg = responseData?.value(forKey: "statusMessage") as? String ?? ""
+                let mesageCode = responseData?.value(forKey: "messageCode") as? String ?? statusMsg
+                if let statusCode = responseData?.value(forKey: "statusCodes") as? Int {
+                    
+                    print(statusCode)
+                    if(statusCode == 200) {
+                        if let dataArray = responseData?.value(forKey: "timeSlotList") as? NSArray {
+                            for onemessage in dataArray as! [Dictionary<String, AnyObject>] {
+    //                            self.selectDateDataSource.append(CMSelectDate(id: onemessage["id"] as? String, sDate: onemessage["sDate"] as? String))
+                                self.selectTimeSlotDateDatasource.append(CMTimeSlotSelectDate(id: onemessage["id"] as? Int, name: onemessage["name"] as? String, starTime: onemessage["starTime"] as? String, endTime: onemessage["endTime"] as? String))
+                            }
+                        }
+                        print("Select Date Data : \(self.selectTimeSlotDateDatasource)")
+                    }else {
+                        let alert = ViewControllerManager.displayAlert(message:Global.shared.messageCodeType(text: mesageCode), title:APPLICATIONNAME)
+                        self.present(alert, animated: true, completion: nil)
+                    }
+
+                    
+                }
+                        
+            }
+        }
 }
 
 extension FXBookingVC : PopupViewControllerDelegate {
@@ -1193,10 +1258,13 @@ extension FXBookingVC : PopupViewControllerDelegate {
         if let itemData = item as? CMSelectDate {
 //            selectDate = itemData.sDate
             FXbookingMaster.shared.selecteddateslot = itemData.sDate ?? ""
-        }else if let timeData = item as? FXTimeSlot{
+            selectedDateForTime = NetWorkDataManager.sharedInstance.TimeConvertor(string: FXbookingMaster.shared.selecteddateslot, dateFormat: "yyyy-MM-dd")
+            print("Time Conversion: *************************       \(NetWorkDataManager.sharedInstance.TimeConvertor(string: FXbookingMaster.shared.selecteddateslot, dateFormat: "yyyy-MM-dd"))")
+            
+            self.timeSlotApiData()
+        }else if let timeData = item as? CMTimeSlotSelectDate{
 //            timeSlot = timeData.name
             FXbookingMaster.shared.selectedtimeslot = timeData.name ?? ""
-
             print("time Slot Date : \(item)")
         }else if let purposeCodeData = item as? BeneficiaryPurposeData {
             FXbookingMaster.shared.selectedpurpose = purposeCodeData.name ?? ""

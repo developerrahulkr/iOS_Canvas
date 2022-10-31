@@ -354,6 +354,7 @@
                 <outlet property="TFTimeSlot" destination="Nxf-yB-ldL" id="vpU-yk-z3N"/>
                 <outlet property="btnAdd" destination="4Z7-TT-HhH" id="6wH-MR-eaS"/>
                 <outlet property="btnSubmit" destination="Pzq-Cc-VJI" id="lH2-fQ-Xhf"/>
+                <outlet property="btnTimeSlot" destination="X84-A6-RIm" id="Wtn-aF-d83"/>
                 <outlet property="collectionViewDeliveryOption" destination="7pv-eN-I5H" id="6lq-be-F9Q"/>
                 <outlet property="homeSegment" destination="qMN-ix-rq3" id="9lj-vB-ygI"/>
                 <outlet property="imgHighNote" destination="gc9-JJ-kip" id="p23-YL-lb5"/>

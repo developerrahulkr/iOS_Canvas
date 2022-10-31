@@ -23,7 +23,7 @@ class CalanderPopupVC : UIViewController {
     @IBOutlet weak var tableView: UITableView!
     weak var delegate : PopupDelegate?
     var item : [CMSelectDate] = []
-    var timeSlotData : [FXTimeSlot] = []
+    var timeSlotData : [CMTimeSlotSelectDate] = []
     var screenType : ScreenType = .calander
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,7 +49,7 @@ class CalanderPopupVC : UIViewController {
           self.item = items
         }
       case .timeSlot:
-          if let items = data as? [FXTimeSlot] {
+          if let items = data as? [CMTimeSlotSelectDate] {
               self.timeSlotData = items
         }
       }
