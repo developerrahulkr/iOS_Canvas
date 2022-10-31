@@ -59,6 +59,7 @@ extension HomeDashboardAllNewsVC : UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "HomeLatestNewCell", for: indexPath) as! HomeLatestNewCell
+        cell.selectionStyle = .none
         cell.img.kf.setImage(with: URL(string: allNewsDataSource[indexPath.row].thumbNailFileName ?? ""))
         cell.lblTitle.text = allNewsDataSource[indexPath.row].title ?? ""
         cell.lblDesc.text = allNewsDataSource[indexPath.row].content ?? ""
@@ -116,11 +117,7 @@ extension HomeDashboardAllNewsVC {
                     print("latestNewsData is \(self.allNewsDataSource)")
                     self.tablView.reloadData()
                 }
-                
             }
-            
-            
-            
         }
     }
 }

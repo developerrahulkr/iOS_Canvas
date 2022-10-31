@@ -1516,8 +1516,8 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All Events" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Egt-iX-ijj">
-                                        <rect key="frame" x="64" y="30.5" width="108" height="33"/>
-                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="24"/>
+                                        <rect key="frame" x="64" y="30.5" width="114.5" height="33"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="24"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -1561,7 +1561,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7cH-07-T2f">
-                                <rect key="frame" x="20" y="188" width="374" height="644"/>
+                                <rect key="frame" x="20" y="188" width="374" height="658"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All Events" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="lge-6y-Alm">
                                         <rect key="frame" x="10" y="10" width="114.5" height="33"/>
@@ -1570,7 +1570,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="DMj-J2-7fT">
-                                        <rect key="frame" x="0.0" y="53" width="374" height="571"/>
+                                        <rect key="frame" x="0.0" y="53" width="374" height="585"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <connections>
                                             <outlet property="dataSource" destination="P92-EC-t0Z" id="sMc-TP-n46"/>
@@ -1589,7 +1589,7 @@
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="16"/>
+                                        <real key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
@@ -1600,7 +1600,7 @@
                             <constraint firstItem="pzt-O8-Knq" firstAttribute="top" secondItem="crV-DN-lfE" secondAttribute="top" id="3Kz-wM-xPu"/>
                             <constraint firstAttribute="trailing" secondItem="pzt-O8-Knq" secondAttribute="trailing" id="CDE-Tf-BfX"/>
                             <constraint firstItem="7cH-07-T2f" firstAttribute="top" secondItem="pzt-O8-Knq" secondAttribute="bottom" constant="20" id="Jmi-sh-6lf"/>
-                            <constraint firstItem="crV-DN-lfE" firstAttribute="bottom" secondItem="7cH-07-T2f" secondAttribute="bottom" constant="30" id="RtK-hc-40w"/>
+                            <constraint firstItem="crV-DN-lfE" firstAttribute="bottom" secondItem="7cH-07-T2f" secondAttribute="bottom" constant="16" id="RtK-hc-40w"/>
                             <constraint firstItem="pzt-O8-Knq" firstAttribute="leading" secondItem="crV-DN-lfE" secondAttribute="leading" id="bAU-3F-LNz"/>
                             <constraint firstItem="7cH-07-T2f" firstAttribute="leading" secondItem="crV-DN-lfE" secondAttribute="leading" constant="20" id="pZa-17-mY1"/>
                             <constraint firstItem="crV-DN-lfE" firstAttribute="trailing" secondItem="7cH-07-T2f" secondAttribute="trailing" constant="20" id="ptF-bI-vud"/>
