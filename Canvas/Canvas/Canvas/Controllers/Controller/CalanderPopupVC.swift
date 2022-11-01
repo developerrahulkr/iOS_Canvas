@@ -19,19 +19,32 @@ enum ScreenType {
 }
 
 class CalanderPopupVC : UIViewController {
-
+    
+    
+    //MARK: - ************************************************ OUTLETS ************************************************
     @IBOutlet weak var tableView: UITableView!
+    //MARK: - *********************************************END OUTLETS ************************************************
+
+    
+    //MARK: - ************************************************ VARIABLES ************************************************
     weak var delegate : PopupDelegate?
     var item : [CMSelectDate] = []
     var timeSlotData : [CMTimeSlotSelectDate] = []
     var screenType : ScreenType = .calander
+    //MARK: - ************************************************END OF VARIABLES ************************************************
+
+    
+    //MARK: - ********************************************* LIFECYCLE METHODS ****************************************************
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         tableView.register(UINib(nibName: "CalanderCell", bundle: nil), forCellReuseIdentifier: "CalanderCell")
     }
+    //MARK: - *************************************** END OF LIFECYCLE METHODS *********************************************
+
     
+    //MARK: - *********************************************** ALL ACTIONS *******************************************************
     @IBAction func onClickCloseBtn(_ sender: UIButton) {
         self.dismiss(animated: true)
     }
@@ -41,6 +54,10 @@ class CalanderPopupVC : UIViewController {
         self.dismiss(animated: true)
     }
     
+    //MARK: - ***********************************************END ALL ACTIONS *******************************************************
+
+    
+    //MARK: - ************************************************* FUNCTIONS *****************************************************
     func setListData(with screenType: ScreenType, data:[Any]) {
       self.screenType = screenType
       switch screenType {
@@ -76,8 +93,11 @@ class CalanderPopupVC : UIViewController {
         
       }
     }
+    //MARK: - *************************************************END OF FUNCTIONS *****************************************************
+
 
 }
+//MARK: ************************************ Extensions for tableView Delegate and DataSource **********************************
 
 extension CalanderPopupVC : UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -115,3 +135,4 @@ extension CalanderPopupVC : UITableViewDelegate, UITableViewDataSource{
     
     
 }
+//MARK: *********************************End of Extensions for tableView Delegate and DataSource **********************************

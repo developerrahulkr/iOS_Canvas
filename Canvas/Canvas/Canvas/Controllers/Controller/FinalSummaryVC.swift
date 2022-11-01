@@ -9,10 +9,7 @@ import UIKit
 import Alamofire
 class FinalSummaryVC: UIViewController {
     
-    //MARK: - OUTLETS
-    
-    
-    
+    //MARK: - ************************************************ OUTLETS ************************************************
     @IBOutlet var headerViewCurrency: UIView!
     @IBOutlet weak var viewBackgroundTableview: UIView!
     @IBOutlet weak var tableViewFinal: UITableView!
@@ -20,21 +17,16 @@ class FinalSummaryVC: UIViewController {
     @IBOutlet weak var viewFCAmount: UIView!
     @IBOutlet weak var viewRate: UIView!
     @IBOutlet weak var viewLCAmount: UIView!
+    //MARK: - *********************************************END OUTLETS ************************************************
+
+    //MARK: - ************************************************ VARIABLES ************************************************
     var pdfString = ""
-    
     var pdfUrl:NSURL!
     var transrefId = ""
-    
-    
-    //MARK: - VARIABLES
     var fxBookingModel : FXBookingModel?
     
-    
-    
-    
-    
-    
-    //MARK: - LYFECYCLE METHODS
+
+    //MARK: - ********************************************* LIFECYCLE METHODS ****************************************************
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -78,20 +70,20 @@ class FinalSummaryVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = true
     }
-    //MARK: - ACTIONS
-    
-    
+    //MARK: - *************************************** END OF LIFECYCLE METHODS *********************************************
+
+    //MARK: - *********************************************** ALL ACTIONS *******************************************************
     @IBAction func onTapBack(_ sender: Any) {
         
         FXbookingMaster.shared.iscomefromtab = true
         self.navigationController?.popToRootViewController(animated: true)
         //        navigationController?.popViewController(animated: true)
     }
+    //MARK: - ***********************************************END ALL ACTIONS *******************************************************
+
+    //MARK: - ************************************************* ALL API's *****************************************************
     
-    
-    //MARK: - FUNCTIONS
-    
-    
+    //MARK: Download Transaction Pdf API
     func downloadTrnsctnPdf() {
         
         self.showSpinner(onView: self.view)
@@ -100,11 +92,6 @@ class FinalSummaryVC: UIViewController {
                                              "amfcBookingID": fxBookingModel?.fXBookingDetails?[0].amfcBookingID ?? 0,
                                              "txnRefNo": fxBookingModel?.txnRefNo ?? "",
                                              "languageCode": LocalizationSystem.sharedInstance.getLanguage()]
-        
-        
-        /*   let headers: HTTPHeaders = [
-         "Content-Type": "application/json"
-         ]*/
         
         let headers: HTTPHeaders = [.authorization(bearerToken: UserDefaults.standard.string(forKey: "token")!)]
         
@@ -155,33 +142,7 @@ class FinalSummaryVC: UIViewController {
         
     }
     
-    // Mark: for saving pdf
-    func savePdf() throws {
-        self.removeSpinner()
-        let documentsURL = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
-        let pdfDocURL = documentsURL.appendingPathComponent("transaction.pdf")
-        let pdfData = Data(base64Encoded: pdfString)
-        try pdfData!.write(to: pdfDocURL)
-        pdfUrl = pdfDocURL as NSURL
-    }
-    
-    func loadPDFAndShare(){
-        do {
-            let documentsURL = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
-            let pdfDocURL = documentsURL.appendingPathComponent("transaction.pdf")
-            
-            let document = NSData(contentsOf: pdfDocURL)
-            let activityViewController: UIActivityViewController = UIActivityViewController(activityItems: [document!], applicationActivities: nil)
-            activityViewController.popoverPresentationController?.sourceView=self.view
-            present(activityViewController, animated: true, completion: nil)
-            print("document was not found")
-        } catch  {
-            print("document was not found")
-        }
-    }
-    
-    
-    
+    //MARK: FXBooking Details API
     func callFXBookingDetailsAPI(tranid : String){
         self.showSpinner(onView: self.view)
         let parameterPassing: [String:Any] = ["txnRefNo": tranid,
@@ -239,23 +200,7 @@ class FinalSummaryVC: UIViewController {
                                                                  createdDate: resultNew?["createdDate"] as? String,
                                                                  updatedDate: resultNew?["updatedDate"] as? String))
                         }
-                        
-                        
-                        //                        var arrData = FXBookingDetail.init(id: arrayDetails?["id"] as? Int,
-                        //                                                               amfcBookingID: arrayDetails?["amfcBookingID"] as? Int,
-                        //                                                               type: arrayDetails?["type"] as? String,
-                        //                                                               fcCurrencyCode:  arrayDetails?["fcCurrencyCode"] as? String,
-                        //                                                               fcAmount: arrayDetails?["fcAmount"] as? Int,
-                        //                                                               lcAmount: arrayDetails?["lcAmount"] as? Double,
-                        //                                                               rate: arrayDetails?["rate"] as? Double,
-                        //                                                               currencyName:  arrayDetails?["currencyName"] as? String,
-                        //                                                               countryCode:  arrayDetails?["countryCode"] as? String,
-                        //                                                               createdDate:  arrayDetails?["createdDate"] as? String,
-                        //                                                               updatedDate:  arrayDetails?["updatedDate"] as? String)
-                        
-                        
-                        
-                        
+            
                         var data =  FXBookingModel.init(id: fXBooking["id"] as? Int,
                                                         txnRefNo: fXBooking["txnRefNo"] as? String,
                                                         remID: fXBooking["remID"] as? String,
@@ -306,7 +251,38 @@ class FinalSummaryVC: UIViewController {
             }
         }
     }
+    //MARK: - ****************************************** END of ALL API's *****************************************************
+
     
+    // MARK: for saving pdf
+    func savePdf() throws {
+        self.removeSpinner()
+        let documentsURL = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+        let pdfDocURL = documentsURL.appendingPathComponent("transaction.pdf")
+        let pdfData = Data(base64Encoded: pdfString)
+        try pdfData!.write(to: pdfDocURL)
+        pdfUrl = pdfDocURL as NSURL
+    }
+    
+    // MARK: for load PDF And Share
+    func loadPDFAndShare(){
+        do {
+            let documentsURL = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+            let pdfDocURL = documentsURL.appendingPathComponent("transaction.pdf")
+            
+            let document = NSData(contentsOf: pdfDocURL)
+            let activityViewController: UIActivityViewController = UIActivityViewController(activityItems: [document!], applicationActivities: nil)
+            activityViewController.popoverPresentationController?.sourceView=self.view
+            present(activityViewController, animated: true, completion: nil)
+            print("document was not found")
+        } catch  {
+            print("document was not found")
+        }
+    }
+    
+    
+    
+    //MARK: func for Get Month Day Year String
     static func getMonthDayYearString(_ dateString: String) -> String? {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
@@ -318,6 +294,8 @@ class FinalSummaryVC: UIViewController {
         return  dateFormatter.string(from: userDOBDate)
     }
     
+    
+    //MARK: func get Month Day Year Without Seconds String
     static func getMonthDayYearWithoutSecndsString(_ dateString: String) -> String? {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
@@ -330,7 +308,7 @@ class FinalSummaryVC: UIViewController {
         return  dateFormatter.string(from: userDOBDate)
     }
 }
-//MARK: - EXTENSIONS
+//MARK: *********************************Extensions for tableView Delegate and DataSource **********************************
 extension FinalSummaryVC: UITableViewDelegate,UITableViewDataSource{
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -471,8 +449,25 @@ extension FinalSummaryVC: UITableViewDelegate,UITableViewDataSource{
     }
     
 }
-
-
+//MARK: Extension For Download Or Mail
+extension FinalSummaryVC: ActionDownloadOrMail{
+    func navigateAction(buttonType: Int) {
+        if buttonType == 0{
+            downloadTrnsctnPdf()
+        }else{
+            
+            let popOverVC = Storyboad.shared.mainStoryboard?.instantiateViewController(withIdentifier: "BenefEmailPopUpVc") as! BenefEmailPopUpVc
+            popOverVC.isopenfromfx = true
+            popOverVC.bookingid = fxBookingModel?.fXBookingDetails?[0].amfcBookingID ?? 0
+            popOverVC.trancationid = fxBookingModel?.txnRefNo ?? ""
+            self.addChild(popOverVC)
+            popOverVC.view.frame = self.view.frame
+            self.view.addSubview(popOverVC.view)
+            popOverVC.didMove(toParent: self)
+        }
+    }
+}
+//MARK: *********************************End of Extensions for tableView Delegate and DataSource **********************************
 
 //MARK: FXBooking Details Model
 struct FXBookingModel: Codable {
@@ -507,23 +502,5 @@ struct FXBookingDetail: Codable {
     let fcAmount: Int?
     let lcAmount, rate: Double?
     let currencyName, countryCode, createdDate, updatedDate: String?
-}
-
-extension FinalSummaryVC: ActionDownloadOrMail{
-    func navigateAction(buttonType: Int) {
-        if buttonType == 0{
-            downloadTrnsctnPdf()
-        }else{
-            
-            let popOverVC = Storyboad.shared.mainStoryboard?.instantiateViewController(withIdentifier: "BenefEmailPopUpVc") as! BenefEmailPopUpVc
-            popOverVC.isopenfromfx = true
-            popOverVC.bookingid = fxBookingModel?.fXBookingDetails?[0].amfcBookingID ?? 0
-            popOverVC.trancationid = fxBookingModel?.txnRefNo ?? ""
-            self.addChild(popOverVC)
-            popOverVC.view.frame = self.view.frame
-            self.view.addSubview(popOverVC.view)
-            popOverVC.didMove(toParent: self)
-        }
-    }
 }
 

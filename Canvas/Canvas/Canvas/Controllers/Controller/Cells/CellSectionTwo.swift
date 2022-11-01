@@ -19,9 +19,12 @@ protocol protocolPush: NSObjectProtocol{
     func onclickcancel() -> Void
     func onClickedMixedNoted(value : String) -> Void
     func onClickedHighValue(value : String) -> Void
+    func deleteBranchAddress(tag: Int) -> Void
 }
-class CellSectionTwo: UITableViewCell, delegatecallbackfromFxbooking
+class CellSectionTwo: UITableViewCell, delegatecallbackfromFxbooking, protocolDeleteAddress
 {
+   
+    
     //MARK: - OUTLETS
     
     @IBOutlet weak var lblChooseDeliveryOptions: UILabel!
@@ -238,7 +241,9 @@ class CellSectionTwo: UITableViewCell, delegatecallbackfromFxbooking
     
     
     //MARK: - FUNCTIONS
-    
+    func deleteAddress(tag: Int) {
+        Pushdelegate?.deleteBranchAddress(tag: tag)
+    }
 }
 //MARK: - EXTENSIONS
 extension CellSectionTwo : UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout
@@ -252,7 +257,7 @@ extension CellSectionTwo : UICollectionViewDelegate,UICollectionViewDataSource,U
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CellDeliveryOption", for: indexPath) as! CellDeliveryOption
         if homeSegment.selectedSegmentIndex == 0
-        {
+        {cell.deleteBtn.isHidden = true
             if FXbookingMaster.shared.homeDataSource[indexPath.row].bIsDefault == true {
                 cell.imgStar.isHidden = false
             }
@@ -271,8 +276,14 @@ extension CellSectionTwo : UICollectionViewDelegate,UICollectionViewDataSource,U
                 cell.viewCellDelivery.layer.borderColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
             }
         }
+        
         else
         {
+            //MARK: Delegate for Delete Branch
+            
+            cell.deleteBtn.isHidden = false
+            cell.delegate = self
+            cell.deleteBtn.tag = indexPath.row
             cell.imgStar.isHidden = true
 
             cell.lblAddress.text = "\(FXbookingMaster.shared.branchDataSource[indexPath.row].branchAddress ?? ""), \(FXbookingMaster.shared.branchDataSource[indexPath.row].branchCode ?? "")"
@@ -286,7 +297,7 @@ extension CellSectionTwo : UICollectionViewDelegate,UICollectionViewDataSource,U
                 cell.viewCellDelivery.layer.borderColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
             }
         }
-            
+
         return cell
     }
     

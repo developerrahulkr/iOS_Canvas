@@ -18,8 +18,7 @@ class AddNewAddressVC: UIViewController, MapDelgate {
         self.navigationController?.popViewController(animated: true)
     }
     
-    //MARK: - OUTLETS
-    
+    //MARK: - ************************************************ OUTLETS ************************************************
     @IBOutlet weak var TFFullName: UITextField!
     @IBOutlet weak var TFFalt: UITextField!
     @IBOutlet weak var TFFloor: UITextField!
@@ -31,21 +30,17 @@ class AddNewAddressVC: UIViewController, MapDelgate {
     @IBOutlet weak var TFPostalCode: UITextField!
     @IBOutlet weak var TFPhoneNumber: UITextField!
     @IBOutlet var headerAddAdderss: UIView!
-    
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var btnCCancel: UIButton!
     @IBOutlet weak var btnSaveAddress: UIButton!
-    var homeAddressObj : CMBookingHomeAddress?
-    var isopenforedit = false
-    
     @IBOutlet weak var tableViewAddAddress: UITableView!
     @IBOutlet weak var btnDefaultAddress: UIButton!
-//    var unchecked = true
+    //MARK: - ************************************************ END OF OUTLETS ************************************************
+
+    
+    //MARK: - ************************************************ VARIABLES ************************************************
     var bIsDefault = false
     var titelText = 0
-    
-    //MARK: - VARIABLES
-    
     var fullName:String?
     var flat:String?
     var floor:String?
@@ -55,10 +50,14 @@ class AddNewAddressVC: UIViewController, MapDelgate {
     var building:String?
     var latitude : String?
     var longitude : String?
+    var homeAddressObj : CMBookingHomeAddress?
+    var isopenforedit = false
+    //MARK: - ************************************************END OF VARIABLES ************************************************
     
     
-    //MARK: - LIFECYCLE METHODS
-    
+    //MARK: - ********************************************* LIFECYCLE METHODS ****************************************************
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -85,24 +84,26 @@ class AddNewAddressVC: UIViewController, MapDelgate {
         tableViewAddAddress.delegate = self
         tableViewAddAddress.dataSource = self
         
+        
         if(isopenforedit)
         {
-            TFFullName.text = homeAddressObj?.firstName
-            TFFalt.text = homeAddressObj?.flat
-            TFFloor.text = homeAddressObj?.floor
-            TFBuilding.text = homeAddressObj?.building
-            TFGada.text  = homeAddressObj?.gada
-            TFStreet.text = homeAddressObj?.street
-            TFBlock.text = homeAddressObj?.block
-            TFAreaCity.text = homeAddressObj?.areaCity
-            TFPostalCode.text = homeAddressObj?.postalCode
-            TFPhoneNumber.text = homeAddressObj?.phoneNumber
-            bIsDefault = homeAddressObj?.bIsDefault ?? false
+        TFFullName.text = homeAddressObj?.firstName
+        TFFalt.text = homeAddressObj?.flat
+        TFFloor.text = homeAddressObj?.floor
+        TFBuilding.text = homeAddressObj?.building
+        TFGada.text  = homeAddressObj?.gada
+        TFStreet.text = homeAddressObj?.street
+        TFBlock.text = homeAddressObj?.block
+        TFAreaCity.text = homeAddressObj?.areaCity
+        TFPostalCode.text = homeAddressObj?.postalCode
+        TFPhoneNumber.text = homeAddressObj?.phoneNumber
+        bIsDefault = homeAddressObj?.bIsDefault ?? false
             if(bIsDefault)
             {
                 btnDefaultAddress.setImage( UIImage(named:"checkboxActive"), for: .normal)
 
             }
+            
             else
             {
                 btnDefaultAddress.setImage(UIImage(named:"checkboxNormal"), for: .normal)
@@ -117,14 +118,13 @@ class AddNewAddressVC: UIViewController, MapDelgate {
             
     }
     override func viewWillDisappear(_ animated: Bool) {
-        //        lblTitle.text = "Add New Address"
         lblTitle.text = "Add New Address"
         btnSaveAddress.setTitle("Save Address", for: .normal)
     }
+    //MARK: - *********************************************END OF LIFECYCLE METHODS ****************************************************
+
     
-    //MARK: - ACTIONS
-    
-    
+    //MARK: - *********************************************** ALL ACTIONS ********************************************************
     @IBAction func onTapAddLocation(_ sender: Any) {
         
         print("Add Location")
@@ -134,9 +134,6 @@ class AddNewAddressVC: UIViewController, MapDelgate {
         
         
     }
-    
-    
-    
     
     @IBAction func onClickedSaveData(_ sender: UIButton)
     {
@@ -158,7 +155,26 @@ class AddNewAddressVC: UIViewController, MapDelgate {
     }
     
     
-    //MARK: - FUNCTIONS
+    
+    @IBAction func onTapDefaultAddress(_ sender: Any)
+    {
+        if(bIsDefault)
+        {
+            btnDefaultAddress.setImage(UIImage(named:"checkboxNormal"), for: .normal)
+            bIsDefault = false
+        }
+        else
+        {
+            btnDefaultAddress.setImage( UIImage(named:"checkboxActive"), for: .normal)
+            bIsDefault = true
+        }
+    }
+    //MARK: - ***********************************************END ALL ACTIONS *******************************************************
+
+    
+    //MARK: - ************************************************* FUNCTIONS *****************************************************
+    
+    //MARK: check validation of textField while save Address
     func validation ()-> Bool{
         fullName = TFFullName.text?.trimmingCharacters(in: .whitespacesAndNewlines)
         flat = TFFalt.text?.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -208,14 +224,14 @@ class AddNewAddressVC: UIViewController, MapDelgate {
         
         return true
     }
-    
-    
+    //MARK: - *************************************************END OF FUNCTIONS *****************************************************
+
     
     
     
     
 }
-//MARK: - EXTENSIONS
+//MARK: ************************************ Extensions for tableView Delegate and DataSource **********************************
 extension AddNewAddressVC : UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 0
@@ -232,10 +248,15 @@ extension AddNewAddressVC : UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 630
     }
+    //MARK: ********************************************** End of Extensions  ******************************************************
+
     
     
-    //    MARK: - Add Home Address
     
+    //    MARK: - ************************************************** ALL API's **************************************************
+    
+    
+    //    MARK: - Add address API
     func AddAddress() {
         self.showSpinner(onView: self.view)
         let paramaterPasing: [String:Any] = ["registrationId": Global.shared.afterLoginRegistrtnId ?? "",
@@ -276,8 +297,6 @@ extension AddNewAddressVC : UITableViewDelegate,UITableViewDataSource{
                 print(statusCode)
                 if(statusCode == 200)  {
                     
-                    //                        let alert = ViewControllerManager.displayAlert(message:Global.shared.messageCodeType(text: mesageCode), title:APPLICATIONNAME)
-                    //                        self.present(alert, animated: true, completion: nil)
                     self.navigationController?.popViewController(animated: true)
                 }else{
                     let alert = ViewControllerManager.displayAlert(message:Global.shared.messageCodeType(text: mesageCode), title:APPLICATIONNAME)
@@ -287,22 +306,9 @@ extension AddNewAddressVC : UITableViewDelegate,UITableViewDataSource{
         }
     }
     
-    @IBAction func onTapDefaultAddress(_ sender: Any)
-    {
-        if(bIsDefault)
-        {
-            btnDefaultAddress.setImage(UIImage(named:"checkboxNormal"), for: .normal)
-            bIsDefault = false
-        }
-        else
-        {
-            btnDefaultAddress.setImage( UIImage(named:"checkboxActive"), for: .normal)
-            bIsDefault = true
-        }
-    }
     
-    //    MARK: - Update Home Address
     
+    //    MARK: - Update Home Address API
     func homeUpdateAddressFunc() {
         let paramaterPasing: [String:Any] = ["registrationId": Global.shared.afterLoginRegistrtnId ?? "",
                                              "addressId" : homeAddressObj?.addressId,
@@ -344,8 +350,6 @@ extension AddNewAddressVC : UITableViewDelegate,UITableViewDataSource{
                 if(statusCode == 200)  {
                     self.navigationController?.popViewController(animated: true)
                     
-                    //                        let alert = ViewControllerManager.displayAlert(message:Global.shared.messageCodeType(text: mesageCode), title:APPLICATIONNAME)
-                    //                        self.present(alert, animated: true, completion: nil)
                 }else{
                     let alert = ViewControllerManager.displayAlert(message:Global.shared.messageCodeType(text: mesageCode), title:APPLICATIONNAME)
                     self.present(alert, animated: true, completion: nil)
@@ -354,29 +358,11 @@ extension AddNewAddressVC : UITableViewDelegate,UITableViewDataSource{
             
         }
     }
+    //    MARK: - ****************************************END OF ALL API's **************************************************
 }
+//MARK: ************************************End of Extensions for tableView Delegate and DataSource **********************************
 
-extension UITextField{
-    func TFDesign(){
-        self.layer.borderWidth = 1
-        self.layer.borderColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
-        self.layer.cornerRadius = 5
-    }
-    
-    
-}
 
-extension UIViewController{
-    func createAlert (title:String, message:String)
-    {
-        let alertView = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        
-        let action = UIAlertAction(title: "OK", style: .default, handler: { (alert) in
-        })
-        alertView.addAction(action)
-        self.present(alertView, animated: true, completion: nil)
-    }
-}
 
 
 

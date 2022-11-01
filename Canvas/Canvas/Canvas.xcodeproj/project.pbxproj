@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18529A2D2910F96F00B38A49 /* FXbookingMaster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18529A2C2910F96F00B38A49 /* FXbookingMaster.swift */; };
 		1854037528E40FA200ED3362 /* PhotoSliderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1854037428E40FA200ED3362 /* PhotoSliderView.xib */; };
 		1854037828E40FB500ED3362 /* SiteUnderMaintnanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1854037728E40FB500ED3362 /* SiteUnderMaintnanceController.swift */; };
 		1854037A28E419FD00ED3362 /* FXBooking.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1854037928E419FD00ED3362 /* FXBooking.storyboard */; };
@@ -281,6 +282,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		18529A2C2910F96F00B38A49 /* FXbookingMaster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FXbookingMaster.swift; sourceTree = "<group>"; };
 		1854037428E40FA200ED3362 /* PhotoSliderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoSliderView.xib; sourceTree = "<group>"; };
 		1854037728E40FB500ED3362 /* SiteUnderMaintnanceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SiteUnderMaintnanceController.swift; sourceTree = "<group>"; };
 		1854037928E419FD00ED3362 /* FXBooking.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FXBooking.storyboard; sourceTree = "<group>"; };
@@ -788,6 +790,7 @@
 			isa = PBXGroup;
 			children = (
 				8E29736E258CF02F00601984 /* AllExtensions.swift */,
+				18529A2C2910F96F00B38A49 /* FXbookingMaster.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1802,6 +1805,7 @@
 				D518044124EDAD90005FAD41 /* ForgotUsernamePopUp.swift in Sources */,
 				D583B7EA250B9C020019D136 /* BenefPaymentWebViewVc.swift in Sources */,
 				D50FF9982551B43F009DA3F1 /* HomeNewsFeedCell.swift in Sources */,
+				18529A2D2910F96F00B38A49 /* FXbookingMaster.swift in Sources */,
 				8E3BA91E25721C8A0078A025 /* PasswordRules.swift in Sources */,
 				1867E4BA28F1F9D400D4F09E /* CellServiceOpted.swift in Sources */,
 				D55D05682549BC6E00998DCB /* BenefFirstTabCollectnCell.swift in Sources */,

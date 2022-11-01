@@ -183,7 +183,16 @@ extension UIViewController {
         }
     }
 }
+
+
 extension UITextField {
+    
+    func TFDesign(){
+        self.layer.borderWidth = 1
+        self.layer.borderColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+        self.layer.cornerRadius = 5
+    }
+    
     open override func awakeFromNib() {
         super.awakeFromNib()
         if LocalizationSystem.sharedInstance.getLanguage() == "ar" {
@@ -245,6 +254,17 @@ extension UILabel {
     }
 }
 extension UIViewController {
+    
+    func createAlert (title:String, message:String)
+    {
+        let alertView = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let action = UIAlertAction(title: "OK", style: .default, handler: { (alert) in
+        })
+        alertView.addAction(action)
+        self.present(alertView, animated: true, completion: nil)
+    }
+    
     func observeTimeout() {
         NotificationCenter.default.addObserver(
             self,

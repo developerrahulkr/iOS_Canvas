@@ -10,18 +10,12 @@ import Alamofire
 
 class YourAddress: UIViewController {
     
-    
+    //MARK: - ******************************************** OUTLETS *************************************************
     @IBOutlet weak var tableViewYourAddress: UITableView!
     @IBOutlet weak var btnAdd: UIButton!
-//    var homeDataSource : [CMBookingHomeAddress] = {
-//        let data = [CMBookingHomeAddress]()
-//        return data
-//    }()
-//
-//    var branchDataSource : [CMBookingBranchAddress] = {
-//        let data = [CMBookingBranchAddress]()
-//        return data
-//    }()
+    //MARK: - ****************************************** END OF OUTLETS ********************************************
+
+    //MARK: - **************************************** LIFECYCLE METHODS *******************************************
     override func viewDidLoad() {
         super.viewDidLoad()
         tableViewYourAddress.delegate = self
@@ -44,7 +38,9 @@ class YourAddress: UIViewController {
     override func viewDidLayoutSubviews() {
         btnAdd.layer.cornerRadius = btnAdd.bounds.height / 2
     }
-    
+    //MARK: - **********************************END OF LIFECYCLE METHODS ********************************************
+
+    //MARK: - **************************************** ALL ACTIONS **************************************************
     @IBAction func onClickedBackBtn(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -53,18 +49,12 @@ class YourAddress: UIViewController {
         let vc = Storyboad.shared.fxBookingStoryboard?.instantiateViewController(withIdentifier: "AddNewAddressVC") as! AddNewAddressVC
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    //MARK: - **************************************END ALL ACTIONS *************************************************
+
     
 }
+
+//MARK: ******************************* Extensions for tableView Delegate and DataSource ***************************
 extension YourAddress : UITableViewDelegate,UITableViewDataSource, YourAddressDelegate{
     
     
@@ -91,6 +81,7 @@ extension YourAddress : UITableViewDelegate,UITableViewDataSource, YourAddressDe
         return cell
     }
     
+    //MARK: Function call on tap Update Address
     func updateAddress(tag: Int)
     {
         let vc = storyboard?.instantiateViewController(withIdentifier: "AddNewAddressVC") as! AddNewAddressVC
@@ -101,7 +92,7 @@ extension YourAddress : UITableViewDelegate,UITableViewDataSource, YourAddressDe
         vc.isopenforedit = true
         navigationController?.pushViewController(vc, animated: true)
     }
-    
+    //MARK: FUNCTION call on tap Delete Address in CellYourAddress
     func deleteAddress(indexPath: Int)
     {
         let alertView = UIAlertController(title: "", message: Global.shared.delete_confirmation, preferredStyle: .alert)
@@ -115,7 +106,10 @@ extension YourAddress : UITableViewDelegate,UITableViewDataSource, YourAddressDe
         self.present(alertView, animated: true, completion: nil)
     }
     
+    //    MARK: - ************************************************** ALL API's **************************************************
+   
     
+    //    MARK: - Delete Address API
     func fxBookingDeleteAddress(addressId : Int){
         let paramaterPasing: [String:Any] = ["registrationId": Global.shared.afterLoginRegistrtnId ?? "",
                                              "addressId" : addressId]
@@ -147,8 +141,7 @@ extension YourAddress : UITableViewDelegate,UITableViewDataSource, YourAddressDe
                             self.tableViewYourAddress.reloadData()
                         }
                     }
-//                    self.navigationController?.popViewController(animated: true)
-                    //                    self.navigationController?.popViewController(animated: true)
+
                 }else{
                     let alert = ViewControllerManager.displayAlert(message:Global.shared.messageCodeType(text: mesageCode), title:APPLICATIONNAME)
                     self.present(alert, animated: true, completion: nil)
@@ -158,6 +151,7 @@ extension YourAddress : UITableViewDelegate,UITableViewDataSource, YourAddressDe
         }
         
     }
+    //    MARK: - *********************************** END OF ALL API's ********************************************
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return UIView()
@@ -167,3 +161,5 @@ extension YourAddress : UITableViewDelegate,UITableViewDataSource, YourAddressDe
         return 100.0
     }
 }
+//MARK: *************************************** End of Extensions  *************************************************
+

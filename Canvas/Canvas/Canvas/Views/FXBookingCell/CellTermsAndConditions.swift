@@ -6,6 +6,7 @@
 //
 
 import UIKit
+
 protocol protocolTermAndCondition : AnyObject{
     func funcTermsAndContions(btnTerm : Int)
         
@@ -19,19 +20,29 @@ protocol TransectionActionDelegate{
 }
 
 class CellTermsAndConditions: UITableViewCell {
+    //MARK: - ******************************************** VARIABLE ********************************************
 
     var delegate : TransectionActionDelegate?
+    //MARK: - *****************************************END OF VARIABLE *****************************************
+
     
     
-    
+    //MARK: - ******************************************** OUTLETS *********************************************
+
+
+
+
     @IBOutlet weak var lblPromoTitle: UILabel!
     @IBOutlet weak var lblTermAndConditions: UIButton!
     @IBOutlet weak var btnBack: UIButton!
     @IBOutlet weak var btnPay: UIButton!
     @IBOutlet weak var viewCheckBox: UIView!
     @IBOutlet weak var btncheck: UIButton!
+    //MARK: - ****************************************** END OF OUTLETS *****************************************
+
     
     weak var varDelegate : protocolTermAndCondition?
+    //MARK: - **************************************** LIFECYCLE METHODS ****************************************
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -54,7 +65,11 @@ class CellTermsAndConditions: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    //MARK: - **********************************END OF LIFECYCLE METHODS ****************************************
+
     
+    //MARK: - ****************************************** ALL ACTIONS ********************************************
+
     @IBAction func onClickBack(_ sender: UIButton) {
         
         delegate?.onClickbackDelagate()
@@ -78,54 +93,10 @@ class CellTermsAndConditions: UITableViewCell {
         varDelegate?.funcTermsAndContions(btnTerm: 1)
         
     }
+    //MARK: - **************************************** END OF ALL ACTIONS *****************************************
+
     
     
     
 }
 
-
-// Mark: For downloading terms and conditions
-//func downloadTermsConditions() {
-//
-//    let paramaterPasing: [String:Any] = ["languageCode":LocalizationSystem.sharedInstance.getLanguage(), "type": 600]
-//
-//
-//    let headers: HTTPHeaders = [
-//        "Content-Type": "application/json"
-//    ]
-//
-//    NetWorkDataManager.sharedInstance.termsConditionsImplimentation(headersTobePassed: headers, postParameters: paramaterPasing) { resonseTal , errorString in
-//
-//        if errorString == nil
-//        {
-//
-//            print(resonseTal!)
-//            if let termsAndConditions = resonseTal?.value(forKey: "termsAndConditions") as? NSArray {
-//                print(termsAndConditions)
-//             /*   let newObj = Global.shared.convertToAryDictionary(text: termsAndConditions)
-//                self.termsConditionsResponse = newObj!*/
-//
-//                let newv =  termsAndConditions[0] as! NSDictionary
-//                print(newv)
-//
-//                let dataStr = newv["termsAndsConditions"] as? String
-//                let newObj = Global.shared.convertToAryDictionary(text: dataStr ?? "")
-//
-//                self.termsConditionsResponse = newObj!
-//
-//           // self.termsConditionsResponse = termsAndConditions as! [Any]
-//            }
-//
-//            self.termsConditionTbleView.reloadData()
-//        }
-//
-//        else
-//        {
-//            print(errorString!)
-//            self.removeSpinner()
-//            let finalError = errorString?.components(separatedBy: ":")
-//            let alert = ViewControllerManager.displayAlert(message: finalError?[1] ?? "", title:APPLICATIONNAME)
-//            self.present(alert, animated: true, completion: nil)
-//        }
-//    }
-//}

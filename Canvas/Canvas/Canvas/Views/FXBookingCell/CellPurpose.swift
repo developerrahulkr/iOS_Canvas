@@ -8,27 +8,26 @@
 import UIKit
 
 class CellPurpose: UITableViewCell {
+    //MARK: - ******************************************** OUTLETS *************************************************
+
+
+
 
     
     @IBOutlet weak var lblPurpose: UILabel!
-    
-    
     @IBOutlet weak var lblDelivery: UILabel!
-    
     @IBOutlet weak var lblAddressLang: UILabel!
-    
     @IBOutlet weak var lblDateAndTime: UILabel!
-    
     @IBOutlet weak var lblRemarks: UILabel!
-    
     @IBOutlet weak var lblPurposeTrnf: UILabel!
-    
     @IBOutlet weak var lblRemark: UILabel!
     @IBOutlet weak var lblDateTime: UILabel!
     @IBOutlet weak var lblAddress: UILabel!
     @IBOutlet weak var lblDeliveryType: UILabel!
-    
     @IBOutlet weak var viewBackground: UIView!
+    //MARK: - ****************************************** END OF OUTLETS ********************************************
+
+    //MARK: - **************************************** LIFECYCLE METHODS *******************************************
     override func awakeFromNib() {
         super.awakeFromNib()
         viewBackground.layer.borderWidth = 1
@@ -44,5 +43,6 @@ class CellPurpose: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
+    //MARK: - **********************************END OF LIFECYCLE METHODS ********************************************
+
 }

@@ -55,6 +55,14 @@
                                     <constraint firstAttribute="width" constant="16.5" id="bhy-XN-Q2c"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dny-lO-Ba6">
+                                <rect key="frame" x="156.5" y="140" width="16.5" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="DeleteIcon1" title=""/>
+                                <connections>
+                                    <action selector="onTapDelete:" destination="gTV-IL-0wX" eventType="touchUpInside" id="odS-Aq-wTy"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -63,13 +71,17 @@
                             <constraint firstItem="Z42-Wh-UmA" firstAttribute="top" secondItem="NAF-f9-Ghm" secondAttribute="top" id="86f-ds-aNf"/>
                             <constraint firstAttribute="trailing" secondItem="Z42-Wh-UmA" secondAttribute="trailing" constant="5" id="C3d-7g-dB0"/>
                             <constraint firstItem="os7-yg-WIj" firstAttribute="bottom" secondItem="JMI-Jk-P8t" secondAttribute="bottom" id="J0M-4e-0bj"/>
+                            <constraint firstItem="dny-lO-Ba6" firstAttribute="top" secondItem="JMI-Jk-P8t" secondAttribute="top" id="LxA-bB-cMc"/>
                             <constraint firstItem="Z42-Wh-UmA" firstAttribute="bottom" secondItem="NAF-f9-Ghm" secondAttribute="bottom" id="Ozn-Cl-aeI"/>
                             <constraint firstAttribute="bottom" secondItem="JMI-Jk-P8t" secondAttribute="bottom" constant="3" id="Wy4-8b-FCB"/>
                             <constraint firstItem="os7-yg-WIj" firstAttribute="leading" secondItem="cb9-4p-Dog" secondAttribute="leading" id="Z5H-K9-KpY"/>
                             <constraint firstItem="NAF-f9-Ghm" firstAttribute="leading" secondItem="3w0-Yw-FlO" secondAttribute="leading" constant="5" id="bpr-Wg-ZUf"/>
+                            <constraint firstItem="dny-lO-Ba6" firstAttribute="trailing" secondItem="Z42-Wh-UmA" secondAttribute="trailing" id="cnu-RV-NhK"/>
+                            <constraint firstItem="dny-lO-Ba6" firstAttribute="bottom" secondItem="JMI-Jk-P8t" secondAttribute="bottom" id="d8J-wP-bCe"/>
                             <constraint firstItem="cb9-4p-Dog" firstAttribute="leading" secondItem="NAF-f9-Ghm" secondAttribute="leading" id="dJb-1l-lZf"/>
                             <constraint firstAttribute="trailing" secondItem="cb9-4p-Dog" secondAttribute="trailing" constant="10" id="ddC-Cq-Kwj"/>
                             <constraint firstItem="os7-yg-WIj" firstAttribute="top" secondItem="JMI-Jk-P8t" secondAttribute="top" id="eTd-uc-AHc"/>
+                            <constraint firstItem="dny-lO-Ba6" firstAttribute="leading" secondItem="Z42-Wh-UmA" secondAttribute="leading" id="edF-gK-Qhz"/>
                             <constraint firstItem="cb9-4p-Dog" firstAttribute="top" secondItem="NAF-f9-Ghm" secondAttribute="bottom" constant="5" id="iAJ-DW-J5h"/>
                             <constraint firstAttribute="trailing" secondItem="JMI-Jk-P8t" secondAttribute="trailing" constant="15" id="w6w-65-Qyg"/>
                             <constraint firstItem="os7-yg-WIj" firstAttribute="top" relation="greaterThanOrEqual" secondItem="cb9-4p-Dog" secondAttribute="bottom" constant="5" id="ygq-NM-dOR"/>
@@ -87,6 +99,7 @@
             </constraints>
             <size key="customSize" width="115" height="105"/>
             <connections>
+                <outlet property="deleteBtn" destination="dny-lO-Ba6" id="yJd-VK-JYH"/>
                 <outlet property="imgStar" destination="Z42-Wh-UmA" id="URe-1b-c2q"/>
                 <outlet property="lblAddress" destination="cb9-4p-Dog" id="oIZ-pQ-Xhd"/>
                 <outlet property="lblFirstName" destination="NAF-f9-Ghm" id="Idd-ZO-dB4"/>
@@ -97,6 +110,7 @@
         </collectionViewCell>
     </objects>
     <resources>
+        <image name="DeleteIcon1" width="16.5" height="17"/>
         <image name="locationRed" width="66" height="66"/>
         <image name="star_icon" width="16.5" height="15.5"/>
         <systemColor name="tintColor">

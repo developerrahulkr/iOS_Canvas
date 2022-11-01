@@ -20,45 +20,47 @@ class PopupViewController: UIViewController {
   
   static let identifier = "PopupViewController"
   weak var delegate: PopupViewControllerDelegate?
-  //MARK:- outlets for the viewController
+    //MARK: - ***************************************** OUTLETS ************************************************
   @IBOutlet weak var dialogBoxView: UIView!
   @IBOutlet weak var okayButton: UIButton!
   @IBOutlet weak var cancelButton: UIButton!
+    
   
-  var items: [BeneficiaryPurposeData] = []
-  var questionItem: [String] = []
-  var screenType: PopupScreenType = .purposeScreen
   @IBOutlet weak var popupTableView: UITableView!
   @IBOutlet weak var tableViewHeightConstraint:NSLayoutConstraint!
-  
-  //MARK:- lifecyle methods for the view controller
+    //MARK: - ************************************ END OF OUTLETS *********************************************
+    
+    
+    //MARK: - *************************************** VARIABLE ************************************************
+    var items: [BeneficiaryPurposeData] = []
+    var questionItem: [String] = []
+    var screenType: PopupScreenType = .purposeScreen
+    //MARK: - **************************************END VARIABLE **********************************************
+
+    //MARK: - *************************************** LIFECYCLE METHODS **********************************************
   override func viewDidLoad(){
     super.viewDidLoad()
-    
-    //adding an overlay to the view to give focus to the dialog box
+
     view.backgroundColor = UIColor.black.withAlphaComponent(0.50)
-    
-    //customizing the dialog box view
+
     dialogBoxView.layer.cornerRadius = 10.0
     dialogBoxView.layer.masksToBounds = true
     configureTableView()
-   /* let image = UIImage(named: "close")?.withRenderingMode(.alwaysTemplate)
-    cancelButton.setImage(image, for: .normal)
-    cancelButton.tintColor = UIColor.red*/
+ 
     self.popupTableView.addObserver(self, forKeyPath: "contentSize", options: NSKeyValueObservingOptions.new, context: nil)
-    
     
   }
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
   }
+    
   deinit {
     self.popupTableView.removeObserver(self, forKeyPath: "contentSize", context: nil)
-    
   }
+    //MARK: - **********************************END OF LIFECYCLE METHODS ********************************************
+
   override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
     popupTableView.layer.removeAllAnimations()
- //   tableViewHeightConstraint.constant = popupTableView.contentSize.height
     tableViewHeightConstraint.constant = popupTableView.contentSize.height <= 450 ? popupTableView.contentSize.height : 450
     UIView.animate(withDuration: 0.5) {
       self.updateViewConstraints()
@@ -107,23 +109,26 @@ class PopupViewController: UIViewController {
     }
   }
   
-  //MARK:- outlet functions for the viewController
+    //MARK: - **************************************** ALL ACTIONS **************************************************
+
   @IBAction func okayButtonPressed(_ sender: Any) {
     closeVC()
   }
   @IBAction func cancelButtonPressed(_ sender: Any) {
     closeVC()
   }
+    //MARK: - ************************************** END ALL ACTIONS ************************************************
+
   private func closeVC() {
     self.dismiss(animated: true, completion: nil)
     
   }
   
-  //MARK:- functions for the viewController
+  //MARK: - functions for the viewController
   @discardableResult
   static func showPopup(parentVC: UIViewController, data: [BeneficiaryPurposeData]) -> PopupViewController?{
     
-    //creating a reference for the dialogView controller
+  //MARK: creating a reference for the dialogView controller
     if let popupViewController = UIStoryboard(name: "CustomView", bundle: nil).instantiateViewController(withIdentifier: "PopupViewController") as? PopupViewController {
       popupViewController.modalPresentationStyle = .custom
       popupViewController.modalTransitionStyle = .crossDissolve
@@ -139,7 +144,7 @@ class PopupViewController: UIViewController {
     @discardableResult
     static func showCalanderPopup(parentVC: UIViewController, data: [BeneficiaryPurposeData]) -> CalanderPopupVC?{
       
-      //creating a reference for the dialogView controller
+    //MARK: creating a reference for the dialogView controller
         if let popupViewController = Storyboad.shared.fxBookingStoryboard?.instantiateViewController(withIdentifier: "CalanderPopupVC") as? CalanderPopupVC {
         popupViewController.modalPresentationStyle = .custom
         popupViewController.modalTransitionStyle = .crossDissolve

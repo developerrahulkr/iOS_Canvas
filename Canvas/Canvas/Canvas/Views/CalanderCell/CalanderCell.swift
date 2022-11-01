@@ -10,7 +10,12 @@ import UIKit
 
 class CalanderCell: UITableViewCell {
 
+    //MARK: - ******************************************** OUTLETS **********************************************
     @IBOutlet weak var lblCalander: UILabel!
+    //MARK: - ****************************************** END OF OUTLETS *****************************************
+    
+
+    //MARK: - **************************************** LIFECYCLE METHODS ****************************************
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -21,5 +26,6 @@ class CalanderCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
+    //MARK: - **********************************END OF LIFECYCLE METHODS ****************************************
+
 }

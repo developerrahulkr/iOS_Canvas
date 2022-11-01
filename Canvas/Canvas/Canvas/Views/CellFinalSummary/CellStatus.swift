@@ -7,22 +7,26 @@
 
 import UIKit
 
-
 protocol ActionDownloadOrMail{
     func navigateAction(buttonType:Int)
 }
 
 class CellStatus: UITableViewCell {
-    
+    //MARK: - ******************************************** OUTLETS *************************************************
     @IBOutlet weak var imgFailSuccess: UIImageView!
     @IBOutlet weak var lblSuccessFailure: UILabel!
     @IBOutlet weak var lblLCValue: UILabel!
     @IBOutlet weak var viewDownload: UIView!
     @IBOutlet weak var viewSuccessFailure: UIView!
+    //MARK: - ****************************************** END OF OUTLETS ********************************************
+
     
-    
+    //MARK: - ****************************************** Variable ********************************************
     var delegate : ActionDownloadOrMail?
+    //MARK: - ******************************************End of Variable ********************************************
     
+
+    //MARK: - **************************************** LIFECYCLE METHODS *******************************************
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -39,14 +43,18 @@ class CellStatus: UITableViewCell {
         // Initialization code
     }
 
+
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
     }
+    //MARK: - **********************************END OF LIFECYCLE METHODS ********************************************
+
     
     
-    
+    //MARK: - **************************************** ALL ACTIONS **************************************************
+
     @IBAction func onTapDownload(_ sender: Any) {
         
         delegate?.navigateAction(buttonType: 0)
@@ -61,6 +69,8 @@ class CellStatus: UITableViewCell {
         
         
     }
+    //MARK: - **************************************END ALL ACTIONS *************************************************
+
     
     
 }

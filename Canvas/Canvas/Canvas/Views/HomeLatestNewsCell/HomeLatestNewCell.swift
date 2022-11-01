@@ -9,11 +9,21 @@
 import UIKit
 
 class HomeLatestNewCell: UITableViewCell {
+    //MARK: - ******************************************** OUTLETS *************************************************
+
+
+
+
 
     @IBOutlet weak var lblTime: UILabel!
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblDesc: UILabel!
     @IBOutlet weak var img: UIImageView!
+    //MARK: - ****************************************** END OF OUTLETS ********************************************
+
+    
+    //MARK: - **************************************** LIFECYCLE METHODS *******************************************
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -24,5 +34,7 @@ class HomeLatestNewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    //MARK: - **********************************END OF LIFECYCLE METHODS ********************************************
+
     
 }

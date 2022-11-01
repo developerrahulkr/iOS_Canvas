@@ -10,27 +10,13 @@ import Alamofire
 
 class TransactionSummaryVC: UIViewController, navigateToDiffrentScreenDelegate, protocolTermAndCondition {
     
-    
-    
-    
-    
-    //MARK: - OUTLETS
-    
-    
-    
-    
+    //MARK: - ************************************************ OUTLETS ************************************************
     @IBOutlet weak var lblCurrency: UILabel!
     @IBOutlet weak var lblFCAmount: UILabel!
     @IBOutlet weak var lblRate: UILabel!
     @IBOutlet weak var lblLCAmount: UILabel!
     @IBOutlet weak var lblTotal: UILabel!
-    
-    
-    
-    
-    
     @IBOutlet weak var lblTransectionSummery: UILabel!
-    public var menuPopUp: MenuViewController!
     @IBOutlet weak var lblTotalAmount: UILabel!
     @IBOutlet weak var viewActualTotal: UIView!
     @IBOutlet weak var ViewTotalLCAmount: UIView!
@@ -40,18 +26,19 @@ class TransactionSummaryVC: UIViewController, navigateToDiffrentScreenDelegate, 
     @IBOutlet weak var viewFCAmount: UIView!
     @IBOutlet weak var viewRate: UIView!
     @IBOutlet weak var viewLCAmount: UIView!
-    
     @IBOutlet weak var tableViewTransaction: UITableView!
+    //MARK: - ************************************************ END OF OUTLETS ************************************************
+
     
-    //MARK: - VARIABLES
+    //MARK: - ************************************************ VARIABLES ************************************************
     var tempForSummaryCount = 0
     var termsConditionsResponse = [Any]()
-    
-//
-    
-    
-    //MARK: - LIFECYCLE METHODS
-    override func viewDidLoad() {
+    public var menuPopUp: MenuViewController!
+    //MARK: - ************************************************END OF VARIABLES ************************************************
+
+
+    //MARK: - ********************************************* LIFECYCLE METHODS ****************************************************
+        override func viewDidLoad() {
         super.viewDidLoad()
         
         
@@ -93,16 +80,11 @@ class TransactionSummaryVC: UIViewController, navigateToDiffrentScreenDelegate, 
         self.navigationController?.isNavigationBarHidden = true
     }
     
-    //MARK: - ACTIONS
-    func langTranslation() {
-        lblRate.text = Global.shared.rate
-        lblTotal.text = Global.shared.total
-        lblFCAmount.text = Global.shared.fc_amount
-        lblLCAmount.text = Global.shared.lc_amonut
-        lblCurrency.text = Global.shared.currency
-        lblTransectionSummery.text = Global.shared.transaction_summary
-    }
+    //MARK: - *************************************** END OF LIFECYCLE METHODS *********************************************
+
     
+    
+    //MARK: - *********************************************** ALL ACTIONS *******************************************************
     @IBAction func onClickMenuBtn(_ sender: UIButton) {
         menuPopUp = Storyboad.shared.mainStoryboard?.instantiateViewController(withIdentifier: "MenuViewController") as? MenuViewController
         
@@ -119,8 +101,21 @@ class TransactionSummaryVC: UIViewController, navigateToDiffrentScreenDelegate, 
     @IBAction func onClickLogoutBtn(_ sender: UIButton) {
         logout()
     }
-    //MARK: - FUNCTIONS
+    //MARK: - ***********************************************END ALL ACTIONS *******************************************************
+
     
+    
+    //MARK: - ************************************************* FUNCTIONS *****************************************************
+    //MARK: Function for textField to set Text
+    func langTranslation() {
+        lblRate.text = Global.shared.rate
+        lblTotal.text = Global.shared.total
+        lblFCAmount.text = Global.shared.fc_amount
+        lblLCAmount.text = Global.shared.lc_amonut
+        lblCurrency.text = Global.shared.currency
+        lblTransectionSummery.text = Global.shared.transaction_summary
+    }
+    //MARK: on tap Term and contions in cell
     func funcTermsAndContions(btnTerm: Int) {
         let popOverVC = Storyboad.shared.mainStoryboard?.instantiateViewController(withIdentifier: "WuSecndTermsConditions") as! WuSecndTermsConditions
         self.addChild(popOverVC)
@@ -130,12 +125,11 @@ class TransactionSummaryVC: UIViewController, navigateToDiffrentScreenDelegate, 
         popOverVC.didMove(toParent: self)
 //        getTermsConditions()
     }
-    
-    
+    //MARK: - *************************************************END OF FUNCTIONS *****************************************************
+
     
 }
-//MARK: - EXTENSIONS
-
+//MARK: ************************************ Extensions for tableView Delegate and DataSource **********************************
 extension TransactionSummaryVC: UITableViewDelegate,UITableViewDataSource, TransectionActionDelegate{
     
     func onClickbackDelagate() {
@@ -303,7 +297,7 @@ extension TransactionSummaryVC: UITableViewDelegate,UITableViewDataSource, Trans
         if section == 0{ return 30}
         else {return 0.01}
     }
-    
+    //MARK: use at onClickPay in cell
     func onClickPayDelagate()
     {
         if let cell = tableViewTransaction.cellForRow(at: IndexPath(row: 0, section: 3)) as? CellTermsAndConditions
@@ -319,12 +313,9 @@ extension TransactionSummaryVC: UITableViewDelegate,UITableViewDataSource, Trans
                 return
             }
         }
-
-//        let vc = Storyboad.shared.fxBookingStoryboard?.instantiateViewController(withIdentifier: "FinalSummaryVC") as! FinalSummaryVC
-//        navigationController?.pushViewController(vc, animated: true)
     }
-    //Menu Delegate
     
+    //MARK:  Function to navigate from side menu of FXBookingVC
     func navigateToDiffrentScreenDelegate(toWhichScreenWeAreNaviagting: String) {
         print(toWhichScreenWeAreNaviagting)
         if toWhichScreenWeAreNaviagting == Global.shared.transctnSumary {
@@ -336,7 +327,7 @@ extension TransactionSummaryVC: UITableViewDelegate,UITableViewDataSource, Trans
         
     }
     
-    
+    //MARK: ************************************************ ALL API ************************************************
     func cretefctransaction()
     {
 
@@ -392,15 +383,7 @@ extension TransactionSummaryVC: UITableViewDelegate,UITableViewDataSource, Trans
             guard let self = self else {return}
             guard errString == nil else {
                 print(errString ?? "")
-//                let vc = Storyboad.shared.fxBookingStoryboard?.instantiateViewController(withIdentifier: "BenefPaymentWebViewVc") as! BenefPaymentWebViewVc
-                
 
-
-
-                
-//                let finalError = errString?.components(separatedBy: ":")
-//                let alert = ViewControllerManager.displayAlert(message: finalError?[1] ?? "", title:APPLICATIONNAME)
-//                self.present(alert, animated: true, completion: nil)
                 return
             }
             let statusMsg = responseData?.value(forKey: "statusMessage") as? String ?? ""
@@ -415,9 +398,7 @@ extension TransactionSummaryVC: UITableViewDelegate,UITableViewDataSource, Trans
                     let vc = Storyboad.shared.mainStoryboard?.instantiateViewController(withIdentifier: "BenefPaymentWebViewVc") as! BenefPaymentWebViewVc
                     vc.isfromfxbooking = true
                     self.navigationController?.pushViewController(vc, animated: true)
-//                    self.navigationController?.pushViewController(vc, animated: true)
 
-//                    self.pushViewController(controller: BenefPaymentWebViewVc.initiateController())
                 }
                 else
                 {
@@ -432,10 +413,10 @@ extension TransactionSummaryVC: UITableViewDelegate,UITableViewDataSource, Trans
             }
         }
     }
+    //MARK: ********************************************* END ALL API ************************************************
+
 }
-
-
-
+//MARK: *********************************End of Extensions for tableView Delegate and DataSource **********************************
 
 
 

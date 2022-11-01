@@ -8,10 +8,14 @@
 import UIKit
 
 class CellSummary: UITableViewCell {
-
+    //MARK: - ******************************************** OUTLETS *************************************************
     @IBOutlet weak var viewBackground: UIView!
     @IBOutlet weak var lblRight: UILabel!
     @IBOutlet weak var lblLeft: UILabel!
+    //MARK: - ****************************************** END OF OUTLETS ********************************************
+
+    
+    //MARK: - **************************************** LIFECYCLE METHODS *******************************************
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -25,5 +29,7 @@ class CellSummary: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    //MARK: - **********************************END OF LIFECYCLE METHODS ********************************************
+
     
 }

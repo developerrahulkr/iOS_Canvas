@@ -8,25 +8,25 @@
 import UIKit
 
 class CellCurrencyData: UITableViewCell {
+    //MARK: - ******************************************** OUTLETS *************************************************
+
+
+
 
     @IBOutlet weak var viewCurrencyCode: UIView!
     @IBOutlet weak var viewActualFCAmount: UIView!
     @IBOutlet weak var viewActualRate: UIView!
     @IBOutlet weak var viewActualLCAmount: UIView!
-    
-    
-    
-    
     @IBOutlet weak var lblFCAmount: UILabel!
     @IBOutlet weak var lblCurrencyCode: UILabel!
-    
     @IBOutlet weak var lblFinalTxt: UILabel!
-    
     @IBOutlet weak var imgFlag: UIImageView!
     @IBOutlet weak var lblLCAmount: UILabel!
+    //MARK: - ****************************************** END OF OUTLETS ********************************************
+
     
-    
-    
+    //MARK: - **************************************** LIFECYCLE METHODS *******************************************
+
     override func awakeFromNib() {
         super.awakeFromNib()
  
@@ -52,5 +52,7 @@ class CellCurrencyData: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    //MARK: - **********************************END OF LIFECYCLE METHODS ********************************************
+
     
 }

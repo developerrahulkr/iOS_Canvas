@@ -16,12 +16,20 @@ protocol MapDelgate {
 }
 class AddNewAddressMap: UIViewController, GMSMapViewDelegate, CLLocationManagerDelegate {
 
+    
+    //MARK: - ************************************************ OUTLETS ************************************************
     @IBOutlet weak var mapView: GMSMapView!
-//    @IBOutlet weak var backBtn: UIButton!
+    //MARK: - ************************************************ END OF OUTLETS ************************************************
+
+    
+    
+    //MARK: - ************************************************ VARIABLES ************************************************
     var locationManager = CLLocationManager()
     var delegate : MapDelgate?
     var latitude, longitude : String?
-    
+    //MARK: - ************************************************END OF VARIABLES ************************************************
+
+    //MARK: - ********************************************* LIFECYCLE METHODS ****************************************************
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -29,8 +37,27 @@ class AddNewAddressMap: UIViewController, GMSMapViewDelegate, CLLocationManagerD
         mapView.delegate = self
         initializeTheLocationManager()
         mapView.isMyLocationEnabled = true
+    }
+    //MARK: - *************************************** END OF LIFECYCLE METHODS *********************************************
+
+    //MARK: - *********************************************** ALL ACTIONS *******************************************************
+    @IBAction func onClickedChangeLang(_ sender: UIButton) {
+        Global.shared.languageChangeActn()
+    }
+    
+    @IBAction func onClickedBackBtn(_ sender: UIButton) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+
+    @IBAction func onClickedSetLocation(_ sender: UIButton) {
+        delegate?.getLatLong(lat: latitude ?? "", long: longitude ?? "")
         
     }
+    //MARK: - ***********************************************END ALL ACTIONS *******************************************************
+    
+
+    //MARK: - ************************************************* FUNCTIONS *****************************************************
     
     func initializeTheLocationManager() {
         locationManager.delegate = self
@@ -52,20 +79,7 @@ class AddNewAddressMap: UIViewController, GMSMapViewDelegate, CLLocationManagerD
     }
     
     
-    
-    @IBAction func onClickedChangeLang(_ sender: UIButton) {
-        Global.shared.languageChangeActn()
-    }
-    
-    @IBAction func onClickedBackBtn(_ sender: UIButton) {
-        self.navigationController?.popViewController(animated: true)
-    }
-    
-
-    @IBAction func onClickedSetLocation(_ sender: UIButton) {
-        delegate?.getLatLong(lat: latitude ?? "", long: longitude ?? "")
-        
-    }
+  
     /*
     // MARK: - Navigation
 
@@ -92,3 +106,8 @@ class AddNewAddressMap: UIViewController, GMSMapViewDelegate, CLLocationManagerD
     }
 
 }
+    //MARK: - *************************************************END OF FUNCTIONS *****************************************************
+
+
+
+    
