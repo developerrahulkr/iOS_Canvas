@@ -266,7 +266,8 @@ extension CellSectionTwo : UICollectionViewDelegate,UICollectionViewDataSource,U
                 
             }
             cell.lblFirstName.text = FXbookingMaster.shared.homeDataSource[indexPath.row].firstName ?? ""
-            cell.lblAddress.text = "\(FXbookingMaster.shared.homeDataSource[indexPath.row].flat ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].floor ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].building ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].gada ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].street ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].block ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].areaCity ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].postalCode ?? "")"
+//        Flat: , Floor: , Building: , gada : , Street : , Block: , Area/City : postal Code :
+            cell.lblAddress.text = "Flat : \(FXbookingMaster.shared.homeDataSource[indexPath.row].flat ?? ""), Floor :  \(FXbookingMaster.shared.homeDataSource[indexPath.row].floor ?? ""), Building : \(FXbookingMaster.shared.homeDataSource[indexPath.row].building ?? ""), gada : \(FXbookingMaster.shared.homeDataSource[indexPath.row].gada ?? ""), Street : \(FXbookingMaster.shared.homeDataSource[indexPath.row].street ?? ""), Block : \(FXbookingMaster.shared.homeDataSource[indexPath.row].block ?? ""), Area/City : \(FXbookingMaster.shared.homeDataSource[indexPath.row].areaCity ?? ""), postal Code : \(FXbookingMaster.shared.homeDataSource[indexPath.row].postalCode ?? "")"
             if FXbookingMaster.shared.selecytedhomeaddress == FXbookingMaster.shared.homeDataSource[indexPath.row].addressId{
                 print("Select cell index : \(indexPath.row)")
                 cell.viewCellDelivery.layer.borderWidth = 2
