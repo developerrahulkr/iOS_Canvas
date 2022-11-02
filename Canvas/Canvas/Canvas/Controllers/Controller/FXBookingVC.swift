@@ -355,7 +355,9 @@ class FXBookingVC: UIViewController,protocolPush, navigateToDiffrentScreenDelega
         }
         else
         {
-            self.pushViewController(controller: BranchLocatorFirstVc.initiateController())
+            let vc = storyboard?.instantiateViewController(withIdentifier: "YourAddress") as! YourAddress
+            navigationController?.pushViewController(vc, animated: true)
+//            self.pushViewController(controller: BranchLocatorFirstVc.initiateController())
         }
     }
     
@@ -430,8 +432,14 @@ extension FXBookingVC: UITableViewDelegate,UITableViewDataSource,Delete{
             cell.homeSegment.setTitle(Global.shared.home, forSegmentAt: 0)
             cell.homeSegment.setTitle(Global.shared.branch, forSegmentAt: 1)
             cell.homeSegment.selectedSegmentIndex = FXbookingMaster.shared.deliveryType == 2 ? 0 : 1
-            cell.TFSelectDate.text = FXbookingMaster.shared.selecteddateslot
-            cell.TFTimeSlot.text = FXbookingMaster.shared.selectedtimeslot
+            if FXbookingMaster.shared.selecteddateslot == "Preffered Date" {
+                cell.TFSelectDate.text = ""
+            }else{
+                cell.TFSelectDate.text = FXbookingMaster.shared.selecteddateslot
+            }
+            if cell.TFTimeSlot.text == "Time Slot" {
+                cell.TFTimeSlot.text = FXbookingMaster.shared.selectedtimeslot
+            }
             cell.TFSelectPurposeOf.text = FXbookingMaster.shared.selectedpurpose
             cell.lblDenominations.text = Global.shared.denominations
             cell.lblHighValue.text = Global.shared.high_value
@@ -800,6 +808,7 @@ extension FXBookingVC {
     //MARK: API for select date
       func getSelectDateData() {
           self.selectDateDataSource.removeAll()
+          self.selectDateDataSource.append(CMSelectDate(id: "0", sDate: "Preffered Date"))
           let paramaterPasing: [String:Any] = [:]
           let headers: HTTPHeaders = [
               "Content-Type": "application/json"
@@ -842,6 +851,7 @@ extension FXBookingVC {
     
         func timeSlotApiData() {
             self.selectTimeSlotDateDatasource.removeAll()
+            self.selectTimeSlotDateDatasource.append(CMTimeSlotSelectDate(id: 0, name: "Time Slot", starTime: "",endTime: ""))
             let paramaterPasing: [String:Any] = ["dtDate": selectedDateForTime]
             
             
@@ -865,7 +875,6 @@ extension FXBookingVC {
                     if(statusCode == 200) {
                         if let dataArray = responseData?.value(forKey: "timeSlotList") as? NSArray {
                             for onemessage in dataArray as! [Dictionary<String, AnyObject>] {
- 
                                 self.selectTimeSlotDateDatasource.append(CMTimeSlotSelectDate(id: onemessage["id"] as? Int, name: onemessage["name"] as? String, starTime: onemessage["starTime"] as? String, endTime: onemessage["endTime"] as? String))
                             }
                         }

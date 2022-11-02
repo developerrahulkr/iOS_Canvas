@@ -10,6 +10,7 @@ import UIKit
 protocol YourAddressDelegate {
     func updateAddress (tag : Int) -> Void
     func deleteAddress(indexPath : Int) -> Void
+    func selectCell(indexPath : Int) -> Void
 }
 
 class CellYourAddress: UITableViewCell {
@@ -21,7 +22,8 @@ class CellYourAddress: UITableViewCell {
     @IBOutlet weak var btnDelete: UIButton!
     @IBOutlet weak var ViewCellYourAddress: UIView!
     @IBOutlet weak var imgdefault: UIImageView!
-
+    @IBOutlet weak var btnSelect: UIButton!
+    
     var delegate : YourAddressDelegate?
     //MARK: - VARIABLES
     override func awakeFromNib() {
@@ -47,6 +49,9 @@ class CellYourAddress: UITableViewCell {
         }
     }
     
+    @IBAction func onClickedselectedCell(_ sender: UIButton) {
+        delegate?.selectCell(indexPath: sender.tag)
+    }
     @IBAction func onClickedUpdateBtn(_ sender: UIButton)
     {
         if let index = (self.superview as! UITableView).indexPath(for: self)

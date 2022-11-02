@@ -21,7 +21,7 @@ class YourAddress: UIViewController {
         tableViewYourAddress.delegate = self
         tableViewYourAddress.dataSource = self
         tableViewYourAddress.register(UINib(nibName: "CellYourAddress", bundle: nil), forCellReuseIdentifier: "CellYourAddress")
-        tableViewYourAddress.register(UINib(nibName: "CellAddNewAddress", bundle: nil), forCellReuseIdentifier: "CellAddNewAddress")
+//        tableViewYourAddress.register(UINib(nibName: "CellAddNewAddress", bundle: nil), forCellReuseIdentifier: "CellAddNewAddress")
         // Do any additional setup after loading the view.
     }
     
@@ -46,8 +46,12 @@ class YourAddress: UIViewController {
     }
     
     @IBAction func onClickedAddBtn(_ sender: UIButton) {
-        let vc = Storyboad.shared.fxBookingStoryboard?.instantiateViewController(withIdentifier: "AddNewAddressVC") as! AddNewAddressVC
-        self.navigationController?.pushViewController(vc, animated: true)
+        if FXbookingMaster.shared.deliveryType == 2 {
+            let vc = Storyboad.shared.fxBookingStoryboard?.instantiateViewController(withIdentifier: "AddNewAddressVC") as! AddNewAddressVC
+            self.navigationController?.pushViewController(vc, animated: true)
+        }else{
+            self.pushViewController(controller: BranchLocatorFirstVc.initiateController())
+        }
     }
     //MARK: - **************************************END ALL ACTIONS *************************************************
 
@@ -67,19 +71,37 @@ extension YourAddress : UITableViewDelegate,UITableViewDataSource, YourAddressDe
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CellYourAddress") as! CellYourAddress
         cell.delegate = self
+        cell.btnSelect.tag = indexPath.row
         if FXbookingMaster.shared.deliveryType == 2
         {
             cell.lblFullName.text = FXbookingMaster.shared.homeDataSource[indexPath.row].firstName ?? ""
             cell.lblAddress.text = "\(FXbookingMaster.shared.homeDataSource[indexPath.row].flat ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].floor ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].building ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].gada ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].street ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].block ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].areaCity ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].postalCode ?? "")"
             cell.imgdefault.isHidden = !FXbookingMaster.shared.homeDataSource[indexPath.row].bIsDefault
+            if FXbookingMaster.shared.selecytedhomeaddress == FXbookingMaster.shared.homeDataSource[indexPath.row].addressId{
+                print("Select cell index : \(indexPath.row)")
+                cell.ViewCellYourAddress.layer.borderWidth = 2
+                cell.ViewCellYourAddress.layer.borderColor = #colorLiteral(red: 0.8272326589, green: 0, blue: 0.1346516907, alpha: 1)
+            }else{
+                cell.ViewCellYourAddress.layer.borderWidth = 1
+                cell.ViewCellYourAddress.layer.borderColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+            }
         }
         else
         {
             cell.lblAddress.text = "\(FXbookingMaster.shared.branchDataSource[indexPath.row].branchAddress ?? ""), \(FXbookingMaster.shared.branchDataSource[indexPath.row].branchCode ?? "")"
             cell.lblFullName.text = FXbookingMaster.shared.branchDataSource[indexPath.row].branchName
+            if FXbookingMaster.shared.selecedbranchaddress == FXbookingMaster.shared.branchDataSource[indexPath.row].id{
+                print("Select cell index : \(indexPath.row)")
+                cell.ViewCellYourAddress.layer.borderWidth = 2
+                cell.ViewCellYourAddress.layer.borderColor = #colorLiteral(red: 0.8272326589, green: 0, blue: 0.1346516907, alpha: 1)
+            }else{
+                cell.ViewCellYourAddress.layer.borderWidth = 1
+                cell.ViewCellYourAddress.layer.borderColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+            }
         }
         return cell
     }
+    
     
     //MARK: Function call on tap Update Address
     func updateAddress(tag: Int)
@@ -104,6 +126,18 @@ extension YourAddress : UITableViewDelegate,UITableViewDataSource, YourAddressDe
         alertView.addAction(action)
         alertView.addAction(action1)
         self.present(alertView, animated: true, completion: nil)
+    }
+    
+    func selectCell(indexPath: Int) {
+        
+        print("index path : \(indexPath)")
+        if FXbookingMaster.shared.deliveryType == 2 {
+            FXbookingMaster.shared.selecytedhomeaddress = FXbookingMaster.shared.homeDataSource[indexPath].addressId
+        }else{
+            FXbookingMaster.shared.selecedbranchaddress = FXbookingMaster.shared.branchDataSource[indexPath].id
+        }
+        tableViewYourAddress.reloadData()
+        self.navigationController?.popViewController(animated: true)
     }
     
     //    MARK: - ************************************************** ALL API's **************************************************

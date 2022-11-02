@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -56,9 +56,17 @@
                                     <action selector="onClickedUpdateBtn:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Ee4-ob-WRv"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aXN-rL-fN7">
+                                <rect key="frame" x="-6" y="-7" width="271" height="97"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <connections>
+                                    <action selector="onClickedselectedCell:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="5Ac-n3-OEG"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="aXN-rL-fN7" firstAttribute="top" secondItem="3J8-aT-W35" secondAttribute="top" constant="-7" id="3UV-Yw-3OC"/>
                             <constraint firstItem="2PV-aW-6dE" firstAttribute="leading" secondItem="3J8-aT-W35" secondAttribute="leading" constant="5" id="4Ra-oc-JpZ"/>
                             <constraint firstItem="fSC-CM-OJL" firstAttribute="top" secondItem="2PV-aW-6dE" secondAttribute="bottom" constant="5" id="6q2-fb-uhX"/>
                             <constraint firstItem="nOo-tr-GmN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="fSC-CM-OJL" secondAttribute="trailing" constant="8" id="9wf-CX-0ju"/>
@@ -66,12 +74,15 @@
                             <constraint firstAttribute="bottom" secondItem="Lj7-KF-SeD" secondAttribute="bottom" constant="10" id="Kqc-L7-h2V"/>
                             <constraint firstItem="fSC-CM-OJL" firstAttribute="leading" secondItem="2PV-aW-6dE" secondAttribute="leading" id="LR2-ci-jM2"/>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="90" id="LbZ-mf-5tG"/>
+                            <constraint firstAttribute="trailing" secondItem="aXN-rL-fN7" secondAttribute="trailing" constant="35" id="MPe-U3-iHl"/>
                             <constraint firstAttribute="trailing" secondItem="nOo-tr-GmN" secondAttribute="trailing" constant="10" id="SD6-nT-eQ5"/>
                             <constraint firstItem="z4m-Ne-IC6" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="2PV-aW-6dE" secondAttribute="trailing" constant="8" id="Udu-TM-VVq"/>
                             <constraint firstItem="nOo-tr-GmN" firstAttribute="centerY" secondItem="3J8-aT-W35" secondAttribute="centerY" id="Xci-cc-2aP"/>
                             <constraint firstItem="2PV-aW-6dE" firstAttribute="top" secondItem="3J8-aT-W35" secondAttribute="top" constant="5" id="ZSF-c5-ADB"/>
                             <constraint firstItem="z4m-Ne-IC6" firstAttribute="top" secondItem="3J8-aT-W35" secondAttribute="top" constant="10" id="b8W-B9-Ok9"/>
                             <constraint firstAttribute="trailing" secondItem="z4m-Ne-IC6" secondAttribute="trailing" constant="10" id="evG-mH-yiG"/>
+                            <constraint firstItem="aXN-rL-fN7" firstAttribute="leading" secondItem="3J8-aT-W35" secondAttribute="leading" constant="-6" id="kff-AZ-g5H"/>
+                            <constraint firstAttribute="bottom" secondItem="aXN-rL-fN7" secondAttribute="bottom" id="qIn-Wm-5Nf"/>
                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="fSC-CM-OJL" secondAttribute="bottom" constant="8" id="v0V-Hf-7mM"/>
                         </constraints>
                     </view>
@@ -90,6 +101,7 @@
                 <outlet property="ViewCellYourAddress" destination="3J8-aT-W35" id="ZD8-9n-i0q"/>
                 <outlet property="btnDelete" destination="Lj7-KF-SeD" id="bJb-54-dl7"/>
                 <outlet property="btnEdit" destination="nOo-tr-GmN" id="Srd-3K-Mxa"/>
+                <outlet property="btnSelect" destination="aXN-rL-fN7" id="bDc-AL-XdZ"/>
                 <outlet property="imgdefault" destination="z4m-Ne-IC6" id="awt-Fg-oN4"/>
                 <outlet property="lblAddress" destination="fSC-CM-OJL" id="h95-fj-2PG"/>
                 <outlet property="lblFullName" destination="2PV-aW-6dE" id="A1H-NH-hAW"/>
