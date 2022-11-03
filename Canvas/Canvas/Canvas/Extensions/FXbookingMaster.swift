@@ -84,6 +84,23 @@ class FXbookingMaster {
         
     }
     
+    func addressFunc(indexpath : Int) -> String {
+        var addreddStr = ""
+        if FXbookingMaster.shared.homeDataSource[indexpath].flat == "" {
+            addreddStr = "Floor :  \(FXbookingMaster.shared.homeDataSource[indexpath].floor ?? ""), Building : \(FXbookingMaster.shared.homeDataSource[indexpath].building ?? ""), gada : \(FXbookingMaster.shared.homeDataSource[indexpath].gada ?? ""), Street : \(FXbookingMaster.shared.homeDataSource[indexpath].street ?? ""), Block : \(FXbookingMaster.shared.homeDataSource[indexpath].block ?? ""), Area/City : \(FXbookingMaster.shared.homeDataSource[indexpath].areaCity ?? ""), postal Code : \(FXbookingMaster.shared.homeDataSource[indexpath].postalCode ?? "")"
+        }
+//        if FXbookingMaster.shared.homeDataSource[indexpath].floor == "" {
+//            "Flat : \(FXbookingMaster.shared.homeDataSource[indexPath.row].flat ?? ""), Building : \(FXbookingMaster.shared.homeDataSource[indexPath.row].building ?? ""), gada : \(FXbookingMaster.shared.homeDataSource[indexPath.row].gada ?? ""), Street : \(FXbookingMaster.shared.homeDataSource[indexPath.row].street ?? ""), Block : \(FXbookingMaster.shared.homeDataSource[indexPath.row].block ?? ""), Area/City : \(FXbookingMaster.shared.homeDataSource[indexPath.row].areaCity ?? ""), postal Code : \(FXbookingMaster.shared.homeDataSource[indexPath.row].postalCode ?? "")"
+//        }
+//        if FXbookingMaster.shared.homeDataSource[indexpath].building == ""
+        
+        return addreddStr
+    }
+    
+//    "Flat : \(FXbookingMaster.shared.homeDataSource[indexPath.row].flat ?? ""), Floor :  \(FXbookingMaster.shared.homeDataSource[indexPath.row].floor ?? ""), Building : \(FXbookingMaster.shared.homeDataSource[indexPath.row].building ?? ""), gada : \(FXbookingMaster.shared.homeDataSource[indexPath.row].gada ?? ""), Street : \(FXbookingMaster.shared.homeDataSource[indexPath.row].street ?? ""), Block : \(FXbookingMaster.shared.homeDataSource[indexPath.row].block ?? ""), Area/City : \(FXbookingMaster.shared.homeDataSource[indexPath.row].areaCity ?? ""), postal Code : \(FXbookingMaster.shared.homeDataSource[indexPath.row].postalCode ?? "")"
+    
+    
+    
     
     func getHomeData(completionHandler: @escaping (Bool,String?) -> ())
     {

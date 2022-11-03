@@ -554,8 +554,8 @@ extension FXBookingVC: UITableViewDelegate,UITableViewDataSource,Delete{
     //    MARK: - Purpose Code Delegate Function
     func getPurposeName() {
         guard BeneficiaryDetails.shared.purposeList.count > 0 else {return}
-        let popupVc = PopupViewController.showPopup(parentVC: self, data: BeneficiaryDetails.shared.purposeList)
-        popupVc?.setListData(with: .purposeScreen, data: BeneficiaryDetails.shared.purposeList)
+        let popupVc = PopupViewController.showPurposePopup(parentVC: self, data: Global.shared.purposeTransferNames)
+        popupVc?.setListData(with: .purposeTransferNames, data: Global.shared.purposeTransferNames)
         popupVc?.delegate = self
     }
     
@@ -1049,8 +1049,8 @@ extension FXBookingVC : PopupViewControllerDelegate {
         }else if let timeData = item as? CMTimeSlotSelectDate{
             FXbookingMaster.shared.selectedtimeslot = timeData.name ?? ""
             print("time Slot Date : \(item)")
-        }else if let purposeCodeData = item as? BeneficiaryPurposeData {
-            FXbookingMaster.shared.selectedpurpose = purposeCodeData.name ?? ""
+        }else if let purposeCodeData = item as? String {
+            FXbookingMaster.shared.selectedpurpose = purposeCodeData
         }
         vc?.dismiss(animated: true)
         tableViewFX.reloadData()

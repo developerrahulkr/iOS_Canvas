@@ -240,15 +240,16 @@ extension BranchLocatorFirstVc  {
     
     
     func addUserAPI(branchID:Int){
+        self.showSpinner(onView: self.view)
         let paramaterPasing: [String:Any] = ["registrationId": Global.shared.afterLoginRegistrtnId ?? "", "branchId" : branchID, "createdBy" : "Backend"]
         let headers: HTTPHeaders = [
             "Content-Type": "application/json"
         ]
         NetWorkDataManager.sharedInstance.addUserBranchDetails(headersTobePassed: headers, postParameters: paramaterPasing) { [weak self] responseData, errString in
             guard let self = self else {return}
+            self.removeSpinner()
             guard errString == nil else {
                 print(errString ?? "")
-                
                 let finalError = errString?.components(separatedBy: ":")
                 let alert = ViewControllerManager.displayAlert(message: finalError?[1] ?? "", title:APPLICATIONNAME)
 //                self.present(alert, animated: true, completion: nil)

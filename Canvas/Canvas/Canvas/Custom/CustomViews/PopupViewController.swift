@@ -15,6 +15,7 @@ protocol PopupViewControllerDelegate: AnyObject {
 enum PopupScreenType {
   case purposeScreen
   case questionsScreen
+    case purposeTransferNames
 }
 class PopupViewController: UIViewController {
   
@@ -35,6 +36,7 @@ class PopupViewController: UIViewController {
     var items: [BeneficiaryPurposeData] = []
     var questionItem: [String] = []
     var screenType: PopupScreenType = .purposeScreen
+    var purposeData : [String] = []
     //MARK: - **************************************END VARIABLE **********************************************
 
     //MARK: - *************************************** LIFECYCLE METHODS **********************************************
@@ -84,6 +86,11 @@ class PopupViewController: UIViewController {
       if let items = data as? [String] {
         self.questionItem = items
       }
+    case .purposeTransferNames:
+        if let items = data as? [String] {
+            self.purposeData = items
+        }
+        
     }
     popupTableView.reloadData()
   }
@@ -93,7 +100,10 @@ class PopupViewController: UIViewController {
       return items.count
     case .questionsScreen:
       return self.questionItem.count
+    case .purposeTransferNames:
+        return self.purposeData.count
     }
+      
     
     
   }
@@ -106,6 +116,8 @@ class PopupViewController: UIViewController {
     case .questionsScreen:
       return self.questionItem[index]
       
+    case .purposeTransferNames:
+        return self.purposeData[index]
     }
   }
   
@@ -139,6 +151,22 @@ class PopupViewController: UIViewController {
     }
     return nil
   }
+    
+    
+    @discardableResult
+    static func showPurposePopup(parentVC: UIViewController, data: [String]) -> PopupViewController?{
+      
+    //MARK: creating a reference for the dialogView controller
+      if let popupViewController = UIStoryboard(name: "CustomView", bundle: nil).instantiateViewController(withIdentifier: "PopupViewController") as? PopupViewController {
+        popupViewController.modalPresentationStyle = .custom
+        popupViewController.modalTransitionStyle = .crossDissolve
+          popupViewController.purposeData = data
+        //presenting the pop up viewController from the parent viewController
+        parentVC.present(popupViewController, animated: true)
+        return popupViewController
+      }
+      return nil
+    }
     
     
     @discardableResult
