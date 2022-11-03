@@ -27,6 +27,8 @@ class YourAddress: UIViewController {
     
     override func viewWillAppear(_ animated: Bool)
     {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
         FXbookingMaster.shared.getHomeData { succes, error in
             if (succes)
             {
@@ -88,6 +90,8 @@ extension YourAddress : UITableViewDelegate,UITableViewDataSource, YourAddressDe
         }
         else
         {
+            cell.btnEdit.isHidden = true
+            cell.imgdefault.isHidden = true
             cell.lblAddress.text = "\(FXbookingMaster.shared.branchDataSource[indexPath.row].branchAddress ?? ""), \(FXbookingMaster.shared.branchDataSource[indexPath.row].branchCode ?? "")"
             cell.lblFullName.text = FXbookingMaster.shared.branchDataSource[indexPath.row].branchName
             if FXbookingMaster.shared.selecedbranchaddress == FXbookingMaster.shared.branchDataSource[indexPath.row].id{
@@ -117,15 +121,30 @@ extension YourAddress : UITableViewDelegate,UITableViewDataSource, YourAddressDe
     //MARK: FUNCTION call on tap Delete Address in CellYourAddress
     func deleteAddress(indexPath: Int)
     {
-        let alertView = UIAlertController(title: "", message: Global.shared.delete_confirmation, preferredStyle: .alert)
-        let action = UIAlertAction(title: Global.shared.okTxt, style: .default, handler: { (alert) in
-            self.fxBookingDeleteAddress(addressId: FXbookingMaster.shared.homeDataSource[indexPath].addressId ?? 0)
-        })
-        let action1 = UIAlertAction(title: Global.shared.cancelTxt, style: .default, handler: { (alert) in
-        })
-        alertView.addAction(action)
-        alertView.addAction(action1)
-        self.present(alertView, animated: true, completion: nil)
+        if FXbookingMaster.shared.deliveryType == 2 {
+            let alertView = UIAlertController(title: "", message: Global.shared.delete_confirmation, preferredStyle: .alert)
+            let action = UIAlertAction(title: Global.shared.okTxt, style: .default, handler: { (alert) in
+                self.fxBookingDeleteAddress(addressId: FXbookingMaster.shared.homeDataSource[indexPath].addressId ?? 0)
+            })
+            let action1 = UIAlertAction(title: Global.shared.cancelTxt, style: .default, handler: { (alert) in
+            })
+            alertView.addAction(action)
+            alertView.addAction(action1)
+            self.present(alertView, animated: true, completion: nil)
+        }else{
+            print("Delegate for Delete Branch Working \(FXbookingMaster.shared.branchDataSource[indexPath].id ?? 0) ")
+            let alertView = UIAlertController(title: "", message: Global.shared.delete_confirmation, preferredStyle: .alert)
+            let action = UIAlertAction(title: Global.shared.okTxt, style: .default, handler: {  [weak self] _ in
+                guard let self = self else {return}
+                self.deleteBranchAddressData(branchID: (FXbookingMaster.shared.branchDataSource[indexPath].id ?? 0))
+
+            })
+            let action1 = UIAlertAction(title: Global.shared.cancelTxt, style: .default, handler: { (alert) in
+            })
+            alertView.addAction(action)
+            alertView.addAction(action1)
+            self.present(alertView, animated: true, completion: nil)
+        }
     }
     
     func selectCell(indexPath: Int) {
@@ -184,6 +203,46 @@ extension YourAddress : UITableViewDelegate,UITableViewDataSource, YourAddressDe
             
         }
         
+    }
+    
+    func deleteBranchAddressData(branchID : Int){
+            self.showSpinner(onView: self.view)
+
+            let paramaterPasing: [String:Any] = ["registrationId" : Global.shared.afterLoginRegistrtnId!,
+                                                 "branchId": branchID]
+            let headers: HTTPHeaders = [
+                "Content-Type": "application/json"
+            ]
+            NetWorkDataManager.sharedInstance.deleteBranchAddress(headersTobePassed: headers, postParameters: paramaterPasing) { [weak self] responseData, errString in
+                self?.removeSpinner()
+
+                guard let self = self else {return}
+                
+                guard errString == nil else {
+                    print(errString ?? "")
+                    let finalError = errString?.components(separatedBy: ":")
+                    print("error String : \(String(describing: finalError))")
+                    return
+                }
+                let statusMsg = responseData?.value(forKey: "statusMessage") as? String ?? ""
+                let mesageCode = responseData?.value(forKey: "messageCode") as? String ?? statusMsg
+                if let statusCode = responseData?.value(forKey: "statusCodes") as? Int {
+                    
+                    print(statusCode)
+                    if(statusCode == 200) {
+                        print("Status Code 200")
+                        FXbookingMaster.shared.getUserBranchDetails { succes, error in
+                            if (succes)
+                            {
+                                self.tableViewYourAddress.reloadData()
+                            }
+                        }
+                    }else{
+                        let alert = ViewControllerManager.displayAlert(message:Global.shared.messageCodeType(text: mesageCode), title:APPLICATIONNAME)
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                }
+            }
     }
     //    MARK: - *********************************** END OF ALL API's ********************************************
     
