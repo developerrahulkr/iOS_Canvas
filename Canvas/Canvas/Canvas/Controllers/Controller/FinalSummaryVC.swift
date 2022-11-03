@@ -385,8 +385,8 @@ extension FinalSummaryVC: UITableViewDelegate,UITableViewDataSource{
                 
                 
                 var digitTwo = Double(LCAmount)
-                var digitThree = String(format: "%.3f", digitTwo)
-                cell.lblLCAmount.text = "\(digitThree) KWD"
+//                var digitThree = String(format: "%.3f", digitTwo)
+                cell.lblLCAmount.text = "\(digitTwo) KWD"
                 
             }
             if let countryImg = fxBookingModel?.fXBookingDetails?[indexPath.row].countryCode{

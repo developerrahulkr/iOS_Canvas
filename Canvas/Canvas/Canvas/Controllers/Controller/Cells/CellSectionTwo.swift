@@ -306,8 +306,7 @@ extension CellSectionTwo : UICollectionViewDelegate,UICollectionViewDataSource,U
         if homeSegment.selectedSegmentIndex == 0
         {
             FXbookingMaster.shared.selecytedhomeaddress = FXbookingMaster.shared.homeDataSource[indexPath.row].addressId
-            FXbookingMaster.shared.selectedhomeaddress1name = "\(FXbookingMaster.shared.homeDataSource[indexPath.row].flat ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].floor ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].building ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].gada ?? ""))"
-            FXbookingMaster.shared.selectedhomeaddress1name = "\(FXbookingMaster.shared.homeDataSource[indexPath.row].street ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].block ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].areaCity ?? ""), \(FXbookingMaster.shared.homeDataSource[indexPath.row].postalCode ?? "")"
+            FXbookingMaster.shared.selectedhomeaddress1name = "Flat : \(FXbookingMaster.shared.homeDataSource[indexPath.row].flat ?? ""), Floor :  \(FXbookingMaster.shared.homeDataSource[indexPath.row].floor ?? ""), Building : \(FXbookingMaster.shared.homeDataSource[indexPath.row].building ?? ""), gada : \(FXbookingMaster.shared.homeDataSource[indexPath.row].gada ?? ""), Street : \(FXbookingMaster.shared.homeDataSource[indexPath.row].street ?? ""), Block : \(FXbookingMaster.shared.homeDataSource[indexPath.row].block ?? ""), Area/City : \(FXbookingMaster.shared.homeDataSource[indexPath.row].areaCity ?? ""), postal Code : \(FXbookingMaster.shared.homeDataSource[indexPath.row].postalCode ?? "")"
         }
         else
         {

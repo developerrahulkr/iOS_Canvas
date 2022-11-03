@@ -296,7 +296,8 @@ class FXBookingVC: UIViewController,protocolPush, navigateToDiffrentScreenDelega
         }
         print(fccurrencydict)
         print(netamount)
-        FXbookingMaster.shared.netamount = String(format: "%.3f", netamount) //"\(netamount)"
+        FXbookingMaster.shared.netamount = String(netamount) //"\(netamount)"
+        //String(format: "%.3f", netamount) //"\(netamount)"
 
         let vc = Storyboad.shared.fxBookingStoryboard?.instantiateViewController(withIdentifier: "TransactionSummaryVC") as! TransactionSummaryVC
         self.navigationController?.pushViewController(vc, animated: true)
@@ -357,7 +358,7 @@ class FXBookingVC: UIViewController,protocolPush, navigateToDiffrentScreenDelega
         else
         {
             let vc = storyboard?.instantiateViewController(withIdentifier: "YourAddress") as! YourAddress
-            vc.addressText = "Your Branches"
+            vc.addressText = "FX Branches"
             navigationController?.pushViewController(vc, animated: true)
 //            self.pushViewController(controller: BranchLocatorFirstVc.initiateController())
         }
@@ -394,8 +395,8 @@ extension FXBookingVC: UITableViewDelegate,UITableViewDataSource,Delete{
                 
                 if let fcRate = Double(FXbookingMaster.shared.fxBookingDataSource[indexPath.row].rate) {
                     print("Float value = \(fcRate)")
-                    let lvAmnt = String(format: "%.3f", fcRate)
-                    let finalTxt = "1 \(FXbookingMaster.shared.fxBookingDataSource[indexPath.row].currenyCodeTo) = \(lvAmnt) \(FXbookingMaster.shared.fxBookingDataSource[indexPath.row].currenyCodeFrom)"
+//                    let lvAmnt = String(format: "%.3f", fcRate)
+                    let finalTxt = "1 \(FXbookingMaster.shared.fxBookingDataSource[indexPath.row].currenyCodeTo) = \(fcRate) \(FXbookingMaster.shared.fxBookingDataSource[indexPath.row].currenyCodeFrom)"
                     cell.lblConverter.text = finalTxt
                     
                 } else {
@@ -405,8 +406,8 @@ extension FXBookingVC: UITableViewDelegate,UITableViewDataSource,Delete{
                 let amountFrom = FXbookingMaster.shared.fxBookingDataSource[indexPath.row].amountFrom
                 if let lcAmounnt = Double(amountFrom) {
                     print("Float value = \(lcAmounnt)")
-                    let lvAmnt = String(format: "%.3f", lcAmounnt)
-                    cell.tfSourceField.text =  "\(lvAmnt) KWD"
+//                    let lvAmnt = String(format: "%.3f", lcAmounnt)
+                    cell.tfSourceField.text =  "\(lcAmounnt) KWD"
                 } else {
                     print("String does not contain Float")
                 }
@@ -425,11 +426,6 @@ extension FXBookingVC: UITableViewDelegate,UITableViewDataSource,Delete{
             cell.TFTimeSlot.placeholder = Global.shared.timeslot
             cell.TFSelectDate.placeholder = Global.shared.preferred_date
             
-            if cell.TFSelectDate.text == ""{
-                cell.btnTimeSlot.isUserInteractionEnabled = false
-            }
-            else
-            {cell.btnTimeSlot.isUserInteractionEnabled = true}
             cell.TFSelectPurposeOf.text = "\(Global.shared.purpose!) *"
             cell.homeSegment.setTitle(Global.shared.home, forSegmentAt: 0)
             cell.homeSegment.setTitle(Global.shared.branch, forSegmentAt: 1)
@@ -439,11 +435,20 @@ extension FXBookingVC: UITableViewDelegate,UITableViewDataSource,Delete{
             }else{
                 cell.TFSelectDate.text = FXbookingMaster.shared.selecteddateslot
             }
-            if cell.TFTimeSlot.text == "Time Slot" {
+            if cell.TFTimeSlot.text == "Time Slot"
+            {
                 cell.TFTimeSlot.text = ""
-            }else{
+            }
+            else
+            {
                 cell.TFTimeSlot.text = FXbookingMaster.shared.selectedtimeslot
             }
+            if cell.TFSelectDate.text == ""{
+                cell.btnTimeSlot.isUserInteractionEnabled = false
+            }
+            else
+            {cell.btnTimeSlot.isUserInteractionEnabled = true}
+
             cell.TFSelectPurposeOf.text = FXbookingMaster.shared.selectedpurpose
             cell.lblDenominations.text = Global.shared.denominations
             cell.lblHighValue.text = Global.shared.high_value
@@ -667,8 +672,8 @@ extension FXBookingVC {
                                 
                                 if let lcAmounnt = Double(amountFrom) {
                                     print("Float value = \(lcAmounnt)")
-                                    let lvAmnt = String(format: "%.3f", lcAmounnt)
-                                    self.txtLCamount.text = "\(lvAmnt)"
+//                                    let lvAmnt = String(format: "%.3f", lcAmounnt)
+                                    self.txtLCamount.text = "\(lcAmounnt)"
                                 } else {
                                     print("String does not contain Float")
                                 }
@@ -679,7 +684,8 @@ extension FXBookingVC {
                                 
                                 if let rateFloat = Double(ratee) {
                                     print("Float value = \(rateFloat)")
-                                    let rateAmnt = String(format: "%.3f", rateFloat)
+                                    let rateAmnt = String(rateFloat)
+                                    //String(format: "%.3f", rateFloat)
                                     let finalTxt = "\(rateAmnt) KWD"
                                     print(finalTxt)
                                     self.lblrate.text = finalTxt
@@ -1049,12 +1055,17 @@ extension FXBookingVC : PopupViewControllerDelegate {
             FXbookingMaster.shared.selecteddateslot = itemData.sDate ?? ""
             selectedDateForTime = NetWorkDataManager.sharedInstance.TimeConvertor(string: FXbookingMaster.shared.selecteddateslot, dateFormat: "yyyy-MM-dd")
             print("Time Conversion: *************************       \(NetWorkDataManager.sharedInstance.TimeConvertor(string: FXbookingMaster.shared.selecteddateslot, dateFormat: "yyyy-MM-dd"))")
-            
+            FXbookingMaster.shared.selectedtimeslot = ""
+            tableViewFX.reloadData()
             self.timeSlotApiData()
-        }else if let timeData = item as? CMTimeSlotSelectDate{
+            self.fxdelegate?.reloadhomeaddress()
+        }
+        else if let timeData = item as? CMTimeSlotSelectDate{
             FXbookingMaster.shared.selectedtimeslot = timeData.name ?? ""
             print("time Slot Date : \(item)")
-        }else if let purposeCodeData = item as? String {
+        }
+        else if let purposeCodeData = item as? String
+        {
             FXbookingMaster.shared.selectedpurpose = purposeCodeData
         }
         vc?.dismiss(animated: true)

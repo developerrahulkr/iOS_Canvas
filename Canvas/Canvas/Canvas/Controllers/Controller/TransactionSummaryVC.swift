@@ -43,8 +43,8 @@ class TransactionSummaryVC: UIViewController, navigateToDiffrentScreenDelegate, 
         
         
         var digitTwo = Double(FXbookingMaster.shared.netamount)
-        var digitThree = String(format: "%.3f", digitTwo!)
-        lblTotalAmount.text = "\(digitThree) KWD"
+//        var digitThree = String(format: "%.3f", digitTwo!)
+        lblTotalAmount.text = "\(digitTwo) KWD"
 
         FXbookingMaster.shared.getData()
         tableViewTransaction.allowsSelection = false
@@ -172,8 +172,8 @@ extension TransactionSummaryVC: UITableViewDelegate,UITableViewDataSource, Trans
             let amountFrom = FXbookingMaster.shared.fxBookingDataSource[indexPath.row].amountFrom
             if let lcAmounnt = Double(amountFrom) {
                 print("Float value = \(lcAmounnt)")
-                let lvAmnt = String(format: "%.3f", lcAmounnt)
-                cell.lblLCAmount.text =  "\(lvAmnt) KWD"
+//                let lvAmnt = String(format: "%.3f", lcAmounnt)
+                cell.lblLCAmount.text =  "\(lcAmounnt) KWD"
             } else {
                 print("String does not contain Float")
             }
@@ -227,8 +227,8 @@ extension TransactionSummaryVC: UITableViewDelegate,UITableViewDataSource, Trans
                 cell.lblLeft.text = Global.shared.you_pay
                 //MARK: Static Value
                 var digitTwo = ((Double(FXbookingMaster.shared.netamount) ?? 0.0) + 1.0)
-                var digitThree = String(format: "%.3f", digitTwo)
-                cell.lblRight.text = "\(digitThree) KWD"
+//                var digitThree = String(format: "%.3f", digitTwo)
+                cell.lblRight.text = "\(digitTwo) KWD"
                 
 //                cell.lblRight.text = "\((Float(FXbookingMaster.shared.netamount) ?? 0.0) + 1.0) KWD"
                 cell.lblRight.textColor = .white
@@ -238,8 +238,8 @@ extension TransactionSummaryVC: UITableViewDelegate,UITableViewDataSource, Trans
                 
                 if let fcRate = Double(FXbookingMaster.shared.dataSource[indexPath.row].amount ?? "") {
                         print("Float value = \(fcRate)")
-                        let lvAmnt = String(format: "%.3f", fcRate)
-                    cell.lblRight.text = lvAmnt + " KWD"    
+//                        let lvAmnt = String(format: "%.3f", fcRate)
+                    cell.lblRight.text = String(fcRate) + " KWD"
                     } else {
                         print("String does not contain Float")
                     }
