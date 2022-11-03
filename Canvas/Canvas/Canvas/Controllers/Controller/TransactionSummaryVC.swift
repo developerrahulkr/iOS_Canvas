@@ -44,7 +44,7 @@ class TransactionSummaryVC: UIViewController, navigateToDiffrentScreenDelegate, 
         
         var digitTwo = Double(FXbookingMaster.shared.netamount)
 //        var digitThree = String(format: "%.3f", digitTwo!)
-        lblTotalAmount.text = "\(digitTwo) KWD"
+            lblTotalAmount.text = "\(digitTwo ?? 0.0) KWD"
 
         FXbookingMaster.shared.getData()
         tableViewTransaction.allowsSelection = false
@@ -226,7 +226,7 @@ extension TransactionSummaryVC: UITableViewDelegate,UITableViewDataSource, Trans
             else if indexPath.row == FXbookingMaster.shared.dataSource.count - 1{
                 cell.lblLeft.text = Global.shared.you_pay
                 //MARK: Static Value
-                var digitTwo = ((Double(FXbookingMaster.shared.netamount) ?? 0.0) + 1.0)
+                let digitTwo = ((Double(FXbookingMaster.shared.netamount) ?? 0.0) + FXbookingMaster.shared.commision + FXbookingMaster.shared.deliveryCharges)
 //                var digitThree = String(format: "%.3f", digitTwo)
                 cell.lblRight.text = "\(digitTwo) KWD"
                 
@@ -243,10 +243,7 @@ extension TransactionSummaryVC: UITableViewDelegate,UITableViewDataSource, Trans
                     } else {
                         print("String does not contain Float")
                     }
-                
-                
-                
-                
+
                 
                 cell.lblLeft.text = FXbookingMaster.shared.dataSource[indexPath.row].summery
                 

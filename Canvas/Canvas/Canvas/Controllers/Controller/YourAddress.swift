@@ -8,38 +8,53 @@
 import UIKit
 import Alamofire
 
-class YourAddress: UIViewController {
+class YourAddress: UIViewController, UISearchBarDelegate {
     
     //MARK: - ******************************************** OUTLETS *************************************************
     @IBOutlet weak var tableViewYourAddress: UITableView!
     @IBOutlet weak var btnAdd: UIButton!
     
+    @IBOutlet weak var btnLocation: UIButton!
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var lblYourAddress: UILabel!
+    lazy var addressHomeDataSource : [CMBookingHomeAddress] = {
+        let data = [CMBookingHomeAddress]()
+        return data
+    }()
     
+    lazy var addressBranchDataSource : [CMBookingBranchAddress] = {
+        let data = [CMBookingBranchAddress]()
+        return data
+    }()
+    var searching = false
     var addressText : String = ""
     //MARK: - ****************************************** END OF OUTLETS ********************************************
 
     //MARK: - **************************************** LIFECYCLE METHODS *******************************************
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchBar.delegate = self
         tableViewYourAddress.delegate = self
         tableViewYourAddress.dataSource = self
         tableViewYourAddress.register(UINib(nibName: "CellYourAddress", bundle: nil), forCellReuseIdentifier: "CellYourAddress")
         lblYourAddress.text = addressText
-//        tableViewYourAddress.register(UINib(nibName: "CellAddNewAddress", bundle: nil), forCellReuseIdentifier: "CellAddNewAddress")
-        // Do any additional setup after loading the view.
+        if FXbookingMaster.shared.deliveryType == 2 {
+            btnLocation.isHidden = true
+        }else {
+            btnLocation.isHidden = false
+        }
     }
     
     override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
-        FXbookingMaster.shared.getHomeData { succes, error in
-            if (succes)
-            {
-                self.tableViewYourAddress.reloadData()
-            }
-        }
+//        FXbookingMaster.shared.getHomeData { succes, error in
+//            if (succes)
+//            {
+//                self.tableViewYourAddress.reloadData()
+//            }
+//        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -71,8 +86,56 @@ extension YourAddress : UITableViewDelegate,UITableViewDataSource, YourAddressDe
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return FXbookingMaster.shared.deliveryType == 2 ? FXbookingMaster.shared.homeDataSource.count : FXbookingMaster.shared.branchDataSource.count
+        if FXbookingMaster.shared.deliveryType == 2 {
+            if searching == true {
+                return addressHomeDataSource.count
+            }else{
+                return FXbookingMaster.shared.homeDataSource.count
+            }
+        }else{
+            if searching == true {
+                return addressBranchDataSource.count
+            }else{
+                return FXbookingMaster.shared.branchDataSource.count
+            }
+        }
+//        return FXbookingMaster.shared.deliveryType == 2 ? FXbookingMaster.shared.homeDataSource.count : FXbookingMaster.shared.branchDataSource.count
     }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if FXbookingMaster.shared.deliveryType == 2 {
+            addressHomeDataSource = FXbookingMaster.shared.homeDataSource.filter({ homeAddress in
+                let tmp:NSString = homeAddress.firstName! as NSString
+                let range = tmp.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
+                return range.location != NSNotFound
+            })
+            if (addressHomeDataSource.count == 0) {
+              searching = false
+            }
+            else {
+              searching = true
+            }
+            self.tableViewYourAddress.reloadData()
+        }else{
+            addressBranchDataSource = FXbookingMaster.shared.branchDataSource.filter({ branchAddress in
+                let tmp:NSString = branchAddress.branchName! as NSString
+                let range = tmp.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
+                return range.location != NSNotFound
+            })
+            if (addressBranchDataSource.count == 0) {
+              searching = false
+            }
+            else {
+              searching = true
+            }
+            self.tableViewYourAddress.reloadData()
+        }
+
+    }
+    
+    
+    
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
@@ -81,31 +144,60 @@ extension YourAddress : UITableViewDelegate,UITableViewDataSource, YourAddressDe
         cell.btnSelect.tag = indexPath.row
         if FXbookingMaster.shared.deliveryType == 2
         {
-            cell.lblFullName.text = FXbookingMaster.shared.homeDataSource[indexPath.row].firstName ?? ""
-            cell.lblAddress.text = "Flat : \(FXbookingMaster.shared.homeDataSource[indexPath.row].flat ?? ""), Floor :  \(FXbookingMaster.shared.homeDataSource[indexPath.row].floor ?? ""), Building : \(FXbookingMaster.shared.homeDataSource[indexPath.row].building ?? ""), gada : \(FXbookingMaster.shared.homeDataSource[indexPath.row].gada ?? ""), Street : \(FXbookingMaster.shared.homeDataSource[indexPath.row].street ?? ""), Block : \(FXbookingMaster.shared.homeDataSource[indexPath.row].block ?? ""), Area/City : \(FXbookingMaster.shared.homeDataSource[indexPath.row].areaCity ?? ""), postal Code : \(FXbookingMaster.shared.homeDataSource[indexPath.row].postalCode ?? "")"
-            cell.imgdefault.isHidden = !FXbookingMaster.shared.homeDataSource[indexPath.row].bIsDefault
-            if FXbookingMaster.shared.selecytedhomeaddress == FXbookingMaster.shared.homeDataSource[indexPath.row].addressId{
-                print("Select cell index : \(indexPath.row)")
-                cell.ViewCellYourAddress.layer.borderWidth = 2
-                cell.ViewCellYourAddress.layer.borderColor = #colorLiteral(red: 0.8272326589, green: 0, blue: 0.1346516907, alpha: 1)
-            }else{
-                cell.ViewCellYourAddress.layer.borderWidth = 1
-                cell.ViewCellYourAddress.layer.borderColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+            if searching != true {
+                cell.lblFullName.text = FXbookingMaster.shared.homeDataSource[indexPath.row].firstName ?? ""
+                cell.lblAddress.text = "Flat : \(FXbookingMaster.shared.homeDataSource[indexPath.row].flat ?? ""), Floor :  \(FXbookingMaster.shared.homeDataSource[indexPath.row].floor ?? ""), Building : \(FXbookingMaster.shared.homeDataSource[indexPath.row].building ?? ""), gada : \(FXbookingMaster.shared.homeDataSource[indexPath.row].gada ?? ""), Street : \(FXbookingMaster.shared.homeDataSource[indexPath.row].street ?? ""), Block : \(FXbookingMaster.shared.homeDataSource[indexPath.row].block ?? ""), Area/City : \(FXbookingMaster.shared.homeDataSource[indexPath.row].areaCity ?? ""), postal Code : \(FXbookingMaster.shared.homeDataSource[indexPath.row].postalCode ?? "")"
+                cell.imgdefault.isHidden = !FXbookingMaster.shared.homeDataSource[indexPath.row].bIsDefault
+                if FXbookingMaster.shared.selecytedhomeaddress == FXbookingMaster.shared.homeDataSource[indexPath.row].addressId{
+                    print("Select cell index : \(indexPath.row)")
+                    cell.ViewCellYourAddress.layer.borderWidth = 2
+                    cell.ViewCellYourAddress.layer.borderColor = #colorLiteral(red: 0.8272326589, green: 0, blue: 0.1346516907, alpha: 1)
+                }else{
+                    cell.ViewCellYourAddress.layer.borderWidth = 1
+                    cell.ViewCellYourAddress.layer.borderColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+                }
+            }else {
+                cell.lblFullName.text = addressHomeDataSource[indexPath.row].firstName ?? ""
+                cell.lblAddress.text = "Flat : \(addressHomeDataSource[indexPath.row].flat ?? ""), Floor :  \(addressHomeDataSource[indexPath.row].floor ?? ""), Building : \(addressHomeDataSource[indexPath.row].building ?? ""), gada : \(addressHomeDataSource[indexPath.row].gada ?? ""), Street : \(addressHomeDataSource[indexPath.row].street ?? ""), Block : \(addressHomeDataSource[indexPath.row].block ?? ""), Area/City : \(addressHomeDataSource[indexPath.row].areaCity ?? ""), postal Code : \(addressHomeDataSource[indexPath.row].postalCode ?? "")"
+                cell.imgdefault.isHidden = !addressHomeDataSource[indexPath.row].bIsDefault
+                if FXbookingMaster.shared.selecytedhomeaddress == addressHomeDataSource[indexPath.row].addressId{
+                    print("Select cell index : \(indexPath.row)")
+                    cell.ViewCellYourAddress.layer.borderWidth = 2
+                    cell.ViewCellYourAddress.layer.borderColor = #colorLiteral(red: 0.8272326589, green: 0, blue: 0.1346516907, alpha: 1)
+                }else{
+                    cell.ViewCellYourAddress.layer.borderWidth = 1
+                    cell.ViewCellYourAddress.layer.borderColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+                }
             }
         }
         else
         {
-            cell.btnEdit.isHidden = true
-            cell.imgdefault.isHidden = true
-            cell.lblAddress.text = "\(FXbookingMaster.shared.branchDataSource[indexPath.row].branchAddress ?? ""), \(FXbookingMaster.shared.branchDataSource[indexPath.row].branchCode ?? "")"
-            cell.lblFullName.text = FXbookingMaster.shared.branchDataSource[indexPath.row].branchName
-            if FXbookingMaster.shared.selecedbranchaddress == FXbookingMaster.shared.branchDataSource[indexPath.row].id{
-                print("Select cell index : \(indexPath.row)")
-                cell.ViewCellYourAddress.layer.borderWidth = 2
-                cell.ViewCellYourAddress.layer.borderColor = #colorLiteral(red: 0.8272326589, green: 0, blue: 0.1346516907, alpha: 1)
+            if searching != true {
+                cell.btnEdit.isHidden = true
+                cell.imgdefault.isHidden = true
+                cell.lblAddress.text = "\(FXbookingMaster.shared.branchDataSource[indexPath.row].branchAddress ?? ""), \(FXbookingMaster.shared.branchDataSource[indexPath.row].branchCode ?? "")"
+                cell.lblFullName.text = FXbookingMaster.shared.branchDataSource[indexPath.row].branchName
+                if FXbookingMaster.shared.selecedbranchaddress == FXbookingMaster.shared.branchDataSource[indexPath.row].id{
+                    print("Select cell index : \(indexPath.row)")
+                    cell.ViewCellYourAddress.layer.borderWidth = 2
+                    cell.ViewCellYourAddress.layer.borderColor = #colorLiteral(red: 0.8272326589, green: 0, blue: 0.1346516907, alpha: 1)
+                }else{
+                    cell.ViewCellYourAddress.layer.borderWidth = 1
+                    cell.ViewCellYourAddress.layer.borderColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+                }
             }else{
-                cell.ViewCellYourAddress.layer.borderWidth = 1
-                cell.ViewCellYourAddress.layer.borderColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+                cell.btnEdit.isHidden = true
+                cell.imgdefault.isHidden = true
+                cell.lblAddress.text = "\(addressBranchDataSource[indexPath.row].branchAddress ?? ""), \(addressBranchDataSource[indexPath.row].branchCode ?? "")"
+                cell.lblFullName.text = addressBranchDataSource[indexPath.row].branchName
+                if FXbookingMaster.shared.selecedbranchaddress == addressBranchDataSource[indexPath.row].id{
+                    print("Select cell index : \(indexPath.row)")
+                    cell.ViewCellYourAddress.layer.borderWidth = 2
+                    cell.ViewCellYourAddress.layer.borderColor = #colorLiteral(red: 0.8272326589, green: 0, blue: 0.1346516907, alpha: 1)
+                }else{
+                    cell.ViewCellYourAddress.layer.borderWidth = 1
+                    cell.ViewCellYourAddress.layer.borderColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+                }
             }
         }
         return cell

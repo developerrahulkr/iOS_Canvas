@@ -45,6 +45,8 @@ class FXbookingMaster {
     var selectedhomeaddress2name = ""
     var selectedbranchaddress1name = ""
     var selectedbranchaddress2name = ""
+    var deliveryCharges : Double = 0.0
+    var commision : Double = 0.0
 
     var txnRefNo = ""
     lazy var dataSource : [CMSummery] = {
@@ -73,9 +75,9 @@ class FXbookingMaster {
         dataSource.removeAll()
         let data0 = CMSummery(summery: "", amount: "")
         dataSource.append(data0)
-        let data1 = CMSummery(summery: "Commission", amount: "0.0")
+        let data1 = CMSummery(summery: "Commission", amount: "\(FXbookingMaster.shared.commision)")
         dataSource.append(data1)
-        let data2 = CMSummery(summery: "Delivery Charges", amount: "1.0")
+        let data2 = CMSummery(summery: "Delivery Charges", amount: "\(FXbookingMaster.shared.deliveryCharges)")
         dataSource.append(data2)
 //        let data3 = CMSummery(summery: "Commission Discount", amount: "0.0")
 //        dataSource.append(data3)
@@ -121,6 +123,8 @@ class FXbookingMaster {
                 }
                 let statusMsg = responseData?.value(forKey: "statusMessage") as? String ?? ""
                 let mesageCode = responseData?.value(forKey: "messageCode") as? String ?? statusMsg
+                let commission = responseData?.value(forKey: "commission") as? String ?? "0"
+                let deliveryCharges = responseData?.value(forKey: "deliveryCharges") as? String ?? "0"
                 if let statusCode = responseData?.value(forKey: "statusCodes") as? Int {
                     
                     print(statusCode)
@@ -150,6 +154,8 @@ class FXbookingMaster {
                             }
                         }
                         
+                        FXbookingMaster.shared.deliveryCharges = Double(deliveryCharges) ?? 0.0
+                        FXbookingMaster.shared.commision = Double(commission) ?? 0.0 
                         print("My Home Address is : \(self.homeDataSource)")
                         completionHandler(true,"")
                     }
