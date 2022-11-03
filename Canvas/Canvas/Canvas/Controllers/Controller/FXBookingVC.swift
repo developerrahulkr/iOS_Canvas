@@ -351,11 +351,13 @@ class FXBookingVC: UIViewController,protocolPush, navigateToDiffrentScreenDelega
         if(FXbookingMaster.shared.deliveryType == 2)
         {
             let vc = storyboard?.instantiateViewController(withIdentifier: "YourAddress") as! YourAddress
+            vc.addressText = "Your Address"
             navigationController?.pushViewController(vc, animated: true)
         }
         else
         {
             let vc = storyboard?.instantiateViewController(withIdentifier: "YourAddress") as! YourAddress
+            vc.addressText = "Your Branches"
             navigationController?.pushViewController(vc, animated: true)
 //            self.pushViewController(controller: BranchLocatorFirstVc.initiateController())
         }
@@ -438,6 +440,8 @@ extension FXBookingVC: UITableViewDelegate,UITableViewDataSource,Delete{
                 cell.TFSelectDate.text = FXbookingMaster.shared.selecteddateslot
             }
             if cell.TFTimeSlot.text == "Time Slot" {
+                cell.TFTimeSlot.text = ""
+            }else{
                 cell.TFTimeSlot.text = FXbookingMaster.shared.selectedtimeslot
             }
             cell.TFSelectPurposeOf.text = FXbookingMaster.shared.selectedpurpose
@@ -850,6 +854,7 @@ extension FXBookingVC {
     //    MARK: - API for getTime Slot Data
     
         func timeSlotApiData() {
+            self.showSpinner(onView: self.view)
             self.selectTimeSlotDateDatasource.removeAll()
             self.selectTimeSlotDateDatasource.append(CMTimeSlotSelectDate(id: 0, name: "Time Slot", starTime: "",endTime: ""))
             let paramaterPasing: [String:Any] = ["dtDate": selectedDateForTime]
@@ -860,8 +865,8 @@ extension FXBookingVC {
             ]
             
             NetWorkDataManager.sharedInstance.fxbookingTimeSlot(headersTobePassed: headers, postParameters: paramaterPasing) { [weak self] responseData, errString in
+                self?.removeSpinner()
                 guard let self = self else {return}
-                
                 guard errString == nil else {
                     print(errString ?? "")
                     let finalError = errString?.components(separatedBy: ":")

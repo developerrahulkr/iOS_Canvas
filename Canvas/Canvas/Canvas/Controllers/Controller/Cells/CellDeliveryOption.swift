@@ -12,9 +12,9 @@ protocol protocolDeleteAddress : AnyObject{
 }
 class CellDeliveryOption: UICollectionViewCell {
 
-    @IBOutlet weak var deleteBtn: UIButton!
+//    @IBOutlet weak var deleteBtn: UIButton!
     @IBOutlet weak var imgStar: UIImageView!
-    @IBOutlet weak var lblLocation: UILabel!
+//    @IBOutlet weak var lblLocation: UILabel!
     @IBOutlet weak var lblFirstName: UILabel!
     @IBOutlet weak var lblAddress: UILabel!
     @IBOutlet weak var viewCellDelivery: UIView!
@@ -27,10 +27,10 @@ class CellDeliveryOption: UICollectionViewCell {
     }
     
     
-    @IBAction func onTapDelete(_ sender: UIButton) {
-        delegate?.deleteAddress(tag : sender.tag)
-        
-    }
+//    @IBAction func onTapDelete(_ sender: UIButton) {
+//        delegate?.deleteAddress(tag : sender.tag)
+//        
+//    }
     //MARK: ******************** ALL VARIABLES ********************
     
     weak var delegate : protocolDeleteAddress?

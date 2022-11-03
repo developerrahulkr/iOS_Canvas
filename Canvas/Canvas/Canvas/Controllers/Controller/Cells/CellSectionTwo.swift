@@ -257,7 +257,7 @@ extension CellSectionTwo : UICollectionViewDelegate,UICollectionViewDataSource,U
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CellDeliveryOption", for: indexPath) as! CellDeliveryOption
         if homeSegment.selectedSegmentIndex == 0
-        {cell.deleteBtn.isHidden = true
+        {
             if FXbookingMaster.shared.homeDataSource[indexPath.row].bIsDefault == true {
                 cell.imgStar.isHidden = false
             }
@@ -282,9 +282,7 @@ extension CellSectionTwo : UICollectionViewDelegate,UICollectionViewDataSource,U
         {
             //MARK: Delegate for Delete Branch
             
-            cell.deleteBtn.isHidden = false
             cell.delegate = self
-            cell.deleteBtn.tag = indexPath.row
             cell.imgStar.isHidden = true
 
             cell.lblAddress.text = "\(FXbookingMaster.shared.branchDataSource[indexPath.row].branchAddress ?? ""), \(FXbookingMaster.shared.branchDataSource[indexPath.row].branchCode ?? "")"

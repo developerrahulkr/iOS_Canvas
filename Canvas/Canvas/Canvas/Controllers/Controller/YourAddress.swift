@@ -13,6 +13,10 @@ class YourAddress: UIViewController {
     //MARK: - ******************************************** OUTLETS *************************************************
     @IBOutlet weak var tableViewYourAddress: UITableView!
     @IBOutlet weak var btnAdd: UIButton!
+    
+    @IBOutlet weak var lblYourAddress: UILabel!
+    
+    var addressText : String = ""
     //MARK: - ****************************************** END OF OUTLETS ********************************************
 
     //MARK: - **************************************** LIFECYCLE METHODS *******************************************
@@ -21,6 +25,7 @@ class YourAddress: UIViewController {
         tableViewYourAddress.delegate = self
         tableViewYourAddress.dataSource = self
         tableViewYourAddress.register(UINib(nibName: "CellYourAddress", bundle: nil), forCellReuseIdentifier: "CellYourAddress")
+        lblYourAddress.text = addressText
 //        tableViewYourAddress.register(UINib(nibName: "CellAddNewAddress", bundle: nil), forCellReuseIdentifier: "CellAddNewAddress")
         // Do any additional setup after loading the view.
     }
