@@ -68,6 +68,12 @@ extension HomeDashboardAllNewsVC : UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let url = URL(string: allNewsDataSource[indexPath.row].url ?? "") {
+            UIApplication.shared.open(url)
+        }
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 110
     }

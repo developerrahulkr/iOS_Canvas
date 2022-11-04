@@ -3624,10 +3624,17 @@ extension HomeDashboardVc : UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "HomeLatestNewCell", for: indexPath) as! HomeLatestNewCell
+        cell.selectionStyle = .none
         cell.img.kf.setImage(with: URL(string: latestNewsDataSource[indexPath.row].thumbNailFileName ?? ""))
         cell.lblTitle.text = latestNewsDataSource[indexPath.row].title ?? ""
         cell.lblDesc.text = latestNewsDataSource[indexPath.row].content ?? ""
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let url = URL(string: latestNewsDataSource[indexPath.row].url ?? "") {
+            UIApplication.shared.open(url)
+        }
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 110
