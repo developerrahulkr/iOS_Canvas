@@ -14,6 +14,7 @@ class CellServiceOpted: UITableViewCell {
     @IBOutlet weak var lblDeliveryType: UILabel!
     @IBOutlet weak var lblVoucherNumber: UILabel!
     @IBOutlet weak var lblName: UILabel!
+    @IBOutlet weak var lblAddress: UILabel!
     //MARK: - ****************************************** END OF OUTLETS ********************************************
 
     

@@ -126,6 +126,7 @@ class FXBookingVC: UIViewController,protocolPush, navigateToDiffrentScreenDelega
         DispatchQueue.global(qos: .background).async { [weak self] in
             guard let self = self else {return}
             self.getSelectDateData()
+            
 //            self.getTimeSlotData()
         }
     }
@@ -435,7 +436,7 @@ extension FXBookingVC: UITableViewDelegate,UITableViewDataSource,Delete{
             }else{
                 cell.TFSelectDate.text = FXbookingMaster.shared.selecteddateslot
             }
-            if cell.TFTimeSlot.text == "Time Slot"
+            if FXbookingMaster.shared.selectedtimeslot == "Time Slot"
             {
                 cell.TFTimeSlot.text = ""
             }
@@ -602,7 +603,6 @@ extension FXBookingVC {
         print(paramaterPasing)
         let headers: HTTPHeaders = ["Content-Type": "application/json"]
         NetWorkDataManager.sharedInstance.getSessionIdImplimentation(headersTobePassed: headers, postParameters: paramaterPasing) { resonseTal , errorString in
-                
                 if errorString == nil
                 {
                     print(resonseTal!)
@@ -817,6 +817,10 @@ extension FXBookingVC {
     
     //MARK: API for select date
       func getSelectDateData() {
+          DispatchQueue.main.async {
+              self.showSpinner(onView: self.view)
+          }
+          
           self.selectDateDataSource.removeAll()
           self.selectDateDataSource.append(CMSelectDate(id: "0", sDate: "Preffered Date"))
           let paramaterPasing: [String:Any] = [:]
@@ -824,6 +828,7 @@ extension FXBookingVC {
               "Content-Type": "application/json"
           ]
           NetWorkDataManager.sharedInstance.getSelectDate(headersTobePassed: headers, postParameters: paramaterPasing) { [weak self] responseData, errString in
+              self?.removeSpinner()
               guard let self = self else {return}
               guard errString == nil else {
                   print(errString ?? "")
@@ -835,7 +840,6 @@ extension FXBookingVC {
               }
               let statusMsg = responseData?.value(forKey: "statusMessage") as? String ?? ""
               let mesageCode = responseData?.value(forKey: "messageCode") as? String ?? statusMsg
-              
               if let statusCode = responseData?.value(forKey: "statusCodes") as? Int {
                   print(statusCode)
                   if(statusCode == 200) {

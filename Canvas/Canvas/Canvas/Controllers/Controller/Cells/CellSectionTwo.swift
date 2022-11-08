@@ -128,8 +128,13 @@ class CellSectionTwo: UITableViewCell, delegatecallbackfromFxbooking, protocolDe
 //        collectionViewDeliveryOption.reloadData()
         if homeSegment.selectedSegmentIndex == 0
         {
+//            self.parentobj?.showSpinner(onView: self)
             FXbookingMaster.shared.getHomeData {  success, errorcode in
-                self.collectionViewDeliveryOption.reloadData()
+                if success {
+//                    self.parentobj?.removeSpinner()
+                    self.collectionViewDeliveryOption.reloadData()
+                }
+                
                 
             }
         }
@@ -208,13 +213,21 @@ class CellSectionTwo: UITableViewCell, delegatecallbackfromFxbooking, protocolDe
 
         if sender.selectedSegmentIndex == 0
         {
+            self.parentobj?.showSpinner(onView: self.contentView)
             FXbookingMaster.shared.getHomeData {  success, errorcode in
-                self.collectionViewDeliveryOption.reloadData()}
+                if success {
+                    self.parentobj?.removeSpinner()
+                    self.collectionViewDeliveryOption.reloadData()
+                }
+            }
+            
         }
         else
         {
+            self.parentobj?.showSpinner(onView: self.contentView)
             FXbookingMaster.shared.getUserBranchDetails { success, errCode in
                 if success {
+                    self.parentobj?.removeSpinner()
                     print("Hit Successfully..............")
                     self.collectionViewDeliveryOption.reloadData()}
                 }

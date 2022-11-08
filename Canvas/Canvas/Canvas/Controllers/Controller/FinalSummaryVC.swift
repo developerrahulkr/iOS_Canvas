@@ -340,6 +340,7 @@ extension FinalSummaryVC: UITableViewDelegate,UITableViewDataSource{
                 
             }
             
+            
             if let nameMiddle = fxBookingModel?.remitterMiddleName{
                 fullName = fullName + " " + nameMiddle
             }
@@ -354,6 +355,7 @@ extension FinalSummaryVC: UITableViewDelegate,UITableViewDataSource{
             else{
                 cell.lblDeliveryType.text = "Home"
             }
+            cell.lblAddress.text = fxBookingModel?.remitterAddress1 
             if let createdDate = fxBookingModel?.fXBookingDetails![0].createdDate{
                 
                 cell.lblDateTime.text = Date.getMonthDayYearString2(createdDate)

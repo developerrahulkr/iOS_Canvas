@@ -48,7 +48,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "109"
                   endingLineNumber = "109"
-                  offsetFromSymbolStart = "536">
+                  offsetFromSymbolStart = "1076">
                </Location>
                <Location
                   uuid = "BD90F06C-CE76-4276-A023-EE8F54F21E1C - f6bfb7149e8212c9"
@@ -63,7 +63,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "111"
                   endingLineNumber = "111"
-                  offsetFromSymbolStart = "241">
+                  offsetFromSymbolStart = "250">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -128,7 +128,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "87"
                   endingLineNumber = "87"
-                  offsetFromSymbolStart = "2653">
+                  offsetFromSymbolStart = "3202">
                </Location>
                <Location
                   uuid = "CA7A9D9F-236C-4E48-A486-178175321296 - ae3532b408fab6a8"
@@ -143,7 +143,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "87"
                   endingLineNumber = "87"
-                  offsetFromSymbolStart = "3090">
+                  offsetFromSymbolStart = "3793">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -208,7 +208,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "92"
                   endingLineNumber = "92"
-                  offsetFromSymbolStart = "4195">
+                  offsetFromSymbolStart = "5029">
                </Location>
                <Location
                   uuid = "E44B3228-DD37-49DE-BCBA-7E67C738261E - ae3532b408fab74d"
@@ -223,7 +223,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "92"
                   endingLineNumber = "92"
-                  offsetFromSymbolStart = "4477">
+                  offsetFromSymbolStart = "5345">
                </Location>
             </Locations>
          </BreakpointContent>

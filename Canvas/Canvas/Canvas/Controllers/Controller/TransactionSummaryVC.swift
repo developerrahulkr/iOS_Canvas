@@ -200,8 +200,13 @@ extension TransactionSummaryVC: UITableViewDelegate,UITableViewDataSource, Trans
             else if (FXbookingMaster.shared.selecteddateslot != "" && FXbookingMaster.shared.selectedtimeslot != "" )
             {
                 cell.lblDateTime.text = "\(FXbookingMaster.shared.selecteddateslot) | \(FXbookingMaster.shared.selectedtimeslot)"
-            }
-            else
+            }else if FXbookingMaster.shared.selectedtimeslot == "Time Slot" && FXbookingMaster.shared.selecteddateslot != "Preffered Date"{
+                cell.lblDateTime.text = "\(FXbookingMaster.shared.selecteddateslot)"
+            }else if FXbookingMaster.shared.selectedtimeslot == "Time Slot" && FXbookingMaster.shared.selecteddateslot == "Preffered Date" {
+                cell.lblDateTime.text = ""
+            }else if FXbookingMaster.shared.selecteddateslot == "Preffered Date" && FXbookingMaster.shared.selectedtimeslot == "" {
+                cell.lblDateTime.text = ""
+            }else
             {
                 cell.lblDateTime.text = "\(FXbookingMaster.shared.selecteddateslot) \(FXbookingMaster.shared.selectedtimeslot)"
             }
