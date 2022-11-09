@@ -393,17 +393,11 @@ extension FXBookingVC: UITableViewDelegate,UITableViewDataSource,Delete{
             cell.lblFCAmmount.text = Global.shared.fc_amount
             if !FXbookingMaster.shared.fxBookingDataSource.isEmpty {
                 
-                
-                if let fcRate = Double(FXbookingMaster.shared.fxBookingDataSource[indexPath.row].rate) {
+                let fcRate = "\(NSDecimalNumber(string: FXbookingMaster.shared.fxBookingDataSource[indexPath.row].rate.replacingOccurrences(of: ",", with: "", options: .literal, range: nil)))"
                     print("Float value = \(fcRate)")
 //                    let lvAmnt = String(format: "%.3f", fcRate)
                     let finalTxt = "1 \(FXbookingMaster.shared.fxBookingDataSource[indexPath.row].currenyCodeTo) = \(fcRate) \(FXbookingMaster.shared.fxBookingDataSource[indexPath.row].currenyCodeFrom)"
                     cell.lblConverter.text = finalTxt
-                    
-                } else {
-                    print("String does not contain Float")
-                }
-
                 let amountFrom = FXbookingMaster.shared.fxBookingDataSource[indexPath.row].amountFrom
                 if let lcAmounnt = Double(amountFrom) {
                     print("Float value = \(lcAmounnt)")
@@ -671,21 +665,20 @@ extension FXBookingVC {
 //                                self.txtLCamount.text = "\(ratecalobj["amountFrom"] ?? "")"
                                 let ratee = "\(ratecalobj["rate"] ?? "")"
                                 
-                                if let rateFloat = Double(ratee) {
+                                let rateFloat = "\(NSDecimalNumber(string: ratee.replacingOccurrences(of: ",", with: "", options: .literal, range: nil)))"
                                     print("Float value = \(rateFloat)")
-                                    let rateAmnt = String(rateFloat)
+                                    let rateAmnt = "\(rateFloat)"
                                     //String(format: "%.3f", rateFloat)
                                     let finalTxt = "\(rateAmnt) KWD"
                                     print(finalTxt)
                                     self.lblrate.text = finalTxt
-                                } else {
-                                    print("String does not contain Float")
-                                }
+                                
                                 self.cmFXBooking = CMFXBooking(
-                                    actualRate: "\(ratecalobj["actualRate"] ?? "")",
+                                    actualRate: "\(NSDecimalNumber(string: "\(ratecalobj["actualRate"] ?? "")".replacingOccurrences(of: ",", with: "", options: .literal, range: nil)))",
                                     amountFrom: "\(ratecalobj["amountFrom"] ?? "")",
                                     netAmt: "\(ratecalobj["netAmt"] ?? "")",
-                                    rate: "\(ratecalobj["rate"] ?? "")",
+                                    
+                                    rate: "\(NSDecimalNumber(string: "\(ratecalobj["rate"] ?? "")".replacingOccurrences(of: ",", with: "", options: .literal, range: nil)))",
                                     amountTo: "\(ratecalobj["amountTo"] ?? "")",
                                     commAmount: "\(ratecalobj["commAmount"] ?? "")",
                                     promoCommAmount: "\(ratecalobj["promoCommAmount"] ?? "")",
