@@ -620,7 +620,6 @@ extension FXBookingVC {
     
     func rateCalculator() {
         let amntDecimal = NSDecimalNumber(string: txtFCamount.text?.replacingOccurrences(of: ",", with: "", options: .literal, range: nil) ?? "0.0")
-        
         if Double(truncating: amntDecimal) >= 0.01 {
             self.showSpinner(onView: self.view)
             let paramaterPasing: [String:Any] = [

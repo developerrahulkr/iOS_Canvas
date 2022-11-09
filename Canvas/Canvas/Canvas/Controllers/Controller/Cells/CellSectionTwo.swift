@@ -126,7 +126,7 @@ class CellSectionTwo: UITableViewCell, delegatecallbackfromFxbooking, protocolDe
     override func setSelected(_ selected: Bool, animated: Bool) {
 //        print("Home Cell Data : ::::::::::      :::::::::::::    \(homeDataSource)", homeDataSource.count)
 //        collectionViewDeliveryOption.reloadData()
-        if homeSegment.selectedSegmentIndex == 0
+        if FXbookingMaster.shared.deliveryType == 2
         {
 //            self.parentobj?.showSpinner(onView: self)
             FXbookingMaster.shared.getHomeData {  success, errorcode in
@@ -263,11 +263,17 @@ extension CellSectionTwo : UICollectionViewDelegate,UICollectionViewDataSource,U
 {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
-        return  homeSegment.selectedSegmentIndex == 0 ? FXbookingMaster.shared.homeDataSource.count : FXbookingMaster.shared.branchDataSource.count
+        if FXbookingMaster.shared.deliveryType == 2 {
+            return FXbookingMaster.shared.homeDataSource.count
+        }else{
+            return FXbookingMaster.shared.branchDataSource.count
+        }
+        
     }
     
 //    Flat florr building, gara, street, block, areaCity, postalCode
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CellDeliveryOption", for: indexPath) as! CellDeliveryOption
         if homeSegment.selectedSegmentIndex == 0
         {

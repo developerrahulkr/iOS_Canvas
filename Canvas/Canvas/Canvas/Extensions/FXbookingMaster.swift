@@ -106,12 +106,13 @@ class FXbookingMaster {
     
     func getHomeData(completionHandler: @escaping (Bool,String?) -> ())
     {
-        FXbookingMaster.shared.homeDataSource.removeAll()
+        
         let paramaterPasing: [String:Any] = ["registrationId": Global.shared.afterLoginRegistrtnId ?? ""]
         let headers: HTTPHeaders = [
             "Content-Type": "application/json"
         ]
         DispatchQueue.main.asyncAfter(deadline: .now()) {
+            
             NetWorkDataManager.sharedInstance.gethomeaddressList(headersTobePassed: headers, postParameters: paramaterPasing) { [weak self] responseData, errString in
                 guard let self = self else {return}
                 
@@ -129,11 +130,12 @@ class FXbookingMaster {
                     
                     print(statusCode)
                     if(statusCode == 200) {
-                        
+                        self.homeDataSource.removeAll()
+                        self.branchDataSource.removeAll()
                         if let dataArray = responseData?.value(forKey: "fxAddressResult") as? NSArray {
                             print(dataArray)
                             for onemessage in dataArray as! [Dictionary<String, AnyObject>] {
-                                FXbookingMaster.shared.homeDataSource.append(
+                                self.homeDataSource.append(
                                     CMBookingHomeAddress(addressId: onemessage["addressId"] as? Int,
                                                          firstName: onemessage["firstName"] as? String,
                                                          flat: onemessage["flat"] as? String,
@@ -173,7 +175,6 @@ class FXbookingMaster {
 //    MARK: - get_user_branch_details_url
     
     func getUserBranchDetails(completionhandler : @escaping (Bool, String) -> Void) {
-        FXbookingMaster.shared.branchDataSource.removeAll()
         let paramaterPasing: [String:Any] = ["registrationId": Global.shared.afterLoginRegistrtnId ?? ""]
         let headers: HTTPHeaders = [
             "Content-Type": "application/json"
@@ -199,7 +200,9 @@ class FXbookingMaster {
                         for onemessage in dataArray as! [Dictionary<String, AnyObject>] {
                             print("oneMessage Data is : \(onemessage)")
                             if let branchDetail = onemessage["branchDetail"] as? NSDictionary {
-                                FXbookingMaster.shared.branchDataSource.append(CMBookingBranchAddress(id: branchDetail["id"] as? Int,
+                                self.homeDataSource.removeAll()
+                                self.branchDataSource.removeAll()
+                                self.branchDataSource.append(CMBookingBranchAddress(id: branchDetail["id"] as? Int,
                                                                                     branchCode: branchDetail["branchCode"] as? String,
                                                                                     branchName: branchDetail["branchName"] as? String,
                                                                                     branchAddress: branchDetail["branchAddress"] as? String,
@@ -230,8 +233,8 @@ class FXbookingMaster {
     func getBranchData(completionHandler: @escaping (Bool,String?) -> ())
     {
         
-        FXbookingMaster.shared.branchDataSource.removeAll()
-
+        homeDataSource.removeAll()
+        branchDataSource.removeAll()
         let paramaterPasing: [String:Any] = ["languageCode": "en",
                                              "searchTerm": "",
                                              "type": 0]
@@ -257,7 +260,7 @@ class FXbookingMaster {
                     if let dataArray = responseData?.value(forKey: "branchesList") as? NSArray {
                         print(dataArray)
                         for onemessage in dataArray as! [Dictionary<String, AnyObject>] {
-                            FXbookingMaster.shared.branchDataSource.append(CMBookingBranchAddress(id: onemessage["id"] as? Int,
+                            self.branchDataSource.append(CMBookingBranchAddress(id: onemessage["id"] as? Int,
                                                                                 branchCode: onemessage["branchCode"] as? String,
                                                                                 branchName: onemessage["branchName"] as? String,
                                                                                 branchAddress: onemessage["branchAddress"] as? String,

@@ -332,6 +332,13 @@ extension TransactionSummaryVC: UITableViewDelegate,UITableViewDataSource, Trans
     //MARK: ************************************************ ALL API ************************************************
     func cretefctransaction()
     {
+//        var selectedDate : String? = nil
+//        if selectedDate == "" {
+//            selectedDate = nil
+//        }else{
+//            selectedDate = FXbookingMaster.shared.selecteddateslot
+//        }
+//        print(selectedDate as Any)
         let fccurrencydict = FXbookingMaster.shared.fxBookingDataSource.map {
             ["type": "S",
              "fcCurrencyCode": $0.currenyCodeTo,
@@ -357,10 +364,10 @@ extension TransactionSummaryVC: UITableViewDelegate,UITableViewDataSource, Trans
             "promoCode": "",
             "deliveryType": FXbookingMaster.shared.deliveryType,
             "objectReferenceID": "\(FXbookingMaster.shared.deliveryType == 2 ? FXbookingMaster.shared.selecytedhomeaddress! : FXbookingMaster.shared.selecedbranchaddress!)",
-            "timeSlot": FXbookingMaster.shared.selectedtimeslot,
+            "timeSlot": FXbookingMaster.shared.selectedtimeslot == "" ? nil : FXbookingMaster.shared.selectedtimeslot,
             "denomination": FXbookingMaster.shared.deminations,
             "purposeOfTransfer": FXbookingMaster.shared.selectedpurpose,
-            "selectedDate": FXbookingMaster.shared.selecteddateslot,
+            "selectedDate": FXbookingMaster.shared.selecteddateslot == "" ? nil : FXbookingMaster.shared.selecteddateslot,
             "deliveryInsruction": FXbookingMaster.shared.deliveryinstruction,
             "remitterAddress1": "\(FXbookingMaster.shared.deliveryType == 2 ? FXbookingMaster.shared.selectedhomeaddress1name : FXbookingMaster.shared.selectedbranchaddress1name)",
             "remitterAddress2": "\(FXbookingMaster.shared.deliveryType == 2 ? FXbookingMaster.shared.selectedhomeaddress2name : FXbookingMaster.shared.selectedbranchaddress2name)",
