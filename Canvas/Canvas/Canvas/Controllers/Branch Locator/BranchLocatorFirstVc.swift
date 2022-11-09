@@ -185,7 +185,12 @@ class BranchLocatorFirstVc: UIViewController, UITableViewDataSource, UITableView
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(branchLocatorList[indexPath.row].id ?? 0)
-        addUserAPI(branchID: branchLocatorList[indexPath.row].id ?? 0)
+        
+        if searching == true {
+            addUserAPI(branchID: branchLocatorSearchList[indexPath.row].id ?? 0)
+        }else{
+            addUserAPI(branchID: branchLocatorList[indexPath.row].id ?? 0)
+        }
     }
     
     /*  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

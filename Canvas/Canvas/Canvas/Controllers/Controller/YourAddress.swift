@@ -49,12 +49,21 @@ class YourAddress: UIViewController, UISearchBarDelegate {
     {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
-//        FXbookingMaster.shared.getHomeData { succes, error in
-//            if (succes)
-//            {
-//                self.tableViewYourAddress.reloadData()
-//            }
-//        }
+
+        if FXbookingMaster.shared.deliveryType == 2 {
+            FXbookingMaster.shared.getHomeData { succes, error in
+                if (succes)
+                {
+                    self.tableViewYourAddress.reloadData()
+                }
+            }
+        }else{
+            FXbookingMaster.shared.getUserBranchDetails { success, error in
+                if success {
+                    self.tableViewYourAddress.reloadData()
+                }
+            }
+        }
     }
     
     override func viewDidLayoutSubviews() {

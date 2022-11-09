@@ -431,19 +431,8 @@ extension FXBookingVC: UITableViewDelegate,UITableViewDataSource,Delete{
             cell.homeSegment.setTitle(Global.shared.home, forSegmentAt: 0)
             cell.homeSegment.setTitle(Global.shared.branch, forSegmentAt: 1)
             cell.homeSegment.selectedSegmentIndex = FXbookingMaster.shared.deliveryType == 2 ? 0 : 1
-            if FXbookingMaster.shared.selecteddateslot == "Preffered Date" {
-                cell.TFSelectDate.text = ""
-            }else{
-                cell.TFSelectDate.text = FXbookingMaster.shared.selecteddateslot
-            }
-            if FXbookingMaster.shared.selectedtimeslot == "Time Slot"
-            {
-                cell.TFTimeSlot.text = ""
-            }
-            else
-            {
-                cell.TFTimeSlot.text = FXbookingMaster.shared.selectedtimeslot
-            }
+            cell.TFSelectDate.text = FXbookingMaster.shared.selecteddateslot
+            cell.TFTimeSlot.text = FXbookingMaster.shared.selectedtimeslot
             if cell.TFSelectDate.text == ""{
                 cell.btnTimeSlot.isUserInteractionEnabled = false
             }
@@ -1056,7 +1045,12 @@ extension FXBookingVC {
 extension FXBookingVC : PopupViewControllerDelegate {
     func didSelectItem<T>(item: T, vc: UIViewController?) {
         if let itemData = item as? CMSelectDate {
-            FXbookingMaster.shared.selecteddateslot = itemData.sDate ?? ""
+            if itemData.sDate == "Preffered Date" {
+                FXbookingMaster.shared.selecteddateslot = ""
+            }else{
+                FXbookingMaster.shared.selecteddateslot = itemData.sDate ?? ""
+            }
+            
             selectedDateForTime = NetWorkDataManager.sharedInstance.TimeConvertor(string: FXbookingMaster.shared.selecteddateslot, dateFormat: "yyyy-MM-dd")
             print("Time Conversion: *************************       \(NetWorkDataManager.sharedInstance.TimeConvertor(string: FXbookingMaster.shared.selecteddateslot, dateFormat: "yyyy-MM-dd"))")
             FXbookingMaster.shared.selectedtimeslot = ""
@@ -1065,7 +1059,12 @@ extension FXBookingVC : PopupViewControllerDelegate {
             self.fxdelegate?.reloadhomeaddress()
         }
         else if let timeData = item as? CMTimeSlotSelectDate{
-            FXbookingMaster.shared.selectedtimeslot = timeData.name ?? ""
+            if timeData.name == "Time Slot" {
+                FXbookingMaster.shared.selectedtimeslot = ""
+            }else{
+                FXbookingMaster.shared.selectedtimeslot = timeData.name ?? ""
+            }
+            
             print("time Slot Date : \(item)")
         }
         else if let purposeCodeData = item as? String
