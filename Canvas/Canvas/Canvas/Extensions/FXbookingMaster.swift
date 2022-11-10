@@ -130,10 +130,9 @@ class FXbookingMaster {
                     
                     print(statusCode)
                     if(statusCode == 200) {
-                        self.homeDataSource.removeAll()
-                        self.branchDataSource.removeAll()
                         if let dataArray = responseData?.value(forKey: "fxAddressResult") as? NSArray {
                             print(dataArray)
+                            self.homeDataSource.removeAll()
                             for onemessage in dataArray as! [Dictionary<String, AnyObject>] {
                                 self.homeDataSource.append(
                                     CMBookingHomeAddress(addressId: onemessage["addressId"] as? Int,
@@ -197,11 +196,10 @@ class FXbookingMaster {
                 if(statusCode == 200) {
                     if let dataArray = responseData?.value(forKey: "userBranchList") as? NSArray {
                         print("User Branch List \(dataArray)")
+                        self.branchDataSource.removeAll()
                         for onemessage in dataArray as! [Dictionary<String, AnyObject>] {
                             print("oneMessage Data is : \(onemessage)")
                             if let branchDetail = onemessage["branchDetail"] as? NSDictionary {
-                                self.homeDataSource.removeAll()
-                                self.branchDataSource.removeAll()
                                 self.branchDataSource.append(CMBookingBranchAddress(id: branchDetail["id"] as? Int,
                                                                                     branchCode: branchDetail["branchCode"] as? String,
                                                                                     branchName: branchDetail["branchName"] as? String,
