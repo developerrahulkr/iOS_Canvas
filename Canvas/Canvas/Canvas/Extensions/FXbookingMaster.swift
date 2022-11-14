@@ -156,7 +156,7 @@ class FXbookingMaster {
                         }
                         
                         FXbookingMaster.shared.deliveryCharges = Double(deliveryCharges) ?? 0.0
-                        FXbookingMaster.shared.commision = Double(commission) ?? 0.0 
+//                        FXbookingMaster.shared.commision = Double(commission) ?? 0.0
                         print("My Home Address is : \(self.homeDataSource)")
                         completionHandler(true,"")
                     }

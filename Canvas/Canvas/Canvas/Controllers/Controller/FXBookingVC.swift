@@ -300,8 +300,9 @@ class FXBookingVC: UIViewController,protocolPush, navigateToDiffrentScreenDelega
         FXbookingMaster.shared.netamount = String(netamount) //"\(netamount)"
         //String(format: "%.3f", netamount) //"\(netamount)"
 
-        let vc = Storyboad.shared.fxBookingStoryboard?.instantiateViewController(withIdentifier: "TransactionSummaryVC") as! TransactionSummaryVC
-        self.navigationController?.pushViewController(vc, animated: true)
+        cretefctransaction()
+//        let vc = Storyboad.shared.fxBookingStoryboard?.instantiateViewController(withIdentifier: "TransactionSummaryVC") as! TransactionSummaryVC
+//        self.navigationController?.pushViewController(vc, animated: true)
     }
     //MARK: TextField Did Editing Changed
     @objc func targetTextFieldDidEditingChanged(_ textField: UITextField) {
@@ -709,6 +710,94 @@ extension FXBookingVC {
             }
         }
         
+    }
+    
+    
+    
+    func cretefctransaction()
+    {
+        let fccurrencydict = FXbookingMaster.shared.fxBookingDataSource.map {
+            ["type": "S",
+             "fcCurrencyCode": $0.currenyCodeTo,
+             "fcAmount": NSDecimalNumber(string: $0.amountTo.replacingOccurrences(of: ",", with: "", options: .literal, range: nil)) ,
+             "lcAmount": NSDecimalNumber(string: $0.amountFrom.replacingOccurrences(of: ",", with: "", options: .literal, range: nil)),
+             "rate": NSDecimalNumber(string: $0.rate.replacingOccurrences(of: ",", with: "", options: .literal, range: nil))]
+            }
+        self.showSpinner(onView: self.view)
+        let paramaterPasing: [String:Any] =
+        [
+            "sessionId": FXbookingMaster.shared.fxsessionid,
+            "registrationId": Global.shared.afterLoginRegistrtnId ?? "",
+            "txnRefNo": "",
+            "remID": UserDefaults.standard.string(forKey: "remId")!,
+            "commAmount":NSDecimalNumber(string: "0.0".replacingOccurrences(of: ",", with: "", options: .literal, range: nil)),
+            "netAmt": NSDecimalNumber(string: FXbookingMaster.shared.netamount.replacingOccurrences(of: ",", with: "", options: .literal, range: nil)),
+            "payMode": 1,
+            "soi": "SALARY",
+            "pot": "FAM",
+            "remarks": FXbookingMaster.shared.deliveryinstruction,
+            "cashierID": "9998",
+            "entity": "201",
+            "promoCode": "",
+            "deliveryType": FXbookingMaster.shared.deliveryType,
+            "objectReferenceID": "\(FXbookingMaster.shared.deliveryType == 2 ? FXbookingMaster.shared.selecytedhomeaddress! : FXbookingMaster.shared.selecedbranchaddress!)",
+            "timeSlot": FXbookingMaster.shared.selectedtimeslot == "" ? nil : FXbookingMaster.shared.selectedtimeslot,
+            "denomination": FXbookingMaster.shared.deminations,
+            "purposeOfTransfer": FXbookingMaster.shared.selectedpurpose,
+            "selectedDate": FXbookingMaster.shared.selecteddateslot == "" ? nil : FXbookingMaster.shared.selecteddateslot,
+            "deliveryInsruction": FXbookingMaster.shared.deliveryinstruction,
+            "remitterAddress1": "\(FXbookingMaster.shared.deliveryType == 2 ? FXbookingMaster.shared.selectedhomeaddress1name : FXbookingMaster.shared.selectedbranchaddress1name)",
+            "remitterAddress2": "\(FXbookingMaster.shared.deliveryType == 2 ? FXbookingMaster.shared.selectedhomeaddress2name : FXbookingMaster.shared.selectedbranchaddress2name)",
+            "fcDetails": fccurrencydict
+        ]
+        
+            let hmacResult2: String = Global.shared.publicKeyStr.hmac(algorithm: HMACAlgorithm.SHA512, key: Global.shared.privateKeyStr)
+            var headers = HTTPHeaders()
+            if let authToken = UserDefaults.standard.string(forKey: "token") {
+                headers  = [.authorization(bearerToken: authToken)]
+
+                    headers["x-publickey"] = Global.shared.publicKeyStr
+                    headers["x-client"] = hmacResult2
+                    headers["x-hash"] = ""
+                    headers["sessionId"] = FXbookingMaster.shared.fxsessionid
+
+            }
+        NetWorkDataManager.sharedInstance.hitcreatefctransaction(headersToBePassed: headers, postParameter: paramaterPasing) { [weak self] responseData, errString in
+            self!.removeSpinner()
+
+            guard let self = self else {return}
+            guard errString == nil else {
+                print(errString ?? "")
+
+                return
+            }
+            let statusMsg = responseData?.value(forKey: "statusMessage") as? String ?? ""
+            let mesageCode = responseData?.value(forKey: "messageCode") as? String ?? statusMsg
+            if let statusCode = responseData?.value(forKey: "statusCodes") as? Int {
+                print(statusCode)
+                if(statusCode == 200)  {
+                    let dict = responseData?.value(forKey: "fcTransactionResult") as! Dictionary<String,Any>
+//                    let deliveryCharges = dict["deliveryCharges"] as! String
+                    let commAmount = dict["commAmount"] as! NSNumber
+//                    FXbookingMaster.shared.deliveryCharges = Double(deliveryCharges) ?? 0.0
+                    FXbookingMaster.shared.commision = Double(commAmount)
+                    FXbookingMaster.shared.netamount = "\(dict["netAmt"] as! Double)"
+                    FXbookingMaster.shared.txnRefNo = dict["txnRefNo"] as! String
+                    let vc = Storyboad.shared.fxBookingStoryboard?.instantiateViewController(withIdentifier: "TransactionSummaryVC") as! TransactionSummaryVC
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+                else
+                {
+                    var errormsg = Global.shared.messageCodeType(text: mesageCode)
+                    if(errormsg == "")
+                    {
+                        errormsg = statusMsg
+                    }
+                    let alert = ViewControllerManager.displayAlert(message:errormsg, title:APPLICATIONNAME)
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }
+        }
     }
 
     func getTipsList() {

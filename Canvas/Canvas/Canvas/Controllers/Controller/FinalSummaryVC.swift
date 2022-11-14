@@ -377,7 +377,7 @@ extension FinalSummaryVC: UITableViewDelegate,UITableViewDataSource{
             }
             
             if let rate = fxBookingModel?.fXBookingDetails?[indexPath.row].rate{
-                cell.lblFinalTxt.text = "1 \(FXbookingMaster.shared.fxBookingDataSource[indexPath.row].currenyCodeTo) = \(FXbookingMaster.shared.fxBookingDataSource[indexPath.row].actualRate)"
+                cell.lblFinalTxt.text = "1 \(fxBookingModel?.fXBookingDetails?[indexPath.row].fcCurrencyCode ?? "") = \(rate)"
             }
             if let currCode = fxBookingModel?.fXBookingDetails?[indexPath.row].fcCurrencyCode{
                 cell.lblCurrencyCode.text = String(currCode)
