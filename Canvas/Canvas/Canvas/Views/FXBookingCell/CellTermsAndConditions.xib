@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -54,21 +54,21 @@
                                 <rect key="frame" x="5" y="10" width="404" height="65"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I have read and agree to the      " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cq2-mn-Pyv">
-                                        <rect key="frame" x="53" y="19" width="161" height="17"/>
+                                        <rect key="frame" x="39" y="19" width="161" height="17"/>
                                         <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="12"/>
                                         <color key="textColor" systemColor="secondaryLabelColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sRj-et-DIb">
-                                        <rect key="frame" x="0.0" y="13.666666666666671" width="48" height="38"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="checkboxActive" title=""/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sRj-et-DIb">
+                                        <rect key="frame" x="10" y="20.666666666666671" width="24" height="24"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="" image="checkboxActive"/>
                                         <connections>
                                             <action selector="onclickcheck:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="oty-DG-stF"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vIl-Ol-Nfi">
-                                        <rect key="frame" x="53" y="10" width="113" height="65"/>
+                                        <rect key="frame" x="39" y="10" width="113" height="65"/>
                                         <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="11"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="Terms and Conditions">
@@ -86,7 +86,7 @@
                                     <constraint firstItem="vIl-Ol-Nfi" firstAttribute="centerY" secondItem="sRj-et-DIb" secondAttribute="centerY" constant="10" id="7sI-H6-HAf"/>
                                     <constraint firstItem="vIl-Ol-Nfi" firstAttribute="top" secondItem="Fey-yG-REH" secondAttribute="top" constant="10" id="ITR-br-oiD"/>
                                     <constraint firstAttribute="height" constant="65" id="NBe-ah-gDB"/>
-                                    <constraint firstItem="sRj-et-DIb" firstAttribute="leading" secondItem="Fey-yG-REH" secondAttribute="leading" id="Vs8-7a-2M4"/>
+                                    <constraint firstItem="sRj-et-DIb" firstAttribute="leading" secondItem="Fey-yG-REH" secondAttribute="leading" constant="10" id="Vs8-7a-2M4"/>
                                     <constraint firstItem="vIl-Ol-Nfi" firstAttribute="leading" secondItem="cq2-mn-Pyv" secondAttribute="leading" id="Y11-qL-9JO"/>
                                     <constraint firstItem="cq2-mn-Pyv" firstAttribute="leading" secondItem="sRj-et-DIb" secondAttribute="trailing" constant="5" id="qHq-Hg-FuA"/>
                                 </constraints>

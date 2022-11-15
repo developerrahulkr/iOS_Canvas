@@ -174,15 +174,8 @@ class FinalSummaryVC: UIViewController {
                     print("Successfully hit API FXBooking Details")
                     if let fXBooking = responseData?.value(forKey: "fXBooking") as? NSDictionary {
                         print(fXBooking)
-                        print( fXBooking["txnRefNo"] )
-                        
-                        
-                        
+                        print( fXBooking["txnRefNo"])
                         var  arrayDetails = fXBooking["fXBookingDetails"] as? NSDictionary
-                        
-                        
-                        
-                        
                         let media = fXBooking["fXBookingDetails"] as! Array<Any>
                         var mediaurl = [FXBookingDetail]()
                         for i in media{
@@ -349,11 +342,13 @@ extension FinalSummaryVC: UITableViewDelegate,UITableViewDataSource{
                 
             }
             cell.lblName.text = fullName
-            if     fxBookingModel?.deliveryType == 1{
-                cell.lblDeliveryType.text = "Branch"
-            }
-            else{
-                cell.lblDeliveryType.text = "Home"
+            if fxBookingModel != nil {
+                if fxBookingModel?.deliveryType == 1{
+                    cell.lblDeliveryType.text = "Branch"
+                }
+                else{
+                    cell.lblDeliveryType.text = "Home"
+                }
             }
             cell.lblAddress.text = fxBookingModel?.remitterAddress1 
             if let createdDate = fxBookingModel?.fXBookingDetails![0].createdDate{
@@ -404,21 +399,25 @@ extension FinalSummaryVC: UITableViewDelegate,UITableViewDataSource{
                 cell.lblLCValue.text = String(youPay) + " KWD"
                 
             }
-            
-            if  fxBookingModel?.status != 2{
-                cell.viewSuccessFailure.borderWidth = 1
-                cell.viewSuccessFailure.borderColor = #colorLiteral(red: 1, green: 0, blue: 0, alpha: 1)
-                cell.imgFailSuccess.image = UIImage(named: "failed")
-                cell.viewSuccessFailure.backgroundColor = #colorLiteral(red: 1, green: 0, blue: 0, alpha: 0.1669523732)
-                cell.lblSuccessFailure.text = "Cancelled" //217,58,50
-                cell.lblSuccessFailure.textColor = #colorLiteral(red: 0.8885897398, green: 0.317481935, blue: 0.2528121173, alpha: 1)
+            if fxBookingModel == nil {
+                cell.viewSuccessFailure.isHidden = true
             }else{
-                cell.viewSuccessFailure.borderWidth = 0.5
-                cell.viewSuccessFailure.borderColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
-                cell.imgFailSuccess.image = UIImage(named: "success")
-                cell.viewSuccessFailure.backgroundColor = UIColor.fromHex(hexString: "#DBF2F2")
-                cell.lblSuccessFailure.text = "Success" //217,58,50
-                cell.lblSuccessFailure.textColor = UIColor.fromHex(hexString: "#436A6C")
+                cell.viewSuccessFailure.isHidden = false
+                if  fxBookingModel?.status != 2{
+                    cell.viewSuccessFailure.borderWidth = 1
+                    cell.viewSuccessFailure.borderColor = #colorLiteral(red: 1, green: 0, blue: 0, alpha: 1)
+                    cell.imgFailSuccess.image = UIImage(named: "failed")
+                    cell.viewSuccessFailure.backgroundColor = #colorLiteral(red: 1, green: 0, blue: 0, alpha: 0.1669523732)
+                    cell.lblSuccessFailure.text = "Cancelled" //217,58,50
+                    cell.lblSuccessFailure.textColor = #colorLiteral(red: 0.8885897398, green: 0.317481935, blue: 0.2528121173, alpha: 1)
+                }else{
+                    cell.viewSuccessFailure.borderWidth = 0.5
+                    cell.viewSuccessFailure.borderColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
+                    cell.imgFailSuccess.image = UIImage(named: "success")
+                    cell.viewSuccessFailure.backgroundColor = UIColor.fromHex(hexString: "#DBF2F2")
+                    cell.lblSuccessFailure.text = "Success" //217,58,50
+                    cell.lblSuccessFailure.textColor = UIColor.fromHex(hexString: "#436A6C")
+                }
             }
             
             cell.delegate = self
