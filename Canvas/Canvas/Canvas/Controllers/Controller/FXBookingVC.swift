@@ -466,16 +466,16 @@ extension FXBookingVC: UITableViewDelegate,UITableViewDataSource,Delete{
     
     //MARK: Function for TextField Range
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let  char = string.cString(using: String.Encoding.utf8)!
-        let isBackSpace = strcmp(char, "\\b")
-        if (isBackSpace == -92) {
-            lblrate.text = "Rate"
-            txtLCamount.text = ""
-            self.cmFXBooking = nil
-
+        if let char = string.cString(using: String.Encoding.utf8) {
+            let isBackSpace = strcmp(char, "\\b")
+            if (isBackSpace == -92) {
+                print("Backspace was pressed")
+            }
         }
         return true
     }
+    
+    
     //MARK: Function for TextField
     @objc func sourceSearchForKeyword(_ timer: Timer) {
         
@@ -617,6 +617,7 @@ extension FXBookingVC {
                 }
             }
         }
+    
         
     
     func rateCalculator() {
@@ -672,11 +673,12 @@ extension FXBookingVC {
                                     let finalTxt = "\(rateAmnt) KWD"
                                     print(finalTxt)
                                     self.lblrate.text = finalTxt
+                                let netAmount = "\(ratecalobj["netAmt"] ?? "")"
                                 
                                 self.cmFXBooking = CMFXBooking(
                                     actualRate: "\(NSDecimalNumber(string: "\(ratecalobj["actualRate"] ?? "")".replacingOccurrences(of: ",", with: "", options: .literal, range: nil)))",
-                                    amountFrom: "\(ratecalobj["amountFrom"] ?? "")",
-                                    netAmt: "\(ratecalobj["netAmt"] ?? "")",
+                                    amountFrom: "\(Double(amountFrom) ?? 0.0)",
+                                    netAmt: "\(Double(netAmount) ?? 0.0)",
                                     
                                     rate: "\(NSDecimalNumber(string: "\(ratecalobj["rate"] ?? "")".replacingOccurrences(of: ",", with: "", options: .literal, range: nil)))",
                                     amountTo: "\(ratecalobj["amountTo"] ?? "")",

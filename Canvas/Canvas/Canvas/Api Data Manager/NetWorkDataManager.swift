@@ -1505,6 +1505,58 @@ func appVersionControl(headersTobePassed : HTTPHeaders,postParameters :[String:A
         
   //  return (responseValue, nil)
     }
+    
+    
+    
+    
+//    MARK: - created by Akshay (15-11-2022)
+    
+    func dealWithResponse(response:AFDataResponse<Any>)->(Data?, String?)
+    {
+        var errorString:String = ""
+       // var responseValue: NSDictionary?
+        switch response.result {
+        case .success(let value):
+         //   responseValue = value as? NSDictionary
+            if let statusCode = response.response?.statusCode
+            {
+                errorString = errorString + "Error Code: \(statusCode)"
+//                if statusCode == 400
+//                {
+//                    self.navigateAppSiteUnderMaintananceController()
+//                }
+            }
+            if let responseDict = value as? NSDictionary
+            {
+                if let errorDescription = responseDict["error_description"] as? String
+                {
+                    errorString = errorString + "\nMessage: \(errorDescription)"
+                }
+                else if let errorDescription = responseDict["message"] as? String
+                {
+                    errorString = errorString + "\nMessage: \(errorDescription)"
+                }
+            }
+            return (value as? Data, nil)
+            
+        case .failure(let error):
+            print(error)
+            // completion(nil)
+            errorString = errorString + "\nMessage: \(error.localizedDescription)"
+                 if response.error?._code == NSURLErrorNotConnectedToInternet{
+             print("no internet")
+             }
+            errorString = error.localizedDescription
+            Global.shared.exceptionMsg = errorString
+            return (nil, errorString)
+            
+        }
+        
+  //  return (responseValue, nil)
+    }
+    
+    
+    
     func navigateAppSiteUnderMaintananceController() {
         
         guard let approotNavVC = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "SiteUnderMaintnanceController") as? SiteUnderMaintnanceController else {
@@ -1615,16 +1667,53 @@ func appVersionControl(headersTobePassed : HTTPHeaders,postParameters :[String:A
     {
         
         let apiUlr = CanvasUrls.baseUrl +  CanvasUrls.versionNumber + CanvasUrls.getfxbookingratecalculator
-        
-        
-        
         AF.request(apiUlr, method: .post, parameters: postParameters, encoding:
             JSONEncoding.default, headers: headersWithAuthorization).responseJSON
             { response in
+                print(response.data ?? Data())
+                
                 let completion = self.dealWithDictResponse(response: response)
                 completionHandler(completion.0, completion.1)
         }
     }
+    
+    
+//    func fxbookingratec(headersTobePassed : HTTPHeaders,postParameters :[String:Any],completionHandler: @escaping (NSDictionary?, String?) -> ())
+//    {
+//
+//        let apiUlr = CanvasUrls.baseUrl +  CanvasUrls.versionNumber + CanvasUrls.getfxbookingratecalculator
+//        AF.request(apiUlr, method: .post, parameters: postParameters, encoding:
+//            JSONEncoding.default, headers: headersWithAuthorization).response
+//            { response in
+//
+//                switch response.result {
+//                case .success(let data):
+//                    do {
+//                        let json = try JSONSerialization.jsonObject(with: data!, options: [])
+//                        print(json)
+//
+//                    }catch {
+//                        print(error.localizedDescription)
+//                    }
+//                case .failure(let error):
+//                    print(error.localizedDescription)
+//                }
+//
+//
+//
+////                completionHandler(completion.0, completion.1)
+//        }
+//    }
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
   
     //    MARK: - FXBooking rate calculator
     func hitPromotionListAPI(headersToBePassed : HTTPHeaders,postParameter : [String:Any],completionHadler: @escaping (NSDictionary?, String?) ->()){
