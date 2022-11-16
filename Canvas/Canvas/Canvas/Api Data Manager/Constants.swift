@@ -18,11 +18,13 @@ struct CanvasUrls {
     //deployment //
 
   // http://168.187.217.88:81
+ 
+    
     // For UAT
-   static let baseUrl = "http://online-uat.muzaini.com:81/api/"
+//   static let baseUrl = "http://online-uat.muzaini.com:81/api/"
 
    // For Staging
- //  static let baseUrl =  "http://online-uat.muzaini.com:8075/api/"
+   static let baseUrl =  "http://online-uat.muzaini.com:8075/api/"
     
     
     // For Live

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,7 +20,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3w0-Yw-FlO">
                         <rect key="frame" x="1" y="1" width="178" height="178"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NAF-f9-Ghm">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="NAF-f9-Ghm">
                                 <rect key="frame" x="5" y="5" width="32" height="23.5"/>
                                 <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -43,6 +43,7 @@
                         <constraints>
                             <constraint firstItem="NAF-f9-Ghm" firstAttribute="top" secondItem="3w0-Yw-FlO" secondAttribute="top" constant="5" id="3AG-fi-121"/>
                             <constraint firstItem="Z42-Wh-UmA" firstAttribute="top" secondItem="NAF-f9-Ghm" secondAttribute="top" id="86f-ds-aNf"/>
+                            <constraint firstItem="Z42-Wh-UmA" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="NAF-f9-Ghm" secondAttribute="trailing" constant="5" id="8s1-fc-Lcr"/>
                             <constraint firstAttribute="bottom" secondItem="cb9-4p-Dog" secondAttribute="bottom" constant="5" id="9Vc-cu-aSh"/>
                             <constraint firstAttribute="trailing" secondItem="Z42-Wh-UmA" secondAttribute="trailing" constant="5" id="C3d-7g-dB0"/>
                             <constraint firstItem="Z42-Wh-UmA" firstAttribute="bottom" secondItem="NAF-f9-Ghm" secondAttribute="bottom" id="Ozn-Cl-aeI"/>

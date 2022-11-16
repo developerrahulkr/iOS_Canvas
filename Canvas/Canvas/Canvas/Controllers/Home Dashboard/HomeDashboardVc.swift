@@ -178,7 +178,7 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        latestNewsAPI()
+//        latestNewsAPI()
         self.HelpCollectionHeight.constant = 0
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "OfferPopUpController") as! OfferPopUpController
         self.present(vc, animated: true, completion: nil)
@@ -341,7 +341,7 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
             // loadTransactionLocalData()
         }
         
-        latestNewsTableView.register(UINib(nibName: "HomeLatestNewCell", bundle: nil), forCellReuseIdentifier: "HomeLatestNewCell")
+//        latestNewsTableView.register(UINib(nibName: "HomeLatestNewCell", bundle: nil), forCellReuseIdentifier: "HomeLatestNewCell")
         
     }
     
@@ -2882,7 +2882,7 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
             guard errorString == nil else{
                 NetWorkDataManager.sharedInstance.callChannelException()
                 let finalError = errorString?.components(separatedBy: ":")
-                let alert = ViewControllerManager.displayAlert(message: finalError?[1] ?? "", title:APPLICATIONNAME)
+                let alert = ViewControllerManager.displayAlert(message: finalError?[0] ?? "", title:APPLICATIONNAME)
                 self.present(alert, animated: true, completion: nil)
                 return
             }
@@ -3619,25 +3619,25 @@ class ChartValueFormatter: NSObject, ValueFormatter {
 
 extension HomeDashboardVc : UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return latestNewsDataSource.count
+        return 0
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "HomeLatestNewCell", for: indexPath) as! HomeLatestNewCell
-        cell.selectionStyle = .none
-        cell.img.kf.setImage(with: URL(string: latestNewsDataSource[indexPath.row].thumbNailFileName ?? ""))
-        cell.lblTitle.text = latestNewsDataSource[indexPath.row].title ?? ""
-        cell.lblDesc.text = latestNewsDataSource[indexPath.row].content ?? ""
-        return cell
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "HomeLatestNewCell", for: indexPath) as! HomeLatestNewCell
+//        cell.selectionStyle = .none
+//        cell.img.kf.setImage(with: URL(string: latestNewsDataSource[indexPath.row].thumbNailFileName ?? ""))
+//        cell.lblTitle.text = latestNewsDataSource[indexPath.row].title ?? ""
+//        cell.lblDesc.text = latestNewsDataSource[indexPath.row].content ?? ""
+        return UITableViewCell()
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let url = URL(string: latestNewsDataSource[indexPath.row].url ?? "") {
-            UIApplication.shared.open(url)
-        }
-    }
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 110
-    }
-    
+
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+////        if let url = URL(string: latestNewsDataSource[indexPath.row].url ?? "") {
+////            UIApplication.shared.open(url)
+////        }
+//    }
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 110
+//    }
+
 }

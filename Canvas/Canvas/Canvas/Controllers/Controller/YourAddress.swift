@@ -81,7 +81,11 @@ class YourAddress: UIViewController, UISearchBarDelegate {
             let vc = Storyboad.shared.fxBookingStoryboard?.instantiateViewController(withIdentifier: "AddNewAddressVC") as! AddNewAddressVC
             self.navigationController?.pushViewController(vc, animated: true)
         }else{
-            self.pushViewController(controller: BranchLocatorFirstVc.initiateController())
+            let vc = Storyboad.shared.mainStoryboard?.instantiateViewController(withIdentifier: "BranchLocatorFirstVc") as! BranchLocatorFirstVc
+            vc.iscomfromfxbooking = true
+            self.navigationController?.pushViewController(vc, animated: true)
+
+//            self.pushViewController(controller: BranchLocatorFirstVc.initiateController())
         }
     }
     //MARK: - **************************************END ALL ACTIONS *************************************************

@@ -26,6 +26,8 @@ class BranchLocatorFirstVc: UIViewController, UITableViewDataSource, UITableView
        
        var searching = false
     
+    var iscomfromfxbooking = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navHeaderLbl.text = Global.shared.ourBranches
@@ -34,10 +36,14 @@ class BranchLocatorFirstVc: UIViewController, UITableViewDataSource, UITableView
         // Do any additional setup after loading the view.
         //   searchTbleView.estimatedRowHeight = 100
         searchTbleView.rowHeight = 110
-        
-        downloadBranches()
-        
-        
+        if(iscomfromfxbooking)
+        {
+            self.getBranchDataforfxbooking()
+        }
+        else
+        {
+            downloadBranches()
+        }
     }
     
     // Mark: For downloading branches
@@ -100,6 +106,47 @@ class BranchLocatorFirstVc: UIViewController, UITableViewDataSource, UITableView
         }
         
     }
+    
+    func getBranchDataforfxbooking()
+    {
+            let paramaterPasing: [String:Any] = ["languageCode": "en",
+                                                 "searchTerm": "",
+                                                 "type": 0]
+            let headers: HTTPHeaders = [
+                "Content-Type": "application/json"
+            ]
+            NetWorkDataManager.sharedInstance.getbranchAddressList(headersTobePassed: headers, postParameters: paramaterPasing) { [weak self] responseData, errString in
+                self!.removeSpinner()
+
+                guard let self = self else {return}
+                guard errString == nil else {
+                    print(errString ?? "")
+                    
+                    let finalError = errString?.components(separatedBy: ":")
+                    let alert = ViewControllerManager.displayAlert(message: finalError?[1] ?? "", title:APPLICATIONNAME)
+                    return
+                }
+                let statusMsg = responseData?.value(forKey: "statusMessage") as? String ?? ""
+                let mesageCode = responseData?.value(forKey: "messageCode") as? String ?? statusMsg
+                
+                if let statusCode = responseData?.value(forKey: "statusCodes") as? Int {
+                    print(statusCode)
+                    if(statusCode == 200)
+                    {
+                        if let branchLocatorJson = responseData?.value(forKey: "branchesList") as? [[String:Any]] {
+                                                             print(branchLocatorJson)
+                                                          //   self.drpResponse = occupationsList as! [Any]
+                                                          self.branchLocatorList = BranchLocatorSearch.getBranches(branchLocatorJson)
+                                                         
+                                                         }
+                        self.searchTbleView.reloadData()
+
+                        
+                    }
+                        }
+                        
+                    }
+                }
     
     @IBAction func bckBtnActn(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
@@ -185,11 +232,13 @@ class BranchLocatorFirstVc: UIViewController, UITableViewDataSource, UITableView
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(branchLocatorList[indexPath.row].id ?? 0)
-        
+        if(iscomfromfxbooking)
+        {
         if searching == true {
             addUserAPI(branchID: branchLocatorSearchList[indexPath.row].id ?? 0)
         }else{
             addUserAPI(branchID: branchLocatorList[indexPath.row].id ?? 0)
+        }
         }
     }
     

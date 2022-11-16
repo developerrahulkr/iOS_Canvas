@@ -230,56 +230,55 @@ class FXbookingMaster {
     
     func getBranchData(completionHandler: @escaping (Bool,String?) -> ())
     {
-        
-        homeDataSource.removeAll()
-        branchDataSource.removeAll()
-        let paramaterPasing: [String:Any] = ["languageCode": "en",
-                                             "searchTerm": "",
-                                             "type": 0]
-        let headers: HTTPHeaders = [
-            "Content-Type": "application/json"
-        ]
-        NetWorkDataManager.sharedInstance.getbranchAddressList(headersTobePassed: headers, postParameters: paramaterPasing) { [weak self] responseData, errString in
-            guard let self = self else {return}
-            guard errString == nil else {
-                print(errString ?? "")
+            homeDataSource.removeAll()
+            branchDataSource.removeAll()
+            let paramaterPasing: [String:Any] = ["languageCode": "en",
+                                                 "searchTerm": "",
+                                                 "type": 0]
+            let headers: HTTPHeaders = [
+                "Content-Type": "application/json"
+            ]
+            NetWorkDataManager.sharedInstance.getbranchAddressList(headersTobePassed: headers, postParameters: paramaterPasing) { [weak self] responseData, errString in
+                guard let self = self else {return}
+                guard errString == nil else {
+                    print(errString ?? "")
+                    
+                    let finalError = errString?.components(separatedBy: ":")
+                    let alert = ViewControllerManager.displayAlert(message: finalError?[1] ?? "", title:APPLICATIONNAME)
+                    return
+                }
+                let statusMsg = responseData?.value(forKey: "statusMessage") as? String ?? ""
+                let mesageCode = responseData?.value(forKey: "messageCode") as? String ?? statusMsg
                 
-                let finalError = errString?.components(separatedBy: ":")
-                let alert = ViewControllerManager.displayAlert(message: finalError?[1] ?? "", title:APPLICATIONNAME)
-                return
-            }
-            let statusMsg = responseData?.value(forKey: "statusMessage") as? String ?? ""
-            let mesageCode = responseData?.value(forKey: "messageCode") as? String ?? statusMsg
-            
-            if let statusCode = responseData?.value(forKey: "statusCodes") as? Int {
-                print(statusCode)
-                if(statusCode == 200) {
-                    
-                    if let dataArray = responseData?.value(forKey: "branchesList") as? NSArray {
-                        print(dataArray)
-                        for onemessage in dataArray as! [Dictionary<String, AnyObject>] {
-                            self.branchDataSource.append(CMBookingBranchAddress(id: onemessage["id"] as? Int,
-                                                                                branchCode: onemessage["branchCode"] as? String,
-                                                                                branchName: onemessage["branchName"] as? String,
-                                                                                branchAddress: onemessage["branchAddress"] as? String,
-                                                                                phone: onemessage["phone"] as? String,
-                                                                                fax: onemessage["fax"] as? String,
-                                                                                latitude: onemessage["latitude"] as? String,
-                                                                                longitude: onemessage["longitude"] as? String,
-                                                                                languageCode: onemessage["languageCode"] as? String,
-                                                                                isFEEnabled: onemessage["languageCode"] as? Bool))
+                if let statusCode = responseData?.value(forKey: "statusCodes") as? Int {
+                    print(statusCode)
+                    if(statusCode == 200) {
+                        
+                        if let dataArray = responseData?.value(forKey: "branchesList") as? NSArray {
+                            print(dataArray)
+                            for onemessage in dataArray as! [Dictionary<String, AnyObject>] {
+                                self.branchDataSource.append(CMBookingBranchAddress(id: onemessage["id"] as? Int,
+                                                                                    branchCode: onemessage["branchCode"] as? String,
+                                                                                    branchName: onemessage["branchName"] as? String,
+                                                                                    branchAddress: onemessage["branchAddress"] as? String,
+                                                                                    phone: onemessage["phone"] as? String,
+                                                                                    fax: onemessage["fax"] as? String,
+                                                                                    latitude: onemessage["latitude"] as? String,
+                                                                                    longitude: onemessage["longitude"] as? String,
+                                                                                    languageCode: onemessage["languageCode"] as? String,
+                                                                                    isFEEnabled: onemessage["languageCode"] as? Bool))
+                            }
                         }
+                        
+                        print("All Branch Data : \(self.branchDataSource)")
+                        completionHandler(true,"")
+
+                    }else {
+                        completionHandler(true,mesageCode)
+
+                        
                     }
-                    
-                    print("All Branch Data : \(self.branchDataSource)")
-                    completionHandler(true,"")
-
-                }else {
-                    completionHandler(true,mesageCode)
-
-                    
                 }
             }
         }
-    }
 }
