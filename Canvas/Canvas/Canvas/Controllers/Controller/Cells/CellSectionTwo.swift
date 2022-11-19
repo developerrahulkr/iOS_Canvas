@@ -175,12 +175,16 @@ class CellSectionTwo: UITableViewCell, delegatecallbackfromFxbooking, protocolDe
         if(imgMixNote.image == UIImage(named: "circleChecked") )
         {
             imgMixNote.image = UIImage(named: "circleUnchecked")
+            FXbookingMaster.shared.deminations = ""
+
         }
         else
         {
             Pushdelegate?.onClickedMixedNoted(value: lblMixedNotes.text ?? "")
             imgMixNote.image = UIImage(named: "circleChecked")
             imgHighNote.image = UIImage(named: "circleUnchecked")
+            FXbookingMaster.shared.deminations = "Mixed Notes"
+
         }
         
     }
@@ -243,12 +247,15 @@ class CellSectionTwo: UITableViewCell, delegatecallbackfromFxbooking, protocolDe
         if(imgHighNote.image == UIImage(named: "circleChecked") )
         {
             imgHighNote.image = UIImage(named: "circleUnchecked")
+            FXbookingMaster.shared.deminations = ""
         }
         else
         {
             Pushdelegate?.onClickedHighValue(value: lblHighValue.text ?? "")
             imgHighNote.image = UIImage(named: "circleChecked")
             imgMixNote.image = UIImage(named: "circleUnchecked")
+            FXbookingMaster.shared.deminations = "High Value Notes"
+
         }
     }
     
@@ -325,7 +332,7 @@ extension CellSectionTwo : UICollectionViewDelegate,UICollectionViewDataSource,U
         if homeSegment.selectedSegmentIndex == 0
         {
             FXbookingMaster.shared.selecytedhomeaddress = FXbookingMaster.shared.homeDataSource[indexPath.row].addressId
-            FXbookingMaster.shared.selectedhomeaddress1name = "Flat : \(FXbookingMaster.shared.homeDataSource[indexPath.row].flat ?? ""), Floor :  \(FXbookingMaster.shared.homeDataSource[indexPath.row].floor ?? ""), Building : \(FXbookingMaster.shared.homeDataSource[indexPath.row].building ?? ""), gada : \(FXbookingMaster.shared.homeDataSource[indexPath.row].gada ?? ""), Street : \(FXbookingMaster.shared.homeDataSource[indexPath.row].street ?? ""), Block : \(FXbookingMaster.shared.homeDataSource[indexPath.row].block ?? ""), Area/City : \(FXbookingMaster.shared.homeDataSource[indexPath.row].areaCity ?? ""), postal Code : \(FXbookingMaster.shared.homeDataSource[indexPath.row].postalCode ?? "")"
+            FXbookingMaster.shared.selectedhomeaddress1name = "Flat - \(FXbookingMaster.shared.homeDataSource[indexPath.row].flat ?? ""), Floor -  \(FXbookingMaster.shared.homeDataSource[indexPath.row].floor ?? ""), Building - \(FXbookingMaster.shared.homeDataSource[indexPath.row].building ?? ""), gada - \(FXbookingMaster.shared.homeDataSource[indexPath.row].gada ?? ""), Street - \(FXbookingMaster.shared.homeDataSource[indexPath.row].street ?? ""), Block - \(FXbookingMaster.shared.homeDataSource[indexPath.row].block ?? ""), Area(City) -  \(FXbookingMaster.shared.homeDataSource[indexPath.row].areaCity ?? ""), postal Code -  \(FXbookingMaster.shared.homeDataSource[indexPath.row].postalCode ?? "")"
         }
         else
         {

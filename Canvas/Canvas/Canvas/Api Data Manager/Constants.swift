@@ -10,31 +10,22 @@
 import Foundation
 import UIKit
 
-struct CanvasUrls {
- //   static let baseUrl = "http://amecwebchannel.ap-south-1.elasticbeanstalk.com/api/"
- //   present
-    //http://ameccustomerchannelwindows.ap-south-1.elasticbeanstalk.com/api/'
-    
-    //deployment //
-
-  // http://168.187.217.88:81
- 
+struct CanvasUrls
+{
     
     // For UAT
-//   static let baseUrl = "http://online-uat.muzaini.com:81/api/"
-
-   // For Staging
-   static let baseUrl =  "http://online-uat.muzaini.com:8075/api/"
+        //static let baseUrl = "http://online-uat.muzaini.com:81/api/"
+        //static let baseurl_payment = "http://online-uat.muzaini.com:83/"
     
+    // For Staging
+//        static let baseUrl =  "http://online-uat.muzaini.com:8075/api/"
+//        static let baseurl_payment = "http://online-uat.muzaini.com:8076/"
     
     // For Live
-//   static let baseUrl =  "https://online1.muzaini.com/api/"
- 
-  // http://ameccustomerchannelwindows.ap-south-1.elasticbeanstalk.com/api/1.0/
-  // static let baseUrl = "http://ameccustomerchannelwindows.ap-south-1.elasticbeanstalk.com/api/"
+        static let baseUrl =  "https://online1.muzaini.com/api/"
+        static let baseurl_payment = "https://online1.muzaini.com/"
+    
     static let versionNumber = "1.0"
-  //testing
-  //static let loginLanguage =  "http://amecwebchannel.ap-south-1.elasticbeanstalk.com/api/amec/language"
     
     static let checkHashing =  "/default/hashtest"
     static let languagesList = "/amec/getlanguages"

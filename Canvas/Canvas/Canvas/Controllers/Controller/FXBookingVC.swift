@@ -72,6 +72,7 @@ class FXBookingVC: UIViewController,protocolPush, navigateToDiffrentScreenDelega
         super.viewDidLoad()
         
         getTipsList()
+        getsessionid()
 
     }
     
@@ -113,7 +114,7 @@ class FXBookingVC: UIViewController,protocolPush, navigateToDiffrentScreenDelega
             txtLCamount.delegate = self
             self.txtFCamount.addTarget(self, action: #selector(sourceTextFieldDidEditingChanged(_:)), for: UIControl.Event.editingChanged)
             self.txtLCamount.addTarget(self, action: #selector(targetTextFieldDidEditingChanged(_:)), for: UIControl.Event.editingChanged)
-            getsessionid()
+            
             self.tableViewFX.reloadData()
             self.fxdelegate?.reloadhomeaddress()
                         
@@ -582,40 +583,71 @@ extension FXBookingVC: UITableViewDelegate,UITableViewDataSource,Delete{
 extension FXBookingVC {
     func getsessionid()
     {
-        Decimal()
         let paramaterPasing: [String:Any] = ["registrationId": Global.shared.afterLoginRegistrtnId ?? ""]
         print(paramaterPasing)
         let headers: HTTPHeaders = ["Content-Type": "application/json"]
-        NetWorkDataManager.sharedInstance.getSessionIdImplimentation(headersTobePassed: headers, postParameters: paramaterPasing) { resonseTal , errorString in
-                if errorString == nil
+        
+        NetWorkDataManager.sharedInstance.hitforgetfxseesionid(headersToBePassed: headers, postParameter: paramaterPasing) { resonseTal , errorString in
+            if errorString == nil
+            {
+                print(resonseTal!)
+                let statusMsg = resonseTal?.value(forKey: "statusMessage") as? String ?? ""
+                let mesageCode = resonseTal?.value(forKey: "messageCode") as? String ?? statusMsg
+                if let statusCode = resonseTal?.value(forKey: "statusCodes") as? Int {
+                if statusCode == 200
                 {
-                    print(resonseTal!)
-                    let statusMsg = resonseTal?.value(forKey: "statusMessage") as? String ?? ""
-                    let mesageCode = resonseTal?.value(forKey: "messageCode") as? String ?? statusMsg
-                    if let statusCode = resonseTal?.value(forKey: "statusCodes") as? Int {
-                    if statusCode == 200
-                    {
-                        FXbookingMaster.shared.fxsessionid = (resonseTal?.value(forKey: "sessionID") as? String)!
-                    }
-                    else
-                    {
-                            let alert = ViewControllerManager.displayAlert(message:Global.shared.messageCodeType(text: mesageCode), title:APPLICATIONNAME)
-                            self.present(alert, animated: true, completion: nil)
-                    }
-                        
-                    }
+                    FXbookingMaster.shared.fxsessionid = (resonseTal?.value(forKey: "sessionID") as? String)!
+                }
+                else
+                {
+                        let alert = ViewControllerManager.displayAlert(message:Global.shared.messageCodeType(text: mesageCode), title:APPLICATIONNAME)
+                        self.present(alert, animated: true, completion: nil)
+                }
                     
                 }
                 
-                else
-                {
-                    print(errorString!)
-                    self.removeSpinner()
-                    let finalError = errorString?.components(separatedBy: ":")
-                    let alert = ViewControllerManager.displayAlert(message: finalError?[1] ?? "", title:APPLICATIONNAME)
-                    self.present(alert, animated: true, completion: nil)
-                }
             }
+            
+            else
+            {
+                print(errorString!)
+                self.removeSpinner()
+                let finalError = errorString?.components(separatedBy: ":")
+                let alert = ViewControllerManager.displayAlert(message: finalError?[1] ?? "", title:APPLICATIONNAME)
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
+        
+//        NetWorkDataManager.sharedInstance.getSessionIdImplimentation(headersTobePassed: headers, postParameters: paramaterPasing) { resonseTal , errorString in
+//                if errorString == nil
+//                {
+//                    print(resonseTal!)
+//                    let statusMsg = resonseTal?.value(forKey: "statusMessage") as? String ?? ""
+//                    let mesageCode = resonseTal?.value(forKey: "messageCode") as? String ?? statusMsg
+//                    if let statusCode = resonseTal?.value(forKey: "statusCodes") as? Int {
+//                    if statusCode == 200
+//                    {
+//                        FXbookingMaster.shared.fxsessionid = (resonseTal?.value(forKey: "sessionID") as? String)!
+//                    }
+//                    else
+//                    {
+//                            let alert = ViewControllerManager.displayAlert(message:Global.shared.messageCodeType(text: mesageCode), title:APPLICATIONNAME)
+//                            self.present(alert, animated: true, completion: nil)
+//                    }
+//                        
+//                    }
+//                    
+//                }
+//                
+//                else
+//                {
+//                    print(errorString!)
+//                    self.removeSpinner()
+//                    let finalError = errorString?.components(separatedBy: ":")
+//                    let alert = ViewControllerManager.displayAlert(message: finalError?[1] ?? "", title:APPLICATIONNAME)
+//                    self.present(alert, animated: true, completion: nil)
+//                }
+//            }
         }
     
         
@@ -726,6 +758,15 @@ extension FXBookingVC {
              "rate": NSDecimalNumber(string: $0.rate.replacingOccurrences(of: ",", with: "", options: .literal, range: nil))]
             }
         self.showSpinner(onView: self.view)
+        var timeSlotData : String?
+                var dateSlotData : String?
+                
+                if FXbookingMaster.shared.selectedtimeslot == "" {
+                    timeSlotData = nil
+                }
+                if FXbookingMaster.shared.selecteddateslot == "" {
+                    dateSlotData = nil
+                }
         let paramaterPasing: [String:Any] =
         [
             "sessionId": FXbookingMaster.shared.fxsessionid,
@@ -743,16 +784,20 @@ extension FXBookingVC {
             "promoCode": "",
             "deliveryType": FXbookingMaster.shared.deliveryType,
             "objectReferenceID": "\(FXbookingMaster.shared.deliveryType == 2 ? FXbookingMaster.shared.selecytedhomeaddress! : FXbookingMaster.shared.selecedbranchaddress!)",
-            "timeSlot": FXbookingMaster.shared.selectedtimeslot == "" ? nil : FXbookingMaster.shared.selectedtimeslot,
+            "timeSlot": FXbookingMaster.shared.selectedtimeslot == "" ? timeSlotData as Any : FXbookingMaster.shared.selectedtimeslot,
             "denomination": FXbookingMaster.shared.deminations,
             "purposeOfTransfer": FXbookingMaster.shared.selectedpurpose,
-            "selectedDate": FXbookingMaster.shared.selecteddateslot == "" ? nil : FXbookingMaster.shared.selecteddateslot,
+            "selectedDate": FXbookingMaster.shared.selecteddateslot == "" ? dateSlotData as Any : FXbookingMaster.shared.selecteddateslot,
             "deliveryInsruction": FXbookingMaster.shared.deliveryinstruction,
-            "remitterAddress1": "\(FXbookingMaster.shared.deliveryType == 2 ? FXbookingMaster.shared.selectedhomeaddress1name : FXbookingMaster.shared.selectedbranchaddress1name)",
+            "remitterAddress1": FXbookingMaster.shared.selectedhomeaddress1name,
             "remitterAddress2": "\(FXbookingMaster.shared.deliveryType == 2 ? FXbookingMaster.shared.selectedhomeaddress2name : FXbookingMaster.shared.selectedbranchaddress2name)",
-            "fcDetails": fccurrencydict
+            "fcDetails": fccurrencydict,
+            "DeliveryCharges":FXbookingMaster.shared.deliveryCharges
         ]
-        
+        //"\(FXbookingMaster.shared.deliveryType == 2 ? FXbookingMaster.shared.selectedhomeaddress1name : FXbookingMaster.shared.selectedbranchaddress1name)"
+        //            "remitterAddress1": "\(FXbookingMaster.shared.deliveryType == 2 ? FXbookingMaster.shared.selectedhomeaddress1name : //FXbookingMaster.shared.selectedbranchaddress1name)",
+        //"remitterAddress2": "\(FXbookingMaster.shared.deliveryType == 2 ? FXbookingMaster.shared.selectedhomeaddress2name : FXbookingMaster.shared.selectedbranchaddress2name)",
+
             let hmacResult2: String = Global.shared.publicKeyStr.hmac(algorithm: HMACAlgorithm.SHA512, key: Global.shared.privateKeyStr)
             var headers = HTTPHeaders()
             if let authToken = UserDefaults.standard.string(forKey: "token") {

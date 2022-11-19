@@ -51,7 +51,11 @@ class BenefPaymentWebViewVc: UIViewController, WKNavigationDelegate {
         
         if(isfromfxbooking)
         {
-            urlstr = "http://online-uat.muzaini.com:8076/paygateFXBooking/paymentrequest?tid="
+            //Staging
+            //urlstr = "http://online-uat.muzaini.com:8076/paygateFXBooking/paymentrequest?tid="
+            
+            //Live
+            urlstr = "https://online1.muzaini.com/paygateFXBooking/paymentrequest?tid="
             let gatewayUrl = NSURL(string: urlstr + FXbookingMaster.shared.txnRefNo)
             let urlRequest = URLRequest(url: gatewayUrl! as URL)
             webView?.load(urlRequest)
@@ -59,7 +63,7 @@ class BenefPaymentWebViewVc: UIViewController, WKNavigationDelegate {
         }
         else
         {
-            urlstr = "http://online-uat.muzaini.com:8076/paygate/paymentrequest?tid="
+            urlstr = "https://online1.muzaini.com/paygate/paymentrequest?tid="
             let gatewayUrl = NSURL(string: urlstr + BeneficiaryDetails.shared.txnRefNo)
             let urlRequest = URLRequest(url: gatewayUrl! as URL)
             webView?.load(urlRequest)
@@ -82,7 +86,7 @@ class BenefPaymentWebViewVc: UIViewController, WKNavigationDelegate {
 //        http://online-uat.muzaini.com:8076/paygateFXBooking/PaymentSuccess
 //        if urlString == "http://online-uat.muzaini.com:83/paygateFXBooking/PaymentSuccess"  || urlString == "http://online-uat.muzaini.com:83/paygateFXBooking/PaymentError"
 
-            if urlString!.lowercased() == "http://online-uat.muzaini.com:8076/paygateFXBooking/PaymentSuccess".lowercased()  || urlString!.lowercased() == "http://online-uat.muzaini.com:8076/paygateFXBooking/PaymentError".lowercased()
+            if urlString!.lowercased() == "https://online1.muzaini.com/paygateFXBooking/PaymentSuccess".lowercased()  || urlString!.lowercased() == "https://online1.muzaini.com/paygateFXBooking/PaymentError".lowercased()
             {
                 self.hidesBottomBarWhenPushed = false
                 let vc = Storyboad.shared.fxBookingStoryboard?.instantiateViewController(withIdentifier: "FinalSummaryVC") as! FinalSummaryVC
@@ -102,7 +106,7 @@ class BenefPaymentWebViewVc: UIViewController, WKNavigationDelegate {
                
         // Staging
                
-               if urlString == "http://online-uat.muzaini.com:8076/paygate/PaymentSuccess"  || urlString == "http://online-uat.muzaini.com:8076/paygate/PaymentError" {
+               if urlString == "https://online1.muzaini.com/paygate/PaymentSuccess"  || urlString == "https://online1.muzaini.com/paygate/PaymentError" {
             
             //deployment
 //             if urlString == "http://online-uat.muzaini.com:83/paygate/PaymentSuccess"  || urlString == "http://online-uat.muzaini.com:83/paygate/PaymentError" {
@@ -116,7 +120,7 @@ class BenefPaymentWebViewVc: UIViewController, WKNavigationDelegate {
 
         //    else if urlString == "https://online1.muzaini.com/paygate/PaymentError" {
                 
-                else if urlString == "http://online-uat.muzaini.com:8076/paygate/PaymentError" {
+                else if urlString == "https://online1.muzaini.com/paygate/PaymentError" {
 
 //             else if urlString == "http://online-uat.muzaini.com:83/paygate/PaymentError" {
               // else if urlString == "http://15.207.206.161/home/PaymentError" {
