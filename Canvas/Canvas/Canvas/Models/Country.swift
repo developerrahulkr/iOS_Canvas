@@ -14,7 +14,7 @@ struct Country {
     let countryName: String?
     let currencyFulName: String?
     let phoneCode: String?
-    let denomination : Int?
+    let denomination : Double?
     static func getCountries(_ json: [[String:Any]]) -> [Country] {
         var countriesList: [Country] = []
         countriesList =  json.map{ countryJSon in
@@ -24,7 +24,7 @@ struct Country {
                            countryName: countryJSon["countryName"] as? String,
                            currencyFulName: countryJSon["currencyName"] as? String,
                            phoneCode: countryJSon["phoneCode"] as? String,
-                           denomination: countryJSon["denomination"] as? Int)
+                           denomination: countryJSon["denomination"] as? Double)
         }
         return countriesList
     }

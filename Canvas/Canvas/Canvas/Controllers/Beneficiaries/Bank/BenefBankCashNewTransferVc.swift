@@ -684,8 +684,8 @@ class BenefBankCashNewTransferVc: BaseViewController, UITextFieldDelegate {
                                              "benID": "",
                                              "oldRef": ""]
         
-        let paramaterPasing: [String:Any] = ["sourceCurrenyCode": sourceCurencyCodeLbl.text!,
-                                             "targetCurrenyCode": targetCurencyCodeLbl.text!,
+        let paramaterPasing: [String:Any] = ["sourceCurrenyCode": targetCurencyCodeLbl.text!,
+                                             "targetCurrenyCode": sourceCurencyCodeLbl.text!,
                                              "oldTnxRef": String(BeneficiaryDetails.shared.txnRef),
                                              "fcAmount": fcAmnt!,
                                              "lcAmount": lcAmnt!,

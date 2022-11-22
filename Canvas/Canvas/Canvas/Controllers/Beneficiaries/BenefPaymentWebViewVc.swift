@@ -16,158 +16,64 @@ class BenefPaymentWebViewVc: UIViewController, WKNavigationDelegate {
     @IBOutlet weak var webView: WKWebView!
     var isfromfxbooking = false
     
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
-     //   Global.shared.fraudRemovePopUpWu = "AddEnable"
         Global.shared.refreshOrNot = "yes"
-       webView.navigationDelegate = self
-        
+        webView.navigationDelegate = self
         navHeaderLbl.text = Global.shared.navTxtForPayment
-
-        // Do any additional setup after loading the view.
-   //     "http://15.207.206.161/paymentrequest?tid="
-      //  http://15.207.206.161/home/paymentrequest
-        
-        
-     //   present
-        //http://15.207.206.161/home/paymentrequest?tid=
-      
-        //"https://online1.muzaini.com/paygate/paymentrequest?tid="
-        
-        // For UAT
-        //"http://online-uat.muzaini.com:83/paygate/paymentrequest?tid="
-        
-        
-      //  For Live
-     //   "https://online1.muzaini.com/paygate/paymentrequest?tid="
-        
-        // Staging
-       //  "http://online-uat.muzaini.com:8076/paygate/paymentrequest?tid="
-      
-        // forUAT FX bookinng
-       // "http://online-uat.muzaini.com:83/paygateFXBooking/paymentrequest?tid="
-        
-        var urlstr = ""
-        
-        if(isfromfxbooking)
-        {
-            //Staging
-            //urlstr = "http://online-uat.muzaini.com:8076/paygateFXBooking/paymentrequest?tid="
-            
-            //Live
-            urlstr = "https://online1.muzaini.com/paygateFXBooking/paymentrequest?tid="
-            let gatewayUrl = NSURL(string: urlstr + FXbookingMaster.shared.txnRefNo)
-            let urlRequest = URLRequest(url: gatewayUrl! as URL)
-            webView?.load(urlRequest)
-
-        }
-        else
-        {
-            urlstr = "https://online1.muzaini.com/paygate/paymentrequest?tid="
-            let gatewayUrl = NSURL(string: urlstr + BeneficiaryDetails.shared.txnRefNo)
-            let urlRequest = URLRequest(url: gatewayUrl! as URL)
-            webView?.load(urlRequest)
-
-        }
-        
-        
+        let urlstr = isfromfxbooking ? "\(CanvasUrls.baseurl_payment)paygateFXBooking/paymentrequest?tid=\(FXbookingMaster.shared.txnRefNo)" : "\(CanvasUrls.baseurl_payment)/paygate/paymentrequest?tid=\(String(describing: BeneficiaryDetails.shared.txnRefNo!))"
+        let gatewayUrl = NSURL(string: urlstr)
+        print("payment gatway initiate URL =========> \(String(describing: gatewayUrl))")
+        let urlRequest = URLRequest(url: gatewayUrl! as URL)
+        webView?.load(urlRequest)
     }
-//http://online-uat.muzaini.com:83/paygateFXBooking/paymentrequest?tid=222010420000614
-    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+    
+    
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!)
+    {
         self.showSpinner(onView: self.view)
     }
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!)
+    {
         self.removeSpinner()
         let urlString = webView.url?.absoluteString
-        print(urlString)
+        print("Redirected URL =========> \(urlString ?? "something went wrong")")
         if(isfromfxbooking)
         {
-//        http://online-uat.muzaini.com:8076/PaygateFXBooking/PaymentSuccess
-//        http://online-uat.muzaini.com:8076/paygateFXBooking/PaymentSuccess
-//        if urlString == "http://online-uat.muzaini.com:83/paygateFXBooking/PaymentSuccess"  || urlString == "http://online-uat.muzaini.com:83/paygateFXBooking/PaymentError"
-
-            if urlString!.lowercased() == "https://online1.muzaini.com/paygateFXBooking/PaymentSuccess".lowercased()  || urlString!.lowercased() == "https://online1.muzaini.com/paygateFXBooking/PaymentError".lowercased()
+            if urlString!.lowercased() == "\(CanvasUrls.baseurl_payment)paygateFXBooking/PaymentSuccess".lowercased()  || urlString!.lowercased() ==                      "\(CanvasUrls.baseurl_payment)paygateFXBooking/PaymentError".lowercased()
             {
                 self.hidesBottomBarWhenPushed = false
                 let vc = Storyboad.shared.fxBookingStoryboard?.instantiateViewController(withIdentifier: "FinalSummaryVC") as! FinalSummaryVC
                 navigationController?.pushViewController(vc, animated: true)
             }
-//            else if urlString == "http://online-uat.muzaini.com:83/paygateFXBooking/PaymentError"
-//            {
-//                self.hidesBottomBarWhenPushed = false
-//                self.pushViewController(controller: FinalSummaryVC.initiateController())
-//            }
         }
         else
         {
-            
-            //Production
-      //     if urlString == "https://online1.muzaini.com/paygate/PaymentSuccess"  || urlString == "https://online1.muzaini.com/paygate/PaymentError" {
-               
-        // Staging
-               
-               if urlString == "https://online1.muzaini.com/paygate/PaymentSuccess"  || urlString == "https://online1.muzaini.com/paygate/PaymentError" {
-            
-            //deployment
-//             if urlString == "http://online-uat.muzaini.com:83/paygate/PaymentSuccess"  || urlString == "http://online-uat.muzaini.com:83/paygate/PaymentError" {
-                     
-            //presnet development
-                
-          //  if urlString == "http://15.207.206.161/home/PaymentSuccess"  || urlString == "http://15.207.206.161/home/PaymentError"{
-                self.hidesBottomBarWhenPushed = false
-                 self.pushViewController(controller: TransactionSuccesVc.initiateController())
-           }
-
-        //    else if urlString == "https://online1.muzaini.com/paygate/PaymentError" {
-                
-                else if urlString == "https://online1.muzaini.com/paygate/PaymentError" {
-
-//             else if urlString == "http://online-uat.muzaini.com:83/paygate/PaymentError" {
-              // else if urlString == "http://15.207.206.161/home/PaymentError" {
+            if urlString == "\(CanvasUrls.baseurl_payment)paygate/PaymentSuccess"  || urlString == "\(CanvasUrls.baseurl_payment)paygate/PaymentError"
+            {
                 self.hidesBottomBarWhenPushed = false
                 self.pushViewController(controller: TransactionSuccesVc.initiateController())
-             }
-
+            }
         }
-        
-        
-        
-        
     }
-    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+    
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error)
+    {
         self.removeSpinner()
     }
     
-    
-/*    func webViewDidFinishLoad(_ webView: UIWebView) {
-        UIApplication.shared.isNetworkActivityIndicatorVisible = false
-
-        let urlString = webView.request!.url!.absoluteString
-        print("MY WEBVIEW URL: \(urlString)")
-        
-        
-        //deployment
-      //   if urlString == "http://168.187.217.88:83/home/PaymentSuccess"  || urlString == "http://168.187.217.88:83/home/PaymentError"{
-        
-        //presnet development
-        if urlString == "http://15.207.206.161/home/PaymentSuccess"  || urlString == "http://15.207.206.161/home/PaymentError"{
-            
-            let vc = self.storyboard?.instantiateViewController(identifier: "TransactionSuccesVc") as! TransactionSuccesVc
-            self.navigationController?.pushViewController(vc, animated: true)
-            
-        }
-        
-    }*/
-    
-    override func viewWillAppear(_ animated: Bool) {
-             super.viewWillAppear(animated)
-             navigationController?.setNavigationBarHidden(true, animated: animated)
+    override func viewWillAppear(_ animated: Bool)
+    {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
     }
          
-   override func viewWillDisappear(_ animated: Bool) {
-             super.viewWillDisappear(animated)
-             navigationController?.setNavigationBarHidden(false, animated: animated)
-    
+   override func viewWillDisappear(_ animated: Bool)
+    {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
     }
 
     @IBAction func bckBtnActn(_ sender: Any) {
@@ -179,23 +85,89 @@ class BenefPaymentWebViewVc: UIViewController, WKNavigationDelegate {
         Global.shared.languageChangeActn()
     }
     
-    @IBAction func logoutActn(_ sender: Any) {
+    @IBAction func logoutActn(_ sender: Any)
+    {
         logout()
-//        let refreshAlert = UIAlertController(title: Global.shared.logoutHeaderTxt, message: Global.shared.logoutTxt, preferredStyle: UIAlertController.Style.alert)
-//        refreshAlert.view.tintColor = ColorCodes.newAppRed
-//        refreshAlert.addAction(UIAlertAction(title: Global.shared.yesTxt, style: .default, handler: { (action: UIAlertAction!) in
-//           self.pushViewController(controller: LoginVc.initiateController())
-//        }))
-//
-//        refreshAlert.addAction(UIAlertAction(title: Global.shared.noTxt, style: .default, handler: { (action: UIAlertAction!) in
-//            print("Handle Cancel Logic here")
-//              refreshAlert.dismiss(animated: true, completion: nil)
-//
-//        }))
-//
-//        present(refreshAlert, animated: true, completion: nil)
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Do any additional setup after loading the view.
+//     "http://15.207.206.161/paymentrequest?tid="
+//  http://15.207.206.161/home/paymentrequest
+
+
+//   present
+//http://15.207.206.161/home/paymentrequest?tid=
+
+//"https://online1.muzaini.com/paygate/paymentrequest?tid="
+
+// For UAT
+//"http://online-uat.muzaini.com:83/paygate/paymentrequest?tid="
+
+
+//  For Live
+//   "https://online1.muzaini.com/paygate/paymentrequest?tid="
+
+// Staging
+//  "http://online-uat.muzaini.com:8076/paygate/paymentrequest?tid="
+
+// forUAT FX bookinng
+// "http://online-uat.muzaini.com:83/paygateFXBooking/paymentrequest?tid="
+
+//            if urlString!.lowercased() == "http://online-uat.muzaini.com:8076/paygateFXBooking/PaymentSuccess".lowercased()  || urlString!.lowercased() == "http://online-uat.muzaini.com:8076/paygateFXBooking/PaymentError".lowercased()
+//            {
+
+
+//deployment
+//             if urlString == "http://online-uat.muzaini.com:83/paygate/PaymentSuccess"  || urlString == "http://online-uat.muzaini.com:83/paygate/PaymentError" {
+         
+//presnet development
+    
+//  if urlString == "http://15.207.206.161/home/PaymentSuccess"  || urlString == "http://15.207.206.161/home/PaymentError"{
+//Production
+//     if urlString == "https://online1.muzaini.com/paygate/PaymentSuccess"  || urlString == "https://online1.muzaini.com/paygate/PaymentError" {
+   
+// Staging
+   
+
+/*    func webViewDidFinishLoad(_ webView: UIWebView) {
+    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+
+    let urlString = webView.request!.url!.absoluteString
+    print("MY WEBVIEW URL: \(urlString)")
+    
+    
+    //deployment
+  //   if urlString == "http://168.187.217.88:83/home/PaymentSuccess"  || urlString == "http://168.187.217.88:83/home/PaymentError"{
+    
+    //presnet development
+    if urlString == "http://15.207.206.161/home/PaymentSuccess"  || urlString == "http://15.207.206.161/home/PaymentError"{
+        
+        let vc = self.storyboard?.instantiateViewController(identifier: "TransactionSuccesVc") as! TransactionSuccesVc
+        self.navigationController?.pushViewController(vc, animated: true)
+        
     }
     
-    
-    
-}
+}*/

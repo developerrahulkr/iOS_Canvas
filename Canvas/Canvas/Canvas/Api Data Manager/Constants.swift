@@ -17,13 +17,13 @@ struct CanvasUrls
         //static let baseUrl = "http://online-uat.muzaini.com:81/api/"
         //static let baseurl_payment = "http://online-uat.muzaini.com:83/"
     
-    // For Staging
-//        static let baseUrl =  "http://online-uat.muzaini.com:8075/api/"
-//        static let baseurl_payment = "http://online-uat.muzaini.com:8076/"
+//     For Staging
+        static let baseUrl =  "http://online-uat.muzaini.com:8075/api/"
+        static let baseurl_payment = "http://online-uat.muzaini.com:8076/"
     
     // For Live
-        static let baseUrl =  "https://online1.muzaini.com/api/"
-        static let baseurl_payment = "https://online1.muzaini.com/"
+//        static let baseUrl =  "https://online1.muzaini.com/api/"
+//        static let baseurl_payment = "https://online1.muzaini.com/"
     
     static let versionNumber = "1.0"
     

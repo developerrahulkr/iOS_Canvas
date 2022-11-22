@@ -40,7 +40,7 @@ class FXBookingVC: UIViewController,protocolPush, navigateToDiffrentScreenDelega
     var fxHomeAddress : CMBookingHomeAddress?
     var highValue : String?
     var mixTap : String?
-    var denomination : Int?
+    var denomination : Double?
     var tipsVideoList = [[String: Any]]()
     var selectedDateForTime = ""
     var fxdelegate : delegatecallbackfromFxbooking?
@@ -85,6 +85,7 @@ class FXBookingVC: UIViewController,protocolPush, navigateToDiffrentScreenDelega
         {
             FXbookingMaster.shared.iscomefromtab = false
             FXbookingMaster.shared.dispose()
+            getsessionid()
             txtFCamount.text = ""
             txtLCamount.text = ""
             lblSelectCities.text = "Currency"
@@ -223,7 +224,7 @@ class FXBookingVC: UIViewController,protocolPush, navigateToDiffrentScreenDelega
         
         if FXbookingMaster.shared.fxBookingDataSource.count <= 10
         {
-            var dulicatecurrency = FXbookingMaster.shared.fxBookingDataSource.filter { obj in
+            let dulicatecurrency = FXbookingMaster.shared.fxBookingDataSource.filter { obj in
                 return (obj.currenyCodeTo == self.cmFXBooking?.currenyCodeTo)
             }
             if(dulicatecurrency.count > 0)
@@ -241,9 +242,9 @@ class FXBookingVC: UIViewController,protocolPush, navigateToDiffrentScreenDelega
             self.cmFXBooking = nil
             txtLCamount.text = ""
             txtFCamount.text = ""
-            lblrate.text = "Rate"
+            lblrate.text = Global.shared.rate
             countryCode = ""
-            lblSelectCities.text = "Currency"
+            lblSelectCities.text = Global.shared.currency
             txtFCamount.isUserInteractionEnabled = false
             leftConstantCurrency.constant = 20
             imgCountries.image = nil
@@ -251,7 +252,7 @@ class FXBookingVC: UIViewController,protocolPush, navigateToDiffrentScreenDelega
             
         }
         else{
-            let alert = ViewControllerManager.displayAlert(message: "Maximum length is 8", title:"Canvas")
+            let alert = ViewControllerManager.displayAlert(message: "Your maximum currency exceeded.", title:"")
             self.present(alert, animated: true, completion: nil)
         }
         
@@ -355,7 +356,7 @@ class FXBookingVC: UIViewController,protocolPush, navigateToDiffrentScreenDelega
         if(FXbookingMaster.shared.deliveryType == 2)
         {
             let vc = storyboard?.instantiateViewController(withIdentifier: "YourAddress") as! YourAddress
-            vc.addressText = "Your Address"
+            vc.addressText = Global.shared.your_address
             navigationController?.pushViewController(vc, animated: true)
         }
         else
@@ -393,19 +394,20 @@ extension FXBookingVC: UITableViewDelegate,UITableViewDataSource,Delete{
             cell.deleteBtn.tag = indexPath.row
             cell.lblLCAmount.text = Global.shared.lc_amonut
             cell.lblFCAmmount.text = Global.shared.fc_amount
-            if !FXbookingMaster.shared.fxBookingDataSource.isEmpty {
-                
+            if !FXbookingMaster.shared.fxBookingDataSource.isEmpty
+            {
                 let fcRate = "\(NSDecimalNumber(string: FXbookingMaster.shared.fxBookingDataSource[indexPath.row].rate.replacingOccurrences(of: ",", with: "", options: .literal, range: nil)))"
-                    print("Float value = \(fcRate)")
-//                    let lvAmnt = String(format: "%.3f", fcRate)
-                    let finalTxt = "1 \(FXbookingMaster.shared.fxBookingDataSource[indexPath.row].currenyCodeTo) = \(fcRate) \(FXbookingMaster.shared.fxBookingDataSource[indexPath.row].currenyCodeFrom)"
-                    cell.lblConverter.text = finalTxt
+                let finalTxt = "1 \(FXbookingMaster.shared.fxBookingDataSource[indexPath.row].currenyCodeTo) = \(fcRate) \(FXbookingMaster.shared.fxBookingDataSource[indexPath.row].currenyCodeFrom)"
+                cell.lblConverter.text = finalTxt
                 let amountFrom = FXbookingMaster.shared.fxBookingDataSource[indexPath.row].amountFrom
-                if let lcAmounnt = Double(amountFrom) {
+                if let lcAmounnt = Double(amountFrom)
+                {
                     print("Float value = \(lcAmounnt)")
-//                    let lvAmnt = String(format: "%.3f", lcAmounnt)
+                    //let lvAmnt = String(format: "%.3f", lcAmounnt)
                     cell.tfSourceField.text =  "\(lcAmounnt) KWD"
-                } else {
+                }
+                else
+                {
                     print("String does not contain Float")
                 }
                 cell.tfTargetField.text = FXbookingMaster.shared.fxBookingDataSource[indexPath.row].amountTo
@@ -422,6 +424,8 @@ extension FXBookingVC: UITableViewDelegate,UITableViewDataSource,Delete{
             cell.selectionStyle = .none
             cell.TFTimeSlot.placeholder = Global.shared.timeslot
             cell.TFSelectDate.placeholder = Global.shared.preferred_date
+            cell.TFDeliveryInst.placeholder = Global.shared.delivery_instruction
+            cell.TFSelectPurposeOf.placeholder = Global.shared.purpose
             
             cell.TFSelectPurposeOf.text = "\(Global.shared.purpose!) *"
             cell.homeSegment.setTitle(Global.shared.home, forSegmentAt: 0)
@@ -433,20 +437,20 @@ extension FXBookingVC: UITableViewDelegate,UITableViewDataSource,Delete{
                 cell.btnTimeSlot.isUserInteractionEnabled = false
             }
             else
-            {cell.btnTimeSlot.isUserInteractionEnabled = true}
-
-            cell.TFSelectPurposeOf.text = FXbookingMaster.shared.selectedpurpose
-            cell.lblDenominations.text = Global.shared.denominations
-            cell.lblHighValue.text = Global.shared.high_value
-            cell.lblMixedNotes.text = Global.shared.mix_notes
-            cell.lblnote.text = Global.shared.note
-            cell.lblChooseDeliveryOptions.text = Global.shared.delivery_option
-            cell.btnSubmit.setTitle(Global.shared.submit, for: .normal)
-            cell.BtnCancle.setTitle(Global.shared.cancel, for: .normal)
-            
-            cell.Pushdelegate = self
-            cell.parentobj = self
-            return cell
+            {
+                cell.btnTimeSlot.isUserInteractionEnabled = true}
+//                cell.TFDeliveryInst.text = FXbookingMaster.shared.deliveryinstruction
+                cell.TFSelectPurposeOf.text = FXbookingMaster.shared.selectedpurpose
+                cell.lblDenominations.text = Global.shared.denominations
+                cell.lblHighValue.text = Global.shared.high_value
+                cell.lblMixedNotes.text = Global.shared.mix_notes
+                cell.lblnote.text = Global.shared.note
+                cell.lblChooseDeliveryOptions.text = Global.shared.delivery_option
+                cell.btnSubmit.setTitle(Global.shared.submit, for: .normal)
+                cell.BtnCancle.setTitle(Global.shared.cancel, for: .normal)
+                cell.Pushdelegate = self
+                cell.parentobj = self
+                return cell
         }
     }
     
@@ -469,7 +473,8 @@ extension FXBookingVC: UITableViewDelegate,UITableViewDataSource,Delete{
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if let char = string.cString(using: String.Encoding.utf8) {
             let isBackSpace = strcmp(char, "\\b")
-            if (isBackSpace == -92) {
+            if (isBackSpace == -92)
+            {
                 print("Backspace was pressed")
             }
         }
@@ -488,17 +493,29 @@ extension FXBookingVC: UITableViewDelegate,UITableViewDataSource,Delete{
         self.view.endEditing(true)
         if(countryCode != nil && countryCode != "")
         {
-            if txtFCamount.text!.count > 0{
-                if (Int(txtFCamount.text ?? "") ?? 0) % (denomination ?? 0) == 0 {
-                    rateCalculator()
-                }else{
-                    let alert = ViewControllerManager.displayAlert(message:"\(Global.shared.denomination_lbl ?? "") \(denomination ?? 0)", title:APPLICATIONNAME)
-                    self.present(alert, animated: true, completion: nil)
-                }
-                
+            if txtFCamount.text!.count > 0
+            {
+               if let fcamount = Double(txtFCamount.text!)
+               {
+                    let div = fcamount / denomination!
+                    if floor(div) == div
+                    {
+                           rateCalculator()
+                    }
+                    else
+                    {
+                        let alert = ViewControllerManager.displayAlert(message:"\(Global.shared.denomination_lbl ?? "") \(Int(denomination!) ?? 0)", title:APPLICATIONNAME)
+                        self.present(alert, animated: true, completion: nil)
+                    }
+               }
+               else
+               {
+                   
+               }
+
             }else{
                 txtLCamount.text = ""
-                lblrate.text = "Rate"
+                lblrate.text = Global.shared.rate
                 self.cmFXBooking = nil
 
             }
@@ -1015,10 +1032,7 @@ extension FXBookingVC {
                         let alert = ViewControllerManager.displayAlert(message:Global.shared.messageCodeType(text: mesageCode), title:APPLICATIONNAME)
                         self.present(alert, animated: true, completion: nil)
                     }
-
-                    
                 }
-                        
             }
         }
     
@@ -1147,20 +1161,32 @@ extension FXBookingVC {
         countryCode = country.countryCode?.lowercased()
         imgCountries.image = UIImage(named: country.countryCode?.lowercased() ?? "")
         imgCountries.isHidden = false
-        denomination = country.denomination ?? 0
+        denomination = country.denomination ?? 0.0
         leftConstantCurrency.constant = 45
         txtLCamount.text = ""
-        lblrate.text = "Rate"
+        lblrate.text = Global.shared.rate
         self.cmFXBooking = nil
         txtFCamount.isUserInteractionEnabled = true
-       if txtFCamount.text != ""
+        if txtFCamount.text != ""
         {
-           if (Int(txtFCamount.text ?? "") ?? 0) % (denomination ?? 0) == 0 {
-               rateCalculator()
-           }else{
-               let alert = ViewControllerManager.displayAlert(message:"\(Global.shared.denomination_lbl ?? "") \(denomination ?? 0)", title:APPLICATIONNAME)
-               self.present(alert, animated: true, completion: nil)
+           if let fcamount = Double(txtFCamount.text!)
+           {
+                let div = fcamount / denomination!
+                if floor(div) == div
+                {
+                       rateCalculator()
+                }
+                else
+                {
+                    let alert = ViewControllerManager.displayAlert(message:"\(Global.shared.denomination_lbl ?? "") \(denomination ?? 0)", title:APPLICATIONNAME)
+                    self.present(alert, animated: true, completion: nil)
+                }
            }
+           else
+           {
+               
+           }
+
         }
 
     }
