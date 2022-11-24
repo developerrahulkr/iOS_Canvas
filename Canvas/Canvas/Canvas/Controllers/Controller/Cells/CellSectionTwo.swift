@@ -213,6 +213,8 @@ class CellSectionTwo: UITableViewCell, delegatecallbackfromFxbooking, protocolDe
     {
 //        FXbookingMaster.shared.selectedaddresstype = sender.selectedSegmentIndex
         FXbookingMaster.shared.deliveryType = sender.selectedSegmentIndex == 0 ? 2 : 1
+        FXbookingMaster.shared.selecytedhomeaddress = nil
+        FXbookingMaster.shared.selecedbranchaddress = nil
         sender.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.colorFrom(hexString: "#FFFFFF")!], for: .selected)
 
         if sender.selectedSegmentIndex == 0

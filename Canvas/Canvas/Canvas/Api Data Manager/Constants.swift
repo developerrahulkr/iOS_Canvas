@@ -12,14 +12,13 @@ import UIKit
 
 struct CanvasUrls
 {
-    
     // For UAT
-        //static let baseUrl = "http://online-uat.muzaini.com:81/api/"
-        //static let baseurl_payment = "http://online-uat.muzaini.com:83/"
+        static let baseUrl = "http://online-uat.muzaini.com:81/api/"
+        static let baseurl_payment = "http://online-uat.muzaini.com:83/"
     
 //     For Staging
-        static let baseUrl =  "http://online-uat.muzaini.com:8075/api/"
-        static let baseurl_payment = "http://online-uat.muzaini.com:8076/"
+//        static let baseUrl =  "http://online-uat.muzaini.com:8075/api/"
+//        static let baseurl_payment = "http://online-uat.muzaini.com:8076/"
     
     // For Live
 //        static let baseUrl =  "https://online1.muzaini.com/api/"
@@ -124,7 +123,6 @@ struct CanvasUrls
     static let addfxbookingaddress = "/fxbooking/addfxbookingaddress"
     static let updatefxbookingaddress = "/fxbooking/updatefxaddress"
     static let deletefxbookingaddress = "/fxbooking/deletefxaddress"
-    
     static let getfxbookingbranchlist = "/fxbooking/fxbranches"
     static let getfxbookingdatelist = "/fxbooking/getselecteddate"
     static let getfxbookingratecalculator = "/fxbooking/fcrate2calculator"
