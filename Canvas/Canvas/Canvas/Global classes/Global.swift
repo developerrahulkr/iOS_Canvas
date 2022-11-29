@@ -1335,6 +1335,8 @@ class Global {
     var highTxt: String!
     var strongTxt: String!
     var answerTxt: String!
+    var viewAll : String!
+    var latestNews : String!
     var viewOnGoogleMapTxt: String!
     
     

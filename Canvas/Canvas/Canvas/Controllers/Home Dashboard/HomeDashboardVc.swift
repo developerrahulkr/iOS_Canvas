@@ -40,6 +40,7 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
     
     @IBOutlet weak var firstView: UIView!
     
+    @IBOutlet weak var newslayout: NSLayoutConstraint!
     @IBOutlet weak var secndView: UIView!
     
     @IBOutlet weak var thirdView: UIView!
@@ -101,8 +102,9 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
     
     
     @IBOutlet weak var ratePatternLbl: UILabel!
+    @IBOutlet weak var lblLatestNews: UILabel!
     
-    
+    @IBOutlet weak var btnViewAll: UIButton!
     
     @IBOutlet weak var rateCalcultorLbl: UILabel!
     
@@ -178,7 +180,6 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        latestNewsAPI()
         self.HelpCollectionHeight.constant = 0
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "OfferPopUpController") as! OfferPopUpController
         self.present(vc, animated: true, completion: nil)
@@ -435,8 +436,9 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
         self.ratePatternLbl.text = Global.shared.ratePaternDashboard
         self.rateCalcultorLbl.text  = Global.shared.rateCalculatorHeader
         self.welcomeLbl.text = Global.shared.welcomeTxt
+        self.lblLatestNews.text = Global.shared.latestNews
+        self.btnViewAll.setTitle(Global.shared.viewAll, for: .normal)
         self.removeSpinner()
-        
     }
     
     @IBAction func onClickedViewAllNews(_ sender: UIButton) {
@@ -482,6 +484,7 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
             self.downloadTransactnFilterDetails()
             self.downloadAccountConfigCountriesRatePattern()
             self.downloadBeneficiary()
+            self.latestNewsAPI()
         }
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
@@ -1095,6 +1098,8 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
             return  dateFormatter.string(from: date1!)
 
         }
+    
+//    2022-11-24T00:00:00
     
     // Mark: Assigning bar chart values accordingly
     func customizeChart(dataPoints: [String], valuesY: [Double]) {
@@ -2892,6 +2897,7 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
             let mesageCode = responseData?.value(forKey: "messageCode") as? String ?? statusMsg
             if let statusCode = responseData?.value(forKey: "statusCodes") as? Int {
                 if statusCode == 200 {
+                    self.latestNewsDataSource.removeAll()
                     if let newsItems = responseData?.value(forKey: "newsItems") as? NSArray {
                         for onemessage in newsItems as! [Dictionary<String, AnyObject>] {
                             
@@ -2905,18 +2911,21 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
                                                                           id: onemessage["id"] as? Int,
                                                                           channelID: onemessage["channelID"] as? Int,
                                                                           sequence: onemessage["sequence"] as? Int))
-//                            self.selectDateDataSource.append(CMSelectDate(id: onemessage["id"] as? String, sDate: onemessage["sDate"] as? String))
                         }
                     }
-                    
                     print("latestNewsData is \(self.latestNewsDataSource)")
+                    if self.latestNewsDataSource.count < maxNewsItems
+                    {
+                        self.btnViewAll.isHidden = false
+                    }
+                    else
+                    {
+                        self.btnViewAll.isHidden = true
+                    }
+                    self.newslayout.constant = self.latestNewsDataSource.count > 0 ? 460 : 0
                     self.latestNewsTableView.reloadData()
                 }
-                
             }
-            
-            
-            
         }
     }
     
@@ -2963,15 +2972,15 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
                         Global.shared.phoneCodesDataVisa = phoneCodes
                     }
                     
-                    for i in 0..<Global.shared.currencyCodesDataVisa.count {
+                    for i in 0..<Global.shared.currencyCodesDataVisa.count
+                    {
                         Global.shared.pickerResponseOnlyCurrencyDataVisa.append(["value":  Global.shared.currencyCodesDataVisa[i], "display":  Global.shared.currencyCodesDataVisa[i]])
                     }
                     
                     for i in 0..<Global.shared.currencyNameDataVisa.count {
                         Global.shared.pickerResponseFullCurrencyNameDataVisa.append(["value":  Global.shared.currencyNameDataVisa[i], "display":  Global.shared.currencyNameDataVisa[i]])
                     }
-                    
-                    
+
                     for i in 0..<Global.shared.countryNameDataVisa.count {
                         Global.shared.pickerResponseCountryDataVisa.append(["value": Global.shared.countryNameDataVisa[i], "display": Global.shared.countryNameDataVisa[i]])
                     }
@@ -3628,6 +3637,7 @@ extension HomeDashboardVc : UITableViewDelegate, UITableViewDataSource{
         cell.img.kf.setImage(with: URL(string: latestNewsDataSource[indexPath.row].thumbNailFileName ?? ""))
         cell.lblTitle.text = latestNewsDataSource[indexPath.row].title ?? ""
         cell.lblDesc.text = latestNewsDataSource[indexPath.row].content ?? ""
+        cell.lblTime.text = FXbookingMaster.shared.timeFormat(latestNewsDataSource[indexPath.row].startDate ?? "", format: "E, d MMM yyyy")
         return cell
     }
     

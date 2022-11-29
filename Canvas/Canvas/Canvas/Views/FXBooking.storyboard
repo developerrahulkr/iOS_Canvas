@@ -1540,8 +1540,8 @@
                                             <action selector="onClickedBackButton:" destination="P92-EC-t0Z" eventType="touchUpInside" id="V6z-kk-c3T"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All Events" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Egt-iX-ijj">
-                                        <rect key="frame" x="64" y="30.5" width="114.5" height="33"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Latest News" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Egt-iX-ijj">
+                                        <rect key="frame" x="64" y="30.5" width="142" height="33"/>
                                         <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="24"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -1588,8 +1588,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7cH-07-T2f">
                                 <rect key="frame" x="20" y="184" width="374" height="662"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All Events" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="lge-6y-Alm">
-                                        <rect key="frame" x="10" y="10" width="114.5" height="33"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Latest News" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="lge-6y-Alm">
+                                        <rect key="frame" x="10" y="10" width="142" height="33"/>
                                         <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="24"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -1633,6 +1633,8 @@
                     </view>
                     <connections>
                         <outlet property="cardView" destination="7cH-07-T2f" id="mLj-cX-8sZ"/>
+                        <outlet property="lblLatestNews1" destination="Egt-iX-ijj" id="UFc-dr-Xsy"/>
+                        <outlet property="lblLatestNews2" destination="lge-6y-Alm" id="zXF-yQ-TMl"/>
                         <outlet property="tablView" destination="DMj-J2-7fT" id="wqC-1t-Kng"/>
                     </connections>
                 </viewController>

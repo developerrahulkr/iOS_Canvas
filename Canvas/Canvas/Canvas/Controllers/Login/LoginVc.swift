@@ -842,6 +842,8 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
                             Global.shared.highTxt = common["high"] as? String ?? ""
                             Global.shared.strongTxt = common["strong"] as? String ?? ""
                             Global.shared.answerTxt = common["answer"] as? String ?? ""
+                            Global.shared.viewAll = common["viewall"] as? String ?? ""
+                            Global.shared.latestNews = "Latest news"
                             Global.shared.delete_confirmation = common["delete_confirm"] as? String ?? ""
 
                             

@@ -70,6 +70,21 @@ class FXbookingMaster {
     }()
     
     
+    // MARK: - Common Date Formatter
+    func timeFormat(_ dateString: String, format : String) -> String? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        guard
+            let userDOBDate = dateFormatter.date(from:String(dateString)) else {
+            return nil
+            
+        }
+        dateFormatter.dateFormat = format
+        let date = dateFormatter.string(from: userDOBDate)
+        return date
+    }
+    
+    
     
     func getData(){
         dataSource.removeAll()

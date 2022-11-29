@@ -12,6 +12,8 @@ import Kingfisher
 
 class HomeDashboardAllNewsVC: UIViewController {
 
+    @IBOutlet weak var lblLatestNews2: UILabel!
+    @IBOutlet weak var lblLatestNews1: UILabel!
     @IBOutlet weak var cardView: UIView!
     @IBOutlet weak var tablView: UITableView!
     
@@ -25,15 +27,16 @@ class HomeDashboardAllNewsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         AllNewsAPI()
+        lblLatestNews1.text = Global.shared.latestNews
+        lblLatestNews2.text = Global.shared.latestNews
         cardView.addDropShadowToView(targetView: cardView)
-        self.navigationController?.isNavigationBarHidden = true
-        self.navigationController?.isToolbarHidden = true
         tablView.register(UINib(nibName: "HomeLatestNewCell", bundle: nil), forCellReuseIdentifier: "HomeLatestNewCell")
         // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = true
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
@@ -64,6 +67,7 @@ extension HomeDashboardAllNewsVC : UITableViewDelegate, UITableViewDataSource {
         cell.selectionStyle = .none
         cell.img.kf.setImage(with: URL(string: allNewsDataSource[indexPath.row].thumbNailFileName ?? ""))
         cell.lblTitle.text = allNewsDataSource[indexPath.row].title ?? ""
+        cell.lblTime.text = FXbookingMaster.shared.timeFormat(allNewsDataSource[indexPath.row].startDate ?? "", format: "E, d MMM yyyy")
         cell.lblDesc.text = allNewsDataSource[indexPath.row].content ?? ""
         return cell
     }
