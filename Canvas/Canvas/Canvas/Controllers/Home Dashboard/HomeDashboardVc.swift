@@ -2878,7 +2878,7 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
     
     func latestNewsAPI() {
         let paramaterPasing: [String:Any] = ["languageCode":LocalizationSystem.sharedInstance.getLanguage(),
-                                             "channel": "1"]
+                                             "channel": "3"]
         let headers: HTTPHeaders = [
             "Content-Type": "application/json"
         ]
@@ -2891,7 +2891,7 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
                 self.present(alert, animated: true, completion: nil)
                 return
             }
-            
+            print(responseData)
             let statusMsg = responseData?.value(forKey: "statusMessage") as? String ?? ""
             let maxNewsItems = responseData?.value(forKey: "maxNewsItem") as? Int ?? 0
             let mesageCode = responseData?.value(forKey: "messageCode") as? String ?? statusMsg
@@ -2914,7 +2914,7 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
                         }
                     }
                     print("latestNewsData is \(self.latestNewsDataSource)")
-                    if self.latestNewsDataSource.count < maxNewsItems
+                    if self.latestNewsDataSource.count > maxNewsItems
                     {
                         self.btnViewAll.isHidden = false
                     }

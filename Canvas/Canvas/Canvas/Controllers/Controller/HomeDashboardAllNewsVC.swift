@@ -36,8 +36,8 @@ class HomeDashboardAllNewsVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.isNavigationBarHidden = true
-        navigationController?.setNavigationBarHidden(true, animated: true)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+
     }
     
     
@@ -88,7 +88,7 @@ extension HomeDashboardAllNewsVC {
     func AllNewsAPI() {
         self.showSpinner(onView: self.view)
         let paramaterPasing: [String:Any] = ["languageCode":LocalizationSystem.sharedInstance.getLanguage(),
-                                             "channel": "1"]
+                                             "channel": "3"]
         let headers: HTTPHeaders = [
             "Content-Type": "application/json"
         ]
