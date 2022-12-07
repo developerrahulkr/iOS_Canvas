@@ -22,7 +22,7 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var helpVideoList = [[String: Any]]()
     
-    
+    var maxNewsItems = 0
     
     var tipsVideoList = [[String: Any]]()
     
@@ -41,6 +41,9 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
     @IBOutlet weak var firstView: UIView!
     
     @IBOutlet weak var newslayout: NSLayoutConstraint!
+    @IBOutlet weak var fullviewconst: NSLayoutConstraint!
+    @IBOutlet weak var vwfull: UIView!
+
     @IBOutlet weak var secndView: UIView!
     
     @IBOutlet weak var thirdView: UIView!
@@ -2893,7 +2896,7 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
             }
             print(responseData)
             let statusMsg = responseData?.value(forKey: "statusMessage") as? String ?? ""
-            let maxNewsItems = responseData?.value(forKey: "maxNewsItem") as? Int ?? 0
+            self.maxNewsItems = responseData?.value(forKey: "maxNewsItem") as? Int ?? 0
             let mesageCode = responseData?.value(forKey: "messageCode") as? String ?? statusMsg
             if let statusCode = responseData?.value(forKey: "statusCodes") as? Int {
                 if statusCode == 200 {
@@ -2914,15 +2917,12 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
                         }
                     }
                     print("latestNewsData is \(self.latestNewsDataSource)")
-                    if self.latestNewsDataSource.count > maxNewsItems
-                    {
-                        self.btnViewAll.isHidden = false
-                    }
-                    else
-                    {
-                        self.btnViewAll.isHidden = true
-                    }
+                    self.btnViewAll.isHidden = self.latestNewsDataSource.count > self.maxNewsItems ? false : true
                     self.newslayout.constant = self.latestNewsDataSource.count > 0 ? 460 : 0
+                    self.latestNewsView.layoutIfNeeded()
+                    self.latestNewsView.isHidden = self.latestNewsDataSource.count > 0 ? false : true
+                    self.fullviewconst.constant = self.latestNewsDataSource.count > 0 ? 2207 : 1747
+                    self.vwfull.layoutIfNeeded()
                     self.latestNewsTableView.reloadData()
                 }
             }
@@ -3627,8 +3627,9 @@ class ChartValueFormatter: NSObject, ValueFormatter {
 
 
 extension HomeDashboardVc : UITableViewDelegate, UITableViewDataSource{
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return latestNewsDataSource.count
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        return self.latestNewsDataSource.count >= self.maxNewsItems ? self.maxNewsItems : latestNewsDataSource.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

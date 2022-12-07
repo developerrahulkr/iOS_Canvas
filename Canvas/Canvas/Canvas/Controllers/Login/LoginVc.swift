@@ -826,7 +826,9 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
                             Global.shared.helpTxt = footerContent["help"] as? String ?? ""
                             
                         }
-                        
+                        if let news_label = dataDict.value(forKey: "news_label") as? NSDictionary {
+                            Global.shared.latestNews = news_label["latest_news"] as? String ?? ""
+                        }
                         
                         if let common = dataDict.value(forKey: "common") as? NSDictionary {
                             
@@ -843,7 +845,6 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
                             Global.shared.strongTxt = common["strong"] as? String ?? ""
                             Global.shared.answerTxt = common["answer"] as? String ?? ""
                             Global.shared.viewAll = common["viewall"] as? String ?? ""
-                            Global.shared.latestNews = "Latest news"
                             Global.shared.delete_confirmation = common["delete_confirm"] as? String ?? ""
 
                             
