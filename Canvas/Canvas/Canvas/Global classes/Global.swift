@@ -948,7 +948,8 @@ class Global {
     var menuOffer:String!
     var CivilIDUpdate:String!
     var faceIdLockTxt: String!
-    
+    var menuReferfriend:String!
+
     //hi
     //branch locator
     var lat:String!
@@ -1347,6 +1348,23 @@ class Global {
     var failedTxt: String!
     var cancelleddTxt: String!
     var youPauOnlyyTxt: String!
+    
+    //Refferal
+    
+    var  cop : String!
+    var  how_it_works: String!
+    var  invalid_ref: String!
+    var  referfriend: String!
+    var  referralcode: String!
+    var  share: String!
+    var  step1: String!
+    var  step1_lbl: String!
+    var  step2: String!
+    var  step2_lbl: String!
+    var  step3: String!
+    var  step3_lbl: String!
+    var  via_whatsapp: String!
+
     
     //  Transaction_Enquiry
     

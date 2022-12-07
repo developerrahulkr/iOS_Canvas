@@ -817,6 +817,7 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
                             Global.shared.menuTransactions = menuLabels["lbl_transactions"] as? String ?? ""
                             Global.shared.menuRateAlert = menuLabels["lbl_rate_alert"] as? String ?? ""
                             Global.shared.menuOffer = menuLabels["lbl_offers"] as? String ?? ""
+                            Global.shared.menuReferfriend = "Refer"
                             Global.shared.CivilIDUpdate = menuLabels["lbl_updateid"] as? String ?? ""
                         }
                         
@@ -830,6 +831,37 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
                             Global.shared.latestNews = news_label["latest_news"] as? String ?? ""
                         }
                         
+                        if let ref_label = dataDict.value(forKey: "referralcode_label") as? NSDictionary
+                        {
+                            Global.shared.copy = ref_label["copy"] as? String ?? ""
+                            Global.shared.how_it_works = ref_label["how_it_works"] as? String ?? ""
+                            Global.shared.invalid_ref = ref_label["invalid_ref"] as? String ?? ""
+                            Global.shared.referfriend = ref_label["referfriend"] as? String ?? ""
+                            Global.shared.referralcode = ref_label["referralcode"] as? String ?? ""
+                            Global.shared.share = ref_label["share"] as? String ?? ""
+                            Global.shared.step1 = ref_label["step1"] as? String ?? ""
+                            Global.shared.step1_lbl = ref_label["step1_lbl"] as? String ?? ""
+                            Global.shared.step2 = ref_label["step2"] as? String ?? ""
+                            Global.shared.step2_lbl = ref_label["step2_lbl"] as? String ?? ""
+                            Global.shared.step3 = ref_label["step3"] as? String ?? ""
+                            Global.shared.step3_lbl = ref_label["step3_lbl"] as? String ?? ""
+                            Global.shared.via_whatsapp = ref_label["via_whatsapp"] as? String ?? ""
+                        }
+//                        "referralcode_label": {
+//                            copy = Copy;
+//                            "how_it_works" = "How It Works";
+//                            "invalid_ref" = "Invalid referral code";
+//                            referfriend = "Refer a Friend";
+//                            referralcode = "Referral Code";
+//                            share = Share;
+//                            step1 = "Step 01";
+//                            "step1_lbl" = "You send the referral code to your friend";
+//                            step2 = "Step 02";
+//                            "step2_lbl" = "Your friend signs up on Muzaini application using this referral code";
+//                            step3 = "Step 03";
+//                            "step3_lbl" = "You and your friend will get referral points";
+//                            "via_whatsapp" = "REFER VIA WHATSAPP";
+//                        }
                         if let common = dataDict.value(forKey: "common") as? NSDictionary {
                             
                            // print(common)

@@ -47,6 +47,7 @@
 		18CB9F8A28EEE96200123A3B /* CellCurrencyData.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18CB9F8228EEE96200123A3B /* CellCurrencyData.xib */; };
 		18CB9F8B28EEE96200123A3B /* CellPurpose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CB9F8328EEE96200123A3B /* CellPurpose.swift */; };
 		18CB9F8D28EEE98100123A3B /* TransactionSummaryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CB9F8C28EEE98100123A3B /* TransactionSummaryVC.swift */; };
+		18E70C642940997E00CD4C76 /* ReferFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E70C632940997E00CD4C76 /* ReferFriendViewController.swift */; };
 		18EA1CC329092C3D00BF4E2D /* temperromsg.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EA1CC229092C3D00BF4E2D /* temperromsg.swift */; };
 		1924D54426E51E9800533445 /* PhotoSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1924D54226E51E9700533445 /* PhotoSliderView.swift */; };
 		197B589126E345D600D27D18 /* BannerImgCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197B589026E345D600D27D18 /* BannerImgCell.swift */; };
@@ -323,6 +324,7 @@
 		18CB9F8328EEE96200123A3B /* CellPurpose.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellPurpose.swift; sourceTree = "<group>"; };
 		18CB9F8C28EEE98100123A3B /* TransactionSummaryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionSummaryVC.swift; sourceTree = "<group>"; };
 		18DF4CDB0157E249526220FD /* Pods_CanvasTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CanvasTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		18E70C632940997E00CD4C76 /* ReferFriendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferFriendViewController.swift; sourceTree = "<group>"; };
 		18EA1CC229092C3D00BF4E2D /* temperromsg.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = temperromsg.swift; sourceTree = "<group>"; };
 		1924D54226E51E9700533445 /* PhotoSliderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoSliderView.swift; sourceTree = "<group>"; };
 		197B589026E345D600D27D18 /* BannerImgCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerImgCell.swift; sourceTree = "<group>"; };
@@ -694,6 +696,14 @@
 				18CB9F7C28EEE96100123A3B /* CellTermsAndConditions.xib */,
 			);
 			path = FXBookingCell;
+			sourceTree = "<group>";
+		};
+		18E70C622940995800CD4C76 /* ReferFriend */ = {
+			isa = PBXGroup;
+			children = (
+				18E70C632940997E00CD4C76 /* ReferFriendViewController.swift */,
+			);
+			path = ReferFriend;
 			sourceTree = "<group>";
 		};
 		19C96EF326D645DD00B1321E /* Cell */ = {
@@ -1270,6 +1280,7 @@
 		D562FD3025FF22FF004E81DE /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				18E70C622940995800CD4C76 /* ReferFriend */,
 				1854037B28E41A7800ED3362 /* Controller */,
 				1854037628E40FB500ED3362 /* SiteUnderMaintanence */,
 				2CC518262861BBD40040F7A2 /* TransactionStatus */,
@@ -1796,6 +1807,7 @@
 				8ECB2197257F75AF00617DF3 /* BeneficiaryPurposeData.swift in Sources */,
 				1854038F28E41A7900ED3362 /* CellYourAddress.swift in Sources */,
 				D5973C68252F2C53004BC953 /* ProfileDetails.swift in Sources */,
+				18E70C642940997E00CD4C76 /* ReferFriendViewController.swift in Sources */,
 				2CC5182028619BF00040F7A2 /* VisaDirectNewTransferVC.swift in Sources */,
 				D5030F1A24EFC9160001D686 /* AlertsValidations.swift in Sources */,
 				1854039428E41A7900ED3362 /* AddNewAddressVC.swift in Sources */,

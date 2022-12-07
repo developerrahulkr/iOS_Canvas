@@ -143,6 +143,13 @@ extension UIViewController {
                let vc = self.storyboard?.instantiateViewController(withIdentifier: "UpdateCivilIDController") as! UpdateCivilIDController
                self.navigationController?.pushViewController(vc, animated: true)
         }
+        else if screen ==  Global.shared.menuReferfriend
+        {
+            let vc = Storyboad.shared.fxBookingStoryboard?.instantiateViewController(withIdentifier: "ReferFriendViewController") as! ReferFriendViewController
+
+//            let vc = self.storyboard?.instantiateViewController(withIdentifier: "ReferFriendViewController") as! ReferFriendViewController
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
 }
 var vSpinner : UIView?
