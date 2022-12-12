@@ -1351,7 +1351,7 @@ class Global {
     
     //Refferal
     
-    var  cop : String!
+    var  copy : String!
     var  how_it_works: String!
     var  invalid_ref: String!
     var  referfriend: String!

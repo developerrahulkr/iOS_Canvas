@@ -628,6 +628,10 @@ class AfterLoginVerificationVc: UIViewController, UITextFieldDelegate {
         let remitterStatusMess = resonseTal?.value(forKey: "remitterStatusMessage") as? String ?? ""
         UserDefaults.standard.set(remitterStatusMess, forKey: "remitterStatusMessage")
         
+         
+         let myReferralCode = resonseTal?.value(forKey: "myReferralCode") as? String ?? ""
+         UserDefaults.standard.set(myReferralCode, forKey: "myReferralCode")
+
          NetWorkDataManager.sharedInstance.setTokenValue()
                 
         self.loginTrack()
