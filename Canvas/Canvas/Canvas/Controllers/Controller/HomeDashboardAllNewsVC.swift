@@ -39,11 +39,6 @@ class HomeDashboardAllNewsVC: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
-    
-    override var prefersStatusBarHidden: Bool {
-        return true
-    }
-    
     @IBAction func onClickedLangChange(_ sender: UIButton) {
         Global.shared.languageChangeActn()
     }
