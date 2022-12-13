@@ -37,7 +37,6 @@ class HomeDashboardAllNewsVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
-
     }
     
     
@@ -68,7 +67,9 @@ extension HomeDashboardAllNewsVC : UITableViewDelegate, UITableViewDataSource {
         cell.img.kf.setImage(with: URL(string: allNewsDataSource[indexPath.row].thumbNailFileName ?? ""))
         cell.lblTitle.text = allNewsDataSource[indexPath.row].title ?? ""
         cell.lblTime.text = FXbookingMaster.shared.timeFormat(allNewsDataSource[indexPath.row].startDate ?? "", format: "E, d MMM yyyy")
-        cell.lblDesc.text = allNewsDataSource[indexPath.row].content ?? ""
+//        cell.lblDesc.text = allNewsDataSource[indexPath.row].content ?? ""
+        cell.lblDesc.attributedText = (allNewsDataSource[indexPath.row].content ?? "").htmlToAttributedString
+
         return cell
     }
     
@@ -79,7 +80,7 @@ extension HomeDashboardAllNewsVC : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 110
+        return UITableView.automaticDimension
     }
 }
 

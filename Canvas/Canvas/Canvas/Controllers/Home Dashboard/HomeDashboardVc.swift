@@ -448,7 +448,6 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
         print("View All Events")
         let vc = Storyboad.shared.fxBookingStoryboard?.instantiateViewController(withIdentifier: "HomeDashboardAllNewsVC") as! HomeDashboardAllNewsVC
         self.navigationController?.pushViewController(vc, animated: true)
-        
     }
     
     func navigateToDiffrentScreenDelegate(toWhichScreenWeAreNaviagting : String)
@@ -2917,11 +2916,11 @@ class HomeDashboardVc: BaseViewController, UICollectionViewDataSource, UICollect
                         }
                     }
                     print("latestNewsData is \(self.latestNewsDataSource)")
-                    self.btnViewAll.isHidden = self.latestNewsDataSource.count > self.maxNewsItems ? false : true
+                    self.btnViewAll.isHidden = self.latestNewsDataSource.count == self.maxNewsItems ? false : true
                     self.newslayout.constant = self.latestNewsDataSource.count > 0 ? 460 : 0
                     self.latestNewsView.layoutIfNeeded()
                     self.latestNewsView.isHidden = self.latestNewsDataSource.count > 0 ? false : true
-                    self.fullviewconst.constant = self.latestNewsDataSource.count > 0 ? 2207 : 1747
+                    self.fullviewconst.constant = self.latestNewsDataSource.count > 0 ? 2207 : 1650
                     self.vwfull.layoutIfNeeded()
                     self.latestNewsTableView.reloadData()
                 }
@@ -3637,7 +3636,9 @@ extension HomeDashboardVc : UITableViewDelegate, UITableViewDataSource{
         cell.selectionStyle = .none
         cell.img.kf.setImage(with: URL(string: latestNewsDataSource[indexPath.row].thumbNailFileName ?? ""))
         cell.lblTitle.text = latestNewsDataSource[indexPath.row].title ?? ""
-        cell.lblDesc.text = latestNewsDataSource[indexPath.row].content ?? ""
+//        cell.lblDesc.text = latestNewsDataSource[indexPath.row].content ?? ""
+        cell.lblDesc.attributedText = (latestNewsDataSource[indexPath.row].content ?? "").htmlToAttributedString
+
         cell.lblTime.text = FXbookingMaster.shared.timeFormat(latestNewsDataSource[indexPath.row].startDate ?? "", format: "E, d MMM yyyy")
         return cell
     }
@@ -3648,6 +3649,7 @@ extension HomeDashboardVc : UITableViewDelegate, UITableViewDataSource{
         }
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 110
+        return UITableView.automaticDimension
     }
 }
+
