@@ -22,7 +22,7 @@ let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oc
     let dataY = [0.78,1.88,1.889,3.99,4.55,3.45,0.12,1.67,1.689,3.123,4.123,3.577]
     
     
-  //  let players2 = ["Ozil", "Ramsey", "Laca", "Auba", "Xhaka", "Torreira"]
+    let players2 = ["Ozil", "Ramsey", "Laca", "Auba", "Xhaka", "Torreira"]
   // let goals2 = [2, 8, 22, 64, 88, 92]
     
  //   let players2 = [0,1,1,3,4,3,0,1,1,3,4,3]
