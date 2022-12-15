@@ -24,6 +24,11 @@ class TermsAndConditionsVc: UIViewController, UITableViewDataSource, UITableView
     var termsConditionsResponse = [Any]()
     var isSummeryTerm : Bool = false
     
+    lazy var termAndConditionDataSource : [Termscondition] = {
+            let data = [Termscondition]()
+            return data
+        }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -76,7 +81,19 @@ class TermsAndConditionsVc: UIViewController, UITableViewDataSource, UITableView
                     let dataStr = newv["termsAndsConditions"] as? String
                     let newObj = Global.shared.convertToAryDictionary(text: dataStr ?? "")
                     
-                    self.termsConditionsResponse = newObj!
+                    let obj = newObj! as NSObject
+                    
+                    CDUtilityInfo.shared.saveTermAndConditionData(obj: obj)
+                    
+                    self.termAndConditionDataSource = CDUtilityInfo.shared.getAllTermAndCondition() ?? []
+                    print(self.termAndConditionDataSource[0].taskobject)
+
+//                    if let dataDict = self.termAndConditionDataSource[0].taskobject as! NSDictionary? {
+//                        print(dataDict)
+//                    }
+                    
+                    
+                    self.termsConditionsResponse = self.termAndConditionDataSource[0].taskobject as! [Any]
                                        
                // self.termsConditionsResponse = termsAndConditions as! [Any]
                 }

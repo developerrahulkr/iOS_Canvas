@@ -1,8 +1,9 @@
 //
 //  Faqs+CoreDataProperties.swift
-//  
+//  Canvas
 //
-//  Created by Prankur on 14/12/22.
+//  Created by Rahul Kumar on 15/12/22.
+//  Copyright © 2022 urmila reddy. All rights reserved.
 //
 //
 
@@ -16,5 +17,6 @@ extension Faqs {
         return NSFetchRequest<Faqs>(entityName: "Faqs")
     }
 
+    @NSManaged public var faqData: NSObject?
 
 }

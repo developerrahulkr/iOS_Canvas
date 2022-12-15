@@ -50,10 +50,6 @@
 		18E70C642940997E00CD4C76 /* ReferFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E70C632940997E00CD4C76 /* ReferFriendViewController.swift */; };
 		18E70C752949CEA900CD4C76 /* ContactUs+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E70C732949CEA900CD4C76 /* ContactUs+CoreDataProperties.swift */; };
 		18E70C762949CEA900CD4C76 /* ContactUs+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E70C742949CEA900CD4C76 /* ContactUs+CoreDataClass.swift */; };
-		18E70C7B2949D22000CD4C76 /* Termscondition+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E70C7A2949D22000CD4C76 /* Termscondition+CoreDataProperties.swift */; };
-		18E70C7C2949D22000CD4C76 /* Faqs+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E70C782949D22000CD4C76 /* Faqs+CoreDataClass.swift */; };
-		18E70C7D2949D22000CD4C76 /* Faqs+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E70C792949D22000CD4C76 /* Faqs+CoreDataProperties.swift */; };
-		18E70C7E2949D22000CD4C76 /* Termscondition+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E70C772949D22000CD4C76 /* Termscondition+CoreDataClass.swift */; };
 		18EA1CC329092C3D00BF4E2D /* temperromsg.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EA1CC229092C3D00BF4E2D /* temperromsg.swift */; };
 		1924D54426E51E9800533445 /* PhotoSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1924D54226E51E9700533445 /* PhotoSliderView.swift */; };
 		197B589126E345D600D27D18 /* BannerImgCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197B589026E345D600D27D18 /* BannerImgCell.swift */; };
@@ -268,6 +264,14 @@
 		D5EB6B572569055F0089038F /* RateCalculatorWuVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EB6B562569055F0089038F /* RateCalculatorWuVc.swift */; };
 		D5EB6B59256960220089038F /* HomeBenFavCollctnCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EB6B58256960220089038F /* HomeBenFavCollctnCell.swift */; };
 		DC20CF1EB16DAA1E4CDB62BC /* Pods_CanvasTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18DF4CDB0157E249526220FD /* Pods_CanvasTests.framework */; };
+		E4A18F8A2949D9BF00E1D3C8 /* Termscondition+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A18F862949D9BF00E1D3C8 /* Termscondition+CoreDataProperties.swift */; };
+		E4A18F8B2949D9BF00E1D3C8 /* Termscondition+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A18F872949D9BF00E1D3C8 /* Termscondition+CoreDataClass.swift */; };
+		E4A18F94294AE52500E1D3C8 /* PersistanceStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A18F93294AE52500E1D3C8 /* PersistanceStorage.swift */; };
+		E4A18F9A294AE6F500E1D3C8 /* CDUtilityInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A18F99294AE6F500E1D3C8 /* CDUtilityInfo.swift */; };
+		E4A18F9D294B28B000E1D3C8 /* Ourbranches+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A18F9B294B28AF00E1D3C8 /* Ourbranches+CoreDataClass.swift */; };
+		E4A18F9E294B28B000E1D3C8 /* Ourbranches+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A18F9C294B28AF00E1D3C8 /* Ourbranches+CoreDataProperties.swift */; };
+		E4F8FFCA294B3912009F961C /* Faqs+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F8FFC8294B3912009F961C /* Faqs+CoreDataClass.swift */; };
+		E4F8FFCB294B3912009F961C /* Faqs+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F8FFC9294B3912009F961C /* Faqs+CoreDataProperties.swift */; };
 		FDE17B1C1B26BF1F3C83D7A2 /* Pods_Canvas_CanvasUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2337716D41E28FF2B601906F /* Pods_Canvas_CanvasUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -333,10 +337,6 @@
 		18E70C632940997E00CD4C76 /* ReferFriendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferFriendViewController.swift; sourceTree = "<group>"; };
 		18E70C732949CEA900CD4C76 /* ContactUs+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ContactUs+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		18E70C742949CEA900CD4C76 /* ContactUs+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ContactUs+CoreDataClass.swift"; sourceTree = "<group>"; };
-		18E70C772949D22000CD4C76 /* Termscondition+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Termscondition+CoreDataClass.swift"; path = "/Users/apple/Documents/Git_Project/Canvas/Canvas/Canvas/Canvas/CoredataModal/Termscondition+CoreDataClass.swift"; sourceTree = "<absolute>"; };
-		18E70C782949D22000CD4C76 /* Faqs+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Faqs+CoreDataClass.swift"; path = "/Users/apple/Documents/Git_Project/Canvas/Canvas/Canvas/Canvas/CoredataModal/Faqs+CoreDataClass.swift"; sourceTree = "<absolute>"; };
-		18E70C792949D22000CD4C76 /* Faqs+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Faqs+CoreDataProperties.swift"; path = "/Users/apple/Documents/Git_Project/Canvas/Canvas/Canvas/Canvas/CoredataModal/Faqs+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
-		18E70C7A2949D22000CD4C76 /* Termscondition+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Termscondition+CoreDataProperties.swift"; path = "/Users/apple/Documents/Git_Project/Canvas/Canvas/Canvas/Canvas/CoredataModal/Termscondition+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
 		18EA1CC229092C3D00BF4E2D /* temperromsg.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = temperromsg.swift; sourceTree = "<group>"; };
 		1924D54226E51E9700533445 /* PhotoSliderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoSliderView.swift; sourceTree = "<group>"; };
 		197B589026E345D600D27D18 /* BannerImgCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerImgCell.swift; sourceTree = "<group>"; };
@@ -574,6 +574,14 @@
 		D5EB6B562569055F0089038F /* RateCalculatorWuVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateCalculatorWuVc.swift; sourceTree = "<group>"; };
 		D5EB6B58256960220089038F /* HomeBenFavCollctnCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBenFavCollctnCell.swift; sourceTree = "<group>"; };
 		DE8F842AB2EE29A90F202F89 /* Pods-Canvas-CanvasUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Canvas-CanvasUITests.release.xcconfig"; path = "Target Support Files/Pods-Canvas-CanvasUITests/Pods-Canvas-CanvasUITests.release.xcconfig"; sourceTree = "<group>"; };
+		E4A18F862949D9BF00E1D3C8 /* Termscondition+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Termscondition+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		E4A18F872949D9BF00E1D3C8 /* Termscondition+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Termscondition+CoreDataClass.swift"; sourceTree = "<group>"; };
+		E4A18F93294AE52500E1D3C8 /* PersistanceStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceStorage.swift; sourceTree = "<group>"; };
+		E4A18F99294AE6F500E1D3C8 /* CDUtilityInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDUtilityInfo.swift; sourceTree = "<group>"; };
+		E4A18F9B294B28AF00E1D3C8 /* Ourbranches+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ourbranches+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		E4A18F9C294B28AF00E1D3C8 /* Ourbranches+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ourbranches+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		E4F8FFC8294B3912009F961C /* Faqs+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Faqs+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		E4F8FFC9294B3912009F961C /* Faqs+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Faqs+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		F1919899CC39E0CDDA2C7E03 /* Pods_Canvas.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Canvas.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA1C9E4A8F98BFF5AD1FA2CD /* Pods-CanvasTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CanvasTests.debug.xcconfig"; path = "Target Support Files/Pods-CanvasTests/Pods-CanvasTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -721,10 +729,12 @@
 		18E70C6A2949C99400CD4C76 /* CoredataModal */ = {
 			isa = PBXGroup;
 			children = (
-				18E70C772949D22000CD4C76 /* Termscondition+CoreDataClass.swift */,
-				18E70C7A2949D22000CD4C76 /* Termscondition+CoreDataProperties.swift */,
-				18E70C782949D22000CD4C76 /* Faqs+CoreDataClass.swift */,
-				18E70C792949D22000CD4C76 /* Faqs+CoreDataProperties.swift */,
+				E4F8FFC8294B3912009F961C /* Faqs+CoreDataClass.swift */,
+				E4F8FFC9294B3912009F961C /* Faqs+CoreDataProperties.swift */,
+				E4A18F9B294B28AF00E1D3C8 /* Ourbranches+CoreDataClass.swift */,
+				E4A18F9C294B28AF00E1D3C8 /* Ourbranches+CoreDataProperties.swift */,
+				E4A18F872949D9BF00E1D3C8 /* Termscondition+CoreDataClass.swift */,
+				E4A18F862949D9BF00E1D3C8 /* Termscondition+CoreDataProperties.swift */,
 				18E70C742949CEA900CD4C76 /* ContactUs+CoreDataClass.swift */,
 				18E70C732949CEA900CD4C76 /* ContactUs+CoreDataProperties.swift */,
 			);
@@ -1019,6 +1029,8 @@
 				D5973C67252F2C53004BC953 /* ProfileDetails.swift */,
 				D56B547925D6B16E00B08B15 /* main.swift */,
 				2CC5182428619FAD0040F7A2 /* VisaDirect.swift */,
+				E4A18F93294AE52500E1D3C8 /* PersistanceStorage.swift */,
+				E4A18F99294AE6F500E1D3C8 /* CDUtilityInfo.swift */,
 			);
 			path = "Global classes";
 			sourceTree = "<group>";
@@ -1738,6 +1750,7 @@
 				1924D54426E51E9800533445 /* PhotoSliderView.swift in Sources */,
 				D59EBBF524DBCE920056FF03 /* ExistingCustomerVc.swift in Sources */,
 				D5AC88B024D939B7007E4A74 /* ColorCodes.swift in Sources */,
+				E4A18F8B2949D9BF00E1D3C8 /* Termscondition+CoreDataClass.swift in Sources */,
 				1872F575290BAF17006C9D3A /* HomeLatestNewCell.swift in Sources */,
 				8E3BA92325722DA10078A025 /* Country.swift in Sources */,
 				D55A085124F6996A00AFAF12 /* BeneficiaryFirstTabCell.swift in Sources */,
@@ -1749,6 +1762,7 @@
 				2CC5182328619BF00040F7A2 /* BeneficaryFourTabCollectnCell.swift in Sources */,
 				18CB9F8B28EEE96200123A3B /* CellPurpose.swift in Sources */,
 				2C80527A27A187B300CB3B4D /* BiometricController.swift in Sources */,
+				E4F8FFCB294B3912009F961C /* Faqs+CoreDataProperties.swift in Sources */,
 				18CB9F8528EEE96200123A3B /* CellCurrencyData.swift in Sources */,
 				D571385A24F78E170088A5BA /* BeneficiaryThirdTabCell.swift in Sources */,
 				D55A084524F688D200AFAF12 /* BeneficiaryFirstTabVc.swift in Sources */,
@@ -1815,7 +1829,6 @@
 				1882135D28E5B75700E1E865 /* CalanderPopupVC.swift in Sources */,
 				1867E4BF28F1FA1E00D4F09E /* FinalSummaryVC.swift in Sources */,
 				D55E82C12570A52000226A60 /* CurrencyDrpDwnSearch.swift in Sources */,
-				18E70C7E2949D22000CD4C76 /* Termscondition+CoreDataClass.swift in Sources */,
 				1872F578290BE47E006C9D3A /* HomeDashboardAllNewsVC.swift in Sources */,
 				D5328DF62521AB980079E314 /* ContactUsVc.swift in Sources */,
 				D571386424F7AB3D0088A5BA /* WesternUnion.swift in Sources */,
@@ -1825,7 +1838,6 @@
 				2CC5182228619BF00040F7A2 /* BenefVisaDirectTransferVc.swift in Sources */,
 				8E1D3CF82574EE4900BEF295 /* SecurityQuestion.swift in Sources */,
 				D55CF45B255697CE00E77B07 /* BranchLocatorFirstVc.swift in Sources */,
-				18E70C7C2949D22000CD4C76 /* Faqs+CoreDataClass.swift in Sources */,
 				D5B55D87252DEE1100B6D4C8 /* ProfileEmploymentVc.swift in Sources */,
 				D55E1CDE25666176008FA679 /* TermsConditionsCell.swift in Sources */,
 				D55B32CB254FFD54005E57F5 /* TransctionsFullDetailsVc.swift in Sources */,
@@ -1834,6 +1846,7 @@
 				D5801F1124F8B60500BFAF77 /* BeneficiaryDetails.swift in Sources */,
 				8ECB2197257F75AF00617DF3 /* BeneficiaryPurposeData.swift in Sources */,
 				1854038F28E41A7900ED3362 /* CellYourAddress.swift in Sources */,
+				E4F8FFCA294B3912009F961C /* Faqs+CoreDataClass.swift in Sources */,
 				D5973C68252F2C53004BC953 /* ProfileDetails.swift in Sources */,
 				18E70C642940997E00CD4C76 /* ReferFriendViewController.swift in Sources */,
 				2CC5182028619BF00040F7A2 /* VisaDirectNewTransferVC.swift in Sources */,
@@ -1845,12 +1858,15 @@
 				D518044124EDAD90005FAD41 /* ForgotUsernamePopUp.swift in Sources */,
 				D583B7EA250B9C020019D136 /* BenefPaymentWebViewVc.swift in Sources */,
 				D50FF9982551B43F009DA3F1 /* HomeNewsFeedCell.swift in Sources */,
+				E4A18F94294AE52500E1D3C8 /* PersistanceStorage.swift in Sources */,
+				E4A18F8A2949D9BF00E1D3C8 /* Termscondition+CoreDataProperties.swift in Sources */,
 				18529A2D2910F96F00B38A49 /* FXbookingMaster.swift in Sources */,
 				8E3BA91E25721C8A0078A025 /* PasswordRules.swift in Sources */,
 				1867E4BA28F1F9D400D4F09E /* CellServiceOpted.swift in Sources */,
 				D55D05682549BC6E00998DCB /* BenefFirstTabCollectnCell.swift in Sources */,
 				D5EB6B572569055F0089038F /* RateCalculatorWuVc.swift in Sources */,
 				18E70C762949CEA900CD4C76 /* ContactUs+CoreDataClass.swift in Sources */,
+				E4A18F9E294B28B000E1D3C8 /* Ourbranches+CoreDataProperties.swift in Sources */,
 				D545D1FA2508DF720098DC4D /* Reachability.swift in Sources */,
 				D55B32C5254FFC76005E57F5 /* TransactionsMainVc.swift in Sources */,
 				187F3F4728F992DD008333AA /* AddNewAddressMap.swift in Sources */,
@@ -1874,6 +1890,7 @@
 				D55C1E66254AABF900DF7949 /* BenefBankCashNewTransferVc.swift in Sources */,
 				D55D056A2549BCB600998DCB /* BenefSecndTabCollectnCell.swift in Sources */,
 				D534E18D25011A1F00DDAFBE /* CustomTextField.swift in Sources */,
+				E4A18F9A294AE6F500E1D3C8 /* CDUtilityInfo.swift in Sources */,
 				D59EBC4624DC5B8D0056FF03 /* VerifyAcntThirdVc.swift in Sources */,
 				1854039328E41A7900ED3362 /* FXBookingVC.swift in Sources */,
 				D55A083F24F668B500AFAF12 /* MenuViewController.swift in Sources */,
@@ -1891,6 +1908,7 @@
 				1867E4BD28F1F9D400D4F09E /* CellStatus.swift in Sources */,
 				D56B547A25D6B16E00B08B15 /* main.swift in Sources */,
 				D542F56E24EE63AB00213C80 /* ProfileUnderReviewPopUp.swift in Sources */,
+				E4A18F9D294B28B000E1D3C8 /* Ourbranches+CoreDataClass.swift in Sources */,
 				D50EF0BB251DC59F00790C4F /* WuContatCell.swift in Sources */,
 				D5D9F944250614300053E962 /* ChangePaswdVc.swift in Sources */,
 				D55E82BD2570889300226A60 /* CountryDrpDownSearch.swift in Sources */,
@@ -1901,13 +1919,11 @@
 				D542F56C24EE637D00213C80 /* ResetPswdVc.swift in Sources */,
 				8ECB218A257CD30900617DF3 /* BaseViewController.swift in Sources */,
 				D55E82BF257089DB00226A60 /* CountryDrpDwnSearchCell.swift in Sources */,
-				18E70C7D2949D22000CD4C76 /* Faqs+CoreDataProperties.swift in Sources */,
 				D5D9F94A25063D930053E962 /* BenefWuEditVc.swift in Sources */,
 				D571385E24F7A25E0088A5BA /* TermsAndConditionsVc.swift in Sources */,
 				D5714F4325A2132E00949409 /* SecurityQuestnOtpPopUp.swift in Sources */,
 				D571385C24F7915C0088A5BA /* BeneficiaryBankTransferVc.swift in Sources */,
 				18EA1CC329092C3D00BF4E2D /* temperromsg.swift in Sources */,
-				18E70C7B2949D22000CD4C76 /* Termscondition+CoreDataProperties.swift in Sources */,
 				D51E88C924E2C4230010C57B /* NewCustPersonalVc.swift in Sources */,
 				D571385824F78DFB0088A5BA /* BeneficiarySecndTabCell.swift in Sources */,
 				D518043F24ED2C8B005FAD41 /* PickerDialog.swift in Sources */,

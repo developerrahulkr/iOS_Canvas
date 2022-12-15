@@ -19,6 +19,8 @@ class BranchLocatorFirstVc: UIViewController, UITableViewDataSource, UITableView
     
     @IBOutlet weak var searchTbleView: UITableView!
     
+    var ourBranchDataSource : Ourbranches!
+    
     var branchLocatorResponse = [Any]()
     
     var branchLocatorList = [BranchLocatorSearch]()
@@ -64,29 +66,38 @@ class BranchLocatorFirstVc: UIViewController, UITableViewDataSource, UITableView
                 
                 print(resonseTal!)
                 
-                 self.removeSpinner()
-              /*  for dataobj in (resonseTal!["branchesList"] as? [Any])! {
-                    
-                    print(dataobj)
-                    
-                    
-                    
-                    
-                    if let dataDict = dataobj as? NSDictionary {
-                        print(dataDict)
-                        self.branchLocatorResponse.append(dataDict)
-                       
-                    }
-                }
-                self.searchTbleView.reloadData()*/
+                self.removeSpinner()
+                /*  for dataobj in (resonseTal!["branchesList"] as? [Any])! {
+                 
+                 print(dataobj)
+                 
+                 
+                 
+                 
+                 if let dataDict = dataobj as? NSDictionary {
+                 print(dataDict)
+                 self.branchLocatorResponse.append(dataDict)
+                 
+                 }
+                 }
+                 self.searchTbleView.reloadData()*/
                 
                 if let branchLocatorJson = resonseTal?.value(forKey: "branchesList") as? [[String:Any]] {
-                                                     print(branchLocatorJson)
-                                                  //   self.drpResponse = occupationsList as! [Any]
-                                                  self.branchLocatorList = BranchLocatorSearch.getBranches(branchLocatorJson)
-                                                 
-                                                 }
-                                                 self.searchTbleView.reloadData()
+                    print(branchLocatorJson)
+                    
+                    let obj = branchLocatorJson as NSObject
+                    
+                    CDUtilityInfo.shared.saveOurBrenchesData(obj: obj)
+                    
+                    self.ourBranchDataSource = CDUtilityInfo.shared.getAllOurBrenches()
+                    
+                    if let dataDict = self.ourBranchDataSource.taskobject {
+                        self.branchLocatorList = BranchLocatorSearch.getBranches(dataDict as! [[String : Any]])
+                        print(dataDict)
+                    }
+                    //   self.drpResponse = occupationsList as! [Any]
+                }
+                self.searchTbleView.reloadData()
                 
                 
             }

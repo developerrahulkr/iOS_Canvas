@@ -32,6 +32,7 @@ class FaqVc: UIViewController, UITableViewDataSource, UITableViewDelegate, UISea
     
     @IBOutlet weak var faqTableView: UITableView!
     
+    var FaqCoreDataRes : Faqs!
     var faqResponse = [Any]()
     var helpVideoList = [HelpSearch]()
     var helpSearchList = [HelpSearch]()
@@ -138,8 +139,20 @@ class FaqVc: UIViewController, UITableViewDataSource, UITableViewDelegate, UISea
                 
                 if let faqJson = resonseTal?.value(forKey: "faqList") as? [[String:Any]] {
                                       print(faqJson)
+                    
+                    let obj = faqJson as NSObject
+                    
+                    CDUtilityInfo.shared.saveFAQData(obj: obj)
+                    
+                    self.FaqCoreDataRes = CDUtilityInfo.shared.getAllFAQData()
+                    
+                    if let dataDict = self.FaqCoreDataRes.faqData {
+                        self.faqList = FaqSearch.getFaqs(dataDict as! [[String : Any]])
+                        print(dataDict)
+                   }
+                    
                                    //   self.drpResponse = occupationsList as! [Any]
-                                   self.faqList = FaqSearch.getFaqs(faqJson)
+//                                   self.faqList = FaqSearch.getFaqs(faqJson)
                                   
                                   }
                                   self.faqTableView.reloadData()

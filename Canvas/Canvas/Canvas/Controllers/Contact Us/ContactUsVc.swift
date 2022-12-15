@@ -60,6 +60,8 @@ class ContactUsVc: UIViewController {
     var phnNumber = ""
     var customerServicePhnNumber = ""
     
+    var contactUsDataSource : ContactUs!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,24 +98,31 @@ class ContactUsVc: UIViewController {
                     
                     let dataObj = Global.shared.convertToDictionary(text: contactusContent)
                     
-                    if let dataDict = dataObj as NSDictionary? {
+                        let obj = dataObj! as NSObject
+                        
+                        CDUtilityInfo.shared.saveContactData(obj: obj)
+                        
+                        self.contactUsDataSource = CDUtilityInfo.shared.getAllContactData()
+                    
+                        
+                        if let dataDict = self.contactUsDataSource.taskobject as? NSDictionary? {
                         print(dataDict)
                        
                       //  self.almuzainINearLbl.text = dataDict["main_heading"] as? String ?? ""
-                        self.alwaysNearYouLbl.text = dataDict["main_heading"] as? String ?? ""
-                        self.youCanRechUsLbl.text = dataDict["sub_heading"] as? String ?? ""
-                        self.ourCustmerServceLbl.text = dataDict["main_paragraph"] as? String ?? ""
+                            self.alwaysNearYouLbl.text = dataDict?["main_heading"] as? String ?? ""
+                        self.youCanRechUsLbl.text = dataDict?["sub_heading"] as? String ?? ""
+                        self.ourCustmerServceLbl.text = dataDict?["main_paragraph"] as? String ?? ""
                         
-                        self.faxkeyLbl.text = dataDict["fax_text"] as? String ?? ""
-                        self.faxValueLbl.text = dataDict["fax_content"] as? String ?? ""
+                        self.faxkeyLbl.text = dataDict?["fax_text"] as? String ?? ""
+                        self.faxValueLbl.text = dataDict?["fax_content"] as? String ?? ""
                         
-                        self.ourCustomerLbl.text = dataDict["hotline_text"] as? String ?? ""
+                        self.ourCustomerLbl.text = dataDict?["hotline_text"] as? String ?? ""
                         
-                        let hotlineNumber = dataDict["hotline_content"] as? String ?? ""
+                        let hotlineNumber = dataDict?["hotline_content"] as? String ?? ""
                         self.customerServicePhnNumber = hotlineNumber
                          self.ourCustomerServiceValueBtnOtlt.setTitle(hotlineNumber, for: .normal)
-                        self.emailKeyLbl.text = dataDict["email_text"] as? String ?? ""
-                        self.emailValueLbl.setTitle(dataDict["email_content"] as? String ?? "", for: .normal)
+                        self.emailKeyLbl.text = dataDict?["email_text"] as? String ?? ""
+                        self.emailValueLbl.setTitle(dataDict?["email_content"] as? String ?? "", for: .normal)
                         
                         
                        // let visitOneLbl = dataDict["visit_text_1"] as? String ?? ""
@@ -121,22 +130,22 @@ class ContactUsVc: UIViewController {
                       //  let visitThreeLbl = dataDict["visit_text_3"] as? String ?? ""
                      //   let visitFinalLbl = visitOneLbl + visitTwoLbl + visitThreeLbl
                       
-                        self.almuzinHeadOfceLbl.text = dataDict["office_address"] as? String ?? ""
+                        self.almuzinHeadOfceLbl.text = dataDict?["office_address"] as? String ?? ""
                         
-                        let adresOneLbl = dataDict["address_1"] as? String ?? ""
-                        let adresTwoLbl = dataDict["address_2"] as? String ?? ""
-                        let adresThreeLbl = dataDict["address_3"] as? String ?? ""
+                        let adresOneLbl = dataDict?["address_1"] as? String ?? ""
+                        let adresTwoLbl = dataDict?["address_2"] as? String ?? ""
+                        let adresThreeLbl = dataDict?["address_3"] as? String ?? ""
                         
                         let adresFinalLbl = adresOneLbl + "\n" + adresTwoLbl + "\n" + adresThreeLbl
                         
                         self.headOfceOneLbl.adjustsFontSizeToFitWidth = true
                         self.headOfceOneLbl.text = adresFinalLbl
-                        self.headOfcTwoLbl.text = dataDict["address_4"] as? String ?? ""
+                        self.headOfcTwoLbl.text = dataDict?["address_4"] as? String ?? ""
                         
-                        self.mainPhneNumberKeyLbl.text = dataDict["phone_text"] as? String ?? ""
+                        self.mainPhneNumberKeyLbl.text = dataDict?["phone_text"] as? String ?? ""
                         
                         
-                       let phnValue = dataDict["phone_content"] as? String ?? ""
+                       let phnValue = dataDict?["phone_content"] as? String ?? ""
                         self.phnNumber = phnValue
                         self.phnNumberOtlt.setTitle(phnValue, for: .normal)
                    
