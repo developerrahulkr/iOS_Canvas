@@ -13,6 +13,7 @@ import CoreData
 class CDUtilityInfo {
     
     static let shared = CDUtilityInfo()
+//MARK: - Save Data
 //  MARK: - ContactUs data Save
     
     func saveContactData(obj : NSObject) {
@@ -42,6 +43,12 @@ class CDUtilityInfo {
             PersistantStorage.shared.saveContext()
         }
     
+// MARK: - Language change save data
+    func languageChange(obj:NSObject){
+        let contaxt = LanguageChangesdata(context: PersistantStorage.shared.context)
+        contaxt.languageData = obj
+        PersistantStorage.shared.saveContext()
+    }
     
 //MARK: - Fetch Data
 //    MARK: - contact us data featch
@@ -98,4 +105,18 @@ class CDUtilityInfo {
                 }
                 return nil
             }
+//    MARK: - LanguageChange Feath data
+    @discardableResult
+    
+    func languageChangeData()->LanguageChangesdata?{
+        let featchData = NSFetchRequest<LanguageChangesdata>(entityName: "LanguageChangesdata")
+        do{
+            let result = try PersistantStorage.shared.context.fetch(featchData).first
+            return result
+        }catch let error{
+            print(error.localizedDescription)
+        }
+        return nil
+        
+    }
 }
