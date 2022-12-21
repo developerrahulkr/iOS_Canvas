@@ -195,7 +195,7 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
             print("Connected")
         } else {
             print("No Internet")
-            self.view.isUserInteractionEnabled = false
+//            self.view.isUserInteractionEnabled = false
             
             /*  if UIDevice.current.userInterfaceIdiom == .pad  || UIDevice.current.userInterfaceIdiom == .phone{
              let alert = ViewControllerManager.displayAlert(message:"Please check your internet", title:"Alert")
@@ -212,10 +212,51 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
             
             /* let alert = ViewControllerManager.displayAlert(message:"Please check your internet", title:"Alert")
              self.present(alert, animated: true, completion: nil)*/
-            
-            
+            self.setupdate()
+            // MARK: Network connection check..............................***********>>>>>>>>>>>
+            NotificationCenter.default.addObserver(self,
+                                                   selector: #selector(statusManager),
+                                                   name: .flagsChanged,
+                                                   object: nil)
+            updateUserInterface()
         }
     }
+    
+    
+    func updateUserInterface()
+    {
+        switch Network.reachability.status
+        {
+            case .unreachable: break
+            case .wwan:break
+            case .wifi:break
+        }
+        
+        if !Network.reachability.isReachable && !Network.reachability.isReachableViaWiFi
+        {
+            showToast(message: "you are offline", font: .systemFont(ofSize: 12))
+        }
+        else
+        {
+            showToast(message: "you are online", font: .systemFont(ofSize: 12))
+        }
+        
+        
+    }
+    
+    @objc func statusManager()
+    {
+        if Connectivity.isConnectedToInternet
+        {
+            showToast(message: "you are offline", font: .systemFont(ofSize: 12))
+        }
+        else
+        {
+            showToast(message: "you are online", font: .systemFont(ofSize: 12))
+        }
+    }
+
+    
     /*   @IBAction func crashButtonTapped(_ sender: AnyObject) {
      fatalError()
      }*/
@@ -701,878 +742,20 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
     }
     
     // MARK: To get the language variables used through out the app
-    func dwldLanguageChange() {
-        
+    func dwldLanguageChange()
+    {
         let paramaterPasing: [String:Any] = ["languageCode":LocalizationSystem.sharedInstance.getLanguage()]
-        
-        //   let hmacResult2: String = Global.shared.publicKeyStr.hmac(algorithm: HMACAlgorithm.SHA512, key: Global.shared.privateKeyStr)
-        
-        //    let headersHmac: HTTPHeaders = ["x-publickey" : Global.shared.publicKeyStr, "x-client": hmacResult2, "x-hash" : ""]
-        
-        let headers: HTTPHeaders = [
-            "Content-Type": "application/json"
-        ]
-        
+        let headers: HTTPHeaders = ["Content-Type": "application/json"]
         NetWorkDataManager.sharedInstance.languageChangeImplimentation(headersTobePassed: headers, postParameters: paramaterPasing) { resonseTal , errorString in
-            
             if errorString == nil
             {
-               
-                
                 if let languageContent = resonseTal?.value(forKey: "languageContent") as? String {
                     
                     let dataObj = Global.shared.convertToDictionary(text: languageContent)
-                    print(dataObj)
-                    
-                    if let dataDict = dataObj as NSDictionary? {
-                        
-                        if let apiMessageCodes = dataDict.value(forKey: "api_message_codes") as? NSDictionary {
-                            print(apiMessageCodes)
-                            Global.shared.messageCodeAry = apiMessageCodes
-                        }
-                        
-                       
-                        
-                        if let commonNew = dataDict.value(forKey: "common_new") as? NSDictionary {
-                            Global.shared.cancelleddTxt = commonNew["lbl_common_65"] as? String ?? ""
-                            Global.shared.viewProfileTxt = commonNew["lbl_common_64"] as? String ?? ""
-                            Global.shared.doneTxt = commonNew["lbl_common_61"] as? String ?? ""
-                            Global.shared.failedTxt = commonNew["lbl_common_60"] as? String ?? ""
-                            
-                            Global.shared.viewOnGoogleMapTxt = commonNew["lbl_common_31"] as? String ?? ""
-                            Global.shared.pendingTxt = commonNew["lbl_common_18"] as? String ?? ""
-                            Global.shared.sucessTxt = commonNew["lbl_common_17"] as? String ?? ""
-                            Global.shared.favTxtt = commonNew["lbl_common_23"] as? String ?? ""
-                            Global.shared.editTxtt = commonNew["lbl_common_21"] as? String ?? ""
-                            Global.shared.retailTxt = commonNew["lbl_common_25"] as? String ?? ""
-                            
-                            
-                            Global.shared.oneMonthTxt = commonNew["lbl_common_32"] as? String ?? ""
-                            Global.shared.threeMonthTxt = commonNew["lbl_common_33"] as? String ?? ""
-                            Global.shared.sixMonthTxt = commonNew["lbl_common_34"] as? String ?? ""
-                            Global.shared.oneYearTxt = commonNew["lbl_common_35"] as? String ?? ""
-                            
-                            Global.shared.cameraTxt = commonNew["lbl_common_30"] as? String ?? ""
-                            Global.shared.galryTxt = commonNew["lbl_common_29"] as? String ?? ""
-                            
-                            Global.shared.youCantCreateAnthrQuestnTxt = commonNew["lbl_common_36"] as? String ?? ""
-                            Global.shared.fileTxt = commonNew["lbl_common_37"] as? String ?? ""
-                            Global.shared.selectOptionTxt = commonNew["lbl_common_38"] as? String ?? ""
-                            Global.shared.alrdySelFrntBckFiles = commonNew["lbl_common_39"] as? String ?? ""
-                            Global.shared.remveFrntImgToUpNewOne = commonNew["lbl_common_40"] as? String ?? ""
-                            Global.shared.remveBckImgToUpNewOne = commonNew["lbl_common_41"] as? String ?? ""
-                            Global.shared.alrdySelctdVideo = commonNew["lbl_common_42"] as? String ?? ""
-                            Global.shared.benefDatNotAvailble = commonNew["lbl_common_43"] as? String ?? ""
-                            Global.shared.changeLangSubTitleTxt = commonNew["lbl_common_44"] as? String ?? ""
-                            
-                        }
-                        if let voucher = dataDict.value(forKey: "voucher") as? NSDictionary {
-                            
-                            Global.shared.mtcnn = voucher["mtcn"] as? String ?? ""
-                            Global.shared.ttNumbr = voucher["tt_number"] as? String ?? ""
-                            
-                            Global.shared.serviceOpted = voucher["service_opted"] as? String ?? ""
-                            
-                            Global.shared.voucherNumber = voucher["voucher_number"] as? String ?? ""
-                            Global.shared.accountNumberVoucher = voucher["account_number"] as? String ?? ""
-                            
-                            Global.shared.bankNameVoucher = voucher["bank_name"] as? String ?? ""
-                            Global.shared.branchNameVoucher = voucher["branch_name"] as? String ?? ""
-                            
-                            Global.shared.statusVoucher = voucher["account_number"] as? String ?? ""
-                        }
-                        if let transactionEnquiry = dataDict.value(forKey: "Transaction_Enquiry") as? NSDictionary {
-                            
-                            Global.shared.tmtcn = transactionEnquiry["mtcn"] as? String ?? ""
-                            Global.shared.tttno = transactionEnquiry["ttno"] as? String ?? ""
-                            
-                            Global.shared.tbeneficiaryBank = transactionEnquiry["beneficiary_bank"] as? String ?? ""
-                            Global.shared.tbenficiaryfullName = transactionEnquiry["benficiaryfull_name"] as? String ?? ""
-                            
-                            Global.shared.treceiveAmount = transactionEnquiry["receive_amount"] as? String ?? ""
-                            Global.shared.treferenceNumber = transactionEnquiry["reference_number"] as? String ?? ""
-                            
-                            Global.shared.ttransaction = transactionEnquiry["transaction"] as? String ?? ""
-                            Global.shared.ttransactionStatus = transactionEnquiry["transaction_status"] as? String ?? ""
-                            
-                            Global.shared.ttransferAmount = transactionEnquiry["transfer_amount"] as? String ?? ""
-                            Global.shared.tviewStatus = transactionEnquiry["view_status"] as? String ?? ""
-                            
-                          
-                        }
-                        
-                        if let menuLabels = dataDict.value(forKey: "menu_labels") as? NSDictionary {
-                            print(menuLabels)
-                            
-                            Global.shared.lbl_fxbooking = menuLabels["lbl_fxbooking"] as? String ?? ""
-                            Global.shared.menuRateThisAppString = menuLabels["lbl_rate_this_app"] as? String ?? ""
-                            
-                            Global.shared.menuBeneficiary = menuLabels["lbl_benefeciaries"] as? String ?? ""
-                            Global.shared.menuChangePaswd = menuLabels["lbl_change_password"] as? String ?? ""
-                            Global.shared.menuContact = menuLabels["lbl_contact"] as? String ?? ""
-                            Global.shared.menuDashboard = menuLabels["lbl_dashboard"] as? String ?? ""
-                            Global.shared.menuFeedback = menuLabels["lbl_feedback"] as? String ?? ""
-                            Global.shared.menuMessages = menuLabels["lbl_messages"] as? String ?? ""
-                            Global.shared.menuProfile = menuLabels["lbl_profile"] as? String ?? ""
-                            Global.shared.menuTransactions = menuLabels["lbl_transactions"] as? String ?? ""
-                            Global.shared.menuRateAlert = menuLabels["lbl_rate_alert"] as? String ?? ""
-                            Global.shared.menuOffer = menuLabels["lbl_offers"] as? String ?? ""
-                            Global.shared.menuReferfriend = "Refer"
-                            Global.shared.CivilIDUpdate = menuLabels["lbl_updateid"] as? String ?? ""
-                        }
-                        
-                        if let footerContent = dataDict.value(forKey: "footer_content") as? NSDictionary {
-                            
-                            Global.shared.faqTxt = footerContent["faqs"] as? String ?? ""
-                            Global.shared.helpTxt = footerContent["help"] as? String ?? ""
-                            
-                        }
-                        if let news_label = dataDict.value(forKey: "news_label") as? NSDictionary {
-                            Global.shared.latestNews = news_label["latest_news"] as? String ?? ""
-                        }
-                        
-                        if let ref_label = dataDict.value(forKey: "referralcode_label") as? NSDictionary
-                        {
-                            Global.shared.copy = ref_label["copy"] as? String ?? ""
-                            Global.shared.how_it_works = ref_label["how_it_works"] as? String ?? ""
-                            Global.shared.invalid_ref = ref_label["invalid_ref"] as? String ?? ""
-                            Global.shared.referfriend = ref_label["referfriend"] as? String ?? ""
-                            Global.shared.referralcode = ref_label["referralcode"] as? String ?? ""
-                            Global.shared.share = ref_label["share"] as? String ?? ""
-                            Global.shared.step1 = ref_label["step1"] as? String ?? ""
-                            Global.shared.step1_lbl = ref_label["step1_lbl"] as? String ?? ""
-                            Global.shared.step2 = ref_label["step2"] as? String ?? ""
-                            Global.shared.step2_lbl = ref_label["step2_lbl"] as? String ?? ""
-                            Global.shared.step3 = ref_label["step3"] as? String ?? ""
-                            Global.shared.step3_lbl = ref_label["step3_lbl"] as? String ?? ""
-                            Global.shared.via_whatsapp = ref_label["via_whatsapp"] as? String ?? ""
-                        }
-//                        "referralcode_label": {
-//                            copy = Copy;
-//                            "how_it_works" = "How It Works";
-//                            "invalid_ref" = "Invalid referral code";
-//                            referfriend = "Refer a Friend";
-//                            referralcode = "Referral Code";
-//                            share = Share;
-//                            step1 = "Step 01";
-//                            "step1_lbl" = "You send the referral code to your friend";
-//                            step2 = "Step 02";
-//                            "step2_lbl" = "Your friend signs up on Muzaini application using this referral code";
-//                            step3 = "Step 03";
-//                            "step3_lbl" = "You and your friend will get referral points";
-//                            "via_whatsapp" = "REFER VIA WHATSAPP";
-//                        }
-                        if let common = dataDict.value(forKey: "common") as? NSDictionary {
-                            
-                           // print(common)
-                            
-                            Global.shared.onlyThresholdTxt = common["threshold"] as? String ?? ""
-                            //  Global.shared.deleteTxt = common["delete"] as? String ?? ""
-                            
-                            Global.shared.deleteTxt = common["delete"] as? String ?? ""
-                            
-                            Global.shared.lowTxt = common["low"] as? String ?? ""
-                            Global.shared.mediumTxt = common["medium"] as? String ?? ""
-                            Global.shared.highTxt = common["high"] as? String ?? ""
-                            Global.shared.strongTxt = common["strong"] as? String ?? ""
-                            Global.shared.answerTxt = common["answer"] as? String ?? ""
-                            Global.shared.viewAll = common["viewall"] as? String ?? ""
-                            Global.shared.delete_confirmation = common["delete_confirm"] as? String ?? ""
-
-                            
-                            Global.shared.repeatTxt = common["repeat"] as? String ?? ""
-                            Global.shared.repetFailedPendingTxt = common["repeat_availability"] as? String ?? ""
-                            Global.shared.selectSecurityImg = common["sel_security_image"] as? String ?? ""
-                            Global.shared.enterOtpTxt = common["otp_enter"] as? String ?? ""
-                            Global.shared.thresholdValueTxt = common["threshold_value"] as? String ?? ""
-                            Global.shared.transfersTxtTab = common["transfers"] as? String ?? "Transfers"
-                            
-                            Global.shared.createYourOwnQuestnTxt = common["lbl_create_question"] as? String ?? ""
-                            Global.shared.selectedBenefDisabled = common["sel_ben_disabled"] as? String ?? ""
-                            Global.shared.showLessTxt = common["show_less"] as? String ?? ""
-                            Global.shared.securityVerfictnTxt = common["security_verification"] as? String ?? ""
-                            
-                            Global.shared.favBenfTxt = common["favorite"] as? String ?? ""
-                            Global.shared.unfavBenefTxt = common["unfavourite"] as? String ?? ""
-                            Global.shared.enableBenefTxt = common["enable"] as? String ?? ""
-                            Global.shared.disableBenefTxt = common["disable"] as? String ?? ""
-                            
-                            Global.shared.foreignLcCurncyTxt = common["foreign_currency"] as? String ?? ""
-                            Global.shared.localCurncyTxt = common["local_currency"] as? String ?? ""
-                            
-                            Global.shared.selectYourQuestnTxt = common["select_your_question"] as? String ?? ""
-                            Global.shared.acceptTermsCondtnsAlert = common["proceed_tc"] as? String ?? ""
-                            
-                            Global.shared.versionLbl = common["version_name"] as? String ?? ""
-                            
-                            let version = Bundle.main.infoDictionary!["CFBundleShortVersionString"]!
-                            let versionNumber = version as? String ?? ""
-                            self.versionLbl.text = Global.shared.versionLbl + ":" + versionNumber
-                            
-                            Global.shared.smsTxt = common["delivery_type_sms"] as? String ?? ""
-                            Global.shared.emailTxt = common["delivery_type_email"] as? String ?? ""
-                            
-                            Global.shared.foreignCurncyTxt = common["foreign_currency"] as? String ?? ""
-                            Global.shared.plsContctAdminOtp = common["label_reset_otp"] as? String ?? ""
-                            Global.shared.enterOtpAlrdyExists = common["label_reset_otp_enter"] as? String ?? ""
-                            
-                            Global.shared.resetTxt = common["reset"] as? String ?? ""
-                            Global.shared.restQuestnsTxt = common["reset_questions"] as? String ?? ""
-                            Global.shared.noRecordsFoundTxt = common["no_records_found"] as? String ?? ""
-                            Global.shared.logoutHeaderTxt = common["logout"] as? String ?? ""
-                            Global.shared.remiterInactiveDashboard = common["remitter_inactive"] as? String ?? ""
-                            Global.shared.remiterInactiveBeneficiary = common["remitter_inactive_beneficiary"] as? String ?? ""
-                            Global.shared.remiterInactiveTrnsctn = common["remitter_inactive_transaction"] as? String ?? ""
-                            
-                            Global.shared.sendEmailTxtt = common["share_email"] as? String ?? ""
-                            Global.shared.yesTxt = common["yes"] as? String ?? ""
-                            Global.shared.noTxt = common["no"] as? String ?? ""
-                            
-                            Global.shared.sendNowTxt = common["send_now"] as? String ?? ""
-                            
-                            Global.shared.monthTxtt = common["month"] as? String ?? ""
-                            Global.shared.yearTxtt = common["year"] as? String ?? ""
-                            
-                            Global.shared.browseTxt = common["browse"] as? String ?? ""
-                            Global.shared.backTxt = common["back"] as? String ?? ""
-                            Global.shared.frontTxt = common["front"] as? String ?? ""
-                            Global.shared.recordTxt = common["record"] as? String ?? ""
-                            Global.shared.uploadCivildIdTxt = common["uplaod_civilid"] as? String ?? ""
-                            
-                            Global.shared.uploadSelfieVideTxt = common["upload_selfie_video"] as? String ?? ""
-                            Global.shared.showMoreTxt = common["show_more"] as? String ?? ""
-                            Global.shared.createUserNamePaswd = common["createuserpass_header"] as? String ?? ""
-                            
-                            Global.shared.proceedTermsCondtnAlertTxt = common["proceed_tc"] as? String ?? ""
-                            Global.shared.okTxt = common["ok"] as? String ?? ""
-                            Global.shared.logoutTxt = common["logout_confirm"] as? String ?? ""
-                            Global.shared.lastLoginTxt = common["lastlogin"] as? String ?? ""
-                            Global.shared.welcomeTxt = common["welcome"] as? String ?? ""
-                            
-                            Global.shared.cancelTxt = common["cancel"] as? String ?? ""
-                            //  Global.shared.faqTxt = common["faq"] as? String ?? ""
-                            Global.shared.termsConditionsShortTxt = common["signup"] as? String ?? ""
-                            Global.shared.branchLoctrtLoginTxt = common["branch_locator"] as? String ?? ""
-                            
-                            Global.shared.loginBtnTxt = common["login"] as? String ?? ""
-                            Global.shared.signUpBtnTxt = common["signup"] as? String ?? ""
-                            Global.shared.orTxt = common["or"] as? String ?? ""
-                            Global.shared.createQuestnBtnTxt = common["lbl_create_question"] as? String ?? ""
-                            Global.shared.showMoreBtnTxt = common["show_more"] as? String ?? ""
-                            Global.shared.backBtnTxt = common["back"] as? String ?? ""
-                            Global.shared.submitBtnTxt = common["submit"] as? String ?? ""
-                            Global.shared.verifctnConfirmBtnTxt = common["confirm"] as? String ?? ""
-                            Global.shared.verifySubmitBtnTxt = common["submit"] as? String ?? ""
-                            Global.shared.nxtBtnTxt = common["next"] as? String ?? ""
-                            Global.shared.iHaveReadAgreeTxt = common["txt_terms_conds_label1"] as? String ?? ""
-                            Global.shared.termsConditionBtnTxt = common["terms_conditions"] as? String ?? ""
-                            Global.shared.almuzinBottomTxt = common["copyright"] as? String ?? ""
-                            Global.shared.answerPlaceHolderTxt = common["answer"] as? String ?? ""
-                            Global.shared.enterQuestnTxt = common["enter_question"] as? String ?? ""
-                            Global.shared.commonMonth = common["month"] as? String ?? ""
-                            Global.shared.commonYear = common["year"] as? String ?? ""
-                            Global.shared.importContacts = common["import_from_contacts"] as? String ?? ""
-                            
-                            Global.shared.saveTxt = common["save"] as? String ?? ""
-                            Global.shared.updateTxt = common["update"] as? String ?? ""
-                            Global.shared.editTxt = common["edit"] as? String ?? ""
-                            Global.shared.removeTxt = common["remove"] as? String ?? ""
-                            Global.shared.goTxt = common["go"] as? String ?? ""
-                            Global.shared.civilIDBack = common["civilid_back"] as? String ?? ""
-                            
-                            
-                        }
-                        
-                        if let fx_label = dataDict.value(forKey: "fx_label") as? NSDictionary
-                        {
-                            Global.shared.add_currency = fx_label["add_currency"] as? String ?? ""
-                            Global.shared.add_location = fx_label["add_location"] as? String ?? ""
-                            Global.shared.add_manage = fx_label["add_manage"] as? String ?? ""
-                            Global.shared.address = fx_label["address"] as? String ?? ""
-                            Global.shared.address_required_msg = fx_label["address_required_msg"] as? String ?? ""
-                            Global.shared.amount_in_kwd = fx_label["amount_in_kwd"] as? String ?? ""
-                            Global.shared.amount_in_word = fx_label["amount_in_word"] as? String ?? ""
-                            Global.shared.area_city = fx_label["area_city"] as? String ?? ""
-                            Global.shared.back = fx_label["back"] as? String ?? ""
-                            Global.shared.block = fx_label["block"] as? String ?? ""
-                            Global.shared.branch = fx_label["branch"] as? String ?? ""
-                            Global.shared.building = fx_label["building"] as? String ?? ""
-                            Global.shared.cancel = fx_label["cancel"] as? String ?? ""
-                            Global.shared.choose_location = fx_label["choose_location"] as? String ?? ""
-                            Global.shared.commission = fx_label["commission"] as? String ?? ""
-                            Global.shared.commission_discount = fx_label["commission_discount"] as? String ?? ""
-                            Global.shared.created_date = fx_label["created_date"] as? String ?? ""
-                            Global.shared.currency = fx_label["currency"] as? String ?? ""
-                            Global.shared.currency_required_msg = fx_label["currency_required_msg"] as? String ?? ""
-                            Global.shared.date_required_msg = fx_label["date_required_msg"] as? String ?? ""
-                            Global.shared.date_timeslot = fx_label["date_timeslot"] as? String ?? ""
-                            Global.shared.default_address = fx_label["default_address"] as? String ?? ""
-                            Global.shared.delete = fx_label["delete"] as? String ?? ""
-                            Global.shared.delivery_charge = fx_label["delivery_charge"] as? String ?? ""
-                            Global.shared.delivery_instruction = fx_label["delivery_instruction"] as? String ?? ""
-                            Global.shared.delivery_option = fx_label["delivery_option"] as? String ?? ""
-                            Global.shared.delivery_type = fx_label["delivery_type"] as? String ?? ""
-                            Global.shared.denominations = fx_label["denominations"] as? String ?? ""
-                            Global.shared.edit = fx_label["edit"] as? String ?? ""
-                            Global.shared.fc_amount = fx_label["fc_amount"] as? String ?? ""
-                            Global.shared.flat = fx_label["flat"] as? String ?? ""
-                            Global.shared.floor = fx_label["floor"] as? String ?? ""
-                            Global.shared.full_name = fx_label["full_name"] as? String ?? ""
-                            Global.shared.fx_booking = fx_label["fx_booking"] as? String ?? ""
-                            Global.shared.gada = fx_label["gada"] as? String ?? ""
-                            Global.shared.high_value = fx_label["high_value"] as? String ?? ""
-                            Global.shared.home = fx_label["home"] as? String ?? ""
-                            Global.shared.lbl_fx_1 = fx_label["lbl_fx_1"] as? String ?? ""
-                            Global.shared.lbl_fx_2 = fx_label["lbl_fx_2"] as? String ?? ""
-                            Global.shared.lbl_fx_3 = fx_label["lbl_fx_3"] as? String ?? ""
-                            Global.shared.lbl_fx_4 = fx_label["lbl_fx_4"] as? String ?? ""
-                            Global.shared.lbl_fx_5 = fx_label["lbl_fx_5"] as? String ?? ""
-                            Global.shared.lbl_fx_6 = fx_label["lbl_fx_6"] as? String ?? ""
-                            Global.shared.lbl_fx_7 = fx_label["lbl_fx_7"] as? String ?? ""
-                            Global.shared.lc_amonut = fx_label["lc_amonut"] as? String ?? ""
-                            Global.shared.mix_notes = fx_label["mix_notes"] as? String ?? ""
-                            Global.shared.note = fx_label["note"] as? String ?? ""
-                            Global.shared.pay = fx_label["pay"] as? String ?? ""
-                            Global.shared.phone_number = fx_label["phone_number"] as? String ?? ""
-                            Global.shared.pot_required_msg = fx_label["pot_required_msg"] as? String ?? ""
-                            Global.shared.preferred_date = fx_label["preferred_date"] as? String ?? ""
-                            Global.shared.promocode = fx_label["promocode"] as? String ?? ""
-                            Global.shared.purpose = fx_label["purpose"] as? String ?? ""
-                            Global.shared.rate = fx_label["rate"] as? String ?? ""
-                            Global.shared.remarks = fx_label["remarks"] as? String ?? ""
-                            Global.shared.denomination_lbl = fx_label["denomination_lbl"] as? String ?? ""
-                            
-                            Global.shared.rr_no = fx_label["rr_no"] as? String ?? ""
-                            Global.shared.save_address = fx_label["save_address"] as? String ?? ""
-                            Global.shared.select_date = fx_label["select_date"] as? String ?? ""
-                            Global.shared.service_opt = fx_label["service_opt"] as? String ?? ""
-                            Global.shared.service_opted = fx_label["service_opted"] as? String ?? ""
-                            Global.shared.status = fx_label["status"] as? String ?? ""
-                            Global.shared.street = fx_label["street"] as? String ?? ""
-                            Global.shared.submit = fx_label["submit"] as? String ?? ""
-                            Global.shared.summary = fx_label["summary"] as? String ?? ""
-                            Global.shared.terms = fx_label["terms"] as? String ?? ""
-                            Global.shared.time_required_msg = fx_label["time_required_msg"] as? String ?? ""
-                            Global.shared.timeslot = fx_label["timeslot"] as? String ?? ""
-                            Global.shared.total = fx_label["total"] as? String ?? ""
-                            Global.shared.total_lc = fx_label["total_lc"] as? String ?? ""
-                            Global.shared.transaction_summary = fx_label["transaction_summary"] as? String ?? ""
-                            Global.shared.update_address = fx_label["update_address"] as? String ?? ""
-                            Global.shared.update_location = fx_label["update_location"] as? String ?? ""
-                            Global.shared.voucher_number = fx_label["voucher_number"] as? String ?? ""
-                            Global.shared.you_pay = fx_label["you_pay"] as? String ?? ""
-                            Global.shared.your_address = fx_label["your_address"] as? String ?? ""
-                            Global.shared.zip_code = fx_label["zip_code"] as? String ?? ""
-
-                        }
-                        
-                        if let guidedTour = dataDict.value(forKey: "guided_tour") as? NSDictionary {
-                            
-                            Global.shared.guidedTour1 = guidedTour["guided_tour_1"] as? String ?? ""
-                            Global.shared.guidedTour2 = guidedTour["guided_tour_2"] as? String ?? ""
-                            Global.shared.guidedTour3 = guidedTour["guided_tour_3"] as? String ?? ""
-                            Global.shared.guidedTour4 = guidedTour["guided_tour_4"] as? String ?? ""
-                            Global.shared.guidedTour5 = guidedTour["guided_tour_5"] as? String ?? ""
-                            Global.shared.guidedTour6 = guidedTour["guided_tour_6"] as? String ?? ""
-                            Global.shared.guidedTour7 = guidedTour["guided_tour_7"] as? String ?? ""
-                            Global.shared.guidedTour8 = guidedTour["guided_tour_8"] as? String ?? ""
-                            Global.shared.guidedTour9 = guidedTour["guided_tour_9"] as? String ?? ""
-                            Global.shared.guidedTour10 = guidedTour["guided_tour_10"] as? String ?? ""
-                            Global.shared.guidedTour11 = guidedTour["guided_tour_11"] as? String ?? ""
-                            Global.shared.guidedTour12 = guidedTour["guided_tour_12"] as? String ?? ""
-                            Global.shared.guidedTour13 = guidedTour["guided_tour_13"] as? String ?? ""
-                            Global.shared.guidedTour14 = guidedTour["guided_tour_14"] as? String ?? ""
-                            Global.shared.guidedTour15 = guidedTour["guided_tour_15"] as? String ?? ""
-                            Global.shared.guidedTour16 = guidedTour["guided_tour_16"] as? String ?? ""
-                            Global.shared.guidedTour17 = guidedTour["guided_tour_17"] as? String ?? ""
-                            Global.shared.guidedTour18 = guidedTour["guided_tour_18"] as? String ?? ""
-                            Global.shared.guidedTour19 = guidedTour["guided_tour_19"] as? String ?? ""
-                            Global.shared.guidedTour20 = guidedTour["guided_tour_20"] as? String ?? ""
-                            Global.shared.guidedTour21 = guidedTour["guided_tour_21"] as? String ?? ""
-                            Global.shared.guidedTour22 = guidedTour["guided_tour_22"] as? String ?? ""
-                            Global.shared.guidedTour23 = guidedTour["guided_tour_23"] as? String ?? ""
-                            Global.shared.guidedTour24 = guidedTour["guided_tour_24"] as? String ?? ""
-                            Global.shared.guidedTour25 = guidedTour["guided_tour_25"] as? String ?? ""
-                            Global.shared.guidedTour26 = guidedTour["guided_tour_26"] as? String ?? ""
-                            Global.shared.guidedTour27 = guidedTour["guided_tour_27"] as? String ?? ""
-                            Global.shared.guidedTour28 = guidedTour["guided_tour_28"] as? String ?? ""
-                            
-                        }
-                        
-                        if let alerts = dataDict.value(forKey: "alerts") as? NSDictionary {
-                            
-                            Global.shared.uscedfulMailAlert = alerts["forgot_api_success_message"] as? String ?? ""
-                            Global.shared.selectVideoFileAlert = alerts["am101"] as? String ?? ""
-                            Global.shared.selectFrontBackFilesAlert = alerts["am102"] as? String ?? ""
-                            Global.shared.selectIdProfDocAlert = alerts["am103"] as? String ?? ""
-                            Global.shared.paswdDoesntMatchAlert = alerts["am104"] as? String ?? ""
-                            Global.shared.sizeLimitOnlyTxtAlert = alerts["am105"] as? String ?? ""
-                            Global.shared.isueExpireSameAlert = alerts["am106"] as? String ?? ""
-                            Global.shared.duplicateSecrtQuestnsAlert = alerts["am107"] as? String ?? ""
-                            Global.shared.answer3QuestnsAlert = alerts["am108"] as? String ?? ""
-                            Global.shared.invalidMobileNumberTxtAlert = alerts["am109"] as? String ?? ""
-                            Global.shared.invalidEmailTxtAlert = alerts["am110"] as? String ?? ""
-                            Global.shared.pendingTrnsctnTxt = alerts["am120"] as? String ?? ""
-                            Global.shared.failedTrnsctnTxt = alerts["am119"] as? String ?? ""
-                            Global.shared.newPswdConfrmSameTxt = alerts["am121"] as? String ?? ""
-                            Global.shared.pswdConfrmSameTxt = alerts["am122"] as? String ?? ""
-                            Global.shared.featureAddedSoonTxt = alerts["am123"] as? String ?? ""
-                            Global.shared.sessionTimedOutTxt = alerts["am124"] as? String ?? ""
-                            Global.shared.sameFileUploadTxt = alerts["am116"] as? String ?? ""
-                            Global.shared.dateShouldGreater = alerts["am128"] as? String ?? ""
-                            Global.shared.IDExpiryValidation = alerts["am129"] as? String ?? ""
-                            Global.shared.IDUnderReview = alerts["am130"] as? String ?? ""
-                            
-                        }
-                        if let validations = dataDict.value(forKey: "form_validations") as? NSDictionary {
-                            
-                            Global.shared.alreadyExistsTxt = validations["usernameuse"] as? String ?? ""
-                            Global.shared.isInvalidTxt = validations["invalidEmailAddress"] as? String ?? ""
-                            Global.shared.securityAnswerTxt = validations["security_answer"] as? String ?? ""
-                            Global.shared.hasNumber = validations["hasNumber"] as? String ?? ""
-                            Global.shared.hasCapitalCase = validations["hasCapitalCase"] as? String ?? ""
-                            Global.shared.hasSmallCase = validations["hasSmallCase"] as? String ?? ""
-                            Global.shared.hasSpecialCharacters = validations["hasSpecialCharacters"] as? String ?? ""
-                            Global.shared.errorTxtRequired = validations["required"] as? String ?? ""
-                            Global.shared.minLengthTxtt = validations["minLength"] as? String ?? ""
-                            Global.shared.invalidTxt = validations["invalid"] as? String ?? ""
-                        }
-                        
-                        
-                        
-                        
-                        if let userManagment = dataDict.value(forKey: "user_management") as? NSDictionary {
-                            
-                            if let civilIDModel =  userManagment.value(forKey: "civilidupdate_review_modal") as? NSDictionary {
-                                
-                                Global.shared.civilIDReviewTitleLbl = civilIDModel["lbl_header1"] as? String ?? ""
-                                Global.shared.civilIDReviewSubTitle1 = civilIDModel["lbl_desc1"] as? String ?? ""
-                                Global.shared.civilIDReviewSubTitle2 = civilIDModel["lbl_desc2"] as? String ?? ""
-                            }
-                            
-                            if let feedBackScreen = userManagment.value(forKey: "feed_back_screen") as? NSDictionary {
-                                
-                                
-                                Global.shared.feedbckClear = feedBackScreen["clear"] as? String ?? ""
-                                Global.shared.feedBckHeader = feedBackScreen["lbl_header"] as? String ?? ""
-                                Global.shared.feedbckSubmit = feedBackScreen["submit"] as? String ?? ""
-                                Global.shared.feedbckWriteYourFeedback = feedBackScreen["write_your_feedback"] as? String ?? ""
-                                Global.shared.feedbckQuery = feedBackScreen["your_query"] as? String ?? ""
-                                Global.shared.feedbackName = feedBackScreen["name"] as? String ?? ""
-                                Global.shared.feedbackMobile = feedBackScreen["mobile"] as? String ?? ""
-                                Global.shared.feedbackEmail = feedBackScreen["email"] as? String ?? ""
-                            }
-                            
-                            //Beneficiary
-                            if let adBeneficiary = userManagment.value(forKey: "add_beneficiary_form") as? NSDictionary {
-                                
-                                Global.shared.profileDetlsTxt = adBeneficiary["header_label1"] as? String ?? ""
-                                Global.shared.bankDetlsTxt = adBeneficiary["header_label2"] as? String ?? ""
-                                
-                                Global.shared.remarksTxtt = adBeneficiary["remarks"] as? String ?? ""
-                                Global.shared.mobileNumberBenfTxt = adBeneficiary["mobile"] as? String ?? ""
-                                Global.shared.emailIdTxttLbl = adBeneficiary["email"] as? String ?? ""
-                                Global.shared.telephneNumbrBenefTxt = adBeneficiary["telephone"] as? String ?? ""
-                                Global.shared.nationalityBenefTxt = adBeneficiary["nationality"] as? String ?? ""
-                                Global.shared.districtBenefTxt = adBeneficiary["district"] as? String ?? ""
-                                
-                                Global.shared.benefIdTypeTxtt = adBeneficiary["beneficiaryidtype"] as? String ?? ""
-                                Global.shared.accounttypeTxt = adBeneficiary["accounttype"] as? String ?? ""
-                                Global.shared.branchAddress1Txtt = adBeneficiary["branchaddress1"] as? String ?? ""
-                                Global.shared.branchAddress2Txtt = adBeneficiary["branchaddress2"] as? String ?? ""
-                                Global.shared.bankTabTxt = adBeneficiary["bank_name"] as? String ?? ""
-                                Global.shared.wuTabTxt = adBeneficiary["wu_name"] as? String ?? ""
-                                Global.shared.benSucesSubtitleTxt = adBeneficiary["ben_success"] as? String ?? ""
-                                Global.shared.benAdded = adBeneficiary["ben_added"] as? String ?? ""
-                                Global.shared.firstNameb = adBeneficiary["firstname"] as? String ?? ""
-                                Global.shared.lastNameb = adBeneficiary["lastname"] as? String ?? ""
-                                Global.shared.middleNameb = adBeneficiary["middlename"] as? String ?? ""
-                                Global.shared.address1b = adBeneficiary["addressline1"] as? String ?? ""
-                                Global.shared.address2b = adBeneficiary["addressline2"] as? String ?? ""
-                                Global.shared.cityb = adBeneficiary["city"] as? String ?? ""
-                                Global.shared.stateb = adBeneficiary["state"] as? String ?? ""
-                                Global.shared.postCodeb = adBeneficiary["postcode"] as? String ?? ""
-                                Global.shared.countryb = adBeneficiary["country"] as? String ?? ""
-                                Global.shared.currencyb = adBeneficiary["currency"] as? String ?? ""
-                                Global.shared.mobileb = adBeneficiary["mobile"] as? String ?? ""
-                                Global.shared.accountNumberb = adBeneficiary["accountnumber"] as? String ?? ""
-                                Global.shared.bankCodeb = adBeneficiary["bankcode"] as? String ?? ""
-                                Global.shared.bankNameb = adBeneficiary["bankname"] as? String ?? ""
-                                Global.shared.branchCodeb = adBeneficiary["branchcode"] as? String ?? ""
-                                Global.shared.branchNameb = adBeneficiary["branchname"] as? String ?? ""
-                                Global.shared.ifscCodeb = adBeneficiary["ifsccode"] as? String ?? ""
-                                Global.shared.swiftCodeb = adBeneficiary["swiftcode"] as? String ?? ""
-                                Global.shared.ibanCodeb = adBeneficiary["ibancode"] as? String ?? ""
-                                Global.shared.cnicnob = adBeneficiary["cnicno"] as? String ?? ""
-                                
-                                Global.shared.AddBenefNationality = adBeneficiary["nationality"] as? String ?? ""
-                                Global.shared.AddBenefDistrict = adBeneficiary["district"] as? String ?? ""
-                                Global.shared.AddBenefIDType = adBeneficiary["beneficiaryidtype"] as? String ?? ""
-                                Global.shared.AddBenefIDNumber = adBeneficiary["beneficiaryidnumber"] as? String ?? ""
-                                Global.shared.AddBenefRelationBeneficiary = adBeneficiary["beneficiaryrelation"] as? String ?? ""
-                                Global.shared.AddBenefAccountType = adBeneficiary["accounttype"] as? String ?? ""
-                                Global.shared.AddBenefBranchAddress1 = adBeneficiary["branchaddress1"] as? String ?? ""
-                                Global.shared.AddBenefBranchAddress2 = adBeneficiary["branchaddress2"] as? String ?? ""
-                                
-                                Global.shared.VisaSendToOwnCard = adBeneficiary["sendto_owncard"] as? String ?? ""
-                                Global.shared.VisaCardDetails = adBeneficiary["card_details"] as? String ?? ""
-                                Global.shared.VisaCardNumber = adBeneficiary["card_number"] as? String ?? ""
-                                Global.shared.VisaDirect = adBeneficiary["visa_direct"] as? String ?? ""
-                                Global.shared.rrn = adBeneficiary["rrn"] as? String ?? ""
-                                
-                                
-                            }
-                            
-                            //Beneficiary list
-                            if let benefList = userManagment.value(forKey: "beneficiary_list") as? NSDictionary {
-                                
-                                Global.shared.addBeneficiaryTxt = benefList["add_benficiary"] as? String ?? ""
-                                Global.shared.editBeneficiryTxt = benefList["edit_beneficiaries"] as? String ?? ""
-                                
-                                Global.shared.sourceAmntTxtt = benefList["source_amount"] as? String ?? ""
-                                Global.shared.targetAmntTxtt = benefList["target_amount"] as? String ?? ""
-                                
-                                Global.shared.beneficiaryHeader = benefList["benificiary"] as? String ?? ""
-                                Global.shared.beneficiriesHeader = benefList["beneficiaries"] as? String ?? ""
-                                Global.shared.beneficiaryDetailsHeader = benefList["beneficiary_details"] as? String ?? ""
-                                Global.shared.addBenfcryHeader = benefList["add_benficiary"] as? String ?? ""
-                                Global.shared.selectBenefType = benefList["select_beneficiary_type"] as? String ?? ""
-                                Global.shared.addBank = benefList["bank"] as? String ?? ""
-                                Global.shared.addCash = benefList["cash"] as? String ?? ""
-                                Global.shared.addWesternUnion = benefList["western_union"] as? String ?? ""
-                                Global.shared.sendMoneyTxt = benefList["send_money"] as? String ?? ""
-                                Global.shared.benefType = benefList["beneficiary_type"] as? String ?? ""
-                                
-                                Global.shared.benefListID = benefList["table_id"] as? String ?? ""
-                                Global.shared.benefListName = benefList["table_name"] as? String ?? ""
-                                Global.shared.benefListCountry = benefList["table_country"] as? String ?? ""
-                                Global.shared.benefListMobile = benefList["table_mobile"] as? String ?? ""
-                                Global.shared.benefListTransferMoney = benefList["transfer_money"] as? String ?? ""
-                                Global.shared.benefListDiscount = benefList["discount"] as? String ?? ""
-                                Global.shared.benefListRate = benefList["rate"] as? String ?? ""
-                                Global.shared.benefListCommission = benefList["commission"] as? String ?? ""
-                                Global.shared.benefListTaxCharges = benefList["tax_charges"] as? String ?? ""
-                                Global.shared.benefListNetPayable = benefList["net_payable"] as? String ?? ""
-                                Global.shared.benefLisTotalAmount = benefList["total_amount"] as? String ?? ""
-                                Global.shared.benefListdetailsName = benefList["details_name"] as? String ?? ""
-                                Global.shared.benefLisdetailsBankname = benefList["details_bankname"] as? String ?? ""
-                                Global.shared.benefListDetailsAcno = benefList["details_acno"] as? String ?? ""
-                                Global.shared.benefListDetailsBranch = benefList["details_branch"] as? String ?? ""
-                                Global.shared.benefListDetailsCurrency = benefList["details_currency"] as? String ?? ""
-                                Global.shared.benefListDetailsSourceOfIncome = benefList["details_sourceOfIncome"] as? String ?? ""
-                                Global.shared.benefListDetailsDisbursalMode = benefList["details_disbursolMode"] as? String ?? ""
-                                Global.shared.benefListDetailsPurposename = benefList["details_purposename"] as? String ?? ""
-                                Global.shared.benefListDetailsPrincipalAmount = benefList["details_principalamount"] as? String ?? ""
-                                Global.shared.benefListDetailsOrigPrincipalAmount = benefList["details_origprincipalamount"] as? String ?? ""
-                                
-                                Global.shared.favBenfDashboard = benefList["favourite_beneficiaries"] as? String ?? ""
-                                
-                                
-                            }
-                            
-                            //Rate Calculator
-                            if let profileReviewModal = userManagment.value(forKey: "profile_review_modal") as? NSDictionary {
-                                print(profileReviewModal)
-                                Global.shared.profileReviewTitleLbl = profileReviewModal["lbl_header1"] as? String ?? ""
-                                Global.shared.profileReviewSubTitleLbl = profileReviewModal["lbl_desc1"] as? String ?? ""
-                            }
-                            
-                            //Rate Calculator
-                            if let rateCalculator = userManagment.value(forKey: "rate_calculator_form") as? NSDictionary {
-                                
-                                Global.shared.youPauOnlyyTxt = rateCalculator["you_pay_only"] as? String ?? ""
-                                Global.shared.indicativeRatesTxt = rateCalculator["indicative_rates_only"] as? String ?? ""
-                                
-                                Global.shared.rateCalculatorHeader = rateCalculator["rate_calculator"] as? String ?? ""
-                                Global.shared.youSendTxt = rateCalculator["you_send"] as? String ?? ""
-                                Global.shared.theyReceiveTxt = rateCalculator["you_recieve"] as? String ?? ""
-                                Global.shared.convertTxt = rateCalculator["convert"] as? String ?? ""
-                                Global.shared.transctnSumary = rateCalculator["transaction_summary"] as? String ?? ""
-                                Global.shared.amntToBeReceived = rateCalculator["amount_to_be_received"] as? String ?? ""
-                                Global.shared.conversnRate = rateCalculator["conversion_rate"] as? String ?? ""
-                                Global.shared.lcAmnt = rateCalculator["lc_amount"] as? String ?? ""
-                                Global.shared.ratetax = rateCalculator["tax"] as? String ?? ""
-                                Global.shared.totalAmntPayable = rateCalculator["total_amount_payable"] as? String ?? ""
-                                
-                                Global.shared.ratesendReceiveDesc = rateCalculator["send_receive_desc"] as? String ?? ""
-                                Global.shared.rateDetails = rateCalculator["rate_details"] as? String ?? ""
-                                Global.shared.rateOriginatorAmount = rateCalculator["originator_amount"] as? String ?? ""
-                                Global.shared.rateConversationDetails = rateCalculator["conversation_details"] as? String ?? ""
-                                Global.shared.rateDestinationAmount = rateCalculator["destination_amount"] as? String ?? ""
-                                Global.shared.rateSenderFee = rateCalculator["sender_fee"] as? String ?? ""
-                                Global.shared.rateGrossTotalAmount = rateCalculator["gross_total_amount"] as? String ?? ""
-                                
-                            }
-                            
-                            //Rate Calculator
-                            if let transactions = userManagment.value(forKey: "transactions") as? NSDictionary {
-                                
-                                Global.shared.transctionByPeriodTxt = transactions["transaction_by_period"] as? String ?? ""
-                                Global.shared.transactionByDateTxt = transactions["transaction_by_date"] as? String ?? ""
-                                
-                                
-                                Global.shared.transactionsShareVoucherTxt = transactions["share_voucher"] as? String ?? ""
-                                Global.shared.transactionsTransferTxt = transactions["transfer"] as? String ?? ""
-                                Global.shared.transactionsModeOfTrnsfrTxt = transactions["mode_of_transfer"] as? String ?? ""
-                                
-                                Global.shared.transactionsList = transactions["transactions_list"] as? String ?? ""
-                                Global.shared.transactionsFilterBy = transactions["filter_by"] as? String ?? ""
-                                Global.shared.transactionsFromDate = transactions["from_date"] as? String ?? ""
-                                Global.shared.transactionsToDate = transactions["to_date"] as? String ?? ""
-                                Global.shared.transactionsPeriod = transactions["transaction_period"] as? String ?? ""
-                                Global.shared.transactionsApply = transactions["apply"] as? String ?? ""
-                                Global.shared.transactionsPDFDownload = transactions["pdf_download"] as? String ?? ""
-                                Global.shared.transactionsExcelDownload = transactions["xls_download"] as? String ?? ""
-                                Global.shared.transactionsRefID = transactions["table_refId"] as? String ?? ""
-                                Global.shared.transactionsBeneficiaryName = transactions["table_benName"] as? String ?? ""
-                                Global.shared.transactionsStatus = transactions["table_status"] as? String ?? ""
-                                Global.shared.transactionsSourceCurrency = transactions["table_sourceOfIncome"] as? String ?? ""
-                                Global.shared.transactionsTargetCurrency = transactions["table_targentCurrency"] as? String ?? ""
-                                Global.shared.transactionsTableTotalAmount = transactions["table_totalAmount"] as? String ?? ""
-                                Global.shared.transactionsCreatedDate = transactions["table_createdDate"] as? String ?? ""
-                                Global.shared.transactionsTxnRef = transactions["details_txnref"] as? String ?? ""
-                                Global.shared.transactionsRate = transactions["details_rate"] as? String ?? ""
-                                Global.shared.transactionsCommission = transactions["details_commission"] as? String ?? ""
-                                Global.shared.transactionsFCAmount = transactions["details_fcAmount"] as? String ?? ""
-                                Global.shared.transactionsLCAmount = transactions["details_lcAmount"] as? String ?? ""
-                                Global.shared.transactionsCurrency = transactions["details_currency"] as? String ?? ""
-                                Global.shared.transactionsDetailsTotalAmount = transactions["details_totalAmount"] as? String ?? ""
-                                Global.shared.transactionsDownloadVoucher = transactions["download_voucher"] as? String ?? ""
-                                Global.shared.transactionsQuickSend = transactions["quick_send"] as? String ?? ""
-                                
-                                Global.shared.recentTransctnsLbl = transactions["recent_transactions"] as? String ?? ""
-                            }
-                            
-                            //login screen related
-                            if let loginScreen = userManagment.value(forKey: "login_screen") as? NSDictionary {
-                                
-                                Global.shared.securityimglblOne = loginScreen["securityimglbl_1"] as? String ?? ""
-                                Global.shared.securityimglblTwo = loginScreen["securityimglbl_2"] as? String ?? ""
-                                Global.shared.securityimglblThree = loginScreen["securityimglbl_3"] as? String ?? ""
-                                
-                                
-                                Global.shared.loginHeaderTxt = loginScreen["lbl_header"] as? String ?? ""
-                                Global.shared.userNameTxt = loginScreen["username"] as? String ?? ""
-                                Global.shared.paswdText = loginScreen["password"] as? String ?? ""
-                                Global.shared.forgotUserNameTxt = loginScreen["label1"] as? String ?? ""
-                                Global.shared.forgotPswdTxt = loginScreen["label2"] as? String ?? ""
-                                Global.shared.tryAnotherQuestnTxt = loginScreen["try_another_question"] as? String ?? ""
-                                Global.shared.verifySecurityImg = loginScreen["securityimglbl"] as? String ?? ""
-                                Global.shared.verifyProceedAfterLogin = loginScreen["verify_and_proceed"] as? String ?? ""
-                                Global.shared.loginWithFaceIDTxt = loginScreen["login_with_faceid"] as? String ?? ""
-                                
-                                Global.shared.loginChat = loginScreen["login_chat"] as? String ?? ""
-                                Global.shared.ourBranches = loginScreen["login_branches"] as? String ?? ""
-                                self.assigningLoginLabels()
-                            }
-                            
-                            if let forgotUsername = userManagment.value(forKey: "forgot_username") as? NSDictionary {
-                                Global.shared.confirmCivildIdTxt = forgotUsername["lbl_header1"] as? String ?? ""
-                            }
-                            
-                            if let forgotPaswd = userManagment.value(forKey: "forgot_password") as? NSDictionary {
-                                Global.shared.confrmUserToResetPaswd = forgotPaswd["lbl_header1"] as? String ?? ""
-                            }
-                            
-                            //existing customer related
-                            if let accountsetup = userManagment.value(forKey: "account_setup") as? NSDictionary {
-                                
-                                Global.shared.existingTopHeaderTxt = accountsetup["lbl_header"] as? String ?? ""
-                                Global.shared.existingCustomrTxt = accountsetup["label1"] as? String ?? ""
-                                let setUpOnline = accountsetup["label2"] as? String ?? ""
-                               // let acnt = accountsetup["label3"] as? String ?? ""
-                                Global.shared.setUpOnlineTxt = setUpOnline
-                                Global.shared.newCustomerTxt = accountsetup["label4"] as? String ?? ""
-                                Global.shared.registerWithAlMTxt = accountsetup["label5"] as? String ?? ""
-                                
-                            }
-                            //existing accntSetup
-                            if let existaccntsetup = userManagment.value(forKey: "exist_account_setup") as? NSDictionary {
-                                
-                                Global.shared.firstSecndTabHeaderTxt = existaccntsetup["lbl_header1"] as? String ?? ""
-                                Global.shared.civilIdTxt = existaccntsetup["civil_id"] as? String ?? ""
-                                Global.shared.mobileNumberTxt = existaccntsetup["mobile_number"] as? String ?? ""
-                                Global.shared.emailIdTxt = existaccntsetup["email"] as? String ?? ""
-                                Global.shared.firstNameTxt = existaccntsetup["first_name"] as? String ?? ""
-                                Global.shared.lastNameTxt = existaccntsetup["last_name"] as? String ?? ""
-                                Global.shared.middleNameTxt = existaccntsetup["middle_name"] as? String ?? ""
-                                Global.shared.thirdTabHeaderTxt = existaccntsetup["lbl_header3"] as? String ?? ""
-                                Global.shared.selectSecureImgTxt = existaccntsetup["lbl_header4"] as? String ?? ""
-                                Global.shared.verifyBtnTxt = existaccntsetup["verify_btn"] as? String ?? ""
-                                Global.shared.continueBtnTxt = existaccntsetup["looks_btn"] as? String ?? ""
-                                
-                                
-                            }
-                            //new accntSetup
-                            if let newaccntsetup = userManagment.value(forKey: "new_account_setup") as? NSDictionary {
-                                
-                                Global.shared.editProfileTxt = newaccntsetup["edit_profile"] as? String ?? ""
-                                Global.shared.employmntDetlsTxt = newaccntsetup["lbl_header9"] as? String ?? ""
-                                Global.shared.identityDetlsTxt = newaccntsetup["lbl_header7"] as? String ?? ""
-                                
-                                Global.shared.uploadProfDocmntsTxt = newaccntsetup["upload_proof_documents"] as? String ?? ""
-                                Global.shared.seeSampleVideoTxt = newaccntsetup["text2"] as? String ?? ""
-                                
-                                Global.shared.persnalDetlsLbl = newaccntsetup["lbl_header2"] as? String ?? ""
-                                Global.shared.addresDetlsLbl = newaccntsetup["lbl_header8"] as? String ?? ""
-                                Global.shared.remitanceDetlsLbl = newaccntsetup["lbl_header10"] as? String ?? ""
-                                Global.shared.trnsctnReltdDetlsLbl = newaccntsetup["lbl_header11"] as? String ?? ""
-                                Global.shared.enableBiometricTxt = newaccntsetup["enable_biometric"] as? String ?? ""
-                                
-                                Global.shared.newSelectVideoTxt = newaccntsetup["text7"] as? String ?? ""
-                                Global.shared.newPreviewVideoTxt = newaccntsetup["text8"] as? String ?? ""
-                                Global.shared.newUplodFrntImgeTxt = newaccntsetup["upload_front_image"] as? String ?? ""
-                                Global.shared.newUplodBckImgTxt = newaccntsetup["upload_back_image"] as? String ?? ""
-                                Global.shared.newRecordVideoTxt = newaccntsetup["text1"] as? String ?? ""
-                                
-                                Global.shared.newCustomerHeader = newaccntsetup["lbl_header6"] as? String ?? ""
-                                Global.shared.identityTabNameTxt = newaccntsetup["lbl_tab1"] as? String ?? ""
-                                Global.shared.personalTabNameTxt = newaccntsetup["lbl_tab2"] as? String ?? ""
-                                Global.shared.employmentTabNameTxt = newaccntsetup["lbl_tab3"] as? String ?? ""
-                                Global.shared.remitanceTabNameTxt = newaccntsetup["lbl_tab4"] as? String ?? ""
-                                
-                                Global.shared.newCidentityTypeTxt = newaccntsetup["civil_id_type"] as? String ?? ""
-                                Global.shared.newCidentityNumberTxt = newaccntsetup["civil_id_number"] as? String ?? ""
-                                Global.shared.newCIdIssueDateTxt = newaccntsetup["civil_id_issue_date"] as? String ?? ""
-                                Global.shared.newCIdExpiryDateTxt = newaccntsetup["civil_id_expiry_date"] as? String ?? ""
-                                Global.shared.newCCountryOfIsueTxt = newaccntsetup["civil_id_countryofissue"] as? String ?? ""
-                                Global.shared.newCPlaceOfIsueTxt = newaccntsetup["civil_id_placeofissue"] as? String ?? ""
-                                
-                                Global.shared.persnalSalutatnTxt = newaccntsetup["salutation"] as? String ?? ""
-                                Global.shared.persnalFirstNameTxt = newaccntsetup["firstname"] as? String ?? ""
-                                Global.shared.persnalmiddleNameTxt = newaccntsetup["middlename"] as? String ?? ""
-                                Global.shared.persnalLastNameTxt = newaccntsetup["lastname"] as? String ?? ""
-                                Global.shared.persnalGenderTxt = newaccntsetup["gender"] as? String ?? ""
-                                Global.shared.persnalNationlityTxt = newaccntsetup["nationality"] as? String ?? ""
-                                Global.shared.persnalDobTxt = newaccntsetup["dob"] as? String ?? ""
-                                Global.shared.persnalPobTxt = newaccntsetup["birthplace"] as? String ?? ""
-                                Global.shared.persnalMobileNumberTxt = newaccntsetup["mobile_number"] as? String ?? ""
-                                Global.shared.persnalTelephnTxt = newaccntsetup["telephone"] as? String ?? ""
-                                Global.shared.persnalEmailIdTxt = newaccntsetup["email"] as? String ?? ""
-                                Global.shared.persnalSecndryEmailTxt = newaccntsetup["secondary_email"] as? String ?? ""
-                                Global.shared.persnalMaleTxt = newaccntsetup["gender_lbl1"] as? String ?? ""
-                                Global.shared.persnalFemaleTxt = newaccntsetup["gender_lbl2"] as? String ?? ""
-                                Global.shared.persnalNeutralTxt = newaccntsetup["gender_lbl3"] as? String ?? ""
-                                
-                                Global.shared.acntResidentTypeTxt = newaccntsetup["resident_type"] as? String ?? ""
-                                Global.shared.acntFlatTxt = newaccntsetup["flat"] as? String ?? ""
-                                Global.shared.acntFloorTxt = newaccntsetup["floor"] as? String ?? ""
-                                Global.shared.acntBuildingTxt = newaccntsetup["building"] as? String ?? ""
-                                Global.shared.acntGadaTxt = newaccntsetup["gada"] as? String ?? ""
-                                Global.shared.acntStreetTxt = newaccntsetup["street"] as? String ?? ""
-                                Global.shared.acntblockTxt = newaccntsetup["block"] as? String ?? ""
-                                Global.shared.acntAreaCityTxt = newaccntsetup["area_city"] as? String ?? ""
-                                Global.shared.acntZipcodeTxt = newaccntsetup["zip_code"] as? String ?? ""
-                                Global.shared.acntStateTxt = newaccntsetup["state"] as? String ?? ""
-                                Global.shared.acntCountryTxt = newaccntsetup["country_code"] as? String ?? ""
-                                
-                                Global.shared.acntRemiterCategryTxt = newaccntsetup["rem_category"] as? String ?? ""
-                                Global.shared.acntRemitIndividualTxt = newaccntsetup["rem_category1"] as? String ?? ""
-                                Global.shared.acntRemitPoliticalTxt = newaccntsetup["rem_category2"] as? String ?? ""
-                                
-                                Global.shared.acntPoliticalScopeTxt = newaccntsetup["pepLocalORInternational"] as? String ?? ""
-                                Global.shared.acntPoliticalLocalTxt = newaccntsetup["pep_lbl1_val1"] as? String ?? ""
-                                Global.shared.acntPoliticalInterntnlTxt = newaccntsetup["pep_lbl1_val2"] as? String ?? ""
-                                
-                                Global.shared.acntAreYouRelativeTxt = newaccntsetup["pepRelative"] as? String ?? ""
-                                Global.shared.acntRelativeYesTxt = newaccntsetup["pepRelative_val1"] as? String ?? ""
-                                Global.shared.acntRelativeNoTxt = newaccntsetup["pepRelative_val2"] as? String ?? ""
-                                
-                                Global.shared.acntDegreOfReltnSHipTxt = newaccntsetup["pepDegreeOfRelationship"] as? String ?? ""
-                                Global.shared.acntDegreCloseTxt = newaccntsetup["pep_lbl4_val1"] as? String ?? ""
-                                Global.shared.acntDegreDistantTxt = newaccntsetup["pep_lbl4_val2"] as? String ?? ""
-                                Global.shared.acntDegreNeutralsTxt = newaccntsetup["pep_lbl4_val3"] as? String ?? ""
-                                Global.shared.pepPositionTxt = newaccntsetup["pepPosition"] as? String ?? ""
-                                
-                                
-                                Global.shared.ocuptnTxt = newaccntsetup["employer_occupation"] as? String ?? ""
-                                Global.shared.employNameTxt = newaccntsetup["employer_name"] as? String ?? ""
-                                Global.shared.employeIdTxt = newaccntsetup["employee_id"] as? String ?? ""
-                                Global.shared.employLoctn = newaccntsetup["employer_location"] as? String ?? ""
-                                Global.shared.designtnTxt = newaccntsetup["employer_designation"] as? String ?? ""
-                                Global.shared.salaryEmploy = newaccntsetup["salary"] as? String ?? ""
-                                Global.shared.otherIncome = newaccntsetup["other_income"] as? String ?? ""
-                                
-                                Global.shared.remitTypeOfServiceTxt = newaccntsetup["type_of_service"] as? String ?? ""
-                                Global.shared.remitPurposeTransferTxt = newaccntsetup["purpose_of_transfer"] as? String ?? ""
-                                Global.shared.remitExpctedPerMonthTxt = newaccntsetup["trans_expected_per_month"] as? String ?? ""
-                                Global.shared.remitExpctedPerYearTxt = newaccntsetup["trans_expected_per_year"] as? String ?? ""
-                                Global.shared.remitTrnsctnValPerMonthTxt = newaccntsetup["trans_value_per_month"] as? String ?? ""
-                                Global.shared.remitTrnsctnValPerYearTxt = newaccntsetup["trans_value_per_year"] as? String ?? ""
-                                Global.shared.remitSourceOfIncomeTxt = newaccntsetup["source_of_income"] as? String ?? ""
-                                Global.shared.remitAvgYearlyIncomeTxt = newaccntsetup["avg_year_income"] as? String ?? ""
-                                
-                                
-                                Global.shared.preferLangTxt = newaccntsetup["pref_language"] as? String ?? ""
-                                Global.shared.countryIsueDrpText = newaccntsetup["civil_id_countryofissue_val"] as? String ?? ""
-                                Global.shared.placeIsueDrpTetx = newaccntsetup["civil_id_placeofissue_val"] as? String ?? ""
-                                Global.shared.stateDrpTxt = newaccntsetup["source_of_income_lbl_val1"] as? String ?? ""
-                                Global.shared.purposeOfTrnsferDrpTxt = newaccntsetup["purpose_of_transfer_lbl_val1"] as? String ?? ""
-                                Global.shared.typeOfServiceDrpTxt = newaccntsetup["type_of_service_lbl_val1"] as? String ?? ""
-                                Global.shared.sourceOfIncomeDrpTxt = newaccntsetup["source_of_income_lbl_val1"] as? String ?? ""
-                                Global.shared.occuptnDrpTxt = newaccntsetup["occupation_lbl_val1"] as? String ?? ""
-                                Global.shared.recordSelfieVideoTxt = newaccntsetup["text1"] as? String ?? ""
-                                
-                                Global.shared.transExpectedCount = newaccntsetup["trans_expected_count"] as? String ?? ""
-                                Global.shared.transExpectedCountMy = newaccntsetup["trans_expected_count_my"] as? String ?? ""
-                                Global.shared.transExpectedValue = newaccntsetup["trans_expected_value"] as? String ?? ""
-                                Global.shared.transExpectedValueMy = newaccntsetup["trans_expected_value_my"] as? String ?? ""
-                                
-                                
-                                
-                            }
-                            //Profile
-                            if let profile = userManagment.value(forKey: "profile") as? NSDictionary {
-                                
-                                Global.shared.faceIdLockTxt = profile["faceid_lock"] as? String ?? ""
-                                Global.shared.profileTab = profile["profile_tab"] as? String ?? ""
-                                
-                            }
-                            
-                            //Profile
-                            if let dashboard = userManagment.value(forKey: "dashboard") as? NSDictionary {
-                                
-                                Global.shared.transactnInsight = dashboard["transacton_insights"] as? String ?? ""
-                                Global.shared.ratePaternDashboard = dashboard["rate_pattern_header"] as? String ?? ""
-                                Global.shared.setAlertDashboard = dashboard["set_alert"] as? String ?? ""
-                                
-                            }
-                            
-                            //verify otp popup
-                            if let verifyOtpPopUp = userManagment.value(forKey: "verify_otp_modal") as? NSDictionary {
-                                
-                                Global.shared.verificationHeaderTxt = verifyOtpPopUp["lbl_header1"] as? String ?? ""
-                                Global.shared.verfiCtnSubTitleTxt = verifyOtpPopUp["lbl_desc1"] as? String ?? ""
-                                Global.shared.codeExpiresTxt = verifyOtpPopUp["expire_tag"] as? String ?? ""
-                                
-                                
-                            }
-                            
-                            //verify account changePswd
-                            if let changePswdScreen = userManagment.value(forKey: "change_password_screen") as? NSDictionary {
-                                
-                                Global.shared.verifyOnlineHeaderTxt = changePswdScreen["lbl_header"] as? String ?? ""
-                                Global.shared.verifyUsernameTxt = changePswdScreen["username"] as? String ?? ""
-                                Global.shared.verifyPaswdTxt = changePswdScreen["password"] as? String ?? ""
-                                Global.shared.verifyConfirmPswdTxt = changePswdScreen["confirm_password"] as? String ?? ""
-                                Global.shared.changeOldPassword = changePswdScreen["old_password"] as? String ?? ""
-                                Global.shared.changeNewPassword = changePswdScreen["new_password"] as? String ?? ""
-                                
-                            }
-                            if let biometricModel = userManagment.value(forKey: "biometric_modal") as? NSDictionary {
-                                
-                                Global.shared.bioEnable = biometricModel["lbl_desc1"] as? String ?? ""
-                                Global.shared.bioDoItlater = biometricModel["lbl_desc2"] as? String ?? ""
-                                Global.shared.biometricHeader = biometricModel["lbl_header1"] as? String ?? ""
-                                
-                            }
-                            
-                        }
-                    }
-                    
-                    
+                    let obj = dataObj! as NSObject
+                    CDUtilityInfo.shared.languageChange(obj: obj)
                 }
-                
+                self.setupdate()
             }
             else
             {
@@ -1589,11 +772,795 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
                     let alert = ViewControllerManager.displayAlert(message: errorString ?? "", title:APPLICATIONNAME)
                     self.present(alert, animated: true, completion: nil)
                 }
-                
-                
             }
         }
-        
+    }
+    
+    
+    
+    func setupdate()
+    {
+        if let lan_data = CDUtilityInfo.shared.languageChangeData()
+        {
+            if let dataDict = lan_data.languageData as? NSDictionary
+            {
+                if let apiMessageCodes = dataDict.value(forKey: "api_message_codes") as? NSDictionary
+                {
+                    Global.shared.messageCodeAry = apiMessageCodes
+                }
+                if let commonNew = dataDict.value(forKey: "common_new") as? NSDictionary
+                {
+                    Global.shared.cancelleddTxt = commonNew["lbl_common_65"] as? String ?? ""
+                    Global.shared.viewProfileTxt = commonNew["lbl_common_64"] as? String ?? ""
+                    Global.shared.doneTxt = commonNew["lbl_common_61"] as? String ?? ""
+                    Global.shared.failedTxt = commonNew["lbl_common_60"] as? String ?? ""
+                    Global.shared.viewOnGoogleMapTxt = commonNew["lbl_common_31"] as? String ?? ""
+                    Global.shared.pendingTxt = commonNew["lbl_common_18"] as? String ?? ""
+                    Global.shared.sucessTxt = commonNew["lbl_common_17"] as? String ?? ""
+                    Global.shared.favTxtt = commonNew["lbl_common_23"] as? String ?? ""
+                    Global.shared.editTxtt = commonNew["lbl_common_21"] as? String ?? ""
+                    Global.shared.retailTxt = commonNew["lbl_common_25"] as? String ?? ""
+                    Global.shared.oneMonthTxt = commonNew["lbl_common_32"] as? String ?? ""
+                    Global.shared.threeMonthTxt = commonNew["lbl_common_33"] as? String ?? ""
+                    Global.shared.sixMonthTxt = commonNew["lbl_common_34"] as? String ?? ""
+                    Global.shared.oneYearTxt = commonNew["lbl_common_35"] as? String ?? ""
+                    Global.shared.cameraTxt = commonNew["lbl_common_30"] as? String ?? ""
+                    Global.shared.galryTxt = commonNew["lbl_common_29"] as? String ?? ""
+                    Global.shared.youCantCreateAnthrQuestnTxt = commonNew["lbl_common_36"] as? String ?? ""
+                    Global.shared.fileTxt = commonNew["lbl_common_37"] as? String ?? ""
+                    Global.shared.selectOptionTxt = commonNew["lbl_common_38"] as? String ?? ""
+                    Global.shared.alrdySelFrntBckFiles = commonNew["lbl_common_39"] as? String ?? ""
+                    Global.shared.remveFrntImgToUpNewOne = commonNew["lbl_common_40"] as? String ?? ""
+                    Global.shared.remveBckImgToUpNewOne = commonNew["lbl_common_41"] as? String ?? ""
+                    Global.shared.alrdySelctdVideo = commonNew["lbl_common_42"] as? String ?? ""
+                    Global.shared.benefDatNotAvailble = commonNew["lbl_common_43"] as? String ?? ""
+                    Global.shared.changeLangSubTitleTxt = commonNew["lbl_common_44"] as? String ?? ""
+                }
+                if let voucher = dataDict.value(forKey: "voucher") as? NSDictionary
+                {
+                    Global.shared.mtcnn = voucher["mtcn"] as? String ?? ""
+                    Global.shared.ttNumbr = voucher["tt_number"] as? String ?? ""
+                    Global.shared.serviceOpted = voucher["service_opted"] as? String ?? ""
+                    Global.shared.voucherNumber = voucher["voucher_number"] as? String ?? ""
+                    Global.shared.accountNumberVoucher = voucher["account_number"] as? String ?? ""
+                    Global.shared.bankNameVoucher = voucher["bank_name"] as? String ?? ""
+                    Global.shared.branchNameVoucher = voucher["branch_name"] as? String ?? ""
+                    Global.shared.statusVoucher = voucher["account_number"] as? String ?? ""
+                }
+                if let transactionEnquiry = dataDict.value(forKey: "Transaction_Enquiry") as? NSDictionary
+                {
+                    Global.shared.tmtcn = transactionEnquiry["mtcn"] as? String ?? ""
+                    Global.shared.tttno = transactionEnquiry["ttno"] as? String ?? ""
+                    Global.shared.tbeneficiaryBank = transactionEnquiry["beneficiary_bank"] as? String ?? ""
+                    Global.shared.tbenficiaryfullName = transactionEnquiry["benficiaryfull_name"] as? String ?? ""
+                    Global.shared.treceiveAmount = transactionEnquiry["receive_amount"] as? String ?? ""
+                    Global.shared.treferenceNumber = transactionEnquiry["reference_number"] as? String ?? ""
+                    Global.shared.ttransaction = transactionEnquiry["transaction"] as? String ?? ""
+                    Global.shared.ttransactionStatus = transactionEnquiry["transaction_status"] as? String ?? ""
+                    Global.shared.ttransferAmount = transactionEnquiry["transfer_amount"] as? String ?? ""
+                    Global.shared.tviewStatus = transactionEnquiry["view_status"] as? String ?? ""
+                }
+                if let menuLabels = dataDict.value(forKey: "menu_labels") as? NSDictionary
+                {
+                    Global.shared.lbl_fxbooking = menuLabels["lbl_fxbooking"] as? String ?? ""
+                    Global.shared.menuRateThisAppString = menuLabels["lbl_rate_this_app"] as? String ?? ""
+                    Global.shared.menuBeneficiary = menuLabels["lbl_benefeciaries"] as? String ?? ""
+                    Global.shared.menuChangePaswd = menuLabels["lbl_change_password"] as? String ?? ""
+                    Global.shared.menuContact = menuLabels["lbl_contact"] as? String ?? ""
+                    Global.shared.menuDashboard = menuLabels["lbl_dashboard"] as? String ?? ""
+                    Global.shared.menuFeedback = menuLabels["lbl_feedback"] as? String ?? ""
+                    Global.shared.menuMessages = menuLabels["lbl_messages"] as? String ?? ""
+                    Global.shared.menuProfile = menuLabels["lbl_profile"] as? String ?? ""
+                    Global.shared.menuTransactions = menuLabels["lbl_transactions"] as? String ?? ""
+                    Global.shared.menuRateAlert = menuLabels["lbl_rate_alert"] as? String ?? ""
+                    Global.shared.menuOffer = menuLabels["lbl_offers"] as? String ?? ""
+                    Global.shared.menuReferfriend = "Refer"
+                    Global.shared.CivilIDUpdate = menuLabels["lbl_updateid"] as? String ?? ""
+                }
+                if let footerContent = dataDict.value(forKey: "footer_content") as? NSDictionary
+                {
+                    Global.shared.faqTxt = footerContent["faqs"] as? String ?? ""
+                    Global.shared.helpTxt = footerContent["help"] as? String ?? ""
+                }
+                if let news_label = dataDict.value(forKey: "news_label") as? NSDictionary
+                {
+                    Global.shared.latestNews = news_label["latest_news"] as? String ?? ""
+                }
+                if let ref_label = dataDict.value(forKey: "referralcode_label") as? NSDictionary
+                {
+                    Global.shared.copy = ref_label["copy"] as? String ?? ""
+                    Global.shared.how_it_works = ref_label["how_it_works"] as? String ?? ""
+                    Global.shared.invalid_ref = ref_label["invalid_ref"] as? String ?? ""
+                    Global.shared.referfriend = ref_label["referfriend"] as? String ?? ""
+                    Global.shared.referralcode = ref_label["referralcode"] as? String ?? ""
+                    Global.shared.share = ref_label["share"] as? String ?? ""
+                    Global.shared.step1 = ref_label["step1"] as? String ?? ""
+                    Global.shared.step1_lbl = ref_label["step1_lbl"] as? String ?? ""
+                    Global.shared.step2 = ref_label["step2"] as? String ?? ""
+                    Global.shared.step2_lbl = ref_label["step2_lbl"] as? String ?? ""
+                    Global.shared.step3 = ref_label["step3"] as? String ?? ""
+                    Global.shared.step3_lbl = ref_label["step3_lbl"] as? String ?? ""
+                    Global.shared.via_whatsapp = ref_label["via_whatsapp"] as? String ?? ""
+                }
+                if let common = dataDict.value(forKey: "common") as? NSDictionary
+                {
+                    Global.shared.onlyThresholdTxt = common["threshold"] as? String ?? ""
+                    Global.shared.deleteTxt = common["delete"] as? String ?? ""
+                Global.shared.lowTxt = common["low"] as? String ?? ""
+                Global.shared.mediumTxt = common["medium"] as? String ?? ""
+                Global.shared.highTxt = common["high"] as? String ?? ""
+                Global.shared.strongTxt = common["strong"] as? String ?? ""
+                Global.shared.answerTxt = common["answer"] as? String ?? ""
+                Global.shared.viewAll = common["viewall"] as? String ?? ""
+                Global.shared.delete_confirmation = common["delete_confirm"] as? String ?? ""
+                Global.shared.repeatTxt = common["repeat"] as? String ?? ""
+                Global.shared.repetFailedPendingTxt = common["repeat_availability"] as? String ?? ""
+                Global.shared.selectSecurityImg = common["sel_security_image"] as? String ?? ""
+                Global.shared.enterOtpTxt = common["otp_enter"] as? String ?? ""
+                Global.shared.thresholdValueTxt = common["threshold_value"] as? String ?? ""
+                Global.shared.transfersTxtTab = common["transfers"] as? String ?? "Transfers"
+                Global.shared.createYourOwnQuestnTxt = common["lbl_create_question"] as? String ?? ""
+                Global.shared.selectedBenefDisabled = common["sel_ben_disabled"] as? String ?? ""
+                Global.shared.showLessTxt = common["show_less"] as? String ?? ""
+                Global.shared.securityVerfictnTxt = common["security_verification"] as? String ?? ""
+                Global.shared.favBenfTxt = common["favorite"] as? String ?? ""
+                Global.shared.unfavBenefTxt = common["unfavourite"] as? String ?? ""
+                Global.shared.enableBenefTxt = common["enable"] as? String ?? ""
+                Global.shared.disableBenefTxt = common["disable"] as? String ?? ""
+                Global.shared.foreignLcCurncyTxt = common["foreign_currency"] as? String ?? ""
+                Global.shared.localCurncyTxt = common["local_currency"] as? String ?? ""
+                Global.shared.selectYourQuestnTxt = common["select_your_question"] as? String ?? ""
+                Global.shared.acceptTermsCondtnsAlert = common["proceed_tc"] as? String ?? ""
+                Global.shared.versionLbl = common["version_name"] as? String ?? ""
+                let version = Bundle.main.infoDictionary!["CFBundleShortVersionString"]!
+                let versionNumber = version as? String ?? ""
+                self.versionLbl.text = Global.shared.versionLbl + ":" + versionNumber
+                Global.shared.smsTxt = common["delivery_type_sms"] as? String ?? ""
+                Global.shared.emailTxt = common["delivery_type_email"] as? String ?? ""
+                Global.shared.foreignCurncyTxt = common["foreign_currency"] as? String ?? ""
+                Global.shared.plsContctAdminOtp = common["label_reset_otp"] as? String ?? ""
+                Global.shared.enterOtpAlrdyExists = common["label_reset_otp_enter"] as? String ?? ""
+                Global.shared.resetTxt = common["reset"] as? String ?? ""
+                Global.shared.restQuestnsTxt = common["reset_questions"] as? String ?? ""
+                Global.shared.noRecordsFoundTxt = common["no_records_found"] as? String ?? ""
+                Global.shared.logoutHeaderTxt = common["logout"] as? String ?? ""
+                Global.shared.remiterInactiveDashboard = common["remitter_inactive"] as? String ?? ""
+                Global.shared.remiterInactiveBeneficiary = common["remitter_inactive_beneficiary"] as? String ?? ""
+                Global.shared.remiterInactiveTrnsctn = common["remitter_inactive_transaction"] as? String ?? ""
+                Global.shared.sendEmailTxtt = common["share_email"] as? String ?? ""
+                Global.shared.yesTxt = common["yes"] as? String ?? ""
+                Global.shared.noTxt = common["no"] as? String ?? ""
+                Global.shared.sendNowTxt = common["send_now"] as? String ?? ""
+                Global.shared.monthTxtt = common["month"] as? String ?? ""
+                Global.shared.yearTxtt = common["year"] as? String ?? ""
+                Global.shared.browseTxt = common["browse"] as? String ?? ""
+                Global.shared.backTxt = common["back"] as? String ?? ""
+                Global.shared.frontTxt = common["front"] as? String ?? ""
+                Global.shared.recordTxt = common["record"] as? String ?? ""
+                Global.shared.uploadCivildIdTxt = common["uplaod_civilid"] as? String ?? ""
+                Global.shared.uploadSelfieVideTxt = common["upload_selfie_video"] as? String ?? ""
+                Global.shared.showMoreTxt = common["show_more"] as? String ?? ""
+                Global.shared.createUserNamePaswd = common["createuserpass_header"] as? String ?? ""
+                Global.shared.proceedTermsCondtnAlertTxt = common["proceed_tc"] as? String ?? ""
+                Global.shared.okTxt = common["ok"] as? String ?? ""
+                Global.shared.logoutTxt = common["logout_confirm"] as? String ?? ""
+                Global.shared.lastLoginTxt = common["lastlogin"] as? String ?? ""
+                Global.shared.welcomeTxt = common["welcome"] as? String ?? ""
+                Global.shared.cancelTxt = common["cancel"] as? String ?? ""
+                Global.shared.termsConditionsShortTxt = common["signup"] as? String ?? ""
+                Global.shared.branchLoctrtLoginTxt = common["branch_locator"] as? String ?? ""
+                Global.shared.loginBtnTxt = common["login"] as? String ?? ""
+                Global.shared.signUpBtnTxt = common["signup"] as? String ?? ""
+                Global.shared.orTxt = common["or"] as? String ?? ""
+                Global.shared.createQuestnBtnTxt = common["lbl_create_question"] as? String ?? ""
+                Global.shared.showMoreBtnTxt = common["show_more"] as? String ?? ""
+                Global.shared.backBtnTxt = common["back"] as? String ?? ""
+                Global.shared.submitBtnTxt = common["submit"] as? String ?? ""
+                Global.shared.verifctnConfirmBtnTxt = common["confirm"] as? String ?? ""
+                Global.shared.verifySubmitBtnTxt = common["submit"] as? String ?? ""
+                Global.shared.nxtBtnTxt = common["next"] as? String ?? ""
+                Global.shared.iHaveReadAgreeTxt = common["txt_terms_conds_label1"] as? String ?? ""
+                Global.shared.termsConditionBtnTxt = common["terms_conditions"] as? String ?? ""
+                Global.shared.almuzinBottomTxt = common["copyright"] as? String ?? ""
+                Global.shared.answerPlaceHolderTxt = common["answer"] as? String ?? ""
+                Global.shared.enterQuestnTxt = common["enter_question"] as? String ?? ""
+                Global.shared.commonMonth = common["month"] as? String ?? ""
+                Global.shared.commonYear = common["year"] as? String ?? ""
+                Global.shared.importContacts = common["import_from_contacts"] as? String ?? ""
+                Global.shared.saveTxt = common["save"] as? String ?? ""
+                Global.shared.updateTxt = common["update"] as? String ?? ""
+                Global.shared.editTxt = common["edit"] as? String ?? ""
+                Global.shared.removeTxt = common["remove"] as? String ?? ""
+                Global.shared.goTxt = common["go"] as? String ?? ""
+                Global.shared.civilIDBack = common["civilid_back"] as? String ?? ""
+            }
+            
+            if let fx_label = dataDict.value(forKey: "fx_label") as? NSDictionary
+            {
+                Global.shared.add_currency = fx_label["add_currency"] as? String ?? ""
+                Global.shared.add_location = fx_label["add_location"] as? String ?? ""
+                Global.shared.add_manage = fx_label["add_manage"] as? String ?? ""
+                Global.shared.address = fx_label["address"] as? String ?? ""
+                Global.shared.address_required_msg = fx_label["address_required_msg"] as? String ?? ""
+                Global.shared.amount_in_kwd = fx_label["amount_in_kwd"] as? String ?? ""
+                Global.shared.amount_in_word = fx_label["amount_in_word"] as? String ?? ""
+                Global.shared.area_city = fx_label["area_city"] as? String ?? ""
+                Global.shared.back = fx_label["back"] as? String ?? ""
+                Global.shared.block = fx_label["block"] as? String ?? ""
+                Global.shared.branch = fx_label["branch"] as? String ?? ""
+                Global.shared.building = fx_label["building"] as? String ?? ""
+                Global.shared.cancel = fx_label["cancel"] as? String ?? ""
+                Global.shared.choose_location = fx_label["choose_location"] as? String ?? ""
+                Global.shared.commission = fx_label["commission"] as? String ?? ""
+                Global.shared.commission_discount = fx_label["commission_discount"] as? String ?? ""
+                Global.shared.created_date = fx_label["created_date"] as? String ?? ""
+                Global.shared.currency = fx_label["currency"] as? String ?? ""
+                Global.shared.currency_required_msg = fx_label["currency_required_msg"] as? String ?? ""
+                Global.shared.date_required_msg = fx_label["date_required_msg"] as? String ?? ""
+                Global.shared.date_timeslot = fx_label["date_timeslot"] as? String ?? ""
+                Global.shared.default_address = fx_label["default_address"] as? String ?? ""
+                Global.shared.delete = fx_label["delete"] as? String ?? ""
+                Global.shared.delivery_charge = fx_label["delivery_charge"] as? String ?? ""
+                Global.shared.delivery_instruction = fx_label["delivery_instruction"] as? String ?? ""
+                Global.shared.delivery_option = fx_label["delivery_option"] as? String ?? ""
+                Global.shared.delivery_type = fx_label["delivery_type"] as? String ?? ""
+                Global.shared.denominations = fx_label["denominations"] as? String ?? ""
+                Global.shared.edit = fx_label["edit"] as? String ?? ""
+                Global.shared.fc_amount = fx_label["fc_amount"] as? String ?? ""
+                Global.shared.flat = fx_label["flat"] as? String ?? ""
+                Global.shared.floor = fx_label["floor"] as? String ?? ""
+                Global.shared.full_name = fx_label["full_name"] as? String ?? ""
+                Global.shared.fx_booking = fx_label["fx_booking"] as? String ?? ""
+                Global.shared.gada = fx_label["gada"] as? String ?? ""
+                Global.shared.high_value = fx_label["high_value"] as? String ?? ""
+                Global.shared.home = fx_label["home"] as? String ?? ""
+                Global.shared.lbl_fx_1 = fx_label["lbl_fx_1"] as? String ?? ""
+                Global.shared.lbl_fx_2 = fx_label["lbl_fx_2"] as? String ?? ""
+                Global.shared.lbl_fx_3 = fx_label["lbl_fx_3"] as? String ?? ""
+                Global.shared.lbl_fx_4 = fx_label["lbl_fx_4"] as? String ?? ""
+                Global.shared.lbl_fx_5 = fx_label["lbl_fx_5"] as? String ?? ""
+                Global.shared.lbl_fx_6 = fx_label["lbl_fx_6"] as? String ?? ""
+                Global.shared.lbl_fx_7 = fx_label["lbl_fx_7"] as? String ?? ""
+                Global.shared.lc_amonut = fx_label["lc_amonut"] as? String ?? ""
+                Global.shared.mix_notes = fx_label["mix_notes"] as? String ?? ""
+                Global.shared.note = fx_label["note"] as? String ?? ""
+                Global.shared.pay = fx_label["pay"] as? String ?? ""
+                Global.shared.phone_number = fx_label["phone_number"] as? String ?? ""
+                Global.shared.pot_required_msg = fx_label["pot_required_msg"] as? String ?? ""
+                Global.shared.preferred_date = fx_label["preferred_date"] as? String ?? ""
+                Global.shared.promocode = fx_label["promocode"] as? String ?? ""
+                Global.shared.purpose = fx_label["purpose"] as? String ?? ""
+                Global.shared.rate = fx_label["rate"] as? String ?? ""
+                Global.shared.remarks = fx_label["remarks"] as? String ?? ""
+                Global.shared.denomination_lbl = fx_label["denomination_lbl"] as? String ?? ""
+                
+                Global.shared.rr_no = fx_label["rr_no"] as? String ?? ""
+                Global.shared.save_address = fx_label["save_address"] as? String ?? ""
+                Global.shared.select_date = fx_label["select_date"] as? String ?? ""
+                Global.shared.service_opt = fx_label["service_opt"] as? String ?? ""
+                Global.shared.service_opted = fx_label["service_opted"] as? String ?? ""
+                Global.shared.status = fx_label["status"] as? String ?? ""
+                Global.shared.street = fx_label["street"] as? String ?? ""
+                Global.shared.submit = fx_label["submit"] as? String ?? ""
+                Global.shared.summary = fx_label["summary"] as? String ?? ""
+                Global.shared.terms = fx_label["terms"] as? String ?? ""
+                Global.shared.time_required_msg = fx_label["time_required_msg"] as? String ?? ""
+                Global.shared.timeslot = fx_label["timeslot"] as? String ?? ""
+                Global.shared.total = fx_label["total"] as? String ?? ""
+                Global.shared.total_lc = fx_label["total_lc"] as? String ?? ""
+                Global.shared.transaction_summary = fx_label["transaction_summary"] as? String ?? ""
+                Global.shared.update_address = fx_label["update_address"] as? String ?? ""
+                Global.shared.update_location = fx_label["update_location"] as? String ?? ""
+                Global.shared.voucher_number = fx_label["voucher_number"] as? String ?? ""
+                Global.shared.you_pay = fx_label["you_pay"] as? String ?? ""
+                Global.shared.your_address = fx_label["your_address"] as? String ?? ""
+                Global.shared.zip_code = fx_label["zip_code"] as? String ?? ""
+
+            }
+            
+            if let guidedTour = dataDict.value(forKey: "guided_tour") as? NSDictionary {
+                
+                Global.shared.guidedTour1 = guidedTour["guided_tour_1"] as? String ?? ""
+                Global.shared.guidedTour2 = guidedTour["guided_tour_2"] as? String ?? ""
+                Global.shared.guidedTour3 = guidedTour["guided_tour_3"] as? String ?? ""
+                Global.shared.guidedTour4 = guidedTour["guided_tour_4"] as? String ?? ""
+                Global.shared.guidedTour5 = guidedTour["guided_tour_5"] as? String ?? ""
+                Global.shared.guidedTour6 = guidedTour["guided_tour_6"] as? String ?? ""
+                Global.shared.guidedTour7 = guidedTour["guided_tour_7"] as? String ?? ""
+                Global.shared.guidedTour8 = guidedTour["guided_tour_8"] as? String ?? ""
+                Global.shared.guidedTour9 = guidedTour["guided_tour_9"] as? String ?? ""
+                Global.shared.guidedTour10 = guidedTour["guided_tour_10"] as? String ?? ""
+                Global.shared.guidedTour11 = guidedTour["guided_tour_11"] as? String ?? ""
+                Global.shared.guidedTour12 = guidedTour["guided_tour_12"] as? String ?? ""
+                Global.shared.guidedTour13 = guidedTour["guided_tour_13"] as? String ?? ""
+                Global.shared.guidedTour14 = guidedTour["guided_tour_14"] as? String ?? ""
+                Global.shared.guidedTour15 = guidedTour["guided_tour_15"] as? String ?? ""
+                Global.shared.guidedTour16 = guidedTour["guided_tour_16"] as? String ?? ""
+                Global.shared.guidedTour17 = guidedTour["guided_tour_17"] as? String ?? ""
+                Global.shared.guidedTour18 = guidedTour["guided_tour_18"] as? String ?? ""
+                Global.shared.guidedTour19 = guidedTour["guided_tour_19"] as? String ?? ""
+                Global.shared.guidedTour20 = guidedTour["guided_tour_20"] as? String ?? ""
+                Global.shared.guidedTour21 = guidedTour["guided_tour_21"] as? String ?? ""
+                Global.shared.guidedTour22 = guidedTour["guided_tour_22"] as? String ?? ""
+                Global.shared.guidedTour23 = guidedTour["guided_tour_23"] as? String ?? ""
+                Global.shared.guidedTour24 = guidedTour["guided_tour_24"] as? String ?? ""
+                Global.shared.guidedTour25 = guidedTour["guided_tour_25"] as? String ?? ""
+                Global.shared.guidedTour26 = guidedTour["guided_tour_26"] as? String ?? ""
+                Global.shared.guidedTour27 = guidedTour["guided_tour_27"] as? String ?? ""
+                Global.shared.guidedTour28 = guidedTour["guided_tour_28"] as? String ?? ""
+                
+            }
+            
+            if let alerts = dataDict.value(forKey: "alerts") as? NSDictionary {
+                
+                Global.shared.uscedfulMailAlert = alerts["forgot_api_success_message"] as? String ?? ""
+                Global.shared.selectVideoFileAlert = alerts["am101"] as? String ?? ""
+                Global.shared.selectFrontBackFilesAlert = alerts["am102"] as? String ?? ""
+                Global.shared.selectIdProfDocAlert = alerts["am103"] as? String ?? ""
+                Global.shared.paswdDoesntMatchAlert = alerts["am104"] as? String ?? ""
+                Global.shared.sizeLimitOnlyTxtAlert = alerts["am105"] as? String ?? ""
+                Global.shared.isueExpireSameAlert = alerts["am106"] as? String ?? ""
+                Global.shared.duplicateSecrtQuestnsAlert = alerts["am107"] as? String ?? ""
+                Global.shared.answer3QuestnsAlert = alerts["am108"] as? String ?? ""
+                Global.shared.invalidMobileNumberTxtAlert = alerts["am109"] as? String ?? ""
+                Global.shared.invalidEmailTxtAlert = alerts["am110"] as? String ?? ""
+                Global.shared.pendingTrnsctnTxt = alerts["am120"] as? String ?? ""
+                Global.shared.failedTrnsctnTxt = alerts["am119"] as? String ?? ""
+                Global.shared.newPswdConfrmSameTxt = alerts["am121"] as? String ?? ""
+                Global.shared.pswdConfrmSameTxt = alerts["am122"] as? String ?? ""
+                Global.shared.featureAddedSoonTxt = alerts["am123"] as? String ?? ""
+                Global.shared.sessionTimedOutTxt = alerts["am124"] as? String ?? ""
+                Global.shared.sameFileUploadTxt = alerts["am116"] as? String ?? ""
+                Global.shared.dateShouldGreater = alerts["am128"] as? String ?? ""
+                Global.shared.IDExpiryValidation = alerts["am129"] as? String ?? ""
+                Global.shared.IDUnderReview = alerts["am130"] as? String ?? ""
+                
+            }
+            if let validations = dataDict.value(forKey: "form_validations") as? NSDictionary {
+                
+                Global.shared.alreadyExistsTxt = validations["usernameuse"] as? String ?? ""
+                Global.shared.isInvalidTxt = validations["invalidEmailAddress"] as? String ?? ""
+                Global.shared.securityAnswerTxt = validations["security_answer"] as? String ?? ""
+                Global.shared.hasNumber = validations["hasNumber"] as? String ?? ""
+                Global.shared.hasCapitalCase = validations["hasCapitalCase"] as? String ?? ""
+                Global.shared.hasSmallCase = validations["hasSmallCase"] as? String ?? ""
+                Global.shared.hasSpecialCharacters = validations["hasSpecialCharacters"] as? String ?? ""
+                Global.shared.errorTxtRequired = validations["required"] as? String ?? ""
+                Global.shared.minLengthTxtt = validations["minLength"] as? String ?? ""
+                Global.shared.invalidTxt = validations["invalid"] as? String ?? ""
+            }
+            
+            
+            
+            
+            if let userManagment = dataDict.value(forKey: "user_management") as? NSDictionary {
+                
+                if let civilIDModel =  userManagment.value(forKey: "civilidupdate_review_modal") as? NSDictionary {
+                    
+                    Global.shared.civilIDReviewTitleLbl = civilIDModel["lbl_header1"] as? String ?? ""
+                    Global.shared.civilIDReviewSubTitle1 = civilIDModel["lbl_desc1"] as? String ?? ""
+                    Global.shared.civilIDReviewSubTitle2 = civilIDModel["lbl_desc2"] as? String ?? ""
+                }
+                
+                if let feedBackScreen = userManagment.value(forKey: "feed_back_screen") as? NSDictionary {
+                    
+                    
+                    Global.shared.feedbckClear = feedBackScreen["clear"] as? String ?? ""
+                    Global.shared.feedBckHeader = feedBackScreen["lbl_header"] as? String ?? ""
+                    Global.shared.feedbckSubmit = feedBackScreen["submit"] as? String ?? ""
+                    Global.shared.feedbckWriteYourFeedback = feedBackScreen["write_your_feedback"] as? String ?? ""
+                    Global.shared.feedbckQuery = feedBackScreen["your_query"] as? String ?? ""
+                    Global.shared.feedbackName = feedBackScreen["name"] as? String ?? ""
+                    Global.shared.feedbackMobile = feedBackScreen["mobile"] as? String ?? ""
+                    Global.shared.feedbackEmail = feedBackScreen["email"] as? String ?? ""
+                }
+                
+                //Beneficiary
+                if let adBeneficiary = userManagment.value(forKey: "add_beneficiary_form") as? NSDictionary {
+                    
+                    Global.shared.profileDetlsTxt = adBeneficiary["header_label1"] as? String ?? ""
+                    Global.shared.bankDetlsTxt = adBeneficiary["header_label2"] as? String ?? ""
+                    
+                    Global.shared.remarksTxtt = adBeneficiary["remarks"] as? String ?? ""
+                    Global.shared.mobileNumberBenfTxt = adBeneficiary["mobile"] as? String ?? ""
+                    Global.shared.emailIdTxttLbl = adBeneficiary["email"] as? String ?? ""
+                    Global.shared.telephneNumbrBenefTxt = adBeneficiary["telephone"] as? String ?? ""
+                    Global.shared.nationalityBenefTxt = adBeneficiary["nationality"] as? String ?? ""
+                    Global.shared.districtBenefTxt = adBeneficiary["district"] as? String ?? ""
+                    
+                    Global.shared.benefIdTypeTxtt = adBeneficiary["beneficiaryidtype"] as? String ?? ""
+                    Global.shared.accounttypeTxt = adBeneficiary["accounttype"] as? String ?? ""
+                    Global.shared.branchAddress1Txtt = adBeneficiary["branchaddress1"] as? String ?? ""
+                    Global.shared.branchAddress2Txtt = adBeneficiary["branchaddress2"] as? String ?? ""
+                    Global.shared.bankTabTxt = adBeneficiary["bank_name"] as? String ?? ""
+                    Global.shared.wuTabTxt = adBeneficiary["wu_name"] as? String ?? ""
+                    Global.shared.benSucesSubtitleTxt = adBeneficiary["ben_success"] as? String ?? ""
+                    Global.shared.benAdded = adBeneficiary["ben_added"] as? String ?? ""
+                    Global.shared.firstNameb = adBeneficiary["firstname"] as? String ?? ""
+                    Global.shared.lastNameb = adBeneficiary["lastname"] as? String ?? ""
+                    Global.shared.middleNameb = adBeneficiary["middlename"] as? String ?? ""
+                    Global.shared.address1b = adBeneficiary["addressline1"] as? String ?? ""
+                    Global.shared.address2b = adBeneficiary["addressline2"] as? String ?? ""
+                    Global.shared.cityb = adBeneficiary["city"] as? String ?? ""
+                    Global.shared.stateb = adBeneficiary["state"] as? String ?? ""
+                    Global.shared.postCodeb = adBeneficiary["postcode"] as? String ?? ""
+                    Global.shared.countryb = adBeneficiary["country"] as? String ?? ""
+                    Global.shared.currencyb = adBeneficiary["currency"] as? String ?? ""
+                    Global.shared.mobileb = adBeneficiary["mobile"] as? String ?? ""
+                    Global.shared.accountNumberb = adBeneficiary["accountnumber"] as? String ?? ""
+                    Global.shared.bankCodeb = adBeneficiary["bankcode"] as? String ?? ""
+                    Global.shared.bankNameb = adBeneficiary["bankname"] as? String ?? ""
+                    Global.shared.branchCodeb = adBeneficiary["branchcode"] as? String ?? ""
+                    Global.shared.branchNameb = adBeneficiary["branchname"] as? String ?? ""
+                    Global.shared.ifscCodeb = adBeneficiary["ifsccode"] as? String ?? ""
+                    Global.shared.swiftCodeb = adBeneficiary["swiftcode"] as? String ?? ""
+                    Global.shared.ibanCodeb = adBeneficiary["ibancode"] as? String ?? ""
+                    Global.shared.cnicnob = adBeneficiary["cnicno"] as? String ?? ""
+                    
+                    Global.shared.AddBenefNationality = adBeneficiary["nationality"] as? String ?? ""
+                    Global.shared.AddBenefDistrict = adBeneficiary["district"] as? String ?? ""
+                    Global.shared.AddBenefIDType = adBeneficiary["beneficiaryidtype"] as? String ?? ""
+                    Global.shared.AddBenefIDNumber = adBeneficiary["beneficiaryidnumber"] as? String ?? ""
+                    Global.shared.AddBenefRelationBeneficiary = adBeneficiary["beneficiaryrelation"] as? String ?? ""
+                    Global.shared.AddBenefAccountType = adBeneficiary["accounttype"] as? String ?? ""
+                    Global.shared.AddBenefBranchAddress1 = adBeneficiary["branchaddress1"] as? String ?? ""
+                    Global.shared.AddBenefBranchAddress2 = adBeneficiary["branchaddress2"] as? String ?? ""
+                    
+                    Global.shared.VisaSendToOwnCard = adBeneficiary["sendto_owncard"] as? String ?? ""
+                    Global.shared.VisaCardDetails = adBeneficiary["card_details"] as? String ?? ""
+                    Global.shared.VisaCardNumber = adBeneficiary["card_number"] as? String ?? ""
+                    Global.shared.VisaDirect = adBeneficiary["visa_direct"] as? String ?? ""
+                    Global.shared.rrn = adBeneficiary["rrn"] as? String ?? ""
+                    
+                    
+                }
+                
+                //Beneficiary list
+                if let benefList = userManagment.value(forKey: "beneficiary_list") as? NSDictionary {
+                    
+                    Global.shared.addBeneficiaryTxt = benefList["add_benficiary"] as? String ?? ""
+                    Global.shared.editBeneficiryTxt = benefList["edit_beneficiaries"] as? String ?? ""
+                    
+                    Global.shared.sourceAmntTxtt = benefList["source_amount"] as? String ?? ""
+                    Global.shared.targetAmntTxtt = benefList["target_amount"] as? String ?? ""
+                    
+                    Global.shared.beneficiaryHeader = benefList["benificiary"] as? String ?? ""
+                    Global.shared.beneficiriesHeader = benefList["beneficiaries"] as? String ?? ""
+                    Global.shared.beneficiaryDetailsHeader = benefList["beneficiary_details"] as? String ?? ""
+                    Global.shared.addBenfcryHeader = benefList["add_benficiary"] as? String ?? ""
+                    Global.shared.selectBenefType = benefList["select_beneficiary_type"] as? String ?? ""
+                    Global.shared.addBank = benefList["bank"] as? String ?? ""
+                    Global.shared.addCash = benefList["cash"] as? String ?? ""
+                    Global.shared.addWesternUnion = benefList["western_union"] as? String ?? ""
+                    Global.shared.sendMoneyTxt = benefList["send_money"] as? String ?? ""
+                    Global.shared.benefType = benefList["beneficiary_type"] as? String ?? ""
+                    
+                    Global.shared.benefListID = benefList["table_id"] as? String ?? ""
+                    Global.shared.benefListName = benefList["table_name"] as? String ?? ""
+                    Global.shared.benefListCountry = benefList["table_country"] as? String ?? ""
+                    Global.shared.benefListMobile = benefList["table_mobile"] as? String ?? ""
+                    Global.shared.benefListTransferMoney = benefList["transfer_money"] as? String ?? ""
+                    Global.shared.benefListDiscount = benefList["discount"] as? String ?? ""
+                    Global.shared.benefListRate = benefList["rate"] as? String ?? ""
+                    Global.shared.benefListCommission = benefList["commission"] as? String ?? ""
+                    Global.shared.benefListTaxCharges = benefList["tax_charges"] as? String ?? ""
+                    Global.shared.benefListNetPayable = benefList["net_payable"] as? String ?? ""
+                    Global.shared.benefLisTotalAmount = benefList["total_amount"] as? String ?? ""
+                    Global.shared.benefListdetailsName = benefList["details_name"] as? String ?? ""
+                    Global.shared.benefLisdetailsBankname = benefList["details_bankname"] as? String ?? ""
+                    Global.shared.benefListDetailsAcno = benefList["details_acno"] as? String ?? ""
+                    Global.shared.benefListDetailsBranch = benefList["details_branch"] as? String ?? ""
+                    Global.shared.benefListDetailsCurrency = benefList["details_currency"] as? String ?? ""
+                    Global.shared.benefListDetailsSourceOfIncome = benefList["details_sourceOfIncome"] as? String ?? ""
+                    Global.shared.benefListDetailsDisbursalMode = benefList["details_disbursolMode"] as? String ?? ""
+                    Global.shared.benefListDetailsPurposename = benefList["details_purposename"] as? String ?? ""
+                    Global.shared.benefListDetailsPrincipalAmount = benefList["details_principalamount"] as? String ?? ""
+                    Global.shared.benefListDetailsOrigPrincipalAmount = benefList["details_origprincipalamount"] as? String ?? ""
+                    
+                    Global.shared.favBenfDashboard = benefList["favourite_beneficiaries"] as? String ?? ""
+                    
+                    
+                }
+                
+                //Rate Calculator
+                if let profileReviewModal = userManagment.value(forKey: "profile_review_modal") as? NSDictionary {
+                    print(profileReviewModal)
+                    Global.shared.profileReviewTitleLbl = profileReviewModal["lbl_header1"] as? String ?? ""
+                    Global.shared.profileReviewSubTitleLbl = profileReviewModal["lbl_desc1"] as? String ?? ""
+                }
+                
+                //Rate Calculator
+                if let rateCalculator = userManagment.value(forKey: "rate_calculator_form") as? NSDictionary {
+                    
+                    Global.shared.youPauOnlyyTxt = rateCalculator["you_pay_only"] as? String ?? ""
+                    Global.shared.indicativeRatesTxt = rateCalculator["indicative_rates_only"] as? String ?? ""
+                    
+                    Global.shared.rateCalculatorHeader = rateCalculator["rate_calculator"] as? String ?? ""
+                    Global.shared.youSendTxt = rateCalculator["you_send"] as? String ?? ""
+                    Global.shared.theyReceiveTxt = rateCalculator["you_recieve"] as? String ?? ""
+                    Global.shared.convertTxt = rateCalculator["convert"] as? String ?? ""
+                    Global.shared.transctnSumary = rateCalculator["transaction_summary"] as? String ?? ""
+                    Global.shared.amntToBeReceived = rateCalculator["amount_to_be_received"] as? String ?? ""
+                    Global.shared.conversnRate = rateCalculator["conversion_rate"] as? String ?? ""
+                    Global.shared.lcAmnt = rateCalculator["lc_amount"] as? String ?? ""
+                    Global.shared.ratetax = rateCalculator["tax"] as? String ?? ""
+                    Global.shared.totalAmntPayable = rateCalculator["total_amount_payable"] as? String ?? ""
+                    
+                    Global.shared.ratesendReceiveDesc = rateCalculator["send_receive_desc"] as? String ?? ""
+                    Global.shared.rateDetails = rateCalculator["rate_details"] as? String ?? ""
+                    Global.shared.rateOriginatorAmount = rateCalculator["originator_amount"] as? String ?? ""
+                    Global.shared.rateConversationDetails = rateCalculator["conversation_details"] as? String ?? ""
+                    Global.shared.rateDestinationAmount = rateCalculator["destination_amount"] as? String ?? ""
+                    Global.shared.rateSenderFee = rateCalculator["sender_fee"] as? String ?? ""
+                    Global.shared.rateGrossTotalAmount = rateCalculator["gross_total_amount"] as? String ?? ""
+                    
+                }
+                
+                //Rate Calculator
+                if let transactions = userManagment.value(forKey: "transactions") as? NSDictionary {
+                    
+                    Global.shared.transctionByPeriodTxt = transactions["transaction_by_period"] as? String ?? ""
+                    Global.shared.transactionByDateTxt = transactions["transaction_by_date"] as? String ?? ""
+                    
+                    
+                    Global.shared.transactionsShareVoucherTxt = transactions["share_voucher"] as? String ?? ""
+                    Global.shared.transactionsTransferTxt = transactions["transfer"] as? String ?? ""
+                    Global.shared.transactionsModeOfTrnsfrTxt = transactions["mode_of_transfer"] as? String ?? ""
+                    
+                    Global.shared.transactionsList = transactions["transactions_list"] as? String ?? ""
+                    Global.shared.transactionsFilterBy = transactions["filter_by"] as? String ?? ""
+                    Global.shared.transactionsFromDate = transactions["from_date"] as? String ?? ""
+                    Global.shared.transactionsToDate = transactions["to_date"] as? String ?? ""
+                    Global.shared.transactionsPeriod = transactions["transaction_period"] as? String ?? ""
+                    Global.shared.transactionsApply = transactions["apply"] as? String ?? ""
+                    Global.shared.transactionsPDFDownload = transactions["pdf_download"] as? String ?? ""
+                    Global.shared.transactionsExcelDownload = transactions["xls_download"] as? String ?? ""
+                    Global.shared.transactionsRefID = transactions["table_refId"] as? String ?? ""
+                    Global.shared.transactionsBeneficiaryName = transactions["table_benName"] as? String ?? ""
+                    Global.shared.transactionsStatus = transactions["table_status"] as? String ?? ""
+                    Global.shared.transactionsSourceCurrency = transactions["table_sourceOfIncome"] as? String ?? ""
+                    Global.shared.transactionsTargetCurrency = transactions["table_targentCurrency"] as? String ?? ""
+                    Global.shared.transactionsTableTotalAmount = transactions["table_totalAmount"] as? String ?? ""
+                    Global.shared.transactionsCreatedDate = transactions["table_createdDate"] as? String ?? ""
+                    Global.shared.transactionsTxnRef = transactions["details_txnref"] as? String ?? ""
+                    Global.shared.transactionsRate = transactions["details_rate"] as? String ?? ""
+                    Global.shared.transactionsCommission = transactions["details_commission"] as? String ?? ""
+                    Global.shared.transactionsFCAmount = transactions["details_fcAmount"] as? String ?? ""
+                    Global.shared.transactionsLCAmount = transactions["details_lcAmount"] as? String ?? ""
+                    Global.shared.transactionsCurrency = transactions["details_currency"] as? String ?? ""
+                    Global.shared.transactionsDetailsTotalAmount = transactions["details_totalAmount"] as? String ?? ""
+                    Global.shared.transactionsDownloadVoucher = transactions["download_voucher"] as? String ?? ""
+                    Global.shared.transactionsQuickSend = transactions["quick_send"] as? String ?? ""
+                    
+                    Global.shared.recentTransctnsLbl = transactions["recent_transactions"] as? String ?? ""
+                }
+                
+                //login screen related
+                if let loginScreen = userManagment.value(forKey: "login_screen") as? NSDictionary {
+                    
+                    Global.shared.securityimglblOne = loginScreen["securityimglbl_1"] as? String ?? ""
+                    Global.shared.securityimglblTwo = loginScreen["securityimglbl_2"] as? String ?? ""
+                    Global.shared.securityimglblThree = loginScreen["securityimglbl_3"] as? String ?? ""
+                    
+                    
+                    Global.shared.loginHeaderTxt = loginScreen["lbl_header"] as? String ?? ""
+                    Global.shared.userNameTxt = loginScreen["username"] as? String ?? ""
+                    Global.shared.paswdText = loginScreen["password"] as? String ?? ""
+                    Global.shared.forgotUserNameTxt = loginScreen["label1"] as? String ?? ""
+                    Global.shared.forgotPswdTxt = loginScreen["label2"] as? String ?? ""
+                    Global.shared.tryAnotherQuestnTxt = loginScreen["try_another_question"] as? String ?? ""
+                    Global.shared.verifySecurityImg = loginScreen["securityimglbl"] as? String ?? ""
+                    Global.shared.verifyProceedAfterLogin = loginScreen["verify_and_proceed"] as? String ?? ""
+                    Global.shared.loginWithFaceIDTxt = loginScreen["login_with_faceid"] as? String ?? ""
+                    
+                    Global.shared.loginChat = loginScreen["login_chat"] as? String ?? ""
+                    Global.shared.ourBranches = loginScreen["login_branches"] as? String ?? ""
+                    self.assigningLoginLabels()
+                }
+                
+                if let forgotUsername = userManagment.value(forKey: "forgot_username") as? NSDictionary {
+                    Global.shared.confirmCivildIdTxt = forgotUsername["lbl_header1"] as? String ?? ""
+                }
+                
+                if let forgotPaswd = userManagment.value(forKey: "forgot_password") as? NSDictionary {
+                    Global.shared.confrmUserToResetPaswd = forgotPaswd["lbl_header1"] as? String ?? ""
+                }
+                
+                //existing customer related
+                if let accountsetup = userManagment.value(forKey: "account_setup") as? NSDictionary {
+                    
+                    Global.shared.existingTopHeaderTxt = accountsetup["lbl_header"] as? String ?? ""
+                    Global.shared.existingCustomrTxt = accountsetup["label1"] as? String ?? ""
+                    let setUpOnline = accountsetup["label2"] as? String ?? ""
+                   // let acnt = accountsetup["label3"] as? String ?? ""
+                    Global.shared.setUpOnlineTxt = setUpOnline
+                    Global.shared.newCustomerTxt = accountsetup["label4"] as? String ?? ""
+                    Global.shared.registerWithAlMTxt = accountsetup["label5"] as? String ?? ""
+                    
+                }
+                //existing accntSetup
+                if let existaccntsetup = userManagment.value(forKey: "exist_account_setup") as? NSDictionary {
+                    
+                    Global.shared.firstSecndTabHeaderTxt = existaccntsetup["lbl_header1"] as? String ?? ""
+                    Global.shared.civilIdTxt = existaccntsetup["civil_id"] as? String ?? ""
+                    Global.shared.mobileNumberTxt = existaccntsetup["mobile_number"] as? String ?? ""
+                    Global.shared.emailIdTxt = existaccntsetup["email"] as? String ?? ""
+                    Global.shared.firstNameTxt = existaccntsetup["first_name"] as? String ?? ""
+                    Global.shared.lastNameTxt = existaccntsetup["last_name"] as? String ?? ""
+                    Global.shared.middleNameTxt = existaccntsetup["middle_name"] as? String ?? ""
+                    Global.shared.thirdTabHeaderTxt = existaccntsetup["lbl_header3"] as? String ?? ""
+                    Global.shared.selectSecureImgTxt = existaccntsetup["lbl_header4"] as? String ?? ""
+                    Global.shared.verifyBtnTxt = existaccntsetup["verify_btn"] as? String ?? ""
+                    Global.shared.continueBtnTxt = existaccntsetup["looks_btn"] as? String ?? ""
+                    
+                    
+                }
+                //new accntSetup
+                if let newaccntsetup = userManagment.value(forKey: "new_account_setup") as? NSDictionary {
+                    
+                    Global.shared.editProfileTxt = newaccntsetup["edit_profile"] as? String ?? ""
+                    Global.shared.employmntDetlsTxt = newaccntsetup["lbl_header9"] as? String ?? ""
+                    Global.shared.identityDetlsTxt = newaccntsetup["lbl_header7"] as? String ?? ""
+                    
+                    Global.shared.uploadProfDocmntsTxt = newaccntsetup["upload_proof_documents"] as? String ?? ""
+                    Global.shared.seeSampleVideoTxt = newaccntsetup["text2"] as? String ?? ""
+                    
+                    Global.shared.persnalDetlsLbl = newaccntsetup["lbl_header2"] as? String ?? ""
+                    Global.shared.addresDetlsLbl = newaccntsetup["lbl_header8"] as? String ?? ""
+                    Global.shared.remitanceDetlsLbl = newaccntsetup["lbl_header10"] as? String ?? ""
+                    Global.shared.trnsctnReltdDetlsLbl = newaccntsetup["lbl_header11"] as? String ?? ""
+                    Global.shared.enableBiometricTxt = newaccntsetup["enable_biometric"] as? String ?? ""
+                    
+                    Global.shared.newSelectVideoTxt = newaccntsetup["text7"] as? String ?? ""
+                    Global.shared.newPreviewVideoTxt = newaccntsetup["text8"] as? String ?? ""
+                    Global.shared.newUplodFrntImgeTxt = newaccntsetup["upload_front_image"] as? String ?? ""
+                    Global.shared.newUplodBckImgTxt = newaccntsetup["upload_back_image"] as? String ?? ""
+                    Global.shared.newRecordVideoTxt = newaccntsetup["text1"] as? String ?? ""
+                    
+                    Global.shared.newCustomerHeader = newaccntsetup["lbl_header6"] as? String ?? ""
+                    Global.shared.identityTabNameTxt = newaccntsetup["lbl_tab1"] as? String ?? ""
+                    Global.shared.personalTabNameTxt = newaccntsetup["lbl_tab2"] as? String ?? ""
+                    Global.shared.employmentTabNameTxt = newaccntsetup["lbl_tab3"] as? String ?? ""
+                    Global.shared.remitanceTabNameTxt = newaccntsetup["lbl_tab4"] as? String ?? ""
+                    
+                    Global.shared.newCidentityTypeTxt = newaccntsetup["civil_id_type"] as? String ?? ""
+                    Global.shared.newCidentityNumberTxt = newaccntsetup["civil_id_number"] as? String ?? ""
+                    Global.shared.newCIdIssueDateTxt = newaccntsetup["civil_id_issue_date"] as? String ?? ""
+                    Global.shared.newCIdExpiryDateTxt = newaccntsetup["civil_id_expiry_date"] as? String ?? ""
+                    Global.shared.newCCountryOfIsueTxt = newaccntsetup["civil_id_countryofissue"] as? String ?? ""
+                    Global.shared.newCPlaceOfIsueTxt = newaccntsetup["civil_id_placeofissue"] as? String ?? ""
+                    
+                    Global.shared.persnalSalutatnTxt = newaccntsetup["salutation"] as? String ?? ""
+                    Global.shared.persnalFirstNameTxt = newaccntsetup["firstname"] as? String ?? ""
+                    Global.shared.persnalmiddleNameTxt = newaccntsetup["middlename"] as? String ?? ""
+                    Global.shared.persnalLastNameTxt = newaccntsetup["lastname"] as? String ?? ""
+                    Global.shared.persnalGenderTxt = newaccntsetup["gender"] as? String ?? ""
+                    Global.shared.persnalNationlityTxt = newaccntsetup["nationality"] as? String ?? ""
+                    Global.shared.persnalDobTxt = newaccntsetup["dob"] as? String ?? ""
+                    Global.shared.persnalPobTxt = newaccntsetup["birthplace"] as? String ?? ""
+                    Global.shared.persnalMobileNumberTxt = newaccntsetup["mobile_number"] as? String ?? ""
+                    Global.shared.persnalTelephnTxt = newaccntsetup["telephone"] as? String ?? ""
+                    Global.shared.persnalEmailIdTxt = newaccntsetup["email"] as? String ?? ""
+                    Global.shared.persnalSecndryEmailTxt = newaccntsetup["secondary_email"] as? String ?? ""
+                    Global.shared.persnalMaleTxt = newaccntsetup["gender_lbl1"] as? String ?? ""
+                    Global.shared.persnalFemaleTxt = newaccntsetup["gender_lbl2"] as? String ?? ""
+                    Global.shared.persnalNeutralTxt = newaccntsetup["gender_lbl3"] as? String ?? ""
+                    
+                    Global.shared.acntResidentTypeTxt = newaccntsetup["resident_type"] as? String ?? ""
+                    Global.shared.acntFlatTxt = newaccntsetup["flat"] as? String ?? ""
+                    Global.shared.acntFloorTxt = newaccntsetup["floor"] as? String ?? ""
+                    Global.shared.acntBuildingTxt = newaccntsetup["building"] as? String ?? ""
+                    Global.shared.acntGadaTxt = newaccntsetup["gada"] as? String ?? ""
+                    Global.shared.acntStreetTxt = newaccntsetup["street"] as? String ?? ""
+                    Global.shared.acntblockTxt = newaccntsetup["block"] as? String ?? ""
+                    Global.shared.acntAreaCityTxt = newaccntsetup["area_city"] as? String ?? ""
+                    Global.shared.acntZipcodeTxt = newaccntsetup["zip_code"] as? String ?? ""
+                    Global.shared.acntStateTxt = newaccntsetup["state"] as? String ?? ""
+                    Global.shared.acntCountryTxt = newaccntsetup["country_code"] as? String ?? ""
+                    
+                    Global.shared.acntRemiterCategryTxt = newaccntsetup["rem_category"] as? String ?? ""
+                    Global.shared.acntRemitIndividualTxt = newaccntsetup["rem_category1"] as? String ?? ""
+                    Global.shared.acntRemitPoliticalTxt = newaccntsetup["rem_category2"] as? String ?? ""
+                    
+                    Global.shared.acntPoliticalScopeTxt = newaccntsetup["pepLocalORInternational"] as? String ?? ""
+                    Global.shared.acntPoliticalLocalTxt = newaccntsetup["pep_lbl1_val1"] as? String ?? ""
+                    Global.shared.acntPoliticalInterntnlTxt = newaccntsetup["pep_lbl1_val2"] as? String ?? ""
+                    
+                    Global.shared.acntAreYouRelativeTxt = newaccntsetup["pepRelative"] as? String ?? ""
+                    Global.shared.acntRelativeYesTxt = newaccntsetup["pepRelative_val1"] as? String ?? ""
+                    Global.shared.acntRelativeNoTxt = newaccntsetup["pepRelative_val2"] as? String ?? ""
+                    
+                    Global.shared.acntDegreOfReltnSHipTxt = newaccntsetup["pepDegreeOfRelationship"] as? String ?? ""
+                    Global.shared.acntDegreCloseTxt = newaccntsetup["pep_lbl4_val1"] as? String ?? ""
+                    Global.shared.acntDegreDistantTxt = newaccntsetup["pep_lbl4_val2"] as? String ?? ""
+                    Global.shared.acntDegreNeutralsTxt = newaccntsetup["pep_lbl4_val3"] as? String ?? ""
+                    Global.shared.pepPositionTxt = newaccntsetup["pepPosition"] as? String ?? ""
+                    
+                    
+                    Global.shared.ocuptnTxt = newaccntsetup["employer_occupation"] as? String ?? ""
+                    Global.shared.employNameTxt = newaccntsetup["employer_name"] as? String ?? ""
+                    Global.shared.employeIdTxt = newaccntsetup["employee_id"] as? String ?? ""
+                    Global.shared.employLoctn = newaccntsetup["employer_location"] as? String ?? ""
+                    Global.shared.designtnTxt = newaccntsetup["employer_designation"] as? String ?? ""
+                    Global.shared.salaryEmploy = newaccntsetup["salary"] as? String ?? ""
+                    Global.shared.otherIncome = newaccntsetup["other_income"] as? String ?? ""
+                    
+                    Global.shared.remitTypeOfServiceTxt = newaccntsetup["type_of_service"] as? String ?? ""
+                    Global.shared.remitPurposeTransferTxt = newaccntsetup["purpose_of_transfer"] as? String ?? ""
+                    Global.shared.remitExpctedPerMonthTxt = newaccntsetup["trans_expected_per_month"] as? String ?? ""
+                    Global.shared.remitExpctedPerYearTxt = newaccntsetup["trans_expected_per_year"] as? String ?? ""
+                    Global.shared.remitTrnsctnValPerMonthTxt = newaccntsetup["trans_value_per_month"] as? String ?? ""
+                    Global.shared.remitTrnsctnValPerYearTxt = newaccntsetup["trans_value_per_year"] as? String ?? ""
+                    Global.shared.remitSourceOfIncomeTxt = newaccntsetup["source_of_income"] as? String ?? ""
+                    Global.shared.remitAvgYearlyIncomeTxt = newaccntsetup["avg_year_income"] as? String ?? ""
+                    
+                    
+                    Global.shared.preferLangTxt = newaccntsetup["pref_language"] as? String ?? ""
+                    Global.shared.countryIsueDrpText = newaccntsetup["civil_id_countryofissue_val"] as? String ?? ""
+                    Global.shared.placeIsueDrpTetx = newaccntsetup["civil_id_placeofissue_val"] as? String ?? ""
+                    Global.shared.stateDrpTxt = newaccntsetup["source_of_income_lbl_val1"] as? String ?? ""
+                    Global.shared.purposeOfTrnsferDrpTxt = newaccntsetup["purpose_of_transfer_lbl_val1"] as? String ?? ""
+                    Global.shared.typeOfServiceDrpTxt = newaccntsetup["type_of_service_lbl_val1"] as? String ?? ""
+                    Global.shared.sourceOfIncomeDrpTxt = newaccntsetup["source_of_income_lbl_val1"] as? String ?? ""
+                    Global.shared.occuptnDrpTxt = newaccntsetup["occupation_lbl_val1"] as? String ?? ""
+                    Global.shared.recordSelfieVideoTxt = newaccntsetup["text1"] as? String ?? ""
+                    
+                    Global.shared.transExpectedCount = newaccntsetup["trans_expected_count"] as? String ?? ""
+                    Global.shared.transExpectedCountMy = newaccntsetup["trans_expected_count_my"] as? String ?? ""
+                    Global.shared.transExpectedValue = newaccntsetup["trans_expected_value"] as? String ?? ""
+                    Global.shared.transExpectedValueMy = newaccntsetup["trans_expected_value_my"] as? String ?? ""
+                    
+                    
+                    
+                }
+                //Profile
+                if let profile = userManagment.value(forKey: "profile") as? NSDictionary {
+                    
+                    Global.shared.faceIdLockTxt = profile["faceid_lock"] as? String ?? ""
+                    Global.shared.profileTab = profile["profile_tab"] as? String ?? ""
+                    
+                }
+                
+                //Profile
+                if let dashboard = userManagment.value(forKey: "dashboard") as? NSDictionary {
+                    
+                    Global.shared.transactnInsight = dashboard["transacton_insights"] as? String ?? ""
+                    Global.shared.ratePaternDashboard = dashboard["rate_pattern_header"] as? String ?? ""
+                    Global.shared.setAlertDashboard = dashboard["set_alert"] as? String ?? ""
+                    
+                }
+                
+                //verify otp popup
+                if let verifyOtpPopUp = userManagment.value(forKey: "verify_otp_modal") as? NSDictionary {
+                    
+                    Global.shared.verificationHeaderTxt = verifyOtpPopUp["lbl_header1"] as? String ?? ""
+                    Global.shared.verfiCtnSubTitleTxt = verifyOtpPopUp["lbl_desc1"] as? String ?? ""
+                    Global.shared.codeExpiresTxt = verifyOtpPopUp["expire_tag"] as? String ?? ""
+                    
+                    
+                }
+                
+                //verify account changePswd
+                if let changePswdScreen = userManagment.value(forKey: "change_password_screen") as? NSDictionary {
+                    
+                    Global.shared.verifyOnlineHeaderTxt = changePswdScreen["lbl_header"] as? String ?? ""
+                    Global.shared.verifyUsernameTxt = changePswdScreen["username"] as? String ?? ""
+                    Global.shared.verifyPaswdTxt = changePswdScreen["password"] as? String ?? ""
+                    Global.shared.verifyConfirmPswdTxt = changePswdScreen["confirm_password"] as? String ?? ""
+                    Global.shared.changeOldPassword = changePswdScreen["old_password"] as? String ?? ""
+                    Global.shared.changeNewPassword = changePswdScreen["new_password"] as? String ?? ""
+                    
+                }
+                if let biometricModel = userManagment.value(forKey: "biometric_modal") as? NSDictionary {
+                    
+                    Global.shared.bioEnable = biometricModel["lbl_desc1"] as? String ?? ""
+                    Global.shared.bioDoItlater = biometricModel["lbl_desc2"] as? String ?? ""
+                    Global.shared.biometricHeader = biometricModel["lbl_header1"] as? String ?? ""
+                    
+                }
+            }
+            }
+        }
     }
     
     func assigningLoginLabels() {
@@ -1744,10 +1711,12 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
     
     @IBAction func chatBtnActn(_ sender: Any) {
         
-        
+        if Connectivity.isConnectedToInternet
+        {
            let vc = self.storyboard?.instantiateViewController(withIdentifier: "ChatController") as! ChatController
             vc.checkPath = "0"
            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     @IBAction func termsCondtnBtnActn(_ sender: Any) {
@@ -2668,10 +2637,11 @@ class LoginVc: UIViewController, UITextFieldDelegate, UICollectionViewDataSource
     }
 
     @IBAction func rateCalculatorActn(_ sender: Any) {
-        
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "RateTabsCalculatorVc") as! RateTabsCalculatorVc
-        
-        self.navigationController?.pushViewController(vc, animated: true)
+        if Connectivity.isConnectedToInternet
+        {
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "RateTabsCalculatorVc") as! RateTabsCalculatorVc
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     //UICollectionViewDatasource methods

@@ -64,7 +64,6 @@ extension HomeDashboardAllNewsVC : UITableViewDelegate, UITableViewDataSource {
         cell.lblTime.text = FXbookingMaster.shared.timeFormat(allNewsDataSource[indexPath.row].startDate ?? "", format: "E, d MMM yyyy")
 //        cell.lblDesc.text = allNewsDataSource[indexPath.row].content ?? ""
         cell.lblDesc.attributedText = (allNewsDataSource[indexPath.row].content ?? "").htmlToAttributedString
-
         return cell
     }
     

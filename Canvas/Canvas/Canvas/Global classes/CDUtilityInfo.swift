@@ -17,6 +17,8 @@ class CDUtilityInfo {
 //  MARK: - ContactUs data Save
     
     func saveContactData(obj : NSObject) {
+        deleteAllData(entity: "ContactUs")
+
         let contaxt = ContactUs(context: PersistantStorage.shared.context)
         contaxt.taskobject = obj
         PersistantStorage.shared.saveContext()
@@ -24,6 +26,8 @@ class CDUtilityInfo {
     
 //  MARK: - Term And Condition data Save
     func saveTermAndConditionData(obj : NSObject) {
+        deleteAllData(entity: "Termscondition")
+
         let contaxt = Termscondition(context: PersistantStorage.shared.context)
         contaxt.taskobject = obj
         PersistantStorage.shared.saveContext()
@@ -31,6 +35,8 @@ class CDUtilityInfo {
     
 //  MARK: - Our Branches data Save
     func saveOurBrenchesData(obj : NSObject) {
+        deleteAllData(entity: "Ourbranches")
+
         let contaxt = Ourbranches(context: PersistantStorage.shared.context)
         contaxt.taskobject = obj
         PersistantStorage.shared.saveContext()
@@ -38,6 +44,7 @@ class CDUtilityInfo {
     
 //  MARK: - FAQ data Save
         func saveFAQData(obj : NSObject) {
+            deleteAllData(entity: "Faqs")
             let contaxt = Faqs(context: PersistantStorage.shared.context)
             contaxt.faqData = obj
             PersistantStorage.shared.saveContext()
@@ -45,6 +52,7 @@ class CDUtilityInfo {
     
 // MARK: - Language change save data
     func languageChange(obj:NSObject){
+        deleteAllData(entity: "LanguageChangesdata")
         let contaxt = LanguageChangesdata(context: PersistantStorage.shared.context)
         contaxt.languageData = obj
         PersistantStorage.shared.saveContext()
@@ -71,11 +79,12 @@ class CDUtilityInfo {
                 let fetchData = NSFetchRequest<Termscondition>(entityName: "Termscondition")
                 do {
                     let result = try PersistantStorage.shared.context.fetch(fetchData)
-                    return result
+                    
+                    return result.count > 0 ? result : nil
                 }catch let error {
                     print(error.localizedDescription)
                 }
-                return []
+                return nil
             }
     
     
@@ -111,7 +120,7 @@ class CDUtilityInfo {
     func languageChangeData()->LanguageChangesdata?{
         let featchData = NSFetchRequest<LanguageChangesdata>(entityName: "LanguageChangesdata")
         do{
-            let result = try PersistantStorage.shared.context.fetch(featchData).first
+            let result = try PersistantStorage.shared.context.fetch(featchData).last
             return result
         }catch let error{
             print(error.localizedDescription)
@@ -119,4 +128,22 @@ class CDUtilityInfo {
         return nil
         
     }
+    
+    func deleteAllData(entity: String)
+    {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
+        fetchRequest.returnsObjectsAsFaults = false
+        do
+        {
+            let results = try PersistantStorage.shared.context.fetch(fetchRequest)
+            for managedObject in results
+            {
+                let managedObjectData:NSManagedObject = managedObject as! NSManagedObject
+                PersistantStorage.shared.context.delete(managedObjectData)
+            }
+        } catch let error as NSError {
+            print("Detele all data in \(entity) error : \(error) \(error.userInfo)")
+        }
+    }
+    
 }

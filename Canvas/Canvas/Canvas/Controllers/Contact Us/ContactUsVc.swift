@@ -9,64 +9,37 @@
 import UIKit
 import Alamofire
 
-class ContactUsVc: UIViewController {
-    
+class ContactUsVc: UIViewController
+{
     @IBOutlet weak var navHeaderLbl: UILabel!
-   
-    
     @IBOutlet weak var ourCustomerLbl: UILabel!
-    
     @IBOutlet weak var ourCustomerServiceValueBtnOtlt: UIButton!
-    
-    
     @IBOutlet weak var emailKeyLbl: UILabel!
-    
     @IBOutlet weak var emailValueLbl: UIButton!
-    
     @IBOutlet weak var almuzinHeadOfceLbl: UILabel!
-    
     @IBOutlet weak var headOfceOneLbl: UILabel!
-    
     @IBOutlet weak var headOfcTwoLbl: UILabel!
-    
     @IBOutlet weak var mainPhneNumberKeyLbl: UILabel!
-    
     @IBOutlet weak var phnNumberOtlt: UIButton!
-    
     @IBOutlet weak var firsttView: UIView!
-    
     @IBOutlet weak var secnddView: UIView!
-    
     @IBOutlet weak var thirddView: UIView!
-    
-    
     @IBOutlet weak var fourthView: UIView!
-    
     @IBOutlet weak var secenView: UIView!
-    
     @IBOutlet weak var faxkeyLbl: UILabel!
-    
     @IBOutlet weak var faxValueLbl: UILabel!
-    
     @IBOutlet weak var alwaysNearYouLbl: UILabel!
-    
     @IBOutlet weak var firstNewView: UIView!
-    
     @IBOutlet weak var youCanRechUsLbl: UILabel!
-    
     @IBOutlet weak var ourCustmerServceLbl: UILabel!
-    
     
     var phnNumber = ""
     var customerServicePhnNumber = ""
-    
     var contactUsDataSource : ContactUs!
     
-    
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
         self.navHeaderLbl.text = Global.shared.menuContact
         firsttView.addDropShadowToView(targetView: firsttView)
         secnddView.addDropShadowToView(targetView: secnddView)
@@ -74,106 +47,77 @@ class ContactUsVc: UIViewController {
         fourthView.addDropShadowToView(targetView: fourthView)
         secenView.addDropShadowToView(targetView: secenView)
         firstNewView.addDropShadowToView(targetView: firstNewView)
+        setdata()
         downloadContactDetails()
     }
     
-    // Mark: For downloading contact details
-    func downloadContactDetails() {
-        
-        let paramaterPasing: [String:Any] = ["languageCode":LocalizationSystem.sharedInstance.getLanguage()]
-        
-        
-        let headers: HTTPHeaders = [
-            "Content-Type": "application/json"
-        ]
-        
-        NetWorkDataManager.sharedInstance.contactUsImplimentation(headersTobePassed: headers, postParameters: paramaterPasing) { resonseTal , errorString in
-            
-            if errorString == nil
+    func setdata()
+    {
+        if let contactdata = CDUtilityInfo.shared.getAllContactData()
+        {
+            if let dataDict = contactdata.taskobject as? NSDictionary?
             {
-                print(resonseTal!)
-                
-                if let contactusContent = resonseTal?.value(forKey: "contactusContent") as? String {
-                    DispatchQueue.main.async {
-                    
-                    let dataObj = Global.shared.convertToDictionary(text: contactusContent)
-                    
-                        let obj = dataObj! as NSObject
-                        
-                        CDUtilityInfo.shared.saveContactData(obj: obj)
-                        
-                        self.contactUsDataSource = CDUtilityInfo.shared.getAllContactData()
-                    
-                        
-                        if let dataDict = self.contactUsDataSource.taskobject as? NSDictionary? {
-                        print(dataDict)
-                       
-                      //  self.almuzainINearLbl.text = dataDict["main_heading"] as? String ?? ""
-                            self.alwaysNearYouLbl.text = dataDict?["main_heading"] as? String ?? ""
-                        self.youCanRechUsLbl.text = dataDict?["sub_heading"] as? String ?? ""
-                        self.ourCustmerServceLbl.text = dataDict?["main_paragraph"] as? String ?? ""
-                        
-                        self.faxkeyLbl.text = dataDict?["fax_text"] as? String ?? ""
-                        self.faxValueLbl.text = dataDict?["fax_content"] as? String ?? ""
-                        
-                        self.ourCustomerLbl.text = dataDict?["hotline_text"] as? String ?? ""
-                        
-                        let hotlineNumber = dataDict?["hotline_content"] as? String ?? ""
-                        self.customerServicePhnNumber = hotlineNumber
-                         self.ourCustomerServiceValueBtnOtlt.setTitle(hotlineNumber, for: .normal)
-                        self.emailKeyLbl.text = dataDict?["email_text"] as? String ?? ""
-                        self.emailValueLbl.setTitle(dataDict?["email_content"] as? String ?? "", for: .normal)
-                        
-                        
-                       // let visitOneLbl = dataDict["visit_text_1"] as? String ?? ""
-                       // let visitTwoLbl = dataDict["visit_text_2"] as? String ?? ""
-                      //  let visitThreeLbl = dataDict["visit_text_3"] as? String ?? ""
-                     //   let visitFinalLbl = visitOneLbl + visitTwoLbl + visitThreeLbl
-                      
-                        self.almuzinHeadOfceLbl.text = dataDict?["office_address"] as? String ?? ""
-                        
-                        let adresOneLbl = dataDict?["address_1"] as? String ?? ""
-                        let adresTwoLbl = dataDict?["address_2"] as? String ?? ""
-                        let adresThreeLbl = dataDict?["address_3"] as? String ?? ""
-                        
-                        let adresFinalLbl = adresOneLbl + "\n" + adresTwoLbl + "\n" + adresThreeLbl
-                        
-                        self.headOfceOneLbl.adjustsFontSizeToFitWidth = true
-                        self.headOfceOneLbl.text = adresFinalLbl
-                        self.headOfcTwoLbl.text = dataDict?["address_4"] as? String ?? ""
-                        
-                        self.mainPhneNumberKeyLbl.text = dataDict?["phone_text"] as? String ?? ""
-                        
-                        
-                       let phnValue = dataDict?["phone_content"] as? String ?? ""
-                        self.phnNumber = phnValue
-                        self.phnNumberOtlt.setTitle(phnValue, for: .normal)
-                   
-                    }
-                }
-                
-                }
+            self.alwaysNearYouLbl.text = dataDict?["main_heading"] as? String ?? ""
+            self.youCanRechUsLbl.text = dataDict?["sub_heading"] as? String ?? ""
+            self.ourCustmerServceLbl.text = dataDict?["main_paragraph"] as? String ?? ""
+            self.faxkeyLbl.text = dataDict?["fax_text"] as? String ?? ""
+            self.faxValueLbl.text = dataDict?["fax_content"] as? String ?? ""
+            self.ourCustomerLbl.text = dataDict?["hotline_text"] as? String ?? ""
+            let hotlineNumber = dataDict?["hotline_content"] as? String ?? ""
+            self.customerServicePhnNumber = hotlineNumber
+            self.ourCustomerServiceValueBtnOtlt.setTitle(hotlineNumber, for: .normal)
+            self.emailKeyLbl.text = dataDict?["email_text"] as? String ?? ""
+            self.emailValueLbl.setTitle(dataDict?["email_content"] as? String ?? "", for: .normal)
+            self.almuzinHeadOfceLbl.text = dataDict?["office_address"] as? String ?? ""
+            let adresOneLbl = dataDict?["address_1"] as? String ?? ""
+            let adresTwoLbl = dataDict?["address_2"] as? String ?? ""
+            let adresThreeLbl = dataDict?["address_3"] as? String ?? ""
+            let adresFinalLbl = adresOneLbl + "\n" + adresTwoLbl + "\n" + adresThreeLbl
+            self.headOfceOneLbl.adjustsFontSizeToFitWidth = true
+            self.headOfceOneLbl.text = adresFinalLbl
+            self.headOfcTwoLbl.text = dataDict?["address_4"] as? String ?? ""
+            self.mainPhneNumberKeyLbl.text = dataDict?["phone_text"] as? String ?? ""
+            let phnValue = dataDict?["phone_content"] as? String ?? ""
+            self.phnNumber = phnValue
+            self.phnNumberOtlt.setTitle(phnValue, for: .normal)
             }
-                
-            else
-            {
-                print(errorString!)
-                self.removeSpinner()
-                let finalError = errorString?.components(separatedBy: ":")
-                let alert = ViewControllerManager.displayAlert(message: finalError?[1] ?? "", title:APPLICATIONNAME)
-                self.present(alert, animated: true, completion: nil)
-            }
-            
         }
-        
     }
     
-    @IBAction func bckBtnActn(_ sender: Any) {
+    // Mark: For downloading contact details
+    func downloadContactDetails()
+    {
+        let paramaterPasing: [String:Any] = ["languageCode":LocalizationSystem.sharedInstance.getLanguage()]
+        let headers: HTTPHeaders = ["Content-Type": "application/json"]
+        NetWorkDataManager.sharedInstance.contactUsImplimentation(headersTobePassed: headers, postParameters: paramaterPasing) { resonseTal , errorString in
+        if errorString == nil
+        {
+            if let contactusContent = resonseTal?.value(forKey: "contactusContent") as? String
+            {
+                let dataObj = Global.shared.convertToDictionary(text: contactusContent)
+                let obj = dataObj! as NSObject
+                CDUtilityInfo.shared.saveContactData(obj: obj)
+                self.setdata()
+            }
+        }
+        else
+        {
+//                print(errorString!)
+//                self.removeSpinner()
+//                let finalError = errorString?.components(separatedBy: ":")
+//                let alert = ViewControllerManager.displayAlert(message: finalError?[1] ?? "", title:APPLICATIONNAME)
+//                self.present(alert, animated: true, completion: nil)
+            }
+        }
+    }
+    
+    @IBAction func bckBtnActn(_ sender: Any)
+    {
         self.navigationController?.popViewController(animated: true)
     }
     
-    
-    @IBAction func emailActn(_ sender: Any) {
+    @IBAction func emailActn(_ sender: Any)
+    {
         let email = emailValueLbl.titleLabel?.text ?? ""
         
         let appURL = URL(string:  "mailto:\(email)")!
@@ -202,23 +146,12 @@ class ContactUsVc: UIViewController {
     }
     
     
-    @IBAction func phnNumberBtnActn(_ sender: Any) {
-     /*   let url : URL = URL(string: "tel://" + phnNumberOtlt.titleLabel.text ?? "0")!
-            if UIApplication.shared.canOpenURL(url) {
-                  UIApplication.shared.open(url, options: [:], completionHandler: nil)
-            }*/
-       // let callNumber = phnNumberOtlt.titleLabel?.text ?? ""
-     //   callNumber(phoneNumber: phnNumberOtlt.titleLabel!.text ?? "")
-        
-       
-  //  }
-        
-     //   let phnNumber = phnNumberOtlt.titleLabel!.text?.dropFirst() ?? ""
-     //   let phnNumber = "123456789"
-        
+    @IBAction func phnNumberBtnActn(_ sender: Any)
+    {
         self.phnNumber = phnNumber.replacingOccurrences(of: " ", with: "")
         self.phnNumber = phnNumber.replacingOccurrences(of: "+", with: "")
-        if let url = NSURL(string: "tel://\(String(describing: self.phnNumber))"), UIApplication.shared.canOpenURL(url as URL) {
+        if let url = NSURL(string: "tel://\(String(describing: self.phnNumber))"), UIApplication.shared.canOpenURL(url as URL)
+        {
            // UIApplication.shared.openURL(url as URL)
         }
     //    callNumber(phoneNumber: String(phnNumber))

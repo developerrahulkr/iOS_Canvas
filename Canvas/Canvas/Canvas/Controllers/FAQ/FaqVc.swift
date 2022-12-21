@@ -32,7 +32,6 @@ class FaqVc: UIViewController, UITableViewDataSource, UITableViewDelegate, UISea
     
     @IBOutlet weak var faqTableView: UITableView!
     
-    var FaqCoreDataRes : Faqs!
     var faqResponse = [Any]()
     var helpVideoList = [HelpSearch]()
     var helpSearchList = [HelpSearch]()
@@ -69,38 +68,30 @@ class FaqVc: UIViewController, UITableViewDataSource, UITableViewDelegate, UISea
 //        self.seg.segmentTitle = titles
 //        }
       
-        segment.setTitle(Global.shared.helpTxt!, forSegmentAt: 0)
-        segment.setTitle(Global.shared.faqTxt!, forSegmentAt: 1)
-      //  segmentHeight.constant = 0
-       // segment.isHidden = true
-        
-        
-//        self.seg.selectedItemHighlightStyle=XMSelectedItemHighlightStyle.bottomEdge
-//        //    self.seg.segmentContent = XMSelectedItemHighlightStyle.bottomEdge
-//        //   let frame = CGRect(x: 0, y: 114, width: self.view.frame.width, height: 44)
-//        //    seg = XMSegmentedControl(frame: <#CGRect#>, segmentContent: (titles, icons), selectedItemHighlightStyle: XMSelectedItemHighlightStyle.bottomEdge)
-//        self.seg.backgroundColor = UIColor.white
-//        self.seg.highlightColor = UIColor.red
-//        // self.seg.tint = ColorCodes.DarkCement
-//        self.seg.tint = UIColor.gray
-//        self.seg.highlightTint = UIColor.red
-//        self.seg.font = UIFont.boldSystemFont(ofSize: 14)
-//
-//        // Do any additional setup after loading the view.
-//        self.navigationController?.navigationBar.isHidden = true
-//        self.seg.backgroundColor = UIColor.white
-        
-       self.showSpinner(onView: self.view)
+        segment.setTitle(Global.shared.helpTxt, forSegmentAt: 0)
+        segment.setTitle(Global.shared.faqTxt, forSegmentAt: 1)
        self.navHeaderLbl.text = Global.shared.helpTxt
-      //  self.navHeaderLbl.text = Global.shared.faqTxt
-        segment.selectedSegmentIndex = 0
-        checkBtn = "0"
         
         self.faqTableView.estimatedRowHeight = 140
         self.faqTableView.rowHeight = UITableView.automaticDimension
         // Do any additional setup after loading the view.
         downloadFaq()
         getHelpList()
+        if Connectivity.isConnectedToInternet
+        {
+            segment.setEnabled(true, forSegmentAt: 0)
+            segment.selectedSegmentIndex = 0
+            checkBtn = "0"
+        }
+        else
+        {
+            segment.setEnabled(false, forSegmentAt: 0)
+            segment.selectedSegmentIndex = 1
+            self.navHeaderLbl.text = Global.shared.faqTxt
+            checkBtn = "1"
+            self.setupdata()
+        }
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -125,50 +116,36 @@ class FaqVc: UIViewController, UITableViewDataSource, UITableViewDelegate, UISea
         ]
         
         NetWorkDataManager.sharedInstance.faqImplimentation(headersTobePassed: headers, postParameters: paramaterPasing) { resonseTal , errorString in
-            
             if errorString == nil
             {
-                self.removeSpinner()
-                
-                print(resonseTal!)
-            /*    if let faqList = resonseTal?.value(forKey: "faqList") as? NSArray {
-                    print(faqList)
-                    self.faqResponse = faqList as! [Any]
-                }
-                self.faqTableView.reloadData()*/
-                
-                if let faqJson = resonseTal?.value(forKey: "faqList") as? [[String:Any]] {
-                                      print(faqJson)
-                    
+                if let faqJson = resonseTal?.value(forKey: "faqList") as? [[String:Any]]
+                {
                     let obj = faqJson as NSObject
-                    
                     CDUtilityInfo.shared.saveFAQData(obj: obj)
-                    
-                    self.FaqCoreDataRes = CDUtilityInfo.shared.getAllFAQData()
-                    
-                    if let dataDict = self.FaqCoreDataRes.faqData {
-                        self.faqList = FaqSearch.getFaqs(dataDict as! [[String : Any]])
-                        print(dataDict)
-                   }
-                    
-                                   //   self.drpResponse = occupationsList as! [Any]
-//                                   self.faqList = FaqSearch.getFaqs(faqJson)
-                                  
-                                  }
-                                  self.faqTableView.reloadData()
-                
+                    self.setupdata()
+                }
             }
-                
             else
             {
-                print(errorString!)
-                self.removeSpinner()
-                let finalError = errorString?.components(separatedBy: ":")
-                let alert = ViewControllerManager.displayAlert(message: finalError?[1] ?? "", title:APPLICATIONNAME)
-                self.present(alert, animated: true, completion: nil)
+//                let finalError = errorString?.components(separatedBy: ":")
+//                let alert = ViewControllerManager.displayAlert(message: finalError?[1] ?? "", title:APPLICATIONNAME)
+//                self.present(alert, animated: true, completion: nil)
                 
             }
         }
+    }
+    
+    
+    func setupdata()
+    {
+        if let faqdata = CDUtilityInfo.shared.getAllFAQData()
+        {
+            if let dataDict = faqdata.faqData as? Faqs
+            {
+                self.faqList = FaqSearch.getFaqs(dataDict as! [[String : Any]])
+            }
+        }
+        self.faqTableView.reloadData()
     }
     
     var index = 0

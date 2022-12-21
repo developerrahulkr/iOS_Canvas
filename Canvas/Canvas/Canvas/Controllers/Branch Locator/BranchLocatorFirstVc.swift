@@ -9,113 +9,69 @@
 import UIKit
 import Alamofire
 
-class BranchLocatorFirstVc: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate{
-    
-    
-    //hdr
+class BranchLocatorFirstVc: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate
+{
     @IBOutlet weak var navHeaderLbl: UILabel!
-    
     @IBOutlet weak var searchBar: UISearchBar!
-    
     @IBOutlet weak var searchTbleView: UITableView!
-    
-    var ourBranchDataSource : Ourbranches!
-    
     var branchLocatorResponse = [Any]()
-    
     var branchLocatorList = [BranchLocatorSearch]()
-       var branchLocatorSearchList = [BranchLocatorSearch]()
-       
-       var searching = false
-    
+    var branchLocatorSearchList = [BranchLocatorSearch]()
+    var searching = false
     var iscomfromfxbooking = false
     
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         self.navHeaderLbl.text = Global.shared.ourBranches
-        
-        self.showSpinner(onView: self.view)
-        // Do any additional setup after loading the view.
-        //   searchTbleView.estimatedRowHeight = 100
         searchTbleView.rowHeight = 110
         if(iscomfromfxbooking)
         {
+            self.showSpinner(onView: self.view)
             self.getBranchDataforfxbooking()
         }
         else
         {
+            setupdata()
             downloadBranches()
         }
     }
     
+    func setupdata()
+    {
+        if let data_branch = CDUtilityInfo.shared.getAllOurBrenches()
+        {
+            if let dataDict = data_branch.taskobject
+            {
+                self.branchLocatorList = BranchLocatorSearch.getBranches(dataDict as! [[String : Any]])
+            }
+        }
+        self.searchTbleView.reloadData()
+    }
+    
     // Mark: For downloading branches
-    func downloadBranches() {
-        
-        let paramaterPasing: [String:Any] = ["languageCode":LocalizationSystem.sharedInstance.getLanguage(),
-                                             "type": 1]
-        
-        
-        let headers: HTTPHeaders = [
-            "Content-Type": "application/json"
-        ]
-        
-        NetWorkDataManager.sharedInstance.branchLocatorImplimentation(headersTobePassed: headers, postParameters: paramaterPasing) { resonseTal , errorString in
-            
+    func downloadBranches()
+    {
+        let paramaterPasing: [String:Any] = ["languageCode":LocalizationSystem.sharedInstance.getLanguage(), "type": 1]
+        let headers: HTTPHeaders = [ "Content-Type": "application/json"]
+        NetWorkDataManager.sharedInstance.branchLocatorImplimentation(headersTobePassed: headers, postParameters: paramaterPasing)
+        { resonseTal , errorString in
             if errorString == nil
             {
-                
-                print(resonseTal!)
-                
-                self.removeSpinner()
-                /*  for dataobj in (resonseTal!["branchesList"] as? [Any])! {
-                 
-                 print(dataobj)
-                 
-                 
-                 
-                 
-                 if let dataDict = dataobj as? NSDictionary {
-                 print(dataDict)
-                 self.branchLocatorResponse.append(dataDict)
-                 
-                 }
-                 }
-                 self.searchTbleView.reloadData()*/
-                
-                if let branchLocatorJson = resonseTal?.value(forKey: "branchesList") as? [[String:Any]] {
-                    print(branchLocatorJson)
-                    
+                if let branchLocatorJson = resonseTal?.value(forKey: "branchesList") as? [[String:Any]]
+                {
                     let obj = branchLocatorJson as NSObject
-                    
                     CDUtilityInfo.shared.saveOurBrenchesData(obj: obj)
-                    
-                    self.ourBranchDataSource = CDUtilityInfo.shared.getAllOurBrenches()
-                    
-                    if let dataDict = self.ourBranchDataSource.taskobject {
-                        self.branchLocatorList = BranchLocatorSearch.getBranches(dataDict as! [[String : Any]])
-                        print(dataDict)
-                    }
-                    //   self.drpResponse = occupationsList as! [Any]
+                    self.setupdata()
                 }
-                self.searchTbleView.reloadData()
-                
-                
             }
-                
-                
-                
             else
             {
-                print(errorString!)
-                self.removeSpinner()
-                let finalError = errorString?.components(separatedBy: ":")
-                let alert = ViewControllerManager.displayAlert(message: finalError?[1] ?? "", title:APPLICATIONNAME)
-                self.present(alert, animated: true, completion: nil)
-                
+//                let finalError = errorString?.components(separatedBy: ":")
+//                let alert = ViewControllerManager.displayAlert(message: finalError?[1] ?? "", title:APPLICATIONNAME)
+//                self.present(alert, animated: true, completion: nil)
             }
-            
         }
-        
     }
     
     func getBranchDataforfxbooking()

@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21512" systemVersion="22A400" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21A559" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="ContactUs" representedClassName="ContactUs" syncable="YES">
         <attribute name="taskobject" optional="YES" attributeType="Transformable"/>
     </entity>
     <entity name="Faqs" representedClassName="Faqs" syncable="YES">
         <attribute name="faqData" optional="YES" attributeType="Transformable"/>
+    </entity>
+    <entity name="LanguageChangesdata" representedClassName="LanguageChangesdata" syncable="YES">
+        <attribute name="languageData" optional="YES" attributeType="Transformable"/>
     </entity>
     <entity name="Ourbranches" representedClassName="Ourbranches" syncable="YES">
         <attribute name="taskobject" optional="YES" attributeType="Transformable"/>
@@ -12,4 +15,11 @@
     <entity name="Termscondition" representedClassName="Termscondition" syncable="YES">
         <attribute name="taskobject" optional="YES" attributeType="Transformable"/>
     </entity>
+    <elements>
+        <element name="ContactUs" positionX="160" positionY="192" width="128" height="44"/>
+        <element name="Faqs" positionX="160" positionY="192" width="128" height="44"/>
+        <element name="Ourbranches" positionX="160" positionY="192" width="128" height="44"/>
+        <element name="Termscondition" positionX="160" positionY="192" width="128" height="44"/>
+        <element name="LanguageChangesdata" positionX="162" positionY="198" width="128" height="44"/>
+    </elements>
 </model>

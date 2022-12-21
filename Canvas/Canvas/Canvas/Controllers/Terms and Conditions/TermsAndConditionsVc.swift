@@ -24,10 +24,6 @@ class TermsAndConditionsVc: UIViewController, UITableViewDataSource, UITableView
     var termsConditionsResponse = [Any]()
     var isSummeryTerm : Bool = false
     
-    lazy var termAndConditionDataSource : [Termscondition] = {
-            let data = [Termscondition]()
-            return data
-        }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,13 +33,17 @@ class TermsAndConditionsVc: UIViewController, UITableViewDataSource, UITableView
         // Do any additional setup after loading the view.
         termsConditionTbleView.estimatedRowHeight = 42
         termsConditionTbleView.rowHeight = UITableView.automaticDimension
-        if isSummeryTerm {
+        if isSummeryTerm
+        {
             getSummeryTermsConditions()
-        }else{
+        }
+        else
+        {
+            self.setupdata()
             downloadTermsConditions()
         }
-        
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
@@ -55,61 +55,42 @@ class TermsAndConditionsVc: UIViewController, UITableViewDataSource, UITableView
     }
     
     // Mark: For downloading terms and conditions
-    func downloadTermsConditions() {
-        
+    func downloadTermsConditions()
+    {
         let paramaterPasing: [String:Any] = ["languageCode":LocalizationSystem.sharedInstance.getLanguage(), "type": 600]
-        
-        
-        let headers: HTTPHeaders = [
-            "Content-Type": "application/json"
-        ]
+        let headers: HTTPHeaders = ["Content-Type": "application/json"]
         
         NetWorkDataManager.sharedInstance.termsConditionsImplimentation(headersTobePassed: headers, postParameters: paramaterPasing) { resonseTal , errorString in
-            
             if errorString == nil
             {
-                
-                print(resonseTal!)
-                if let termsAndConditions = resonseTal?.value(forKey: "termsAndConditions") as? NSArray {
-                    print(termsAndConditions)
-                 /*   let newObj = Global.shared.convertToAryDictionary(text: termsAndConditions)
-                    self.termsConditionsResponse = newObj!*/
-                    
+                if let termsAndConditions = resonseTal?.value(forKey: "termsAndConditions") as? NSArray
+                {
                     let newv =  termsAndConditions[0] as! NSDictionary
-                    print(newv)
-                    
                     let dataStr = newv["termsAndsConditions"] as? String
                     let newObj = Global.shared.convertToAryDictionary(text: dataStr ?? "")
-                    
                     let obj = newObj! as NSObject
-                    
                     CDUtilityInfo.shared.saveTermAndConditionData(obj: obj)
-                    
-                    self.termAndConditionDataSource = CDUtilityInfo.shared.getAllTermAndCondition() ?? []
-                    print(self.termAndConditionDataSource[0].taskobject)
-
-//                    if let dataDict = self.termAndConditionDataSource[0].taskobject as! NSDictionary? {
-//                        print(dataDict)
-//                    }
-                    
-                    
-                    self.termsConditionsResponse = self.termAndConditionDataSource[0].taskobject as! [Any]
-                                       
-               // self.termsConditionsResponse = termsAndConditions as! [Any]
+                    self.setupdata()
                 }
-                
-                self.termsConditionTbleView.reloadData()
             }
-                
             else
             {
-                print(errorString!)
-                self.removeSpinner()
-                let finalError = errorString?.components(separatedBy: ":")
-                let alert = ViewControllerManager.displayAlert(message: finalError?[1] ?? "", title:APPLICATIONNAME)
-                self.present(alert, animated: true, completion: nil)
+//                print(errorString!)
+//                self.removeSpinner()
+//                let finalError = errorString?.components(separatedBy: ":")
+//                let alert = ViewControllerManager.displayAlert(message: finalError?[1] ?? "", title:APPLICATIONNAME)
+//                self.present(alert, animated: true, completion: nil)
             }
         }
+    }
+    
+    func setupdata()
+    {
+        if let data = CDUtilityInfo.shared.getAllTermAndCondition()
+        {
+            self.termsConditionsResponse = data[0].taskobject as! [Any]
+        }
+        self.termsConditionTbleView.reloadData()
     }
     
     

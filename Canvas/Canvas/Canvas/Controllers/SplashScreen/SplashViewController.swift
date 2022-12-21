@@ -172,7 +172,7 @@ class SplashViewController: BaseViewController {
 
 extension SplashViewController: SwiftyGifDelegate {
     func gifDidStop(sender: UIImageView) {
-        
+
         if Connectivity.isConnectedToInternet {
                 callSiteUnderMencAPI()
         }
@@ -188,16 +188,11 @@ extension SplashViewController: SwiftyGifDelegate {
                 else{
                     exit(0)
                 }
-               
             }))
             // show the alert
             self.present(alert, animated: true, completion: nil)
         }
-      //
-        
-       // self.navigateAppRootNavigationController()
-        
+        self.navigateAppRootNavigationController()
     }
-    
 }
 

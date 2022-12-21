@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		184216112953095A005587D3 /* LanguageChangesdata+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1842160B2953095A005587D3 /* LanguageChangesdata+CoreDataProperties.swift */; };
+		184216122953095A005587D3 /* Faqs+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1842160C2953095A005587D3 /* Faqs+CoreDataClass.swift */; };
+		184216132953095A005587D3 /* LanguageChangesdata+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1842160D2953095A005587D3 /* LanguageChangesdata+CoreDataClass.swift */; };
+		184216142953095A005587D3 /* Ourbranches+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1842160E2953095A005587D3 /* Ourbranches+CoreDataClass.swift */; };
+		184216152953095A005587D3 /* Faqs+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1842160F2953095A005587D3 /* Faqs+CoreDataProperties.swift */; };
+		184216162953095A005587D3 /* Ourbranches+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184216102953095A005587D3 /* Ourbranches+CoreDataProperties.swift */; };
+		1842161829532806005587D3 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1842161729532806005587D3 /* NetworkMonitor.swift */; };
 		18529A2D2910F96F00B38A49 /* FXbookingMaster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18529A2C2910F96F00B38A49 /* FXbookingMaster.swift */; };
 		1854037528E40FA200ED3362 /* PhotoSliderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1854037428E40FA200ED3362 /* PhotoSliderView.xib */; };
 		1854037828E40FB500ED3362 /* SiteUnderMaintnanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1854037728E40FB500ED3362 /* SiteUnderMaintnanceController.swift */; };
@@ -268,10 +275,6 @@
 		E4A18F8B2949D9BF00E1D3C8 /* Termscondition+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A18F872949D9BF00E1D3C8 /* Termscondition+CoreDataClass.swift */; };
 		E4A18F94294AE52500E1D3C8 /* PersistanceStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A18F93294AE52500E1D3C8 /* PersistanceStorage.swift */; };
 		E4A18F9A294AE6F500E1D3C8 /* CDUtilityInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A18F99294AE6F500E1D3C8 /* CDUtilityInfo.swift */; };
-		E4A18F9D294B28B000E1D3C8 /* Ourbranches+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A18F9B294B28AF00E1D3C8 /* Ourbranches+CoreDataClass.swift */; };
-		E4A18F9E294B28B000E1D3C8 /* Ourbranches+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A18F9C294B28AF00E1D3C8 /* Ourbranches+CoreDataProperties.swift */; };
-		E4F8FFCA294B3912009F961C /* Faqs+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F8FFC8294B3912009F961C /* Faqs+CoreDataClass.swift */; };
-		E4F8FFCB294B3912009F961C /* Faqs+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F8FFC9294B3912009F961C /* Faqs+CoreDataProperties.swift */; };
 		FDE17B1C1B26BF1F3C83D7A2 /* Pods_Canvas_CanvasUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2337716D41E28FF2B601906F /* Pods_Canvas_CanvasUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -293,6 +296,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1842160B2953095A005587D3 /* LanguageChangesdata+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LanguageChangesdata+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		1842160C2953095A005587D3 /* Faqs+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Faqs+CoreDataClass.swift"; sourceTree = "<group>"; };
+		1842160D2953095A005587D3 /* LanguageChangesdata+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LanguageChangesdata+CoreDataClass.swift"; sourceTree = "<group>"; };
+		1842160E2953095A005587D3 /* Ourbranches+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Ourbranches+CoreDataClass.swift"; sourceTree = "<group>"; };
+		1842160F2953095A005587D3 /* Faqs+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Faqs+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		184216102953095A005587D3 /* Ourbranches+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Ourbranches+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		1842161729532806005587D3 /* NetworkMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		18529A2C2910F96F00B38A49 /* FXbookingMaster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FXbookingMaster.swift; sourceTree = "<group>"; };
 		1854037428E40FA200ED3362 /* PhotoSliderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoSliderView.xib; sourceTree = "<group>"; };
 		1854037728E40FB500ED3362 /* SiteUnderMaintnanceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SiteUnderMaintnanceController.swift; sourceTree = "<group>"; };
@@ -578,10 +588,6 @@
 		E4A18F872949D9BF00E1D3C8 /* Termscondition+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Termscondition+CoreDataClass.swift"; sourceTree = "<group>"; };
 		E4A18F93294AE52500E1D3C8 /* PersistanceStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceStorage.swift; sourceTree = "<group>"; };
 		E4A18F99294AE6F500E1D3C8 /* CDUtilityInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDUtilityInfo.swift; sourceTree = "<group>"; };
-		E4A18F9B294B28AF00E1D3C8 /* Ourbranches+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ourbranches+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
-		E4A18F9C294B28AF00E1D3C8 /* Ourbranches+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ourbranches+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
-		E4F8FFC8294B3912009F961C /* Faqs+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Faqs+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
-		E4F8FFC9294B3912009F961C /* Faqs+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Faqs+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		F1919899CC39E0CDDA2C7E03 /* Pods_Canvas.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Canvas.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA1C9E4A8F98BFF5AD1FA2CD /* Pods-CanvasTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CanvasTests.debug.xcconfig"; path = "Target Support Files/Pods-CanvasTests/Pods-CanvasTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -729,10 +735,12 @@
 		18E70C6A2949C99400CD4C76 /* CoredataModal */ = {
 			isa = PBXGroup;
 			children = (
-				E4F8FFC8294B3912009F961C /* Faqs+CoreDataClass.swift */,
-				E4F8FFC9294B3912009F961C /* Faqs+CoreDataProperties.swift */,
-				E4A18F9B294B28AF00E1D3C8 /* Ourbranches+CoreDataClass.swift */,
-				E4A18F9C294B28AF00E1D3C8 /* Ourbranches+CoreDataProperties.swift */,
+				1842160C2953095A005587D3 /* Faqs+CoreDataClass.swift */,
+				1842160F2953095A005587D3 /* Faqs+CoreDataProperties.swift */,
+				1842160D2953095A005587D3 /* LanguageChangesdata+CoreDataClass.swift */,
+				1842160B2953095A005587D3 /* LanguageChangesdata+CoreDataProperties.swift */,
+				1842160E2953095A005587D3 /* Ourbranches+CoreDataClass.swift */,
+				184216102953095A005587D3 /* Ourbranches+CoreDataProperties.swift */,
 				E4A18F872949D9BF00E1D3C8 /* Termscondition+CoreDataClass.swift */,
 				E4A18F862949D9BF00E1D3C8 /* Termscondition+CoreDataProperties.swift */,
 				18E70C742949CEA900CD4C76 /* ContactUs+CoreDataClass.swift */,
@@ -1018,6 +1026,7 @@
 		D55A083724F63D8C00AFAF12 /* Global classes */ = {
 			isa = PBXGroup;
 			children = (
+				1842161729532806005587D3 /* NetworkMonitor.swift */,
 				D5147EDA24DED9F700B41715 /* Global.swift */,
 				D564540724F4D97400D62196 /* NewUser.swift */,
 				D571385F24F7AB160088A5BA /* BankTransfer.swift */,
@@ -1712,6 +1721,7 @@
 				D518044524EDAE7B005FAD41 /* AfterLoginVerificationVc.swift in Sources */,
 				D571386224F7AB2A0088A5BA /* CashTransfer.swift in Sources */,
 				D569E74B253994EC004A4BD1 /* DrpDwnSearchCell.swift in Sources */,
+				184216162953095A005587D3 /* Ourbranches+CoreDataProperties.swift in Sources */,
 				D5D9F9422505F6C10053E962 /* ProfileVc.swift in Sources */,
 				19C96EFC26DE4B8100B1321E /* OfferViewController.swift in Sources */,
 				D55E2201257B55DA00199A3D /* ExistingRemitanceVc.swift in Sources */,
@@ -1762,7 +1772,6 @@
 				2CC5182328619BF00040F7A2 /* BeneficaryFourTabCollectnCell.swift in Sources */,
 				18CB9F8B28EEE96200123A3B /* CellPurpose.swift in Sources */,
 				2C80527A27A187B300CB3B4D /* BiometricController.swift in Sources */,
-				E4F8FFCB294B3912009F961C /* Faqs+CoreDataProperties.swift in Sources */,
 				18CB9F8528EEE96200123A3B /* CellCurrencyData.swift in Sources */,
 				D571385A24F78E170088A5BA /* BeneficiaryThirdTabCell.swift in Sources */,
 				D55A084524F688D200AFAF12 /* BeneficiaryFirstTabVc.swift in Sources */,
@@ -1846,7 +1855,6 @@
 				D5801F1124F8B60500BFAF77 /* BeneficiaryDetails.swift in Sources */,
 				8ECB2197257F75AF00617DF3 /* BeneficiaryPurposeData.swift in Sources */,
 				1854038F28E41A7900ED3362 /* CellYourAddress.swift in Sources */,
-				E4F8FFCA294B3912009F961C /* Faqs+CoreDataClass.swift in Sources */,
 				D5973C68252F2C53004BC953 /* ProfileDetails.swift in Sources */,
 				18E70C642940997E00CD4C76 /* ReferFriendViewController.swift in Sources */,
 				2CC5182028619BF00040F7A2 /* VisaDirectNewTransferVC.swift in Sources */,
@@ -1858,16 +1866,18 @@
 				D518044124EDAD90005FAD41 /* ForgotUsernamePopUp.swift in Sources */,
 				D583B7EA250B9C020019D136 /* BenefPaymentWebViewVc.swift in Sources */,
 				D50FF9982551B43F009DA3F1 /* HomeNewsFeedCell.swift in Sources */,
+				184216122953095A005587D3 /* Faqs+CoreDataClass.swift in Sources */,
 				E4A18F94294AE52500E1D3C8 /* PersistanceStorage.swift in Sources */,
 				E4A18F8A2949D9BF00E1D3C8 /* Termscondition+CoreDataProperties.swift in Sources */,
 				18529A2D2910F96F00B38A49 /* FXbookingMaster.swift in Sources */,
 				8E3BA91E25721C8A0078A025 /* PasswordRules.swift in Sources */,
 				1867E4BA28F1F9D400D4F09E /* CellServiceOpted.swift in Sources */,
+				1842161829532806005587D3 /* NetworkMonitor.swift in Sources */,
 				D55D05682549BC6E00998DCB /* BenefFirstTabCollectnCell.swift in Sources */,
 				D5EB6B572569055F0089038F /* RateCalculatorWuVc.swift in Sources */,
 				18E70C762949CEA900CD4C76 /* ContactUs+CoreDataClass.swift in Sources */,
-				E4A18F9E294B28B000E1D3C8 /* Ourbranches+CoreDataProperties.swift in Sources */,
 				D545D1FA2508DF720098DC4D /* Reachability.swift in Sources */,
+				184216142953095A005587D3 /* Ourbranches+CoreDataClass.swift in Sources */,
 				D55B32C5254FFC76005E57F5 /* TransactionsMainVc.swift in Sources */,
 				187F3F4728F992DD008333AA /* AddNewAddressMap.swift in Sources */,
 				D55CF45F25569A0200E77B07 /* BranchLocatorCell.swift in Sources */,
@@ -1878,6 +1888,7 @@
 				D5DAD8BF2577730900908738 /* HomeBankRateCalcVc.swift in Sources */,
 				1854038B28E41A7900ED3362 /* CellSectionTwo.swift in Sources */,
 				D571385624F78DD00088A5BA /* BeneficiaryWesternUnionVc.swift in Sources */,
+				184216152953095A005587D3 /* Faqs+CoreDataProperties.swift in Sources */,
 				2C805276278581DF00CB3B4D /* ToolTipListController.swift in Sources */,
 				D54BA62B24E28C70001000E7 /* NewCustomerVc.swift in Sources */,
 				1882136128E5B7C000E1E865 /* CalanderCell.swift in Sources */,
@@ -1885,6 +1896,7 @@
 				1854037828E40FB500ED3362 /* SiteUnderMaintnanceController.swift in Sources */,
 				D571385424F78DA20088A5BA /* BeneficiaryCashTransferVc.swift in Sources */,
 				D55C935424D8461F003F7F5F /* Canvas.xcdatamodeld in Sources */,
+				184216132953095A005587D3 /* LanguageChangesdata+CoreDataClass.swift in Sources */,
 				18E70C752949CEA900CD4C76 /* ContactUs+CoreDataProperties.swift in Sources */,
 				18CB9F8828EEE96200123A3B /* CellTermsAndConditions.swift in Sources */,
 				D55C1E66254AABF900DF7949 /* BenefBankCashNewTransferVc.swift in Sources */,
@@ -1908,7 +1920,6 @@
 				1867E4BD28F1F9D400D4F09E /* CellStatus.swift in Sources */,
 				D56B547A25D6B16E00B08B15 /* main.swift in Sources */,
 				D542F56E24EE63AB00213C80 /* ProfileUnderReviewPopUp.swift in Sources */,
-				E4A18F9D294B28B000E1D3C8 /* Ourbranches+CoreDataClass.swift in Sources */,
 				D50EF0BB251DC59F00790C4F /* WuContatCell.swift in Sources */,
 				D5D9F944250614300053E962 /* ChangePaswdVc.swift in Sources */,
 				D55E82BD2570889300226A60 /* CountryDrpDownSearch.swift in Sources */,
@@ -1922,6 +1933,7 @@
 				D5D9F94A25063D930053E962 /* BenefWuEditVc.swift in Sources */,
 				D571385E24F7A25E0088A5BA /* TermsAndConditionsVc.swift in Sources */,
 				D5714F4325A2132E00949409 /* SecurityQuestnOtpPopUp.swift in Sources */,
+				184216112953095A005587D3 /* LanguageChangesdata+CoreDataProperties.swift in Sources */,
 				D571385C24F7915C0088A5BA /* BeneficiaryBankTransferVc.swift in Sources */,
 				18EA1CC329092C3D00BF4E2D /* temperromsg.swift in Sources */,
 				D51E88C924E2C4230010C57B /* NewCustPersonalVc.swift in Sources */,
