@@ -135,7 +135,7 @@ class FaqVc: UIViewController, UITableViewDataSource, UITableViewDelegate, UISea
         }
     }
     
-    
+// MARK: -    Core Data SetUP
     func setupdata()
     {
         if let faqdata = CDUtilityInfo.shared.getAllFAQData()

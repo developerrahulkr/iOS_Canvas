@@ -83,7 +83,7 @@ class TermsAndConditionsVc: UIViewController, UITableViewDataSource, UITableView
             }
         }
     }
-    
+//   MARK: - Core data setUp
     func setupdata()
     {
         if let data = CDUtilityInfo.shared.getAllTermAndCondition()
